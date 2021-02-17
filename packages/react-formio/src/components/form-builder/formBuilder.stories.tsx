@@ -1594,7 +1594,6 @@ Sandbox.args = {
           format: "yyyy-MM-dd hh:mm a",
           hourIncrement: 1,
           minuteIncrement: 1,
-          time_24hr: false,
           minDate: null,
           disabledDates: "",
           disableWeekends: false,

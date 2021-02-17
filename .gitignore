@@ -52,7 +52,7 @@ test/*.js.map
 # Test
 /stdout
 /stderr
-
+.eslintcache
 .DS_Store
 .nyc_output
 /docs/.vuepress/dist/

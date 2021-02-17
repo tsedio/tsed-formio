@@ -21,6 +21,6 @@
     "build": "tsc --noEmit false && gulp templates && yarn webpack",
     "lint:fix": "yarn lint --fix",
     "lint": "yarn eslint --config .eslintrc --cache --quiet \"./src/**/*.{ts,tsx,js,jsx}\"",
-    "prettier": "prettier '{src,test}/**/*.{ts,tsx}' --write"
+    "prettier": "prettier '{src,test}/**/*.{ts,tsx,js,jsx}' --write"
   }
 }

@@ -8,10 +8,7 @@
   "private": true,
   "scripts": {
     "start:storybook": "start-storybook -s ../tailwind/build -p 6006",
-    "build:storybook": "build-storybook -s ../tailwind/build -c .storybook -o dist",
-    "lint:fix": "yarn lint --fix",
-    "lint": "yarn eslint --config .eslintrc --cache --quiet \"./{src,.storybook}/**/*.{js,jsx,ts,tsx}\"",
-    "prettier": "prettier '{src,.storybook}/**/*.{js,jsx,ts,tsx}' --write"
+    "build:storybook": "build-storybook -s ../tailwind/build -c .storybook -o dist"
   },
   "devDependencies": {
     "@tsed/tailwind": "1.0.0",
