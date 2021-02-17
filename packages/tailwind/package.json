@@ -12,15 +12,15 @@
     "build:tailwind:viewer": "tailwind-config-viewer export ./build && cp ./build/index.html ./build/tailwind.html && yarn clean:tailwind",
     "clean:tailwind:viewer": "rimraf build/index.html build/favicon.ico"
   },
-  "dependencies": {},
   "devDependencies": {
     "rimraf": "3.0.2",
-    "tailwindcss-cli": "0.1.2",
     "tailwind": "4.0.0",
     "tailwind-config-viewer": "^1.3.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "tailwindcss-cli": "0.1.2",
     "tailwindcss-inset": "1.0.0",
     "tailwindcss-transforms": "2.2.0"
   },
+  "dependencies": {},
   "peerDependencies": {}
 }
