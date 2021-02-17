@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/TypedProject/tsed-formio",
   "scripts": {
+    "postinstall": "lerna run build --stream",
     "configure": "monorepo ci configure",
     "test": "lerna run test --stream",
     "test:e2e": "lerna run test:e2e",

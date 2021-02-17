@@ -6,7 +6,6 @@
   "source": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "postinstall": "yarn build",
     "test": "cross-env CI=1 yarn craco test",
     "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
     "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement",

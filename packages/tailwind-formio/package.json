@@ -13,7 +13,6 @@
     "webpack-cli": "4.5.0"
   },
   "scripts": {
-    "postinstall": "yarn build",
     "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
     "build": "tsc --noEmit false && gulp templates && yarn webpack",
     "lint:fix": "yarn lint --fix",

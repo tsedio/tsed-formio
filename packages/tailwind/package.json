@@ -6,7 +6,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "yarn build:tailwind",
     "build:tailwind": "tailwindcss-cli build -o build/tailwind.css && yarn build:tailwind:viewer",
     "start:tailwind:viewer": "tailwind-config-viewer -o",
     "build:tailwind:viewer": "tailwind-config-viewer export ./build && cp ./build/index.html ./build/tailwind.html && yarn clean:tailwind:viewer",
