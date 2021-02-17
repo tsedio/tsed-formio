@@ -1,0 +1,115 @@
+{
+  "name": "@tsed/root",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Romain Lenzotti",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TypedProject/tsed-formio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TypedProject/tsed-formio/issues"
+  },
+  "homepage": "https://github.com/TypedProject/tsed-formio",
+  "scripts": {
+    "configure": "monorepo ci configure",
+    "test": "lerna run test --stream",
+    "test:e2e": "lerna run test:e2e",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "prettier": "lerna run prettier",
+    "build": "monorepo build",
+    "publish": "monorepo publish --dry-run",
+    "start": "lerna run start --stream --parallel",
+    "start:storybook": "lerna run start:storybook --scope=@tsed/storybook --stream",
+    "build:storybook": "lerna run build:storybook --stream --scope @tsed/storybook",
+    "publish:storybook": "yarn build:storybook && monorepo publish ghpages",
+    "release": "semantic-release"
+  },
+  "dependencies": {
+    "lerna": "3.22.1"
+  },
+  "devDependencies": {
+    "@tsed/monorepo-utils": "1.15.1",
+    "@craco/craco": "6.1.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/prop-types": "15.7.3",
+    "@types/ejs": "^3.0.5",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.20",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "@types/lodash": "4.14.168",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.6",
+    "enzyme-to-json": "3.4.4",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-config-standard": "16.0.2",
+    "eslint-config-standard-react": "11.0.1",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-promise": "4.3.1",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-standard": "5.0.0",
+    "microbundle": "0.13.0",
+    "cross-env": "7.0.3",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-scripts": "4.0.1",
+    "history": "5.0.0",
+    "husky": "5.0.9",
+    "lint-staged": "10.5.3",
+    "semantic-release": "17.3.9",
+    "typescript": "^4.1.3",
+    "webpack": "4.44.2"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@types",
+      "**/@types/**",
+      "packages/*/**/webpack-dev-server",
+      "**/babel-loader",
+      "**/babel-jest"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "packages/react-formio/**/*.{js,jsx}": [
+      "cd packages/react-formio && yarn lint:fix",
+      "git add"
+    ],
+    "packages/redux-utils/**/*.{ts,jsx}": [
+      "cd packages/redux-utils && yarn lint:fix",
+      "git add"
+    ],
+    "packages/tailwind-formio/**/*.{js,jsx}": [
+      "cd packages/react-formio && yarn lint:fix",
+      "git add"
+    ]
+  },
+  "monorepo": {
+    "productionBranch": "master",
+    "developBranch": "master",
+    "npmAccess": "public",
+    "ghpages": {
+      "dir": "./packages/storybook/dist",
+      "url": "https://github.com/TypedProject/tsed-formio.git",
+      "branch": "gh-pages",
+      "cname": "formio.tsed.io"
+    }
+  }
+}

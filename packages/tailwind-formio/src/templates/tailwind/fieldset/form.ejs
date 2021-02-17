@@ -1,0 +1,15 @@
+<fieldset class="mb-5 mt-5">
+  {% if (ctx.component.legend) { %}
+  <legend class="text-lg border-b-1 border-solid border-gray-300 w-full mb-3 pb-1" ref="header" class="{{ctx.component.collapsible ? 'formio-clickable' : ''}}">
+    {{ctx.t(ctx.component.legend)}}
+    {% if (ctx.component.tooltip) { %}
+      <i ref="tooltip" class="{{ctx.iconClass('question-sign')}}" data-tooltip="{{ctx.component.tooltip}}"></i>
+    {% } %}
+  </legend>
+  {% } %}
+  {% if (!ctx.collapsed) { %}
+  <div class="fieldset-body" ref="{{ctx.nestedKey}}">
+    {{ctx.children}}
+  </div>
+  {% } %}
+</fieldset>

@@ -1,0 +1,11 @@
+export { Card } from "./card/card.component";
+export { Form } from "./form/form.component";
+export { FormAccess } from "./form-access/formAccess.component";
+export { FormAction } from "./form-action/formAction.component";
+export { FormBuilder } from "./form-builder/formBuilder.component";
+export { FormEdit } from "./form-edit/formEdit.component";
+export { FormEditCTAs } from "./form-edit/formCtas.component";
+export { FormSettings } from "./form-edit/formSettings.component";
+export { InputTags } from "./input-tags/inputTags.component";
+export { InputText } from "./input-text/inputText.component";
+export { Select } from "./select/select.component";

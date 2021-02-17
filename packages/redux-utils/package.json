@@ -1,0 +1,28 @@
+{
+  "name": "@tsed/redux-utils",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.tsx",
+  "description": "Redux utils",
+  "author": "Romain Lenzotti",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "yarn build",
+    "test": "cross-env CI=1 yarn craco test",
+    "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
+    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement",
+    "lint:fix": "yarn lint --fix",
+    "lint": "yarn eslint --config .eslintrc --cache --quiet \"./src/**/*.{ts,tsx}\"",
+    "prettier": "prettier '{src,test}/**/*.{ts,tsx}' --write"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@tsed/config": "1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0",
+    "redux": "^4.0.5"
+  }
+}

@@ -1,0 +1,22 @@
+<div class="card card-tabs">
+  <div class="card-header card-header-tabs">
+    <ul class="nav nav-tabs">
+      {% ctx.component.components.forEach(function(tab, index) { %}
+      <li class="nav-item {{ ctx.currentTab === index ? ' active' : ''}}" role="presentation" ref="{{ctx.tabLikey}}">
+        <a class="nav-link" href="#{{tab.key}}" ref="{{ctx.tabLinkKey}}">{{ctx.t(tab.label)}}</a>
+        <div class="nav-border"></div>
+      </li>
+      {% }) %}
+    </ul>
+  </div>
+  {% ctx.component.components.forEach(function(tab, index) { %}
+  <div
+    role="tabpanel"
+    class="card-body card-body-tabs tab-pane{{ ctx.currentTab === index ? ' active' : ''}}"
+    style="display: {{ctx.currentTab === index ? 'block' : 'none'}}"
+    ref="{{ctx.tabKey}}"
+  >
+    {{ctx.tabComponents[index]}}
+  </div>
+  {% }) %}
+</div>

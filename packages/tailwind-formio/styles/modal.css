@@ -1,0 +1,18 @@
+.formio-dialog.formio-dialog-theme-default.component-settings {
+  .formio-dialog-close.btn {
+    @apply px-4 text-xs text-gray-500 bg-transparent hover:bg-red hover:text-white;
+
+    &:before {
+      @apply text-md p-0 text-current;
+      line-height: normal;
+    }
+  }
+
+  .formio-dialog-content {
+    @apply p-0 text-xs w-full sm:w-9/10;
+
+    .component-edit-container {
+      @apply overflow-visible;
+    }
+  }
+}

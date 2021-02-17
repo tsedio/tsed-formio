@@ -1,0 +1,37 @@
+.form-edit {
+  @apply border-b-1 border-solid border-gray-200 sm:flex mb-5;
+
+  &__settings {
+    @apply flex-1 flex flex-wrap -mx-2;
+
+    > div {
+      > .form-group {
+        @apply pb-0 px-2 w-full sm:w-auto;
+        min-width: 25%;
+
+        &:last-child {
+          @apply mb-5;
+        }
+      }
+    }
+  }
+
+  &__actions {
+    @apply flex flex-col justify-end;
+    > div {
+      @apply flex flex-col pl-5;
+
+      > * {
+        @apply mb-5;
+      }
+
+      > div {
+        @apply flex flex-row -mx-2;
+
+        > * {
+          @apply mx-2;
+        }
+      }
+    }
+  }
+}

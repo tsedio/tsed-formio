@@ -1,0 +1,26 @@
+{
+  "name": "@tsed/tailwind-formio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tailwind templates for form.io forms.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-insert": "^0.5.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-template": "^5.0.0",
+    "nodemon": "2.0.7",
+    "webpack-cli": "4.5.0"
+  },
+  "scripts": {
+    "postinstall": "yarn build",
+    "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
+    "build": "tsc --noEmit false && gulp templates && yarn webpack",
+    "lint:fix": "yarn lint --fix",
+    "lint": "yarn eslint --config .eslintrc --cache --quiet \"./src/**/*.{ts,tsx,js,jsx}\"",
+    "prettier": "prettier '{src,test}/**/*.{ts,tsx}' --write"
+  }
+}

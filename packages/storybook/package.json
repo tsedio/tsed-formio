@@ -1,0 +1,54 @@
+{
+  "name": "@tsed/storybook",
+  "version": "1.0.0",
+  "description": "Storybook package",
+  "main": "src/index.js",
+  "author": "Romain Lenzotti",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start:storybook": "start-storybook -s ../tailwind/build -p 6006",
+    "build:storybook": "build-storybook -s ../tailwind/build -c .storybook -o dist",
+    "lint:fix": "yarn lint --fix",
+    "lint": "yarn eslint --config .eslintrc --cache --quiet \"./{src,.storybook}/**/*.{js,jsx,ts,tsx}\"",
+    "prettier": "prettier '{src,.storybook}/**/*.{js,jsx,ts,tsx}' --write"
+  },
+  "devDependencies": {
+    "@tsed/tailwind": "1.0.0",
+    "@tsed/config": "1.0.0",
+    "@babel/core": "^7.10.2",
+    "@sambego/storybook-state": "2.0.1",
+    "@storybook/addon-actions": "6.1.11",
+    "@storybook/addon-backgrounds": "6.1.11",
+    "@storybook/addon-centered": "5.3.21",
+    "@storybook/addon-essentials": "6.1.11",
+    "@storybook/addon-links": "6.1.11",
+    "@storybook/addon-notes": "5.3.21",
+    "@storybook/addon-storyshots": "6.1.11",
+    "@storybook/addon-storysource": "6.1.11",
+    "@storybook/addon-viewport": "6.1.11",
+    "@storybook/addons": "6.1.11",
+    "@storybook/react": "6.1.11",
+    "@svgr/webpack": "5.5.0",
+    "@tsed/yarn-workspaces": "1.14.0",
+    "babel-loader": "8.0.6",
+    "cross-env": "5.2.0",
+    "react-svg": "10.0.23",
+    "url-loader": "2.2.0"
+  },
+  "dependencies": {
+
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
