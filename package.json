@@ -23,7 +23,8 @@
     "publish": "monorepo publish --dry-run",
     "start": "lerna run start --stream --parallel",
     "start:storybook": "lerna run start:storybook --scope=@tsed/storybook --stream",
-    "build:storybook": "lerna run build:storybook --stream --scope @tsed/storybook",
+    "build:storybook": "yarn build:tailwind && lerna run build:storybook --stream --scope @tsed/storybook",
+    "build:tailwind": "lerna run build:tailwind --stream --scope @tsed/tailwind",
     "publish:storybook": "yarn build:storybook && monorepo publish ghpages",
     "release": "semantic-release"
   },

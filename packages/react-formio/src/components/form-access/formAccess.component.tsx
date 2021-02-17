@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { ReactElement } from "react";
 import { FormOptions, FormSchema } from "../../interfaces";
 import { Card } from "../card/card.component";
-import Form from "../form/form.component";
+import { Form } from "../form/form.component";
 import {
   formAccessToSubmission,
   getAccessPermissionForm,

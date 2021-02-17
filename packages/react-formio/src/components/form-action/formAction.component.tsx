@@ -6,7 +6,7 @@ import {
   FormOptions,
   Submission
 } from "../../interfaces";
-import Form from "../form/form.component";
+import { Form } from "../form/form.component";
 
 function mapData(options: any, defaults: ActionDefaultsSchema): any {
   return {

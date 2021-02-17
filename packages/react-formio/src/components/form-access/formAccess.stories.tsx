@@ -26,7 +26,9 @@ export default {
   }
 };
 
-export const Sandbox = (args) => {
+export const Sandbox = (args: any) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   return <FormAccess {...args} />;
 };
 

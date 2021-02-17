@@ -31,7 +31,7 @@ export default {
   }
 };
 
-export const Sandbox = (args) => {
+export const Sandbox = (args: any) => {
   return <FormAction {...args} />;
 };
 
