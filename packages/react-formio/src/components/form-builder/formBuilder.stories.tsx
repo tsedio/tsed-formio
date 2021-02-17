@@ -4,7 +4,19 @@ import { FormBuilder } from "../../index";
 export default {
   title: "ReactFormio/FormBuilder",
   component: FormBuilder,
-  argTypes: {},
+  argTypes: {
+    onSubmit: { action: "onSubmit" },
+    form: {
+      control: {
+        type: "object"
+      }
+    },
+    options: {
+      control: {
+        type: "object"
+      }
+    }
+  },
   parameters: {
     docs: {
       source: {
@@ -14,8 +26,8 @@ export default {
   }
 };
 
-export const Sandbox = (args) => {
-  return <FormBuilder form={args.form} options={args.options} />;
+export const Sandbox = (args: any) => {
+  return <FormBuilder {...args} />;
 };
 
 Sandbox.args = {

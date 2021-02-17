@@ -5,8 +5,7 @@
   "description": "Tailwind templates for form.io forms.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-insert": "^0.5.0",
@@ -22,5 +21,6 @@
     "lint:fix": "yarn lint --fix",
     "lint": "yarn eslint --config .eslintrc --cache --quiet \"./src/**/*.{ts,tsx,js,jsx}\"",
     "prettier": "prettier '{src,test}/**/*.{ts,tsx,js,jsx}' --write"
-  }
+  },
+  "peerDependencies": {}
 }

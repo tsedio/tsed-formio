@@ -6,9 +6,9 @@
   "description": "Shared configuration",
   "author": "Romain Lenzotti",
   "license": "MIT",
+  "private": true,
   "scripts": {},
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@tsed/tailwind": "1.0.0",
     "@tsed/yarn-workspaces": "1.15.1",

@@ -4,6 +4,7 @@
   "main": "./tailwind.config.js",
   "description": "Tailwind configuration",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "postinstall": "yarn build:tailwind",
     "build:tailwind": "tailwindcss-cli build -o build/tailwind.css",
