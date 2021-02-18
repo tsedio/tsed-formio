@@ -11,7 +11,8 @@ export interface UseFormHookProps {
   isValid: boolean;
   hasUndo: boolean;
   hasRedo: boolean;
-  saveForm: Function;
+  onSubmit: () => void;
+  onCopy: () => void;
   formChange: (newForm: Partial<FormSchema>) => void;
   setChange: (path: string, value: any) => void;
 }
@@ -22,9 +23,14 @@ export function useForm(props: any): UseFormHookProps {
     createInitialState(props)
   );
 
-  const saveForm = () => {
+  const onSubmit = () => {
     if (props.onSubmit && typeof props.onSubmit === "function") {
       props.onSubmit(current);
+    }
+  };
+  const onCopy = () => {
+    if (props.onSubmit && typeof props.onCopy === "function") {
+      props.onCopy(current);
     }
   };
 
@@ -61,7 +67,8 @@ export function useForm(props: any): UseFormHookProps {
     isValid: current.title && current.name && current.path,
     hasUndo: !!past.length,
     hasRedo: !!future.length,
-    saveForm,
+    onSubmit,
+    onCopy,
     formChange,
     setChange
   };

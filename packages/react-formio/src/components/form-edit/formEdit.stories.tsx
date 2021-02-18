@@ -6,7 +6,6 @@ export default {
   title: "ReactFormio/FormEdit",
   component: FormEdit,
   argTypes: {
-    onSubmit: { action: "onSubmit" },
     form: {
       control: {
         type: "object"
@@ -31,7 +30,10 @@ export default {
       control: {
         type: "boolean"
       }
-    }
+    },
+    onSubmit: { action: "onSubmit" },
+    onChange: { action: "onChange" },
+    onCopy: { action: "onCopy" }
   },
   parameters: {
     docs: {
@@ -154,5 +156,6 @@ Sandbox.args = {
     { label: "Resources", value: "resource" }
   ],
   displayChoices: defaultDisplayChoices,
+  enableTags: true,
   options: { template: "tailwind", iconset: "bx" }
 };

@@ -3,9 +3,9 @@ import AllComponents from "formiojs/components";
 import Components from "formiojs/components/Components";
 import FormioFormBuilder from "formiojs/FormBuilder";
 import cloneDeep from "lodash/cloneDeep";
+import noop from "lodash/noop";
 import PropTypes from "prop-types";
 import React from "react";
-import noop from "lodash/noop";
 import { callLast } from "../../utils/callLast";
 
 Components.setComponents(AllComponents);
@@ -120,8 +120,13 @@ export class FormBuilder extends React.Component<FormBuilderProps, any> {
   }
 
   async componentDidMount(): Promise<void> {
+    await this.create(this.props);
+  }
+
+  async create(props: FormBuilderProps) {
     const {
       options,
+      display,
       components,
       onAddComponent,
       onUpdateComponent,
@@ -133,9 +138,10 @@ export class FormBuilder extends React.Component<FormBuilderProps, any> {
       onEditJson,
       onCopyComponent,
       onPasteComponent
-    } = this.props;
+    } = props;
 
     this.builderRef = await createBuilder(this.elRef.firstChild, {
+      display,
       options: { ...options },
       components: cloneDeep(components),
       onChange: this.whenComponentsChange.bind(this),
@@ -158,13 +164,15 @@ export class FormBuilder extends React.Component<FormBuilderProps, any> {
     this.builderRef?.destroy();
   }
 
-  componentWillReceiveProps(nextProps: FormBuilderProps) {
+  async componentWillReceiveProps(nextProps: FormBuilderProps) {
     if (this.builderRef) {
       if (nextProps.display !== this.state.display) {
-        this.builderRef.form = {
-          display: nextProps.display,
-          components: this.state.components
-        };
+        this.builderRef.destroy();
+
+        await this.create({
+          ...this.props,
+          display: nextProps.display
+        });
       } else if (nextProps.components !== this.state.components) {
         this.builderRef.form = {
           display: this.state.display,
