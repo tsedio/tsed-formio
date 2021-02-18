@@ -12,7 +12,8 @@ export interface FormEditProps {
   typeChoices?: { label: string; value: any }[];
   displayChoices?: { label: string; value: any }[];
   enableTags?: boolean;
-  onSubmit?: Function;
+  onSubmit?: (form: FormSchema) => void;
+  onCopy?: (form: FormSchema) => void;
   builder?: any;
 }
 
@@ -27,7 +28,8 @@ export function FormEdit(props: FormEditProps) {
     redo,
     undo,
     reset,
-    saveForm
+    onSubmit,
+    onCopy
   } = useForm(props);
   const { options = {}, builder } = props;
 
@@ -50,7 +52,8 @@ export function FormEdit(props: FormEditProps) {
           onRedo={redo}
           onUndo={undo}
           onReset={reset}
-          onSubmit={saveForm}
+          onCopy={onCopy}
+          onSubmit={onSubmit}
         />
       </div>
 

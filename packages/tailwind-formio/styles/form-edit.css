@@ -17,12 +17,16 @@
   }
 
   &__actions {
-    @apply flex flex-col justify-end;
+    @apply flex flex-col justify-end mb-2;
+    .btn-save {
+     @apply mb-4 leading-normal;
+    }
+
     > div {
       @apply flex flex-col pl-5;
 
       > * {
-        @apply mb-5;
+        @apply mb-3;
       }
 
       > div {

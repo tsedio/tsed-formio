@@ -54,7 +54,7 @@ export function Select<T = any>({
   }, []);
 
   choices =
-    layout === "choicesjs" || multiple
+    layout === "choicesjs" || multiple || !placeholder
       ? choices
       : ([{ label: placeholder, value: "" }, ...choices] as any[]);
 

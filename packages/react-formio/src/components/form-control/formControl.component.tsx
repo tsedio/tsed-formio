@@ -6,8 +6,8 @@ export interface FormControlProps {
   required?: boolean;
   label?: string;
   description?: string;
-  prefix?: React.ComponentType;
-  suffix?: React.ComponentType;
+  prefix?: React.ComponentType | any;
+  suffix?: React.ComponentType | any;
   shadow?: boolean;
 }
 

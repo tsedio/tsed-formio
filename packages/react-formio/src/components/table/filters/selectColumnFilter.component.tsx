@@ -14,7 +14,7 @@ export function SelectColumnFilter<D extends Record<string, unknown> = {}>({
       name={`filter-${column.id}`}
       size={"sm"}
       value={filterValue}
-      choices={choices}
+      choices={[{ value: "", label: "All" }].concat(choices)}
       onChange={(name, value) => {
         setFilter(value || undefined);
       }}
