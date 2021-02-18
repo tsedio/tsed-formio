@@ -1,6 +1,6 @@
 {
   "name": "@tsed/tailwind-formio",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Tailwind templates for form.io forms.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
