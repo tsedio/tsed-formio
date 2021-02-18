@@ -1,5 +1,6 @@
+import classnames from "classnames";
 import PropTypes from "prop-types";
-import React, { ReactElement, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { callLast } from "../../utils/callLast";
 import { getEventValue } from "../../utils/getEventValue";
 import {
@@ -8,10 +9,13 @@ import {
 } from "../form-control/formControl.component";
 
 export interface InputTextProps<T = any> extends FormControlProps {
+  type?: string;
   value?: T;
+  /**
+   * The input size
+   */
+  size?: string;
   onChange?: (name: string, value: T) => void;
-  prefix?: any;
-  suffix?: any;
   placeholder?: string;
 
   [key: string]: any;
@@ -23,10 +27,13 @@ export function InputText<T = any>({
   label,
   onChange,
   required,
+  size,
+  type,
   prefix,
   suffix,
+  description,
   ...props
-}: InputTextProps<T>): ReactElement {
+}: InputTextProps<T>) {
   const [localValue, setValue] = useState(value);
 
   const change = useMemo(
@@ -42,16 +49,18 @@ export function InputText<T = any>({
   }, [value]);
 
   return (
-    <FormControl name={name} label={label} required={required}>
-      {prefix && (
-        <div className='input-group-prepend'>
-          <span className='input-group-text'>{prefix}</span>
-        </div>
-      )}
+    <FormControl
+      name={name}
+      label={label}
+      required={required}
+      description={description}
+      prefix={prefix}
+      suffix={suffix}
+    >
       <input
-        type='text'
-        className='form-control'
+        type={type || "text"}
         {...props}
+        className={classnames("form-control", size && `form-control-${size}`)}
         id={name}
         required={required}
         value={(localValue || "") as any}
@@ -62,19 +71,16 @@ export function InputText<T = any>({
           return change(name, value);
         }}
       />
-      {suffix && (
-        <div className='input-group-append'>
-          <span className='input-group-text'>{suffix}</span>
-        </div>
-      )}
     </FormControl>
   );
 }
 
 InputText.propTypes = {
   label: PropTypes.string,
+  type: PropTypes.string,
   name: PropTypes.string.isRequired,
   value: PropTypes.any,
+  size: PropTypes.string,
   required: PropTypes.bool,
   onChange: PropTypes.func,
   prefix: PropTypes.any,

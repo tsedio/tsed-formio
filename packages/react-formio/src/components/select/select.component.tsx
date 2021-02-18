@@ -1,5 +1,7 @@
+import Choices from "choices.js";
+import classnames from "classnames";
 import PropTypes from "prop-types";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { getEventValue } from "../../utils/getEventValue";
 import {
   FormControl,
@@ -7,30 +9,77 @@ import {
 } from "../form-control/formControl.component";
 
 export interface SelectProps<T = any> extends FormControlProps {
-  value?: T;
-  onChange?: (name: string, value: T) => void;
+  value?: any;
+  size?: string;
+  onChange?: (name: string, value: any) => void;
   placeholder?: string;
   choices: { label: string; value: T }[];
+  layout?: "html5" | "choicesjs";
+  multiple?: boolean;
 
   [key: string]: any;
 }
 
 export function Select<T = any>({
   name,
-  value,
   label,
+  size,
   onChange,
   required,
-  choices
+  value,
+  choices = [],
+  description,
+  placeholder,
+  prefix,
+  suffix,
+  multiple,
+  layout,
+  ...props
 }: SelectProps<T>): ReactElement {
+  const ref = useRef();
+
+  useEffect(() => {
+    let instance: any;
+
+    if (layout === "choicesjs") {
+      instance = new Choices(ref.current, {
+        removeItemButton: true,
+        placeholderValue: placeholder
+      });
+    }
+
+    return () => {
+      instance && instance.destroy();
+    };
+  }, []);
+
+  choices =
+    layout === "choicesjs" || multiple
+      ? choices
+      : ([{ label: placeholder, value: "" }, ...choices] as any[]);
+
   return (
-    <FormControl name={name} label={label} required={required}>
+    <FormControl
+      name={name}
+      label={label}
+      required={required}
+      description={description}
+      prefix={prefix}
+      suffix={suffix}
+      shadow={false}
+    >
       <select
-        className='form-control'
+        ref={ref}
+        {...props}
+        className={classnames("form-control", size && `form-control-${size}`)}
         name={name}
         id={name}
+        multiple={multiple}
         value={value || ("" as any)}
-        onChange={(event) => onChange("display", getEventValue(event))}
+        placeholder={placeholder}
+        onChange={(event) => {
+          onChange("display", getEventValue(event));
+        }}
       >
         {choices.map(({ label, value }) => {
           return (

@@ -1,0 +1,142 @@
+[
+  {
+    "_id": "5e972ae8a1a692917cf55006",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "MPEC",
+      "label": "Michès Playa Esmeralda"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.718Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf55007",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "CARC",
+      "label": "La Caravelle"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.724Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf55008",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "MAUC",
+      "label": "La Pointe aux Canonniers"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.728Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf55009",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "CFAC",
+      "label": "Cefalù"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.732Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf5500a",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "MPAC",
+      "label": "Marrakech la Palmeraie"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.737Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf5500b",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "COLC",
+      "label": "Columbus Isle"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.741Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf5500c",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "ALHC_WINTER",
+      "label": "Alpe d'Huez (winter)"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.746Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf5500d",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "ARPC_WINTER",
+      "label": "Les Arcs Panorama (winter)"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.750Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf5500e",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "GMAC_WINTER",
+      "label": "Grand Massif Samoëns Morillon (winter)"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.754Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  },
+  {
+    "_id": "5e972ae8a1a692917cf5500f",
+    "owner": null,
+    "roles": [],
+    "data": {
+      "id": "TVCC",
+      "label": "Tignes Val Claret"
+    },
+    "access": [],
+    "externalIds": [],
+    "created": "2020-04-15T12:47:42.000Z",
+    "modified": "2020-04-15T15:40:24.759Z",
+    "form": "5e972ae7a1a692917cf54f9e"
+  }
+]

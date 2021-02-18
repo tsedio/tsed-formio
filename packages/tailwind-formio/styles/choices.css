@@ -150,6 +150,16 @@
     }
   }
   &[data-type=select-multiple] {
+    &:after {
+      @apply h-0 w-0 border-solid absolute border-0 h-full top-0 m-0 right-1.5;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-size: 1.5em 1.5em;
+      background-repeat: no-repeat;
+      background-position: center;
+      content: '';
+      width: 1.5em;
+    }
+
     .form-control {
       @apply pb-0;
     }

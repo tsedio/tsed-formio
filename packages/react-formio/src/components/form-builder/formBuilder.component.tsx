@@ -1,3 +1,4 @@
+import { ComponentSchema } from "formiojs";
 import AllComponents from "formiojs/components";
 import Components from "formiojs/components/Components";
 import FormioFormBuilder from "formiojs/FormBuilder";
@@ -6,7 +7,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import noop from "lodash/noop";
 import { callLast } from "../../utils/callLast";
-import { ComponentSchema } from "../../interfaces";
 
 Components.setComponents(AllComponents);
 

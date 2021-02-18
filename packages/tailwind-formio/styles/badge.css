@@ -4,11 +4,15 @@ Requires one of the contextual, color modifier classes for `color` and
  */
 
 .badge {
-  @apply inline-block py-px px-1.5 font-bold text-center whitespace-nowrap align-baseline rounded transition-colors;
+  @apply inline-flex  py-px px-1.5 font-bold text-center whitespace-nowrap items-center rounded transition-colors;
   font-size: 75%;
 
   &:empty {
     @apply hidden;
+  }
+
+  &.badge-hover {
+    @apply cursor-pointer;
   }
 }
 
@@ -17,6 +21,7 @@ a .badge {
     @apply no-underline
   }
 }
+
 /* Quick fix for badges in buttons */
 .btn .badge {
   @apply relative -top-px;
@@ -29,7 +34,7 @@ Make them extra rounded with a modifier to replace v3's badges.
   @apply text-white border-primary;
 }
 
-a .badge.bg-primary {
+a .badge.bg-primary, .badge-hover.bg-primary {
   &:hover, &:focus {
     @apply hover:text-white hover:bg-gray-800 focus:bg-gray-800 hover:border-gray-800 focus:border-gray-800 focus:text-gray-800;
   }
@@ -39,7 +44,7 @@ a .badge.bg-primary {
   @apply text-white border-secondary;
 }
 
-a .badge.bg-secondary  {
+a .badge.bg-secondary, .badge-hover.bg-secondary {
   &:hover, &:focus {
     @apply hover:text-white hover:bg-secondary-800 focus:bg-secondary-800 hover:border-secondary-800 focus:border-secondary-800 focus:text-secondary-800;
   }
@@ -49,7 +54,7 @@ a .badge.bg-secondary  {
   @apply text-white bg-green border-green;
 }
 
-a .badge.bg-success  {
+a .badge.bg-success, .badge-hover.bg-success {
   &:hover, &:focus {
     @apply hover:text-white hover:bg-green-800 focus:bg-green-800 hover:border-green-800 focus:border-green-800 focus:text-green-800;
   }
@@ -59,7 +64,7 @@ a .badge.bg-success  {
   @apply text-white bg-red border-red;
 }
 
-a .badge.bg-danger  {
+a .badge.bg-danger, .badge-hover.bg-danger {
   &:hover, &:focus {
     @apply hover:text-white hover:bg-red-800 focus:bg-red-800 hover:border-red-800 focus:border-red-800 focus:text-red-800;
   }
@@ -69,7 +74,7 @@ a .badge.bg-danger  {
   @apply text-white bg-yellow border-yellow;
 }
 
-a .badge.bg-warning  {
+a .badge.bg-warning, .badge-hover.bg-warning {
   &:hover, &:focus {
     @apply hover:text-white hover:bg-yellow-800 focus:bg-yellow-800 hover:border-yellow-800 focus:border-yellow-800 focus:text-yellow-800;
   }
@@ -79,17 +84,17 @@ a .badge.bg-warning  {
   @apply text-white bg-blue border-blue;
 }
 
-a .badge.bg-info  {
+a .badge.bg-info, .badge-hover.bg-info {
   &:hover, &:focus {
     @apply hover:text-white hover:bg-blue-800 focus:bg-blue-800 hover:border-blue-800 focus:border-blue-800 focus:text-blue-800;
   }
 }
 
 .badge.bg-light {
-  @apply text-gray-600 bg-gray-100 border-gray-100;
+  @apply text-gray-600 bg-gray-200 border-gray-200;
 }
 
-a .badge.bg-light  {
+a .badge.bg-light, .badge-hover.bg-light {
   &:hover, &:focus {
     @apply hover:text-gray-800 hover:bg-gray-300 focus:bg-gray-300 hover:border-gray-300 focus:border-gray-300 focus:text-gray-800;
   }
@@ -99,7 +104,7 @@ a .badge.bg-light  {
   @apply text-white bg-gray border-gray;
 }
 
-a .badge.bg-dark  {
+a .badge.bg-dark, .badge-hover.bg-dark {
   &:hover, &:focus {
     @apply hover:text-white hover:bg-gray-800 focus:bg-gray-800 hover:border-gray-800 focus:border-gray-800 focus:text-gray-800;
   }
