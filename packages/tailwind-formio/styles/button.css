@@ -1,5 +1,5 @@
 .btn {
-  @apply text-primary text-center bg-transparent border-solid border-1 border-transparent px-5 py-2 transition-colors ease-linear duration-300	rounded font-bold text-center inline-flex justify-center items-center;
+  @apply text-primary text-center bg-transparent border-solid border-1 border-transparent px-5 py-2 transition-colors ease-linear duration-300 rounded font-bold text-center inline-flex justify-center items-center;
   text-decoration: none;
   user-select: none;
 
@@ -24,6 +24,16 @@
     &:focus {
       @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
     }
+  }
+
+  &.btn-sm {
+    @apply px-3 py-1 text-sm;
+  }
+
+  &.btn-xs {
+    @apply px-2 py-0 text-xs;
+    padding-top: 2px;
+    padding-bottom: 2px;
   }
 }
 
@@ -97,7 +107,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-primary {
-  @apply text-primary bg-white border-primary;
+  @apply text-primary bg-transparent border-primary;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-secondary focus:bg-secondary hover:border-secondary focus:border-secondary;
@@ -105,7 +115,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-secondary {
-  @apply text-secondary bg-white border-secondary;
+  @apply text-secondary bg-transparent border-secondary;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-secondary focus:bg-secondary hover:border-secondary focus:border-secondary focus:text-secondary;
@@ -113,7 +123,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-success {
-  @apply text-green bg-white border-green;
+  @apply text-green bg-transparent border-green;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-green focus:bg-green hover:border-green focus:border-green focus:text-green;
@@ -121,7 +131,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-danger {
-  @apply text-red bg-white border-red;
+  @apply text-red bg-transparent border-red;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-red focus:bg-red hover:border-red focus:border-red focus:text-red;
@@ -129,7 +139,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-warning {
-  @apply text-yellow bg-white border-yellow;
+  @apply text-yellow bg-transparent border-yellow;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-yellow focus:bg-yellow hover:border-yellow focus:border-yellow focus:text-yellow;
@@ -137,7 +147,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-info {
-  @apply text-blue bg-white border-blue;
+  @apply text-blue bg-transparent border-blue;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-blue focus:bg-blue hover:border-blue focus:border-blue focus:text-blue;
@@ -145,7 +155,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-light {
-  @apply text-gray-200 bg-white border-gray-100;
+  @apply text-gray-200 bg-transparent border-gray-100;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-gray-800 hover:bg-gray-300 focus:bg-gray-300 hover:border-gray-300 focus:border-gray-300 focus:text-gray-800;
@@ -153,26 +163,17 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-dark {
-  @apply text-gray bg-white border-gray;
+  @apply text-gray bg-transparent border-gray;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-gray-800 focus:bg-gray-800 hover:border-gray-800 focus:border-gray-800 focus:text-gray-800;
   }
 }
 
-/*
-.btn-lg {
-  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
-}
-
-.btn-sm {
-  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
-}
-*/
-
 .btn.gu-mirror {
   @apply justify-center;
 }
+
 .btn-block {
   @apply w-full flex justify-start;
 
@@ -207,6 +208,22 @@ input[type="button"] {
     .component-settings-button-paste,
     .component-settings-button-copy {
       background: white;
+    }
+  }
+}
+
+.btn-group {
+  @apply flex align-middle justify-end;
+
+  .btn {
+    @apply flex items-center mx-1;
+
+    &:first-child {
+      @apply ml-0;
+    }
+
+    &:last-child {
+      @apply mr-0;
     }
   }
 }

@@ -25,6 +25,10 @@
 
 .form-control {
   @apply appearance-none bg-white leading-normal px-3 py-2 block w-full rounded-md border-1 border-gray-300 shadow-sm;
+
+  &.form-control-sm {
+    @apply px-2 py-1 text-sm;
+  }
 }
 
 
@@ -66,7 +70,8 @@ select.form-control {
 
 select.form-control[size],
 select.form-control[multiple] {
-  @apply h-auto;
+  @apply h-auto pr-3;
+  background-image: none;
 }
 
 textarea.form-control {

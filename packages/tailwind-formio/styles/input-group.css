@@ -1,5 +1,11 @@
 .input-group {
-  @apply flex relative flex-wrap items-stretch w-full shadow-sm;
+  @apply flex relative flex-wrap items-stretch w-full shadow-sm rounded;
+  > .choices {
+    @apply flex-1 mb-0;
+    .choices__inner {
+      @apply shadow-none;
+    }
+  }
 }
 
 .input-group > .form-control:not([type=hidden]),
@@ -27,13 +33,20 @@
 }
 
 .input-group > .form-control,
+.input-group > .choices,
 .input-group > .custom-select {
   &:not(:last-child) {
     @apply rounded-r-none;
+    .choices__inner {
+      @apply rounded-r-none;
+    }
   }
 
   &:not(:first-child) {
     @apply rounded-l-none;
+    .choices__inner {
+      @apply rounded-l-none;
+    }
   }
 }
 

@@ -1,10 +1,15 @@
 import Choices from "choices.js";
+import uniq from "lodash/uniq";
 import PropTypes from "prop-types";
 import React, { useEffect, useRef } from "react";
-import uniq from "lodash/uniq";
-import { FormControlProps } from "../form-control/formControl.component";
 
-export interface InputTagsProps<T = any> extends FormControlProps {
+import {
+  FormControl,
+  FormControlProps
+} from "../form-control/formControl.component";
+
+export interface InputTagsProps<T = any>
+  extends Omit<FormControlProps, "description" | "prefix" | "suffix"> {
   value?: T;
   onChange?: (name: string, value: T) => void;
   placeholder?: string;
@@ -18,6 +23,9 @@ export function InputTags({
   label,
   onChange,
   required,
+  description,
+  prefix,
+  suffix,
   ...props
 }: InputTagsProps) {
   const ref = useRef();
@@ -29,7 +37,7 @@ export function InputTags({
       removeItemButton: true
     });
 
-    instance.setValue(value);
+    instance.setValue([].concat(value, []));
 
     instance.passedElement.element.addEventListener("addItem", (event: any) => {
       onChange(name, uniq(value.concat(event.detail.value)));
@@ -45,18 +53,19 @@ export function InputTags({
     return () => {
       instance.destroy();
     };
-  }, [ref, name, value, onChange]);
+  }, []);
 
   return (
-    <div id={`form-group-${name}`} className='form-group'>
-      <label
-        htmlFor={name}
-        className={`col-form-label ${required ? " field-required" : ""}`}
-      >
-        {label}
-      </label>
+    <FormControl
+      name={name}
+      label={label}
+      required={required}
+      description={description}
+      prefix={prefix}
+      suffix={suffix}
+    >
       <input ref={ref} type='text' {...props} id={name} required={required} />
-    </div>
+    </FormControl>
   );
 }
 

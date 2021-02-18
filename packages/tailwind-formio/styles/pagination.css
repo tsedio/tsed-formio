@@ -1,9 +1,9 @@
 .pagination {
-  @apply flex rounded;
+  @apply flex rounded shadow-sm;
 }
 
 .page-link {
-  @apply relative block py-2 px-3 -ml-px text-primary bg-white border-1 border-solid border-gray-300;
+  @apply relative block px-3 py-2 leading-normal -ml-px text-primary bg-white border-1 border-solid border-gray-300;
 
   &:hover {
     @apply z-2 text-secondary no-underline bg-gray-200 border-gray-300;
@@ -33,5 +33,12 @@
 
   &.disabled .page-link {
     @apply text-gray-600 pointer-events-none cursor-auto bg-white border-gray-300;
+  }
+}
+
+.pagination-group {
+  @apply flex;
+  .form-group {
+    @apply m-0;
   }
 }

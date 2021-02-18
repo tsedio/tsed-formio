@@ -1,0 +1,501 @@
+{
+  "_id": "5e972ae7a1a692917cf54f9e",
+  "type": "resource",
+  "tags": [
+    "common",
+    "products"
+  ],
+  "owner": null,
+  "components": [
+    {
+      "autofocus": false,
+      "input": true,
+      "tableView": true,
+      "inputType": "text",
+      "inputMask": "",
+      "label": "Id",
+      "key": "id",
+      "placeholder": "Enter the product id",
+      "prefix": "",
+      "suffix": "",
+      "multiple": false,
+      "defaultValue": "",
+      "protected": false,
+      "unique": false,
+      "persistent": true,
+      "hidden": false,
+      "clearOnHide": true,
+      "spellcheck": true,
+      "validate": {
+        "required": true,
+        "minLength": 4,
+        "pattern": "",
+        "custom": "",
+        "customPrivate": false
+      },
+      "conditional": {
+        "show": "",
+        "eq": ""
+      },
+      "labelPosition": "top",
+      "inputFormat": "plain",
+      "tags": [],
+      "properties": {},
+      "id": "gsjot",
+      "type": "textfield"
+    },
+    {
+      "autofocus": false,
+      "input": true,
+      "tableView": true,
+      "inputType": "text",
+      "inputMask": "",
+      "label": "Label",
+      "key": "label",
+      "placeholder": "Enter a label for this product",
+      "prefix": "",
+      "suffix": "",
+      "multiple": false,
+      "defaultValue": "",
+      "protected": false,
+      "unique": false,
+      "persistent": true,
+      "hidden": false,
+      "clearOnHide": true,
+      "spellcheck": true,
+      "validate": {
+        "required": true,
+        "minLength": "",
+        "maxLength": "",
+        "pattern": "",
+        "custom": "",
+        "customPrivate": false
+      },
+      "conditional": {
+        "show": "",
+        "eq": ""
+      },
+      "labelPosition": "top",
+      "inputFormat": "plain",
+      "tags": [],
+      "properties": {},
+      "id": "toa61c",
+      "type": "textfield"
+    },
+    {
+      "label": "Preferred locale",
+      "labelPosition": "top",
+      "widget": "choicesjs",
+      "placeholder": "Choose a preferred locale for the product",
+      "description": "",
+      "tooltip": "",
+      "customClass": "",
+      "tabindex": "",
+      "hidden": false,
+      "hideLabel": false,
+      "autofocus": false,
+      "disabled": false,
+      "alwaysEnabled": false,
+      "tableView": false,
+      "multiple": false,
+      "dataSrc": "resource",
+      "defaultValue": "en-US",
+      "valueProperty": "data.locale",
+      "template": "<span>{{ item.data.locale }}</span>",
+      "searchEnabled": true,
+      "selectThreshold": 0.3,
+      "readOnlyValue": false,
+      "customOptions": {},
+      "persistent": true,
+      "protected": false,
+      "dbIndex": false,
+      "encrypted": false,
+      "clearOnHide": true,
+      "customDefaultValue": "",
+      "calculateValue": "",
+      "allowCalculateOverride": false,
+      "validateOn": "change",
+      "validate": {
+        "required": false,
+        "customMessage": "",
+        "select": false,
+        "custom": "",
+        "customPrivate": false
+      },
+      "unique": false,
+      "errorLabel": "",
+      "key": "locale",
+      "tags": [],
+      "properties": {},
+      "conditional": {
+        "show": "",
+        "when": "",
+        "eq": ""
+      },
+      "dataGridLabel": false,
+      "indexeddb": {
+        "database": "",
+        "table": "",
+        "filter": ""
+      },
+      "lazyLoad": false,
+      "selectValues": "",
+      "disableLimit": false,
+      "searchField": "data.locale__regex",
+      "filter": "",
+      "sort": "",
+      "refreshOn": "",
+      "clearOnRefresh": false,
+      "addResource": false,
+      "addResourceLabel": "",
+      "reference": false,
+      "authenticate": false,
+      "redrawOn": "",
+      "minSearch": 0,
+      "limit": 100,
+      "input": true,
+      "prefix": "",
+      "suffix": "",
+      "attributes": {},
+      "overlay": {
+        "style": "",
+        "left": "",
+        "top": "",
+        "width": "",
+        "height": ""
+      },
+      "showCharCount": false,
+      "showWordCount": false,
+      "allowMultipleMasks": false,
+      "searchThreshold": 0.3,
+      "fuseOptions": {
+        "include": "score",
+        "threshold": 0.3
+      },
+      "selectFields": "",
+      "id": "eo6ekb",
+      "type": "select",
+      "data": {
+        "resource": "5e972ae7a1a692917cf54f9d",
+        "headers": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "json": "",
+        "url": "",
+        "custom": "",
+        "values": []
+      }
+    },
+    {
+      "label": "Prefered date format",
+      "labelPosition": "top",
+      "widget": "choicesjs",
+      "placeholder": "",
+      "description": "",
+      "tooltip": "",
+      "customClass": "",
+      "tabindex": "",
+      "hidden": false,
+      "hideLabel": false,
+      "autofocus": false,
+      "disabled": false,
+      "alwaysEnabled": false,
+      "tableView": true,
+      "multiple": false,
+      "dataSrc": "values",
+      "defaultValue": "YYYY-MM-DD",
+      "valueProperty": "",
+      "dataType": "",
+      "template": "<span>{{ item.label }}</span>",
+      "searchEnabled": true,
+      "selectThreshold": 0.3,
+      "readOnlyValue": false,
+      "customOptions": {},
+      "persistent": true,
+      "protected": false,
+      "dbIndex": false,
+      "encrypted": false,
+      "clearOnHide": true,
+      "customDefaultValue": "",
+      "calculateValue": "",
+      "allowCalculateOverride": false,
+      "products": [],
+      "categoryServices": [],
+      "validateOn": "change",
+      "validate": {
+        "required": false,
+        "customMessage": "",
+        "custom": "",
+        "customPrivate": false,
+        "json": "",
+        "strictDateValidation": false
+      },
+      "unique": false,
+      "errorLabel": "",
+      "key": "dateFormat",
+      "tags": "",
+      "properties": {},
+      "conditional": {
+        "eq": "",
+        "json": ""
+      },
+      "customConditional": "",
+      "relavi": [],
+      "minSearch": 0,
+      "limit": 100,
+      "input": true,
+      "prefix": "",
+      "suffix": "",
+      "refreshOn": "",
+      "redrawOn": "",
+      "attributes": {},
+      "overlay": {
+        "style": "",
+        "left": "",
+        "top": "",
+        "width": "",
+        "height": ""
+      },
+      "showCharCount": false,
+      "showWordCount": false,
+      "allowMultipleMasks": false,
+      "clearOnRefresh": false,
+      "lazyLoad": true,
+      "filter": "",
+      "searchField": "",
+      "authenticate": false,
+      "selectFields": "",
+      "searchThreshold": 0.3,
+      "fuseOptions": {
+        "include": "score",
+        "threshold": 0.3
+      },
+      "id": "e80eyzn",
+      "type": "select",
+      "data": {
+        "values": [
+          {
+            "label": "2019-10-01",
+            "value": "YYYY-MM-DD"
+          },
+          {
+            "label": "01/10/2019",
+            "value": "DD/MM/YYYY"
+          },
+          {
+            "label": "10/01/2019",
+            "value": "MM/DD/YYYY"
+          }
+        ],
+        "resource": "",
+        "json": "",
+        "url": "",
+        "custom": ""
+      }
+    },
+    {
+      "label": "Prefered time format",
+      "labelPosition": "top",
+      "widget": "choicesjs",
+      "placeholder": "",
+      "description": "",
+      "tooltip": "",
+      "customClass": "",
+      "tabindex": "",
+      "hidden": false,
+      "hideLabel": false,
+      "autofocus": false,
+      "disabled": false,
+      "alwaysEnabled": false,
+      "tableView": false,
+      "multiple": false,
+      "dataSrc": "values",
+      "defaultValue": "hh:mm:ss a",
+      "valueProperty": "",
+      "dataType": "",
+      "template": "<span>{{ item.label }}</span>",
+      "searchEnabled": true,
+      "selectThreshold": 0.3,
+      "readOnlyValue": false,
+      "customOptions": {},
+      "persistent": true,
+      "protected": false,
+      "dbIndex": false,
+      "encrypted": false,
+      "clearOnHide": true,
+      "customDefaultValue": "",
+      "calculateValue": "",
+      "allowCalculateOverride": false,
+      "products": [],
+      "categoryServices": [],
+      "validateOn": "change",
+      "validate": {
+        "required": false,
+        "customMessage": "",
+        "custom": "",
+        "customPrivate": false,
+        "json": "",
+        "strictDateValidation": false
+      },
+      "unique": false,
+      "errorLabel": "",
+      "key": "timeFormat",
+      "tags": "",
+      "properties": {},
+      "conditional": {
+        "eq": "",
+        "json": ""
+      },
+      "customConditional": "",
+      "relavi": [],
+      "minSearch": 0,
+      "limit": 100,
+      "input": true,
+      "prefix": "",
+      "suffix": "",
+      "refreshOn": "",
+      "redrawOn": "",
+      "attributes": {},
+      "overlay": {
+        "style": "",
+        "left": "",
+        "top": "",
+        "width": "",
+        "height": ""
+      },
+      "showCharCount": false,
+      "showWordCount": false,
+      "allowMultipleMasks": false,
+      "clearOnRefresh": false,
+      "lazyLoad": true,
+      "filter": "",
+      "searchField": "",
+      "authenticate": false,
+      "selectFields": "",
+      "searchThreshold": 0.3,
+      "fuseOptions": {
+        "include": "score",
+        "threshold": 0.3
+      },
+      "id": "el4mm17",
+      "type": "select",
+      "data": {
+        "values": [
+          {
+            "label": "03:25:50 pm",
+            "value": "hh:mm:ss a"
+          },
+          {
+            "label": "15:25:50",
+            "value": "HH:mm:ss"
+          }
+        ],
+        "resource": "",
+        "json": "",
+        "url": "",
+        "custom": ""
+      }
+    },
+    {
+      "autofocus": false,
+      "input": true,
+      "label": "Save product",
+      "tableView": false,
+      "key": "submit",
+      "size": "md",
+      "leftIcon": "",
+      "rightIcon": "",
+      "block": false,
+      "action": "submit",
+      "disableOnInvalid": false,
+      "theme": "primary",
+      "tags": [],
+      "conditional": {
+        "show": "",
+        "eq": ""
+      },
+      "properties": {},
+      "id": "9byuwa",
+      "type": "button"
+    }
+  ],
+  "display": "form",
+  "title": "Products",
+  "name": "products",
+  "path": "products",
+  "created": "2020-04-15T12:47:41.000Z",
+  "modified": "2020-04-15T15:40:23.647Z",
+  "access": [
+    {
+      "roles": [
+        "5e97026c50bcd9815878809a",
+        "5e97026c50bcd98158788099",
+        "5e97026c50bcd98158788098"
+      ],
+      "type": "read_all"
+    }
+  ],
+  "submissionAccess": [
+    {
+      "roles": [
+        "5e97026c50bcd98158788098",
+        "5e97026c50bcd98158788099"
+      ],
+      "type": "create_all"
+    },
+    {
+      "roles": [
+        "5e97026c50bcd98158788098",
+        "5e97026c50bcd98158788099",
+        "5e97026c50bcd9815878809a"
+      ],
+      "type": "read_all"
+    },
+    {
+      "roles": [
+        "5e97026c50bcd98158788098",
+        "5e97026c50bcd98158788099"
+      ],
+      "type": "update_all"
+    },
+    {
+      "roles": [
+        "5e97026c50bcd98158788098",
+        "5e97026c50bcd98158788099"
+      ],
+      "type": "delete_all"
+    },
+    {
+      "roles": [
+        "5e97026c50bcd98158788098",
+        "5e97026c50bcd98158788099"
+      ],
+      "type": "create_own"
+    },
+    {
+      "roles": [
+        "5e97026c50bcd98158788098",
+        "5e97026c50bcd98158788099"
+      ],
+      "type": "read_own"
+    },
+    {
+      "roles": [
+        "5e97026c50bcd98158788098",
+        "5e97026c50bcd98158788099"
+      ],
+      "type": "update_own"
+    },
+    {
+      "roles": [
+        "5e97026c50bcd98158788098",
+        "5e97026c50bcd98158788099"
+      ],
+      "type": "delete_own"
+    }
+  ],
+  "machineName": "products"
+}

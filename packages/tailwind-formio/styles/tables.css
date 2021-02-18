@@ -5,21 +5,31 @@
 
   th,
   td {
-    @apply p-3 align-top border-t-1 border-solid border-gray-300;
+    @apply p-3 align-top text-left border-t-1 border-solid border-gray-300;
   }
 
   thead th {
-    @apply align-bottom border-b-1 border-solid border-gray-300;
+    @apply align-top border-b-2 border-solid border-gray-300;
   }
 
   tbody + tbody {
-    @apply border-t-1 border-solid border-gray-300;
+    @apply border-t-2 border-solid border-gray-300;
   }
 }
 
+.table-cell-header {
+  &__label {
+    @apply flex;
+    > span:first-child {
+      @apply flex-1;
+    }
+  }
+  &__filter {
+    @apply mt-1;
+  }
+}
 
 /* Condensed table w/ half padding */
-
 .table-sm {
   th,
   td {
@@ -63,7 +73,6 @@
   }
 }
 
-
 /* Hover effect - Placed here since it has to come after the potential zebra striping */
 
 .table-hover {
@@ -72,19 +81,19 @@
   }
 }
 
-
-/* Table backgrounds
- Exact selectors below required to override `.table-striped` and prevent
- inheritance to nested tables.
-*/
+.table-group {
+  @apply border-1 border-gray-300;
+  .table {
+    @apply border-t-0 mb-0;
+    thead th {
+      @apply border-t-0;
+    }
+  }
+  .pagination-group {
+    @apply border-t-1 border-gray-300 p-3;
+  }
+}
 /*
-//@each $color, $value in $theme-colors {
-//  @include table-row-variant($color, theme-color-level($color, $table-bg-level), theme-color-level($color, $table-border-level));
-//}
-//
-//@include table-row-variant(active, $table-active-bg);
-
-
 // Dark styles
 //
 // Same table markup, but inverted color scheme: dark background and light text.
@@ -106,39 +115,8 @@
 //      border-color: $table-border-color;
 //    }
 //  }
-//}
-
-.table-dark {
-  color: $table-dark-color;
-  background-color: $table-dark-bg;
-
-  th,
-  td,
-  thead th {
-    border-color: $table-dark-border-color;
-  }
-
-  &.table-bordered {
-    border: 0;
-  }
-
-  &.table-striped {
-    tbody tr:nth-of-type(odd) {
-      background-color: $table-dark-accent-bg;
-    }
-  }
-
-  &.table-hover {
-    tbody tr {
-      @include hover {
-        color: $table-dark-hover-color;
-        background-color: $table-dark-hover-bg;
-      }
-    }
-  }
-}
-
-
+//}*/
+/*
 // Responsive tables
 //
 // Generate series of `.table-responsive-*` classes for configuring the screen

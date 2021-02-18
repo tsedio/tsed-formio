@@ -1,4 +1,4 @@
-import { ComponentSchema } from "../../interfaces/ComponentSchema";
+import { ExtendedComponentSchema } from "formiojs";
 import { FormSchema } from "../../interfaces/FormSchema";
 
 export function getRoleComponent({
@@ -7,7 +7,7 @@ export function getRoleComponent({
   description,
   choices,
   data
-}: any): ComponentSchema {
+}: any): ExtendedComponentSchema {
   return {
     label,
     key,
@@ -28,8 +28,6 @@ export function getRoleComponent({
     selectThreshold: 0,
     validate: {
       required: false,
-      customMessage: "",
-      select: false,
       custom: "",
       customPrivate: false
     },
@@ -37,7 +35,7 @@ export function getRoleComponent({
   };
 }
 
-export function getButton(): ComponentSchema {
+export function getButton(): ExtendedComponentSchema {
   return {
     type: "button",
     label: "Save access",
