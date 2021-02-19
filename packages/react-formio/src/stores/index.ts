@@ -16,6 +16,7 @@ export * from "./form";
 export * from "./forms";
 export * from "./submission";
 export * from "./submissions";
+export * from "./root";
 
 export const defaultFormioReducer = combine(
   authReducer("auth"),

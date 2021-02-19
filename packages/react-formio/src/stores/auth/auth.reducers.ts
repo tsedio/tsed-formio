@@ -1,5 +1,5 @@
 import { createReducer } from "@tsed/redux-utils";
-import { FormSchema } from "../../interfaces";
+import { FormSchema, Submission } from "../../interfaces";
 import { RoleSchema } from "../../interfaces/RoleSchema";
 import {
   failUser,
@@ -13,17 +13,17 @@ import {
   userRoles
 } from "./auth.actions";
 
-export interface AuthState {
+export interface AuthState<User = any> {
   init: boolean;
   isActive: boolean;
-  user: null | any;
+  user: null | Submission<User>;
   authenticated: boolean;
-  submissionAccess: any;
-  formAccess: any;
-  projectAccess: any;
+  projectAccess: Record<string, string[]>;
+  formAccess: Record<string, string[]>;
+  submissionAccess: Record<string, string[]>;
   roles: Record<string, RoleSchema>;
   forms: Record<string, FormSchema>;
-  is: any;
+  is: Record<string, boolean>;
   error: null | Error;
 }
 
