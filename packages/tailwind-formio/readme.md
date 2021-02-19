@@ -35,7 +35,6 @@ Add this configuration:
 import { Formio, Templates } from "@tsed/react-formio";
 import tailwind from "@tsed/tailwind-formio";
 import "./index.css";
-import "@tsed/tailwind-formio/styles/index.css";
 
 Formio.use(tailwind);
 Templates.framework = "tailwind";
@@ -48,6 +47,8 @@ Then create or update your style file:
 @import "./fonts/source-sans-pro/index.css"; // extra fonts
 @import "./fonts/inconsolata/index.css";
 @import "./fonts/bxicons/index.css"; // use bx-icons instead of font-awesome
+@import "~formiojs/dist/formio.full.css";
+@import "~@tsed/tailwind-formio/styles/index.css";
 ```
 
 Edit your `postCss.config.js`:

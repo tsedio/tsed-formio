@@ -31,6 +31,40 @@
   }
 }
 
+.formio-modified:not(.has-error) {
+
+  label {
+    @apply text-green;
+  }
+
+  .form-control {
+    @apply border-green;
+
+    &:focus {
+      @apply outline-none border-green-300 ring ring-green-200 ring-opacity-50;
+      outline-offset: theme('outline.none[1]');
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+      border-color: theme('colors.green.600');
+    }
+  }
+}
+
+.has-error {
+  label, .error {
+    @apply text-red;
+  }
+
+  .form-control {
+    @apply border-red;
+
+    &:focus {
+      @apply outline-none border-red-300 ring ring-red-200 ring-opacity-50;
+      outline-offset: theme('outline.none[1]');
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+      border-color: theme('colors.red.600');
+    }
+  }
+}
 
 input.form-control::placeholder,
 textarea.form-control::placeholder {
@@ -85,6 +119,10 @@ textarea.form-control {
 
 .form-text {
   @apply block mt-1;
+
+  &.error {
+    @apply text-red text-sm;
+  }
 }
 
 .text-muted {

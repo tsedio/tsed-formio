@@ -3,3 +3,5 @@
 @import "./fonts/inconsolata/index.css";
 @import "./fonts/bxicons/index.css";
 @import "./typography.css";
+@import "~formiojs/dist/formio.full.css";
+@import "~@tsed/tailwind-formio/styles/index.css";
