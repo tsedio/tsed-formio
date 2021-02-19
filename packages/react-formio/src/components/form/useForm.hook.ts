@@ -20,24 +20,6 @@ export const useForm = ({
     [formio]
   );
 
-  const createWebFormInstance = async (srcOrForm: any): Promise<any> => {
-    const { formioform, formReady } = props;
-    instance.current = new (formioform || FormioForm)(
-      element.current,
-      srcOrForm,
-      options
-    );
-
-    const formioInstance = await instance.current.ready;
-    formio.current = formioInstance;
-
-    if (formReady) {
-      formReady(formioInstance);
-    }
-
-    return formio.current;
-  };
-
   const onAnyEvent = (event: string, ...args: any[]): void => {
     if (event.startsWith("formio.")) {
       const funcName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
@@ -60,31 +42,47 @@ export const useForm = ({
     }
   };
 
+  const createWebFormInstance = async (srcOrForm: any): Promise<any> => {
+    const { formioform, formReady } = props;
+    instance.current = new (formioform || FormioForm)(
+      element.current,
+      srcOrForm,
+      options
+    );
+
+    initializeFormio();
+
+    const formioInstance = await instance.current.ready;
+    formio.current = formioInstance;
+
+    if (formReady) {
+      formReady(formioInstance);
+    }
+
+    return formio.current;
+  };
+
   useEffect(() => {
     if (src) {
-      createWebFormInstance(src)
-        .then((formio) => {
-          formio.src = src;
+      createWebFormInstance(src).then((formio) => {
+        formio.src = src;
 
-          return formio;
-        })
-        .then(() => initializeFormio());
+        return formio;
+      });
     }
   }, [src]);
 
   useEffect(() => {
     if (form) {
-      createWebFormInstance(form)
-        .then((formio) => {
-          formio.form = form;
+      createWebFormInstance(form).then((formio) => {
+        formio.form = form;
 
-          if (url) {
-            formio.url = url;
-          }
+        if (url) {
+          formio.url = url;
+        }
 
-          return formio;
-        })
-        .then(() => initializeFormio());
+        return formio;
+      });
     }
   }, [form]);
 
