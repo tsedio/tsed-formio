@@ -1,6 +1,5 @@
 import FormioForm from "formiojs/Form";
 import { useEffect, useRef } from "react";
-import { callLast } from "../../utils/callLast";
 
 export const useForm = ({
   src,
@@ -35,7 +34,7 @@ export const useForm = ({
 
   const initializeFormio = (): void => {
     if (instance.current && instance.current.ready) {
-      instance.current.onAny(callLast(onAnyEvent, 200));
+      instance.current.onAny(onAnyEvent);
       if (submission) {
         formio.current.submission = submission;
       }
