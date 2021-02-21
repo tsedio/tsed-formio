@@ -14,3 +14,4 @@ export * from "./input-text/inputText.component";
 export * from "./select/select.component";
 export * from "./submissions-table/submissionsTable.component";
 export * from "./table/table.component";
+export * from "./react-component/reactComponent.component";
