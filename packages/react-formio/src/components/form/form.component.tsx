@@ -53,7 +53,7 @@ export interface FormProps {
   onFocus: Function;
   onBlur: Function;
   onInitialized: Function;
-  formReady: Function;
+  onFormReady: (formio: any) => void;
   formioform: any;
 }
 
@@ -65,6 +65,7 @@ export function Form(props: Partial<FormProps>) {
 
   return (
     <div
+      data-testid={"formioContainer"}
       ref={(el): any => (element.current = el)}
       className={props.className}
     />
@@ -116,7 +117,7 @@ Form.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onInitialized: PropTypes.func,
-  formReady: PropTypes.func,
+  onFormReady: PropTypes.func,
   formioform: PropTypes.any
 };
 

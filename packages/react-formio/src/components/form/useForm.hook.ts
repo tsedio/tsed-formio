@@ -42,7 +42,7 @@ export const useForm = ({
   };
 
   const createWebFormInstance = async (srcOrForm: any): Promise<any> => {
-    const { formioform, formReady } = props;
+    const { formioform, onFormReady } = props;
     instance.current = new (formioform || FormioForm)(
       element.current,
       srcOrForm,
@@ -54,8 +54,8 @@ export const useForm = ({
     const formioInstance = await instance.current.ready;
     formio.current = formioInstance;
 
-    if (formReady) {
-      formReady(formioInstance);
+    if (onFormReady) {
+      onFormReady(formioInstance);
     }
 
     return formio.current;

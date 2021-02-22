@@ -6,13 +6,7 @@ export default {
   title: "ReactFormio/Form",
   component: Form,
   argTypes: {
-    onSubmit: { action: "onSubmit" },
     form: {
-      control: {
-        type: "object"
-      }
-    },
-    options: {
       control: {
         type: "object"
       }
@@ -22,10 +16,15 @@ export default {
 };
 
 export const Sandbox = (args: any) => {
+  delete args.onRender;
+  delete args.onComponentChange;
   return (
     <Form
       {...args}
       form={args.form}
+      onFormReady={(formio) => {
+        console.log("ready", formio);
+      }}
       options={{ template: "tailwind", iconset: "bx" }}
     />
   );

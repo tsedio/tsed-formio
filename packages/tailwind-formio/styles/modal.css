@@ -15,4 +15,16 @@
       @apply overflow-visible;
     }
   }
+
+  .formio-dialog-wrapper {
+    @apply flex flex-col w-full h-full;
+  }
+
+  .formio-dialog-body {
+    @apply overflow-auto;
+  }
+
+  .formio-dialog-title {
+    @apply text-md px-3 py-3;
+  }
 }
