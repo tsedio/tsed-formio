@@ -27,10 +27,12 @@ export interface ModalProps extends Record<string, any> {
 export function Modal({
   show,
   children,
-  closeModal,
+  closeModal = noop as any,
   onClose = noop as any,
   title,
   footer: ModalFooter,
+  style,
+  className,
   ...props
 }: PropsWithChildren<ModalProps>) {
   const titleRef = useRef<HTMLDivElement>();
@@ -59,9 +61,14 @@ export function Modal({
   }
 
   return (
-    <div className='formio-dialog formio-dialog-theme-default component-settings'>
+    <div
+      className={
+        "formio-dialog formio-dialog-theme-default component-settings" +
+        className
+      }
+    >
       <div className='formio-dialog-overlay' onClick={onClickClose} />
-      <div className='formio-dialog-content'>
+      <div style={style} className={"formio-dialog-content"}>
         <div className={"formio-dialog-wrapper"}>
           {title ? (
             <div
@@ -87,7 +94,11 @@ export function Modal({
               ref={footerRef}
               data-testid={"modalFooter"}
             >
-              <ModalFooter {...props} closeModal={closeModal} />
+              <ModalFooter
+                {...props}
+                closeModal={closeModal}
+                onClose={onClickClose}
+              />
             </div>
           ) : null}
         </div>
