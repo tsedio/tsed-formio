@@ -29,7 +29,9 @@ export default {
 export const Sandbox = (args: any) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
-  return <FormAccess {...args} />;
+  return (
+    <FormAccess {...args} options={{ template: "tailwind", iconset: "bx" }} />
+  );
 };
 
 Sandbox.args = {
@@ -48,7 +50,12 @@ Sandbox.args = {
         type: "read_all"
       }
     ],
-    submissionAccess: [],
+    submissionAccess: [
+      {
+        roles: ["5d0797bc872fc747da559858"],
+        type: "read_all"
+      }
+    ],
     controller: "",
     properties: {},
     settings: {},

@@ -6,6 +6,7 @@ export default {
   component: FormAction,
   argTypes: {
     onSubmit: { action: "onSubmit" },
+
     type: {
       control: {
         type: "object"

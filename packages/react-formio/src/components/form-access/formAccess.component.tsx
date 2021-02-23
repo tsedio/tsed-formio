@@ -25,6 +25,11 @@ export function FormAccess({
   onSubmit,
   options
 }: PropsWithChildren<FormAccessProps>): ReactElement {
+  const submissionAccess = {
+    data: formAccessToSubmission(form.submissionAccess)
+  };
+  const access = { data: formAccessToSubmission(form.access) };
+
   return (
     <div>
       {children}
@@ -35,7 +40,7 @@ export function FormAccess({
             form={getSubmissionPermissionForm({
               choices: mapRoles(roles)
             })}
-            submission={{ data: formAccessToSubmission(form.submissionAccess) }}
+            submission={submissionAccess}
             onSubmit={(data: any) => {
               onSubmit(mapSubmissionAccess("submissionAccess", form, data));
             }}
@@ -82,11 +87,11 @@ export function FormAccess({
             form={getAccessPermissionForm({
               choices: mapRoles(roles)
             })}
-            submission={{ data: formAccessToSubmission(form.access) }}
+            submission={access}
             onSubmit={(data: any) => {
               onSubmit(mapSubmissionAccess("access", form, data));
             }}
-            options={{ ...{ template: "bootstrap3", iconset: "fa" } }}
+            options={options}
           />
 
           {children}

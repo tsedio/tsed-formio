@@ -35,7 +35,8 @@ export const useForm = ({
   const initializeFormio = (): void => {
     if (instance.current && instance.current.ready) {
       instance.current.onAny(onAnyEvent);
-      if (submission) {
+
+      if (formio.current && submission) {
         formio.current.submission = submission;
       }
     }
@@ -56,6 +57,10 @@ export const useForm = ({
 
     if (onFormReady) {
       onFormReady(formioInstance);
+    }
+
+    if (submission) {
+      formio.current.submission = submission;
     }
 
     return formio.current;
