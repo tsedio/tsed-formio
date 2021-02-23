@@ -1,11 +1,9 @@
 import React from "react";
-import { FormSchema } from "../../interfaces";
+import { FormSchema, Submission } from "../../interfaces";
 import { Table, TableProps } from "../table/table.component";
 import { mapFormToColumns } from "../table/utils/mapFormToColumns";
 
-export type SubmissionsTableProps<
-  Data extends Record<string, unknown> = {}
-> = Omit<TableProps<FormSchema>, "columns"> & {
+export type SubmissionsTableProps = Omit<TableProps<Submission>, "columns"> & {
   form?: FormSchema;
 };
 

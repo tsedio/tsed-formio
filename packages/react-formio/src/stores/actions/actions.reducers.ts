@@ -1,4 +1,5 @@
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
+import { ActionInfoSchema, ActionSchema } from "../../interfaces";
 import {
   failActions,
   receiveActions,
@@ -8,10 +9,11 @@ import {
 
 export interface ActionsState {
   error: null | Error;
-  data: any[];
-  availableActions: any[];
+  data: ActionSchema[];
+  availableActions: ActionInfoSchema[];
   isActive: boolean;
 }
+
 const createInitialState: InitialStateCreator<ActionsState> = () => ({
   error: null,
   data: [],

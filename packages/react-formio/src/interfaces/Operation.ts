@@ -1,7 +1,13 @@
 import React from "react";
 import { OperationButtonProps } from "../components/table/components/defaultOperationButton.component";
 
-export interface Operation {
+export type PermissionsResolver<Data = any> = (data: Data, ctx: any) => void;
+export type OnClickOperation<Data = any> = (
+  data: Data,
+  operation: Operation
+) => void;
+
+export interface Operation<Data = any> {
   /**
    * Action identifier
    */
@@ -24,8 +30,5 @@ export interface Operation {
   /**
    * Permission resolver to display ActionButton
    */
-  permissionsResolver?: PermissionsResolver;
+  permissionsResolver?: PermissionsResolver<Data>;
 }
-
-export type PermissionsResolver = (data: any, ctx: any) => void;
-export type OnClickOperation = (data: any, operation: Operation) => void;

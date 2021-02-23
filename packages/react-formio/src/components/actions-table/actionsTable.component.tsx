@@ -1,23 +1,20 @@
 import classnames from "classnames";
-import React, { useState } from "react";
 import noop from "lodash/noop";
-import { FormSchema } from "../../interfaces";
+import React, { useState } from "react";
+import { ActionSchema } from "../../interfaces";
 import { iconClass } from "../../utils/iconClass";
 import { Select } from "../select/select.component";
 import { Table, TableProps } from "../table/table.component";
 
-export type ActionsTableProps<Data extends Record<string, unknown> = {}> = Omit<
-  TableProps<FormSchema>,
-  "columns"
-> & {
-  onAddAction?: (action: string) => void;
-  actions?: { label: string; value: string }[];
+export type ActionsTableProps = Omit<TableProps<ActionSchema>, "columns"> & {
+  onAddAction?: (actionName: string) => void;
+  availableActions?: { label: string; value: string }[];
 };
 
 export function ActionsTable({
   disableFilters = true,
   disablePagination = true,
-  actions = [],
+  availableActions = [],
   onAddAction = noop,
   ...props
 }: ActionsTableProps) {
@@ -41,13 +38,13 @@ export function ActionsTable({
       disablePagination={disablePagination}
       columns={columns}
     >
-      {actions.length ? (
+      {availableActions.length ? (
         <div className={"pagination-group"}>
           <Select
             name={"actions"}
             value={currentAction}
             choices={[{ label: i18n("Select an action"), value: "" }].concat(
-              actions
+              availableActions
             )}
             onChange={(name: string, action: string) => setAction(action)}
           />

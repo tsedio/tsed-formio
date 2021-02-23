@@ -5,10 +5,7 @@ import { SelectColumnFilter } from "../table/filters/selectColumnFilter.componen
 import { Table, TableProps } from "../table/table.component";
 import { FormsCell as DefaultFormCell } from "./components/formCell.component";
 
-export type FormsTableProps<Data extends Record<string, unknown> = {}> = Omit<
-  TableProps<FormSchema>,
-  "columns"
-> & {
+export type FormsTableProps = Omit<TableProps<FormSchema>, "columns"> & {
   icon?: string;
   tags?: { label: string; value: string }[];
 };

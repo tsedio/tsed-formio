@@ -24,7 +24,7 @@ import { useOperations } from "./utils/useOperations.hook";
 
 export interface TableProps<Data extends Record<string, unknown> = {}>
   extends TableOptions<Data>,
-    QueryOptions {
+    Partial<QueryOptions> {
   className?: string;
   /**
    * Call the listener when a filter / pagination  / sort change.
@@ -33,7 +33,7 @@ export interface TableProps<Data extends Record<string, unknown> = {}>
   /**
    * Call the listener when a line is clicked.
    */
-  onClick?: OnClickOperation;
+  onClick?: OnClickOperation<Data>;
   /**
    * Pagination steps list
    */

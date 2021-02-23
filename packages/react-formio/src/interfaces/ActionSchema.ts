@@ -7,12 +7,17 @@ export interface ActionDefaultsSchema {
   name: string;
   title: string;
 }
-export interface ActionSchema {
+
+export interface ActionInfoSchema extends Record<string, unknown> {
   name: string;
   title: string;
   description: string;
   priority: number;
   defaults: ActionDefaultsSchema;
+}
+
+export interface ActionSchema extends ActionInfoSchema {
+  _id?: string;
   settingsForm: Partial<FormSchema>;
   access?: {
     handler: boolean;

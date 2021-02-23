@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { ReactElement } from "react";
+import React, { PropsWithChildren, ReactElement } from "react";
 import { FormOptions, FormSchema } from "../../interfaces";
 import { Card } from "../card/card.component";
 import { Form } from "../form/form.component";
@@ -14,7 +14,6 @@ import {
 export interface FormAccessProps {
   form: Partial<FormSchema>;
   roles: any;
-  children: ReactElement;
   onSubmit?: Function;
   options?: FormOptions;
 }
@@ -25,7 +24,7 @@ export function FormAccess({
   children,
   onSubmit,
   options
-}: FormAccessProps): ReactElement {
+}: PropsWithChildren<FormAccessProps>): ReactElement {
   return (
     <div>
       {children}
