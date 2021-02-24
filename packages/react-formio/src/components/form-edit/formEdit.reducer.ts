@@ -32,8 +32,8 @@ export const reducer = (
 
   const update = (newValue: any): any => {
     if (newValue.title !== state.current.title && !state.current._id) {
-      newValue.name = camelCase(value);
-      newValue.path = camelCase(value).toLowerCase();
+      newValue.name = camelCase(value.title);
+      newValue.path = camelCase(value.title).toLowerCase();
     }
 
     return {

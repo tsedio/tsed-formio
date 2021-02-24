@@ -50,7 +50,6 @@ export const Sandbox = (args: any) => {
 
 Sandbox.args = {
   form: {
-    _id: "6023f8fe4b1a2ab9a3aae096",
     type: "form",
     tags: [],
     owner: "5d0797a382461b6656d2c790",

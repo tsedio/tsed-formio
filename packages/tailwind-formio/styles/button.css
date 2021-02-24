@@ -158,7 +158,7 @@ fieldset:disabled a.btn {
   @apply text-gray-200 bg-transparent border-gray-100;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-gray-800 hover:bg-gray-300 focus:bg-gray-300 hover:border-gray-300 focus:border-gray-300 focus:text-gray-800;
+    @apply hover:text-gray-800 hover:bg-gray-300 focus:bg-gray-300 hover:border-gray-300 focus:border-gray-300 focus:text-white;
   }
 }
 
@@ -166,7 +166,7 @@ fieldset:disabled a.btn {
   @apply text-gray bg-transparent border-gray;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-gray-800 focus:bg-gray-800 hover:border-gray-800 focus:border-gray-800 focus:text-gray-800;
+    @apply hover:text-white hover:bg-gray-800 focus:bg-gray-800 hover:border-gray-800 focus:border-gray-800 focus:text-white;
   }
 }
 
