@@ -32,7 +32,7 @@ export function Modal({
   title,
   footer: ModalFooter,
   style,
-  className,
+  className = "",
   ...props
 }: PropsWithChildren<ModalProps>) {
   const titleRef = useRef<HTMLDivElement>();
@@ -61,12 +61,7 @@ export function Modal({
   }
 
   return (
-    <div
-      className={
-        "formio-dialog formio-dialog-theme-default component-settings" +
-        className
-      }
-    >
+    <div className={`formio-dialog formio-dialog-theme-default ${className}`}>
       <div className='formio-dialog-overlay' onClick={onClickClose} />
       <div style={style} className={"formio-dialog-content"}>
         <div className={"formio-dialog-wrapper"}>
