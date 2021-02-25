@@ -4,13 +4,25 @@
     "module": "commonjs",
     "preserveConstEnums": true,
     "outDir": "lib",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "sourceMap": false,
     "declaration": true,
     "rootDir": "src",
     "allowJs": true,
     "noEmit": true,
-    "typeRoots": ["../../node_modules/@types"]
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src/*.ts",

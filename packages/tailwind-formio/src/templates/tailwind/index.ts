@@ -58,7 +58,7 @@ import wizardNav from "./wizardNav";
 import cssClasses from "./cssClasses";
 
 export default {
-  transform(type, text) {
+  transform(type: string, text: string) {
     if (!text) {
       return text;
     }

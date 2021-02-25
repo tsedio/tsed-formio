@@ -15,5 +15,6 @@ export * from "./stores";
 export * from "./interfaces";
 export * from "./components";
 export * from "./hooks/useTooltip";
+export * from "./utils/iconClass";
 
 export { Components, Formio, Utils, Templates } from "formiojs";

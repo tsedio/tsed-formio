@@ -1,4 +1,5 @@
 export * from "./actions-table/actionsTable.component";
+export * from "./alert/alert.component";
 export * from "./card/card.component";
 export * from "./form/form.component";
 export * from "./form-access/formAccess.component";
@@ -12,8 +13,10 @@ export * from "./forms-table/formsTable.component";
 export * from "./input-tags/inputTags.component";
 export * from "./input-text/inputText.component";
 export * from "./modal/modal.component";
+export * from "./modal/removeModal.component";
 export * from "./pagination/pagination.component";
 export * from "./react-component/reactComponent.component";
 export * from "./select/select.component";
 export * from "./submissions-table/submissionsTable.component";
 export * from "./table/table.component";
+export * from "./tabs/tabs.component";

@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, ModalProps, useModal } from "./modal.component";
+import { RemoveModal, RemoveModalProps } from "./removeModal.component";
 
 export default {
   title: "ReactFormio/Modal",
@@ -176,4 +177,35 @@ export const WithFooter = (args: ModalProps) => {
 
 WithFooter.args = {
   title: "Modal title"
+};
+
+export const WithRemoveModal = (args: RemoveModalProps) => {
+  const modal = useModal();
+
+  return (
+    <div>
+      <div>
+        <button
+          className={"btn btn-primary"}
+          role={"openModal"}
+          onClick={modal.openModal}
+        >
+          Open
+        </button>
+      </div>
+      <RemoveModal
+        {...args}
+        i18n={(f) => f}
+        show={modal.show}
+        onSubmit={modal.closeModal}
+        onClose={modal.closeModal}
+        closeModal={modal.closeModal}
+      />
+    </div>
+  );
+};
+
+WithRemoveModal.args = {
+  valueToCompare: "value",
+  itemType: "form"
 };

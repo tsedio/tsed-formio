@@ -51,7 +51,11 @@ export const ICONS = {
   "remove-circle": "bx-x-circle"
 };
 
-export default (iconset, name, spinning) => {
+export default (
+  iconset: string | undefined,
+  name: string,
+  spinning?: boolean
+) => {
   if (iconset === "bx") {
     if (ICONS[name]) {
       name = ICONS[name];

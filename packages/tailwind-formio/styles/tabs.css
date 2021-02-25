@@ -1,0 +1,45 @@
+.tabs {
+  &__header {
+    @apply overflow-auto;
+
+    &-wrapper {
+      @apply relative flex items-center pt-1 px-1;
+    }
+    &-border {
+      @apply  border-b-1 border-gray-300 absolute bottom-0 left-0 right-0 z-1;
+    }
+  }
+
+  &__button {
+    @apply flex items-center border-1 border-b-0 border-gray-300 relative outline-none focus:outline-none bg-gray-100 text-gray-700 hover:text-secondary focus:text-secondary px-4 py-2;
+
+    &-border {
+      @apply border-transparent;
+      &.-active {
+        @apply border-primary;
+      }
+    }
+    &-wrapper {
+      @apply relative  mr-1;
+
+      &:last-child{
+        @apply mr-0;
+      }
+
+      &.-active {
+        @apply z-2;
+      }
+      &.-back{
+        @apply -ml-2 mr-0;
+      }
+    }
+
+    &.-active {
+      @apply text-primary bg-white;
+    }
+
+    &.-back {
+      @apply text-secondary bg-white px-2 border-transparent;
+    }
+  }
+}

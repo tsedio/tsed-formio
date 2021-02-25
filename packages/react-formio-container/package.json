@@ -1,5 +1,5 @@
 {
-  "name": "@tsed/react-formio",
+  "name": "@tsed/react-formio-container",
   "version": "1.4.0",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -13,21 +13,16 @@
     "lint": "yarn eslint --config .eslintrc --cache --quiet \"./src/**/*.{ts,tsx}\"",
     "prettier": "prettier '{src,test}/**/*.{ts,tsx}' --write"
   },
-  "dependencies": {
-    "@tsed/redux-utils": "1.4.0",
-    "eventemitter2": "^6.4.3",
-    "prop-types": "^15.7.2"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "choices.js": "^9.0.1",
-    "formiojs": "^4.12.7",
-    "lodash": "4.17.20",
-    "react": "16.14.0^ || ^17.0.0",
-    "react-table": "^7.6.3",
-    "tooltip.js": "^1.3.3"
+    "@tsed/redux-utils": "^1.4.0",
+    "@tsed/react-formio": "^1.4.0",
+    "react-router": "^5",
+    "react-router-dom": "^5",
+    "redux-thunk": "^2",
+    "connected-react-router": "^6"
   },
   "devDependencies": {
-    "@tsed/tailwind": "1.4.0",
-    "@tsed/tailwind-formio": "1.4.0"
+    "@tsed/react-formio": "1.4.0"
   }
 }
