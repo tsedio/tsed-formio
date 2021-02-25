@@ -1,6 +1,6 @@
 {
   "name": "@tsed/react-formio-container",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
@@ -13,16 +13,16 @@
     "lint": "yarn eslint --config .eslintrc --cache --quiet \"./src/**/*.{ts,tsx}\"",
     "prettier": "prettier '{src,test}/**/*.{ts,tsx}' --write"
   },
-  "dependencies": {},
   "peerDependencies": {
-    "@tsed/redux-utils": "^1.4.0",
     "@tsed/react-formio": "^1.4.0",
+    "@tsed/redux-utils": "^1.4.0",
+    "connected-react-router": "^6",
     "react-router": "^5",
     "react-router-dom": "^5",
-    "redux-thunk": "^2",
-    "connected-react-router": "^6"
+    "redux-thunk": "^2"
   },
   "devDependencies": {
-    "@tsed/react-formio": "1.4.0"
-  }
+    "@tsed/react-formio": "1.5.0"
+  },
+  "dependencies": {}
 }
