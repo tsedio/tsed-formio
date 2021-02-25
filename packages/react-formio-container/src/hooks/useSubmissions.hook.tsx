@@ -24,9 +24,9 @@ export function useSubmissions(props: UseSubmissionsProps) {
 
   const fetch = useCallback(
     (options?: any) => {
-      dispatch(getSubmissions(formType, formId, options));
+      dispatch(getSubmissions(formAction, formId, options));
     },
-    [formType, formId]
+    [formAction, formId]
   );
 
   const auth = useSelector(selectAuth);

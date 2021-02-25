@@ -41,6 +41,6 @@ export const refreshSubmissions = (
 ) => {
   return async (dispatch: any, getState: any) => {
     const parameters = selectSubmissionsParameters(name, getState());
-    getSubmissions(name, formId, parameters, done);
+    return getSubmissions(name, formId, parameters, done)(dispatch, getState);
   };
 };

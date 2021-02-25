@@ -8,9 +8,9 @@ import {
   resetSubmission,
   resetSubmissions,
   saveForm as saveFormAction,
+  selectAuth,
   selectError,
-  selectForm,
-  selectRoot
+  selectForm
 } from "@tsed/react-formio";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";
@@ -45,7 +45,7 @@ export function useForm(props: UseFormProps) {
   const basePath = path.replace(":formType", formType);
   const dispatch = useDispatch();
 
-  const auth: AuthState = useSelector(selectRoot("auth"));
+  const auth: AuthState = useSelector(selectAuth);
   const error = useSelector((state) => selectError(type, state));
   const form = useSelector((state) => selectForm(type, state));
 
@@ -104,7 +104,7 @@ export function useForm(props: UseFormProps) {
         data: form
       });
     },
-    [basePath, form._id]
+    [basePath, type, form]
   );
 
   const onSaveDone = useCallback(
@@ -137,12 +137,12 @@ export function useForm(props: UseFormProps) {
         });
       }
     },
-    [formType, form._id]
+    [formType, formAction, form._id]
   );
 
   const saveForm = useCallback(
     (form: FormSchema) => {
-      dispatch(saveFormAction(formType, form, onSaveDone));
+      dispatch(saveFormAction(type, form, onSaveDone));
     },
     [formType, form._id, onSaveDone]
   );
@@ -153,6 +153,7 @@ export function useForm(props: UseFormProps) {
 
   return {
     ...props,
+    basePath,
     formId,
     formAction,
     auth,
@@ -174,8 +175,11 @@ export function useForm(props: UseFormProps) {
     saveForm,
     removeForm,
     duplicateForm,
-    goEdit() {
+    gotoEdit() {
       dispatch(push([basePath, formId, "edit"].join("/")));
+    },
+    gotoRemove() {
+      dispatch(push([basePath, formId, "remove"].join("/")));
     }
   };
 }

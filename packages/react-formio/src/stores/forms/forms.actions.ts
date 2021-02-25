@@ -42,6 +42,6 @@ export const getForms = (
 export const refreshForms = (name: string, done = noop) => {
   return async (dispatch: any, getState: any) => {
     const parameters = selectFormsParameters(name, getState());
-    getForms(name, parameters, done);
+    return getForms(name, parameters, done)(dispatch, getState);
   };
 };

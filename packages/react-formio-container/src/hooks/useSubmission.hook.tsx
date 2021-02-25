@@ -2,6 +2,7 @@ import {
   deleteSubmission,
   getSubmission as getSubmissionAction,
   getSubmissions,
+  receiveForm,
   refreshSubmissions,
   saveSubmission as saveSubmissionAction,
   selectAuth,
@@ -91,7 +92,7 @@ export function useSubmission(props: UseSubmissionProps) {
     dispatch(
       deleteSubmission(submissionType, formId, submissionId, onRemoveDone)
     );
-  }, [basePath, formId, submissionId, onRemoveDone]);
+  }, [basePath, formAction, formId, submissionId, onRemoveDone]);
 
   const onSaveDone = useCallback(
     async (err: Error | null, updatedSubmission: Submission) => {
@@ -135,6 +136,17 @@ export function useSubmission(props: UseSubmissionProps) {
     [formId, onSaveDone]
   );
 
+  const duplicateSubmission = useCallback(() => {
+    dispatch(receiveForm(formType, { ...submission, _id: undefined }));
+    dispatch(push([basePath, "create"].join("/")));
+    onSuccess({
+      name: `duplicate:${submissionType}`,
+      title: `${submissionType} duplicated`,
+      message: `The ${submissionType} has been successfully duplicated!`,
+      data: form
+    });
+  }, [basePath, submission, submissionType]);
+
   useEffect(() => {
     getSubmission();
   }, [submissionAction]);
@@ -151,11 +163,15 @@ export function useSubmission(props: UseSubmissionProps) {
     getSubmission,
     saveSubmission,
     removeSubmission,
+    duplicateSubmission,
     onFormReady(formio: any) {
       formioRef.current = formio;
     },
-    goEdit() {
+    gotoEdit() {
       dispatch(push([basePath, submissionId, "edit"].join("/")));
+    },
+    gotoRemove() {
+      dispatch(push([basePath, submissionId, "delete"].join("/")));
     }
   };
 }

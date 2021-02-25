@@ -1,10 +1,9 @@
-import { Alert, Tabs } from "@tsed/react-formio";
+import { Alert, Tabs, RemoveModal } from "@tsed/react-formio";
 import React from "react";
 import { Route, Switch, useParams } from "react-router";
 import { FormEditView } from "./formEdit.view";
 import { useForm } from "../hooks/useForm.hook";
 import { UseFormsProps } from "../hooks/useForms.hook";
-import { RemoveModal } from "@tsed/react-formio/dist/src/components/modal/removeModal";
 
 function FormComponent(props: ReturnType<typeof useForm>) {
   const {
@@ -16,7 +15,7 @@ function FormComponent(props: ReturnType<typeof useForm>) {
     currentRoute,
     setCurrentRoute,
     routes,
-    goEdit
+    gotoEdit
   } = props;
 
   return (
@@ -64,7 +63,7 @@ function FormComponent(props: ReturnType<typeof useForm>) {
                 valueToCompare={props.form.name}
                 itemType={props.formType}
                 onSubmit={removeForm}
-                onClose={goEdit}
+                onClose={gotoEdit}
               />
             </Route>
             <Route path={[basePath, formId].join("/")} exact={true}>
