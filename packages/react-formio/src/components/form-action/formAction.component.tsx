@@ -1,5 +1,5 @@
 import FormioUtils from "formiojs/utils";
-import React, { ReactElement } from "react";
+import React, { PropsWithChildren, ReactElement } from "react";
 import {
   ActionDefaultsSchema,
   ActionSchema,
@@ -36,8 +36,7 @@ function mapSettingsForm({ action, ...settingsForm }: any): any {
 }
 
 export interface FormActionProps {
-  actionInfo: ActionSchema;
-  children: ReactElement;
+  actionInfo: Partial<ActionSchema>;
   submission?: Partial<Submission>;
   onSubmit?: Function;
   options: FormOptions;
@@ -49,7 +48,7 @@ export function FormAction({
   children,
   onSubmit,
   options
-}: FormActionProps): ReactElement {
+}: PropsWithChildren<FormActionProps>): ReactElement {
   submission = mapData(submission, actionInfo.defaults);
   return (
     <div>
