@@ -3,11 +3,13 @@ import { RoleSchema, Submission } from "../../interfaces";
 import { selectRoot } from "../root";
 import { AuthState } from "./auth.reducers";
 
+export const selectAuth = (state: any) => selectRoot<AuthState>("auth", state);
+
 export const selectUser = <User = any>(state: any): null | Submission<User> =>
-  get(selectRoot<AuthState>("auth", state), "user");
+  get(selectAuth(state), "user");
 
 export const selectRoles = (state: any): Record<string, RoleSchema> =>
-  get(selectRoot<AuthState>("auth", state), "roles");
+  get(selectAuth(state), "roles");
 
 export const selectIsAuthenticated = (state: any): boolean =>
-  get(selectRoot<AuthState>("auth", state), "authenticated");
+  get(selectAuth(state), "authenticated");

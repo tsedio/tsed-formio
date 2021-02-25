@@ -20,7 +20,7 @@ describe("Submission reducers", () => {
       id: "",
       isActive: false,
       lastUpdated: 0,
-      submission: {},
+      data: {},
       url: ""
     });
   });

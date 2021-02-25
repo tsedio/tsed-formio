@@ -14,7 +14,7 @@ export interface SubmissionState {
   id: string;
   isActive: boolean;
   lastUpdated: number;
-  submission: Partial<Submission>;
+  data: Partial<Submission>;
   url: string;
   error: null | Error;
 }
@@ -24,7 +24,7 @@ const createInitialState: InitialStateCreator = () => ({
   id: "",
   isActive: false,
   lastUpdated: 0,
-  submission: {},
+  data: {},
   url: "",
   error: null
 });

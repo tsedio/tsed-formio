@@ -1,4 +1,3 @@
-// @flow
 import { createAction } from "@tsed/redux-utils";
 import { Formio } from "formiojs";
 import noop from "lodash/noop";
@@ -38,4 +37,11 @@ export const getForms = (
     dispatch(failForms(name, { error }));
     done(error);
   }
+};
+
+export const refreshForms = (name: string, done = noop) => {
+  return async (dispatch: any, getState: any) => {
+    const parameters = selectFormsParameters(name, getState());
+    getForms(name, parameters, done);
+  };
 };

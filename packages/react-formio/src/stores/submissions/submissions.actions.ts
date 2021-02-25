@@ -33,3 +33,14 @@ export const getSubmissions = (
     done(error);
   }
 };
+
+export const refreshSubmissions = (
+  name: string,
+  formId: string,
+  done = noop
+) => {
+  return async (dispatch: any, getState: any) => {
+    const parameters = selectSubmissionsParameters(name, getState());
+    getSubmissions(name, formId, parameters, done);
+  };
+};

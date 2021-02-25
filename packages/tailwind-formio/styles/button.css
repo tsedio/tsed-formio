@@ -110,7 +110,7 @@ fieldset:disabled a.btn {
   @apply text-primary bg-transparent border-primary;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-secondary focus:bg-secondary hover:border-secondary focus:border-secondary;
+    @apply hover:text-white hover:bg-secondary focus:bg-secondary hover:border-secondary focus:border-white;
   }
 }
 
@@ -118,7 +118,7 @@ fieldset:disabled a.btn {
   @apply text-secondary bg-transparent border-secondary;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-secondary focus:bg-secondary hover:border-secondary focus:border-secondary focus:text-secondary;
+    @apply hover:text-white hover:bg-secondary focus:bg-secondary hover:border-secondary focus:border-secondary focus:text-white;
   }
 }
 
@@ -126,7 +126,7 @@ fieldset:disabled a.btn {
   @apply text-green bg-transparent border-green;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-green focus:bg-green hover:border-green focus:border-green focus:text-green;
+    @apply hover:text-white hover:bg-green focus:bg-green hover:border-green focus:border-green focus:text-white;
   }
 }
 
@@ -134,7 +134,7 @@ fieldset:disabled a.btn {
   @apply text-red bg-transparent border-red;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-red focus:bg-red hover:border-red focus:border-red focus:text-red;
+    @apply hover:text-white hover:bg-red focus:bg-red hover:border-red focus:border-red focus:text-white;
   }
 }
 
@@ -142,7 +142,7 @@ fieldset:disabled a.btn {
   @apply text-yellow bg-transparent border-yellow;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-yellow focus:bg-yellow hover:border-yellow focus:border-yellow focus:text-yellow;
+    @apply hover:text-white hover:bg-yellow focus:bg-yellow hover:border-yellow focus:border-yellow focus:text-white;
   }
 }
 
@@ -150,7 +150,7 @@ fieldset:disabled a.btn {
   @apply text-blue bg-transparent border-blue;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-blue focus:bg-blue hover:border-blue focus:border-blue focus:text-blue;
+    @apply hover:text-white hover:bg-blue focus:bg-blue hover:border-blue focus:border-blue focus:text-white;
   }
 }
 
