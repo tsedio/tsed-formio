@@ -1,6 +1,6 @@
 {
   "name": "@tsed/storybook",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Storybook package",
   "main": "src/index.js",
   "author": "Romain Lenzotti",
@@ -20,8 +20,8 @@
     "@storybook/addons": "6.1.11",
     "@storybook/react": "6.1.11",
     "@svgr/webpack": "5.5.0",
-    "@tsed/config": "1.5.2",
-    "@tsed/tailwind": "1.5.2",
+    "@tsed/config": "1.5.3",
+    "@tsed/tailwind": "1.5.3",
     "@tsed/yarn-workspaces": "1.14.0",
     "babel-loader": "8.0.6",
     "cross-env": "7.0.3",
