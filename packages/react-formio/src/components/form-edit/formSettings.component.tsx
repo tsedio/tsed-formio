@@ -75,8 +75,8 @@ export function FormSettings({
           onChange={onChange}
         />
       </div>
-      <div className={"w-1/3"}>
-        {hasTypeChoices && (
+      {hasTypeChoices && (
+        <div className={"w-1/3"}>
           <Select
             label={"Type"}
             name={"type"}
@@ -84,18 +84,18 @@ export function FormSettings({
             choices={typeChoices}
             onChange={onChange}
           />
-        )}
-      </div>
-      <div className={"w-1/3"}>
-        {enableTags && (
+        </div>
+      )}
+      {enableTags && (
+        <div className={"w-1/3"}>
           <InputTags
             label={"Tags"}
             name={"tags"}
             value={form.tags}
             onChange={onChange}
           />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
