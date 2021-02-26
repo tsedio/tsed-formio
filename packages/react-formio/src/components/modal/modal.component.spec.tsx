@@ -6,8 +6,10 @@ import { WithFooter, WithTitle } from "./modal.stories";
 describe("Modal", () => {
   describe("WithTitle", () => {
     it("should display the modal when we click on the button", async () => {
+      const onClose = jest.fn();
+
       const { queryByTestId, getByTestId } = render(
-        <WithTitle {...WithTitle.args} />
+        <WithTitle {...WithTitle.args} onClose={onClose} />
       );
 
       expect(queryByTestId("modalTitle")).toBeFalsy();
@@ -29,6 +31,7 @@ describe("Modal", () => {
       expect(queryByTestId("modalTitle")).toBeFalsy();
       expect(queryByTestId("modalBody")).toBeFalsy();
       expect(queryByTestId("modalFooter")).toBeFalsy();
+      expect(onClose).toHaveBeenCalledWith();
     });
   });
 
