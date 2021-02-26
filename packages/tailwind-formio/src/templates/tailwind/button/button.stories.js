@@ -73,3 +73,18 @@ export const Sandbox = (args) => {
 };
 
 Sandbox.args = {};
+
+export const ButtonWithIcon = (args) => {
+  return (
+    <div>
+      <div className={"mb-5"}>
+        <button type='button' className='mr-2 btn btn-primary'>
+          <span className={"bx bx-plus"} />
+          <span>Primary</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+ButtonWithIcon.args = {};

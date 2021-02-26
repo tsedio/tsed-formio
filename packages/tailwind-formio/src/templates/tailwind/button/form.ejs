@@ -4,12 +4,12 @@
   {{attr}}="{{ctx.input.attr[attr]}}"
   {% } %}
 >
-{% if (ctx.component.leftIcon) { %}<span class="{{ctx.component.leftIcon}} {{ctx.input.content ? 'mr-1' : ''}}"></span>&nbsp;{% } %}
-{{ctx.input.content}}
+{% if (ctx.component.leftIcon) { %}<span class="{{ctx.component.leftIcon}}"></span>{% } %}
+{% if (ctx.input.content) { %}<span>{{ctx.input.content}}</span> {% } %}
 {% if (ctx.component.tooltip) { %}
   <i ref="tooltip" class="{{ctx.iconClass('question-sign')}}"></i>
 {% } %}
-{% if (ctx.component.rightIcon) { %}&nbsp;<span class="{{ctx.component.rightIcon}} {{ctx.input.content ? 'ml-1' : ''}}"></span>{% } %}
+{% if (ctx.component.rightIcon) { %}<span class="{{ctx.component.rightIcon}}"></span>{% } %}
 </{{ctx.input.type}}>
 <div ref="buttonMessageContainer">
   <span class="help-block" ref="buttonMessage"></span>

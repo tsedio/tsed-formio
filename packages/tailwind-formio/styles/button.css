@@ -3,6 +3,18 @@
   text-decoration: none;
   user-select: none;
 
+  > .bx, > .fa {
+    @apply mx-1;
+  }
+
+  > span.bx:first-child, > span.fa:first-child {
+    @apply ml-0;
+  }
+
+  > span.bx:last-child, > span.fa:last-child {
+    @apply mr-0;
+  }
+
   &:focus,
   &.focus {
     @apply outline-none shadow-md;
