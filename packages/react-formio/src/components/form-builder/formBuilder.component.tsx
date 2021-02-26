@@ -167,8 +167,6 @@ export class FormBuilder extends React.Component<FormBuilderProps, any> {
   async componentWillReceiveProps(nextProps: FormBuilderProps) {
     if (this.builderRef) {
       if (nextProps.display !== this.state.display) {
-        this.builderRef.destroy();
-
         await this.create({
           ...this.props,
           display: nextProps.display
