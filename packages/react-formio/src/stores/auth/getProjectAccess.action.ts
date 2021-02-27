@@ -1,6 +1,6 @@
 import { Formio } from "formiojs";
 import { projectAccessUser } from "./auth.actions";
-import { USER_AUTH } from "./auth.constant";
+import { AUTH } from "./auth.constant";
 
 function transformProjectAccess(projectAccess: any[]) {
   return projectAccess.reduce(
@@ -19,6 +19,6 @@ export async function getProjectAccess(dispatch: any) {
     const project = await Formio.makeStaticRequest(projectUrl);
     const projectAccess = transformProjectAccess(project.access);
 
-    dispatch(projectAccessUser(USER_AUTH, projectAccess));
+    dispatch(projectAccessUser(AUTH, projectAccess));
   } catch (er) {}
 }

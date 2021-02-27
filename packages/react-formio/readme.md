@@ -74,7 +74,7 @@ You can respond to various events in the form. Simply pass in a prop with a func
 | `onCustomEvent` | { `type`: string - event type, `component`: object - triggering component, `data`: object - data for component, `event`: string - raw event } | Event that is triggered from a button configured with "Event" type. | 
 | `onPrevPage` | { `page`: integer - new page number, `submission`: object - submission data } | Triggered for wizards when "Previous" button is pressed |
 | `onNextPage` | { `page`: integer - new page number, `submission`: object - submission data } | Triggered for wizards when "Next" button is pressed |
-| `formReady` | `formInstance`: Webform/Wizard - form class instance | Called when the form gets ready state |
+| `onFormReady` | `formInstance`: Webform/Wizard - form class instance | Called when the form gets ready state |
 
 #### Example
 
@@ -178,171 +178,60 @@ The submisison grid will render a list of submissions and allow clicking on one 
 
 ## Redux
 
-@tsed/react-table contain Redux actions, reducers, constants and selectors to simplify the API requests made for form.io forms. Reducers, actions and selectors all have names. 
+@tsed/react-formio contain Redux actions, reducers and selectors to simplify the API requests made for `form.io` forms.
+reducers, actions and selectors.
+The following reducers have names:
+
+- formsReducers: manage the forms,
+- formReducers: manage the current form,
+- submissionsReducers: manage the submissions of a form.
+- submissionReducers: manage the current submission of a form
+
 This provides namespaces so the same actions and reducers can be re-used within the same redux state.
 
-### root
-
-The root module is the container for things shared by other modules such as the selectRoot selector.
-
-#### Selectors
-
-| Name | Parameters | Description |
-|---|---|---|
-| `selectRoot` | name: string, state: object | Returns the state for a namespace |
-| `selectError` | name: string, state: object | Returns any errors for a namespace |
-| `selectIsActive` | name: string, state: object | Returns isActive state for a namespace |
-
-### auth
-
-The auth module is designed to make it easier to login, register and authenticate users within react using the form.io login system.
-
-#### Reducers
-
-| Name | Parameters | Description |
-|---|---|---|
-| `auth` | config: object | Mounts the user and access information to the state tree. Config is not currently used but is a placeholder to make it consistent to the other reducers.
-
-[comment]: <> (#### Actions)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `initAuth` |  | This is usually used at the start of an app code. It will check the localStorage for an existing user token and if found, log them in and fetch the needed information about the user. |)
-
-[comment]: <> (| `setUser` | user: object | When a user logs in, this will set the user and fetch the access information for that user. The user object is usually a submission from the login or register form. |)
-
-[comment]: <> (| `logout` | | This action will reset everything to the default state, including removing any localStorage information. |)
-
-[comment]: <> (### form)
-
-[comment]: <> (The form module is for interacting with a single form.)
-
-[comment]: <> (#### Reducers)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `form` | config: object | Mounts the form to the state tree. The config object should contain a name property defining a unique name for the redux state. |)
-
-[comment]: <> (#### Actions)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `getForm` | name: string, id: string, done: function | Fetch a form from the server. If no id is provided, the name is used as the path. The `done` callback will be called when the action is complete. The first parameter is any errors and the second is the form definition. |)
-
-[comment]: <> (| `saveForm` | name: string, form: object, done: function | Save a form to the server. It will use the _id property on the form to save it if it exists. Otherwise it will create a new form. The `done` callback will be called when the action is complete. The first parameter is any errors and the second is the form definition. |)
-
-[comment]: <> (| `deleteForm` | name: string, id: string, done: function | Delete the form on the server with the id. |)
-
-[comment]: <> (| `resetForm` | Reset this reducer back to its initial state. This is automatically called after delete but can be called other times as well. |)
-
-[comment]: <> (#### Selectors)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `selectForm` | name: string, state: object | Select the form definition from the state. |)
-
-[comment]: <> (### forms)
-
-[comment]: <> (The forms module handles multiple forms like a list of forms.)
-
-[comment]: <> (#### Reducers)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `forms` | config: object | Mounts the forms to the state tree. The config object should contain a name property defining a unique name for the redux state. The config object can also contain a query property which is added to all requests for forms. For example: {tags: 'common'} would limit the lists of forms to only forms tagged with 'common'.|)
-
-[comment]: <> (#### Actions)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `getForms` | name: string, page: integer, params: object | Fetch a list of forms from the server. `params` is a query object to filter the forms. |)
-
-[comment]: <> (| `resetForms` | Reset this reducer back to its initial state. This is automatically called after delete but can be called other times as well. |)
-
-[comment]: <> (#### Selectors)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `selectForms` | name: string, state: object | Select the list of forms from the state. |)
-
-[comment]: <> (### submission)
-
-[comment]: <> (The submission module is for interacting with a single submission.)
-
-[comment]: <> (#### Reducers)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `submission` | config: object | Mounts the submission to the state tree. The config object should contain a name property defining a unique name for the redux state. |)
-
-[comment]: <> (#### Actions)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `getSubmission` | name: string, id: string, formId: string, done: function | Fetch a submission from the server. The `done` callback will be called when the action is complete. The first parameter is any errors and the second is the submission. |)
-
-[comment]: <> (| `saveSubmission` | name: string, submission: object, formId: string, done: function | Save a submission to the server. It will use the _id property on the submission to save it if it exists. Otherwise it will create a new submission. The `done` callback will be called when the action is complete. The first parameter is any errors and the second is the submission. |)
-
-[comment]: <> (| `deleteSubmission` | name: string, id: string, formId: string, done: function | Delete the submission on the server with the id. |)
-
-[comment]: <> (| `resetSubmission` | Reset this reducer back to its initial state. This is automatically called after delete but can be called other times as well. |)
-
-[comment]: <> (#### Selectors)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `selectSubmission` | name: string, state: object | Select the submission data from the state. |)
-
-
-[comment]: <> (### submissions)
-
-[comment]: <> (The submissions module handles multiple submissions within a form, like for a list of submissions.)
-
-[comment]: <> (#### Reducers)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `submissions` | config: object | Mounts the submissions to the state tree. The config object should contain a name property defining a unique name for the redux state. |)
-
-[comment]: <> (#### Actions)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `getSubmissions` | name: string, page: integer, params: object, formId: string | Fetch a list of submissions from the server. `params` is a query object to filter the submissions. |)
-
-[comment]: <> (| `resetSubmissions` | Reset this reducer back to its initial state. This is automatically called after delete but can be called other times as well. |)
-
-[comment]: <> (#### Selectors)
-
-[comment]: <> (| Name | Parameters | Description |)
-
-[comment]: <> (|---|---|---|)
-
-[comment]: <> (| `selectSubmissions` | name: string, state: object | Select the list of submissions from the state. |)
+In addition, the package provides the follwing reducers
+
+- actionsReducers: Manage actions of a form.
+- actionReducers: Manage the current action of a form.
+- actionInfoReducers: Manage the available actions for all forms and resources.
+- authReducers: Manage formio authentication.
+
+By default, `@tsed/react-formio` provides defaults combined reducers as following:
+
+```typescript
+export const defaultFormioReducer = combine(
+  authReducer,
+  actionsReducer,
+  actionReducer,
+  actionInfoReducer,
+  formReducer("form"),
+  formsReducer("forms", { query: { type: "form" } }),
+  formReducer("resource"),
+  formsReducer("resources", { query: { type: "resource" } }),
+  submissionReducer("submission"),
+  submissionsReducer("submissions")
+);
+```
+
+This `defaultFormioReducer` can be added and configured in your rootReducer as following :
+
+```typescript
+import { combine } from "@tsed/redux-utils";
+import { defaultFormioReducer, formsReducer } from "@tsed/react-formio";
+import { connectRouter } from "connected-react-router";
+import { combineReducers } from "redux";
+
+export const rootReducers = (history: any) =>
+combineReducers({
+  router: connectRouter(history),
+  ...defaultFormioReducer,
+  // override defaultFormioReducer can done as following
+  ...combine(
+    formsReducer("forms", { query: { type: "form", tags: ['common'] } }), // return only forms with the common tags
+    formsReducer("resources", { query: { type: "resource", tags: ['common'] } }) // return only resources with the common tags
+  )
+});
+```
 
 ## Contributors
 Please read [contributing guidelines here](./CONTRIBUTING.md).

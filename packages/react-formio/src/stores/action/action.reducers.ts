@@ -1,4 +1,5 @@
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
+import { AUTH } from "../auth/auth.constant";
 import {
   clearActionError,
   failAction,
@@ -14,37 +15,39 @@ const createInitialState: InitialStateCreator = () => ({
   isActive: false
 });
 
-export const actionReducer = createReducer(
-  {
-    [resetAction.toString()]: (_: any, _2: any, reset: any) => reset(),
-    [clearActionError.toString()]: (state: any) => ({
-      ...state,
-      error: null
-    }),
-    [requestAction.toString()]: (state: any) => ({
-      ...state,
-      error: null,
-      data: {},
-      isActive: true
-    }),
-    [sendAction.toString()]: (state: any, { action }: any) => ({
-      ...state,
-      error: null,
-      data: action,
-      isActive: true
-    }),
-    [receiveAction.toString()]: (state: any, { action }: any) => ({
-      ...state,
-      error: null,
-      data: action,
-      isActive: false
-    }),
-    [failAction.toString()]: (state: any, { error }: any) => ({
-      ...state,
-      data: {},
-      error,
-      isActive: false
-    })
-  },
-  createInitialState
-);
+export const actionReducer = createReducer({}, createInitialState)
+  .on(resetAction, (_: any, _2: any, reset: any) => reset())
+  .on(clearActionError, (state: any) => ({
+    ...state,
+    error: null
+  }))
+  .on(requestAction, (state: any) => ({
+    ...state,
+    error: null,
+    data: {},
+    isActive: true
+  }))
+  .on(sendAction, (state: any, { action }: any) => ({
+    ...state,
+    error: null,
+    data: action,
+    isActive: true
+  }))
+  .on(receiveAction, (state: any, { action }: any) => ({
+    ...state,
+    error: null,
+    data: action,
+    isActive: false
+  }))
+  .on(receiveAction, (state: any, { action }: any) => ({
+    ...state,
+    error: null,
+    data: action,
+    isActive: false
+  }))
+  .on(failAction, (state: any, { error }: any) => ({
+    ...state,
+    data: {},
+    error,
+    isActive: false
+  }))(AUTH);

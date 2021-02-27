@@ -12,6 +12,7 @@ import {
   userForms,
   userRoles
 } from "./auth.actions";
+import { AUTH } from "./auth.constant";
 
 export interface AuthState<User = any> {
   init: boolean;
@@ -149,4 +150,4 @@ export const authReducer = createReducer<AuthState>(
     }
   },
   createInitialState
-);
+)(AUTH);

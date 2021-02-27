@@ -4,9 +4,7 @@ import get from "lodash/get";
 import noop from "lodash/noop";
 import { getActionUrl } from "../../utils/url";
 import { getActionInfo } from "../action-info";
-import { selectForm } from "../form";
-
-const name = "action";
+import { ACTION } from "./action.constant";
 
 export const clearActionError = createAction();
 export const resetAction = createAction();
@@ -25,8 +23,8 @@ export const getAction = (
   actionId: string,
   done = noop
 ) => async (dispatch: any) => {
-  dispatch(clearActionError(name));
-  dispatch(requestAction(name));
+  dispatch(clearActionError(ACTION));
+  dispatch(requestAction(ACTION));
 
   const formio = getFormio(formId, actionId);
 
@@ -34,10 +32,10 @@ export const getAction = (
     const action = await formio.loadAction();
 
     dispatch(getActionInfo(formId, action.name));
-    dispatch(receiveAction(name, { action }));
+    dispatch(receiveAction(ACTION, { action }));
     done(null, action);
   } catch (error) {
-    dispatch(failAction(name, { error }));
+    dispatch(failAction(ACTION, { error }));
     done(error);
   }
 };
@@ -45,40 +43,40 @@ export const getAction = (
 export const saveAction = (formId: string, action: any, done = noop) => async (
   dispatch: any
 ) => {
-  dispatch(clearActionError(name));
-  dispatch(sendAction(name, { action }));
+  dispatch(clearActionError(ACTION));
+  dispatch(sendAction(ACTION, { action }));
 
   const formio = getFormio(formId, get(action, "data._id", ""));
 
   try {
     const result = await formio.saveAction(action);
-    dispatch(receiveAction(name, { action: result }));
+    dispatch(receiveAction(ACTION, { action: result }));
     done(null, result);
   } catch (error) {
-    dispatch(failAction(name, { error }));
+    dispatch(failAction(ACTION, { error }));
     done(error);
   }
 };
 
 export const deleteAction = (formId: string, actionId: string, done = noop) => {
-  return async (dispatch: any, getState: any) => {
-    dispatch(clearActionError(name));
+  return async (dispatch: any) => {
+    dispatch(clearActionError(ACTION));
 
-    const state = getState();
-    const path = formId.replace("__", "/");
-    const form = selectForm("form", state);
-    const resource = selectForm("resource", state);
-
-    formId = (path === form.path ? form._id : resource._id) || formId;
+    // const state = getState();
+    // const path = formId.replace("__", "/");
+    // const form = selectForm("form", state);
+    // const resource = selectForm("resource", state);
+    //
+    // formId = (path === form.path ? form._id : resource._id) || formId;
 
     const formio = getFormio(formId, actionId);
 
     try {
       await formio.deleteAction();
-      dispatch(resetAction(name));
+      dispatch(resetAction(ACTION));
       done(null);
     } catch (error) {
-      dispatch(failAction(name, { error }));
+      dispatch(failAction(ACTION, { error }));
       done(error);
     }
   };

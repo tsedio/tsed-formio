@@ -1,6 +1,6 @@
 import { Formio } from "formiojs";
 import { receiveUser } from "./auth.actions";
-import { USER_AUTH } from "./auth.constant";
+import { AUTH } from "./auth.constant";
 import { setUser } from "./setUser.action";
 
 jest.mock("./auth.actions");
@@ -19,6 +19,6 @@ describe("setUser()", () => {
     await setUser(user)(dispatch);
 
     expect(Formio.setUser).toHaveBeenCalledWith(user);
-    expect(receiveUser).toHaveBeenCalledWith(USER_AUTH, { user });
+    expect(receiveUser).toHaveBeenCalledWith(AUTH, { user });
   });
 });

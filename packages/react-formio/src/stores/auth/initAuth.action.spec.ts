@@ -1,6 +1,6 @@
 import { Formio } from "formiojs";
 import { requestUser } from "./auth.actions";
-import { USER_AUTH } from "./auth.constant";
+import { AUTH } from "./auth.constant";
 import { getAccess } from "./getAccess.action";
 import { getProjectAccess } from "./getProjectAccess.action";
 import { initAuth } from "./initAuth.action";
@@ -29,7 +29,7 @@ describe("initAuth()", () => {
 
     await initAuth(done)(dispatch);
 
-    expect(requestUser).toHaveBeenCalledWith(USER_AUTH);
+    expect(requestUser).toHaveBeenCalledWith(AUTH);
     expect(Formio.currentUser).toHaveBeenCalledWith();
     expect(getAccess).toHaveBeenCalledWith(dispatch);
     expect(getProjectAccess).toHaveBeenCalledWith(dispatch);
@@ -45,7 +45,7 @@ describe("initAuth()", () => {
 
     await initAuth(done)(dispatch);
 
-    expect(requestUser).toHaveBeenCalledWith(USER_AUTH);
+    expect(requestUser).toHaveBeenCalledWith(AUTH);
     expect(Formio.currentUser).toHaveBeenCalledWith();
     expect(getAccess).toHaveBeenCalledWith(dispatch);
     expect(getProjectAccess).toHaveBeenCalledWith(dispatch);

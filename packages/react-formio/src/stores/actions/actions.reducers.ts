@@ -6,6 +6,7 @@ import {
   requestActions,
   resetActions
 } from "./actions.actions";
+import { ACTIONS } from "./actions.constant";
 
 export interface ActionsState {
   error: null | Error;
@@ -48,4 +49,4 @@ export const actionsReducer = createReducer<ActionsState>(
     })
   },
   createInitialState
-);
+)(ACTIONS);

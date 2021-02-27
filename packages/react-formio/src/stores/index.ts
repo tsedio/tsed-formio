@@ -19,14 +19,14 @@ export * from "./submissions";
 export * from "./root";
 
 export const defaultFormioReducer = combine(
-  authReducer("auth"),
-  actionsReducer("actions"),
-  actionReducer("action"),
-  actionInfoReducer("actionInfo"),
+  authReducer,
+  actionsReducer,
+  actionReducer,
+  actionInfoReducer,
   formReducer("form"),
-  formsReducer("forms", { query: { type: "form", tags: "common" } }),
+  formsReducer("forms", { query: { type: "form" } }),
   formReducer("resource"),
-  formsReducer("resources", { query: { type: "resource", tags: "common" } }),
+  formsReducer("resources", { query: { type: "resource" } }),
   submissionReducer("submission"),
   submissionsReducer("submissions")
 );

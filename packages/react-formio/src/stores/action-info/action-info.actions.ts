@@ -2,20 +2,19 @@ import { createAction } from "@tsed/redux-utils";
 import noop from "lodash/noop";
 import { Formio } from "formiojs";
 import { getFormUrl } from "../../utils/url";
+import { ACTION_INFO } from "./action-info.constant";
 
 export const resetActionInfo = createAction();
 export const requestActionInfo = createAction();
 export const receiveActionInfo = createAction();
 export const failActionInfo = createAction();
 
-const name = "actionInfo";
-
 export const getActionInfo = (
   formId: string,
   actionType: string,
   done = noop
 ) => async (dispatch: any) => {
-  dispatch(requestActionInfo(name));
+  dispatch(requestActionInfo(ACTION_INFO));
 
   const url = getFormUrl(formId);
   const formio = new Formio(url);
@@ -26,10 +25,10 @@ export const getActionInfo = (
     actionInfo.settingsForm.action =
       Formio.getProjectUrl() + actionInfo.settingsForm.action;
 
-    dispatch(receiveActionInfo(name, { actionInfo }));
+    dispatch(receiveActionInfo(ACTION_INFO, { actionInfo }));
     done(null, actionInfo);
   } catch (error) {
-    dispatch(failActionInfo(name, { error }));
+    dispatch(failActionInfo(ACTION_INFO, { error }));
     done(error);
   }
 };

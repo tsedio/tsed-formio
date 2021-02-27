@@ -1,9 +1,10 @@
 import get from "lodash/get";
 import { RoleSchema, Submission } from "../../interfaces";
 import { selectRoot } from "../root";
+import { AUTH } from "./auth.constant";
 import { AuthState } from "./auth.reducers";
 
-export const selectAuth = (state: any) => selectRoot<AuthState>("auth", state);
+export const selectAuth = (state: any) => selectRoot<AuthState>(AUTH, state);
 
 export const selectUser = <User = any>(state: any): null | Submission<User> =>
   get(selectAuth(state), "user");

@@ -5,7 +5,7 @@ import {
   userForms,
   userRoles
 } from "./auth.actions";
-import { USER_AUTH } from "./auth.constant";
+import { AUTH } from "./auth.constant";
 import { getAccess } from "./getAccess.action";
 
 jest.mock("./auth.actions");
@@ -132,7 +132,7 @@ describe("getAccess()", () => {
       "https://api.form.io/access"
     );
 
-    expect(submissionAccessUser).toHaveBeenCalledWith(USER_AUTH, {
+    expect(submissionAccessUser).toHaveBeenCalledWith(AUTH, {
       submissionAccess: {
         admin: {
           create_all: ["6016dd751c62ca370d59f0b8"],
@@ -166,7 +166,7 @@ describe("getAccess()", () => {
         }
       }
     });
-    expect(formAccessUser).toHaveBeenCalledWith(USER_AUTH, {
+    expect(formAccessUser).toHaveBeenCalledWith(AUTH, {
       formAccess: {
         admin: {
           read_all: [
@@ -191,7 +191,7 @@ describe("getAccess()", () => {
         }
       }
     });
-    expect(userRoles).toHaveBeenCalledWith(USER_AUTH, {
+    expect(userRoles).toHaveBeenCalledWith(AUTH, {
       roles: {
         administrator: {
           _id: "6016dd751c62ca370d59f0b8",
@@ -213,7 +213,7 @@ describe("getAccess()", () => {
         }
       }
     });
-    expect(userForms).toHaveBeenCalledWith(USER_AUTH, {
+    expect(userForms).toHaveBeenCalledWith(AUTH, {
       forms: {
         admin: {
           _id: "6016e1fb4ce825382505947e",

@@ -4,16 +4,17 @@ import {
   requestActions,
   resetActions
 } from "./actions.actions";
+import { ACTIONS } from "./actions.constant";
 import { actionsReducer } from "./actions.reducers";
 
 describe("Actions reducers", () => {
   it("should return state (resetActions)", () => {
-    const reducer = actionsReducer("name");
+    const reducer = actionsReducer;
     const state: any = {};
     const payload = {};
 
     expect(reducer.$emit(resetActions, state, payload)).toEqual({
-      name: "name",
+      name: ACTIONS,
       data: [],
       availableActions: [],
       error: null,
@@ -21,12 +22,12 @@ describe("Actions reducers", () => {
     });
   });
   it("should return state (requestActions)", () => {
-    const reducer = actionsReducer("name");
+    const reducer = actionsReducer;
     const state: any = {};
     const payload = {};
 
     expect(reducer.$emit(requestActions, state, payload)).toEqual({
-      name: "name",
+      name: ACTIONS,
       data: [],
       availableActions: [],
       error: null,
@@ -35,14 +36,14 @@ describe("Actions reducers", () => {
   });
 
   it("should return state (receiveActions)", () => {
-    const reducer = actionsReducer("name");
+    const reducer = actionsReducer;
     const state: any = {};
     const payload = {
       actions: [{ _id: "id" }]
     };
 
     expect(reducer.$emit(receiveActions, state, payload)).toEqual({
-      name: "name",
+      name: ACTIONS,
       error: null,
       data: [{ _id: "id" }],
       isActive: false
@@ -50,14 +51,14 @@ describe("Actions reducers", () => {
   });
 
   it("should return state (failActions)", () => {
-    const reducer = actionsReducer("name");
+    const reducer = actionsReducer;
     const state: any = {};
     const payload = {
       error: new Error("message")
     };
 
     expect(reducer.$emit(failActions, state, payload)).toEqual({
-      name: "name",
+      name: ACTIONS,
       data: [],
       error: payload.error,
       isActive: false

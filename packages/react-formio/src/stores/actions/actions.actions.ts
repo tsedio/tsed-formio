@@ -2,6 +2,7 @@ import { createAction } from "@tsed/redux-utils";
 import { Formio } from "formiojs";
 import noop from "lodash/noop";
 import { getFormUrl } from "../../utils/url";
+import { ACTIONS } from "./actions.constant";
 
 export const resetActions = createAction();
 export const requestActions = createAction();
@@ -11,13 +12,11 @@ export const receiveActions = createAction<{
 }>();
 export const failActions = createAction<{ error: Error }>();
 
-const name = "actions";
-
 export const getActions = (id: string, done = noop) => async (
   dispatch: any
 ) => {
-  dispatch(resetActions(name));
-  dispatch(requestActions(name));
+  dispatch(resetActions(ACTIONS));
+  dispatch(requestActions(ACTIONS));
 
   const url = getFormUrl(id);
   const formio = new Formio(url);
@@ -28,10 +27,10 @@ export const getActions = (id: string, done = noop) => async (
       formio.availableActions()
     ]);
 
-    dispatch(receiveActions(name, { actions, availableActions }));
+    dispatch(receiveActions(ACTIONS, { actions, availableActions }));
     done(null, actions, availableActions);
   } catch (error) {
-    dispatch(failActions(name, { error }));
+    dispatch(failActions(ACTIONS, { error }));
     done(error);
   }
 };

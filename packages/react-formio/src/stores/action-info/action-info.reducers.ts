@@ -1,5 +1,4 @@
 import { InitialStateCreator, createReducer } from "@tsed/redux-utils";
-
 import { ActionSchema } from "../../interfaces";
 import {
   failActionInfo,
@@ -7,6 +6,7 @@ import {
   requestActionInfo,
   resetActionInfo
 } from "./action-info.actions";
+import { ACTION_INFO } from "./action-info.constant";
 
 export interface ActionInfoState {
   error: null | Error;
@@ -45,4 +45,4 @@ export const actionInfoReducer = createReducer<ActionInfoState>(
     })
   },
   createInitialState
-);
+)(ACTION_INFO);

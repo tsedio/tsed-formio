@@ -7,7 +7,7 @@ import {
   userForms,
   userRoles
 } from "./auth.actions";
-import { USER_AUTH } from "./auth.constant";
+import { AUTH } from "./auth.constant";
 
 function transformSubmissionAccess(forms: Record<string, FormSchema>) {
   return Object.values(forms).reduce(
@@ -53,9 +53,9 @@ export async function getAccess(dispatch: any) {
     const submissionAccess = transformSubmissionAccess(result.forms);
     const formAccess = transformFormAccess(result.forms);
 
-    dispatch(submissionAccessUser(USER_AUTH, { submissionAccess }));
-    dispatch(formAccessUser(USER_AUTH, { formAccess }));
-    dispatch(userRoles(USER_AUTH, { roles: result.roles }));
-    dispatch(userForms(USER_AUTH, { forms: result.forms }));
+    dispatch(submissionAccessUser(AUTH, { submissionAccess }));
+    dispatch(formAccessUser(AUTH, { formAccess }));
+    dispatch(userRoles(AUTH, { roles: result.roles }));
+    dispatch(userForms(AUTH, { forms: result.forms }));
   } catch (err) {}
 }
