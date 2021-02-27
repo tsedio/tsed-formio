@@ -111,6 +111,7 @@ export function useForm(props: UseFormProps) {
     async (err: Error | null, updatedForm: FormSchema) => {
       if (!err) {
         dispatch(refreshForms(formType));
+
         dispatch(
           push(
             [
@@ -122,15 +123,15 @@ export function useForm(props: UseFormProps) {
         );
 
         onSuccess({
-          name: `${formAction}:${formType}`,
+          name: `${formAction}:${type}`,
           title: `${type} saved`,
           message: `The ${type} has been successfully updated!`,
           data: updatedForm
         });
       } else {
         onError({
-          name: `remove:${formType}`,
-          title: `${type} failed`,
+          name: `${formAction}:${type}`,
+          title: `Save ${type} failed`,
           message: err.message,
           error: err,
           data: form

@@ -2,6 +2,7 @@ import { ActionsTable } from "@tsed/react-formio";
 import React from "react";
 import { Route, Switch } from "react-router";
 import { useActions, UseActionsProps } from "../hooks/useActions.hook";
+import { FormActionView } from "./formAction.view";
 
 export function FormActionsComponent({
   actions,
@@ -41,15 +42,9 @@ export function FormActionsView(props: UseActionsProps) {
     <Switch>
       <Route
         exact={true}
-        path={[actions.basePath, ":actionId", "edit"].join("/")}
+        path={[actions.basePath, ":actionId", ":actionAction"].join("/")}
       >
-        Hello edit
-      </Route>
-      <Route
-        exact={true}
-        path={[actions.basePath, ":actionId", "add"].join("/")}
-      >
-        Hello add
+        <FormActionView {...actions} />
       </Route>
       <Route path={actions.basePath}>
         <FormActionsComponent {...actions} />

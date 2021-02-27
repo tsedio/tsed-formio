@@ -44,11 +44,15 @@ export function SubmissionsView(props: UseSubmissionProps) {
     <Switch>
       <Route
         exact={true}
-        path={[props.basePath, ":submissionId", ":submissionAction?"].join("/")}
+        path={[
+          submissions.basePath,
+          ":submissionId",
+          ":submissionAction?"
+        ].join("/")}
       >
         {submissionView}
       </Route>
-      <Route path={props.basePath}>
+      <Route path={submissions.basePath}>
         <SubmissionsComponent {...submissions} />
       </Route>
     </Switch>

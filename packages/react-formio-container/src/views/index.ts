@@ -1,6 +1,7 @@
 export * from "./form.routes";
 export * from "./form.view";
 export * from "./formAccess.view";
+export * from "./formAction.view";
 export * from "./formActions.view";
 export * from "./formEdit.view";
 export * from "./formio.view";

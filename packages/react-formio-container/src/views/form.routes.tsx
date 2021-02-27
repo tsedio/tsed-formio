@@ -61,7 +61,6 @@ export const formRoutes: any[] = [
     exact: true,
     icon: "bx bx-trash mr-2 -ml-1",
     label: "Delete",
-    // component: FormsDeleteItemView,
     roles: ["administrator", "owner"]
   }
 ];

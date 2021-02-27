@@ -55,11 +55,9 @@ export function useActions({
   ) => {
     setOperation(operation);
 
-    if (operation.action !== "delete") {
-      dispatch(
-        push([basePath, (actionInfo as any)._id, operation.action].join("/"))
-      );
-    }
+    dispatch(
+      push([basePath, (actionInfo as any)._id, operation.action].join("/"))
+    );
   };
 
   return {
