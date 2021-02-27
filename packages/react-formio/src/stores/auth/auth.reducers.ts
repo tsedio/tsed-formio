@@ -77,7 +77,7 @@ export const authReducer = createReducer<AuthState>(
         isActive: true
       };
     },
-    [receiveUser.toString()](state, { user }: any) {
+    [receiveUser.toString()](state, { user }) {
       return {
         ...state,
         isActive: false,

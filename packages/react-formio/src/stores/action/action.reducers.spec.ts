@@ -6,6 +6,7 @@ import {
   resetAction,
   sendAction
 } from "./action.actions";
+import { ACTION } from "./action.constant";
 import { actionReducer } from "./action.reducers";
 
 describe("Action reducer", () => {
@@ -15,7 +16,7 @@ describe("Action reducer", () => {
     const payload = {};
 
     expect(reducer.$emit(resetAction.toString(), state, payload)).toEqual({
-      name: "auth",
+      name: ACTION,
       data: {},
       error: null,
       isActive: false
@@ -28,7 +29,7 @@ describe("Action reducer", () => {
     const payload = {};
 
     expect(reducer.$emit(clearActionError.toString(), state, payload)).toEqual({
-      name: "auth",
+      name: ACTION,
       error: null
     });
   });
@@ -39,7 +40,7 @@ describe("Action reducer", () => {
     const payload = {};
 
     expect(reducer.$emit(requestAction.toString(), state, payload)).toEqual({
-      name: "auth",
+      name: ACTION,
       data: {},
       error: null,
       isActive: true
@@ -56,7 +57,7 @@ describe("Action reducer", () => {
     };
 
     expect(reducer.$emit(sendAction.toString(), state, payload)).toEqual({
-      name: "auth",
+      name: ACTION,
       data: {
         _id: "id"
       },
@@ -73,7 +74,7 @@ describe("Action reducer", () => {
     };
 
     expect(reducer.$emit(receiveAction.toString(), state, payload)).toEqual({
-      name: "auth",
+      name: ACTION,
       error: null,
       data: { _id: "id" },
       isActive: false
@@ -88,7 +89,7 @@ describe("Action reducer", () => {
     };
 
     expect(reducer.$emit(failAction.toString(), state, payload)).toEqual({
-      name: "auth",
+      name: ACTION,
       data: {},
       error: payload.error,
       isActive: false

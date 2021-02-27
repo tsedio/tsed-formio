@@ -1,5 +1,5 @@
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
-import { AUTH } from "../auth/auth.constant";
+
 import {
   clearActionError,
   failAction,
@@ -8,6 +8,7 @@ import {
   resetAction,
   sendAction
 } from "./action.actions";
+import { ACTION } from "./action.constant";
 
 const createInitialState: InitialStateCreator = () => ({
   error: null,
@@ -50,4 +51,4 @@ export const actionReducer = createReducer({}, createInitialState)
     data: {},
     error,
     isActive: false
-  }))(AUTH);
+  }))(ACTION);

@@ -6,7 +6,7 @@
   "source": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "test": "cross-env CI=1 yarn craco test",
+    "test": "cross-env CI=1 yarn craco test --coverage",
     "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
     "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement",
     "lint:fix": "yarn lint --fix",
