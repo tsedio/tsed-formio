@@ -35,7 +35,7 @@ export function FormioView({
   return (
     <Switch>
       <Route path={basePath} exact={true}>
-        <FormsView {...options} formType={formType} />;
+        <FormsView {...options} formType={formType} />
       </Route>
       <Route path={[basePath, ":formId", ":formAction?"].join("/")}>
         <FormView {...options} formType={formType} />

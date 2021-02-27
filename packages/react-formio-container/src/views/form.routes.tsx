@@ -2,6 +2,7 @@ import { AuthState, checkRoleFormAccess, FormSchema } from "@tsed/react-formio";
 import { FormAccessView } from "./formAccess.view";
 import { FormActionsView } from "./formActions.view";
 import { FormEditView } from "./formEdit.view";
+import { FormExportView } from "./formExport.view";
 import { FormPreviewView } from "./formPreview.view";
 import { SubmissionsView } from "./submissions.view";
 
@@ -53,8 +54,8 @@ export const formRoutes: any[] = [
     action: "export",
     exact: true,
     icon: "bx bx-download mr-2 -ml-1",
-    label: "Export"
-    // component: FormsExportView
+    label: "Export",
+    component: FormExportView
   },
   {
     action: "delete",

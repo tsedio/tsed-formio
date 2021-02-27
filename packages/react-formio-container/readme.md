@@ -24,7 +24,8 @@ npm-compatible packaging system such as [Browserify](http://browserify.org/) or
 [webpack](http://webpack.github.io/).
 
 ```bash
-npm install @tsed/react-formio-container
+npm install --save @tsed/react-formio-container file-saver
+npm install --save-dev @types/file-saver
 ```
 
 ## Examples

@@ -19,7 +19,8 @@
     "connected-react-router": "^6",
     "react-router": "^5",
     "react-router-dom": "^5",
-    "redux-thunk": "^2"
+    "redux-thunk": "^2",
+    "file-saver": "^2"
   },
   "devDependencies": {
     "@tsed/react-formio": "1.6.1"

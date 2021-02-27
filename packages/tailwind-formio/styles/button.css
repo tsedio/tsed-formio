@@ -3,7 +3,7 @@
   text-decoration: none;
   user-select: none;
 
-  > .bx, > .fa {
+  > span.bx, > span.fa {
     @apply mx-1;
   }
 

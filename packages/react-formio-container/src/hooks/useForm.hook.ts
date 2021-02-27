@@ -155,7 +155,7 @@ export function useForm(props: UseFormProps) {
   return {
     ...props,
     basePath,
-    formId,
+    formId: form?._id || formId,
     formAction,
     auth,
     form,
