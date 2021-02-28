@@ -159,6 +159,13 @@ export function useForm(props: UseFormProps) {
     getForm();
   }, [formType, formId]);
 
+  useEffect(() => {
+    const route = findRoute(routes, formAction);
+    if (route?.action !== currentRoute.action) {
+      setCurrentRoute(route);
+    }
+  }, [formAction]);
+
   return {
     ...props,
     basePath,

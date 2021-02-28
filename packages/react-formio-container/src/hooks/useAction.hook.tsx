@@ -30,7 +30,6 @@ export function useAction(props: UseActionProps) {
     formType,
     actionId,
     actionAction,
-    formId,
     onSuccess = noop,
     onError = noop
   } = props;
@@ -46,12 +45,14 @@ export function useAction(props: UseActionProps) {
   ) as any;
 
   const fetch = useCallback(() => {
-    if (Utils.isMongoId(actionId)) {
-      dispatch(getAction(formId, actionId));
-    } else {
-      dispatch(getActionInfo(formId, actionId));
+    if (form?._id) {
+      if (Utils.isMongoId(actionId)) {
+        dispatch(getAction(form?._id, actionId));
+      } else {
+        dispatch(getActionInfo(form?._id, actionId));
+      }
     }
-  }, [formId, actionId]);
+  }, [form?._id, actionId]);
 
   const onSaveDone = useCallback(
     (err: Error | null, actionInfo: ActionSchema) => {
@@ -63,7 +64,7 @@ export function useAction(props: UseActionProps) {
           data: actionInfo
         });
         dispatch(push([basePath, actionInfo._id, "edit"].join("/")));
-        dispatch(getActions(formId));
+        dispatch(getActions(form?._id));
       } else {
         onError({
           name: `remove:action`,
@@ -74,20 +75,20 @@ export function useAction(props: UseActionProps) {
         });
       }
     },
-    [actionAction, formId]
+    [actionAction, form?._id]
   );
 
   const saveAction = useCallback(
     (actionInfo: ActionSchema) => {
-      dispatch(saveAct(formId, actionInfo, onSaveDone));
+      dispatch(saveAct(form?._id, actionInfo, onSaveDone));
     },
-    [formId, onSaveDone]
+    [form?._id, onSaveDone]
   );
 
   const onRemoveDone = useCallback(
     (err: Error) => {
       if (!err) {
-        dispatch(getActions(formId));
+        dispatch(getActions(form?._id));
         dispatch(push(basePath));
         onSuccess({
           name: `remove:action`,
@@ -101,16 +102,16 @@ export function useAction(props: UseActionProps) {
           title: `Remove action failed`,
           message: err.message,
           error: err,
-          data: actionId
+          data: form?._id
         });
       }
     },
-    [formId, formId, actionId]
+    [form?._id, actionId]
   );
 
   const removeAction = useCallback(() => {
-    dispatch(deleteAction(formId, actionId, onRemoveDone));
-  }, [formId, actionId, onRemoveDone]);
+    dispatch(deleteAction(form?._id, actionId, onRemoveDone));
+  }, [form?._id, actionId, onRemoveDone]);
 
   useEffect(() => {
     fetch();

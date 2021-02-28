@@ -92,7 +92,10 @@ export const defaultFormRoutes: FormRoute[] = [
   }
 ];
 
-export function findRoute(routes: FormRoute[], formAction: string) {
+export function findRoute(
+  routes: FormRoute[],
+  formAction: string
+): FormRoute | undefined {
   return routes.find(({ action }) =>
     formAction === "delete" ? action === "edit" : formAction === action
   );
