@@ -4,7 +4,7 @@ import { useTooltip } from "../../hooks/useTooltip";
 import { FormOptions } from "../../interfaces";
 import { iconClass } from "../../utils/iconClass";
 
-export interface FormEditCTAsProps {
+export interface FormEditCTAsProps extends Record<string, unknown> {
   saveText?: string;
   options?: FormOptions;
   hasUndo?: boolean;

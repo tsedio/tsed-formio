@@ -58,14 +58,14 @@ export interface FormioContainerOptions extends Record<string, unknown> {
   i18n?: (f: string) => string;
 
   // override components
-  FormsComponent?: React.ComponentType;
-  FormComponent?: React.ComponentType;
-  FormActionsComponent?: React.ComponentType;
-  FormActionComponent?: React.ComponentType;
-  FormExportComponent?: React.ComponentType;
-  FormEditComponent?: React.ComponentType;
-  FormAccessComponent?: React.ComponentType;
-  SubmissionComponent?: React.ComponentType;
-  SubmissionsComponent?: React.ComponentType;
-  RemoveModalComponent?: React.ComponentType;
+  FormsComponent?: React.ComponentType<any>;
+  FormComponent?: React.ComponentType<any>;
+  FormActionsComponent?: React.ComponentType<any>;
+  FormActionComponent?: React.ComponentType<any>;
+  FormExportComponent?: React.ComponentType<any>;
+  FormEditComponent?: React.ComponentType<any>;
+  FormAccessComponent?: React.ComponentType<any>;
+  SubmissionComponent?: React.ComponentType<any>;
+  SubmissionsComponent?: React.ComponentType<any>;
+  RemoveModalComponent?: React.ComponentType<any>;
 }

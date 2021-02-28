@@ -2,7 +2,10 @@ import { FormEdit } from "@tsed/react-formio";
 import React from "react";
 import { useForm } from "../hooks/useForm.hook";
 
-export function FormEditView(props: ReturnType<typeof useForm>) {
+export function FormEditView({
+  className,
+  ...props
+}: ReturnType<typeof useForm>) {
   const { form, saveForm, duplicateForm, i18n } = props;
   const Component = props.FormEditComponent || FormEdit;
   return (

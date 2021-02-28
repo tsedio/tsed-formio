@@ -58,9 +58,9 @@ export function RemoveModal(props: RemoveModalProps) {
     >
       <div className={"px-4 pt-3 pb-5"}>
         <div className={"pb-1"}>
-          {i18n("To drop")} <strong>{props.valueToCompare}</strong>,{" "}
-          {i18n("type the")}
-          <strong>&quot;{props.itemType?.toLowerCase()}&quot;</strong>{" "}
+          {i18n("To drop")} <strong>{props.valueToCompare}</strong>,&nbsp;
+          {i18n("type the")}&nbsp;
+          <strong>&quot;{props.itemType?.toLowerCase()}&quot;</strong>&nbsp;
           {i18n("name")} <strong>&quot;{props.valueToCompare}&quot;</strong>.
         </div>
         <InputText

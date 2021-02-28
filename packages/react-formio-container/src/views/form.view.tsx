@@ -5,7 +5,7 @@ import { FormEditView } from "./formEdit.view";
 import { useForm } from "../hooks/useForm.hook";
 import { UseFormsProps } from "../hooks/useForms.hook";
 
-function FormComponent(props: ReturnType<typeof useForm>) {
+function FormComponent({ className, ...props }: ReturnType<typeof useForm>) {
   const {
     basePath,
     formId,
@@ -16,7 +16,6 @@ function FormComponent(props: ReturnType<typeof useForm>) {
     setCurrentRoute,
     routes,
     gotoEdit,
-    className,
     i18n
   } = props;
 

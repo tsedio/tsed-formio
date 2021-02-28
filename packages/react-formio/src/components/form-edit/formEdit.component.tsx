@@ -6,7 +6,7 @@ import { FormEditCTAs } from "./formCtas.component";
 import { FormSettings } from "./formSettings.component";
 import { useForm } from "./useForm.hook";
 
-export interface FormEditProps {
+export interface FormEditProps extends Record<string, unknown> {
   form?: Partial<FormSchema>;
   options?: FormOptions;
   typeChoices?: { label: string; value: any }[];
@@ -38,12 +38,14 @@ export function FormEdit(props: FormEditProps) {
       <div className='form-edit'>
         <FormSettings
           {...props}
+          className={""}
           key={`form-settings-${form._id}`}
           form={form}
           onChange={setChange}
         />
         <FormEditCTAs
           {...props}
+          className={""}
           key={`form-edit-ctas-${form._id}`}
           options={options}
           hasRedo={hasRedo}
