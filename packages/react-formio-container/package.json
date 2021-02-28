@@ -3,7 +3,7 @@
   "version": "1.8.0",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.ts",
+  "source": "src/index.tsx",
   "license": "MIT",
   "scripts": {
     "test": "cross-env CI=1 yarn craco test",
@@ -23,7 +23,9 @@
     "redux-thunk": "^2"
   },
   "devDependencies": {
-    "@tsed/react-formio": "1.8.0"
+    "@tsed/react-formio": "1.8.0",
+    "file-saver": "^2.0.5",
+    "@types/file-saver": "^2.0.1"
   },
   "dependencies": {}
 }
