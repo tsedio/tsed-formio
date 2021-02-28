@@ -1,4 +1,5 @@
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
+import { ActionSchema } from "../../interfaces";
 
 import {
   clearActionError,
@@ -10,43 +11,49 @@ import {
 } from "./action.actions";
 import { ACTION } from "./action.constant";
 
-const createInitialState: InitialStateCreator = () => ({
+export interface ActionState {
+  error: null | Error;
+  data: ActionSchema;
+  isActive: boolean;
+}
+
+const createInitialState: InitialStateCreator = (): ActionState => ({
   error: null,
-  data: {},
+  data: {} as any,
   isActive: false
 });
 
-export const actionReducer = createReducer({}, createInitialState)
+export const actionReducer = createReducer<ActionState>({}, createInitialState)
   .on(resetAction, (_: any, _2: any, reset: any) => reset())
-  .on(clearActionError, (state: any) => ({
+  .on(clearActionError, (state) => ({
     ...state,
     error: null
   }))
-  .on(requestAction, (state: any) => ({
+  .on(requestAction, (state) => ({
     ...state,
     error: null,
     data: {},
     isActive: true
   }))
-  .on(sendAction, (state: any, { action }: any) => ({
+  .on(sendAction, (state, { action }) => ({
     ...state,
     error: null,
     data: action,
     isActive: true
   }))
-  .on(receiveAction, (state: any, { action }: any) => ({
+  .on(receiveAction, (state, { action }) => ({
     ...state,
     error: null,
     data: action,
     isActive: false
   }))
-  .on(receiveAction, (state: any, { action }: any) => ({
+  .on(receiveAction, (state, { action }) => ({
     ...state,
     error: null,
     data: action,
     isActive: false
   }))
-  .on(failAction, (state: any, { error }: any) => ({
+  .on(failAction, (state, { error }) => ({
     ...state,
     data: {},
     error,
