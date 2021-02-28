@@ -1,24 +1,16 @@
 import { Form, iconClass, RemoveModal, useTooltip } from "@tsed/react-formio";
 import classnames from "classnames";
-import startCase from "lodash/startCase";
-import toLower from "lodash/toLower";
 import React from "react";
 import { useParams } from "react-router";
 import { UseFormProps } from "../hooks/useForm.hook";
 import { useSubmission } from "../hooks/useSubmission.hook";
-
-const ucfirst = (t: string) => startCase(toLower(t));
+import { ucfirst } from "../utils/ucfirst";
 
 export interface SubmissionViewProps extends UseFormProps {
   formAction: string;
 }
 
-export function SubmissionView(props: SubmissionViewProps) {
-  const params = useParams<{
-    submissionId: string;
-    submissionActions?: string;
-  }>();
-
+export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
   const {
     formAction,
     submissionAction,
@@ -31,10 +23,7 @@ export function SubmissionView(props: SubmissionViewProps) {
     saveSubmission,
     onFormReady,
     url
-  } = useSubmission({
-    ...props,
-    ...params
-  });
+  } = props;
 
   const copyRef = useTooltip({
     trigger: "hover",
@@ -104,4 +93,19 @@ export function SubmissionView(props: SubmissionViewProps) {
       )}
     </div>
   );
+}
+
+export function SubmissionView(props: SubmissionViewProps) {
+  const Component = props.SubmissionComponent || SubmissionComponent;
+  const params = useParams<{
+    submissionId: string;
+    submissionActions?: string;
+  }>();
+
+  const submission = useSubmission({
+    ...props,
+    ...params
+  });
+
+  return <Component {...submission} />;
 }

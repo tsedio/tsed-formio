@@ -31,7 +31,8 @@ export function useForm(props: UseFormProps) {
     formType,
     operations,
     onSuccess = noop,
-    onError = noop
+    onError = noop,
+    formRoutes
   } = props;
 
   let { formId, formAction = "edit" } = props;
@@ -58,8 +59,8 @@ export function useForm(props: UseFormProps) {
   }, [formType, formId]);
 
   const routes = useMemo(() => {
-    return getFormRoutes({ operations, formAction, auth, form });
-  }, [operations, formType, formId]);
+    return getFormRoutes({ formRoutes, operations, formAction, auth, form });
+  }, [formRoutes, operations, formType, formId]);
 
   const [currentRoute, setCurrentRoute] = useState(
     findRoute(routes, formAction)

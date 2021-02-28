@@ -1,26 +1,17 @@
 import {
   FormAction,
   iconClass,
-  useTooltip,
-  RemoveModal
+  RemoveModal,
+  useTooltip
 } from "@tsed/react-formio";
 import classnames from "classnames";
-import startCase from "lodash/startCase";
-import toLower from "lodash/toLower";
 import React from "react";
 import { useParams } from "react-router";
-import { useAction, UseActionProps } from "../hooks/useAction.hook";
+import { UseActionsProps } from "../hooks";
+import { useAction } from "../hooks/useAction.hook";
+import { ucfirst } from "../utils/ucfirst";
 
-const ucfirst = (t: string) => startCase(toLower(t));
-
-export function FormActionView(
-  props: Omit<UseActionProps, "actionId" | "actionAction">
-) {
-  const params = useParams<{
-    actionId: string;
-    actionAction: string;
-  }>();
-
+export function FormActionComponent(props: ReturnType<typeof useAction>) {
   const {
     formAction,
     actionAction,
@@ -31,12 +22,7 @@ export function FormActionView(
     gotoRemove,
     removeAction,
     saveAction
-  } = useAction(
-    Object.assign({} as any, props, {
-      actionId: params.actionId,
-      actionAction: params.actionAction
-    })
-  );
+  } = props;
 
   const removeRef = useTooltip({
     trigger: "hover",
@@ -90,4 +76,21 @@ export function FormActionView(
       )}
     </div>
   );
+}
+
+export function FormActionView(props: UseActionsProps) {
+  const Component = props.FormActionComponent || FormActionComponent;
+  const params = useParams<{
+    actionId: string;
+    actionAction: string;
+  }>();
+
+  const action = useAction(
+    Object.assign({} as any, props, {
+      actionId: params.actionId,
+      actionAction: params.actionAction
+    })
+  );
+
+  return <Component {...action} />;
 }

@@ -1,4 +1,5 @@
 import { AuthState, checkRoleFormAccess, FormSchema } from "@tsed/react-formio";
+import React from "react";
 import { FormAccessView } from "./formAccess.view";
 import { FormActionsView } from "./formActions.view";
 import { FormEditView } from "./formEdit.view";
@@ -6,7 +7,30 @@ import { FormExportView } from "./formExport.view";
 import { FormPreviewView } from "./formPreview.view";
 import { SubmissionsView } from "./submissions.view";
 
-export const formRoutes: any[] = [
+export interface FormRoute<User = any> extends Record<string, unknown> {
+  action: string;
+  exact: boolean;
+  icon: string;
+  component?: React.ComponentType<any>;
+  roles?: string[];
+
+  when?(ctx: {
+    formAction: string;
+    auth: AuthState<User>;
+    form: Partial<FormSchema>;
+    item: FormRoute;
+  }): boolean;
+}
+
+export interface FormRoutesOptions<User = any> {
+  formRoutes: FormRoute[];
+  operations: Record<string, boolean>;
+  formAction: string;
+  auth: AuthState<User>;
+  form: Partial<FormSchema>;
+}
+
+export const defaultFormRoutes: FormRoute[] = [
   {
     action: "back",
     exact: true,
@@ -66,31 +90,29 @@ export const formRoutes: any[] = [
   }
 ];
 
-export function findRoute(routes: any[], formAction: string) {
-  return routes.find(({ action }: any) =>
+export function findRoute(routes: FormRoute[], formAction: string) {
+  return routes.find(({ action }) =>
     formAction === "delete" ? action === "edit" : formAction === action
   );
 }
 
-export function getFormRoutes({
+export function getFormRoutes<User = any>({
+  formRoutes = defaultFormRoutes,
   operations,
   formAction,
   auth,
   form
-}: {
-  operations: Record<string, boolean>;
-  formAction: string;
-  auth: AuthState<any>;
-  form: Partial<FormSchema>;
-}) {
+}: FormRoutesOptions<User>) {
   return formRoutes
-    .filter(
-      (item) => operations[item.action] || operations[item.action] === undefined
-    )
-    .filter((item) =>
-      formAction === "create" ? ["back"].includes(item.action) : item
-    )
-    .filter((item) => item.label || item.icon)
+    .filter((item) => {
+      return (
+        (operations[item.action] || operations[item.action] === undefined) &&
+        (formAction === "create" ? ["back"].includes(item.action) : item) &&
+        (item.label || item.icon)
+      );
+    })
     .filter((item) => checkRoleFormAccess(auth, form, item.roles))
-    .filter((item) => !item.when || item.when(form, item));
+    .filter(
+      (item) => !item.when || item.when({ auth, form, item, formAction })
+    );
 }

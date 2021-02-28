@@ -36,6 +36,7 @@ export function FormActionsComponent({
 }
 
 export function FormActionsView(props: UseActionsProps) {
+  const Component = props.FormActionsComponent || FormActionsComponent;
   const actions = useActions(props);
 
   return (
@@ -47,7 +48,7 @@ export function FormActionsView(props: UseActionsProps) {
         <FormActionView {...actions} />
       </Route>
       <Route path={actions.basePath}>
-        <FormActionsComponent {...actions} />
+        <Component {...actions} />
       </Route>
     </Switch>
   );

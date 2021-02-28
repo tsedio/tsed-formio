@@ -2,12 +2,10 @@ import { FormAccess } from "@tsed/react-formio";
 import React from "react";
 import { useForm } from "../hooks/useForm.hook";
 
-export function FormAccessView({
-  form,
-  auth,
-  formType,
-  saveForm
-}: ReturnType<typeof useForm>) {
+export function FormAccessView(props: ReturnType<typeof useForm>) {
+  const Component = props.FormAccessComponent || FormAccess;
+  const { form, auth, formType, saveForm } = props;
+
   const roles = Object.values(auth.roles).map((role) => {
     return {
       label: role.title,
@@ -18,7 +16,8 @@ export function FormAccessView({
 
   return (
     <div className={"p-3 pb-1"}>
-      <FormAccess
+      <Component
+        {...props}
         type={formType}
         form={form}
         roles={roles}

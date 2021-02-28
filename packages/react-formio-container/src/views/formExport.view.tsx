@@ -75,5 +75,6 @@ export function FormExportComponent({
 }
 
 export function FormExportView(props: UseFormProps) {
-  return <FormExportComponent {...useFormExport(props)} />;
+  const Component = props.FormExportComponent || FormExportComponent;
+  return <Component {...useFormExport(props)} />;
 }

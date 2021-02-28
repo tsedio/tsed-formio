@@ -37,8 +37,8 @@ export function SubmissionsComponent({
 }
 
 export function SubmissionsView(props: UseSubmissionProps) {
+  const Component = props.SubmissionsComponent || SubmissionsComponent;
   const submissions = useSubmissions(props);
-  const submissionView = <SubmissionView {...submissions} />;
 
   return (
     <Switch>
@@ -50,10 +50,10 @@ export function SubmissionsView(props: UseSubmissionProps) {
           ":submissionAction?"
         ].join("/")}
       >
-        {submissionView}
+        <SubmissionView {...submissions} />
       </Route>
       <Route path={submissions.basePath}>
-        <SubmissionsComponent {...submissions} />
+        <Component {...submissions} />
       </Route>
     </Switch>
   );

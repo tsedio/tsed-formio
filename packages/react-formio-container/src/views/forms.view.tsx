@@ -2,7 +2,7 @@ import { Alert, FormsTable } from "@tsed/react-formio";
 import React, { useMemo } from "react";
 import { useForms, UseFormsProps } from "../hooks/useForms.hook";
 
-function FormsComponent({
+export function FormsComponent({
   formType,
   data,
   error,
@@ -51,5 +51,7 @@ function FormsComponent({
 }
 
 export function FormsView(props: UseFormsProps) {
-  return <FormsComponent {...useForms(props)} />;
+  const Component = props.FormsComponent || FormsComponent;
+
+  return <Component {...useForms(props)} />;
 }

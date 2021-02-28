@@ -80,6 +80,7 @@ function FormComponent(props: ReturnType<typeof useForm>) {
 }
 
 export function FormView(props: UseFormsProps) {
+  const Component = props.FormComponent || FormComponent;
   const { formId, formAction } = useParams<{
     formType: string;
     formId: string;
@@ -87,7 +88,7 @@ export function FormView(props: UseFormsProps) {
   }>();
 
   return (
-    <FormComponent
+    <Component
       {...useForm({
         ...props,
         formId,
