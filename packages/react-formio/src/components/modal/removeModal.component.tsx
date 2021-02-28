@@ -45,6 +45,7 @@ export interface RemoveModalProps extends ModalProps {
 }
 
 export function RemoveModal(props: RemoveModalProps) {
+  const { i18n = noop } = props;
   const [value, setValue] = useState();
 
   return (
@@ -57,9 +58,10 @@ export function RemoveModal(props: RemoveModalProps) {
     >
       <div className={"px-4 pt-3 pb-5"}>
         <div className={"pb-1"}>
-          To drop <strong>{props.valueToCompare}</strong>, type the{" "}
-          <strong>{props.itemType?.toLowerCase()}</strong> name{" "}
-          <strong>{props.valueToCompare}</strong>.
+          {i18n("To drop")} <strong>{props.valueToCompare}</strong>,{" "}
+          {i18n("type the")}
+          <strong>&quot;{props.itemType?.toLowerCase()}&quot;</strong>{" "}
+          {i18n("name")} <strong>&quot;{props.valueToCompare}&quot;</strong>.
         </div>
         <InputText
           name='remove'

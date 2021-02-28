@@ -1,5 +1,7 @@
 import classnames from "classnames";
+import noop from "lodash/noop";
 import React, { PropsWithChildren } from "react";
+import { iconClass } from "../../utils/iconClass";
 
 export function ButtonTab({
   icon,
@@ -24,26 +26,26 @@ export function ButtonTab({
         )}
         onClick={onClick}
       >
-        <i className={icon} />
-        <span className={"tabs__button-label text-sm whitespace-no-wrap"}>
-          {children}
-        </span>
+        {icon && (
+          <i
+            className={classnames(
+              iconClass(undefined, icon),
+              "tabs__button-icon"
+            )}
+          />
+        )}
+        <span className={"tabs__button-label"}>{children}</span>
       </button>
       <div
-        className={classnames(
-          "tabs__button-border",
-          "z-1 absolute top-0 right-0 left-0 border-t-2",
-          isActive ? "-active" : ""
-        )}
+        className={classnames("tabs__button-border", isActive ? "-active" : "")}
       />
     </div>
   );
 }
 
 export interface TabsItemProps extends Record<string, any> {
-  label: string;
-  icon: string;
-  path: string;
+  label?: string;
+  icon?: string;
 }
 
 export interface TabsProps extends Record<string, any> {
@@ -52,6 +54,7 @@ export interface TabsProps extends Record<string, any> {
   style?: any;
   className?: string;
   onClick?: (item: TabsItemProps) => void;
+  i18n?: (f: string) => string;
 }
 
 export function Tabs({
@@ -60,7 +63,8 @@ export function Tabs({
   items = [],
   children,
   className,
-  onClick
+  onClick,
+  i18n = noop as any
 }: PropsWithChildren<TabsProps>) {
   return (
     <div className={`tabs ${className}`} style={style}>
@@ -82,7 +86,7 @@ export function Tabs({
                   reverseBg={true}
                   {...item}
                 >
-                  {item.label}
+                  {i18n(item.label)}
                 </ButtonTab>
               );
             })}

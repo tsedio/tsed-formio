@@ -95,22 +95,8 @@ describe("Action actions", () => {
       const formId = "formId";
       const actionId = "actionId";
       const dispatch = jest.fn();
-      const getState = () => {
-        return {
-          form: {
-            data: {
-              path: ""
-            }
-          },
-          resource: {
-            data: {
-              path: ""
-            }
-          }
-        };
-      };
 
-      await deleteAction(formId, actionId)(dispatch, getState);
+      await deleteAction(formId, actionId)(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith({
         type: clearActionError.toString(),

@@ -35,49 +35,49 @@ Sandbox.args = {
     {
       action: "back",
       exact: true,
-      icon: "bx bx-chevron-left",
+      icon: "chevron-left",
       back: true
     },
     {
       action: "edit",
       exact: true,
-      icon: "bx bxs-edit mr-2 -ml-1",
+      icon: "edit",
       label: "Edit"
     },
     {
       action: "submissions",
       exact: false,
-      icon: "bx bx-data mr-2 -ml-1",
+      icon: "data",
       label: "Data"
     },
     {
       action: "preview",
       exact: true,
-      icon: "bx bx-test-tube mr-2 -ml-1",
+      icon: "test-tube",
       label: "Preview"
     },
     {
       action: "actions",
       exact: false,
-      icon: "bx bx-paper-plane mr-2 -ml-1",
+      icon: "paper-plane",
       label: "Actions"
     },
     {
       action: "access",
       exact: true,
-      icon: "bx bx-lock mr-2 -ml-1",
+      icon: "lock",
       label: "Access"
     },
     {
       action: "export",
       exact: true,
-      icon: "bx bx-download mr-2 -ml-1",
+      icon: "download",
       label: "Export"
     },
     {
       action: "delete",
       exact: true,
-      icon: "bx bx-trash mr-2 -ml-1",
+      icon: "trash",
       label: "Delete",
       roles: ["administrator", "owner"]
     }
