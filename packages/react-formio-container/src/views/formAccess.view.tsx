@@ -4,7 +4,7 @@ import { useForm } from "../hooks/useForm.hook";
 
 export function FormAccessView(props: ReturnType<typeof useForm>) {
   const Component = props.FormAccessComponent || FormAccess;
-  const { form, auth, formType, saveForm } = props;
+  const { form, auth, formType, saveForm, i18n } = props;
 
   const roles = Object.values(auth.roles).map((role) => {
     return {
@@ -22,6 +22,7 @@ export function FormAccessView(props: ReturnType<typeof useForm>) {
         form={form}
         roles={roles}
         onSubmit={saveForm}
+        options={{ i18n }}
       />
     </div>
   );

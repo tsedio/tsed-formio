@@ -8,10 +8,10 @@ import {
 import { push } from "connected-react-router";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FormioViewOptions } from "../interfaces/FormioViewOptions";
+import { FormioContainerOptions } from "../interfaces/FormioContainerOptions";
 import { useQuery } from "./useQuery.hook";
 
-export interface UseFormsProps extends FormioViewOptions {
+export interface UseFormsProps extends FormioContainerOptions {
   formType: string;
 }
 

@@ -17,9 +17,9 @@ import noop from "lodash/noop";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findRoute, getFormRoutes } from "../views/form.routes";
-import { FormioViewOptions } from "../interfaces/FormioViewOptions";
+import { FormioContainerOptions } from "../interfaces/FormioContainerOptions";
 
-export interface UseFormProps extends FormioViewOptions {
+export interface UseFormProps extends FormioContainerOptions {
   formType: string;
   formId: string;
   formAction?: string;
@@ -29,7 +29,7 @@ export function useForm(props: UseFormProps) {
   const {
     basePath: path,
     formType,
-    operations,
+    operationsSettings,
     onSuccess = noop,
     onError = noop,
     formRoutes
@@ -59,8 +59,14 @@ export function useForm(props: UseFormProps) {
   }, [formType, formId]);
 
   const routes = useMemo(() => {
-    return getFormRoutes({ formRoutes, operations, formAction, auth, form });
-  }, [formRoutes, operations, formType, formId]);
+    return getFormRoutes({
+      formRoutes,
+      operationsSettings,
+      formAction,
+      auth,
+      form
+    });
+  }, [formRoutes, operationsSettings, formType, formId]);
 
   const [currentRoute, setCurrentRoute] = useState(
     findRoute(routes, formAction)
@@ -162,7 +168,6 @@ export function useForm(props: UseFormProps) {
     form,
     getForm,
     error,
-    operations,
     routes,
     currentRoute,
     setCurrentRoute(item: any) {

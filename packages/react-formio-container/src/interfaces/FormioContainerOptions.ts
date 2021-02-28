@@ -1,31 +1,41 @@
 import { FormRoute } from "../views/form.routes";
 
-export interface FormioSuccessEvent<T = any> extends Record<string, unknown> {
+export interface FormioEventObj<T = any> extends Record<string, unknown> {
   name: string;
   title: string;
   message: string;
   data: T;
 }
 
-export interface FormioErrorEvent extends Record<string, unknown> {
+export interface FormioErrorEvent<T = any> extends Record<string, unknown> {
   name: string;
   title: string;
   message: string;
   error: Error;
+  data?: T;
 }
 
-export type FormioSuccessHandler = (eventObj: FormioSuccessEvent) => void;
+export type FormioEventHandler = (eventObj: FormioEventObj) => void;
 export type FormioErrorHandler = (eventObj: FormioErrorEvent) => void;
 
-export interface FormioViewOptions extends Record<string, unknown> {
+export interface FormioContainerOptions extends Record<string, unknown> {
+  className?: string;
   /**
    * The base path
    */
   basePath: string;
   /**
-   * Permitted operations
+   * The formType
    */
-  operations: Record<string, boolean>;
+  formType?: string;
+  /**
+   * The formType
+   */
+  formId?: string;
+  /**
+   * Permitted operationsSettings
+   */
+  operationsSettings: Record<string, boolean>;
   /**
    * List of routes/tabs displayed on the FormEdit page.
    */
@@ -33,11 +43,19 @@ export interface FormioViewOptions extends Record<string, unknown> {
   /**
    * Handler called when an event is a success
    */
-  onSuccess?: FormioSuccessHandler;
+  onInfo?: FormioEventHandler;
+  /**
+   * Handler called when an event is a success
+   */
+  onSuccess?: FormioEventHandler;
   /**
    * Handler called when an event is an error
    */
   onError?: FormioErrorHandler;
+  /**
+   * i18n function to translate sentences
+   */
+  i18n?: (f: string) => string;
 
   // override components
   FormsComponent?: React.ComponentType;
@@ -49,4 +67,5 @@ export interface FormioViewOptions extends Record<string, unknown> {
   FormAccessComponent?: React.ComponentType;
   SubmissionComponent?: React.ComponentType;
   SubmissionsComponent?: React.ComponentType;
+  RemoveModalComponent?: React.ComponentType;
 }

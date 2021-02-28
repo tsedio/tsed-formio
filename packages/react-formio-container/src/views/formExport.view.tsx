@@ -5,7 +5,8 @@ import { useFormExport } from "../hooks/useFormExport";
 
 export function FormExportComponent({
   formType,
-  exportAs
+  exportAs,
+  i18n
 }: ReturnType<typeof useFormExport>) {
   return (
     <div>
@@ -20,18 +21,19 @@ export function FormExportComponent({
                       iconClass(undefined, "detail") + " mr-1 text-secondary"
                     }
                   />{" "}
-                  Export {formType} schema
+                  {i18n(`Export ${formType} schema`)}
                 </span>
               ) as any
             }
           >
-            <p className={"mb-5"}>Export the formIO schema:</p>
+            <p className={"mb-5"}>{i18n("Export the formIO schema:")}</p>
             <div className={"flex items-center justify-center"}>
               <button
                 className={"btn btn-primary"}
                 onClick={() => exportAs("schema", "json")}
               >
-                <i className={iconClass(undefined, "code") + " mr-2"} /> Json
+                <i className={iconClass(undefined, "code") + " mr-2"} />{" "}
+                {i18n("Json")}
               </button>
             </div>
           </Card>
@@ -46,7 +48,7 @@ export function FormExportComponent({
                       iconClass(undefined, "data") + " mr-1 text-secondary"
                     }
                   />{" "}
-                  Export {formType} submissions
+                  {i18n(`Export ${formType} submissions`)}
                 </span>
               ) as any
             }
@@ -57,14 +59,15 @@ export function FormExportComponent({
                 className={"btn btn-primary mr-4"}
                 onClick={() => exportAs("submissions", "json")}
               >
-                <i className={iconClass(undefined, "code") + " mr-2"} /> Json
+                <i className={iconClass(undefined, "code") + " mr-2"} />{" "}
+                {i18n("Json")}
               </button>
               <button
                 className={"btn btn-primary"}
                 onClick={() => exportAs("submissions", "csv")}
               >
                 <i className={iconClass(undefined, "spreadsheet") + " mr-2"} />{" "}
-                Csv
+                {i18n("Csv")}
               </button>
             </div>
           </Card>

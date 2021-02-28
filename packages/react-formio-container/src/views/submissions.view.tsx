@@ -9,11 +9,13 @@ export function SubmissionsComponent({
   data,
   parameters,
   form,
-  dispatchOperation
+  dispatchOperation,
+  i18n
 }: ReturnType<typeof useSubmissions>) {
   return (
     <div className={"-m-px"}>
       <SubmissionsTable
+        i18n={i18n}
         data={data}
         form={form as any}
         {...parameters}

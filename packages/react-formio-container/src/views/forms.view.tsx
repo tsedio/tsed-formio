@@ -3,34 +3,36 @@ import React, { useMemo } from "react";
 import { useForms, UseFormsProps } from "../hooks/useForms.hook";
 
 export function FormsComponent({
+  className,
   formType,
   data,
   error,
   parameters,
   setParameters,
   dispatchOperation,
-  operations: operationSettings
+  operationsSettings,
+  i18n
 }: ReturnType<typeof useForms>) {
   const operations = useMemo(() => {
     return [
-      operationSettings.edit && {
+      operationsSettings.edit && {
         action: "edit",
         alias: "row",
         icon: "edit",
-        title: "Edit"
+        title: i18n("Edit")
       },
-      operationSettings.preview && {
+      operationsSettings.preview && {
         action: "view",
         icon: "search",
-        title: "Preview"
+        title: i18n("Preview")
       },
-      operationSettings.delete && {
+      operationsSettings.delete && {
         action: "delete",
         buttonType: "danger",
-        icon: "trash"
+        icon: i18n("trash")
       }
     ].filter(Boolean);
-  }, [operationSettings]);
+  }, [operationsSettings]);
 
   return (
     <div>
@@ -43,8 +45,9 @@ export function FormsComponent({
         onChange={(parameters) => {
           setParameters(parameters);
         }}
+        i18n={i18n}
         onClick={dispatchOperation}
-        className={"rounded bg-white shadow-lg relative"}
+        className={className}
       />
     </div>
   );

@@ -21,13 +21,16 @@ export function FormActionComponent(props: ReturnType<typeof useAction>) {
     gotoEdit,
     gotoRemove,
     removeAction,
-    saveAction
+    saveAction,
+    i18n
   } = props;
+
+  const RemoveModalComponent = props.RemoveModalComponent || RemoveModal;
 
   const removeRef = useTooltip({
     trigger: "hover",
     placement: "top",
-    title: "Remove"
+    title: i18n("Remove")
   });
 
   return (
@@ -46,7 +49,7 @@ export function FormActionComponent(props: ReturnType<typeof useAction>) {
             )}
           />{" "}
           <span className={"text-gray-500"}>
-            {ucfirst(actionAction)} action
+            {ucfirst(actionAction)} {i18n("action")}
           </span>
         </div>
         <div>
@@ -66,7 +69,8 @@ export function FormActionComponent(props: ReturnType<typeof useAction>) {
         options={{}}
       />
       {actionAction === "delete" && (
-        <RemoveModal
+        <RemoveModalComponent
+          i18n={i18n}
           show={true}
           valueToCompare={form.name}
           itemType={formAction}

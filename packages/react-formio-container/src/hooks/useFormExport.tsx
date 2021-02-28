@@ -5,7 +5,13 @@ import { exportAs } from "../utils/ExportClient";
 import { UseFormProps } from "./useForm.hook";
 
 export function useFormExport(props: UseFormProps) {
-  const { formType, onSuccess = noop, onError = noop } = props;
+  const {
+    formType,
+    onInfo = noop,
+    onSuccess = noop,
+    onError = noop,
+    i18n
+  } = props;
   const type = formType.replace(/s$/, "");
 
   const auth: AuthState = useSelector(selectAuth);
@@ -17,17 +23,23 @@ export function useFormExport(props: UseFormProps) {
     form,
     async exportAs(type: string, format: "csv" | "json") {
       try {
+        onInfo({
+          name: `export:${type}`,
+          title: i18n(`Start ${type} export`),
+          message: ``,
+          data: form
+        });
         await exportAs(form, type, format);
         onSuccess({
           name: `export:${type}`,
-          title: `${type} exported`,
-          message: `The ${type} has been successfully exported!`,
+          title: i18n(`${type} exported`),
+          message: i18n(`The ${type} has been successfully exported!`),
           data: form
         });
       } catch (error) {
         onError({
           name: `export:${type}`,
-          title: `Export ${type} failed`,
+          title: i18n(`Export ${type} failed`),
           message: error.message || error,
           data: form,
           error: error

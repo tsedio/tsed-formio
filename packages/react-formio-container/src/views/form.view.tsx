@@ -15,14 +15,19 @@ function FormComponent(props: ReturnType<typeof useForm>) {
     currentRoute,
     setCurrentRoute,
     routes,
-    gotoEdit
+    gotoEdit,
+    className,
+    i18n
   } = props;
+
+  const RemoveModalComponent = props.RemoveModalComponent || RemoveModal;
 
   return (
     <div>
       <Alert error={error} />
-      <div className='border-1 border-gray-light bg-white shadow-lg rounded-xs position-relative'>
+      <div className={className}>
         <Tabs
+          i18n={i18n}
           current={currentRoute}
           items={routes}
           className=''
@@ -58,7 +63,8 @@ function FormComponent(props: ReturnType<typeof useForm>) {
                 {...props}
                 basePath={[basePath, formId, formAction].join("/")}
               />
-              <RemoveModal
+              <RemoveModalComponent
+                i18n={i18n}
                 show={true}
                 valueToCompare={props.form.name}
                 itemType={props.formType}
@@ -81,7 +87,7 @@ function FormComponent(props: ReturnType<typeof useForm>) {
 
 export function FormView(props: UseFormsProps) {
   const Component = props.FormComponent || FormComponent;
-  const { formId, formAction } = useParams<{
+  const { formId = props.formId, formAction } = useParams<{
     formType: string;
     formId: string;
     formAction: string;

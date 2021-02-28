@@ -29,6 +29,7 @@ npm install --save-dev @types/file-saver
 ```
 
 ## Examples
+
 ```javascript
 ReactDOM.render(
   <React.StrictMode>
@@ -39,15 +40,18 @@ ReactDOM.render(
             <Route path="/formio/:formType" exact={false}>
               <FormioContainer
                 basePath={"/formio/:formType"}
-                operations={{
+                operationsSettings={{
                   edit: true,
                   access: true,
                   actions: true,
                   submissions: true,
                   exports: true,
-                  delete: true,
+                  delete: true
                 }}
                 onSuccess={(eventObj) => {
+                  console.log(eventObj)
+                }}
+                onInfo={(eventObj) => {
                   console.log(eventObj)
                 }}
                 onError={(eventObj) => {
@@ -64,11 +68,162 @@ ReactDOM.render(
 );
 ```
 
+### Options
+
+```typescript
+export interface FormioContainerOptions extends Record<string, unknown> {
+  className?: string;
+  /**
+   * The base path
+   */
+  basePath: string;
+  /**
+   * The formType
+   */
+  formType?: string;
+  /**
+   * The formType
+   */
+  formId?: string;
+  /**
+   * Permitted operationsSettings
+   */
+  operationsSettings: Record<string, boolean>;
+  /**
+   * List of routes/tabs displayed on the FormEdit page.
+   */
+  formRoutes?: FormRoute[];
+  /**
+   * Handler called when an event is a success
+   */
+  onInfo?: FormioEventHandler;
+  /**
+   * Handler called when an event is a success
+   */
+  onSuccess?: FormioEventHandler;
+  /**
+   * Handler called when an event is an error
+   */
+  onError?: FormioErrorHandler;
+  /**
+   * i18n function to translate sentences
+   */
+  i18n?: (f: string) => string;
+
+  // override components
+  FormsComponent?: React.ComponentType;
+  FormComponent?: React.ComponentType;
+  FormActionsComponent?: React.ComponentType;
+  FormActionComponent?: React.ComponentType;
+  FormExportComponent?: React.ComponentType;
+  FormEditComponent?: React.ComponentType;
+  FormAccessComponent?: React.ComponentType;
+  SubmissionComponent?: React.ComponentType;
+  SubmissionsComponent?: React.ComponentType;
+  RemoveModalComponent?: React.ComponentType;
+}
+```
+
+### formRoutes
+
+Form routes are a list of available operations/routes displayed in the FormComponent.
+The default routes are the following:
+
+```typescript
+export const defaultFormRoutes: FormRoute[] = [
+  {
+    action: "back",
+    exact: true,
+    icon: "chevron-left",
+    back: true
+  },
+  {
+    action: "edit",
+    exact: true,
+    icon: "edit",
+    label: "Edit",
+    component: FormEditView
+  },
+  {
+    action: "submissions",
+    exact: false,
+    icon: "data",
+    label: "Data",
+    component: SubmissionsView
+  },
+  {
+    action: "preview",
+    exact: true,
+    icon: "test-tube",
+    label: "Preview",
+    component: FormPreviewView
+  },
+  {
+    action: "actions",
+    exact: false,
+    icon: "paper-plane",
+    label: "Actions",
+    component: FormActionsView,
+    roles: ["administrator", "owner"]
+  },
+  {
+    action: "access",
+    exact: true,
+    icon: "lock",
+    label: "Access",
+    component: FormAccessView,
+    roles: ["administrator", "owner"]
+  },
+  {
+    action: "export",
+    exact: true,
+    icon: "download",
+    label: "Export",
+    component: FormExportView
+  },
+  {
+    action: "delete",
+    exact: true,
+    icon: "trash",
+    label: "Delete",
+    roles: ["administrator", "owner"]
+  }
+];
+```
+
+You can change the form routes as following:
+
+```javascript
+<FormioContainer
+  basePath={"/formio/:formType"}
+  formRoutes={defaultFormRoutes}
+/>
+```
+
+### onInfo, onSuccess, onError
+
+FormioContainer emit some events when message must be displayed to the user. You can use any library to display the message like `react-toastify`.
+
+Example:
+
+```javascript
+<FormContainer
+   onSuccess={(eventObj) => {
+     toastr.success(eventObj.title, eventObj.message);
+   }}
+   onInfo={(eventObj) => {
+     toastr.info(eventObj.title, eventObj.message);
+   }}
+   onError={(eventObj) => {
+     toastr.error(eventObj.title, eventObj.message);
+   }}
+/>
+```
+
 ## Contributors
 Please read [contributing guidelines here](./CONTRIBUTING.md).
 
 <a href="https://github.com/TypedProject/tsed/graphs/contributors"><img src="https://opencollective.com/tsed/contributors.svg?width=890" /></a>
-
 
 ## Backers
 

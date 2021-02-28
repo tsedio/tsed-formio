@@ -17,13 +17,8 @@ export interface UseActionsProps extends UseFormProps {
   formAction: string;
 }
 
-export function useActions({
-  basePath: path,
-  formType,
-  formId,
-  formAction,
-  operations
-}: UseActionsProps) {
+export function useActions(props: UseActionsProps) {
+  const { basePath: path, formType } = props;
   const type = formType.replace(/s$/, "");
   const basePath = path.replace(":formType", formType);
 
@@ -61,14 +56,11 @@ export function useActions({
   };
 
   return {
+    ...props,
     basePath,
-    formType,
-    formId,
-    formAction,
     auth,
     error,
     form,
-    operations,
     operation,
     actions,
     availableActions,

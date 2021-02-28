@@ -8,7 +8,8 @@ export function FormActionsComponent({
   actions,
   availableActions,
   addAction,
-  dispatchOperation
+  dispatchOperation,
+  i18n
 }: ReturnType<typeof useActions>) {
   return (
     <div className={"-m-px"}>
@@ -18,7 +19,7 @@ export function FormActionsComponent({
             action: "edit",
             alias: "row",
             icon: "edit",
-            title: "Edit"
+            title: i18n("Edit")
           },
           {
             action: "delete",

@@ -5,7 +5,6 @@ export * from "./formAction.view";
 export * from "./formActions.view";
 export * from "./formEdit.view";
 export * from "./formExport.view";
-export * from "./formio.view";
 export * from "./formPreview.view";
 export * from "./forms.view";
 export * from "./submission.view";

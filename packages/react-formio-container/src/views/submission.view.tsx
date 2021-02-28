@@ -22,19 +22,22 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
     removeSubmission,
     saveSubmission,
     onFormReady,
-    url
+    url,
+    i18n
   } = props;
+
+  const RemoveModalComponent = props.RemoveModalComponent || RemoveModal;
 
   const copyRef = useTooltip({
     trigger: "hover",
     placement: "top",
-    title: "Copy"
+    title: i18n("Copy")
   });
 
   const removeRef = useTooltip({
     trigger: "hover",
     placement: "top",
-    title: "Remove"
+    title: i18n("Remove")
   });
 
   return (
@@ -53,7 +56,7 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
             )}
           />{" "}
           <span className={"text-gray-500"}>
-            {ucfirst(submissionAction)} data
+            {ucfirst(submissionAction)} {i18n("data")}
           </span>
         </div>
         <div>
@@ -80,10 +83,11 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
         onSubmit={saveSubmission}
         onFormReady={onFormReady}
         url={url}
-        options={{}}
+        options={{ i18n }}
       />
       {submissionAction === "delete" && (
-        <RemoveModal
+        <RemoveModalComponent
+          i18n={i18n}
           show={true}
           valueToCompare={form.name}
           itemType={formAction}
