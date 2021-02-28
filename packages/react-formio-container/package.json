@@ -1,6 +1,6 @@
 {
   "name": "@tsed/react-formio-container",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
@@ -17,13 +17,13 @@
     "@tsed/react-formio": "^1.4.0",
     "@tsed/redux-utils": "^1.4.0",
     "connected-react-router": "^6",
+    "file-saver": "^2",
     "react-router": "^5",
     "react-router-dom": "^5",
-    "redux-thunk": "^2",
-    "file-saver": "^2"
+    "redux-thunk": "^2"
   },
   "devDependencies": {
-    "@tsed/react-formio": "1.6.1"
+    "@tsed/react-formio": "1.7.0"
   },
   "dependencies": {}
 }
