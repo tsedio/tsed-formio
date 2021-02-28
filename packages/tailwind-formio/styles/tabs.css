@@ -13,8 +13,15 @@
   &__button {
     @apply flex items-center border-1 border-b-0 border-gray-300 relative outline-none focus:outline-none bg-gray-100 text-gray-700 hover:text-secondary focus:text-secondary px-4 py-2;
 
+    &-label {
+      @apply text-sm whitespace-nowrap;
+    }
+    &-icon {
+      @apply mr-2 -ml-1 -mt-px;
+    }
+
     &-border {
-      @apply border-transparent;
+      @apply border-transparent z-1 absolute top-0 right-0 left-0 border-t-2;
       &.-active {
         @apply border-primary;
       }
@@ -40,6 +47,10 @@
 
     &.-back {
       @apply text-secondary bg-white px-2 border-transparent;
+
+      .tabs__button-icon {
+        @apply m-0;
+      }
     }
   }
 }
