@@ -28,6 +28,17 @@ npm install --save @tsed/react-formio-container file-saver
 npm install --save-dev @types/file-saver
 ```
 
+Peer dependencies:
+
+- react
+- react-dom
+- react-router
+- react-router-dom
+- react-table
+- react-redux
+- connected-react-router
+- file-saver
+
 ## Examples
 
 ```javascript
