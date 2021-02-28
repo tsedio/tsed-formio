@@ -169,7 +169,7 @@ export function useForm(props: UseFormProps) {
   return {
     ...props,
     basePath,
-    formId: form?._id || formId,
+    formId,
     formAction,
     auth,
     form,
