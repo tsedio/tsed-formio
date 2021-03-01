@@ -96,7 +96,7 @@ Form.propTypes = {
   options: PropTypes.shape({
     readOnly: PropTypes.bool,
     noAlerts: PropTypes.bool,
-    i18n: PropTypes.object,
+    i18n: PropTypes.func,
     template: PropTypes.string,
     saveDraft: PropTypes.bool,
     events: PropTypes.any

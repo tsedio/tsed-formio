@@ -18,7 +18,7 @@ export interface FormEditCTAsProps extends Record<string, unknown> {
 }
 
 export function FormEditCTAs({
-  saveText = "Save form",
+  saveText = "Save",
   disabled,
   options = {},
   onCopy,
