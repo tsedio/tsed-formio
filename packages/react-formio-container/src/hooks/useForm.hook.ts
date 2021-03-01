@@ -10,7 +10,8 @@ import {
   saveForm as saveFormAction,
   selectAuth,
   selectError,
-  selectForm
+  selectForm,
+  selectRoot
 } from "@tsed/react-formio";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";
@@ -42,6 +43,8 @@ export function useForm(props: UseFormProps) {
     formId = undefined;
   }
 
+  const { parameters } = useSelector((state) => selectRoot(formType, state));
+
   const type = formType.replace(/s$/, "");
   const basePath = path.replace(":formType", formType);
   const dispatch = useDispatch();
@@ -49,6 +52,14 @@ export function useForm(props: UseFormProps) {
   const auth: AuthState = useSelector(selectAuth);
   const error = useSelector((state) => selectError(type, state));
   const form = useSelector((state) => selectForm(type, state));
+
+  if (form && (!form.tags || !form.tags.length)) {
+    form.tags = [...(parameters?.query?.tags || [])];
+  }
+
+  if (form && !form.type) {
+    form.type = type;
+  }
 
   const getForm = useCallback(() => {
     if (formAction !== "create") {
@@ -160,9 +171,12 @@ export function useForm(props: UseFormProps) {
   }, [formType, formId]);
 
   useEffect(() => {
-    const route = findRoute(routes, formAction);
-    if (route?.action !== currentRoute.action) {
-      setCurrentRoute(route);
+    if (formAction && currentRoute) {
+      const route = findRoute(routes, formAction);
+
+      if (route?.action) {
+        setCurrentRoute(route);
+      }
     }
   }, [formAction]);
 
