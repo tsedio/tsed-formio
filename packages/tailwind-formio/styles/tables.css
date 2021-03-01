@@ -9,11 +9,13 @@
   }
 
   thead th {
-    @apply align-top border-b-2 border-solid border-gray-300;
+    @apply border-b-2 border-solid border-gray-300;
+    border-style: solid;
   }
 
   tbody + tbody {
     @apply border-t-2 border-solid border-gray-300;
+    border-style: solid;
   }
 }
 
