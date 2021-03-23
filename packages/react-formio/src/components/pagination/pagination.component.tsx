@@ -84,9 +84,9 @@ export function Pagination(props: PaginationProps) {
   return (
     <nav
       aria-label='Page navigation'
-      className={classnames("pagination-group", className)}
+      className={classnames("pagination-group -mb-3", className)}
     >
-      <ul className='pagination'>
+      <ul className='pagination mb-3 pr-3'>
         <li className={classnames("page-item", !canPreviousPage && "disabled")}>
           <PaginationButton
             tabIndex={-1}
@@ -134,19 +134,19 @@ export function Pagination(props: PaginationProps) {
         </li>
       </ul>
 
-      <li className='px-3 flex items-center'>
+      <li className='mb-3 pr-3 flex items-center'>
         <Select
           name={"page"}
           value={pageSize}
           choices={choices}
           onChange={(name: string, value: number) => {
-            setPageSize(value);
+            setPageSize(+value);
           }}
         />
         <span className={"pl-3"}>{i18n("items per page")}</span>
       </li>
       {pageOptions && (
-        <li className={"flex items-center"}>
+        <li className={"mb-3 flex items-center"}>
           <span>{i18n("Page")}&nbsp;</span>
           <strong>
             {pageIndex + 1} of {pageOptions.length}
