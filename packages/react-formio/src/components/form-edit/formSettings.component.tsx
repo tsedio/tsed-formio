@@ -56,9 +56,6 @@ export function FormSettings({
         <InputText
           label={"Path"}
           placeholder='example'
-          prefix={
-            <span className={"text-xxs"}>{window.location.origin + "/"}</span>
-          }
           name={"path"}
           required={true}
           value={form.path}
