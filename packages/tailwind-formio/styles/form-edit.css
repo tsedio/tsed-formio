@@ -12,6 +12,10 @@
         &:last-child {
           @apply mb-5;
         }
+
+        .form-text {
+          @apply p-0 h-0 -mb-1;
+        }
       }
     }
   }

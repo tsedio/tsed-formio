@@ -57,6 +57,13 @@ export function FormSettings({
           label={"Path"}
           placeholder='example'
           name={"path"}
+          className={"mb-0"}
+          description={
+            <span className={"text-xxs flex items-center"}>
+              <i className={"bx bx-link ml-1 mr-1"} />
+              {window.location.origin + "/" + form.path}
+            </span>
+          }
           required={true}
           value={form.path}
           style={{ textTransform: "lowercase", width: "120px" }}

@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -5,7 +6,8 @@ export interface FormControlProps {
   name: string;
   required?: boolean;
   label?: string;
-  description?: string;
+  className?: string;
+  description?: string | React.ComponentType | any;
   prefix?: React.ComponentType | any;
   suffix?: React.ComponentType | any;
   shadow?: boolean;
@@ -18,10 +20,14 @@ export function FormControl({
   prefix,
   suffix,
   description,
-  label
+  label,
+  className
 }: React.PropsWithChildren<FormControlProps>) {
   return (
-    <div id={`form-group-${name || ""}`} className='form-group'>
+    <div
+      id={`form-group-${name || ""}`}
+      className={classnames("form-group", className)}
+    >
       {label && (
         <label
           htmlFor={name}
@@ -53,5 +59,5 @@ FormControl.propTypes = {
   name: PropTypes.string.isRequired,
   children: PropTypes.any,
   required: PropTypes.bool,
-  description: PropTypes.bool
+  description: PropTypes.any
 };

@@ -32,6 +32,7 @@ export function InputText<T = any>({
   prefix,
   suffix,
   description,
+  className,
   ...props
 }: InputTextProps<T>) {
   const [localValue, setValue] = useState(value);
@@ -50,6 +51,7 @@ export function InputText<T = any>({
       description={description}
       prefix={prefix}
       suffix={suffix}
+      className={className}
     >
       <input
         type={type || "text"}
