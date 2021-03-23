@@ -65,9 +65,9 @@ export const submissionsReducer = createReducer<SubmissionsState>(
       isActive: true
     };
   })
-  .on(receiveSubmissions, (state: any, { submissions }: any) => {
+  .on(receiveSubmissions, (state: SubmissionsState, { submissions }: any) => {
     const total = submissions.serverCount;
-    const pageCount = Math.ceil(total / (state.pageSize || 10));
+    const pageCount = Math.ceil(total / (state.parameters.pageSize || 10));
 
     delete submissions.serverCount;
 

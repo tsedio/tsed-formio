@@ -45,47 +45,43 @@ const createInitialState = ({
   };
 };
 
-export const formsReducer = createReducer<FormsState>(
-  {
-    [resetForms.toString()]: (_: any, _2: any, reset: any) => {
-      return reset();
-    },
-    [requestForms.toString()]: (state: any, { parameters }: any) => {
-      return {
-        ...state,
-        parameters: {
-          ...state.parameters,
-          ...parameters
-        },
-        error: null,
-        data: [],
-        isActive: true
-      };
-    },
-    [receiveForms.toString()]: (state: any, { forms }: any) => {
-      const total = forms.serverCount;
-      const pageCount = Math.ceil(total / (state.pageSize || 10));
+export const formsReducer = createReducer<FormsState>({}, createInitialState)
+  .on(resetForms, (_: any, _2: any, reset: any) => {
+    return reset();
+  })
+  .on(requestForms, (state: FormsState, { parameters }: any) => {
+    return {
+      ...state,
+      parameters: {
+        ...state.parameters,
+        ...parameters
+      },
+      error: null,
+      data: [],
+      isActive: true
+    };
+  })
+  .on(receiveForms, (state: FormsState, { forms }: any) => {
+    const total = forms.serverCount;
+    const pageCount = Math.ceil(total / (state.parameters.pageSize || 10));
 
-      delete forms.serverCount;
+    delete forms.serverCount;
 
-      return {
-        ...state,
-        data: forms,
-        isActive: false,
-        parameters: {
-          ...state.parameters,
-          pageCount,
-          totalLength: total
-        }
-      };
-    },
-    [failForms.toString()]: (state: any, { error }: any) => {
-      return {
-        ...state,
-        error,
-        isActive: false
-      };
-    }
-  },
-  createInitialState
-);
+    return {
+      ...state,
+      data: forms,
+      isActive: false,
+      parameters: {
+        ...state.parameters,
+        pageCount,
+        totalLength: total
+      }
+    };
+  })
+  .on(failForms, (state: any, { error }: any) => {
+    return {
+      ...state,
+      error,
+      isActive: false
+    };
+  });
