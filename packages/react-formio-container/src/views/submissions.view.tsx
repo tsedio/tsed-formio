@@ -9,6 +9,7 @@ export function SubmissionsComponent({
   data,
   parameters,
   form,
+  setParameters,
   dispatchOperation,
   i18n
 }: ReturnType<typeof useSubmissions>) {
@@ -20,6 +21,7 @@ export function SubmissionsComponent({
         form={form as any}
         {...parameters}
         onClick={dispatchOperation}
+        onChange={setParameters}
         operations={[
           {
             action: "edit",

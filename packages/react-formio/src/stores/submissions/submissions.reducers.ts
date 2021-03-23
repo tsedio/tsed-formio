@@ -46,47 +46,46 @@ export function createInitialState({
 }
 
 export const submissionsReducer = createReducer<SubmissionsState>(
-  {
-    [resetSubmissions.toString()](_: any, _2: any, reset: any) {
-      return reset();
-    },
-    [requestSubmissions.toString()](state: any, { parameters, formId }: any) {
-      return {
-        ...state,
-        formId,
-        parameters: {
-          ...state.parameters,
-          ...parameters
-        },
-        error: null,
-        data: [],
-        isActive: true
-      };
-    },
-    [receiveSubmissions.toString()](state: any, { submissions }: any) {
-      const total = submissions.serverCount;
-      const pageCount = Math.ceil(total / (state.pageSize || 10));
-
-      delete submissions.serverCount;
-
-      return {
-        ...state,
-        data: submissions,
-        isActive: false,
-        parameters: {
-          ...state.parameters,
-          pageCount,
-          totalLength: total
-        }
-      };
-    },
-    [failSubmissions.toString()](state: any, { error }: any) {
-      return {
-        ...state,
-        error,
-        isActive: false
-      };
-    }
-  },
+  {},
   createInitialState
-);
+)
+  .on(resetSubmissions, (_: any, _2: any, reset: any) => {
+    return reset();
+  })
+  .on(requestSubmissions, (state: any, { parameters, formId }: any) => {
+    return {
+      ...state,
+      formId,
+      parameters: {
+        ...state.parameters,
+        ...parameters
+      },
+      error: null,
+      data: [],
+      isActive: true
+    };
+  })
+  .on(receiveSubmissions, (state: any, { submissions }: any) => {
+    const total = submissions.serverCount;
+    const pageCount = Math.ceil(total / (state.pageSize || 10));
+
+    delete submissions.serverCount;
+
+    return {
+      ...state,
+      data: submissions,
+      isActive: false,
+      parameters: {
+        ...state.parameters,
+        pageCount,
+        totalLength: total
+      }
+    };
+  })
+  .on(failSubmissions, (state: any, { error }: any) => {
+    return {
+      ...state,
+      error,
+      isActive: false
+    };
+  });

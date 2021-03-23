@@ -42,9 +42,7 @@ export function FormsComponent({
         data={data}
         operations={operations}
         {...parameters}
-        onChange={(parameters) => {
-          setParameters(parameters);
-        }}
+        onChange={setParameters}
         i18n={i18n}
         onClick={dispatchOperation}
         className={className}
