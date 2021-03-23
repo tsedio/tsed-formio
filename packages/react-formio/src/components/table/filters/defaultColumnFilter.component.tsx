@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { FilterProps } from "react-table";
-import { callLast } from "../../../utils/callLast";
 import { InputText } from "../../input-text/inputText.component";
 
 export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
@@ -12,14 +11,16 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
     column: { id, filterValue, setFilter }
   } = props;
 
-  const change = React.useMemo(() => {
-    return callLast((value: any) => {
+  const [value, setValue] = useState(filterValue || "");
+
+  const onChange = useCallback(
+    (name, value) => {
+      setValue(value);
       setFilterId(id);
       setFilter(value || undefined);
-    }, 200);
-  }, [id, setFilterId, setFilter]);
-
-  const [value, setValue] = React.useState(filterValue || "");
+    },
+    [id, setValue, setFilterId, setFilter]
+  );
 
   return (
     <InputText
@@ -29,10 +30,7 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
       key={id}
       autoFocus={id === filterId}
       value={value}
-      onChange={(value) => {
-        setValue(value);
-        change(value);
-      }}
+      onChange={onChange}
       placeholder={"Search records..."}
     />
   );

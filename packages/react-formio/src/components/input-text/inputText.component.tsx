@@ -36,13 +36,7 @@ export function InputText<T = any>({
 }: InputTextProps<T>) {
   const [localValue, setValue] = useState(value);
 
-  const change = useMemo(
-    () =>
-      callLast((name: string, value: T) => {
-        onChange(name, value);
-      }, 300),
-    [onChange]
-  );
+  const change = useMemo(() => callLast(onChange, 300), [onChange]);
 
   useEffect(() => {
     setValue(value);
@@ -60,6 +54,7 @@ export function InputText<T = any>({
       <input
         type={type || "text"}
         {...props}
+        data-testid={"input"}
         className={classnames("form-control", size && `form-control-${size}`)}
         id={name}
         required={required}
