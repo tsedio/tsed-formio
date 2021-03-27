@@ -17,8 +17,8 @@ import { push } from "connected-react-router";
 import noop from "lodash/noop";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { findRoute, getFormRoutes } from "../views/form.routes";
 import { FormioContainerOptions } from "../interfaces/FormioContainerOptions";
+import { findRoute, getFormRoutes } from "../views/form.routes";
 
 export interface UseFormProps extends FormioContainerOptions {
   formType: string;
@@ -31,6 +31,7 @@ export function useForm(props: UseFormProps) {
     basePath: path,
     formType,
     operationsSettings,
+    onSubmitForm = noop,
     onSuccess = noop,
     onError = noop,
     formRoutes
@@ -44,7 +45,6 @@ export function useForm(props: UseFormProps) {
   }
 
   const { parameters } = useSelector((state) => selectRoot(formType, state));
-
   const type = formType.replace(/s$/, "");
   const basePath = path.replace(":formType", formType);
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ export function useForm(props: UseFormProps) {
   const error = useSelector((state) => selectError(type, state));
   const form = useSelector((state) => selectForm(type, state));
 
-  if (form && (!form.tags || !form.tags.length)) {
+  if (form && (!form.tags || !form.tags.length) && formAction === "create") {
     form.tags = [...(parameters?.query?.tags || [])];
   }
 
@@ -161,6 +161,7 @@ export function useForm(props: UseFormProps) {
 
   const saveForm = useCallback(
     (form: FormSchema) => {
+      onSubmitForm(type, form);
       dispatch(saveFormAction(type, form, onSaveDone));
     },
     [formType, form._id, onSaveDone]

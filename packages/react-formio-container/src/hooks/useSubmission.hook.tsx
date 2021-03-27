@@ -30,7 +30,8 @@ export function useSubmission(props: UseSubmissionProps) {
     formId,
     formAction,
     onError = noop,
-    onSuccess = noop
+    onSuccess = noop,
+    onSubmitSubmission = noop
   } = props;
 
   let { submissionId, submissionAction } = props;
@@ -129,6 +130,7 @@ export function useSubmission(props: UseSubmissionProps) {
 
   const saveSubmission = useCallback(
     (submission: Submission) => {
+      onSubmitSubmission(submissionType, formId, submission);
       dispatch(
         saveSubmissionAction(submissionType, formId, submission, onSaveDone)
       );

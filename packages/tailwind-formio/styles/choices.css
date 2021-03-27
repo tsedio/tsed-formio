@@ -170,21 +170,8 @@
   @apply rounded-sm;
 }
 
-/*
-.is-focused .choices__inner,
-.is-open .choices__inner {
-  @apply border-color
-  border-color: #b7b7b7
-}
-*/
-/*
-.is-open .choices__inner {
-  border-radius: 2.5px 2.5px 0 0
-}
-*/
-
-.is-flipped.is-open .choices__inner {
-  border-radius: 0 0 2.5px 2.5px
+.is-open .choices__inner , .is-flipped.is-open .choices__inner {
+  @apply rounded-md rounded-b-none;
 }
 
 .choices__list {

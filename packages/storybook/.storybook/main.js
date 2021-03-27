@@ -3,6 +3,7 @@ const { plugins } = require('@tsed/config/postcss.config')
 
 const rootDir = join(__dirname, '..', 'src')
 const formioDir = dirname(require.resolve('@tsed/react-formio'))
+const formioContainerDir = dirname(require.resolve('@tsed/react-formio-container'))
 const tailwindDir = dirname(require.resolve('@tsed/tailwind-formio'))
 
 const scanDirs = (dir) => [
@@ -17,6 +18,7 @@ module.exports = {
     join(rootDir, '**/*.stories.mdx'),
     join(rootDir, '**/*.stories.@(js|jsx|ts|tsx)'),
     ...scanDirs(join(formioDir, '..', 'src', 'components')),
+    ...scanDirs(join(formioContainerDir, '..', 'src')),
     ...scanDirs(join(tailwindDir, '..', 'src', 'templates'))
   ],
   addons: [

@@ -3,7 +3,6 @@ import React, { useMemo } from "react";
 import { useForms, UseFormsProps } from "../hooks/useForms.hook";
 
 export function FormsComponent({
-  className,
   formType,
   data,
   error,
@@ -17,12 +16,17 @@ export function FormsComponent({
     return [
       operationsSettings.edit && {
         action: "edit",
-        alias: "row",
         icon: "edit",
         title: i18n("Edit")
       },
+      operationsSettings.submissions && {
+        action: "submissions",
+        alias: "row",
+        icon: "data",
+        title: i18n("Data")
+      },
       operationsSettings.preview && {
-        action: "view",
+        action: "preview",
         icon: "search",
         title: i18n("Preview")
       },
@@ -35,7 +39,7 @@ export function FormsComponent({
   }, [operationsSettings]);
 
   return (
-    <div>
+    <div className={"-m-px"}>
       <Alert error={error} />
       <FormsTable
         icon={formType === "forms" ? "detail" : "folder"}
@@ -45,7 +49,6 @@ export function FormsComponent({
         onChange={setParameters}
         i18n={i18n}
         onClick={dispatchOperation}
-        className={className}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+import { FormSchema, Submission } from "@tsed/react-formio";
 import { FormRoute } from "../views/form.routes";
 
 export interface FormioEventObj<T = any> extends Record<string, unknown> {
@@ -52,6 +53,12 @@ export interface FormioContainerOptions extends Record<string, unknown> {
    * Handler called when an event is an error
    */
   onError?: FormioErrorHandler;
+  onSubmitForm?: (type: string, form: FormSchema) => void;
+  onSubmitSubmission?: (
+    submissionType: string,
+    formId: string,
+    submission: Submission
+  ) => void;
   /**
    * i18n function to translate sentences
    */
