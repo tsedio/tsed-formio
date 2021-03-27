@@ -133,6 +133,7 @@ textarea.form-control {
   @apply flex items-center pt-1 pb-2 m-0;
 }
 
+.formio-component hr,
 hr {
   @apply border-gray-300 mx-20 mb-5;
 }
