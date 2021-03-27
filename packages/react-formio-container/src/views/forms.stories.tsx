@@ -22,6 +22,7 @@ export const Sandbox = (args: any) => {
 
 Sandbox.args = {
   icon: "server",
+  className: "border-1 border-gray-light bg-white shadow-lg rounded-sm",
   data: [
     {
       _id: "602967600685b24dbe24e999",

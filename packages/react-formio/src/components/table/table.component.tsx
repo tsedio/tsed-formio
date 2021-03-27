@@ -252,8 +252,8 @@ export function Table<Data extends Record<string, unknown>>(
       {!data.length ? <EmptyData /> : null}
       {!isLoading && data.length && !disablePagination ? (
         <Pagination
-          className={"text-sm"}
           {...tableInstance}
+          className={"text-sm"}
           pageIndex={pageIndex}
           pageSize={pageSize}
           pageSizes={pageSizes}

@@ -11,7 +11,7 @@ export function FormioContainer(props: FormioContainerOptions) {
   }>();
 
   const options = {
-    className: "border-1 border-gray-light bg-white shadow-lg rounded-xs",
+    className: "border-1 border-gray-light bg-white shadow-lg rounded-sm",
     i18n: (f: string) => f,
     ...props,
     formType,

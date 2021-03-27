@@ -4,6 +4,7 @@ import { useForms, UseFormsProps } from "../hooks/useForms.hook";
 
 export function FormsComponent({
   formType,
+  className,
   data,
   error,
   parameters,
@@ -42,6 +43,7 @@ export function FormsComponent({
     <div className={"-m-px"}>
       <Alert error={error} />
       <FormsTable
+        className={className}
         icon={formType === "forms" ? "detail" : "folder"}
         data={data}
         operations={operations}
