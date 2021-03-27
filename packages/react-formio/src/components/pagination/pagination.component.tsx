@@ -86,7 +86,7 @@ export function Pagination(props: PaginationProps) {
       aria-label='Page navigation'
       className={classnames("pagination-group -mb-3", className)}
     >
-      <ul className='pagination mb-3 pr-3'>
+      <ul className='pagination mb-3 mr-3'>
         <li className={classnames("page-item", !canPreviousPage && "disabled")}>
           <PaginationButton
             tabIndex={-1}
@@ -134,7 +134,7 @@ export function Pagination(props: PaginationProps) {
         </li>
       </ul>
 
-      <li className='mb-3 pr-3 flex items-center'>
+      <li className='mb-3 mr-3 flex items-center'>
         <Select
           name={"page"}
           value={pageSize}
@@ -143,7 +143,7 @@ export function Pagination(props: PaginationProps) {
             setPageSize(+value);
           }}
         />
-        <span className={"pl-3"}>{i18n("items per page")}</span>
+        <span className={"ml-3"}>{i18n("items per page")}</span>
       </li>
       {pageOptions && (
         <li className={"mb-3 flex items-center"}>
