@@ -35,23 +35,6 @@ export function getRoleComponent({
   };
 }
 
-export function getButton(): ExtendedComponentSchema {
-  return {
-    type: "button",
-    label: "Save access",
-    key: "submit",
-    size: "md",
-    block: false,
-    action: "submit",
-    disableOnInvalid: true,
-    theme: "primary",
-    input: true,
-    widget: {
-      type: "input"
-    }
-  };
-}
-
 function toDescription(description: string, hr = true): string {
   return (
     '<span class="text-sm">' +
@@ -130,8 +113,7 @@ export function getSubmissionPermissionForm({ choices }: any): FormSchema {
           false
         ),
         choices
-      }),
-      getButton()
+      })
     ]
   };
 }
@@ -192,8 +174,7 @@ export function getAccessPermissionForm({ choices }: any): FormSchema {
           false
         ),
         choices
-      }),
-      getButton()
+      })
     ]
   };
 }

@@ -103,9 +103,12 @@ export function FormAccess(
             onChange={({ data }: any) => {
               onChange("submissionAccess", data);
             }}
-            onSubmit={onSubmit}
             options={options}
           />
+
+          <button className={"mt-5 btn btn-primary"} onClick={onSubmit}>
+            Save access
+          </button>
 
           {props.children}
 
@@ -147,9 +150,12 @@ export function FormAccess(
             form={form.access}
             submission={submissions.access}
             onChange={({ data }: any) => onChange("access", data)}
-            onSubmit={onSubmit}
             options={options}
           />
+
+          <button className={"mt-5 btn btn-primary"} onClick={onSubmit}>
+            Save access
+          </button>
 
           {props.children}
 

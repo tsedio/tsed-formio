@@ -2,6 +2,7 @@ import FormioForm from "formiojs/Form";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import { useEffect, useRef } from "react";
+import { callLast } from "../../utils/callLast";
 
 export const useForm = ({
   src,
@@ -17,6 +18,7 @@ export const useForm = ({
   const instance = useRef<any>();
   const lastChange = useRef<any>(null);
   const isLoaded = useRef<any>(false);
+  const events = useRef<Map<string, any>>(new Map());
 
   useEffect(
     () => () => {
@@ -43,7 +45,11 @@ export const useForm = ({
         props.hasOwnProperty(funcName) &&
         typeof props[funcName] === "function"
       ) {
-        props[funcName](...args);
+        if (!events.current.has(funcName)) {
+          const fn = callLast(props[funcName], 100);
+          events.current.set(funcName, fn);
+        }
+        events.current.get(funcName)(...args);
       }
     }
   };
@@ -60,6 +66,10 @@ export const useForm = ({
 
   const createWebFormInstance = async (srcOrForm: any): Promise<any> => {
     const { formioform, onFormReady } = props;
+    if (instance.current) {
+      return formio.current;
+    }
+
     instance.current = new (formioform || FormioForm)(
       element.current,
       srcOrForm,
