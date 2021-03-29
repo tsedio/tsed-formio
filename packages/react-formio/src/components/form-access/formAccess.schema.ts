@@ -218,11 +218,7 @@ export function formAccessToSubmission(
   }, {});
 }
 
-export function mapSubmissionAccess(
-  type: string,
-  form: any,
-  { data }: any
-): FormSchema {
+export function mapSubmissionAccess({ data }: any) {
   const accessRoles: any[] = [];
 
   Object.entries(data).forEach(([accessType, roles]) => {
@@ -235,8 +231,5 @@ export function mapSubmissionAccess(
     });
   });
 
-  return {
-    ...form,
-    [type]: accessRoles
-  };
+  return accessRoles;
 }

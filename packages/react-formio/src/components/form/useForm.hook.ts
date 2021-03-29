@@ -1,4 +1,6 @@
 import FormioForm from "formiojs/Form";
+import cloneDeep from "lodash/cloneDeep";
+import isEqual from "lodash/isEqual";
 import { useEffect, useRef } from "react";
 
 export const useForm = ({
@@ -13,15 +15,29 @@ export const useForm = ({
   const element = useRef<any>();
   const formio = useRef<any>();
   const instance = useRef<any>();
+  const lastChange = useRef<any>(null);
+  const isLoaded = useRef<any>(false);
 
   useEffect(
-    () => () => (formio.current ? formio.current.destroy(true) : null),
+    () => () => {
+      isLoaded.current = false;
+      return formio.current ? formio.current.destroy(true) : null;
+    },
     [formio]
   );
 
   const onAnyEvent = (event: string, ...args: any[]): void => {
     if (event.startsWith("formio.")) {
       const funcName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
+
+      if (funcName === "onChange") {
+        if (!isLoaded.current || isEqual(args[0]?.data, lastChange.current)) {
+          return;
+        }
+
+        lastChange.current = cloneDeep(args[0].data);
+      }
+
       if (
         // eslint-disable-next-line no-prototype-builtins
         props.hasOwnProperty(funcName) &&
@@ -34,11 +50,11 @@ export const useForm = ({
 
   const initializeFormio = (): void => {
     if (instance.current && instance.current.ready) {
-      instance.current.onAny(onAnyEvent);
-
       if (formio.current && submission) {
         formio.current.submission = submission;
       }
+
+      instance.current.onAny(onAnyEvent);
     }
   };
 
@@ -60,6 +76,7 @@ export const useForm = ({
     }
 
     if (submission) {
+      lastChange.current = cloneDeep(submission?.data);
       formio.current.submission = submission;
     }
 
@@ -70,7 +87,7 @@ export const useForm = ({
     if (src) {
       createWebFormInstance(src).then((formio) => {
         formio.src = src;
-
+        isLoaded.current = true;
         return formio;
       });
     }
@@ -84,6 +101,8 @@ export const useForm = ({
         if (url) {
           formio.url = url;
         }
+
+        isLoaded.current = true;
 
         return formio;
       });
@@ -100,6 +119,7 @@ export const useForm = ({
 
   useEffect(() => {
     if (formio.current && submission) {
+      lastChange.current = cloneDeep(submission?.data);
       formio.current.submission = submission;
     }
   }, [submission]);

@@ -1,5 +1,12 @@
+import isEqual from "lodash/isEqual";
 import PropTypes from "prop-types";
-import React, { PropsWithChildren, ReactElement } from "react";
+import React, {
+  PropsWithChildren,
+  ReactElement,
+  useCallback,
+  useMemo,
+  useState
+} from "react";
 import { FormOptions, FormSchema } from "../../interfaces";
 import { Card } from "../card/card.component";
 import { Form } from "../form/form.component";
@@ -18,36 +25,89 @@ export interface FormAccessProps {
   options?: FormOptions;
 }
 
-export function FormAccess({
-  form,
+function useFormAccess({
+  form: formDefinition,
   roles,
-  children,
   onSubmit,
   options
-}: PropsWithChildren<FormAccessProps>): ReactElement {
-  const submissionAccess = {
-    data: formAccessToSubmission(form.submissionAccess)
+}: FormAccessProps) {
+  const form = useMemo(() => {
+    const choices = mapRoles(roles);
+    const access = getAccessPermissionForm({ choices });
+    const submissionAccess = getSubmissionPermissionForm({ choices });
+
+    return {
+      access,
+      submissionAccess
+    };
+  }, [roles]);
+
+  const [submissions, setSubmissions] = useState(() => {
+    return {
+      access: { data: formAccessToSubmission(formDefinition.access) },
+      submissionAccess: {
+        data: formAccessToSubmission(formDefinition.submissionAccess)
+      }
+    };
+  });
+
+  const onChange = useCallback(
+    (type, data) => {
+      if (!isEqual(data, submissions[type].data)) {
+        setSubmissions({
+          ...submissions,
+          [type]: { data }
+        });
+      }
+    },
+    [submissions]
+  );
+
+  return {
+    options,
+    form,
+    formDefinition,
+    submissions,
+    onChange,
+    onSubmit: () => {
+      onSubmit({
+        ...formDefinition,
+        access: mapSubmissionAccess(submissions.access),
+        submissionAccess: mapSubmissionAccess(submissions.submissionAccess)
+      });
+    }
   };
-  const access = { data: formAccessToSubmission(form.access) };
+}
+
+export function FormAccess(
+  props: PropsWithChildren<FormAccessProps>
+): ReactElement {
+  const {
+    formDefinition,
+    form,
+    submissions,
+    options,
+    onChange,
+    onSubmit
+  } = useFormAccess(props);
 
   return (
     <div>
-      {children}
+      {props.children}
 
       <div className={"flex mb-5"}>
         <Card label={"Manage submission access"} className={"flex-1"}>
           <Form
-            form={getSubmissionPermissionForm({
-              choices: mapRoles(roles)
-            })}
-            submission={submissionAccess}
-            onSubmit={(data: any) => {
-              onSubmit(mapSubmissionAccess("submissionAccess", form, data));
+            form={form.submissionAccess}
+            submission={submissions.submissionAccess}
+            onChange={({ data }: any) => {
+              onChange("submissionAccess", data);
             }}
+            onSubmit={onSubmit}
             options={options}
           />
 
-          {children}
+          {props.children}
 
           <div className={"alert alert-warning mt-5"}>
             Elevated permissions allow users to access and modify other user's
@@ -80,21 +140,18 @@ export function FormAccess({
 
       <div className={"flex mb-5"}>
         <Card
-          label={`Manage ${form.type} definition access`}
+          label={`Manage ${formDefinition.type} definition access`}
           className={"flex-1"}
         >
           <Form
-            form={getAccessPermissionForm({
-              choices: mapRoles(roles)
-            })}
-            submission={access}
-            onSubmit={(data: any) => {
-              onSubmit(mapSubmissionAccess("access", form, data));
-            }}
+            form={form.access}
+            submission={submissions.access}
+            onChange={({ data }: any) => onChange("access", data)}
+            onSubmit={onSubmit}
             options={options}
           />
 
-          {children}
+          {props.children}
 
           <div className={"alert alert-warning mt-5"}>
             Elevated permissions allow users to access and modify other user's
