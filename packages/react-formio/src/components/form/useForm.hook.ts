@@ -23,7 +23,10 @@ export const useForm = ({
   useEffect(
     () => () => {
       isLoaded.current = false;
-      return formio.current ? formio.current.destroy(true) : null;
+      if (formio.current) {
+        formio.current.destroy(true);
+      }
+      formio.current = null;
     },
     [formio]
   );
@@ -67,6 +70,8 @@ export const useForm = ({
   const createWebFormInstance = async (srcOrForm: any): Promise<any> => {
     const { formioform, onFormReady } = props;
     if (instance.current) {
+      formio.current = await instance.current.ready;
+
       return formio.current;
     }
 
