@@ -178,39 +178,3 @@ export function getAccessPermissionForm({ choices }: any): FormSchema {
     ]
   };
 }
-
-export function mapRoles(roles: {
-  [key: string]: { title: string; _id: string };
-}): { label: string; value: string }[] {
-  return Object.values(roles).map((role) => {
-    return {
-      label: role.title,
-      value: role._id
-    };
-  });
-}
-
-export function formAccessToSubmission(
-  access: Record<string, any> = {}
-): Record<string, string[]> {
-  return Object.values(access).reduce((o: any, role: any) => {
-    o[role.type] = role.roles;
-    return o;
-  }, {});
-}
-
-export function mapSubmissionAccess({ data }: any) {
-  const accessRoles: any[] = [];
-
-  Object.entries(data).forEach(([accessType, roles]) => {
-    if (accessType === "submit") {
-      return;
-    }
-    accessRoles.push({
-      type: accessType,
-      roles
-    });
-  });
-
-  return accessRoles;
-}

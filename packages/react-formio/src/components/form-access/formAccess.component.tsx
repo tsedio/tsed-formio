@@ -1,4 +1,3 @@
-import isEqual from "lodash/isEqual";
 import PropTypes from "prop-types";
 import React, {
   PropsWithChildren,
@@ -7,16 +6,18 @@ import React, {
   useMemo,
   useState
 } from "react";
-import { FormOptions, FormSchema } from "../../interfaces";
+import { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";
 import { Form } from "../form/form.component";
 import {
-  formAccessToSubmission,
-  getAccessPermissionForm,
-  getSubmissionPermissionForm,
-  mapRoles,
-  mapSubmissionAccess
-} from "./formAccess.schema";
+  AccessRoles,
+  dataAccessToSubmissions,
+  FormAccessSchema,
+  getFormAccess,
+  SubmissionAccess,
+  submissionsToDataAccess,
+  updateSubmissions
+} from "./formAccess.utils";
 
 export interface FormAccessProps {
   form: Partial<FormSchema>;
@@ -31,34 +32,16 @@ function useFormAccess({
   onSubmit,
   options
 }: FormAccessProps) {
-  const form = useMemo(() => {
-    const choices = mapRoles(roles);
-    const access = getAccessPermissionForm({ choices });
-    const submissionAccess = getSubmissionPermissionForm({ choices });
+  // eslint-disable-next-line no-undef
+  const form = useMemo(() => getFormAccess(roles), [roles]);
 
-    return {
-      access,
-      submissionAccess
-    };
-  }, [roles]);
-
-  const [submissions, setSubmissions] = useState(() => {
-    return {
-      access: { data: formAccessToSubmission(formDefinition.access) },
-      submissionAccess: {
-        data: formAccessToSubmission(formDefinition.submissionAccess)
-      }
-    };
-  });
+  const [submissions, setSubmissions] = useState(() =>
+    dataAccessToSubmissions(formDefinition, form)
+  );
 
   const onChange = useCallback(
-    (type, data) => {
-      if (!isEqual(data, submissions[type].data)) {
-        setSubmissions({
-          ...submissions,
-          [type]: { data }
-        });
-      }
+    (type: string, submission: Submission<AccessRoles>) => {
+      updateSubmissions(type, submission, submissions, setSubmissions);
     },
     [submissions]
   );
@@ -66,24 +49,67 @@ function useFormAccess({
   return {
     options,
     form,
-    formDefinition,
+    type: formDefinition.type,
     submissions,
     onChange,
     onSubmit: () => {
-      onSubmit({
-        ...formDefinition,
-        access: mapSubmissionAccess(submissions.access),
-        submissionAccess: mapSubmissionAccess(submissions.submissionAccess)
-      });
+      onSubmit(submissionsToDataAccess(formDefinition, submissions));
     }
   };
+}
+
+interface NamedFormAccessProps {
+  name: "access" | "submissionAccess";
+  form: FormAccessSchema;
+  submissions: SubmissionAccess;
+  options: any;
+  onSubmit: any;
+
+  onChange(
+    name: "access" | "submissionAccess",
+    submission: Submission<AccessRoles>
+  ): void;
+}
+
+function NamedFormAccess({
+  name,
+  form,
+  submissions,
+  options,
+  onChange,
+  onSubmit,
+  children
+}: PropsWithChildren<NamedFormAccessProps>) {
+  return (
+    <>
+      <Form
+        form={form[name]}
+        submission={submissions[name]}
+        onChange={(submission: Submission<AccessRoles>) => {
+          onChange(name, submission);
+        }}
+        options={options}
+      />
+
+      <button className={"mt-5 btn btn-primary"} onClick={onSubmit}>
+        Save access
+      </button>
+
+      {children}
+
+      <div className={"alert alert-warning mt-5"}>
+        Elevated permissions allow users to access and modify other user's
+        entities. Assign with caution.
+      </div>
+    </>
+  );
 }
 
 export function FormAccess(
   props: PropsWithChildren<FormAccessProps>
 ): ReactElement {
   const {
-    formDefinition,
+    type,
     form,
     submissions,
     options,
@@ -94,28 +120,18 @@ export function FormAccess(
   return (
     <div>
       {props.children}
-
       <div className={"flex mb-5"}>
         <Card label={"Manage submission access"} className={"flex-1"}>
-          <Form
-            form={form.submissionAccess}
-            submission={submissions.submissionAccess}
-            onChange={({ data }: any) => {
-              onChange("submissionAccess", data);
-            }}
+          <NamedFormAccess
+            name={"submissionAccess"}
+            form={form}
+            submissions={submissions}
+            onChange={onChange}
+            onSubmit={onSubmit}
             options={options}
-          />
-
-          <button className={"mt-5 btn btn-primary"} onClick={onSubmit}>
-            Save access
-          </button>
-
-          {props.children}
-
-          <div className={"alert alert-warning mt-5"}>
-            Elevated permissions allow users to access and modify other user's
-            entities. Assign with caution.
-          </div>
+          >
+            {props.children}
+          </NamedFormAccess>
         </Card>
         <div className={"w-1/4 pl-4"}>
           <Card label={"About Submission Data Permissions"}>
@@ -140,29 +156,18 @@ export function FormAccess(
           </Card>
         </div>
       </div>
-
       <div className={"flex mb-5"}>
-        <Card
-          label={`Manage ${formDefinition.type} definition access`}
-          className={"flex-1"}
-        >
-          <Form
-            form={form.access}
-            submission={submissions.access}
-            onChange={({ data }: any) => onChange("access", data)}
+        <Card label={`Manage ${type} definition access`} className={"flex-1"}>
+          <NamedFormAccess
+            name={"access"}
+            form={form}
+            submissions={submissions}
+            onChange={onChange}
+            onSubmit={onSubmit}
             options={options}
-          />
-
-          <button className={"mt-5 btn btn-primary"} onClick={onSubmit}>
-            Save access
-          </button>
-
-          {props.children}
-
-          <div className={"alert alert-warning mt-5"}>
-            Elevated permissions allow users to access and modify other user's
-            entities. Assign with caution.
-          </div>
+          >
+            {props.children}
+          </NamedFormAccess>
         </Card>
 
         <div className={"w-1/4 pl-4"}>
