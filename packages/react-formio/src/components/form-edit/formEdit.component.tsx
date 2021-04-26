@@ -3,7 +3,7 @@ import React from "react";
 import { FormOptions, FormSchema } from "../../interfaces";
 import { FormBuilder } from "../form-builder/formBuilder.component";
 import { FormEditCTAs } from "./formCtas.component";
-import { FormSettings } from "./formSettings.component";
+import { FormParameters } from "./formParameters.component";
 import { useForm } from "./useForm.hook";
 
 export interface FormEditProps extends Record<string, unknown> {
@@ -36,7 +36,7 @@ export function FormEdit(props: FormEditProps) {
   return (
     <div>
       <div className='form-edit'>
-        <FormSettings
+        <FormParameters
           {...props}
           className={""}
           key={`form-settings-${form._id}`}

@@ -7,5 +7,7 @@ export type FormSchema = {
   machineName?: string;
   components: ExtendedComponentSchema[];
   tags?: string[];
+  action?: string;
+  properties?: Record<string, any>;
   [key: string]: any;
 };

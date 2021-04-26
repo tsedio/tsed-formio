@@ -71,6 +71,7 @@ export interface FormioContainerOptions extends Record<string, unknown> {
   FormActionComponent?: React.ComponentType<any>;
   FormExportComponent?: React.ComponentType<any>;
   FormEditComponent?: React.ComponentType<any>;
+  FormSettingsComponent?: React.ComponentType<any>;
   FormAccessComponent?: React.ComponentType<any>;
   SubmissionComponent?: React.ComponentType<any>;
   SubmissionsComponent?: React.ComponentType<any>;

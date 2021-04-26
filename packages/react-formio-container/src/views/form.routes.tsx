@@ -7,6 +7,7 @@ import { FormEditView } from "./formEdit.view";
 import { FormExportView } from "./formExport.view";
 import { FormPreviewView } from "./formPreview.view";
 import { SubmissionsView } from "./submissions.view";
+import { FormSettingsView } from "./formSettings.view";
 
 export interface FormRoute<User = any>
   extends TabsItemProps,
@@ -82,6 +83,14 @@ export const defaultFormRoutes: FormRoute[] = [
     icon: "download",
     label: "Export",
     component: FormExportView
+  },
+  {
+    action: "settings",
+    exact: true,
+    icon: "cog",
+    label: "Settings",
+    roles: ["administrator", "owner"],
+    component: FormSettingsView
   },
   {
     action: "delete",
