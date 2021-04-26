@@ -11,7 +11,7 @@ export const defaultDisplayChoices = [
   { label: "Pdf", value: "pdf" }
 ];
 
-export interface FormSettingsProps {
+export interface FormParametersProps {
   onChange?: (name: string, value: any) => void;
   form: Partial<FormSchema>;
   typeChoices?: { label: string; value: any }[];
@@ -20,14 +20,14 @@ export interface FormSettingsProps {
   className?: string;
 }
 
-export function FormSettings({
+export function FormParameters({
   onChange,
   form,
   enableTags = true,
   typeChoices = [],
   displayChoices = defaultDisplayChoices,
   className = ""
-}: FormSettingsProps): ReactElement {
+}: FormParametersProps): ReactElement {
   const hasTypeChoices = typeChoices && typeChoices.length > 1;
 
   return (
@@ -104,7 +104,7 @@ export function FormSettings({
   );
 }
 
-FormSettings.propTypes = {
+FormParameters.propTypes = {
   onChange: PropTypes.func,
   form: PropTypes.object,
   enableTags: PropTypes.bool,
