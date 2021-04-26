@@ -75,4 +75,5 @@ export interface FormioContainerOptions extends Record<string, unknown> {
   SubmissionComponent?: React.ComponentType<any>;
   SubmissionsComponent?: React.ComponentType<any>;
   RemoveModalComponent?: React.ComponentType<any>;
+  LoaderComponent?: React.ComponentType<any>;
 }

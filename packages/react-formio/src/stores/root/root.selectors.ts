@@ -27,3 +27,15 @@ export const selectIsActive = (
   name: string,
   state: Record<string, any>
 ): boolean => get(selectRoot(name, state), "isActive");
+
+export function oneOfIsActive(...names: string[]) {
+  return (state: any) => {
+    return !!names.find((name) => {
+      return get(
+        state,
+        `${name}.isActive`,
+        get(state, `${name}.current.isActive`)
+      );
+    });
+  };
+}

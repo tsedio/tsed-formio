@@ -1,4 +1,9 @@
-import { selectError, selectIsActive, selectRoot } from "./root.selectors";
+import {
+  oneOfIsActive,
+  selectError,
+  selectIsActive,
+  selectRoot
+} from "./root.selectors";
 
 describe("root Selectors", () => {
   describe("selectRoot()", () => {
@@ -46,6 +51,49 @@ describe("root Selectors", () => {
           }
         })
       ).toEqual(true);
+    });
+  });
+  describe("oneOfIsActive", () => {
+    it("should is active state", () => {
+      expect(
+        oneOfIsActive(
+          "loader",
+          "other"
+        )({
+          loader: {
+            isActive: false
+          },
+          other: {
+            isActive: true
+          }
+        })
+      ).toEqual(true);
+      expect(
+        oneOfIsActive(
+          "loader",
+          "other"
+        )({
+          loader: {
+            isActive: true
+          },
+          other: {
+            isActive: false
+          }
+        })
+      ).toEqual(true);
+      expect(
+        oneOfIsActive(
+          "loader",
+          "other"
+        )({
+          loader: {
+            isActive: false
+          },
+          other: {
+            isActive: false
+          }
+        })
+      ).toEqual(false);
     });
   });
 });
