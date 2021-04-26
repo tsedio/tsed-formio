@@ -1,10 +1,10 @@
 .btn {
-  @apply text-primary text-center bg-transparent border-solid border-1 border-transparent px-5 py-2 transition-colors ease-linear duration-300 rounded font-bold text-center inline-flex justify-center items-center;
+  @apply text-primary bg-transparent border-solid border-1 border-transparent px-5 py-2 transition-colors ease-linear duration-300 rounded font-bold text-center inline-flex justify-center items-center;
   text-decoration: none;
   user-select: none;
 
   > span.bx, > span.fa {
-    @apply mx-1;
+    @apply mx-2;
   }
 
   > span.bx:first-child, > span.fa:first-child {
