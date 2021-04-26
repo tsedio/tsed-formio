@@ -2,7 +2,7 @@ import React from "react";
 import { FormsComponent } from "./forms.view";
 
 export default {
-  title: "ReactFormioContainer/Forms",
+  title: "ReactFormioContainer/FormsView",
   component: FormsComponent,
   argTypes: {
     data: {
