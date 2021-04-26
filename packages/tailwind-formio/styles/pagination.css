@@ -1,5 +1,5 @@
 .pagination {
-  @apply flex rounded shadow-sm;
+  @apply inline-flex rounded shadow-sm;
 }
 
 .page-link {
