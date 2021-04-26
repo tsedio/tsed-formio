@@ -64,5 +64,12 @@ export default (
     }
   }
 
-  return spinning ? `${iconset} ${name} ${iconset}-spin` : `${iconset} ${name}`;
+  if (spinning) {
+    if (name === "bx-radio-circle") {
+      return `${iconset} ${name} bx-burst`;
+    }
+    return `${iconset} ${name} bx-spin`;
+  }
+
+  return `${iconset} ${name}`;
 };

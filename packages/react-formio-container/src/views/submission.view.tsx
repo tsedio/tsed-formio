@@ -1,4 +1,10 @@
-import { Form, iconClass, RemoveModal, useTooltip } from "@tsed/react-formio";
+import {
+  Form,
+  iconClass,
+  RemoveModal,
+  useTooltip,
+  Loader
+} from "@tsed/react-formio";
 import classnames from "classnames";
 import React from "react";
 import { useParams } from "react-router";
@@ -12,6 +18,7 @@ export interface SubmissionViewProps extends UseFormProps {
 
 export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
   const {
+    isActive,
     formAction,
     submissionAction,
     form,
@@ -27,6 +34,7 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
   } = props;
 
   const RemoveModalComponent = props.RemoveModalComponent || RemoveModal;
+  const LoaderComponent = props.LoaderComponent || Loader;
 
   const copyRef = useTooltip({
     trigger: "hover",
@@ -41,7 +49,8 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
   });
 
   return (
-    <div className={"p-4"}>
+    <div className={"p-4 relative"}>
+      <LoaderComponent isActive={isActive} />
       <h2
         className={
           "border-b-1 border-gray-300 text-lg mb-4 pb-1 flex items-center"

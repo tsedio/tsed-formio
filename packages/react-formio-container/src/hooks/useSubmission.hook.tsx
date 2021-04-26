@@ -10,7 +10,8 @@ import {
   selectForm,
   selectRoot,
   selectSubmission,
-  Submission
+  Submission,
+  selectIsActive
 } from "@tsed/react-formio";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";
@@ -50,6 +51,8 @@ export function useSubmission(props: UseSubmissionProps) {
   const submission = useSelector((state) =>
     selectSubmission(submissionType, state as any)
   );
+
+  const isActive = useSelector((state) => selectIsActive(type, state));
 
   const url = useSelector(
     (state) =>
@@ -155,6 +158,7 @@ export function useSubmission(props: UseSubmissionProps) {
 
   return {
     ...props,
+    isActive,
     submissionId,
     submissionAction,
     auth,
