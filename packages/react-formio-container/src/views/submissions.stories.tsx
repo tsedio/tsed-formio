@@ -4,7 +4,7 @@ import formSchema from "../__fixtures__/form-schema.json";
 import formSubmissions from "../__fixtures__/form-submissions.json";
 
 export default {
-  title: "ReactFormioContainer/Submisssions",
+  title: "ReactFormioContainer/SubmissionsView",
   component: SubmissionsComponent,
   argTypes: {
     data: {

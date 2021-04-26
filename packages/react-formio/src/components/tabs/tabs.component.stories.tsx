@@ -23,7 +23,7 @@ export const Sandbox = (args: any) => {
 
   return (
     <div className={"border-gray-300 border-1 shadow"}>
-      <Tabs {...tabs}>
+      <Tabs {...tabs} i18n={(f) => f}>
         <div className={"p-5"}>{tabs?.current?.action}</div>
       </Tabs>
     </div>
