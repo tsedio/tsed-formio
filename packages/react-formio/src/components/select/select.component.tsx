@@ -71,6 +71,7 @@ export function Select<T = any>({
       <select
         ref={ref}
         {...props}
+        data-testid={"select"}
         className={classnames("form-control", size && `form-control-${size}`)}
         name={name}
         id={name}
@@ -78,7 +79,7 @@ export function Select<T = any>({
         value={value || ("" as any)}
         placeholder={placeholder}
         onChange={(event) => {
-          onChange("display", getEventValue(event));
+          onChange(name, getEventValue(event));
         }}
       >
         {choices.map(({ label, value }) => {

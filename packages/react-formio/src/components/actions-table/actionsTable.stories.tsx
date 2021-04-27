@@ -53,7 +53,7 @@ export const Sandbox = (args: any) => {
 
 Sandbox.args = {
   icon: "server",
-  actions: [
+  availableActions: [
     {
       name: "email",
       title: "Email",
