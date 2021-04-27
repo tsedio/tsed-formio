@@ -38,28 +38,27 @@ export function ActionsTable({
       disablePagination={disablePagination}
       columns={columns}
     >
-      {availableActions.length ? (
-        <div className={"pagination-group"}>
-          <Select
-            name={"actions"}
-            value={currentAction}
-            choices={[{ label: i18n("Select an action"), value: "" }].concat(
-              availableActions
-            )}
-            onChange={(name: string, action: string) => setAction(action)}
-          />
-          <div className={"pl-3"}>
-            <button
-              disabled={currentAction === ""}
-              className={"btn btn-success"}
-              onClick={() => currentAction && onAddAction(currentAction)}
-            >
-              <i className={classnames(iconClass(undefined, "plus"), "mr-1")} />{" "}
-              {i18n("Add action")}
-            </button>
-          </div>
+      <div className={"pagination-group"}>
+        <Select
+          name={"actions"}
+          value={currentAction}
+          choices={[{ label: i18n("Select an action"), value: "" }].concat(
+            availableActions
+          )}
+          onChange={(name: string, action: string) => setAction(action)}
+        />
+        <div className={"pl-3"}>
+          <button
+            data-testid={"submit"}
+            disabled={currentAction === ""}
+            className={"btn btn-success"}
+            onClick={() => currentAction && onAddAction(currentAction)}
+          >
+            <i className={classnames(iconClass(undefined, "plus"), "mr-1")} />{" "}
+            {i18n("Add action")}
+          </button>
         </div>
-      ) : null}
+      </div>
     </Table>
   );
 }

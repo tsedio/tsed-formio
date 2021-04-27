@@ -1,18 +1,26 @@
-import React from "react";
+import classnames from "classnames";
+import React, { PropsWithChildren } from "react";
 
 export interface CardProps {
-  children: any;
   label: string;
   className?: string;
 }
 
-export function Card({ children, label, className }: CardProps) {
+export function Card({
+  children,
+  label,
+  className
+}: PropsWithChildren<CardProps>) {
   return (
-    <div className={`card ${className}`}>
+    <div className={classnames("card", className)}>
       <div className={"card-header "}>
-        <h4 className={"card-title"}>{label}</h4>
+        <h4 className={"card-title"} role={"card-heading"}>
+          {label}
+        </h4>
       </div>
-      <div className={"card-body"}>{children}</div>
+      <div className={"card-body"} role={"card-body"}>
+        {children}
+      </div>
     </div>
   );
 }
