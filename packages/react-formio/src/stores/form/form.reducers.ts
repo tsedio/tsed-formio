@@ -54,8 +54,10 @@ export const formReducer = createReducer<FormState>(
       error: payload.error,
       isActive: false
     }),
-    [sendForm.toString()]: (state) => ({
+    [sendForm.toString()]: (state, { form, url }) => ({
       ...state,
+      data: form,
+      url,
       isActive: true
     })
   },

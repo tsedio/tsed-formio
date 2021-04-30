@@ -7,7 +7,7 @@ export function FormSettingsView(props: ReturnType<typeof useForm>) {
   const { form, saveForm, i18n } = props;
 
   return (
-    <div className={"p-3 pb-1"}>
+    <div className={"p-3"}>
       <Component
         {...props}
         form={form}

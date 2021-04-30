@@ -50,7 +50,6 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
 
   return (
     <div className={"p-4 relative"}>
-      <LoaderComponent isActive={isActive} />
       <h2
         className={
           "border-b-1 border-gray-300 text-lg mb-4 pb-1 flex items-center"
@@ -104,6 +103,8 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
           onClose={gotoEdit}
         />
       )}
+
+      <LoaderComponent isActive={isActive} />
     </div>
   );
 }

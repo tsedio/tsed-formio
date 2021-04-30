@@ -1,4 +1,3 @@
-import { EventEmitter2 } from "eventemitter2";
 import AllComponents from "formiojs/components";
 import Components from "formiojs/components/Components";
 import PropTypes from "prop-types";
@@ -8,23 +7,25 @@ import { useForm } from "./useForm.hook";
 
 Components.setComponents(AllComponents);
 
-const getDefaultEmitter = (): EventEmitter2 => {
-  return new EventEmitter2({
-    wildcard: false,
-    maxListeners: 0
-  });
-};
+export interface ChangedSubmission<T = any> extends Submission<T> {
+  changed: any;
+  isValid: boolean;
+}
 
 export interface FormProps {
-  className: string;
+  name?: string;
   /**
    *
    */
-  src: string;
+  className?: string;
+  /**
+   *
+   */
+  src?: string;
   /**
    * url to fetch form
    */
-  url: string;
+  url?: string;
   /**
    * Raw form object
    */
@@ -32,47 +33,45 @@ export interface FormProps {
   /**
    * Data submission
    */
-  submission: Submission;
+  submission?: Submission;
   /**
    * Configuration option
    */
-  options: FormOptions;
-  onPrevPage: Function;
-  onNextPage: Function;
-  onCancel: Function;
-  onChange: Function;
-  onCustomEvent: Function;
-  onComponentChange: Function;
-  onSubmit: Function;
-  onSubmitDone: Function;
-  onFormLoad: Function;
-  onError: Function;
-  onRender: Function;
-  onAttach: Function;
-  onBuild: Function;
-  onFocus: Function;
-  onBlur: Function;
-  onInitialized: Function;
-  onFormReady: (formio: any) => void;
-  formioform: any;
+  options?: FormOptions;
+  onPrevPage?: Function;
+  onNextPage?: Function;
+  onCancel?: Function;
+  onChange?: (submission: ChangedSubmission) => void;
+  onCustomEvent?: Function;
+  onComponentChange?: Function;
+  onSubmit?: Function;
+  onSubmitDone?: Function;
+  onFormLoad?: Function;
+  onError?: Function;
+  onRender?: Function;
+  onAttach?: Function;
+  onBuild?: Function;
+  onFocus?: Function;
+  onBlur?: Function;
+  onInitialized?: Function;
+  onFormReady?: (formio: any) => void;
+  formioform?: any;
 }
 
 export function Form(props: Partial<FormProps>) {
-  const { element } = useForm({
-    ...props,
-    getDefaultEmitter: Form.getDefaultEmitter
-  });
+  const { element } = useForm(props);
 
   return (
     <div
-      data-testid={"formioContainer"}
-      ref={(el): any => (element.current = el)}
+      data-testid={"formioContainer" + (props.name || "")}
+      ref={element}
       className={props.className}
     />
   );
 }
 
 Form.propTypes = {
+  name: PropTypes.string,
   className: PropTypes.string,
   /**
    *
@@ -98,8 +97,7 @@ Form.propTypes = {
     noAlerts: PropTypes.bool,
     i18n: PropTypes.any,
     template: PropTypes.string,
-    saveDraft: PropTypes.bool,
-    events: PropTypes.any
+    saveDraft: PropTypes.bool
   }),
   onPrevPage: PropTypes.func,
   onNextPage: PropTypes.func,
@@ -120,5 +118,3 @@ Form.propTypes = {
   onFormReady: PropTypes.func,
   formioform: PropTypes.any
 };
-
-Form.getDefaultEmitter = getDefaultEmitter;

@@ -3,17 +3,19 @@ import React, {
   PropsWithChildren,
   ReactElement,
   useCallback,
+  useEffect,
   useMemo,
   useState
 } from "react";
 import { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";
-import { Form } from "../form/form.component";
+import { ChangedSubmission, Form } from "../form/form.component";
 import {
   AccessRoles,
   dataAccessToSubmissions,
   FormAccessSchema,
   getFormAccess,
+  shouldUpdate,
   SubmissionAccess,
   submissionsToDataAccess,
   updateSubmissions
@@ -45,6 +47,18 @@ function useFormAccess({
     },
     [submissions]
   );
+
+  useEffect(() => {
+    const input = dataAccessToSubmissions(formDefinition, form);
+    if (formDefinition?._id) {
+      if (
+        shouldUpdate("access", submissions.access, input) ||
+        shouldUpdate("submissionAccess", submissions.submissionAccess, input)
+      ) {
+        setSubmissions(input);
+      }
+    }
+  }, [formDefinition?._id]);
 
   return {
     options,
@@ -80,18 +94,26 @@ function NamedFormAccess({
   onSubmit,
   children
 }: PropsWithChildren<NamedFormAccessProps>) {
+  const [isValid, setIsValid] = useState(true);
+
   return (
     <>
       <Form
+        name={name}
         form={form[name]}
         submission={submissions[name]}
-        onChange={(submission: Submission<AccessRoles>) => {
-          onChange(name, submission);
+        onChange={({ data, isValid }: ChangedSubmission<AccessRoles>) => {
+          isValid && onChange(name, { data });
+          setIsValid(isValid);
         }}
         options={options}
       />
 
-      <button className={"mt-5 btn btn-primary"} onClick={onSubmit}>
+      <button
+        disabled={!isValid}
+        className={"mt-5 btn btn-primary"}
+        onClick={onSubmit}
+      >
         Save access
       </button>
 

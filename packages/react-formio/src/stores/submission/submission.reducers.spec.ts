@@ -50,6 +50,7 @@ describe("Submission reducers", () => {
     const state: any = {};
     const payload = {
       formId: "formId",
+      submission: {},
       id: "id",
       url: "url"
     };

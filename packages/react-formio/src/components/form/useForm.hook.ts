@@ -1,143 +1,116 @@
 import FormioForm from "formiojs/Form";
+import { get } from "lodash";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import { useEffect, useRef } from "react";
 import { callLast } from "../../utils/callLast";
 
-export const useForm = ({
-  src,
-  form,
-  options = {},
-  submission,
-  url,
-  getDefaultEmitter,
-  ...props
-}: any): any => {
+export const useForm = (props: any): any => {
+  const { src, form, options = {}, submission, url, ...funcs } = props;
   const element = useRef<any>();
-  const formio = useRef<any>();
+  const isLoaded = useRef<boolean>();
   const instance = useRef<any>();
-  const lastChange = useRef<any>(null);
-  const isLoaded = useRef<any>(false);
   const events = useRef<Map<string, any>>(new Map());
 
-  useEffect(
-    () => () => {
-      isLoaded.current = false;
-      if (formio.current) {
-        formio.current.destroy(true);
-      }
-      formio.current = null;
-    },
-    [formio]
-  );
+  const createWebForm = (srcOrForm: any, options: any) => {
+    options = Object.assign({}, options);
+    srcOrForm =
+      typeof srcOrForm === "string" ? srcOrForm : cloneDeep(srcOrForm);
 
-  const onAnyEvent = (event: string, ...args: any[]): void => {
-    if (event.startsWith("formio.")) {
-      const funcName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
+    if (!instance.current) {
+      instance.current = new FormioForm(element.current, srcOrForm, options);
 
-      if (funcName === "onChange") {
-        if (!isLoaded.current || isEqual(args[0]?.data, lastChange.current)) {
+      instance.current.onAny((event: string, ...args: any[]): void => {
+        if (!instance.current) {
           return;
         }
 
-        lastChange.current = cloneDeep(args[0].data);
-      }
+        if (event.startsWith("formio.")) {
+          const funcName = `on${event.charAt(7).toUpperCase()}${event.slice(
+            8
+          )}`;
 
-      if (
-        // eslint-disable-next-line no-prototype-builtins
-        props.hasOwnProperty(funcName) &&
-        typeof props[funcName] === "function"
-      ) {
-        if (!events.current.has(funcName)) {
-          const fn = callLast(props[funcName], 100);
-          events.current.set(funcName, fn);
+          if (funcName === "onChange") {
+            if (isEqual(get(submission, "data"), args[0].data)) {
+              return;
+            }
+          }
+
+          if (
+            // eslint-disable-next-line no-prototype-builtins
+            props.hasOwnProperty(funcName) &&
+            typeof funcs[funcName] === "function"
+          ) {
+            if (!events.current.has(funcName)) {
+              const fn = callLast(funcs[funcName], 100);
+              events.current.set(funcName, fn);
+            }
+            events.current.get(funcName)(...args);
+          }
         }
-        events.current.get(funcName)(...args);
-      }
-    }
-  };
+      });
 
-  const initializeFormio = (): void => {
-    if (instance.current && instance.current.ready) {
-      if (formio.current && submission) {
-        formio.current.submission = submission;
-      }
+      instance.current.ready.then((formio: any) => {
+        submission && (formio.submission = submission);
 
-      instance.current.onAny(onAnyEvent);
-    }
-  };
+        if (props.onFormReady) {
+          props.onFormReady(formio);
+        }
 
-  const createWebFormInstance = async (srcOrForm: any): Promise<any> => {
-    const { formioform, onFormReady } = props;
-    if (instance.current) {
-      formio.current = await instance.current.ready;
-
-      return formio.current;
+        isLoaded.current = true;
+      });
     }
 
-    instance.current = new (formioform || FormioForm)(
-      element.current,
-      srcOrForm,
-      options
-    );
-
-    initializeFormio();
-
-    const formioInstance = await instance.current.ready;
-    formio.current = formioInstance;
-
-    if (onFormReady) {
-      onFormReady(formioInstance);
-    }
-
-    if (submission) {
-      lastChange.current = cloneDeep(submission?.data);
-      formio.current.submission = submission;
-    }
-
-    return formio.current;
+    return instance.current;
   };
 
   useEffect(() => {
+    if (instance.current) {
+      instance.current.ready.then((formio: any) => {
+        submission && (formio.submission = submission);
+      });
+    }
+  }, [submission]);
+
+  useEffect(() => {
+    if (form && instance.current) {
+      instance.current.ready.then((formio: any) => {
+        formio.form = form;
+        if (url) {
+          formio.url = url;
+        }
+      });
+    }
+  }, [form, url]);
+
+  useEffect(() => {
     if (src) {
-      createWebFormInstance(src).then((formio) => {
-        formio.src = src;
-        isLoaded.current = true;
-        return formio;
+      if (instance.current) {
+        isLoaded.current = false;
+        instance.current.destroy(true);
+      }
+
+      createWebForm(src, options).then((formio: any) => {
+        formio.form = form;
+        if (url) {
+          formio.url = url;
+        }
       });
     }
   }, [src]);
 
   useEffect(() => {
-    if (form) {
-      createWebFormInstance(form).then((formio) => {
-        formio.form = form;
+    isLoaded.current = false;
 
-        if (url) {
-          formio.url = url;
-        }
+    const builder = createWebForm(form || src, options);
 
-        isLoaded.current = true;
+    return () => {
+      isLoaded.current = false;
+      builder.destroy(true);
+    };
+  }, []);
 
-        return formio;
-      });
-    }
-  }, [form]);
-
-  useEffect(() => {
-    const { events } = options || {};
-    if (!events) {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      options.events = getDefaultEmitter();
-    }
-  }, [options]);
-
-  useEffect(() => {
-    if (formio.current && submission) {
-      lastChange.current = cloneDeep(submission?.data);
-      formio.current.submission = submission;
-    }
-  }, [submission]);
-
-  return { element };
+  return {
+    element
+  };
 };

@@ -1,4 +1,4 @@
-import { Alert, Tabs, RemoveModal } from "@tsed/react-formio";
+import { Alert, Tabs, RemoveModal, Loader } from "@tsed/react-formio";
 import React from "react";
 import { Route, Switch, useParams } from "react-router";
 import { FormEditView } from "./formEdit.view";
@@ -16,10 +16,12 @@ function FormComponent({ className, ...props }: ReturnType<typeof useForm>) {
     setCurrentRoute,
     routes,
     gotoEdit,
-    i18n
+    i18n,
+    isActive
   } = props;
 
   const RemoveModalComponent = props.RemoveModalComponent || RemoveModal;
+  const LoaderComponent = props.LoaderComponent || Loader;
 
   return (
     <div>
@@ -78,6 +80,7 @@ function FormComponent({ className, ...props }: ReturnType<typeof useForm>) {
               />
             </Route>
           </Switch>
+          <LoaderComponent isActive={isActive} />
         </Tabs>
       </div>
     </div>
