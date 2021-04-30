@@ -29,9 +29,7 @@ export default {
 export const Sandbox = (args: any) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
-  return (
-    <FormSettings {...args} options={{ template: "tailwind", iconset: "bx" }} />
-  );
+  return <FormSettings {...args} />;
 };
 
 Sandbox.args = {

@@ -40,7 +40,7 @@ async function createBuilder(
   };
 
   try {
-    const builder = await new FormioFormBuilder(el, form, options).ready;
+    const builder = await new FormioFormBuilder(el, form, { ...options }).ready;
 
     const handleEvent = (event: string) => {
       return (...args: any[]) => {

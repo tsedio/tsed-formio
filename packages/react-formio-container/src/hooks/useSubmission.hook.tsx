@@ -2,16 +2,17 @@ import {
   deleteSubmission,
   getSubmission as getSubmissionAction,
   getSubmissions,
+  oneOfIsActive,
   receiveForm,
   refreshSubmissions,
   saveSubmission as saveSubmissionAction,
   selectAuth,
   selectError,
   selectForm,
+  selectIsActive,
   selectRoot,
   selectSubmission,
-  Submission,
-  selectIsActive
+  Submission
 } from "@tsed/react-formio";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";
@@ -52,7 +53,9 @@ export function useSubmission(props: UseSubmissionProps) {
     selectSubmission(submissionType, state as any)
   );
 
-  const isActive = useSelector((state) => selectIsActive(type, state));
+  const isActive = useSelector(oneOfIsActive(submissionType, formType, type));
+
+  useSelector((state) => selectIsActive(submissionType, state));
 
   const url = useSelector(
     (state) =>

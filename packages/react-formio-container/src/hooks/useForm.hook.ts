@@ -11,7 +11,8 @@ import {
   selectAuth,
   selectError,
   selectForm,
-  selectRoot
+  selectRoot,
+  oneOfIsActive
 } from "@tsed/react-formio";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";
@@ -52,6 +53,7 @@ export function useForm(props: UseFormProps) {
   const auth: AuthState = useSelector(selectAuth);
   const error = useSelector((state) => selectError(type, state));
   const form = useSelector((state) => selectForm(type, state));
+  const isActive = useSelector(oneOfIsActive(type));
 
   if (form && (!form.tags || !form.tags.length) && formAction === "create") {
     form.tags = [...(parameters?.query?.tags || [])];
@@ -183,6 +185,7 @@ export function useForm(props: UseFormProps) {
 
   return {
     ...props,
+    isActive,
     basePath,
     formId,
     formAction,

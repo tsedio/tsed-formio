@@ -12,7 +12,13 @@ describe("FormSettings", () => {
     Sandbox.args.form.action = "https://test";
 
     const { getByTestId } = render(
-      <Sandbox {...Sandbox.args} onSubmit={onSubmit} />
+      <Sandbox
+        {...Sandbox.args}
+        onSubmit={onSubmit}
+        options={{
+          i18n: (f: string) => f + " i18N"
+        }}
+      />
     );
 
     const btn = getByTestId("submit");
@@ -52,8 +58,6 @@ describe("FormSettings", () => {
       <FormSettings
         {...Sandbox.args}
         options={{
-          template: "tailwind",
-          iconset: "bx",
           i18n: (f: string) => f + " i18N"
         }}
       />

@@ -16,19 +16,23 @@ export function Loader({
   icon = "radio-circle",
   className = ""
 }: LoaderProps) {
-  return (
-    <div className={classnames("opacity-85 z-20 relative", className)}>
-      {isActive && (
-        <div className='flex items-center justify-center p-5 absolute top-0 right-0 left-0 bottom-0 bg-white'>
-          <span
-            data-testid={"icon"}
-            color={color}
-            className={`text-11xl ${iconClass(undefined, icon, true)}`}
-          />
-        </div>
-      )}
-    </div>
-  );
+  if (isActive) {
+    return (
+      <div
+        className={classnames(
+          "opacity-85 z-20 flex items-center justify-center p-5 absolute top-0 right-0 left-0 bottom-0 bg-white",
+          className
+        )}
+      >
+        <span
+          data-testid={"icon"}
+          color={color}
+          className={`text-11xl ${iconClass(undefined, icon, true)}`}
+        />
+      </div>
+    );
+  }
+  return null;
 }
 
 Loader.propTypes = {
