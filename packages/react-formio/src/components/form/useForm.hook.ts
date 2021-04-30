@@ -18,6 +18,7 @@ export const useForm = (props: any): any => {
       typeof srcOrForm === "string" ? srcOrForm : cloneDeep(srcOrForm);
 
     if (!instance.current) {
+      isLoaded.current = false;
       instance.current = new FormioForm(element.current, srcOrForm, options);
 
       instance.current.onAny((event: string, ...args: any[]): void => {
@@ -90,23 +91,18 @@ export const useForm = (props: any): any => {
         instance.current.destroy(true);
       }
 
-      createWebForm(src, options).then((formio: any) => {
-        formio.form = form;
-        if (url) {
-          formio.url = url;
-        }
-      });
+      createWebForm(src, options);
     }
   }, [src]);
 
   useEffect(() => {
-    isLoaded.current = false;
-
-    const builder = createWebForm(form || src, options);
+    if (form) {
+      createWebForm(form, options);
+    }
 
     return () => {
       isLoaded.current = false;
-      builder.destroy(true);
+      instance.current && instance.current.destroy(true);
     };
   }, []);
 
