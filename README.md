@@ -11,8 +11,8 @@ Dedicated repository for Formio front-end releated packages.
 
 ## Features
 
-* Provide a forker of react-formio (@tsed/react-formio) wrapper with some improvment.
-* Provide a @tsed/tailwind-formio package to support tailwind Css framework with formio.
+* Provide an alternative of react-formio (@tsed/react-formio) wrapper with some improvment.
+* Provide a @tsed/tailwind-formio package to support tailwind CSS framework with formio.
 * Provide a lightweight redux utils packages.
 * Provide a storybook
 
