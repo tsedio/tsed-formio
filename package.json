@@ -6,12 +6,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/TypedProject/tsed-formio.git"
+    "url": "https://github.com/tsedio/tsed-formio.git"
   },
   "bugs": {
-    "url": "https://github.com/TypedProject/tsed-formio/issues"
+    "url": "https://github.com/tsedio/tsed-formio/issues"
   },
-  "homepage": "https://github.com/TypedProject/tsed-formio",
+  "homepage": "https://github.com/tsedio/tsed-formio",
   "scripts": {
     "postinstall": "lerna run build --stream",
     "configure": "monorepo ci configure",
@@ -123,7 +123,7 @@
     "npmAccess": "public",
     "ghpages": {
       "dir": "./packages/storybook/dist",
-      "url": "https://github.com/TypedProject/tsed-formio.git",
+      "url": "https://github.com/tsedio/tsed-formio.git",
       "branch": "gh-pages",
       "cname": "formio.tsed.io"
     }
