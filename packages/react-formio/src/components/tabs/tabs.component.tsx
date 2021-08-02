@@ -9,7 +9,8 @@ export function ButtonTab({
   onClick,
   isActive,
   reverse,
-  children
+  children,
+  after
 }: PropsWithChildren<any>) {
   return (
     <div
@@ -37,6 +38,7 @@ export function ButtonTab({
           />
         )}
         <span className={"tw-tabs__button-label"}>{children}</span>
+        {after}
       </button>
       <div
         className={classnames(
