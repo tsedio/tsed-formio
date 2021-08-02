@@ -8,19 +8,21 @@ export function ButtonTab({
   back,
   onClick,
   isActive,
+  reverse,
   children
 }: PropsWithChildren<any>) {
   return (
     <div
       className={classnames(
-        "tabs__button-wrapper",
+        "tw-tabs__button-wrapper",
         isActive ? "-active" : "",
         back ? "-back" : ""
       )}
     >
       <button
         className={classnames(
-          "tabs__button",
+          "tw-tabs__button",
+          reverse ? "-reverse" : "",
           isActive ? "-active" : "",
           back ? "-back" : ""
         )}
@@ -30,14 +32,17 @@ export function ButtonTab({
           <i
             className={classnames(
               iconClass(undefined, icon),
-              "tabs__button-icon"
+              "tw-tabs__button-icon"
             )}
           />
         )}
-        <span className={"tabs__button-label"}>{children}</span>
+        <span className={"tw-tabs__button-label"}>{children}</span>
       </button>
       <div
-        className={classnames("tabs__button-border", isActive ? "-active" : "")}
+        className={classnames(
+          "tw-tabs__button-border",
+          isActive ? "-active" : ""
+        )}
       />
     </div>
   );
@@ -49,10 +54,14 @@ export interface TabsItemProps extends Record<string, any> {
 }
 
 export interface TabsProps extends Record<string, any> {
+  headerChildren?: any;
+  AddButton?: any;
   current?: TabsItemProps;
   items?: TabsItemProps[];
   style?: any;
   className?: string;
+  reverse?: boolean;
+  Button?: any;
   onClick?: (item: TabsItemProps) => void;
   i18n?: (f: string) => string;
 }
@@ -62,37 +71,47 @@ export function Tabs({
   current,
   items = [],
   children,
+  HeaderChildren,
+  AddButton,
+  Button = ButtonTab,
   className,
   onClick,
-  i18n = noop as any
+  i18n = noop as any,
+  ...additionalProps
 }: PropsWithChildren<TabsProps>) {
   return (
-    <div className={`tabs ${className}`} style={style}>
-      <nav className='tabs__header'>
-        <div className='tabs__header-wrapper'>
-          <div className='tabs__header-border' />
-          {items
-            .filter((item) => item.label || item.icon)
-            .map((item, index) => {
-              return (
-                <ButtonTab
-                  key={index}
-                  back={item.back}
-                  isActive={current?.action === item.action}
-                  exact={item.exact}
-                  onClick={() => {
-                    onClick && onClick(item);
-                  }}
-                  reverseBg={true}
-                  {...item}
-                >
-                  {i18n(item.label)}
-                </ButtonTab>
-              );
-            })}
-        </div>
-      </nav>
-      <div className={"tabs__body"}>{children}</div>
+    <div className={`tw-tabs ${className}`} style={style}>
+      <div>
+        <nav className='tw-tabs__header'>
+          <div className='tw-tabs__header-wrapper'>
+            <div className='tw-tabs__header-border' />
+            {items
+              .filter((item) => item.label || item.icon)
+              .map((item, index) => {
+                return (
+                  <Button
+                    key={index}
+                    back={item.back}
+                    isActive={current?.action === item.action}
+                    exact={item.exact}
+                    onClick={() => {
+                      onClick && onClick(item);
+                    }}
+                    {...additionalProps}
+                    {...item}
+                  >
+                    {i18n(item.label)}
+                  </Button>
+                );
+              })}
+            {AddButton && <AddButton {...additionalProps} current={current} />}
+          </div>
+        </nav>
+        {HeaderChildren && (
+          <HeaderChildren {...additionalProps} current={current} />
+        )}
+      </div>
+      <div className={"tw-tabs__body"}>{children}</div>
     </div>
   );
 }

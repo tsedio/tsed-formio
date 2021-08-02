@@ -1,13 +1,14 @@
-const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
 
 module.exports = {
-  entry: path.join(path.resolve(__dirname, 'lib'), 'index.js'),
+  entry: path.join(path.resolve(__dirname, "lib"), "index.js"),
   output: {
-    library: 'tailwind',
-    libraryTarget: 'umd',
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'tailwind.js',
+    library: "tailwind",
+    libraryTarget: "umd",
+    path: path.resolve(__dirname, "dist"),
+    filename: "tailwind.js"
   },
-  mode: 'production',
-  performance: { hints: false },
+  mode: "production",
+  performance: { hints: false }
 };

@@ -27,6 +27,7 @@
         @apply relative group inline-flex flex-col items-stretch overflow-hidden text-xs transition-colors;
         @apply bg-transparent border-transparent text-gray-darker;
         @apply cursor-pointer border-1 border-solid rounded-none border-b-0 relative;
+        @apply px-3 py-2;
       }
 
       &-border {
@@ -34,7 +35,8 @@
       }
     }
   }
-  .card-body{
+
+  .card-body {
     @apply p-3;
   }
 }

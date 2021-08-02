@@ -1,4 +1,4 @@
-.tabs {
+.tw-tabs {
   &__header {
     @apply overflow-auto;
 
@@ -43,6 +43,13 @@
 
     &.-active {
       @apply text-primary bg-white;
+    }
+
+    &.-reverse {
+      @apply bg-white;
+      &.-active {
+        @apply bg-gray-100;
+      }
     }
 
     &.-back {

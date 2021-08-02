@@ -83,3 +83,51 @@ Sandbox.args = {
     }
   ]
 };
+
+function AddButton({ onCreate }: any) {
+  return (
+    <div>
+      <div onClick={onCreate}>+</div>
+    </div>
+  );
+}
+
+function HeaderChildren() {
+  return (
+    <div className={"px-3 bg-gray-100 border-b-1 border-gray-light"}>test</div>
+  );
+}
+
+export const WithCloseable = (args: any) => {
+  args.value = args.value === undefined ? 0 : args.value;
+  const tabs = useTabs(args);
+
+  return (
+    <div className={"border-gray-300 border-1 shadow"}>
+      <Tabs
+        {...tabs}
+        i18n={(f) => f}
+        AddButton={AddButton}
+        HeaderChildren={HeaderChildren}
+      >
+        <div className={"p-5"}>{tabs?.current?.action}</div>
+      </Tabs>
+    </div>
+  );
+};
+
+WithCloseable.args = {
+  reverse: true,
+  items: [
+    {
+      exact: true,
+      action: 0,
+      label: "Test (0)"
+    },
+    {
+      exact: true,
+      action: 1,
+      label: "Test (1)"
+    }
+  ]
+};
