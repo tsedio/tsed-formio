@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import noop from "lodash/noop";
 import React, { PropsWithChildren } from "react";
 import { iconClass } from "../../utils/iconClass";
 
@@ -10,6 +9,7 @@ export function ButtonTab({
   isActive,
   reverse,
   children,
+  className,
   after
 }: PropsWithChildren<any>) {
   return (
@@ -17,7 +17,8 @@ export function ButtonTab({
       className={classnames(
         "tw-tabs__button-wrapper",
         isActive ? "-active" : "",
-        back ? "-back" : ""
+        back ? "-back" : "",
+        className
       )}
     >
       <button
@@ -78,7 +79,7 @@ export function Tabs({
   Button = ButtonTab,
   className,
   onClick,
-  i18n = noop as any,
+  i18n = (f) => f,
   ...additionalProps
 }: PropsWithChildren<TabsProps>) {
   return (
