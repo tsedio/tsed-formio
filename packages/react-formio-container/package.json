@@ -1,6 +1,6 @@
 {
   "name": "@tsed/react-formio-container",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
@@ -34,7 +34,7 @@
     "tooltip.js": "^1.3.3"
   },
   "devDependencies": {
-    "@tsed/react-formio": "1.9.4",
+    "@tsed/react-formio": "1.9.5",
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.5"
   },
