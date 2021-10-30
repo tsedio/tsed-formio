@@ -41,7 +41,25 @@ npm-compatible packaging system such as [Browserify](http://browserify.org/) or
 
 ```bash
 npm install @tsed/react-formio react-table --save
-npm install formiojs --save // Install formiojs since it is a peerDependency
+npm install formiojs choices.js --save // Install formiojs since it is a peerDependency
+```
+
+## Usage
+
+```typescript
+import React from "react";
+import {FormBuilder} from "@tsed/react-formio";
+
+function App() {
+  return (
+    <div className="App">
+      <FormBuilder display={'form'} components={[]} />
+    </div>
+  );
+}
+
+export default App;
+
 ```
 
 ## Components
