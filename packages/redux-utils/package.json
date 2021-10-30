@@ -1,6 +1,6 @@
 {
   "name": "@tsed/redux-utils",
-  "version": "1.9.5",
+  "version": "1.9.6",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
@@ -16,7 +16,7 @@
     "prettier": "prettier '{src,test}/**/*.{ts,tsx}' --write"
   },
   "devDependencies": {
-    "@tsed/config": "1.9.5"
+    "@tsed/config": "1.9.6"
   },
   "peerDependencies": {
     "react": "^16.14.0",
