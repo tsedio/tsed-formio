@@ -51,7 +51,7 @@ a .badge.bg-secondary, .badge-hover.bg-secondary {
 }
 
 .badge.bg-success {
-  @apply text-white bg-green border-green;
+  @apply text-white bg-green-600 border-green-600;
 }
 
 a .badge.bg-success, .badge-hover.bg-success {
@@ -61,7 +61,7 @@ a .badge.bg-success, .badge-hover.bg-success {
 }
 
 .badge.bg-danger {
-  @apply text-white bg-red border-red;
+  @apply text-white bg-red-600 border-red-600;
 }
 
 a .badge.bg-danger, .badge-hover.bg-danger {
@@ -71,7 +71,7 @@ a .badge.bg-danger, .badge-hover.bg-danger {
 }
 
 .badge.bg-warning {
-  @apply text-white bg-yellow border-yellow;
+  @apply text-white bg-yellow-600 border-yellow-600;
 }
 
 a .badge.bg-warning, .badge-hover.bg-warning {
@@ -81,7 +81,7 @@ a .badge.bg-warning, .badge-hover.bg-warning {
 }
 
 .badge.bg-info {
-  @apply text-white bg-blue border-blue;
+  @apply text-white bg-blue-600 border-blue-600;
 }
 
 a .badge.bg-info, .badge-hover.bg-info {
@@ -101,7 +101,7 @@ a .badge.bg-light, .badge-hover.bg-light {
 }
 
 .badge.bg-dark {
-  @apply text-white bg-gray border-gray;
+  @apply text-white bg-gray-600 border-gray-600;
 }
 
 a .badge.bg-dark, .badge-hover.bg-dark {

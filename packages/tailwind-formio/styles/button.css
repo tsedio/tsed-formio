@@ -71,7 +71,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-success {
-  @apply text-white bg-green border-green;
+  @apply text-white bg-green-600 border-green-600;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-green-500 focus:bg-green-500 hover:border-green-500 focus:border-green-500 focus:text-white;
@@ -79,7 +79,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-danger {
-  @apply text-white bg-red border-red;
+  @apply text-white bg-red-600 border-red-600;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-red-500 focus:bg-red-500 hover:border-red-500 focus:border-red-500 focus:text-white;
@@ -87,7 +87,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-warning {
-  @apply text-white bg-yellow border-yellow;
+  @apply text-white bg-yellow-600 border-yellow-600;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-yellow-500 focus:bg-yellow-500 hover:border-yellow-500 focus:border-yellow-500 focus:text-white;
@@ -95,7 +95,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-info {
-  @apply text-white bg-blue border-blue;
+  @apply text-white bg-blue-600 border-blue-600;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-blue-500 focus:bg-blue-500 hover:border-blue-500 focus:border-blue-500 focus:text-white;
@@ -111,7 +111,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-dark {
-  @apply text-white bg-gray border-gray;
+  @apply text-white bg-gray-600 border-gray-600;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-gray-500 focus:bg-gray-500 hover:border-gray-500 focus:border-gray-500 focus:text-white;
@@ -135,34 +135,34 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-success {
-  @apply text-green bg-transparent border-green;
+  @apply text-green-600 bg-transparent border-green-600;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-green focus:bg-green hover:border-green focus:border-green focus:text-white;
+    @apply hover:text-white hover:bg-green-600 focus:bg-green-600 hover:border-green-600 focus:border-green-600 focus:text-white;
   }
 }
 
 .btn.btn-outline-danger {
-  @apply text-red bg-transparent border-red;
+  @apply text-red-600 bg-transparent border-red-600;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-red focus:bg-red hover:border-red focus:border-red focus:text-white;
+    @apply hover:text-white hover:bg-red-600 focus:bg-red-600 hover:border-red-600 focus:border-red-600 focus:text-white;
   }
 }
 
 .btn.btn-outline-warning {
-  @apply text-yellow bg-transparent border-yellow;
+  @apply text-yellow-600 bg-transparent border-yellow-600;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-yellow focus:bg-yellow hover:border-yellow focus:border-yellow focus:text-white;
+    @apply hover:text-white hover:bg-yellow-600 focus:bg-yellow-600 hover:border-yellow-600 focus:border-yellow-600 focus:text-white;
   }
 }
 
 .btn.btn-outline-info {
-  @apply text-blue bg-transparent border-blue;
+  @apply text-blue-600 bg-transparent border-blue-600;
 
   &:not(:disabled):not(.disabled) {
-    @apply hover:text-white hover:bg-blue focus:bg-blue hover:border-blue focus:border-blue focus:text-white;
+    @apply hover:text-white hover:bg-blue-600 focus:bg-blue-600 hover:border-blue-600 focus:border-blue-600 focus:text-white;
   }
 }
 
@@ -175,7 +175,7 @@ fieldset:disabled a.btn {
 }
 
 .btn.btn-outline-dark {
-  @apply text-gray bg-transparent border-gray;
+  @apply text-gray-600 bg-transparent border-gray-600;
 
   &:not(:disabled):not(.disabled) {
     @apply hover:text-white hover:bg-gray-800 focus:bg-gray-800 hover:border-gray-800 focus:border-gray-800 focus:text-white;
