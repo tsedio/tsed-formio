@@ -2,23 +2,54 @@
  <a href="https://tsed.io" target="_blank"><img src="https://tsed.io/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
 </p>
 
-[![Build & Release](https://github.com/TypedProject/tsed/workflows/Build%20&%20Release/badge.svg)](https://github.com/TypedProject/tsed-formio/actions?query=workflow%3A%22Build+%26+Release%22)
+<div align="center">
+
+   <h1>Ts.ED Formio</h1>
+
+[![Build & Release](https://github.com/tsedio/tsed-formio/actions/workflows/build.yml/badge.svg)](https://github.com/tsedio/tsed-formio/actions/workflows/build.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![backers](https://opencollective.com/tsed/tiers/badge.svg)](https://opencollective.com/tsed)
 
-Dedicated repository for Formio front-end releated packages.
+</div>
+
+<div align="center">
+  <a href="https://tsed.io/">Website</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://tsed.io/tutorials/prisma.html">Tutorial</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://api.tsed.io/rest/slack/tsedio/tsed">Slack</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://twitter.com/TsED_io">Twitter</a>
+</div>
+
+<hr />
+
+Dedicated repository for Formio front-end related packages.
 
 ## Features
 
-* Provide an alternative of react-formio (@tsed/react-formio) wrapper with some improvment.
+* Provide an alternative of react-formio (@tsed/react-formio) wrapper with some improvement.
 * Provide a @tsed/tailwind-formio package to support tailwind CSS framework with formio.
 * Provide a lightweight redux utils packages.
 * Provide a storybook
 
 ## Documentation
 
-Documentation is available on [https://tsed.io](https://formio.tsed.io).
+Documentation is available on [https://formio.tsed.io](https://formio.tsed.io).
+
+## Projects examples
+
+- Small starter kit with just the form-builder: https://github.com/tsedio/tsed-formio-react-app
+- Ts.ED API backoffice: https://github.com/tsedio/tsed-api
+- A basic backoffice: https://github.com/tsedio/tsed-formio
+
+## Packages
+
+- [@tsedio/react-formio](./packages/react-formio/readme.md)
+- [@tsedio/react-formio-container](./packages/react-formio-container/readme.md)
+- [@tsedio/redux-utils](./packages/redux-utils/readme.md)
+- [@tsedio/tailwind-formio](./packages/tailwind-formio/readme.md)
 
 ## Getting started
 
