@@ -305,7 +305,7 @@
 
 
 .choices__heading {
-  @apply font-semibold p-2.5 border-solid border-gray-200 text-gray;
+  @apply font-semibold p-2.5 border-solid border-gray-200 text-gray-600;
   font-size: inherit;
 }
 
