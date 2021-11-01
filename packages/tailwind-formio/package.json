@@ -10,7 +10,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-template": "^5.0.0",
     "nodemon": "2.0.7",
-    "webpack-cli": "4.5.0"
+    "webpack-cli": "4.9.1"
   },
   "scripts": {
     "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
