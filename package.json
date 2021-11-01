@@ -58,7 +58,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "@tsed/monorepo-utils": "1.15.1",
+    "@tsed/monorepo-utils": "1.17.8",
     "@types/ejs": "^3.0.5",
     "@types/jest": "^26.0.20",
     "@types/lodash": "4.14.168",
