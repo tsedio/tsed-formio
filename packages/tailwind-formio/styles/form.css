@@ -31,6 +31,7 @@
   }
 }
 
+
 .formio-modified:not(.has-error) {
 
   label {
@@ -139,6 +140,10 @@ textarea.form-control {
 
 .col-form-label {
   @apply flex items-center pt-1 pb-2 m-0;
+}
+
+.field-required:after {
+  @apply z-1 ml-1;
 }
 
 .formio-component hr,

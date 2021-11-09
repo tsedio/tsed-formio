@@ -30,8 +30,12 @@
     @apply bg-white;
   }
 
+  &__list--single {
+    display: flex;
+  }
+
   &__list--single .choices__item {
-    margin-bottom: -6px;
+    margin-bottom: 0;
   }
 
   &__item {

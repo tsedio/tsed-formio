@@ -52,7 +52,7 @@ export const useForm = (props: any): any => {
       });
 
       instance.current.ready.then((formio: any) => {
-        submission && (formio.submission = submission);
+        submission && (formio.submission = cloneDeep(submission));
 
         if (props.onFormReady) {
           props.onFormReady(formio);
@@ -68,7 +68,7 @@ export const useForm = (props: any): any => {
   useEffect(() => {
     if (instance.current) {
       instance.current.ready.then((formio: any) => {
-        submission && (formio.submission = submission);
+        submission && (formio.submission = cloneDeep(submission));
       });
     }
   }, [submission]);
