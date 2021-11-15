@@ -20,5 +20,6 @@ export * from "./react-component/reactComponent.component";
 export * from "./select/select.component";
 export * from "./submissions-table/submissionsTable.component";
 export * from "./table/table.component";
+
 export * from "./tabs/tabs.component";
 export * from "./loader/loader.component";
