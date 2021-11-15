@@ -174,9 +174,12 @@ export function Table<Data extends Record<string, unknown>>(
         pageSize: controlledPageSize || 10,
         sortBy: controlledSortBy || []
       } as any,
-      manualPagination: true,
-      manualSortBy: true,
-      manualFilters: true,
+      manualPagination:
+        props.manualPagination === undefined ? true : props.manualPagination,
+      manualSortBy:
+        props.manualSortBy === undefined ? true : props.manualPagination,
+      manualFilters:
+        props.manualFilters === undefined ? true : props.manualFilters,
       disableFilters,
       filterId,
       setFilterId
