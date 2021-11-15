@@ -119,7 +119,7 @@ function DefaultEmptyData() {
 
 const hooks = [useFilters, useGroupBy, useSortBy, usePagination];
 
-export function Table<Data extends Record<string, unknown>>(
+export function Table<Data extends object = any>(
   props: PropsWithChildren<TableProps<Data>>
 ) {
   const {
