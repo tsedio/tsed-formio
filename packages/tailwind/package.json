@@ -1,6 +1,6 @@
 {
   "name": "@tsed/tailwind",
-  "version": "1.9.9",
+  "version": "1.10.0",
   "main": "./tailwind.config.js",
   "description": "Tailwind configuration",
   "license": "MIT",
