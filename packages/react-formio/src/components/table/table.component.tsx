@@ -22,7 +22,7 @@ import {
 import { DefaultColumnFilter } from "./filters/defaultColumnFilter.component";
 import { useOperations } from "./utils/useOperations.hook";
 
-export interface TableProps<Data extends Record<string, unknown> = {}>
+export interface TableProps<Data extends object = any>
   extends TableOptions<Data>,
     Partial<QueryOptions> {
   className?: string;
@@ -82,6 +82,9 @@ export interface TableProps<Data extends Record<string, unknown> = {}>
    * Disable pagination
    */
   disablePagination?: boolean;
+  manualPagination?: boolean;
+  manualSortBy?: boolean;
+  manualFilters?: boolean;
   /**
    * Configuration operation for each line.
    */

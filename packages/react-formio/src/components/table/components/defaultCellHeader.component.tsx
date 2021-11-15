@@ -1,9 +1,8 @@
 import React from "react";
 import { HeaderGroup } from "react-table";
 
-export interface DefaultCellHeaderProps<
-  Data extends Record<string, unknown> = {}
-> extends Record<string, unknown> {
+export interface DefaultCellHeaderProps<Data extends object = any>
+  extends Record<string, unknown> {
   column: HeaderGroup<Data>;
 }
 
