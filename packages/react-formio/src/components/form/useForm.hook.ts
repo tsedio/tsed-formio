@@ -106,6 +106,15 @@ export const useForm = (props: any): any => {
     };
   }, []);
 
+  useEffect(() => {
+    props.onSubmit && events.current.set("onSubmit", props.onSubmit);
+  }, [props.onSubmit, events]);
+
+  useEffect(() => {
+    props.onSubmitDone &&
+      events.current.set("onSubmitDone", props.onSubmitDone);
+  }, [props.onSubmitDone, events]);
+
   return {
     element
   };
