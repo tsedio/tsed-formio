@@ -96,13 +96,15 @@ export const useForm = (props: any): any => {
   }, [src]);
 
   useEffect(() => {
-    props.onSubmit && events.current.set("onSubmit", props.onSubmit);
-  }, [props.onSubmit, events]);
+    if (form) {
+      createWebForm(form, options);
+    }
 
-  useEffect(() => {
-    props.onSubmitDone &&
-      events.current.set("onSubmitDone", props.onSubmitDone);
-  }, [props.onSubmitDone, events]);
+    return () => {
+      isLoaded.current = false;
+      instance.current && instance.current.destroy(true);
+    };
+  }, []);
 
   return {
     element
