@@ -42,11 +42,15 @@ export const useForm = (props: any): any => {
             props.hasOwnProperty(funcName) &&
             typeof funcs[funcName] === "function"
           ) {
-            if (!events.current.has(funcName)) {
-              const fn = callLast(funcs[funcName], 100);
-              events.current.set(funcName, fn);
+            if (["onSubmit", "onSubmitDone"].includes(funcName)) {
+              funcs[funcName](...args);
+            } else {
+              if (!events.current.has(funcName)) {
+                const fn = callLast(funcs[funcName], 100);
+                events.current.set(funcName, fn);
+              }
+              events.current.get(funcName)(...args);
             }
-            events.current.get(funcName)(...args);
           }
         }
       });
@@ -61,6 +65,8 @@ export const useForm = (props: any): any => {
         isLoaded.current = true;
       });
     }
+
+    useEffect(() => {}, []);
 
     return instance.current;
   };
@@ -94,17 +100,6 @@ export const useForm = (props: any): any => {
       createWebForm(src, options);
     }
   }, [src]);
-
-  useEffect(() => {
-    if (form) {
-      createWebForm(form, options);
-    }
-
-    return () => {
-      isLoaded.current = false;
-      instance.current && instance.current.destroy(true);
-    };
-  }, []);
 
   return {
     element
