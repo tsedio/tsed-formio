@@ -42,15 +42,11 @@ export const useForm = (props: any): any => {
             props.hasOwnProperty(funcName) &&
             typeof funcs[funcName] === "function"
           ) {
-            if (["onSubmit", "onSubmitDone"].includes(funcName)) {
-              funcs[funcName](...args);
-            } else {
-              if (!events.current.has(funcName)) {
-                const fn = callLast(funcs[funcName], 100);
-                events.current.set(funcName, fn);
-              }
-              events.current.get(funcName)(...args);
+            if (!events.current.has(funcName)) {
+              const fn = callLast(funcs[funcName], 100);
+              events.current.set(funcName, fn);
             }
+            events.current.get(funcName)(...args);
           }
         }
       });
@@ -66,7 +62,13 @@ export const useForm = (props: any): any => {
       });
     }
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+      props.onSubmit && events.current.set("onSubmit", props.onSubmit);
+    }, [props.onSubmit, events]);
+
+    useEffect(() => {
+      props.onSubmitDone && events.current.set("onSubmitDone", props.onSubmit);
+    }, [props.onSubmitDone, events]);
 
     return instance.current;
   };
