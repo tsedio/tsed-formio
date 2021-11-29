@@ -4804,19 +4804,10 @@
     read-package-json "2.1.1"
     semver "7.3.2"
 
-"@tsed/yarn-workspaces@1.14.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@tsed/yarn-workspaces/-/yarn-workspaces-1.14.0.tgz#9e2fbdcd321404c4ed6aca3da397e5a0cf712d24"
-  integrity sha512-nEA6hmsb3BVO6OicvJ3Z6UNNxlH4X9uXIA52OksWIxHy0OlsMJGhxxCHdiIgfVeAbTL87XSfk9JEQkSd1hAiKw==
-  dependencies:
-    find-up "5.0.0"
-    fs-extra "9.1.0"
-    glob "7.1.6"
-
-"@tsed/yarn-workspaces@1.15.1":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@tsed/yarn-workspaces/-/yarn-workspaces-1.15.1.tgz#64a3f87ade30239c3c9f928725d53e6415e69530"
-  integrity sha512-XoSDiRL3MIED4698sXOCJWBrGmXnwWtLTx3TcEDMSgrY8TD5jTxHa74OTPU9NlUut6VQD3DEHe8JZjwQ4jM0Sw==
+"@tsed/yarn-workspaces@1.19.3":
+  version "1.19.3"
+  resolved "https://registry.yarnpkg.com/@tsed/yarn-workspaces/-/yarn-workspaces-1.19.3.tgz#3bee319e4eb0aee7b0d14eebb81f2331cc188e0d"
+  integrity sha512-u+WzEPN+G1t00Gwe7qEGFA9he3PF9lNPPTrKiD2qB4SUwoY2NNJ60c3x//6fUQNBdRduNmkCbebWfqlT1g9img==
   dependencies:
     find-up "5.0.0"
     fs-extra "9.1.0"

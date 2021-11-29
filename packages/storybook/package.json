@@ -22,7 +22,7 @@
     "@svgr/webpack": "5.5.0",
     "@tsed/config": "1.10.7",
     "@tsed/tailwind": "1.10.7",
-    "@tsed/yarn-workspaces": "1.14.0",
+    "@tsed/yarn-workspaces": "1.19.3",
     "babel-loader": "8.2.2",
     "cross-env": "7.0.3",
     "react-svg": "10.0.23",

@@ -1,9 +1,9 @@
+import React from "react";
 import { Components, ExtendedComponentSchema } from "formiojs";
 import FormioUtils from "formiojs/utils";
-import React from "react";
 import { Column } from "react-table";
 import { FormSchema } from "../../../interfaces";
-import { Cell } from "../components/cell.component";
+import { DefaultCell } from "../components/defaultCell.component";
 import { SelectColumnFilter } from "../filters/selectColumnFilter.component";
 
 export function mapFormToColumns(form: FormSchema): Column[] {
@@ -19,7 +19,10 @@ export function mapFormToColumns(form: FormSchema): Column[] {
           Header: component.label || component.title || component.key,
           accessor: `data.${component.key}`,
           Cell: (props: any) => (
-            <Cell {...props} render={(value: any) => cmp.asString(value)} />
+            <DefaultCell
+              {...props}
+              render={(value: any) => cmp.asString(value)}
+            />
           )
         };
 

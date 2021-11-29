@@ -14,6 +14,10 @@ const scanDirs = (dir) => [
 ]
 
 module.exports = {
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials'
+  ],
   stories: [
     join(rootDir, '**/*.stories.mdx'),
     join(rootDir, '**/*.stories.@(js|jsx|ts|tsx)'),
@@ -21,16 +25,18 @@ module.exports = {
     ...scanDirs(join(formioContainerDir, '..', 'src')),
     ...scanDirs(join(tailwindDir, '..', 'src', 'templates'))
   ],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-  ],
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
+    }
+  },
   webpackFinal: (config) => {
     const rules = config.module.rules
 
-    // const svgLoaderRule = rules.find((rule) => rule.test.test(".svg"));
-    // svgLoaderRule.exclude = pathToInlineSvg;
-    //
     rules.forEach((rule) => {
       if (rule.test.test('.css')) {
         rule.use[2] = {
@@ -48,13 +54,6 @@ module.exports = {
       }
     })
 
-    // rules.unshift({
-    //   test: /\.svg$/,
-    //   exclude: [`${pathToFonts}/**`],
-    //   use: [require.resolve("@svgr/webpack"), require.resolve("url-loader")]
-    // });
-
     return config
   }
 }
-

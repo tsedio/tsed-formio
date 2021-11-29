@@ -1,6 +1,6 @@
 export * from "./utils/useOperations.hook";
-export * from "./components/cell.component";
 export * from "./components/defaultArrowSort.component";
+export * from "./components/defaultCell.component";
 export * from "./components/defaultCellHeader.component";
 export * from "./components/defaultCellHeader.component";
 export * from "./components/defaultCellOperations.component";

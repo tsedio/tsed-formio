@@ -1,6 +1,9 @@
 import React from "react";
 
-export function Cell({ value, render = (f: any) => f }: any): JSX.Element {
+export function DefaultCell({
+  value,
+  render = (f: any) => f
+}: any): JSX.Element {
   if (value === undefined) {
     return <></>;
   }
