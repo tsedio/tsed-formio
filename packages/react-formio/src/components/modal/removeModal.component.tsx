@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import noop from "lodash/noop";
-import React, { useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import { iconClass } from "../../utils/iconClass";
 import { InputText } from "../input-text/inputText.component";
 import { Modal, ModalProps } from "./modal.component";
@@ -42,22 +42,29 @@ export interface RemoveModalProps extends ModalProps {
   valueToCompare: string;
   itemType?: string;
   i18n?: (f: string) => string;
+  maxWidth?: string;
 }
 
-export function RemoveModal(props: RemoveModalProps) {
+export function RemoveModal({
+  maxWidth = "300px",
+  children,
+  ...props
+}: PropsWithChildren<RemoveModalProps>) {
   const { i18n = noop } = props;
   const [value, setValue] = useState();
 
   return (
     <Modal
       {...props}
-      style={{ maxWidth: "300px" }}
+      className={classnames(props.className, "formio-dialog-theme-remove")}
+      style={{ maxWidth }}
       title={`Drop ${props.itemType?.toLowerCase()}`}
       value={value}
       footer={RemoveModalFooter}
     >
       <div className={"px-4 pt-3 pb-5"}>
         <div className={"pb-1"}>
+          {children}
           {i18n("To drop")} <strong>{props.valueToCompare}</strong>,&nbsp;
           {i18n("type the")}&nbsp;
           <strong>&quot;{props.itemType?.toLowerCase()}&quot;</strong>&nbsp;
