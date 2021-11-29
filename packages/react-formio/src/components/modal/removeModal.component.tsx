@@ -10,7 +10,7 @@ function RemoveModalFooter({
   valueToCompare,
   onSubmit,
   onClose,
-  i18n = noop
+  i18n = (f: string) => f
 }: ModalProps) {
   return (
     <div className={"flex items-center justify-center bg-white p-2"}>
