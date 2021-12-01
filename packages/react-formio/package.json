@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@tsed/tailwind": "1.10.9",
-    "@tsed/tailwind-formio": "1.10.9"
+    "@tsed/tailwind-formio": "1.10.9",
+    "eslint-plugin-jsx-a11y": "^6.5.1"
   }
 }

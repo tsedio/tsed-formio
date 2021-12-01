@@ -26,11 +26,7 @@ export const Sandbox = (args: ModalProps) => {
   return (
     <div>
       <div>
-        <button
-          role={"openModal"}
-          className={"btn btn-primary"}
-          onClick={modal.openModal}
-        >
+        <button className={"btn btn-primary"} onClick={modal.openModal}>
           Open modal
         </button>
       </div>
@@ -51,11 +47,7 @@ export const WithTitle = (args: ModalProps) => {
   return (
     <div>
       <div>
-        <button
-          role={"openModal"}
-          className={"btn btn-primary"}
-          onClick={modal.openModal}
-        >
+        <button className={"btn btn-primary"} onClick={modal.openModal}>
           Open modal
         </button>
       </div>
@@ -103,11 +95,7 @@ export const WithFooter = (args: ModalProps) => {
   return (
     <div>
       <div>
-        <button
-          className={"btn btn-primary"}
-          role={"openModal"}
-          onClick={modal.openModal}
-        >
+        <button className={"btn btn-primary"} onClick={modal.openModal}>
           Open modal
         </button>
       </div>
@@ -185,12 +173,8 @@ export const WithRemoveModal = (args: RemoveModalProps) => {
   return (
     <div>
       <div>
-        <button
-          className={"btn btn-primary"}
-          role={"openModal"}
-          onClick={modal.openModal}
-        >
-          Open
+        <button className={"btn btn-primary"} onClick={modal.openModal}>
+          Open modal
         </button>
       </div>
       <RemoveModal

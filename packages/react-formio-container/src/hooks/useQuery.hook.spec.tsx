@@ -7,8 +7,7 @@ function FixtureQuery(props: any) {
 
   return (
     <div>
-      <div
-        role={"button"}
+      <button
         onClick={() => {
           cb(props.changeParameters);
         }}

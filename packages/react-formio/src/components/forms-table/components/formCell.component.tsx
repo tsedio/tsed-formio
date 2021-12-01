@@ -32,7 +32,7 @@ export function FormsCell(
           </span>
 
           {(form.tags || []).map((tag, index) => (
-            <span
+            <button
               key={index}
               className='badge badge-hover bg-secondary mr-1'
               onClick={stopPropagationWrapper(() => {
@@ -42,7 +42,7 @@ export function FormsCell(
             >
               <i className={classnames(iconClass(undefined, "tags"), "mr-1")} />
               {tag}
-            </span>
+            </button>
           ))}
         </li>
       </ul>

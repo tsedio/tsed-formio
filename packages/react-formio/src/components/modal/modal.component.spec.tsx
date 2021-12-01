@@ -16,7 +16,7 @@ describe("Modal", () => {
       expect(queryByTestId("modalBody")).toBeFalsy();
       expect(queryByTestId("modalFooter")).toBeFalsy();
 
-      fireEvent.click(screen.getByRole("openModal"));
+      fireEvent.click(screen.getByRole("button", { name: "Open modal" }));
 
       await waitFor(() => getByTestId("modalTitle"));
 
@@ -45,7 +45,7 @@ describe("Modal", () => {
       expect(queryByTestId("modalBody")).toBeFalsy();
       expect(queryByTestId("modalFooter")).toBeFalsy();
 
-      fireEvent.click(getByRole("openModal"));
+      fireEvent.click(getByRole("button", { name: "Open modal" }));
 
       await waitFor(() => getByTestId("modalTitle"));
 
@@ -67,7 +67,7 @@ describe("Modal", () => {
         <WithFooter {...WithFooter.args} onSubmit={onSubmit} />
       );
 
-      fireEvent.click(getByRole("openModal"));
+      fireEvent.click(getByRole("button", { name: "Open modal" }));
 
       await waitFor(() => getByTestId("modalTitle"));
 

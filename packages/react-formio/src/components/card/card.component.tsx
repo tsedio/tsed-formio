@@ -14,11 +14,9 @@ export function Card({
   return (
     <div className={classnames("card", className)}>
       <div className={"card-header "}>
-        <h4 className={"card-title"} role={"card-heading"}>
-          {label}
-        </h4>
+        <h4 className={"card-title"}>{label}</h4>
       </div>
-      <div className={"card-body"} role={"card-body"}>
+      <div className={"card-body"} role={"article"}>
         {children}
       </div>
     </div>

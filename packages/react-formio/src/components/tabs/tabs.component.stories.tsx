@@ -87,7 +87,7 @@ Sandbox.args = {
 function AddButton({ onCreate }: any) {
   return (
     <div>
-      <div onClick={onCreate}>+</div>
+      <button onClick={onCreate}>+</button>
     </div>
   );
 }
