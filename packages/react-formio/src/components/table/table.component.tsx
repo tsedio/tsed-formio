@@ -215,10 +215,14 @@ export function Table<Data extends object = any>(
         /* style={{ marginBottom: disablePagination ? "-1px" : "0px" }} */
       >
         <thead>
-          {tableInstance.headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+          {tableInstance.headerGroups.map((headerGroup, i) => (
+            <tr
+              key={`tableInstance.headerGroups${i}`}
+              {...headerGroup.getHeaderGroupProps()}
+            >
               {headerGroup.headers.map((column) => (
                 <th
+                  key={`tableInstance.headers.column.${column.id}`}
                   /* className='text-left py-2 align-top' */
                   {...column.getHeaderProps()}
                 >
@@ -230,20 +234,27 @@ export function Table<Data extends object = any>(
         </thead>
         {!isLoading ? (
           <tbody {...tableInstance.getTableBodyProps()}>
-            {tableInstance.page.map((row, i) => {
+            {tableInstance.page.map((row) => {
               tableInstance.prepareRow(row);
               return (
                 <tr
+                  key={`tableInstance.page.${row.id}`}
                   onClick={() => _onClick(row.original, "row")}
                   {...row.getRowProps()}
                 >
-                  {row.cells.map((cell) => {
+                  {row.cells.map((cell, i) => {
                     const { hidden, colspan } = cell.column as any;
                     if (hidden) {
                       return null;
                     }
                     return (
-                      <td colSpan={colspan} {...cell.getCellProps()}>
+                      <td
+                        key={`tableInstance.page.cells.${
+                          cell.value || "value"
+                        }.${i}`}
+                        colSpan={colspan}
+                        {...cell.getCellProps()}
+                      >
                         {cell.render("Cell")}
                       </td>
                     );

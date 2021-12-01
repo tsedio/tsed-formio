@@ -7,7 +7,8 @@
     "prettier/react",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
   ],
   "env": {
     "node": true,
@@ -31,7 +32,9 @@
     "react/prop-types": 0,
     "react/jsx-handler-names": 0,
     "react/jsx-fragments": 0,
+    "react/no-unescaped-entities": 0,
     "react/no-unused-prop-types": 0,
+    "react/display-name": 1,
     "no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
