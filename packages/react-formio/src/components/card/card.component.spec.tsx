@@ -6,8 +6,8 @@ describe("Card", () => {
   it("should render the card component", () => {
     const { getByRole } = render(<Sandbox {...Sandbox.args} />);
 
-    const title = getByRole("card-heading");
-    const body = getByRole("card-body");
+    const title = getByRole("heading");
+    const body = getByRole("article");
 
     expect(title).toHaveTextContent("label");
     expect(body).toHaveTextContent("test");

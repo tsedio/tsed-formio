@@ -36,6 +36,7 @@
   "devDependencies": {
     "@tsed/react-formio": "1.10.9",
     "@types/file-saver": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
     "file-saver": "^2.0.5"
   },
   "dependencies": {}

@@ -14,6 +14,7 @@ module.exports = {
   },
   jest: {
     configure: {
+      rootDir: "./",
       globals: {
         CONFIG: true,
       },

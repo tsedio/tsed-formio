@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
 import noop from "lodash";
 
@@ -61,7 +63,10 @@ export function Modal({
   }
 
   return (
-    <div className={`formio-dialog formio-dialog-theme-default ${className}`}>
+    <div
+      role={"dialog"}
+      className={`formio-dialog formio-dialog-theme-default ${className}`}
+    >
       <div className='formio-dialog-overlay' onClick={onClickClose} />
       <div style={style} className={"formio-dialog-content"}>
         <div className={"formio-dialog-wrapper"}>

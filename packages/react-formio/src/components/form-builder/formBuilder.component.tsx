@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { ComponentSchema } from "formiojs";
 import AllComponents from "formiojs/components";
 import Components from "formiojs/components/Components";

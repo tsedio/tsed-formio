@@ -30,7 +30,7 @@ export function DefaultOperationButton(props: OperationButtonProps) {
   } = props;
 
   return (
-    <span
+    <button
       className={classnames(
         className,
         ["btn", buttonOutline && "outline", buttonType]
@@ -48,6 +48,6 @@ export function DefaultOperationButton(props: OperationButtonProps) {
       {title && (
         <span className={icon && title ? "ml-1" : ""}>{i18n(title)}</span>
       )}
-    </span>
+    </button>
   );
 }
