@@ -1,6 +1,6 @@
 {
   "name": "@tsed/config",
-  "version": "1.10.9",
+  "version": "1.10.10",
   "main": "src/index.js",
   "main:src": "src/index.js",
   "description": "Shared configuration",
@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {},
   "devDependencies": {
-    "@tsed/tailwind": "1.10.9",
+    "@tsed/tailwind": "1.10.10",
     "@tsed/yarn-workspaces": "1.19.3",
     "postcss-nested": "4.2.3"
   },
