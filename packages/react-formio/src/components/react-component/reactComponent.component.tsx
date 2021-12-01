@@ -106,6 +106,7 @@ export class ReactComponent<Data = any> extends Components.components.field {
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   attachReact(element?: any) {
+    // eslint-disable-next-line react/no-render-return-value
     return ReactDOM.render(this.renderReact(), element);
   }
 
