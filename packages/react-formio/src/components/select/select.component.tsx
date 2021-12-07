@@ -71,7 +71,7 @@ export function Select<T = any>({
       <select
         ref={ref}
         {...props}
-        data-testid={"select"}
+        data-testid={`select_${name}`}
         className={classnames("form-control", size && `form-control-${size}`)}
         name={name}
         id={name}

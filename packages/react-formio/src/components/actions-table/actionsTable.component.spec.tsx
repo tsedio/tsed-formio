@@ -8,32 +8,30 @@ describe("ActionsTable", () => {
   it("should render the table actions", async () => {
     const onAddAction = jest.fn();
 
-    const { getByTestId, getAllByRole } = render(
+    const { getByRole, getAllByRole } = render(
       <Sandbox {...Sandbox.args} onAddAction={onAddAction} />
     );
 
-    const btn = getByTestId("submit");
+    const btn = getByRole("button", { name: /add action/i });
     const cells = getAllByRole("cell");
-    const select = getByTestId("select");
+    const options = getAllByRole("option");
 
-    expect(btn).toHaveAttribute("disabled");
-    expect(btn).toHaveTextContent("Add action");
-    expect(cells[0]).toHaveTextContent("Save Submission");
-    expect(select.children.length).toEqual(
-      Sandbox.args.availableActions.length + 1
-    );
+    expect(btn).toHaveProperty("disabled");
+    expect(btn.innerHTML).toMatch("Add action");
+    expect(cells[0].innerHTML).toMatch("Save Submission");
+    expect(options.length).toEqual(Sandbox.args.availableActions.length + 1);
 
-    expect(select.children[0]).toHaveTextContent("Select an action");
-    expect(select.children[1]).toHaveTextContent("Email");
+    expect(options[0].innerHTML).toMatch("Select an action");
+    expect(options[1].innerHTML).toMatch("Email");
   });
   it("should not call addAction when the default item is selected", async () => {
     const onAddAction = jest.fn();
 
-    const { getByTestId } = render(
+    const { getByRole } = render(
       <Sandbox {...Sandbox.args} onAddAction={onAddAction} />
     );
 
-    const btn = getByTestId("submit");
+    const btn = getByRole("button", { name: /add action/i });
 
     await fireEvent.click(btn);
     expect(onAddAction).not.toHaveBeenCalled();
@@ -41,12 +39,12 @@ describe("ActionsTable", () => {
   it("should call addAction with the selected action", async () => {
     const onAddAction = jest.fn();
 
-    const { getByTestId } = render(
+    const { getByRole } = render(
       <Sandbox {...Sandbox.args} onAddAction={onAddAction} />
     );
 
-    const btn = getByTestId("submit");
-    const select = getByTestId("select");
+    const btn = getByRole("button", { name: /add action/i });
+    const select = getByRole("combobox");
 
     await userEvent.selectOptions(
       select,
@@ -55,7 +53,7 @@ describe("ActionsTable", () => {
 
     await fireEvent.click(btn);
 
-    expect(btn).not.toHaveAttribute("disabled");
+    expect(btn).not.toHaveProperty("disabled", true);
     expect(onAddAction).toHaveBeenCalledWith("webhook");
   });
 });

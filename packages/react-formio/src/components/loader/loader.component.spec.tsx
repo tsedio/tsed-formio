@@ -6,7 +6,7 @@ describe("Loader", () => {
   it("should render a component (with isActive = true)", () => {
     const { getByTestId } = render(<Loader isActive={true} />);
 
-    const icon = getByTestId("icon");
+    const icon = getByTestId("icon_radio-circle");
 
     expect(icon).toBeTruthy();
   });
@@ -14,7 +14,7 @@ describe("Loader", () => {
   it("should render a component (with isActive = false)", () => {
     const { queryByTestId } = render(<Loader isActive={false} />);
 
-    const icon = queryByTestId("icon");
+    const icon = queryByTestId("icon_radio-circle");
 
     expect(icon).toBeFalsy();
   });
