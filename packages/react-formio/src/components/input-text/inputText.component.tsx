@@ -56,7 +56,7 @@ export function InputText<T = any>({
       <input
         type={type || "text"}
         {...props}
-        data-testid={"input"}
+        data-testid={`input_${name}`}
         className={classnames("form-control", size && `form-control-${size}`)}
         id={name}
         required={required}

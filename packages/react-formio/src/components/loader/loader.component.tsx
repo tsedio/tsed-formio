@@ -25,7 +25,7 @@ export function Loader({
         )}
       >
         <span
-          data-testid={"icon"}
+          data-testid={`icon_${icon}`}
           color={color}
           className={`text-11xl ${iconClass(undefined, icon, true)}`}
         />

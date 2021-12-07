@@ -84,6 +84,7 @@ export function FormSettings(props: FormSettingsProps) {
         disabled={!isValid}
         className={"mt-5 btn btn-primary"}
         onClick={onSubmit}
+        type={"submit"}
       >
         {i18n("Save settings")}
       </button>

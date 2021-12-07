@@ -12,13 +12,13 @@ describe("DefaultColumnFilter", () => {
       column: { id: "id", filterValue: "", setFilter: jest.fn() }
     };
 
-    const { getByTestId } = render(
+    const { getByRole } = render(
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       <DefaultColumnFilter {...props} />
     );
 
-    const input = getByTestId("input");
+    const input = getByRole("textbox");
 
     await act(async () => {
       fireEvent.change(input, { target: { value: "value-test" } });

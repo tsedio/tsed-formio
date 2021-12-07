@@ -53,6 +53,7 @@ export function ActionsTable({
             disabled={currentAction === ""}
             className={"btn btn-success"}
             onClick={() => currentAction && onAddAction(currentAction)}
+            type={"submit"}
           >
             <i className={classnames(iconClass(undefined, "plus"), "mr-1")} />{" "}
             {i18n("Add action")}
