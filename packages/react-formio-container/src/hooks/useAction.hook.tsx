@@ -11,6 +11,7 @@ import {
   selectAuth,
   selectError,
   selectForm,
+  Submission,
   Utils
 } from "@tsed/react-formio";
 import { push } from "connected-react-router";
@@ -79,7 +80,7 @@ export function useAction(props: UseActionProps) {
   );
 
   const saveAction = useCallback(
-    (actionInfo: ActionSchema) => {
+    (actionInfo: Submission<ActionSchema>) => {
       dispatch(saveAct(form?._id, actionInfo, onSaveDone));
     },
     [form?._id, onSaveDone]

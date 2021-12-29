@@ -114,7 +114,7 @@ export function useForm(props: UseFormProps) {
   }, [formType, form._id, onRemoveDone]);
 
   const duplicateForm = useCallback(
-    (form: FormSchema) => {
+    (form: Partial<FormSchema>) => {
       dispatch(receiveForm(formType, { ...form, _id: undefined }));
       dispatch(push(`${basePath}/create`));
       onSuccess({
@@ -162,7 +162,7 @@ export function useForm(props: UseFormProps) {
   );
 
   const saveForm = useCallback(
-    (form: FormSchema) => {
+    (form: Partial<FormSchema>) => {
       onSubmitForm(type, form);
       dispatch(saveFormAction(type, form, onSaveDone));
     },

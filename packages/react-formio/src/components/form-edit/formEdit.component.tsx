@@ -1,20 +1,14 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { FormOptions, FormSchema } from "../../interfaces";
+import { FormOptions } from "../../interfaces/FormOptions";
 import { FormBuilder } from "../form-builder/formBuilder.component";
 import { FormEditCTAs } from "./formCtas.component";
 import { FormParameters } from "./formParameters.component";
-import { useForm } from "./useForm.hook";
+import { useFormEdit, UseFormEditHookProps } from "./useFormEdit.hook";
 
-export interface FormEditProps extends Record<string, unknown> {
-  form?: Partial<FormSchema>;
-  options?: FormOptions;
-  typeChoices?: { label: string; value: any }[];
-  displayChoices?: { label: string; value: any }[];
-  enableTags?: boolean;
-  onSubmit?: (form: FormSchema) => void;
-  onCopy?: (form: FormSchema) => void;
+export interface FormEditProps extends UseFormEditHookProps {
   builder?: any;
+  options?: FormOptions;
 }
 
 export function FormEdit(props: FormEditProps) {
@@ -30,7 +24,7 @@ export function FormEdit(props: FormEditProps) {
     reset,
     onSubmit,
     onCopy
-  } = useForm(props);
+  } = useFormEdit(props);
   const { options = {}, builder } = props;
 
   return (

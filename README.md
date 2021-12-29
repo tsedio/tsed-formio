@@ -29,10 +29,11 @@ Dedicated repository for Formio front-end related packages.
 
 ## Features
 
-* Provide an alternative of react-formio (@tsed/react-formio) wrapper with some improvement.
-* Provide a @tsed/tailwind-formio package to support tailwind CSS framework with formio.
+* Provide an alternative of react-formio ([@tsed/react-formio](./packages/react-formio/readme.md)) wrapper with some improvement.
+* Provide a better TypeScript support,
+* Provide a [@tsed/tailwind-formio](./packages/tailwind-formio/readme.md) package to support tailwind CSS framework with formio.
 * Provide a lightweight redux utils packages.
-* Provide a storybook
+* Provide a [storybook](https://formio.tsed.io)
 
 ## Documentation
 
@@ -46,15 +47,10 @@ Documentation is available on [https://formio.tsed.io](https://formio.tsed.io).
 
 ## Packages
 
-- [@tsedio/react-formio](./packages/react-formio/readme.md)
-- [@tsedio/react-formio-container](./packages/react-formio-container/readme.md)
-- [@tsedio/redux-utils](./packages/redux-utils/readme.md)
-- [@tsedio/tailwind-formio](./packages/tailwind-formio/readme.md)
-
-## Getting started
-
-See our [getting started here](https://tsed.io/getting-started) to create new Ts.ED project or use
-our [CLI](https://cli.tsed.io)
+- [@tsed/react-formio](./packages/react-formio/readme.md)
+- [@tsed/react-formio-container](./packages/react-formio-container/readme.md)
+- [@tsed/redux-utils](./packages/redux-utils/readme.md)
+- [@tsed/tailwind-formio](./packages/tailwind-formio/readme.md)
 
 ## Contributors
 Please read [contributing guidelines here](./CONTRIBUTING.md).

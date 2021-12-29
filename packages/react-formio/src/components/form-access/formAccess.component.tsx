@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";
-import { ChangedSubmission, Form } from "../form/form.component";
+import { Form } from "../form/form.component";
 import {
   AccessRoles,
   dataAccessToSubmissions,
@@ -20,6 +20,7 @@ import {
   submissionsToDataAccess,
   updateSubmissions
 } from "./formAccess.utils";
+import { ChangedSubmission } from "../form/useForm.hook";
 
 export interface FormAccessProps {
   form: Partial<FormSchema>;
