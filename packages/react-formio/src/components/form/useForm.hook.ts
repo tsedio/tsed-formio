@@ -1,15 +1,69 @@
-import FormioForm from "formiojs/Form";
+import { ExtendedComponentSchema, Form } from "formiojs";
 import { get } from "lodash";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import { useEffect, useRef } from "react";
 import { callLast } from "../../utils/callLast";
+import { FormOptions, FormSchema, Submission } from "../../interfaces";
 
-export const useForm = (props: any): any => {
+export interface ChangedSubmission<T = any> extends Submission<T> {
+  changed: any;
+  isValid: boolean;
+}
+
+export interface FormPageChangeProps<Data = any> {
+  page: number;
+  submission: Submission<Data>;
+}
+
+export interface UseFormHookProps<Data = any> extends Record<string, any> {
+  src?: string;
+  /**
+   * url to fetch form
+   */
+  url?: string;
+  /**
+   * Raw form object
+   */
+  form?: Partial<FormSchema>;
+  /**
+   * Configuration option
+   */
+  options?: FormOptions;
+  /**
+   * Data submission
+   */
+  submission?: Submission<Data>;
+  onPrevPage?: (obj: FormPageChangeProps<Data>) => void;
+  onNextPage?: (obj: FormPageChangeProps<Data>) => void;
+  onCancel?: Function;
+  onChange?: (submission: ChangedSubmission) => void;
+  onCustomEvent?: (obj: {
+    type: string;
+    event: string;
+    component: ExtendedComponentSchema;
+    data: any;
+  }) => void;
+  onComponentChange?: (component: ExtendedComponentSchema) => void;
+  onSubmit?: (submission: Submission<Data>) => void;
+  onSubmitDone?: (submission: Submission<Data>) => void;
+  onFormLoad?: Function;
+  onError?: (errors: any) => void;
+  onRender?: () => void;
+  onAttach?: Function;
+  onBuild?: Function;
+  onFocus?: Function;
+  onBlur?: Function;
+  onInitialized?: Function;
+  onFormReady?: (formio: Form) => void;
+  formioform?: any;
+}
+
+export function useForm<Data = any>(props: UseFormHookProps<Data>) {
   const { src, form, options = {}, submission, url, ...funcs } = props;
   const element = useRef<any>();
   const isLoaded = useRef<boolean>();
-  const instance = useRef<any>();
+  const instance = useRef<Form>();
   const events = useRef<Map<string, any>>(new Map());
 
   const createWebForm = (srcOrForm: any, options: any) => {
@@ -19,7 +73,7 @@ export const useForm = (props: any): any => {
 
     if (!instance.current) {
       isLoaded.current = false;
-      instance.current = new FormioForm(element.current, srcOrForm, options);
+      instance.current = new Form(element.current, srcOrForm, options);
 
       instance.current.onAny((event: string, ...args: any[]): void => {
         if (!instance.current) {
@@ -88,7 +142,7 @@ export const useForm = (props: any): any => {
     if (src) {
       if (instance.current) {
         isLoaded.current = false;
-        instance.current.destroy(true);
+        (instance.current as any).destroy(true);
       }
 
       createWebForm(src, options);
@@ -102,7 +156,7 @@ export const useForm = (props: any): any => {
 
     return () => {
       isLoaded.current = false;
-      instance.current && instance.current.destroy(true);
+      instance.current && (instance.current as any).destroy(true);
     };
   }, []);
 
@@ -118,4 +172,4 @@ export const useForm = (props: any): any => {
   return {
     element
   };
-};
+}

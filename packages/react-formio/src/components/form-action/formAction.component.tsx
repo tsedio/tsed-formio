@@ -38,7 +38,7 @@ function mapSettingsForm({ action, ...settingsForm }: any): any {
 export interface FormActionProps {
   actionInfo: Partial<ActionSchema>;
   submission?: Partial<Submission>;
-  onSubmit?: Function;
+  onSubmit?: (submission: Submission<ActionSchema>) => void;
   options: FormOptions;
 }
 

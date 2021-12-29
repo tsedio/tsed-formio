@@ -1,61 +1,17 @@
 import AllComponents from "formiojs/components";
-import Components from "formiojs/components/Components";
+import { Components } from "formiojs";
 import PropTypes from "prop-types";
 import React from "react";
-import { FormOptions, FormSchema, Submission } from "../../interfaces";
-import { useForm } from "./useForm.hook";
+import { useForm, UseFormHookProps } from "./useForm.hook";
 
 Components.setComponents(AllComponents);
 
-export interface ChangedSubmission<T = any> extends Submission<T> {
-  changed: any;
-  isValid: boolean;
-}
-
-export interface FormProps {
+export interface FormProps<Data = any> extends UseFormHookProps<Data> {
   name?: string;
   /**
    *
    */
   className?: string;
-  /**
-   *
-   */
-  src?: string;
-  /**
-   * url to fetch form
-   */
-  url?: string;
-  /**
-   * Raw form object
-   */
-  form: Partial<FormSchema>;
-  /**
-   * Data submission
-   */
-  submission?: Submission;
-  /**
-   * Configuration option
-   */
-  options?: FormOptions;
-  onPrevPage?: Function;
-  onNextPage?: Function;
-  onCancel?: Function;
-  onChange?: (submission: ChangedSubmission) => void;
-  onCustomEvent?: Function;
-  onComponentChange?: Function;
-  onSubmit?: Function;
-  onSubmitDone?: Function;
-  onFormLoad?: Function;
-  onError?: Function;
-  onRender?: Function;
-  onAttach?: Function;
-  onBuild?: Function;
-  onFocus?: Function;
-  onBlur?: Function;
-  onInitialized?: Function;
-  onFormReady?: (formio: any) => void;
-  formioform?: any;
 }
 
 export function Form(props: Partial<FormProps>) {

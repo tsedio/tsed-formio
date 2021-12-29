@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { FormOptions, FormSchema } from "../../interfaces";
 import { getFormSettingsSchema } from "./formSettings.schema";
-import { ChangedSubmission, Form } from "../form/form.component";
+import { Form } from "../form/form.component";
 import {
   FormSettingsSchema,
   formSettingsToSubmission,
@@ -9,6 +9,7 @@ import {
 } from "./formSettings.utils";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
+import { ChangedSubmission } from "../form/useForm.hook";
 
 export interface FormSettingsProps {
   form: Partial<FormSchema>;

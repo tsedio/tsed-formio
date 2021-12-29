@@ -2,22 +2,16 @@ import { useEffect, useReducer } from "react";
 import { FormSchema } from "../../interfaces/FormSchema";
 import { createInitialState, hasChanged, reducer } from "./formEdit.reducer";
 
-export interface UseFormHookProps {
-  form: Partial<FormSchema>;
-  redo: Function;
-  undo: Function;
-  reset: Function;
-  hasChanged: boolean;
-  isValid: boolean;
-  hasUndo: boolean;
-  hasRedo: boolean;
-  onSubmit: () => void;
-  onCopy: () => void;
-  formChange: (newForm: Partial<FormSchema>) => void;
-  setChange: (path: string, value: any) => void;
+export interface UseFormEditHookProps extends Record<string, unknown> {
+  form?: Partial<FormSchema>;
+  typeChoices?: { label: string; value: any }[];
+  displayChoices?: { label: string; value: any }[];
+  enableTags?: boolean;
+  onSubmit?: (form: Partial<FormSchema>) => void;
+  onCopy?: (form: Partial<FormSchema>) => void;
 }
 
-export function useForm(props: any): UseFormHookProps {
+export function useFormEdit(props: UseFormEditHookProps) {
   const [{ current, future, past }, dispatchFormAction] = useReducer(
     reducer,
     createInitialState(props)
