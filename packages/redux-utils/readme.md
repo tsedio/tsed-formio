@@ -25,7 +25,6 @@
 
 <hr />
 
-
 An opinionated lib to create actions and reducers for [Redux](https://github.com/rackt/redux) written in TypeScript and inspired from [react-act](https://github.com/pauldijou/redux-act) project.
 The main goal is to use actions themselves as references inside the reducers rather than string constants.
 

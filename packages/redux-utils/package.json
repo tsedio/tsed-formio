@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
-  "description": "Redux utils",
+  "description": "An opinionated lib to create actions and reducers for Redux written in TypeScript",
   "author": "Romain Lenzotti",
   "license": "MIT",
   "scripts": {

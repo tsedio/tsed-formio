@@ -1,5 +1,6 @@
 {
   "name": "@tsed/react-formio-container",
+  "description": "Provide advanced components and tools to create your own formio backoffice.",
   "version": "1.10.13",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",

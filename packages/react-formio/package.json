@@ -1,6 +1,7 @@
 {
   "name": "@tsed/react-formio",
   "version": "1.10.13",
+  "description": "Provide a react formio wrapper. Written in TypeScript.",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
