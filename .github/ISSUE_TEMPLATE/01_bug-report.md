@@ -9,8 +9,12 @@ assignees: Romakita
 
 ## Information
 
-- **Version:** 5.x
-- Packages: 
+- **Version:** 
+- Packages:
+  - [ ] @tsed/formio-tailwind 
+  - [ ] @tsed/react-formio
+  - [ ] @tsed/react-formio-container
+  - [ ] @tsed/redux-utils 
 
 A few sentences describing the overall goals of the issue.
 
