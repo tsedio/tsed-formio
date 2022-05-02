@@ -37,7 +37,7 @@ export function Loader({
 
 Loader.propTypes = {
   isActive: PropTypes.bool,
-  icon: PropTypes.bool,
+  icon: PropTypes.string,
   color: PropTypes.string,
   className: PropTypes.string
 };
