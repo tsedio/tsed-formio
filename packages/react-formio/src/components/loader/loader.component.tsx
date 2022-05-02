@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import PropTypes from "prop-types";
-import React from "react";
+import React, {PropsWithChildren} from "react";
 import { iconClass } from "../../utils/iconClass";
 
 export interface LoaderProps {
@@ -15,7 +15,7 @@ export function Loader({
   color = "blue",
   icon = "radio-circle",
   className = ""
-}: LoaderProps) {
+}: PropsWithChildren<LoaderProps>) {
   if (isActive) {
     return (
       <div
