@@ -29,7 +29,6 @@ function PaginationButton(
     <Component
       {...otherProps}
       data-testid='pagination-button'
-
       disabled={disabled}
       className={classnames(
         "page-link",

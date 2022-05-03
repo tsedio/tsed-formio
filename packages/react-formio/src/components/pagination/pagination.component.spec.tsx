@@ -13,7 +13,7 @@ describe("Pagination", () => {
     expect(container).toBeInTheDocument();
     paginationBtn.forEach((child) => expect(child).toBeInTheDocument());
     expect(select).toBeInTheDocument();
-    expect(allBtnBlocks[0]).toBe("Previous")
-    expect(allBtnBlocks[allBtnBlocks.length - 1]).toBe("Next")
+    expect(allBtnBlocks[0]).toBe("Previous");
+    expect(allBtnBlocks[allBtnBlocks.length - 1]).toBe("Next");
   });
 });
