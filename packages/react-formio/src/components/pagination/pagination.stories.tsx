@@ -7,7 +7,7 @@ export default {
   argTypes: {
     pageSizes: {
       control: {
-        type: "object"
+        type: "array"
       }
     },
     pageCount: {
