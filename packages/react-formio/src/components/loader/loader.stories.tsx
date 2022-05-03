@@ -9,9 +9,9 @@ export default {
 };
 
 export const Sandbox = (args: any) => {
-  return <Loader {...args} />;
+  return <Loader {...(args)} />;
 };
 
 Sandbox.args = {
-  isActive: true
+  isActive: true,
 };
