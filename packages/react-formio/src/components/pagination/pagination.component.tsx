@@ -30,10 +30,11 @@ function PaginationButton(
       {...otherProps}
       data-testid='pagination-button'
       disabled={disabled}
+      active={active}
       className={classnames(
         "page-link",
         disabled ? "disabled" : "",
-        active ? "" : "",
+        active ? "active" : "",
         props.className
       )}
     >
