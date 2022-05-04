@@ -53,13 +53,9 @@ describe("Pagination", () => {
     const btnPage = paginationBtn.filter(
       (btn) => btn.textContent !== "Previous" && btn.textContent !== "Next"
     );
-    const min = +btnPage[0].textContent;
-    const max = min + 4;
-    const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
-    const btn = btnPage[randomNumber];
-
-    fireEvent.click(btn);
-
-    expect(gotoPageSpy).toHaveBeenCalledTimes(1);
+    btnPage.forEach(btn => {
+      fireEvent.click(btn);
+      expect(gotoPageSpy).toHaveBeenCalled();
+    })  
   });
 });
