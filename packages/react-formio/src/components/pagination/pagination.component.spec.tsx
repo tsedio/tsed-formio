@@ -35,9 +35,7 @@ describe("Pagination", () => {
 
   it("should call nextPage() callback", () => {
     const nextPageSpy = jest.fn();
-    render(
-      <Sandbox nextPage={nextPageSpy} canNextPage={true} />
-    );
+    render(<Sandbox nextPage={nextPageSpy} canNextPage={true} />);
 
     fireEvent.click(screen.getByText(/Next/i));
 
@@ -53,9 +51,9 @@ describe("Pagination", () => {
     const btnPage = paginationBtn.filter(
       (btn) => btn.textContent !== "Previous" && btn.textContent !== "Next"
     );
-    btnPage.forEach(btn => {
+    btnPage.forEach((btn) => {
       fireEvent.click(btn);
       expect(gotoPageSpy).toHaveBeenCalled();
-    })  
+    });
   });
 });
