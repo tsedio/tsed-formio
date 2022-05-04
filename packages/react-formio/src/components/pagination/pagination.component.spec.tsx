@@ -45,7 +45,7 @@ describe("Pagination", () => {
   it("should call gotoPage() callback", () => {
     const gotoPageSpy = jest.fn();
     let page: number;
-  
+
     const { container, queryAllByTestId } = render(
       <Sandbox gotoPage={gotoPageSpy} {...Sandbox.args} />
     );
@@ -80,7 +80,7 @@ describe("Pagination", () => {
     buttonsPage.forEach((btn) => {
       if (btn.textContent !== "...") {
         // indexPage = buttonsPage.indexOf(btn);
-        page = +btn.textContent; 
+        page = +btn.textContent;
 
         fireEvent.click(btn);
         expect(gotoPageSpy).toHaveBeenCalled();
