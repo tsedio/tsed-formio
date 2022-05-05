@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { Sandbox } from "./loader.stories";
 describe("Loader", () => {
-  it("should render a component (with isActive = true)", () => {
+  it("should render a component (when isActive = true)", () => {
     const { getByTestId } = render(<Sandbox isActive={true} />);
 
     const icon = getByTestId("icon_radio-circle");
@@ -11,7 +11,7 @@ describe("Loader", () => {
     expect(icon).toBeInTheDocument();
   });
 
-  it("should render a component (with isActive = false)", () => {
+  it("should render a component (when isActive = false)", () => {
     const { queryByTestId } = render(<Sandbox isActive={false} />);
 
     const icon = queryByTestId("icon_radio-circle");

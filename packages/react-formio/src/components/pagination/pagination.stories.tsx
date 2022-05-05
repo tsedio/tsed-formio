@@ -1,43 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination } from "./pagination.component";
 
 export default {
   title: "ReactFormio/Pagination",
   component: Pagination,
-  argTypes: {
-    pageSizes: {
-      control: {
-        type: "array"
-      }
-    },
-    pageCount: {
-      control: {
-        type: "number"
-      }
-    },
-    pageIndex: {
-      control: {
-        type: "number"
-      }
-    },
-    canPreviousPage: {
-      control: {
-        type: "boolean"
-      }
-    },
-    canNextPage: {
-      control: {
-        type: "boolean"
-      }
-    }
-  },
+
   parameters: {}
 };
 
 export const Sandbox = (args: any) => {
+  const [currentPageIndex, setPageIndex] = useState(args.pageIndex);
+
+  useEffect(() => {
+    args.gotoPage && args.gotoPage(currentPageIndex);
+  }, [currentPageIndex]);
+
   return (
     <div>
-      <Pagination {...args} />
+      <Pagination
+        {...args}
+        pageIndex={currentPageIndex}
+        gotoPage={setPageIndex}
+      />
     </div>
   );
 };

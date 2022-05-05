@@ -42,50 +42,48 @@ describe("Pagination", () => {
     expect(nextPageSpy).toHaveBeenCalledTimes(1);
   });
 
-  it("should call gotoPage() callback", () => {
+  it("should call gotoPage() callback when cliking on a button page", () => {
     const gotoPageSpy = jest.fn();
     let page: number;
 
-    const { container, queryAllByTestId } = render(
-      <Sandbox gotoPage={gotoPageSpy} {...Sandbox.args} />
+    const { queryAllByTestId } = render(
+      <Sandbox {...Sandbox.args} gotoPage={gotoPageSpy} />
     );
-    const wrappersBtn = container.getElementsByClassName("page-item");
     const paginationBtn = queryAllByTestId("pagination-button");
-
     const buttonsPage = paginationBtn.filter(
       (btn) => btn.textContent !== "Previous" && btn.textContent !== "Next"
     );
 
-    expect(
-      Array.prototype.every.call(wrappersBtn, (wrap) =>
-        wrap.classList.contains("active")
-      )
-    ).toBeFalsy();
-    expect(
-      Array.prototype.every.call(wrappersBtn, (wrap) =>
-        wrap.classList.contains("disabled")
-      )
-    ).toBeFalsy();
-    expect(
-      Array.prototype.some.call(wrappersBtn, (wrap) =>
-        wrap.classList.contains("active")
-      )
-    ).toBeTruthy();
-    expect(
-      Array.prototype.some.call(wrappersBtn, (wrap) =>
-        wrap.classList.contains("disabled")
-      )
-    ).toBeTruthy();
-
     buttonsPage.forEach((btn) => {
       if (btn.textContent !== "...") {
-        // indexPage = buttonsPage.indexOf(btn);
         page = +btn.textContent;
-
         fireEvent.click(btn);
         expect(gotoPageSpy).toHaveBeenCalled();
         expect(gotoPageSpy).toHaveBeenCalledWith(page - 1);
       }
     });
+  });
+
+  it("should have Previous button disabled and not clickable", () => {
+    const previousPageSpy = jest.fn();
+    const { getByTestId } = render(
+      <Sandbox
+        canPreviousPage={false}
+        previousPage={previousPageSpy}
+        {...Sandbox.args}
+      />
+    );
+
+    expect(getByTestId("pagination-previous-item")).toHaveClass("disabled");
+    expect(previousPageSpy).not.toHaveBeenCalled();
+  });
+
+  it("should have Next button disabled and not clickable", () => {
+    const nextPageSpy = jest.fn();
+    const { getByTestId } = render(
+      <Sandbox canNextPage={false} nextPage={nextPageSpy} {...Sandbox.args} />
+    );
+    expect(getByTestId("pagination-next-item")).toHaveClass("disabled");
+    expect(nextPageSpy).not.toHaveBeenCalled();
   });
 });

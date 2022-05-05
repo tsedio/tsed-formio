@@ -30,11 +30,10 @@ function PaginationButton(
       {...otherProps}
       data-testid='pagination-button'
       disabled={disabled}
-      active={active}
       className={classnames(
         "page-link",
         disabled ? "disabled" : "",
-        active ? "active" : "",
+        active ? "" : "",
         props.className
       )}
     >
@@ -69,7 +68,7 @@ export function Pagination(props: PaginationProps) {
     nextPage,
     canNextPage,
     pageCount,
-    pageIndex,
+    pageIndex = 1,
     pageOptions,
     pageSize,
     setPageSize,
@@ -89,7 +88,10 @@ export function Pagination(props: PaginationProps) {
       className={classnames("pagination-group -mb-3", className)}
     >
       <ul className='pagination mb-3 mr-3'>
-        <li className={classnames("page-item", !canPreviousPage && "disabled")}>
+        <li
+          data-testid='pagination-previous-item'
+          className={classnames("page-item", !canPreviousPage && "disabled")}
+        >
           <PaginationButton
             tabIndex={-1}
             disabled={!canPreviousPage}
@@ -125,7 +127,10 @@ export function Pagination(props: PaginationProps) {
           );
         })}
 
-        <li className={classnames("page-item", !canNextPage && "disabled")}>
+        <li
+          data-testid='pagination-next-item'
+          className={classnames("page-item", !canNextPage && "disabled")}
+        >
           <PaginationButton
             tabIndex={pageNumbers.length}
             disabled={!canNextPage}
