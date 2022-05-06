@@ -66,24 +66,70 @@ describe("Pagination", () => {
 
   it("should have Previous button disabled and not clickable", () => {
     const previousPageSpy = jest.fn();
-    const { getByTestId } = render(
+    const { getByText } = render(
       <Sandbox
         canPreviousPage={false}
         previousPage={previousPageSpy}
         {...Sandbox.args}
       />
     );
+    const previousButton = getByText("Previous");
 
-    expect(getByTestId("pagination-previous-item")).toHaveClass("disabled");
+    expect(previousButton).toHaveAttribute("disabled");
+    fireEvent.click(previousButton);
     expect(previousPageSpy).not.toHaveBeenCalled();
+  });
+
+  it("should have Previous button NOT disabled and clickable", () => {
+    const previousPageSpy = jest.fn();
+    const { getByText } = render(
+      <Sandbox
+        {...Sandbox.args}
+        canPreviousPage={true}
+        previousPage={previousPageSpy}
+      />
+    );
+
+    const previousButton = getByText("Previous");
+
+    expect(previousButton).not.toHaveAttribute("disabled");
+    fireEvent.click(previousButton);
+    expect(previousPageSpy).toHaveBeenCalled();
   });
 
   it("should have Next button disabled and not clickable", () => {
     const nextPageSpy = jest.fn();
-    const { getByTestId } = render(
+    const { getByText } = render(
       <Sandbox canNextPage={false} nextPage={nextPageSpy} {...Sandbox.args} />
     );
-    expect(getByTestId("pagination-next-item")).toHaveClass("disabled");
+
+    const nextButton = getByText("Next");
+    expect(nextButton).toHaveAttribute("disabled");
+    fireEvent.click(nextButton)
     expect(nextPageSpy).not.toHaveBeenCalled();
+  });
+
+  it("should have Next button NOT disabled and clickable", () => {
+    const nextPageSpy = jest.fn();
+    const { getByText } = render(
+      <Sandbox canNextPage={true} nextPage={nextPageSpy} {...Sandbox.args} />
+    );
+      const nextButton = getByText("Next")
+      expect(nextButton).not.toHaveAttribute("disabled")
+      fireEvent.click(nextButton)
+      expect(nextPageSpy).toHaveBeenCalled();
+  });
+
+  it("should correctly render select component", () => {
+    const pageSizes = [10, 25, 50, 100, 200, 500]
+
+    const { getByTestId } = render(<Sandbox {...Sandbox.args} pageSizes={pageSizes} />);
+    const selectComp = getByTestId("select_page")
+    const selectChilds = Array.prototype.map.call(selectComp, function(child) {
+      return +child.textContent
+    })
+
+    expect(selectComp).toBeInTheDocument();
+    expect(selectChilds.length === pageSizes.length).toBeTruthy();
   });
 });
