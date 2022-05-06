@@ -105,7 +105,7 @@ describe("Pagination", () => {
 
     const nextButton = getByText("Next");
     expect(nextButton).toHaveAttribute("disabled");
-    fireEvent.click(nextButton)
+    fireEvent.click(nextButton);
     expect(nextPageSpy).not.toHaveBeenCalled();
   });
 
@@ -114,20 +114,22 @@ describe("Pagination", () => {
     const { getByText } = render(
       <Sandbox canNextPage={true} nextPage={nextPageSpy} {...Sandbox.args} />
     );
-      const nextButton = getByText("Next")
-      expect(nextButton).not.toHaveAttribute("disabled")
-      fireEvent.click(nextButton)
-      expect(nextPageSpy).toHaveBeenCalled();
+    const nextButton = getByText("Next");
+    expect(nextButton).not.toHaveAttribute("disabled");
+    fireEvent.click(nextButton);
+    expect(nextPageSpy).toHaveBeenCalled();
   });
 
   it("should correctly render select component", () => {
-    const pageSizes = [10, 25, 50, 100, 200, 500]
+    const pageSizes = [10, 25, 50, 100, 200, 500];
 
-    const { getByTestId } = render(<Sandbox {...Sandbox.args} pageSizes={pageSizes} />);
-    const selectComp = getByTestId("select_page")
-    const selectChilds = Array.prototype.map.call(selectComp, function(child) {
-      return +child.textContent
-    })
+    const { getByTestId } = render(
+      <Sandbox {...Sandbox.args} pageSizes={pageSizes} />
+    );
+    const selectComp = getByTestId("select_page");
+    const selectChilds = Array.prototype.map.call(selectComp, function (child) {
+      return +child.textContent;
+    });
 
     expect(selectComp).toBeInTheDocument();
     expect(selectChilds.length === pageSizes.length).toBeTruthy();
