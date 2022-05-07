@@ -88,10 +88,7 @@ export function Pagination(props: PaginationProps) {
       className={classnames("pagination-group -mb-3", className)}
     >
       <ul className='pagination mb-3 mr-3'>
-        <li
-          data-testid='pagination-previous-item'
-          className={classnames("page-item", !canPreviousPage && "disabled")}
-        >
+        <li className={classnames("page-item", !canPreviousPage && "disabled")}>
           <PaginationButton
             tabIndex={-1}
             disabled={!canPreviousPage}
@@ -127,10 +124,7 @@ export function Pagination(props: PaginationProps) {
           );
         })}
 
-        <li
-          data-testid='pagination-next-item'
-          className={classnames("page-item", !canNextPage && "disabled")}
-        >
+        <li className={classnames("page-item", !canNextPage && "disabled")}>
           <PaginationButton
             tabIndex={pageNumbers.length}
             disabled={!canNextPage}
