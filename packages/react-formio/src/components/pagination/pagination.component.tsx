@@ -28,6 +28,7 @@ function PaginationButton(
   return (
     <Component
       {...otherProps}
+      data-testid='pagination-button'
       disabled={disabled}
       className={classnames(
         "page-link",
@@ -67,7 +68,7 @@ export function Pagination(props: PaginationProps) {
     nextPage,
     canNextPage,
     pageCount,
-    pageIndex,
+    pageIndex = 1,
     pageOptions,
     pageSize,
     setPageSize,
