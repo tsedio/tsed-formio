@@ -9,29 +9,97 @@ describe("select component", () => {
     expect(getByTestId("select_test")).toBeInTheDocument();
   });
 
-  it("should render the choices with placeholder first", () => {
+  it("should render select options with 'Placeholder test' as fisrt value", () => {
     const choices = [
       { label: "test1", value: "value1" },
       { label: "test2", value: "value2" }
     ];
-    const placeholder = "Placeholder test";
+    const myPlaceholder = "Placeholder test";
+
     const { getByTestId, getByText } = render(
       <Sandbox
         {...Sandbox.args}
-        placeholder={placeholder}
+        placeholder={myPlaceholder}
         choices={choices}
         name={"test"}
       />
     );
-    const selectChilds = Array.prototype.map.call(
+    const selectOptions = Array.prototype.map.call(
       getByTestId("select_test").children,
-      (child) => child.textContent
+      (label) => label.textContent
     );
 
-    expect(getByTestId("select_test").firstChild.textContent).toBe(placeholder)
-    selectChilds.map((child) => {
-      expect(screen.getByText(child)).toBeInTheDocument();
+    expect(getByTestId("select_test").firstChild.textContent).toBe(
+      myPlaceholder
+    );
+    selectOptions.map((option) => {
+      expect(screen.getByText(option)).toBeInTheDocument();
     });
-    
+  });
+
+  it("should have Placeholder label as selected option by default", () => {
+    const choices = [
+      { label: "test1", value: "value1" },
+      { label: "test2", value: "value2" }
+    ];
+    const myPlaceholder = "Placeholder test";
+
+    const { getByTestId, getAllByTestId } = render(
+      <Sandbox
+        {...Sandbox.args}
+        placeholder={myPlaceholder}
+        choices={choices}
+        name={"test"}
+      />
+    );
+
+    const selectedElement = Array.prototype.find.call(
+      getAllByTestId("select-option"),
+      (option) => {
+        return option.selected === true;
+      }
+    ).textContent;
+
+    expect(selectedElement).toEqual(myPlaceholder);
+  });
+
+  it("should change the value of the selected option when you click on another choice ", () => {
+    const choices = [
+      { label: "test1", value: "value1" },
+      { label: "test2", value: "value2" }
+    ];
+    const myPlaceholder = "Placeholder test";
+
+    const { getByTestId, getAllByTestId } = render(
+      <Sandbox
+        {...Sandbox.args}
+        placeholder={myPlaceholder}
+        choices={choices}
+        name={"test"}
+      />
+    );
+
+    fireEvent.change(getByTestId("select_test"), {
+      target: { value: "value1" }
+    });
+    let selectedElement = Array.prototype.find.call(
+      getAllByTestId("select-option"),
+      (option) => {
+        return option.selected === true;
+      }
+    ).textContent;
+    expect(selectedElement).toEqual("test1");
+
+    fireEvent.change(getByTestId("select_test"), {
+      target: { value: "value2" }
+    });
+    selectedElement = Array.prototype.find.call(
+      getAllByTestId("select-option"),
+      (option) => {
+        return option.selected === true;
+      }
+    ).textContent;
+
+    expect(selectedElement).toEqual("test2");
   });
 });
