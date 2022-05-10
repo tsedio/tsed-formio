@@ -15,7 +15,7 @@ const useValue = (args: any) => {
     value,
     onChange(name: string, value: any) {
       useValue(value);
-      () => args.onChange(name, value);
+      return () => args.onChange(name, value);
     }
   };
 };

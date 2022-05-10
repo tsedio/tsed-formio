@@ -33,7 +33,7 @@ describe("select component", () => {
       myPlaceholder
     );
     selectOptions.map((option) => {
-      expect(screen.getByText(option)).toBeInTheDocument();
+      return expect(screen.getByText(option)).toBeInTheDocument();
     });
   });
 
