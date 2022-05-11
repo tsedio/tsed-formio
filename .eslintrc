@@ -7,9 +7,12 @@
     "prettier/react",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
   "env": {
+    "browser": true,
     "node": true,
     "jest": true
   },
@@ -22,19 +25,37 @@
   },
   "settings": {
     "react": {
-      "version": "16"
+      "version": "17"
     }
   },
   "rules": {
-    "semi": ["error", "always"],
+    "semi": [
+      "error",
+      "always"
+    ],
     "space-before-function-paren": 0,
     "react/prop-types": 0,
     "react/jsx-handler-names": 0,
     "react/jsx-fragments": 0,
+    "react/no-unescaped-entities": 0,
     "react/no-unused-prop-types": 0,
+    "react/display-name": 1,
     "no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
-    "import/export": 0
-  }
+    "@typescript-eslint/camelcase": 0,
+    "@typescript-eslint/no-empty-function": 0,
+    "import/export": 0,
+    "jsx-a11y/no-autofocus": 1
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.stories.{js,jsx,ts,tsx}"
+      ],
+      "rules": {
+        "jsx-a11y/anchor-is-valid": 0
+      }
+    }
+  ]
 }

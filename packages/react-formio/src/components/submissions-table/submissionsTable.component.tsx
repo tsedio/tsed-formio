@@ -8,9 +8,10 @@ export type SubmissionsTableProps = Omit<TableProps<Submission>, "columns"> & {
 };
 
 export function SubmissionsTable({ form, ...props }: SubmissionsTableProps) {
-  const columns: any[] = React.useMemo(() => form && mapFormToColumns(form), [
-    form
-  ]);
+  const columns: any[] = React.useMemo(
+    () => form && mapFormToColumns(form),
+    [form]
+  );
 
   return <Table {...props} columns={columns} />;
 }

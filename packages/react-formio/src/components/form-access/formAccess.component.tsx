@@ -131,14 +131,8 @@ function NamedFormAccess({
 export function FormAccess(
   props: PropsWithChildren<FormAccessProps>
 ): ReactElement {
-  const {
-    type,
-    form,
-    submissions,
-    options,
-    onChange,
-    onSubmit
-  } = useFormAccess(props);
+  const { type, form, submissions, options, onChange, onSubmit } =
+    useFormAccess(props);
 
   return (
     <div>

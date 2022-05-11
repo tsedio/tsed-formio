@@ -6,41 +6,41 @@ const { configure, ensureReact } = require("@tsed/yarn-workspaces");
 module.exports = {
   style: {
     postcss: {
-      plugins: require("./postcss.config").plugins,
-    },
+      plugins: require("./postcss.config").plugins
+    }
   },
   eslint: {
-    mode: ESLINT_MODES,
+    mode: ESLINT_MODES
   },
   jest: {
     configure: {
       rootDir: "./",
       globals: {
-        CONFIG: true,
+        CONFIG: true
       },
       setupFiles: [
         // 'react-app-polyfill/jsdom',
-        require.resolve("./jest/setupTests.js"),
+        require.resolve("./jest/setupTests.js")
       ],
       collectCoverageFrom: [
         "**/*.{js,jsx,ts,tsx}",
         "!**/*.stories.{js,jsx,ts,tsx}",
         "!**/node_modules/**",
-        "!**/vendor/**",
+        "!**/vendor/**"
       ],
       coverageThreshold: {
         global: {
           branches: 35.73,
           functions: 51.76,
           lines: 50.49,
-          statements: 50.91,
-        },
-      },
-    },
+          statements: 50.91
+        }
+      }
+    }
   },
   webpack: {
     configure: (webpackConfig, { env, paths }) => {
       return ensureReact(configure(webpackConfig, { env, paths }));
-    },
-  },
+    }
+  }
 };

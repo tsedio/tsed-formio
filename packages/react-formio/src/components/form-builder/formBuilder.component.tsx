@@ -166,6 +166,8 @@ export class FormBuilder extends React.Component<FormBuilderProps, any> {
     this.builderRef?.destroy();
   }
 
+  // TODO Migrate formBuilder on function component
+  // eslint-disable-next-line react/no-deprecated
   async componentWillReceiveProps(nextProps: FormBuilderProps) {
     if (this.builderRef) {
       if (nextProps.display !== this.state.display) {

@@ -18,45 +18,43 @@ function getFormio(formId: string, id: string) {
   return new Formio(url);
 }
 
-export const getAction = (
-  formId: string,
-  actionId: string,
-  done = noop
-) => async (dispatch: any) => {
-  dispatch(clearActionError(ACTION));
-  dispatch(requestAction(ACTION));
+export const getAction =
+  (formId: string, actionId: string, done = noop) =>
+  async (dispatch: any) => {
+    dispatch(clearActionError(ACTION));
+    dispatch(requestAction(ACTION));
 
-  const formio = getFormio(formId, actionId);
+    const formio = getFormio(formId, actionId);
 
-  try {
-    const action = await formio.loadAction();
+    try {
+      const action = await formio.loadAction();
 
-    dispatch(getActionInfo(formId, action.name));
-    dispatch(receiveAction(ACTION, { action }));
-    done(null, action);
-  } catch (error) {
-    dispatch(failAction(ACTION, { error }));
-    done(error);
-  }
-};
+      dispatch(getActionInfo(formId, action.name));
+      dispatch(receiveAction(ACTION, { action }));
+      done(null, action);
+    } catch (error) {
+      dispatch(failAction(ACTION, { error }));
+      done(error);
+    }
+  };
 
-export const saveAction = (formId: string, action: any, done = noop) => async (
-  dispatch: any
-) => {
-  dispatch(clearActionError(ACTION));
-  dispatch(sendAction(ACTION, { action }));
+export const saveAction =
+  (formId: string, action: any, done = noop) =>
+  async (dispatch: any) => {
+    dispatch(clearActionError(ACTION));
+    dispatch(sendAction(ACTION, { action }));
 
-  const formio = getFormio(formId, get(action, "data._id", ""));
+    const formio = getFormio(formId, get(action, "data._id", ""));
 
-  try {
-    const result = await formio.saveAction(action);
-    dispatch(receiveAction(ACTION, { action: result }));
-    done(null, result);
-  } catch (error) {
-    dispatch(failAction(ACTION, { error }));
-    done(error);
-  }
-};
+    try {
+      const result = await formio.saveAction(action);
+      dispatch(receiveAction(ACTION, { action: result }));
+      done(null, result);
+    } catch (error) {
+      dispatch(failAction(ACTION, { error }));
+      done(error);
+    }
+  };
 
 export const deleteAction = (formId: string, actionId: string, done = noop) => {
   return async (dispatch: any) => {
