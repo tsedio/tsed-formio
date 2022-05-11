@@ -1,10 +1,11 @@
-import React from "react";
 import { Loader } from "./loader.component";
 
 export default {
   title: "ReactFormio/Loader",
   component: Loader,
-  argTypes: {},
+  argTypes: {
+    isActive: { control: { type: "boolean" } }
+  },
   parameters: {}
 };
 

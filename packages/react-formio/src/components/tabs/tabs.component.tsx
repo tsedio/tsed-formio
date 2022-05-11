@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { iconClass } from "../../utils/iconClass";
 
 export function ButtonTab({

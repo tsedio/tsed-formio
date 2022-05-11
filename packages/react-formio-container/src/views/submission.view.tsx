@@ -6,7 +6,6 @@ import {
   Loader
 } from "@tsed/react-formio";
 import classnames from "classnames";
-import React from "react";
 import { useParams } from "react-router";
 import { UseFormProps } from "../hooks/useForm.hook";
 import { useSubmission } from "../hooks/useSubmission.hook";

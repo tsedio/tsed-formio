@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, iconClass } from "@tsed/react-formio";
 import { UseFormProps } from "../hooks/useForm.hook";
 import { useFormExport } from "../hooks/useFormExport";

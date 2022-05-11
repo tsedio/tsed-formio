@@ -1,4 +1,3 @@
-import React from "react";
 import { FormEdit } from "../../index";
 import { defaultDisplayChoices } from "./formParameters.component";
 

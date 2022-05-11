@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Switch, useParams } from "react-router";
 import { FormioContainerOptions } from "./interfaces/FormioContainerOptions";
 import { FormView } from "./views/form.view";

@@ -1,5 +1,3 @@
-import React from "react";
-
 export function DefaultCell({
   value,
   render = (f: any) => f

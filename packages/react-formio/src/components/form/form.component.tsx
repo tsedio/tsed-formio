@@ -1,7 +1,6 @@
 import AllComponents from "formiojs/components";
 import { Components } from "formiojs";
 import PropTypes from "prop-types";
-import React from "react";
 import { useForm, UseFormHookProps } from "./useForm.hook";
 
 Components.setComponents(AllComponents);

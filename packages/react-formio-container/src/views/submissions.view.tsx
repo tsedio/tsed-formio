@@ -1,5 +1,4 @@
 import { SubmissionsTable } from "@tsed/react-formio";
-import React from "react";
 import { Route, Switch } from "react-router";
 import { UseSubmissionProps } from "../hooks/useSubmission.hook";
 import { useSubmissions } from "../hooks/useSubmissions.hook";

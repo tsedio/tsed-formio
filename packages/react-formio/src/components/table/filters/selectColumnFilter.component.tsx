@@ -1,4 +1,3 @@
-import React from "react";
 import { FilterProps } from "react-table";
 import { Select } from "../../select/select.component";
 

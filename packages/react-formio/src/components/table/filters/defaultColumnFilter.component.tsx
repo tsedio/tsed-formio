@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { FilterProps } from "react-table";
 import { InputText } from "../../input-text/inputText.component";
 
@@ -14,7 +14,7 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
   const [value, setValue] = useState(filterValue || "");
 
   const onChange = useCallback(
-    (name, value) => {
+    (name: string, value: any) => {
       setValue(value);
       setFilterId(id);
       setFilter(value || undefined);

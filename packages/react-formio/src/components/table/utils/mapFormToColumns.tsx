@@ -1,4 +1,3 @@
-import React from "react";
 import { Components, ExtendedComponentSchema } from "formiojs";
 import FormioUtils from "formiojs/utils";
 import { Column } from "react-table";

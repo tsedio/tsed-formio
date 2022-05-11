@@ -1,39 +1,27 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "standard",
-    "standard-react",
-    "prettier/standard",
-    "prettier/react",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended"
+    "react-app"
   ],
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest": true
-  },
+  "plugins": [
+    "prettier",
+    "@typescript-eslint",
+    "jsx-a11y"
+  ],
   "parserOptions": {
     "ecmaVersion": 2020,
-    "ecmaFeatures": {
-      "legacyDecorators": true,
-      "jsx": true
-    }
-  },
-  "settings": {
-    "react": {
-      "version": "17"
-    }
+    "sourceType": "module"
   },
   "rules": {
+    "@typescript-eslint/no-redeclare": "off",
+    "no-redeclare": "off",
+    "prettier/prettier": ["error"],
     "semi": [
       "error",
       "always"
     ],
     "space-before-function-paren": 0,
+    "react-hooks/exhaustive-deps": 0,
     "react/prop-types": 0,
     "react/jsx-handler-names": 0,
     "react/jsx-fragments": 0,

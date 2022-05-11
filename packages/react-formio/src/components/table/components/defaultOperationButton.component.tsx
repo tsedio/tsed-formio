@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import React from "react";
 import { iconClass } from "../../../utils/iconClass";
 import { stopPropagationWrapper } from "../../../utils/stopPropagationWrapper";
 

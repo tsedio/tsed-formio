@@ -1,5 +1,5 @@
 import { Alert, FormsTable } from "@tsed/react-formio";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useForms, UseFormsProps } from "../hooks/useForms.hook";
 
 export function FormsComponent({

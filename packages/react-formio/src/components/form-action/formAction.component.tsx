@@ -1,5 +1,5 @@
 import FormioUtils from "formiojs/utils";
-import React, { PropsWithChildren, ReactElement, useMemo } from "react";
+import { PropsWithChildren, ReactElement, useMemo } from "react";
 import {
   ActionDefaultsSchema,
   ActionSchema,

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { useTooltip } from "../../hooks/useTooltip";
 import { FormOptions } from "../../interfaces";
 import { iconClass } from "../../utils/iconClass";

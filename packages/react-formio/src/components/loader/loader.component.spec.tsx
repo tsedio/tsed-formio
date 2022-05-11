@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-import React from "react";
 import { Sandbox } from "./loader.stories";
 describe("Loader", () => {
   it("should render a component (when isActive = true)", () => {

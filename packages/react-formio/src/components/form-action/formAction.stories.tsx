@@ -1,4 +1,3 @@
-import React from "react";
 import { FormAction } from "./formAction.component";
 
 export default {
@@ -6,7 +5,6 @@ export default {
   component: FormAction,
   argTypes: {
     onSubmit: { action: "onSubmit" },
-
     type: {
       control: {
         type: "object"

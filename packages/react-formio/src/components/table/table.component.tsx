@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import noop from "lodash/noop";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import {
   CellProps,
   FilterProps,
@@ -107,13 +107,13 @@ function getOperationCallback(
   };
 }
 
-function DefaultLoader() {
+function DefaultLoader(): JSX.Element {
   return (
     <div className={"text-center p-2 pb-4 font-bold"}>Loading in progress</div>
   );
 }
 
-function DefaultEmptyData() {
+function DefaultEmptyData(): JSX.Element {
   return <div className='text-center p-2 pb-4 font-bold'>No data found</div>;
 }
 
@@ -139,11 +139,11 @@ export function Table<Data extends object = any>(
     isLoading,
     disableFilters,
     disablePagination,
-    ArrowSort = DefaultArrowSort,
-    ColumnFilter = DefaultColumnFilter,
-    EmptyData = DefaultEmptyData,
-    Loader = DefaultLoader,
-    Pagination = DefaultPagination,
+    ArrowSort = DefaultArrowSort as any,
+    ColumnFilter = DefaultColumnFilter as any,
+    EmptyData = DefaultEmptyData as any,
+    Loader = DefaultLoader as any,
+    Pagination = DefaultPagination as any,
     CellHeader = DefaultCellHeader as any,
     CellOperations,
     i18n = (f: string) => f,
@@ -152,7 +152,7 @@ export function Table<Data extends object = any>(
 
   const _onClick = getOperationCallback(operations, onClick);
 
-  const defaultColumn = React.useMemo(
+  const defaultColumn = useMemo(
     () => ({
       // Let's set up our default Filter UI
       Filter: ColumnFilter,
@@ -161,7 +161,7 @@ export function Table<Data extends object = any>(
     [ColumnFilter, ArrowSort]
   ) as any;
 
-  const [filterId, setFilterId] = React.useState(controlledFilterId);
+  const [filterId, setFilterId] = useState(controlledFilterId);
 
   const tableInstance = useTable<Data>(
     {
@@ -196,7 +196,7 @@ export function Table<Data extends object = any>(
     state: { pageIndex, pageSize, sortBy, filters }
   } = tableInstance;
 
-  React.useEffect(() => {
+  useEffect(() => {
     onChange({
       pageIndex,
       pageSize,

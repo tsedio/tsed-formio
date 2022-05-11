@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import noop from "lodash/noop";
-import React, { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { iconClass } from "../../utils/iconClass";
 import { InputText } from "../input-text/inputText.component";
 import { Modal, ModalProps } from "./modal.component";
@@ -62,13 +62,15 @@ export function RemoveModal({
       value={value}
       footer={RemoveModalFooter}
     >
-      <div className={"px-4 pt-3 pb-5"}>
-        <div className={"pb-1"}>
-          {children}
-          {i18n("To drop")} <strong>{props.valueToCompare}</strong>,&nbsp;
-          {i18n("type the")}&nbsp;
-          <strong>&quot;{props.itemType?.toLowerCase()}&quot;</strong>&nbsp;
-          {i18n("name")} <strong>&quot;{props.valueToCompare}&quot;</strong>.
+      <div className='px-4 pt-3 pb-5'>
+        <div className='pb-1'>
+          <>
+            {children}
+            {i18n("To drop")} <strong>{props.valueToCompare}</strong>,&nbsp;
+            {i18n("type the")}&nbsp;
+            <strong>&quot;{props.itemType?.toLowerCase()}&quot;</strong>&nbsp;
+            {i18n("name")} <strong>&quot;{props.valueToCompare}&quot;</strong>.
+          </>
         </div>
         <InputText
           name='remove'

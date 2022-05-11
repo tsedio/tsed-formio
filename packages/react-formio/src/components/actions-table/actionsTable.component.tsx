@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import noop from "lodash/noop";
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { ActionSchema } from "../../interfaces";
 import { iconClass } from "../../utils/iconClass";
 import { Select } from "../select/select.component";

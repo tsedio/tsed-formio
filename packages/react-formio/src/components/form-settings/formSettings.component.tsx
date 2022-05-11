@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FormOptions, FormSchema } from "../../interfaces";
 import { getFormSettingsSchema } from "./formSettings.schema";
 import { Form } from "../form/form.component";

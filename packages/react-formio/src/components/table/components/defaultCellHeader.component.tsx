@@ -1,4 +1,3 @@
-import React from "react";
 import { HeaderGroup } from "react-table";
 
 export interface DefaultCellHeaderProps<Data extends object = any>

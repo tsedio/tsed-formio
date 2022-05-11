@@ -1,5 +1,4 @@
 import { ICONS } from "@tsed/tailwind-formio/lib/templates/tailwind/iconClass";
-import React from "react";
 import { FormsTable } from "./formsTable.component";
 
 export default {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { FormSchema } from "../../interfaces/FormSchema";
 import { InputTags } from "../input-tags/inputTags.component";
 import { InputText } from "../input-text/inputText.component";

@@ -1,6 +1,5 @@
 import classnames from "classnames";
 import moment from "moment";
-import React from "react";
 import { CellProps } from "react-table";
 import { FormSchema } from "../../../interfaces";
 import { iconClass } from "../../../utils/iconClass";

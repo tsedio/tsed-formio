@@ -9,13 +9,16 @@
   "private": true,
   "scripts": {},
   "devDependencies": {
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "babel-plugin-require-context-hook": "1.0.0",
+    "jest-environment-jsdom-fourteen": "1.0.1",
+    "jest-localstorage-mock": "2.4.10",
     "@tsed/tailwind": "1.11.2",
-    "@tsed/yarn-workspaces": "1.19.3",
-    "postcss-nested": "4.2.3"
+    "@tsed/yarn-workspaces": "1.21.0"
   },
   "peerDependencies": {
-    "autoprefixer": "10.2.4",
-    "tailwindcss": "2.0.3"
+    "tailwindcss": "^2.0.0"
   },
   "dependencies": {}
 }

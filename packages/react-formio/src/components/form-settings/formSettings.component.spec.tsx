@@ -1,5 +1,4 @@
 import { fireEvent, render } from "@testing-library/react";
-import React from "react";
 import { Sandbox } from "./formSettings.stories";
 import { FormSettings } from "./formSettings.component";
 

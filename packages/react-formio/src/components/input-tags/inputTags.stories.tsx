@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { iconClass } from "../../utils/iconClass";
 import { InputTags } from "./inputTags.component";
 
 const useValue = (args: any) => {
-  const [value, useValue] = useState(args.value);
+  const [value, setValue] = useState(args.value);
 
   return {
     ...args,
     value,
     onChange(name: string, value: any) {
-      useValue(value);
+      setValue(value);
       args.onChange(name, value);
     }
   };

@@ -36,7 +36,7 @@ export function useFormExport(props: UseFormProps) {
           message: i18n(`The ${type} has been successfully exported!`),
           data: form
         });
-      } catch (error) {
+      } catch (error: any) {
         onError({
           name: `export:${type}`,
           title: i18n(`Export ${type} failed`),

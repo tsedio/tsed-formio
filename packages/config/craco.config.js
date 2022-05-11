@@ -1,9 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { ESLINT_MODES } = require("@craco/craco");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { configure, ensureReact } = require("@tsed/yarn-workspaces");
 
-module.exports = {
+module.exports = (name, config = {}, ensure = true) => ({
   style: {
     postcss: {
       plugins: require("./postcss.config").plugins
@@ -12,35 +10,32 @@ module.exports = {
   eslint: {
     mode: ESLINT_MODES
   },
+  babel: {
+    plugins: [
+      process.env.NODE_ENV === "test" &&
+        require.resolve("babel-plugin-require-context-hook")
+    ].filter(Boolean),
+    presets: [
+      ["@babel/preset-react", { runtime: "automatic" }],
+      "@babel/preset-typescript"
+    ]
+  },
   jest: {
     configure: {
+      ...(config.jest || {}),
       rootDir: "./",
       globals: {
         CONFIG: true
       },
-      setupFiles: [
-        // 'react-app-polyfill/jsdom',
-        require.resolve("./jest/setupTests.js")
-      ],
-      collectCoverageFrom: [
-        "**/*.{js,jsx,ts,tsx}",
-        "!**/*.stories.{js,jsx,ts,tsx}",
-        "!**/node_modules/**",
-        "!**/vendor/**"
-      ],
-      coverageThreshold: {
-        global: {
-          branches: 35.73,
-          functions: 51.76,
-          lines: 50.49,
-          statements: 50.91
-        }
-      }
+      resetMocks: false,
+      setupFilesAfterEnv: [require.resolve("./jest/setupTests.js")],
+      reporters: ["default", "jest-junit"]
     }
   },
   webpack: {
     configure: (webpackConfig, { env, paths }) => {
-      return ensureReact(configure(webpackConfig, { env, paths }));
+      webpackConfig = configure(webpackConfig, { env, paths });
+      return ensure ? ensureReact(webpackConfig) : webpackConfig;
     }
   }
-};
+});

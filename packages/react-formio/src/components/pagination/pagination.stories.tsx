@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "./pagination.component";
 
 export default {
   title: "ReactFormio/Pagination",
   component: Pagination,
-
   parameters: {}
 };
 

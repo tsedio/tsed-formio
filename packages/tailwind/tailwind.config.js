@@ -6,7 +6,6 @@ const {
 const primary = "hsla(208, 100%, 43%, 1)";
 const secondary = "hsla(190, 81%, 42%, 1)";
 
-// eslint-disable-next-line import/no-commonjs,node/exports-style
 Object.assign(exports, {
   plugins: [
     // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -320,7 +319,5 @@ Object.assign(exports, {
     letterSpacing: false,
     userSelect: false
   },
-  purge: {
-    enabled: false
-  }
+  purge: []
 });

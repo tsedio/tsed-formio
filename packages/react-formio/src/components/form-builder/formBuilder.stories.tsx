@@ -1,4 +1,3 @@
-import React from "react";
 import { FormBuilder } from "../../index";
 
 export default {

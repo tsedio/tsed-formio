@@ -5,7 +5,6 @@ import {
   useTooltip
 } from "@tsed/react-formio";
 import classnames from "classnames";
-import React from "react";
 import { useParams } from "react-router";
 import { UseActionsProps } from "../hooks";
 import { useAction } from "../hooks/useAction.hook";

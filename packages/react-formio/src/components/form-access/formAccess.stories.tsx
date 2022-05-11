@@ -1,4 +1,3 @@
-import React from "react";
 import { FormAccess } from "./formAccess.component";
 
 export default {

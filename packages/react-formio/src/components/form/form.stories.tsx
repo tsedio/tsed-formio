@@ -1,4 +1,3 @@
-import React from "react";
 import { Form } from "./form.component";
 import form from "../__fixtures__/form.fixture.json";
 

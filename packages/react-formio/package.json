@@ -2,9 +2,9 @@
   "name": "@tsed/react-formio",
   "version": "1.11.2",
   "description": "Provide a react formio wrapper. Written in TypeScript.",
+  "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.ts",
   "license": "MIT",
   "scripts": {
     "test": "cross-env CI=1 yarn craco test --coverage",
@@ -14,7 +14,8 @@
   "dependencies": {
     "@tsed/redux-utils": "1.11.2",
     "eventemitter2": "^6.4.3",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "choices.js": ">=9.0.1",
@@ -28,7 +29,6 @@
   },
   "devDependencies": {
     "@tsed/tailwind": "1.11.2",
-    "@tsed/tailwind-formio": "1.11.2",
-    "eslint-plugin-jsx-a11y": "^6.5.1"
+    "@tsed/tailwind-formio": "1.11.2"
   }
 }
