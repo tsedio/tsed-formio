@@ -24,7 +24,7 @@ export function Select<T = any>({
   onChange,
   required,
   value,
-  choices = [],
+  choices,
   description,
   placeholder,
   prefix,
@@ -80,12 +80,7 @@ export function Select<T = any>({
       >
         {choices.map(({ label, value }) => {
           return (
-            <option
-              data-testid='select-option'
-              key={String(value)}
-              label={label}
-              value={value as any}
-            >
+            <option key={String(value)} label={label} value={value as any}>
               {label}
             </option>
           );
