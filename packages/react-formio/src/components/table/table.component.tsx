@@ -1,30 +1,15 @@
 import classnames from "classnames";
 import noop from "lodash/noop";
 import React, { PropsWithChildren } from "react";
-import {
-  CellProps,
-  FilterProps,
-  Renderer,
-  TableOptions,
-  useFilters,
-  useGroupBy,
-  usePagination,
-  useSortBy,
-  useTable
-} from "react-table";
+import { CellProps, FilterProps, Renderer, TableOptions, useFilters, useGroupBy, usePagination, useSortBy, useTable } from "react-table";
 import { OnClickOperation, Operation, QueryOptions } from "../../interfaces";
 import { Pagination as DefaultPagination } from "../pagination/pagination.component";
 import { DefaultArrowSort } from "./components/defaultArrowSort.component";
-import {
-  DefaultCellHeader,
-  DefaultCellHeaderProps
-} from "./components/defaultCellHeader.component";
+import { DefaultCellHeader, DefaultCellHeaderProps } from "./components/defaultCellHeader.component";
 import { DefaultColumnFilter } from "./filters/defaultColumnFilter.component";
 import { useOperations } from "./utils/useOperations.hook";
 
-export interface TableProps<Data extends object = any>
-  extends TableOptions<Data>,
-    Partial<QueryOptions> {
+export interface TableProps<Data extends object = any> extends TableOptions<Data>, Partial<QueryOptions> {
   className?: string;
   /**
    * Call the listener when a filter / pagination  / sort change.
@@ -93,14 +78,9 @@ export interface TableProps<Data extends object = any>
   i18n?: (f: string) => string;
 }
 
-function getOperationCallback(
-  operations: Operation[],
-  onClick: OnClickOperation
-) {
+function getOperationCallback(operations: Operation[], onClick: OnClickOperation) {
   return (data: any, action: string) => {
-    const operation = operations.find(
-      (operation) => operation.action === action || operation.alias === action
-    );
+    const operation = operations.find((operation) => operation.action === action || operation.alias === action);
     if (operation) {
       onClick(data, operation);
     }
@@ -108,9 +88,7 @@ function getOperationCallback(
 }
 
 function DefaultLoader() {
-  return (
-    <div className={"text-center p-2 pb-4 font-bold"}>Loading in progress</div>
-  );
+  return <div className={"text-center p-2 pb-4 font-bold"}>Loading in progress</div>;
 }
 
 function DefaultEmptyData() {
@@ -119,9 +97,7 @@ function DefaultEmptyData() {
 
 const hooks = [useFilters, useGroupBy, useSortBy, usePagination];
 
-export function Table<Data extends object = any>(
-  props: PropsWithChildren<TableProps<Data>>
-) {
+export function Table<Data extends object = any>(props: PropsWithChildren<TableProps<Data>>) {
   const {
     children,
     className = "",
@@ -177,12 +153,9 @@ export function Table<Data extends object = any>(
         pageSize: controlledPageSize || 10,
         sortBy: controlledSortBy || []
       } as any,
-      manualPagination:
-        props.manualPagination === undefined ? true : props.manualPagination,
-      manualSortBy:
-        props.manualSortBy === undefined ? true : props.manualPagination,
-      manualFilters:
-        props.manualFilters === undefined ? true : props.manualFilters,
+      manualPagination: props.manualPagination === undefined ? true : props.manualPagination,
+      manualSortBy: props.manualSortBy === undefined ? true : props.manualPagination,
+      manualFilters: props.manualFilters === undefined ? true : props.manualFilters,
       disableFilters,
       filterId,
       setFilterId
@@ -216,10 +189,7 @@ export function Table<Data extends object = any>(
       >
         <thead>
           {tableInstance.headerGroups.map((headerGroup, i) => (
-            <tr
-              key={`tableInstance.headerGroups${i}`}
-              {...headerGroup.getHeaderGroupProps()}
-            >
+            <tr key={`tableInstance.headerGroups${i}`} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
                   key={`tableInstance.headers.column.${column.id}`}
@@ -237,24 +207,14 @@ export function Table<Data extends object = any>(
             {tableInstance.page.map((row) => {
               tableInstance.prepareRow(row);
               return (
-                <tr
-                  key={`tableInstance.page.${row.id}`}
-                  onClick={() => _onClick(row.original, "row")}
-                  {...row.getRowProps()}
-                >
+                <tr key={`tableInstance.page.${row.id}`} onClick={() => _onClick(row.original, "row")} {...row.getRowProps()}>
                   {row.cells.map((cell, i) => {
                     const { hidden, colspan } = cell.column as any;
                     if (hidden) {
                       return null;
                     }
                     return (
-                      <td
-                        key={`tableInstance.page.cells.${
-                          cell.value || "value"
-                        }.${i}`}
-                        colSpan={colspan}
-                        {...cell.getCellProps()}
-                      >
+                      <td key={`tableInstance.page.cells.${cell.value || "value"}.${i}`} colSpan={colspan} {...cell.getCellProps()}>
                         {cell.render("Cell")}
                       </td>
                     );

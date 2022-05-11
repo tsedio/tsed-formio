@@ -3,13 +3,9 @@ import uniq from "lodash/uniq";
 import PropTypes from "prop-types";
 import React, { useEffect, useRef } from "react";
 
-import {
-  FormControl,
-  FormControlProps
-} from "../form-control/formControl.component";
+import { FormControl, FormControlProps } from "../form-control/formControl.component";
 
-export interface InputTagsProps<T = any>
-  extends Omit<FormControlProps, "description" | "prefix" | "suffix"> {
+export interface InputTagsProps<T = any> extends Omit<FormControlProps, "description" | "prefix" | "suffix"> {
   value?: T;
   onChange?: (name: string, value: T) => void;
   placeholder?: string;
@@ -17,17 +13,7 @@ export interface InputTagsProps<T = any>
   [key: string]: any;
 }
 
-export function InputTags({
-  name,
-  value = [],
-  label,
-  onChange,
-  required,
-  description,
-  prefix,
-  suffix,
-  ...props
-}: InputTagsProps) {
+export function InputTags({ name, value = [], label, onChange, required, description, prefix, suffix, ...props }: InputTagsProps) {
   const ref = useRef();
 
   useEffect(() => {
@@ -43,15 +29,12 @@ export function InputTags({
       onChange(name, uniq(value.concat(event.detail.value)));
     });
 
-    instance.passedElement.element.addEventListener(
-      "removeItem",
-      (event: any) => {
-        onChange(
-          name,
-          value.filter((v: string) => v !== event.detail.value)
-        );
-      }
-    );
+    instance.passedElement.element.addEventListener("removeItem", (event: any) => {
+      onChange(
+        name,
+        value.filter((v: string) => v !== event.detail.value)
+      );
+    });
 
     return () => {
       instance.destroy();
@@ -59,14 +42,7 @@ export function InputTags({
   }, []);
 
   return (
-    <FormControl
-      name={name}
-      label={label}
-      required={required}
-      description={description}
-      prefix={prefix}
-      suffix={suffix}
-    >
+    <FormControl name={name} label={label} required={required} description={description} prefix={prefix} suffix={suffix}>
       <input ref={ref} type='text' {...props} id={name} required={required} />
     </FormControl>
   );

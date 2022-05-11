@@ -1,9 +1,4 @@
-export function mapPagination({
-  skip,
-  limit,
-  serverCount,
-  length
-}: any = {}): any {
+export function mapPagination({ skip, limit, serverCount, length }: any = {}): any {
   skip = skip || 0;
   limit = limit || 10;
   serverCount = serverCount || length;

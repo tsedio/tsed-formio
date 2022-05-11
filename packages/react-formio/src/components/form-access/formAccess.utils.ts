@@ -4,10 +4,7 @@ import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
 import { FormSchema, Submission } from "../../interfaces";
 import { RoleSchema } from "../../interfaces/RoleSchema";
-import {
-  getAccessPermissionForm,
-  getSubmissionPermissionForm
-} from "./formAccess.schema";
+import { getAccessPermissionForm, getSubmissionPermissionForm } from "./formAccess.schema";
 
 export interface Choice {
   label: string;
@@ -81,30 +78,20 @@ export function getFormAccess(roles: RoleSchema[]): FormAccessSchema {
   };
 }
 
-export function dataAccessToSubmissions(
-  form: Partial<FormSchema>,
-  formAccess: FormAccessSchema
-): SubmissionAccess {
-  const getKeys = (components: ExtendedComponentSchema[]) =>
-    components.map(({ key }) => key);
+export function dataAccessToSubmissions(form: Partial<FormSchema>, formAccess: FormAccessSchema): SubmissionAccess {
+  const getKeys = (components: ExtendedComponentSchema[]) => components.map(({ key }) => key);
 
   return {
     access: {
       data: accessToHash(getKeys(formAccess.access.components), form.access)
     },
     submissionAccess: {
-      data: accessToHash(
-        getKeys(formAccess.submissionAccess.components),
-        form.submissionAccess
-      )
+      data: accessToHash(getKeys(formAccess.submissionAccess.components), form.submissionAccess)
     }
   };
 }
 
-export function submissionsToDataAccess(
-  form: Partial<FormSchema>,
-  submissions: SubmissionAccess
-): Partial<FormSchema> {
+export function submissionsToDataAccess(form: Partial<FormSchema>, submissions: SubmissionAccess): Partial<FormSchema> {
   return {
     ...cloneDeep(form),
     access: hashToAccess(submissions.access.data),
@@ -112,20 +99,11 @@ export function submissionsToDataAccess(
   };
 }
 
-export function shouldUpdate(
-  type: string,
-  submission: Submission<AccessRoles>,
-  submissions: SubmissionAccess
-) {
+export function shouldUpdate(type: string, submission: Submission<AccessRoles>, submissions: SubmissionAccess) {
   return !isEqual(submission.data, submissions[type].data);
 }
 
-export function updateSubmissions(
-  type: string,
-  submission: Submission<AccessRoles>,
-  submissions: SubmissionAccess,
-  cb: Function = noop
-) {
+export function updateSubmissions(type: string, submission: Submission<AccessRoles>, submissions: SubmissionAccess, cb: Function = noop) {
   if (shouldUpdate(type, submission, submissions)) {
     submissions = {
       ...submissions,

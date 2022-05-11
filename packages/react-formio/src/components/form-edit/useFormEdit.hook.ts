@@ -12,10 +12,7 @@ export interface UseFormEditHookProps extends Record<string, unknown> {
 }
 
 export function useFormEdit(props: UseFormEditHookProps) {
-  const [{ current, future, past }, dispatchFormAction] = useReducer(
-    reducer,
-    createInitialState(props)
-  );
+  const [{ current, future, past }, dispatchFormAction] = useReducer(reducer, createInitialState(props));
 
   const onSubmit = () => {
     if (props.onSubmit && typeof props.onSubmit === "function") {
@@ -29,11 +26,7 @@ export function useFormEdit(props: UseFormEditHookProps) {
   };
 
   useEffect(() => {
-    if (
-      props.form &&
-      (current._id !== props.form._id ||
-        current.modified !== props.form.modified)
-    ) {
+    if (props.form && (current._id !== props.form._id || current.modified !== props.form.modified)) {
       dispatchFormAction({ type: "replaceForm", value: props.form });
     }
   }, [props.form]);

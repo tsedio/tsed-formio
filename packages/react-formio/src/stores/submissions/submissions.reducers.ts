@@ -1,11 +1,6 @@
 import { createReducer } from "@tsed/redux-utils";
 import { Submission } from "../../interfaces/Submission";
-import {
-  failSubmissions,
-  receiveSubmissions,
-  requestSubmissions,
-  resetSubmissions
-} from "./submissions.actions";
+import { failSubmissions, receiveSubmissions, requestSubmissions, resetSubmissions } from "./submissions.actions";
 
 export interface SubmissionsState {
   error: null | Error;
@@ -22,13 +17,7 @@ export interface SubmissionsState {
   data: Submission[];
 }
 
-export function createInitialState({
-  pageIndex = 0,
-  pageSize = 10,
-  query = {},
-  select = "",
-  sortBy = []
-}: any = {}): SubmissionsState {
+export function createInitialState({ pageIndex = 0, pageSize = 10, query = {}, select = "", sortBy = [] }: any = {}): SubmissionsState {
   return {
     error: null,
     formId: "",
@@ -45,10 +34,7 @@ export function createInitialState({
   };
 }
 
-export const submissionsReducer = createReducer<SubmissionsState>(
-  {},
-  createInitialState
-)
+export const submissionsReducer = createReducer<SubmissionsState>({}, createInitialState)
   .on(resetSubmissions, (_: any, _2: any, reset: any) => {
     return reset();
   })

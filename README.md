@@ -29,11 +29,11 @@ Dedicated repository for Formio front-end related packages.
 
 ## Features
 
-* Provide an alternative of react-formio ([@tsed/react-formio](./packages/react-formio/readme.md)) wrapper with some improvement.
-* Provide a better TypeScript support,
-* Provide a [@tsed/tailwind-formio](./packages/tailwind-formio/readme.md) package to support tailwind CSS framework with formio.
-* Provide a lightweight redux utils packages.
-* Provide a [storybook](https://formio.tsed.io)
+- Provide an alternative of react-formio ([@tsed/react-formio](./packages/react-formio/readme.md)) wrapper with some improvement.
+- Provide a better TypeScript support,
+- Provide a [@tsed/tailwind-formio](./packages/tailwind-formio/readme.md) package to support tailwind CSS framework with formio.
+- Provide a lightweight redux utils packages.
+- Provide a [storybook](https://formio.tsed.io)
 
 ## Documentation
 
@@ -53,17 +53,16 @@ Documentation is available on [https://formio.tsed.io](https://formio.tsed.io).
 - [@tsed/tailwind-formio](./packages/tailwind-formio/readme.md)
 
 ## Contributors
+
 Please read [contributing guidelines here](./CONTRIBUTING.md).
 
 <a href="https://github.com/TypedProject/tsed/graphs/contributors"><img src="https://opencollective.com/tsed/contributors.svg?width=890" /></a>
-
 
 ## Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/tsed#backer)]
 
 <a href="https://opencollective.com/tsed#backers" target="_blank"><img src="https://opencollective.com/tsed/tiers/backer.svg?width=890"></a>
-
 
 ## Sponsors
 
@@ -82,4 +81,3 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [travis]: https://travis-ci.org/
-

@@ -1,9 +1,4 @@
-import {
-  failForms,
-  receiveForms,
-  requestForms,
-  resetForms
-} from "./forms.actions";
+import { failForms, receiveForms, requestForms, resetForms } from "./forms.actions";
 import { formsReducer } from "./forms.reducers";
 
 describe("Forms reducer", () => {

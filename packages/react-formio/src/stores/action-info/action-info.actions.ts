@@ -9,11 +9,7 @@ export const requestActionInfo = createAction();
 export const receiveActionInfo = createAction();
 export const failActionInfo = createAction();
 
-export const getActionInfo = (
-  formId: string,
-  actionType: string,
-  done = noop
-) => async (dispatch: any) => {
+export const getActionInfo = (formId: string, actionType: string, done = noop) => async (dispatch: any) => {
   dispatch(requestActionInfo(ACTION_INFO));
 
   const url = getFormUrl(formId);
@@ -22,8 +18,7 @@ export const getActionInfo = (
   try {
     const actionInfo = await formio.actionInfo(actionType);
 
-    actionInfo.settingsForm.action =
-      Formio.getProjectUrl() + actionInfo.settingsForm.action;
+    actionInfo.settingsForm.action = Formio.getProjectUrl() + actionInfo.settingsForm.action;
 
     dispatch(receiveActionInfo(ACTION_INFO, { actionInfo }));
     done(null, actionInfo);

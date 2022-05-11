@@ -1,11 +1,6 @@
 import { Formio } from "formiojs";
 import { mapRequestParams } from "../../utils/mapRequestParams";
-import {
-  failSubmissions,
-  getSubmissions,
-  receiveSubmissions,
-  requestSubmissions
-} from "./submissions.actions";
+import { failSubmissions, getSubmissions, receiveSubmissions, requestSubmissions } from "./submissions.actions";
 
 jest.mock("formiojs");
 jest.mock("../../utils/mapRequestParams");
@@ -17,9 +12,7 @@ describe("Submissions actions", () => {
   describe("getSubmissions", () => {
     it("should return a result", async () => {
       // GIVEN
-      (Formio.prototype.loadSubmissions as any).mockReturnValue(
-        Promise.resolve([{}])
-      );
+      (Formio.prototype.loadSubmissions as any).mockReturnValue(Promise.resolve([{}]));
       (Formio.getProjectUrl as any).mockReturnValue("https://formio");
 
       const dispatch = jest.fn();
@@ -37,9 +30,7 @@ describe("Submissions actions", () => {
       });
 
       // WHEN
-      await new Promise((resolve) =>
-        getSubmissions(name, formId, parameters, resolve)(dispatch, getState)
-      );
+      await new Promise((resolve) => getSubmissions(name, formId, parameters, resolve)(dispatch, getState));
 
       // THEN
       expect(Formio).toHaveBeenCalledWith("https://formio/formId/submission");
@@ -64,9 +55,7 @@ describe("Submissions actions", () => {
     });
     it("should return a error", async () => {
       // GIVEN
-      (Formio.prototype.loadSubmissions as any).mockReturnValue(
-        Promise.reject(new Error("message"))
-      );
+      (Formio.prototype.loadSubmissions as any).mockReturnValue(Promise.reject(new Error("message")));
       (Formio.getProjectUrl as any).mockReturnValue("https://formio");
 
       const dispatch = jest.fn();
@@ -84,9 +73,7 @@ describe("Submissions actions", () => {
       });
 
       // WHEN
-      await new Promise((resolve) =>
-        getSubmissions(name, formId, parameters, resolve)(dispatch, getState)
-      );
+      await new Promise((resolve) => getSubmissions(name, formId, parameters, resolve)(dispatch, getState));
 
       // THEN
       expect(Formio).toHaveBeenCalledWith("https://formio/formId/submission");

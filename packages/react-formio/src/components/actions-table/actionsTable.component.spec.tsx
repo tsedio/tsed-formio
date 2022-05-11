@@ -8,9 +8,7 @@ describe("ActionsTable", () => {
   it("should render the table actions", async () => {
     const onAddAction = jest.fn();
 
-    const { getByRole, getAllByRole } = render(
-      <Sandbox {...Sandbox.args} onAddAction={onAddAction} />
-    );
+    const { getByRole, getAllByRole } = render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
 
     const btn = getByRole("button", { name: /add action/i });
     const cells = getAllByRole("cell");
@@ -27,9 +25,7 @@ describe("ActionsTable", () => {
   it("should not call addAction when the default item is selected", async () => {
     const onAddAction = jest.fn();
 
-    const { getByRole } = render(
-      <Sandbox {...Sandbox.args} onAddAction={onAddAction} />
-    );
+    const { getByRole } = render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
 
     const btn = getByRole("button", { name: /add action/i });
 
@@ -39,17 +35,12 @@ describe("ActionsTable", () => {
   it("should call addAction with the selected action", async () => {
     const onAddAction = jest.fn();
 
-    const { getByRole } = render(
-      <Sandbox {...Sandbox.args} onAddAction={onAddAction} />
-    );
+    const { getByRole } = render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
 
     const btn = getByRole("button", { name: /add action/i });
     const select = getByRole("combobox");
 
-    await userEvent.selectOptions(
-      select,
-      String(Sandbox.args.availableActions[1].value)
-    );
+    await userEvent.selectOptions(select, String(Sandbox.args.availableActions[1].value));
 
     await fireEvent.click(btn);
 

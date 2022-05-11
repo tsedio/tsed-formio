@@ -9,24 +9,19 @@ async function getDatabase() {
 
 async function exportForm(form: FormSchema) {
   const database = await getDatabase();
-  return (
-    database.forms[form.machineName] || database.resources[form.machineName]
-  );
+  return database.forms[form.machineName] || database.resources[form.machineName];
 }
 
 async function exportActions(form: FormSchema) {
   const database = await getDatabase();
 
-  return Object.entries(database.actions).reduce(
-    (obj, [machineName, action]) => {
-      if (machineName.startsWith(form.machineName)) {
-        obj[machineName] = action;
-      }
+  return Object.entries(database.actions).reduce((obj, [machineName, action]) => {
+    if (machineName.startsWith(form.machineName)) {
+      obj[machineName] = action;
+    }
 
-      return obj;
-    },
-    {}
-  );
+    return obj;
+  }, {});
 }
 
 async function getContent(form: FormSchema, type: string, format = "json") {
@@ -41,9 +36,7 @@ async function getContent(form: FormSchema, type: string, format = "json") {
       break;
     case "form":
     default:
-      result = await httpClient.get(
-        `/form/${form._id}/export?format=${format}`
-      );
+      result = await httpClient.get(`/form/${form._id}/export?format=${format}`);
   }
 
   if (format === "json") {
@@ -69,11 +62,7 @@ function createBlob(name: string, data: any, contentType: string) {
   FileSaver.saveAs(blob, name);
 }
 
-export async function exportAs(
-  form: any,
-  type: string,
-  format: "json" | "csv"
-) {
+export async function exportAs(form: any, type: string, format: "json" | "csv") {
   const result = await getContent(form, type, format);
   const name = `${form.machineName}-${type}`;
   format = format === "csv" ? "csv" : "json";

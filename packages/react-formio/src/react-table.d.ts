@@ -45,9 +45,7 @@ import {
 } from "react-table";
 
 declare module "react-table" {
-  export interface UseFlexLayoutInstanceProps<
-    D extends Record<string, unknown>
-  > {
+  export interface UseFlexLayoutInstanceProps<D extends Record<string, unknown>> {
     totalColumnsMinWidth: number;
   }
 
@@ -66,17 +64,13 @@ declare module "react-table" {
       UseRowSelectOptions<D>,
       UseSortByOptions<D> {}
 
-  export interface Hooks<
-    D extends Record<string, unknown> = Record<string, unknown>
-  >
+  export interface Hooks<D extends Record<string, unknown> = Record<string, unknown>>
     extends UseExpandedHooks<D>,
       UseGroupByHooks<D>,
       UseRowSelectHooks<D>,
       UseSortByHooks<D> {}
 
-  export interface TableInstance<
-    D extends Record<string, unknown> = Record<string, unknown>
-  >
+  export interface TableInstance<D extends Record<string, unknown> = Record<string, unknown>>
     extends UseColumnOrderInstanceProps<D>,
       UseExpandedInstanceProps<D>,
       UseFiltersInstanceProps<D>,
@@ -88,9 +82,7 @@ declare module "react-table" {
       UsePaginationInstanceProps<D>,
       UseSortByInstanceProps<D> {}
 
-  export interface TableState<
-    D extends Record<string, unknown> = Record<string, unknown>
-  >
+  export interface TableState<D extends Record<string, unknown> = Record<string, unknown>>
     extends UseColumnOrderState<D>,
       UseExpandedState<D>,
       UseFiltersState<D>,
@@ -103,9 +95,7 @@ declare module "react-table" {
     rowCount: number;
   }
 
-  export interface ColumnInterface<
-    D extends Record<string, unknown> = Record<string, unknown>
-  >
+  export interface ColumnInterface<D extends Record<string, unknown> = Record<string, unknown>>
     extends UseFiltersColumnOptions<D>,
       UseGroupByColumnOptions<D>,
       UseResizeColumnsColumnOptions<D>,
@@ -113,25 +103,16 @@ declare module "react-table" {
     align?: string;
   }
 
-  export interface ColumnInstance<
-    D extends Record<string, unknown> = Record<string, unknown>
-  >
+  export interface ColumnInstance<D extends Record<string, unknown> = Record<string, unknown>>
     extends UseFiltersColumnProps<D>,
       UseGroupByColumnProps<D>,
       UseResizeColumnsColumnProps<D>,
       UseFlexLayoutColumnProps<D>,
       UseSortByColumnProps<D> {}
 
-  export type Cell<
-    D extends Record<string, unknown> = Record<string, unknown>
-  > = UseGroupByCellProps<D>;
+  export type Cell<D extends Record<string, unknown> = Record<string, unknown>> = UseGroupByCellProps<D>;
 
-  export interface Row<D extends object = {}>
-    extends UseExpandedRowProps<D>,
-      UseGroupByRowProps<D>,
-      UseRowSelectRowProps<D> {}
+  export interface Row<D extends object = {}> extends UseExpandedRowProps<D>, UseGroupByRowProps<D>, UseRowSelectRowProps<D> {}
 }
 
-export type TableMouseEventHandler = (
-  instance: TableInstance<T>
-) => MouseEventHandler;
+export type TableMouseEventHandler = (instance: TableInstance<T>) => MouseEventHandler;

@@ -1,7 +1,4 @@
-import {
-  formSettingsToSubmission,
-  submissionToFormSettings
-} from "./formSettings.utils";
+import { formSettingsToSubmission, submissionToFormSettings } from "./formSettings.utils";
 
 describe("FormSettings utils", () => {
   describe("submissionToDataSettings()", () => {

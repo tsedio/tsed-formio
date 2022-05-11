@@ -9,20 +9,13 @@ import { FormPreviewView } from "./formPreview.view";
 import { SubmissionsView } from "./submissions.view";
 import { FormSettingsView } from "./formSettings.view";
 
-export interface FormRoute<User = any>
-  extends TabsItemProps,
-    Record<string, unknown> {
+export interface FormRoute<User = any> extends TabsItemProps, Record<string, unknown> {
   action: string;
   exact: boolean;
   component?: React.ComponentType<any>;
   roles?: string[];
 
-  when?(ctx: {
-    formAction: string;
-    auth: AuthState<User>;
-    form: Partial<FormSchema>;
-    item: FormRoute;
-  }): boolean;
+  when?(ctx: { formAction: string; auth: AuthState<User>; form: Partial<FormSchema>; item: FormRoute }): boolean;
 }
 
 export interface FormRoutesOptions<User = any> {
@@ -101,13 +94,8 @@ export const defaultFormRoutes: FormRoute[] = [
   }
 ];
 
-export function findRoute(
-  routes: FormRoute[],
-  formAction: string
-): FormRoute | undefined {
-  return routes.find(({ action }) =>
-    formAction === "delete" ? action === "edit" : formAction === action
-  );
+export function findRoute(routes: FormRoute[], formAction: string): FormRoute | undefined {
+  return routes.find(({ action }) => (formAction === "delete" ? action === "edit" : formAction === action));
 }
 
 export function getFormRoutes<User = any>({
@@ -120,14 +108,11 @@ export function getFormRoutes<User = any>({
   return formRoutes
     .filter((item) => {
       return (
-        (operationsSettings[item.action] ||
-          operationsSettings[item.action] === undefined) &&
+        (operationsSettings[item.action] || operationsSettings[item.action] === undefined) &&
         (formAction === "create" ? ["back"].includes(item.action) : item) &&
         (item.label || item.icon)
       );
     })
     .filter((item) => checkRoleFormAccess(auth, form, item.roles))
-    .filter(
-      (item) => !item.when || item.when({ auth, form, item, formAction })
-    );
+    .filter((item) => !item.when || item.when({ auth, form, item, formAction }));
 }

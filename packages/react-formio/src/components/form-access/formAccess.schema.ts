@@ -1,13 +1,7 @@
 import { ExtendedComponentSchema } from "formiojs";
 import { FormSchema } from "../../interfaces/FormSchema";
 
-export function getRoleComponent({
-  label,
-  key,
-  description,
-  choices,
-  data
-}: any): ExtendedComponentSchema {
+export function getRoleComponent({ label, key, description, choices, data }: any): ExtendedComponentSchema {
   return {
     label,
     key,
@@ -36,18 +30,12 @@ export function getRoleComponent({
 }
 
 function toDescription(description: string, hr = true): string {
-  return (
-    '<span class="text-sm">' +
-    description +
-    "</span> " +
-    (hr ? '<hr class="mt-6 mb-5 border-gray-200 mx-20"/>' : "")
-  );
+  return '<span class="text-sm">' + description + "</span> " + (hr ? '<hr class="mt-6 mb-5 border-gray-200 mx-20"/>' : "");
 }
 
 export function getSubmissionPermissionForm({ choices }: any): FormSchema {
   return {
-    description:
-      "<strong>Elevated permissions allow users to access and modify other user's entities. Assign with caution.</strong>",
+    description: "<strong>Elevated permissions allow users to access and modify other user's entities. Assign with caution.</strong>",
     components: [
       getRoleComponent({
         key: "create_own",
@@ -120,13 +108,11 @@ export function getSubmissionPermissionForm({ choices }: any): FormSchema {
 
 export function getAccessPermissionForm({ choices }: any): FormSchema {
   return {
-    description:
-      "<strong>Elevated permissions allow users to access and modify other user's entities. Assign with caution.</strong>",
+    description: "<strong>Elevated permissions allow users to access and modify other user's entities. Assign with caution.</strong>",
     components: [
       getRoleComponent({
         key: "read_own",
-        label:
-          '<h4 class="text-gray-800">Read Form Definition (Restricted to owner)</h4>',
+        label: '<h4 class="text-gray-800">Read Form Definition (Restricted to owner)</h4>',
         description: toDescription(
           "The Read Own permission will allow a user, with one of the given Roles, to read a form. A user can only read a form if they are defined as its owner."
         ),
@@ -142,8 +128,7 @@ export function getAccessPermissionForm({ choices }: any): FormSchema {
       }),
       getRoleComponent({
         key: "update_own",
-        label:
-          '<h4 class="text-gray-800">Update Form Definition (Restricted to owner)</h4>',
+        label: '<h4 class="text-gray-800">Update Form Definition (Restricted to owner)</h4>',
         description: toDescription(
           "The Update Own permission will allow a user, with one of the given Roles, to update a form. A user can only update a form if they are defined as its owner."
         ),
@@ -159,8 +144,7 @@ export function getAccessPermissionForm({ choices }: any): FormSchema {
       }),
       getRoleComponent({
         key: "delete_own",
-        label:
-          '<h4 class="text-gray-800">Delete Form Definition (Restricted to owner)</h4>',
+        label: '<h4 class="text-gray-800">Delete Form Definition (Restricted to owner)</h4>',
         description: toDescription(
           "The Delete Own permission will allow a user, with one of the given Roles, to delete a form. A user can only delete a form if they are defined as its owner."
         ),

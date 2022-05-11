@@ -98,8 +98,7 @@ Sandbox.args = {
               placeholder: "Select which handler(s) you would like to trigger",
               dataSrc: "json",
               data: {
-                json:
-                  '[{"name":"before","title":"Before"},{"name":"after","title":"After"}]'
+                json: '[{"name":"before","title":"Before"},{"name":"after","title":"After"}]'
               },
               template: "<span>{{ item.title }}</span>",
               valueProperty: "name",
@@ -303,8 +302,7 @@ Sandbox.args = {
                                         {
                                           label: "Name",
                                           labelPosition: "top",
-                                          placeholder:
-                                            "Enter the form machine name",
+                                          placeholder: "Enter the form machine name",
                                           description: "",
                                           tooltip: "",
                                           prefix: "",
@@ -335,8 +333,7 @@ Sandbox.args = {
                                           redrawOn: "",
                                           clearOnHide: true,
                                           customDefaultValue: "",
-                                          calculateValue:
-                                            "value = _.camelCase(data.title)",
+                                          calculateValue: "value = _.camelCase(data.title)",
                                           calculateServer: false,
                                           allowCalculateOverride: false,
                                           validateOn: "change",
@@ -481,8 +478,7 @@ Sandbox.args = {
                                           minSearch: 0,
                                           readOnlyValue: false,
                                           authenticate: false,
-                                          template:
-                                            "<span>{{ item.label }}</span>",
+                                          template: "<span>{{ item.label }}</span>",
                                           selectFields: "",
                                           searchThreshold: 0.3,
                                           uniqueOptions: false,
@@ -537,8 +533,7 @@ Sandbox.args = {
                                           redrawOn: "",
                                           clearOnHide: true,
                                           customDefaultValue: "",
-                                          calculateValue:
-                                            "data = _camelCase(data.title).toLowerCase()",
+                                          calculateValue: "data = _camelCase(data.title).toLowerCase()",
                                           calculateServer: false,
                                           allowCalculateOverride: false,
                                           validateOn: "change",
@@ -781,8 +776,7 @@ Sandbox.args = {
           theme: "primary"
         }
       ],
-      action:
-        "/project/5d0797bc872fc7d140559857/form/602967600685b24dbe24e999/action"
+      action: "/project/5d0797bc872fc7d140559857/form/602967600685b24dbe24e999/action"
     }
   },
   options: { template: "tailwind", iconset: "bx" }

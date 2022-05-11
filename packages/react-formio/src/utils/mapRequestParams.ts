@@ -9,14 +9,7 @@ export interface RequestParamsOptions extends QueryOptions {
   [key: string]: any;
 }
 
-export function mapRequestParams({
-  query,
-  pageSize = 10,
-  pageIndex = 0,
-  select,
-  filters,
-  sortBy
-}: Partial<RequestParamsOptions>) {
+export function mapRequestParams({ query, pageSize = 10, pageIndex = 0, select, filters, sortBy }: Partial<RequestParamsOptions>) {
   const requestParams: any = {
     ...clean(query),
     limit: pageSize,
@@ -30,10 +23,7 @@ export function mapRequestParams({
   if (filters && filters.length) {
     filters.forEach((filter) => {
       if (filter.value) {
-        requestParams[`${filter.id}__regex`] = new RegExp(
-          filter.value,
-          "gi"
-        ).toString();
+        requestParams[`${filter.id}__regex`] = new RegExp(filter.value, "gi").toString();
       }
     });
   }

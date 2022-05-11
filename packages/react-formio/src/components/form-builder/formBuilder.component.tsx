@@ -25,17 +25,9 @@ const EVENTS = [
   "pasteComponent"
 ];
 
-const EVENTS_CHANGE = [
-  "addComponent",
-  "saveComponent",
-  "updateComponent",
-  "removeComponent"
-];
+const EVENTS_CHANGE = ["addComponent", "saveComponent", "updateComponent", "removeComponent"];
 
-async function createBuilder(
-  el: Element,
-  { components = [], display, options, onChange, events = {} }: any
-): Promise<void> {
+async function createBuilder(el: Element, { components = [], display, options, onChange, events = {} }: any): Promise<void> {
   const form = {
     display,
     components: [...components]
@@ -54,9 +46,7 @@ async function createBuilder(
       };
     };
 
-    EVENTS.forEach((event) =>
-      builder.on(event, callLast(handleEvent(event), 200))
-    );
+    EVENTS.forEach((event) => builder.on(event, callLast(handleEvent(event), 200)));
 
     return builder;
   } catch (er) {
@@ -166,6 +156,7 @@ export class FormBuilder extends React.Component<FormBuilderProps, any> {
     this.builderRef?.destroy();
   }
 
+  // eslint-disable-next-line react/no-deprecated
   async componentWillReceiveProps(nextProps: FormBuilderProps) {
     if (this.builderRef) {
       if (nextProps.display !== this.state.display) {

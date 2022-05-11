@@ -36,23 +36,16 @@ export function useActions(props: UseActionsProps) {
   });
 
   const [operation, setOperation] = useState<Operation>();
-  const [currentAction, setCurrentAction] = useState<ActionInfoSchema>(
-    availableActions[0]
-  );
+  const [currentAction, setCurrentAction] = useState<ActionInfoSchema>(availableActions[0]);
 
   const addAction = (actionName: string) => {
     dispatch(push([basePath, actionName, "add"].join("/")));
   };
 
-  const dispatchOperation = (
-    actionInfo: ActionSchema,
-    operation: Operation
-  ) => {
+  const dispatchOperation = (actionInfo: ActionSchema, operation: Operation) => {
     setOperation(operation);
 
-    dispatch(
-      push([basePath, (actionInfo as any)._id, operation.action].join("/"))
-    );
+    dispatch(push([basePath, (actionInfo as any)._id, operation.action].join("/")));
   };
 
   return {

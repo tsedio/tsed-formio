@@ -31,13 +31,7 @@ export function DefaultOperationButton(props: OperationButtonProps) {
 
   return (
     <button
-      className={classnames(
-        className,
-        ["btn", buttonOutline && "outline", buttonType]
-          .filter(Boolean)
-          .join("-"),
-        `btn-${buttonSize}`
-      )}
+      className={classnames(className, ["btn", buttonOutline && "outline", buttonType].filter(Boolean).join("-"), `btn-${buttonSize}`)}
       onClick={stopPropagationWrapper(() => onClick(action))}
     >
       {icon ? (
@@ -45,9 +39,7 @@ export function DefaultOperationButton(props: OperationButtonProps) {
           <i className={iconClass(undefined, icon)} /> {title && " "}
         </>
       ) : null}
-      {title && (
-        <span className={icon && title ? "ml-1" : ""}>{i18n(title)}</span>
-      )}
+      {title && <span className={icon && title ? "ml-1" : ""}>{i18n(title)}</span>}
     </button>
   );
 }

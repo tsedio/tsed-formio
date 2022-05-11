@@ -6,19 +6,7 @@ import { useForm } from "../hooks/useForm.hook";
 import { UseFormsProps } from "../hooks/useForms.hook";
 
 function FormComponent({ className, ...props }: ReturnType<typeof useForm>) {
-  const {
-    basePath,
-    formId,
-    formAction,
-    error,
-    removeForm,
-    currentRoute,
-    setCurrentRoute,
-    routes,
-    gotoEdit,
-    i18n,
-    isActive
-  } = props;
+  const { basePath, formId, formAction, error, removeForm, currentRoute, setCurrentRoute, routes, gotoEdit, i18n, isActive } = props;
 
   const RemoveModalComponent = props.RemoveModalComponent || RemoveModal;
   const LoaderComponent = props.LoaderComponent || Loader;
@@ -27,43 +15,22 @@ function FormComponent({ className, ...props }: ReturnType<typeof useForm>) {
     <div>
       <Alert error={error} />
       <div className={className}>
-        <Tabs
-          i18n={i18n}
-          current={currentRoute}
-          items={routes}
-          className=''
-          onClick={setCurrentRoute}
-        >
+        <Tabs i18n={i18n} current={currentRoute} items={routes} className='' onClick={setCurrentRoute}>
           <Switch>
             <Route path={[basePath, "create"].join("/")} exact={true}>
-              <FormEditView
-                {...props}
-                formAction={"create"}
-                basePath={[basePath, formId, formAction].join("/")}
-              />
+              <FormEditView {...props} formAction={"create"} basePath={[basePath, formId, formAction].join("/")} />
             </Route>
             {routes
               .filter((item) => item.component)
               .map(({ action, exact, component: Component }, index: number) => {
                 return (
-                  <Route
-                    key={index}
-                    path={[basePath, formId, action].join("/")}
-                    exact={exact}
-                  >
-                    <Component
-                      {...props}
-                      formAction={action}
-                      basePath={[basePath, formId, action].join("/")}
-                    />
+                  <Route key={index} path={[basePath, formId, action].join("/")} exact={exact}>
+                    <Component {...props} formAction={action} basePath={[basePath, formId, action].join("/")} />
                   </Route>
                 );
               })}
             <Route path={[basePath, formId, "delete"].join("/")} exact={true}>
-              <FormEditView
-                {...props}
-                basePath={[basePath, formId, formAction].join("/")}
-              />
+              <FormEditView {...props} basePath={[basePath, formId, formAction].join("/")} />
               <RemoveModalComponent
                 i18n={i18n}
                 show={true}
@@ -74,10 +41,7 @@ function FormComponent({ className, ...props }: ReturnType<typeof useForm>) {
               />
             </Route>
             <Route path={[basePath, formId].join("/")} exact={true}>
-              <FormEditView
-                {...props}
-                basePath={[basePath, formId, formAction].join("/")}
-              />
+              <FormEditView {...props} basePath={[basePath, formId, formAction].join("/")} />
             </Route>
           </Switch>
           <LoaderComponent isActive={isActive} />

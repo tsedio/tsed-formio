@@ -1,10 +1,5 @@
 import { Formio } from "formiojs";
-import {
-  formAccessUser,
-  submissionAccessUser,
-  userForms,
-  userRoles
-} from "./auth.actions";
+import { formAccessUser, submissionAccessUser, userForms, userRoles } from "./auth.actions";
 import { AUTH } from "./auth.constant";
 import { getAccess } from "./getAccess.action";
 
@@ -49,11 +44,7 @@ describe("getAccess()", () => {
           path: "user",
           access: [
             {
-              roles: [
-                "6016dd751c62ca370d59f0ba",
-                "6016dd751c62ca370d59f0b9",
-                "6016dd751c62ca370d59f0b8"
-              ],
+              roles: ["6016dd751c62ca370d59f0ba", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0b8"],
               type: "read_all"
             }
           ],
@@ -75,11 +66,7 @@ describe("getAccess()", () => {
           path: "admin",
           access: [
             {
-              roles: [
-                "6016dd751c62ca370d59f0ba",
-                "6016dd751c62ca370d59f0b9",
-                "6016dd751c62ca370d59f0b8"
-              ],
+              roles: ["6016dd751c62ca370d59f0ba", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0b8"],
               type: "read_all"
             }
           ],
@@ -101,11 +88,7 @@ describe("getAccess()", () => {
           path: "todo",
           access: [
             {
-              roles: [
-                "6016dd751c62ca370d59f0b8",
-                "6016dd751c62ca370d59f0b9",
-                "6016dd751c62ca370d59f0ba"
-              ],
+              roles: ["6016dd751c62ca370d59f0b8", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0ba"],
               type: "read_all"
             }
           ],
@@ -128,9 +111,7 @@ describe("getAccess()", () => {
     await getAccess(dispatch);
 
     expect(Formio.getProjectUrl).toHaveBeenCalledWith();
-    expect(Formio.makeStaticRequest).toHaveBeenCalledWith(
-      "https://api.form.io/access"
-    );
+    expect(Formio.makeStaticRequest).toHaveBeenCalledWith("https://api.form.io/access");
 
     expect(submissionAccessUser).toHaveBeenCalledWith(AUTH, {
       submissionAccess: {
@@ -169,25 +150,13 @@ describe("getAccess()", () => {
     expect(formAccessUser).toHaveBeenCalledWith(AUTH, {
       formAccess: {
         admin: {
-          read_all: [
-            "6016dd751c62ca370d59f0ba",
-            "6016dd751c62ca370d59f0b9",
-            "6016dd751c62ca370d59f0b8"
-          ]
+          read_all: ["6016dd751c62ca370d59f0ba", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0b8"]
         },
         todo: {
-          read_all: [
-            "6016dd751c62ca370d59f0b8",
-            "6016dd751c62ca370d59f0b9",
-            "6016dd751c62ca370d59f0ba"
-          ]
+          read_all: ["6016dd751c62ca370d59f0b8", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0ba"]
         },
         user: {
-          read_all: [
-            "6016dd751c62ca370d59f0ba",
-            "6016dd751c62ca370d59f0b9",
-            "6016dd751c62ca370d59f0b8"
-          ]
+          read_all: ["6016dd751c62ca370d59f0ba", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0b8"]
         }
       }
     });
@@ -219,11 +188,7 @@ describe("getAccess()", () => {
           _id: "6016e1fb4ce825382505947e",
           access: [
             {
-              roles: [
-                "6016dd751c62ca370d59f0ba",
-                "6016dd751c62ca370d59f0b9",
-                "6016dd751c62ca370d59f0b8"
-              ],
+              roles: ["6016dd751c62ca370d59f0ba", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0b8"],
               type: "read_all"
             }
           ],
@@ -245,11 +210,7 @@ describe("getAccess()", () => {
           _id: "6016e1fb4ce825382505947f",
           access: [
             {
-              roles: [
-                "6016dd751c62ca370d59f0b8",
-                "6016dd751c62ca370d59f0b9",
-                "6016dd751c62ca370d59f0ba"
-              ],
+              roles: ["6016dd751c62ca370d59f0b8", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0ba"],
               type: "read_all"
             }
           ],
@@ -271,11 +232,7 @@ describe("getAccess()", () => {
           _id: "6016e1fb4ce825382505947d",
           access: [
             {
-              roles: [
-                "6016dd751c62ca370d59f0ba",
-                "6016dd751c62ca370d59f0b9",
-                "6016dd751c62ca370d59f0b8"
-              ],
+              roles: ["6016dd751c62ca370d59f0ba", "6016dd751c62ca370d59f0b9", "6016dd751c62ca370d59f0b8"],
               type: "read_all"
             }
           ],

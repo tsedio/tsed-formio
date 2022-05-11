@@ -11,11 +11,7 @@ export const initAuth = (done = noop) => async (dispatch: any) => {
   dispatch(requestUser(AUTH));
 
   try {
-    const [user] = await Promise.all([
-      Formio.currentUser(),
-      getAccess(dispatch),
-      getProjectAccess(dispatch)
-    ]);
+    const [user] = await Promise.all([Formio.currentUser(), getAccess(dispatch), getProjectAccess(dispatch)]);
 
     if (user) {
       dispatch(setUser(user));

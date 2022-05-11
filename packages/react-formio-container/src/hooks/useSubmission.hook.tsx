@@ -26,15 +26,7 @@ export interface UseSubmissionProps extends UseSubmissionsProps {
 }
 
 export function useSubmission(props: UseSubmissionProps) {
-  const {
-    basePath,
-    formType,
-    formId,
-    formAction,
-    onError = noop,
-    onSuccess = noop,
-    onSubmitSubmission = noop
-  } = props;
+  const { basePath, formType, formId, formAction, onError = noop, onSuccess = noop, onSubmitSubmission = noop } = props;
 
   let { submissionId, submissionAction } = props;
 
@@ -49,19 +41,13 @@ export function useSubmission(props: UseSubmissionProps) {
   const auth = useSelector(selectAuth);
   const error = useSelector((state) => selectError(type, state));
   const form = useSelector((state) => selectForm(type, state));
-  const submission = useSelector((state) =>
-    selectSubmission(submissionType, state as any)
-  );
+  const submission = useSelector((state) => selectSubmission(submissionType, state as any));
 
   const isActive = useSelector(oneOfIsActive(submissionType, formType, type));
 
   useSelector((state) => selectIsActive(submissionType, state));
 
-  const url = useSelector(
-    (state) =>
-      selectRoot(submissionAction === "edit" ? submissionType : type, state)
-        ?.url
-  );
+  const url = useSelector((state) => selectRoot(submissionAction === "edit" ? submissionType : type, state)?.url);
 
   const formioRef = useRef<any>();
 
@@ -96,9 +82,7 @@ export function useSubmission(props: UseSubmissionProps) {
   );
 
   const removeSubmission = useCallback(() => {
-    dispatch(
-      deleteSubmission(submissionType, formId, submissionId, onRemoveDone)
-    );
+    dispatch(deleteSubmission(submissionType, formId, submissionId, onRemoveDone));
   }, [basePath, formAction, formId, submissionId, onRemoveDone]);
 
   const onSaveDone = useCallback(
@@ -111,15 +95,7 @@ export function useSubmission(props: UseSubmissionProps) {
           data: updatedSubmission
         });
         dispatch(getSubmissions(formAction, formId));
-        dispatch(
-          push(
-            [
-              basePath,
-              updatedSubmission._id,
-              submissionAction === "create" ? "edit" : formAction
-            ].join("/")
-          )
-        );
+        dispatch(push([basePath, updatedSubmission._id, submissionAction === "create" ? "edit" : formAction].join("/")));
         formioRef.current.loading = false;
       } else {
         onError({
@@ -137,9 +113,7 @@ export function useSubmission(props: UseSubmissionProps) {
   const saveSubmission = useCallback(
     (submission: Submission) => {
       onSubmitSubmission(submissionType, formId, submission);
-      dispatch(
-        saveSubmissionAction(submissionType, formId, submission, onSaveDone)
-      );
+      dispatch(saveSubmissionAction(submissionType, formId, submission, onSaveDone));
     },
     [formId, onSaveDone]
   );

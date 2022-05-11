@@ -1,8 +1,4 @@
-import {
-  selectIsAuthenticated,
-  selectRoles,
-  selectUser
-} from "./auth.selectors";
+import { selectIsAuthenticated, selectRoles, selectUser } from "./auth.selectors";
 
 describe("auth Selectors", () => {
   describe("selectIsAuthenticated()", () => {

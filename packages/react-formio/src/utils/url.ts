@@ -18,11 +18,6 @@ export function getActionUrl(formId: string, actionId?: string): string {
   return [getFormUrl(formId), "action", actionId].filter(Boolean).join("/");
 }
 
-export function getSubmissionUrl(
-  formId: string,
-  submissionId?: string
-): string {
-  return [getFormUrl(formId), "submission", submissionId]
-    .filter(Boolean)
-    .join("/");
+export function getSubmissionUrl(formId: string, submissionId?: string): string {
+  return [getFormUrl(formId), "submission", submissionId].filter(Boolean).join("/");
 }

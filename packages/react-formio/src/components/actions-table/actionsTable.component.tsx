@@ -32,19 +32,12 @@ export function ActionsTable({
   }, []);
 
   return (
-    <Table
-      {...props}
-      disableFilters={disableFilters}
-      disablePagination={disablePagination}
-      columns={columns}
-    >
+    <Table {...props} disableFilters={disableFilters} disablePagination={disablePagination} columns={columns}>
       <div className={"pagination-group"}>
         <Select
           name={"actions"}
           value={currentAction}
-          choices={[{ label: i18n("Select an action"), value: "" }].concat(
-            availableActions
-          )}
+          choices={[{ label: i18n("Select an action"), value: "" }].concat(availableActions)}
           onChange={(name: string, action: string) => setAction(action)}
         />
         <div className={"pl-3"}>
@@ -55,8 +48,7 @@ export function ActionsTable({
             onClick={() => currentAction && onAddAction(currentAction)}
             type={"submit"}
           >
-            <i className={classnames(iconClass(undefined, "plus"), "mr-1")} />{" "}
-            {i18n("Add action")}
+            <i className={classnames(iconClass(undefined, "plus"), "mr-1")} /> {i18n("Add action")}
           </button>
         </div>
       </div>

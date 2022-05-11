@@ -12,9 +12,7 @@ export const receiveActions = createAction<{
 }>();
 export const failActions = createAction<{ error: Error }>();
 
-export const getActions = (id: string, done = noop) => async (
-  dispatch: any
-) => {
+export const getActions = (id: string, done = noop) => async (dispatch: any) => {
   dispatch(resetActions(ACTIONS));
   dispatch(requestActions(ACTIONS));
 
@@ -22,10 +20,7 @@ export const getActions = (id: string, done = noop) => async (
   const formio = new Formio(url);
 
   try {
-    const [actions, availableActions] = await Promise.all([
-      formio.loadActions({ params: {} }),
-      formio.availableActions()
-    ]);
+    const [actions, availableActions] = await Promise.all([formio.loadActions({ params: {} }), formio.availableActions()]);
 
     dispatch(receiveActions(ACTIONS, { actions, availableActions }));
     done(null, actions, availableActions);

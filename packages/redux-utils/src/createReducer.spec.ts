@@ -109,10 +109,7 @@ describe("createReducer()", () => {
       );
 
       const sandboxReducer = reducer("sandbox", { config: "config" });
-      const state = sandboxReducer(
-        currentState,
-        action("sandbox", { data: [] })
-      );
+      const state = sandboxReducer(currentState, action("sandbox", { data: [] }));
 
       expect(state).toEqual({
         name: "sandbox",

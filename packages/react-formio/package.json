@@ -9,10 +9,7 @@
   "scripts": {
     "test": "cross-env CI=1 yarn craco test --coverage",
     "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
-    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement",
-    "lint:fix": "yarn lint --fix",
-    "lint": "yarn eslint --config .eslintrc --cache --quiet \"./src/**/*.{ts,tsx}\"",
-    "prettier": "prettier '{src,test}/**/*.{ts,tsx}' --write"
+    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement"
   },
   "dependencies": {
     "@tsed/redux-utils": "1.11.2",
@@ -31,7 +28,6 @@
   },
   "devDependencies": {
     "@tsed/tailwind": "1.11.2",
-    "@tsed/tailwind-formio": "1.11.2",
-    "eslint-plugin-jsx-a11y": "^6.5.1"
+    "@tsed/tailwind-formio": "1.11.2"
   }
 }

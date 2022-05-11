@@ -8,13 +8,13 @@ const choices = [
 ];
 
 const useValue = (args: any) => {
-  const [value, useValue] = useState(args.value);
+  const [value, setValue] = useState(args.value);
 
   return {
     ...args,
     value,
     onChange(name: string, value: any) {
-      useValue(value);
+      setValue(value);
       args.onChange(name, value);
     }
   };
@@ -92,12 +92,7 @@ Choicesjs.args = {
 };
 
 export const ChoicesjsPrefix = (args: any) => {
-  return (
-    <Select
-      prefix={<i className={iconClass(undefined, "calendar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <Select prefix={<i className={iconClass(undefined, "calendar")} />} {...useValue(args)} />;
 };
 
 ChoicesjsPrefix.args = {
@@ -111,12 +106,7 @@ ChoicesjsPrefix.args = {
 };
 
 export const WithPrefix = (args: any) => {
-  return (
-    <Select
-      prefix={<i className={iconClass(undefined, "calendar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <Select prefix={<i className={iconClass(undefined, "calendar")} />} {...useValue(args)} />;
 };
 
 WithPrefix.args = {
@@ -128,12 +118,7 @@ WithPrefix.args = {
 };
 
 export const WithSuffix = (args: any) => {
-  return (
-    <Select
-      suffix={<i className={iconClass(undefined, "calendar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <Select suffix={<i className={iconClass(undefined, "calendar")} />} {...useValue(args)} />;
 };
 
 WithSuffix.args = {
@@ -174,12 +159,7 @@ ChoicesjsMultiple.args = {
 };
 
 export const Sizing = (args: any) => {
-  return (
-    <Select
-      suffix={<i className={iconClass(undefined, "dollar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <Select suffix={<i className={iconClass(undefined, "dollar")} />} {...useValue(args)} />;
 };
 
 Sizing.args = {

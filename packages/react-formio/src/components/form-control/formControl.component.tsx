@@ -24,15 +24,9 @@ export function FormControl({
   className
 }: React.PropsWithChildren<FormControlProps>) {
   return (
-    <div
-      id={`form-group-${name || ""}`}
-      className={classnames("form-group", className)}
-    >
+    <div id={`form-group-${name || ""}`} className={classnames("form-group", className)}>
       {label && (
-        <label
-          htmlFor={name}
-          className={`col-form-label ${required ? " field-required" : ""}`}
-        >
+        <label htmlFor={name} className={`col-form-label ${required ? " field-required" : ""}`}>
           {label}
         </label>
       )}

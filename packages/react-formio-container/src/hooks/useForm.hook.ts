@@ -28,15 +28,7 @@ export interface UseFormProps extends FormioContainerOptions {
 }
 
 export function useForm(props: UseFormProps) {
-  const {
-    basePath: path,
-    formType,
-    operationsSettings,
-    onSubmitForm = noop,
-    onSuccess = noop,
-    onError = noop,
-    formRoutes
-  } = props;
+  const { basePath: path, formType, operationsSettings, onSubmitForm = noop, onSuccess = noop, onError = noop, formRoutes } = props;
 
   let { formId, formAction = "edit" } = props;
 
@@ -81,9 +73,7 @@ export function useForm(props: UseFormProps) {
     });
   }, [formRoutes, operationsSettings, formType, formId]);
 
-  const [currentRoute, setCurrentRoute] = useState(
-    findRoute(routes, formAction)
-  );
+  const [currentRoute, setCurrentRoute] = useState(findRoute(routes, formAction));
 
   const onRemoveDone = useCallback(
     (err: Error) => {
@@ -132,15 +122,7 @@ export function useForm(props: UseFormProps) {
       if (!err) {
         dispatch(refreshForms(formType));
 
-        dispatch(
-          push(
-            [
-              basePath,
-              updatedForm._id,
-              formAction === "create" ? "edit" : formAction
-            ].join("/")
-          )
-        );
+        dispatch(push([basePath, updatedForm._id, formAction === "create" ? "edit" : formAction].join("/")));
 
         onSuccess({
           name: `${formAction}:${type}`,

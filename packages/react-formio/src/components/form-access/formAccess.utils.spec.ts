@@ -1,11 +1,5 @@
 import { FormSchema } from "../../interfaces";
-import {
-  dataAccessToSubmissions,
-  getFormAccess,
-  SubmissionAccess,
-  submissionsToDataAccess,
-  updateSubmissions
-} from "./formAccess.utils";
+import { dataAccessToSubmissions, getFormAccess, SubmissionAccess, submissionsToDataAccess, updateSubmissions } from "./formAccess.utils";
 
 const roles: any[] = [
   {
@@ -24,11 +18,7 @@ describe("formAccess.utils", () => {
         components: [],
         access: [
           {
-            roles: [
-              "5d0797bc872fc747da559858",
-              "5d0797bc872fc71d05559859",
-              "5d0797bc872fc7da3b55985a"
-            ],
+            roles: ["5d0797bc872fc747da559858", "5d0797bc872fc71d05559859", "5d0797bc872fc7da3b55985a"],
             type: "read_all"
           }
         ],
@@ -47,11 +37,7 @@ describe("formAccess.utils", () => {
         data: {
           delete_all: [],
           delete_own: [],
-          read_all: [
-            "5d0797bc872fc747da559858",
-            "5d0797bc872fc71d05559859",
-            "5d0797bc872fc7da3b55985a"
-          ],
+          read_all: ["5d0797bc872fc747da559858", "5d0797bc872fc71d05559859", "5d0797bc872fc7da3b55985a"],
           read_own: [],
           update_all: [],
           update_own: []
@@ -104,11 +90,7 @@ describe("formAccess.utils", () => {
         components: [],
         access: [
           {
-            roles: [
-              "5d0797bc872fc747da559858",
-              "5d0797bc872fc71d05559859",
-              "5d0797bc872fc7da3b55985a"
-            ],
+            roles: ["5d0797bc872fc747da559858", "5d0797bc872fc71d05559859", "5d0797bc872fc7da3b55985a"],
             type: "read_all"
           }
         ],

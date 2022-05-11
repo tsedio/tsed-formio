@@ -3,13 +3,13 @@ import { iconClass } from "../../utils/iconClass";
 import { InputTags } from "./inputTags.component";
 
 const useValue = (args: any) => {
-  const [value, useValue] = useState(args.value);
+  const [value, setValue] = useState(args.value);
 
   return {
     ...args,
     value,
     onChange(name: string, value: any) {
-      useValue(value);
+      setValue(value);
       args.onChange(name, value);
     }
   };
@@ -72,12 +72,7 @@ Sandbox.args = {
 };
 
 export const WithPrefix = (args: any) => {
-  return (
-    <InputTags
-      prefix={<i className={iconClass(undefined, "calendar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <InputTags prefix={<i className={iconClass(undefined, "calendar")} />} {...useValue(args)} />;
 };
 
 WithPrefix.args = {
@@ -89,12 +84,7 @@ WithPrefix.args = {
 };
 
 export const WithSuffix = (args: any) => {
-  return (
-    <InputTags
-      suffix={<i className={iconClass(undefined, "calendar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <InputTags suffix={<i className={iconClass(undefined, "calendar")} />} {...useValue(args)} />;
 };
 
 WithSuffix.args = {

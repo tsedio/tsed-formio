@@ -10,19 +10,12 @@ export const requestSubmissions = createAction();
 export const receiveSubmissions = createAction();
 export const failSubmissions = createAction();
 
-export const getSubmissions = (
-  name: string,
-  formId: string,
-  parameters: any = {},
-  done = noop
-) => async (dispatch: any, getState: any) => {
+export const getSubmissions = (name: string, formId: string, parameters: any = {}, done = noop) => async (dispatch: any, getState: any) => {
   dispatch(requestSubmissions(name, { formId, parameters }));
 
   const url = getSubmissionUrl(formId);
   const formio = new Formio(url);
-  const requestParams = mapRequestParams(
-    selectSubmissionsParameters(name, getState())
-  );
+  const requestParams = mapRequestParams(selectSubmissionsParameters(name, getState()));
 
   try {
     const submissions = await formio.loadSubmissions({ params: requestParams });
@@ -34,11 +27,7 @@ export const getSubmissions = (
   }
 };
 
-export const refreshSubmissions = (
-  name: string,
-  formId: string,
-  done = noop
-) => {
+export const refreshSubmissions = (name: string, formId: string, done = noop) => {
   return async (dispatch: any, getState: any) => {
     const parameters = selectSubmissionsParameters(name, getState());
     return getSubmissions(name, formId, parameters, done)(dispatch, getState);

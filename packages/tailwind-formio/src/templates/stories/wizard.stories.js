@@ -67,12 +67,7 @@ export default {
 };
 
 export const Sandbox = (args) => {
-  return (
-    <WrapperFormBuilder
-      form={{ ...args.form, display: args.display }}
-      options={{ template: args.template, iconset: args.iconset }}
-    />
-  );
+  return <WrapperFormBuilder form={{ ...args.form, display: args.display }} options={{ template: args.template, iconset: args.iconset }} />;
 };
 
 Sandbox.args = {
@@ -1177,8 +1172,7 @@ Sandbox.args = {
             key: "address1",
             type: "textfield",
             input: true,
-            customConditional:
-              "show = _.get(instance, 'parent.manualMode', false);",
+            customConditional: "show = _.get(instance, 'parent.manualMode', false);",
             placeholder: "",
             prefix: "",
             customClass: "",
@@ -1240,8 +1234,7 @@ Sandbox.args = {
             key: "address2",
             type: "textfield",
             input: true,
-            customConditional:
-              "show = _.get(instance, 'parent.manualMode', false);",
+            customConditional: "show = _.get(instance, 'parent.manualMode', false);",
             placeholder: "",
             prefix: "",
             customClass: "",
@@ -1303,8 +1296,7 @@ Sandbox.args = {
             key: "city",
             type: "textfield",
             input: true,
-            customConditional:
-              "show = _.get(instance, 'parent.manualMode', false);",
+            customConditional: "show = _.get(instance, 'parent.manualMode', false);",
             placeholder: "",
             prefix: "",
             customClass: "",
@@ -1366,8 +1358,7 @@ Sandbox.args = {
             key: "state",
             type: "textfield",
             input: true,
-            customConditional:
-              "show = _.get(instance, 'parent.manualMode', false);",
+            customConditional: "show = _.get(instance, 'parent.manualMode', false);",
             placeholder: "",
             prefix: "",
             customClass: "",
@@ -1429,8 +1420,7 @@ Sandbox.args = {
             key: "country",
             type: "textfield",
             input: true,
-            customConditional:
-              "show = _.get(instance, 'parent.manualMode', false);",
+            customConditional: "show = _.get(instance, 'parent.manualMode', false);",
             placeholder: "",
             prefix: "",
             customClass: "",
@@ -1492,8 +1482,7 @@ Sandbox.args = {
             key: "zip",
             type: "textfield",
             input: true,
-            customConditional:
-              "show = _.get(instance, 'parent.manualMode', false);",
+            customConditional: "show = _.get(instance, 'parent.manualMode', false);",
             placeholder: "",
             prefix: "",
             customClass: "",
@@ -1907,11 +1896,7 @@ Sandbox.args = {
     display: "form",
     access: [
       {
-        roles: [
-          "5d0797bc872fc747da559858",
-          "5d0797bc872fc71d05559859",
-          "5d0797bc872fc7da3b55985a"
-        ],
+        roles: ["5d0797bc872fc747da559858", "5d0797bc872fc71d05559859", "5d0797bc872fc7da3b55985a"],
         type: "read_all"
       }
     ],

@@ -1,7 +1,4 @@
-import {
-  selectSubmissions,
-  selectSubmissionsParameters
-} from "./submissions.selectors";
+import { selectSubmissions, selectSubmissionsParameters } from "./submissions.selectors";
 
 describe("Submissions Selectors", () => {
   describe("selectSubmissions()", () => {

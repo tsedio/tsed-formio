@@ -1,11 +1,6 @@
 import { createReducer } from "@tsed/redux-utils";
 import { FormSchema } from "../../interfaces";
-import {
-  failForms,
-  receiveForms,
-  requestForms,
-  resetForms
-} from "./forms.actions";
+import { failForms, receiveForms, requestForms, resetForms } from "./forms.actions";
 
 export interface FormsState {
   error: null | Error;
@@ -22,13 +17,7 @@ export interface FormsState {
   data: FormSchema[];
 }
 
-const createInitialState = ({
-  pageIndex = 0,
-  pageSize = 10,
-  query = {},
-  select = "",
-  sortBy = []
-}: any = {}): FormsState => {
+const createInitialState = ({ pageIndex = 0, pageSize = 10, query = {}, select = "", sortBy = [] }: any = {}): FormsState => {
   return {
     error: null,
     isActive: false,

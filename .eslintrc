@@ -1,34 +1,26 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "standard",
-    "standard-react",
-    "prettier/standard",
+    "react-app",
+    "react-app/jest",
     "prettier/react",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/strict"
   ],
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest": true
-  },
+  "plugins": [
+    "prettier",
+    "react-hooks"
+  ],
   "parserOptions": {
     "ecmaVersion": 2020,
-    "ecmaFeatures": {
-      "legacyDecorators": true,
-      "jsx": true
-    }
-  },
-  "settings": {
-    "react": {
-      "version": "17"
-    }
+    "sourceType": "module"
   },
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-redeclare": 0,
     "semi": [
       "error",
       "always"
@@ -45,6 +37,7 @@
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/camelcase": 0,
     "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-var-requires": 0,
     "import/export": 0,
     "jsx-a11y/no-autofocus": 1
   },

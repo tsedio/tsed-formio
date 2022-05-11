@@ -26,14 +26,7 @@ export interface UseActionProps extends UseActionsProps {
 }
 
 export function useAction(props: UseActionProps) {
-  const {
-    basePath,
-    formType,
-    actionId,
-    actionAction,
-    onSuccess = noop,
-    onError = noop
-  } = props;
+  const { basePath, formType, actionId, actionAction, onSuccess = noop, onError = noop } = props;
 
   const type = formType.replace(/s$/, "");
   const dispatch = useDispatch();
@@ -41,9 +34,7 @@ export function useAction(props: UseActionProps) {
   const form = useSelector((state) => selectForm(type, state));
   const error = useSelector((state) => selectError("action", state));
   const action = useSelector(selectAction);
-  const actionInfo: ActionInfoSchema | undefined = useSelector(
-    selectActionInfo
-  ) as any;
+  const actionInfo: ActionInfoSchema | undefined = useSelector(selectActionInfo) as any;
 
   const fetch = useCallback(() => {
     if (form?._id) {

@@ -59,9 +59,7 @@ export function FormEditCTAs({
     <div className={"form-edit__actions"}>
       <div>
         <button
-          className={`btn btn-primary btn-save flex ${
-            disabled ? "disabled" : ""
-          }`}
+          className={`btn btn-primary btn-save flex ${disabled ? "disabled" : ""}`}
           disabled={disabled}
           onClick={() => !disabled && onSubmit()}
         >
@@ -70,39 +68,23 @@ export function FormEditCTAs({
         </button>
 
         <div>
-          <button
-            className={`btn btn-light btn-undo ${hasUndo ? "" : "disabled"}`}
-            onClick={() => onUndo()}
-            ref={undoTooltipRef}
-          >
+          <button className={`btn btn-light btn-undo ${hasUndo ? "" : "disabled"}`} onClick={() => onUndo()} ref={undoTooltipRef}>
             <i className={iconClass(options.iconset, "undo")} />
           </button>
 
-          <button
-            className={`btn btn-light btn-redo ${hasRedo ? "" : "disabled"}`}
-            onClick={() => onRedo()}
-            ref={redoTooltipRef}
-          >
+          <button className={`btn btn-light btn-redo ${hasRedo ? "" : "disabled"}`} onClick={() => onRedo()} ref={redoTooltipRef}>
             <i className={iconClass(options.iconset, "redo")} />
           </button>
         </div>
 
         <div>
           {onCopy && (
-            <button
-              className='btn btn-light'
-              onClick={() => onCopy()}
-              ref={copyTooltipRef}
-            >
+            <button className='btn btn-light' onClick={() => onCopy()} ref={copyTooltipRef}>
               <i className={iconClass(options.iconset, "copy")} />
             </button>
           )}
 
-          <button
-            className={`btn btn-light btn-reset`}
-            onClick={() => onReset()}
-            ref={resetTooltipRef}
-          >
+          <button className={`btn btn-light btn-reset`} onClick={() => onReset()} ref={resetTooltipRef}>
             <i className={iconClass(options.iconset, "reset")} />
           </button>
         </div>

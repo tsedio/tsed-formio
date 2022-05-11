@@ -1,13 +1,6 @@
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
 import { FormSchema } from "../../interfaces";
-import {
-  clearFormError,
-  failForm,
-  receiveForm,
-  requestForm,
-  resetForm,
-  sendForm
-} from "./form.actions";
+import { clearFormError, failForm, receiveForm, requestForm, resetForm, sendForm } from "./form.actions";
 
 export interface FormState {
   error: null | Error;

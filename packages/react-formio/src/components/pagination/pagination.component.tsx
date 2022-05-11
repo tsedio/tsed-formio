@@ -1,11 +1,7 @@
 import classnames from "classnames";
 import React, { PropsWithChildren } from "react";
 import { Select } from "../select/select.component";
-import {
-  getPageNumbers,
-  LEFT_PAGE,
-  RIGHT_PAGE
-} from "../table/utils/getPageNumbers";
+import { getPageNumbers, LEFT_PAGE, RIGHT_PAGE } from "../table/utils/getPageNumbers";
 
 function PaginationButton(
   props: PropsWithChildren<
@@ -17,25 +13,14 @@ function PaginationButton(
     } & Record<string, any>
   >
 ) {
-  const {
-    component: Component = "button",
-    children,
-    disabled,
-    active,
-    ...otherProps
-  } = props;
+  const { component: Component = "button", children, disabled, active, ...otherProps } = props;
 
   return (
     <Component
       {...otherProps}
       data-testid='pagination-button'
       disabled={disabled}
-      className={classnames(
-        "page-link",
-        disabled ? "disabled" : "",
-        active ? "" : "",
-        props.className
-      )}
+      className={classnames("page-link", disabled ? "disabled" : "", active ? "" : "", props.className)}
     >
       {children}
     </Component>
@@ -83,17 +68,10 @@ export function Pagination(props: PaginationProps) {
   const choices: any[] = pageSizes.map((value) => ({ value, label: value }));
 
   return (
-    <nav
-      aria-label='Page navigation'
-      className={classnames("pagination-group -mb-3", className)}
-    >
+    <nav aria-label='Page navigation' className={classnames("pagination-group -mb-3", className)}>
       <ul className='pagination mb-3 mr-3'>
         <li className={classnames("page-item", !canPreviousPage && "disabled")}>
-          <PaginationButton
-            tabIndex={-1}
-            disabled={!canPreviousPage}
-            onClick={() => previousPage()}
-          >
+          <PaginationButton tabIndex={-1} disabled={!canPreviousPage} onClick={() => previousPage()}>
             {i18n("Previous")}
           </PaginationButton>
         </li>
@@ -109,15 +87,8 @@ export function Pagination(props: PaginationProps) {
 
           const active = page - 1 === pageIndex;
           return (
-            <li
-              className={classnames("page-item", active && "active")}
-              key={page}
-            >
-              <PaginationButton
-                tabIndex={pageIndex}
-                active={active}
-                onClick={() => gotoPage(page - 1)}
-              >
+            <li className={classnames("page-item", active && "active")} key={page}>
+              <PaginationButton tabIndex={pageIndex} active={active} onClick={() => gotoPage(page - 1)}>
                 {page}
               </PaginationButton>
             </li>
@@ -125,11 +96,7 @@ export function Pagination(props: PaginationProps) {
         })}
 
         <li className={classnames("page-item", !canNextPage && "disabled")}>
-          <PaginationButton
-            tabIndex={pageNumbers.length}
-            disabled={!canNextPage}
-            onClick={() => nextPage()}
-          >
+          <PaginationButton tabIndex={pageNumbers.length} disabled={!canNextPage} onClick={() => nextPage()}>
             {i18n("Next")}
           </PaginationButton>
         </li>

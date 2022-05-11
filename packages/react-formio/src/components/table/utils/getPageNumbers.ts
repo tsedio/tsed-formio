@@ -13,23 +13,15 @@ function range(from: number, to: number, step = 1): any[] {
   return range;
 }
 
-export function getPageNumbers({
-  currentPage,
-  pageNeighbours = 1,
-  totalPages
-}: any) {
+export function getPageNumbers({ currentPage, pageNeighbours = 1, totalPages }: any) {
   const totalNumbers = pageNeighbours * 2 + 3;
   const totalBlocks = totalNumbers + 2;
 
   if (totalPages > totalBlocks) {
     const calculatedStartPage = Math.max(2, currentPage - pageNeighbours);
-    const calculatedEndPage = Math.min(
-      totalPages - 1,
-      currentPage + pageNeighbours
-    );
+    const calculatedEndPage = Math.min(totalPages - 1, currentPage + pageNeighbours);
     const startPage = calculatedStartPage === 3 ? 2 : calculatedStartPage;
-    const endPage =
-      calculatedEndPage === totalPages - 2 ? totalPages - 1 : calculatedEndPage;
+    const endPage = calculatedEndPage === totalPages - 2 ? totalPages - 1 : calculatedEndPage;
 
     let pages = range(startPage, endPage);
 

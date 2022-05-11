@@ -11,12 +11,7 @@ export const receiveSubmission = createAction();
 export const failSubmission = createAction();
 export const resetSubmission = createAction();
 
-export const getSubmission = (
-  name: string,
-  formId: string,
-  id: string,
-  done = noop
-) => async (dispatch: any, getState: any) => {
+export const getSubmission = (name: string, formId: string, id: string, done = noop) => async (dispatch: any, getState: any) => {
   // Check to see if the submission is already loaded.
   if (getState().id === id) {
     return;
@@ -39,12 +34,7 @@ export const getSubmission = (
   }
 };
 
-export const saveSubmission = (
-  name: string,
-  formId: string,
-  data: Submission,
-  done = noop
-) => async (dispatch: any) => {
+export const saveSubmission = (name: string, formId: string, data: Submission, done = noop) => async (dispatch: any) => {
   dispatch(clearSubmissionError(name));
   dispatch(sendSubmission(name, { submission: data, formId }));
 
@@ -67,12 +57,7 @@ export const saveSubmission = (
   }
 };
 
-export const deleteSubmission = (
-  name: string,
-  formId: string,
-  id: string,
-  done = noop
-) => async (dispatch: any) => {
+export const deleteSubmission = (name: string, formId: string, id: string, done = noop) => async (dispatch: any) => {
   dispatch(clearSubmissionError(name));
 
   const url = getSubmissionUrl(formId, id);

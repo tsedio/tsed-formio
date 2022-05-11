@@ -1,12 +1,4 @@
-import {
-  getSubmissions,
-  Operation,
-  selectAuth,
-  selectForm,
-  selectRoot,
-  Submission,
-  SubmissionsState
-} from "@tsed/react-formio";
+import { getSubmissions, Operation, selectAuth, selectForm, selectRoot, Submission, SubmissionsState } from "@tsed/react-formio";
 import { push } from "connected-react-router";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,9 +23,7 @@ export function useSubmissions(props: UseSubmissionsProps) {
 
   const auth = useSelector(selectAuth);
   const form = useSelector((state) => selectForm(type, state));
-  const { error, isActive, parameters, data } = useSelector(
-    selectRoot<SubmissionsState>(formAction)
-  );
+  const { error, isActive, parameters, data } = useSelector(selectRoot<SubmissionsState>(formAction));
 
   const setParameters = useQuery(fetch, parameters);
   const [operation, setOperation] = useState<Operation>();

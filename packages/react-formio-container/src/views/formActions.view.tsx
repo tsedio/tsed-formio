@@ -4,13 +4,7 @@ import { Route, Switch } from "react-router";
 import { useActions, UseActionsProps } from "../hooks/useActions.hook";
 import { FormActionView } from "./formAction.view";
 
-export function FormActionsComponent({
-  actions,
-  availableActions,
-  addAction,
-  dispatchOperation,
-  i18n
-}: ReturnType<typeof useActions>) {
+export function FormActionsComponent({ actions, availableActions, addAction, dispatchOperation, i18n }: ReturnType<typeof useActions>) {
   return (
     <div className={"-m-px"}>
       <ActionsTable
@@ -42,10 +36,7 @@ export function FormActionsView(props: UseActionsProps) {
 
   return (
     <Switch>
-      <Route
-        exact={true}
-        path={[actions.basePath, ":actionId", ":actionAction"].join("/")}
-      >
+      <Route exact={true} path={[actions.basePath, ":actionId", ":actionAction"].join("/")}>
         <FormActionView {...actions} />
       </Route>
       <Route path={actions.basePath}>

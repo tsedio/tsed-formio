@@ -5,13 +5,7 @@ import { exportAs } from "../utils/ExportClient";
 import { UseFormProps } from "./useForm.hook";
 
 export function useFormExport(props: UseFormProps) {
-  const {
-    formType,
-    onInfo = noop,
-    onSuccess = noop,
-    onError = noop,
-    i18n
-  } = props;
+  const { formType, onInfo = noop, onSuccess = noop, onError = noop, i18n } = props;
   const type = formType.replace(/s$/, "");
 
   const auth: AuthState = useSelector(selectAuth);

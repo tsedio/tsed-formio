@@ -38,12 +38,7 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   onNextPage?: (obj: FormPageChangeProps<Data>) => void;
   onCancel?: Function;
   onChange?: (submission: ChangedSubmission) => void;
-  onCustomEvent?: (obj: {
-    type: string;
-    event: string;
-    component: ExtendedComponentSchema;
-    data: any;
-  }) => void;
+  onCustomEvent?: (obj: { type: string; event: string; component: ExtendedComponentSchema; data: any }) => void;
   onComponentChange?: (component: ExtendedComponentSchema) => void;
   onSubmit?: (submission: Submission<Data>) => void;
   onSubmitDone?: (submission: Submission<Data>) => void;
@@ -68,8 +63,7 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
 
   const createWebForm = (srcOrForm: any, options: any) => {
     options = Object.assign({}, options);
-    srcOrForm =
-      typeof srcOrForm === "string" ? srcOrForm : cloneDeep(srcOrForm);
+    srcOrForm = typeof srcOrForm === "string" ? srcOrForm : cloneDeep(srcOrForm);
 
     if (!instance.current) {
       isLoaded.current = false;
@@ -81,9 +75,7 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
         }
 
         if (event.startsWith("formio.")) {
-          const funcName = `on${event.charAt(7).toUpperCase()}${event.slice(
-            8
-          )}`;
+          const funcName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
 
           if (funcName === "onChange") {
             if (isEqual(get(submission, "data"), args[0].data)) {
@@ -165,8 +157,7 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
   }, [props.onSubmit, events]);
 
   useEffect(() => {
-    props.onSubmitDone &&
-      events.current.set("onSubmitDone", props.onSubmitDone);
+    props.onSubmitDone && events.current.set("onSubmitDone", props.onSubmitDone);
   }, [props.onSubmitDone, events]);
 
   return {

@@ -8,12 +8,7 @@ export function FormSettingsView(props: ReturnType<typeof useForm>) {
 
   return (
     <div className={"p-3"}>
-      <Component
-        {...props}
-        form={form}
-        onSubmit={saveForm}
-        options={{ i18n }}
-      />
+      <Component {...props} form={form} onSubmit={saveForm} options={{ i18n }} />
     </div>
   );
 }

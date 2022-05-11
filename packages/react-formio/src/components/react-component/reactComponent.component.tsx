@@ -15,11 +15,7 @@ export class ReactComponent<Data = any> extends Components.components.field {
    * @param data - The submission data where this component's data exists.
    */
   // eslint-disable-next-line no-useless-constructor
-  constructor(
-    component: ComponentSchema,
-    options: any,
-    data: Submission<Data>
-  ) {
+  constructor(component: ComponentSchema, options: any, data: Submission<Data>) {
     super(component, options, data);
   }
 
@@ -150,13 +146,9 @@ export class ReactComponent<Data = any> extends Components.components.field {
   updateValue = (value?: Data, flags?: Record<string, any>) => {
     flags = flags || {};
 
-    const newValue =
-      value === undefined || value === null ? this.getValue() : value;
+    const newValue = value === undefined || value === null ? this.getValue() : value;
 
-    const changed =
-      newValue !== undefined
-        ? this.hasChanged(newValue, this.dataValue)
-        : false;
+    const changed = newValue !== undefined ? this.hasChanged(newValue, this.dataValue) : false;
 
     this.dataValue = Array.isArray(newValue) ? [...newValue] : newValue;
 

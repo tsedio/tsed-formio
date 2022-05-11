@@ -1,7 +1,8 @@
-node_modules
+**/node_modules
 docs
 docs-references
 **/lib
+**/build
 **/dist
 **/coverage
 **/.nyc_output
