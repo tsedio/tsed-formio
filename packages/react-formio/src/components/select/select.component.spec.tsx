@@ -2,19 +2,37 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { Choicesjs, Sandbox } from "./select.stories";
 
-describe("Select", () => {
-  describe("select component Sandbox version", () => {
-    it("should render the select component", () => {
-      const { getByTestId } = render(<Sandbox {...Sandbox.args} name={"test-sandbox"} />);
+describe("select component Sandbox version", () => {
+  it("should render the select component", () => {
+    const { getByTestId } = render(
+      <Sandbox {...Sandbox.args} name={"test-sandbox"} />
+    );
 
-      expect(getByTestId("select_test-sandbox")).toBeInTheDocument();
-    });
+    expect(getByTestId("select_test-sandbox")).toBeInTheDocument();
+  });
 
-    it("should render the select component with a different size", () => {
-      const { getByTestId } = render(<Sandbox {...Sandbox.args} size='small' name={"test-sandbox"} />);
-      const select = getByTestId("select_test-sandbox");
-      expect(select).toBeInTheDocument();
-      expect(select).toHaveClass("form-control-small");
+  it("should render select options with 'Placeholder test' as fisrt value", () => {
+    const choices = [
+      { label: "test1", value: "value1" },
+      { label: "test2", value: "value2" }
+    ];
+    const placeHolderTest = "Placeholder test";
+
+    const { getAllByTestId, getByText } = render(
+      <Sandbox
+        {...Sandbox.args}
+        placeholder={placeHolderTest}
+        choices={choices}
+        name={"test-sandbox"}
+      />
+    );
+    const selectOptions = getAllByTestId("select-option").map(
+      (label) => label.textContent
+    );
+
+    expect(selectOptions[0]).toEqual(placeHolderTest);
+    selectOptions.forEach((option) => {
+      return expect(getByText(option)).toBeInTheDocument();
     });
 
     it("should render select options with 'Placeholder test' as first value", () => {
