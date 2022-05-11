@@ -42,26 +42,27 @@ yarn add @tsed/redux-utils
 Even if there is a function named `createAction`, it actually creates an `action creator` according to Redux glossary. It was just a bit overkill to name the function `createActionCreator`. If you are not sure if something is an action or an action creator, just remember that actions are plain objects while action creators are functions.
 
 TypeScript version:
+
 ```typescript
 // Import functions
-import { createStore } from 'redux';
-import { createAction, createReducer } from '@tsed/redux-utils';
+import { createStore } from "redux";
+import { createAction, createReducer } from "@tsed/redux-utils";
 
 export type CounterState = number;
 
-const createInitialState = (): CounterState => 0
+const createInitialState = (): CounterState => 0;
 
 // Create an action creator (description is optional)
-const add = createAction<CounterState>('add some stuff');
-const increment = createAction<CounterState>('increment the state');
-const decrement = createAction<CounterState>('decrement the state');
+const add = createAction<CounterState>("add some stuff");
+const increment = createAction<CounterState>("increment the state");
+const decrement = createAction<CounterState>("decrement the state");
 
 // Create a reducer
 // (ES6 syntax, see Advanced usage below for an alternative for ES5)
 const counterReducer = createReducer<CounterState>({}, 0) // <-- This is the default state
   .on(increment, (state) => state + 1)
   .on(decrement, (state) => state - 1)
-  .on(add, (state, payload) => state + payload)
+  .on(add, (state, payload) => state + payload);
 
 // Create the store
 const counterStore = createStore(counterReducer);
@@ -73,27 +74,30 @@ counterStore.dispatch(decrement()); // counterStore.getState() === 1
 counterStore.dispatch(add(5)); // counterStore.getState() === 6
 ```
 
-
 Javascript version:
+
 ```typescript
 // Import functions
-import { createStore } from 'redux';
-import { createAction, createReducer } from '@tsed/redux-utils';
+import { createStore } from "redux";
+import { createAction, createReducer } from "@tsed/redux-utils";
 
-const createInitialState = () => 0
+const createInitialState = () => 0;
 
 // Create an action creator (description is optional)
-const add = createAction('add some stuff');
-const increment = createAction('increment the state');
-const decrement = createAction('decrement the state');
+const add = createAction("add some stuff");
+const increment = createAction("increment the state");
+const decrement = createAction("decrement the state");
 
 // Create a reducer
 // (ES6 syntax, see Advanced usage below for an alternative for ES5)
-const counterReducer = createReducer({
-  [increment]: (state) => state + 1,
-  [decrement]: (state) => state - 1,
-  [add]: (state, payload) => state + payload,
-}, createInitialState); // <-- This is the default state
+const counterReducer = createReducer(
+  {
+    [increment]: (state) => state + 1,
+    [decrement]: (state) => state - 1,
+    [add]: (state, payload) => state + payload
+  },
+  createInitialState
+); // <-- This is the default state
 
 // Create the store
 const counterStore = createStore(counterReducer);
@@ -104,7 +108,6 @@ counterStore.dispatch(increment()); // counterStore.getState() === 2
 counterStore.dispatch(decrement()); // counterStore.getState() === 1
 counterStore.dispatch(add(5)); // counterStore.getState() === 6
 ```
-
 
 ## FAQ
 
@@ -125,12 +128,12 @@ counterStore.dispatch(add(5)); // counterStore.getState() === 6
 ## Advanced usage
 
 ```typescript
-import { createStore } from 'redux';
-import { createAction, createReducer } from '@tsed/redux-utils';
+import { createStore } from "redux";
+import { createAction, createReducer } from "@tsed/redux-utils";
 
 // You can create several action creators at once
 // (but that's probably not the best way to do it)
-const [increment, decrement] = ['inc', 'dec'].map(createAction);
+const [increment, decrement] = ["inc", "dec"].map(createAction);
 
 // When creating action creators, the description is optional
 // it will only be used for devtools and logging stuff.
@@ -141,28 +144,27 @@ const replace = createAction();
 // when you call the action. If you need to support several arguments,
 // you can specify a function on how to merge all arguments into
 // an unique payload.
-let append = createAction('optional description', (...args) => args.join(''));
+let append = createAction("optional description", (...args) => args.join(""));
 
 // There is another pattern to create reducers
 // and it works fine with ES5! (maybe even ES3 \o/)
 const stringReducer = createReducer(function (on) {
-  on(replace, (state, payload) => payload)
-    (append, (state, payload) => state += payload);
+  on(replace, (state, payload) => payload)(append, (state, payload) => (state += payload));
   // Warning! If you use the same action twice,
   // the second one will override the previous one.
-}, 'missing a lette'); // <-- Default state
+}, "missing a lette"); // <-- Default state
 
 // Now, when calling actions, they will be automatically dispatched
-append('r'); // stringStore.getState() === 'missing a letter'
-replace('a'); // stringStore.getState() === 'a'
-append('b', 'c', 'd'); // stringStore.getState() === 'abcd'
+append("r"); // stringStore.getState() === 'missing a letter'
+replace("a"); // stringStore.getState() === 'a'
+append("b", "c", "d"); // stringStore.getState() === 'abcd'
 ```
 
 ## Contributors
+
 Please read [contributing guidelines here](./CONTRIBUTING.md).
 
 <a href="https://github.com/TypedProject/tsed/graphs/contributors"><img src="https://opencollective.com/tsed/contributors.svg?width=890" /></a>
-
 
 ## Backers
 

@@ -5,20 +5,10 @@ import { iconClass } from "../../utils/iconClass";
 import { InputText } from "../input-text/inputText.component";
 import { Modal, ModalProps } from "./modal.component";
 
-function RemoveModalFooter({
-  value,
-  valueToCompare,
-  onSubmit,
-  onClose,
-  i18n = (f: string) => f
-}: ModalProps) {
+function RemoveModalFooter({ value, valueToCompare, onSubmit, onClose, i18n = (f: string) => f }: ModalProps) {
   return (
     <div className={"flex items-center justify-center bg-white p-2"}>
-      <button
-        data-testid='customCloseModal'
-        className={"btn btn-outline-dark mx-2"}
-        onClick={onClose}
-      >
+      <button data-testid='customCloseModal' className={"btn btn-outline-dark mx-2"} onClick={onClose}>
         {i18n("Cancel")}
       </button>
       <button
@@ -45,11 +35,7 @@ export interface RemoveModalProps extends ModalProps {
   maxWidth?: string;
 }
 
-export function RemoveModal({
-  maxWidth = "300px",
-  children,
-  ...props
-}: PropsWithChildren<RemoveModalProps>) {
+export function RemoveModal({ maxWidth = "300px", children, ...props }: PropsWithChildren<RemoveModalProps>) {
   const { i18n = noop } = props;
   const [value, setValue] = useState();
 
@@ -70,11 +56,7 @@ export function RemoveModal({
           <strong>&quot;{props.itemType?.toLowerCase()}&quot;</strong>&nbsp;
           {i18n("name")} <strong>&quot;{props.valueToCompare}&quot;</strong>.
         </div>
-        <InputText
-          name='remove'
-          value={value}
-          onChange={(name, value) => setValue(value)}
-        />
+        <InputText name='remove' value={value} onChange={(name, value) => setValue(value)} />
       </div>
     </Modal>
   );

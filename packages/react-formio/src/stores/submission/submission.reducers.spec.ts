@@ -1,10 +1,4 @@
-import {
-  failSubmission,
-  receiveSubmission,
-  requestSubmission,
-  resetSubmission,
-  sendSubmission
-} from "./submission.actions";
+import { failSubmission, receiveSubmission, requestSubmission, resetSubmission, sendSubmission } from "./submission.actions";
 import { submissionReducer } from "./submission.reducers";
 
 describe("Submission reducers", () => {
@@ -33,16 +27,14 @@ describe("Submission reducers", () => {
       url: "url"
     };
 
-    expect(reducer.$emit(requestSubmission.toString(), state, payload)).toEqual(
-      {
-        name: "name",
-        formId: "formId",
-        id: "id",
-        isActive: true,
-        data: {},
-        url: "url"
-      }
-    );
+    expect(reducer.$emit(requestSubmission.toString(), state, payload)).toEqual({
+      name: "name",
+      formId: "formId",
+      id: "id",
+      isActive: true,
+      data: {},
+      url: "url"
+    });
   });
 
   it("should return state (sendSubmission)", () => {
@@ -77,17 +69,15 @@ describe("Submission reducers", () => {
       }
     };
 
-    expect(reducer.$emit(receiveSubmission.toString(), state, payload)).toEqual(
-      {
-        name: "name",
-        url: "url",
-        error: null,
-        isActive: false,
-        data: {
-          _id: "id"
-        }
+    expect(reducer.$emit(receiveSubmission.toString(), state, payload)).toEqual({
+      name: "name",
+      url: "url",
+      error: null,
+      isActive: false,
+      data: {
+        _id: "id"
       }
-    );
+    });
   });
 
   it("should return state (failSubmission)", () => {

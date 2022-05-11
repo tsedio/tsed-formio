@@ -1,9 +1,4 @@
-import {
-  oneOfIsActive,
-  selectError,
-  selectIsActive,
-  selectRoot
-} from "./root.selectors";
+import { oneOfIsActive, selectError, selectIsActive, selectRoot } from "./root.selectors";
 
 describe("root Selectors", () => {
   describe("selectRoot()", () => {

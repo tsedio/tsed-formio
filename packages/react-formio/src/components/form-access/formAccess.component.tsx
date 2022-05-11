@@ -1,12 +1,5 @@
 import PropTypes from "prop-types";
-import React, {
-  PropsWithChildren,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState
-} from "react";
+import React, { PropsWithChildren, ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";
 import { Form } from "../form/form.component";
@@ -29,18 +22,11 @@ export interface FormAccessProps {
   options?: FormOptions;
 }
 
-function useFormAccess({
-  form: formDefinition,
-  roles,
-  onSubmit,
-  options
-}: FormAccessProps) {
+function useFormAccess({ form: formDefinition, roles, onSubmit, options }: FormAccessProps) {
   // eslint-disable-next-line no-undef
   const form = useMemo(() => getFormAccess(roles), [roles]);
 
-  const [submissions, setSubmissions] = useState(() =>
-    dataAccessToSubmissions(formDefinition, form)
-  );
+  const [submissions, setSubmissions] = useState(() => dataAccessToSubmissions(formDefinition, form));
 
   const onChange = useCallback(
     (type: string, submission: Submission<AccessRoles>) => {
@@ -52,10 +38,7 @@ function useFormAccess({
   useEffect(() => {
     const input = dataAccessToSubmissions(formDefinition, form);
     if (formDefinition?._id) {
-      if (
-        shouldUpdate("access", submissions.access, input) ||
-        shouldUpdate("submissionAccess", submissions.submissionAccess, input)
-      ) {
+      if (shouldUpdate("access", submissions.access, input) || shouldUpdate("submissionAccess", submissions.submissionAccess, input)) {
         setSubmissions(input);
       }
     }
@@ -80,21 +63,10 @@ interface NamedFormAccessProps {
   options: any;
   onSubmit: any;
 
-  onChange(
-    name: "access" | "submissionAccess",
-    submission: Submission<AccessRoles>
-  ): void;
+  onChange(name: "access" | "submissionAccess", submission: Submission<AccessRoles>): void;
 }
 
-function NamedFormAccess({
-  name,
-  form,
-  submissions,
-  options,
-  onChange,
-  onSubmit,
-  children
-}: PropsWithChildren<NamedFormAccessProps>) {
+function NamedFormAccess({ name, form, submissions, options, onChange, onSubmit, children }: PropsWithChildren<NamedFormAccessProps>) {
   const [isValid, setIsValid] = useState(true);
 
   return (
@@ -110,35 +82,21 @@ function NamedFormAccess({
         options={options}
       />
 
-      <button
-        disabled={!isValid}
-        className={"mt-5 btn btn-primary"}
-        onClick={onSubmit}
-      >
+      <button disabled={!isValid} className={"mt-5 btn btn-primary"} onClick={onSubmit}>
         Save access
       </button>
 
       {children}
 
       <div className={"alert alert-warning mt-5"}>
-        Elevated permissions allow users to access and modify other user's
-        entities. Assign with caution.
+        Elevated permissions allow users to access and modify other user's entities. Assign with caution.
       </div>
     </>
   );
 }
 
-export function FormAccess(
-  props: PropsWithChildren<FormAccessProps>
-): ReactElement {
-  const {
-    type,
-    form,
-    submissions,
-    options,
-    onChange,
-    onSubmit
-  } = useFormAccess(props);
+export function FormAccess(props: PropsWithChildren<FormAccessProps>): ReactElement {
+  const { type, form, submissions, options, onChange, onSubmit } = useFormAccess(props);
 
   return (
     <div>
@@ -158,22 +116,16 @@ export function FormAccess(
         </Card>
         <div className={"w-1/4 pl-4"}>
           <Card label={"About Submission Data Permissions"}>
-            <p>
-              Submission Data Permissions allow you to control who can create,
-              view, and modify form submission data.
-            </p>
+            <p>Submission Data Permissions allow you to control who can create, view, and modify form submission data.</p>
 
             <ul className={"mt-5 pl-7 list-disc"}>
               <li className={"pb-2"}>
-                <strong>Own Permissions</strong> - These permissions apply if
-                the user is the original creator of the submission data and is
-                listed as the owner of the submission in submission.owner. This
-                allows users to create and edit their own submission data
+                <strong>Own Permissions</strong> - These permissions apply if the user is the original creator of the submission data and is
+                listed as the owner of the submission in submission.owner. This allows users to create and edit their own submission data
                 without seeing other user's data.
               </li>
               <li>
-                <strong>All Permissions</strong> - These permissions apply to
-                all submission data regardless of who owns it.
+                <strong>All Permissions</strong> - These permissions apply to all submission data regardless of who owns it.
               </li>
             </ul>
           </Card>
@@ -181,35 +133,20 @@ export function FormAccess(
       </div>
       <div className={"flex mb-5"}>
         <Card label={`Manage ${type} definition access`} className={"flex-1"}>
-          <NamedFormAccess
-            name={"access"}
-            form={form}
-            submissions={submissions}
-            onChange={onChange}
-            onSubmit={onSubmit}
-            options={options}
-          >
+          <NamedFormAccess name={"access"} form={form} submissions={submissions} onChange={onChange} onSubmit={onSubmit} options={options}>
             {props.children}
           </NamedFormAccess>
         </Card>
 
         <div className={"w-1/4 pl-4"}>
           <Card label={"About Form Definition Access"}>
-            <p>
-              These permissions allow you to give access to a single form's JSON
-              definition so they can render the form.
-            </p>
+            <p>These permissions allow you to give access to a single form's JSON definition so they can render the form.</p>
+
+            <p>Typically you will want to allow all of your roles to be able to Read the form definition.</p>
 
             <p>
-              Typically you will want to allow all of your roles to be able to
-              Read the form definition.
-            </p>
-
-            <p>
-              Each form also has an owner at <strong>form.owner</strong> which
-              is the user who created the form. In some applications users are
-              allowed to create their own forms. In those cases it is helpful to
-              have Owner based permissions as well.
+              Each form also has an owner at <strong>form.owner</strong> which is the user who created the form. In some applications users
+              are allowed to create their own forms. In those cases it is helpful to have Owner based permissions as well.
             </p>
           </Card>
         </div>

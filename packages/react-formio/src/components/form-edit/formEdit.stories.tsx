@@ -134,11 +134,7 @@ Sandbox.args = {
     display: "form",
     access: [
       {
-        roles: [
-          "5d0797bc872fc747da559858",
-          "5d0797bc872fc71d05559859",
-          "5d0797bc872fc7da3b55985a"
-        ],
+        roles: ["5d0797bc872fc747da559858", "5d0797bc872fc71d05559859", "5d0797bc872fc7da3b55985a"],
         type: "read_all"
       }
     ],
@@ -249,11 +245,7 @@ WithoutTypeChoices.args = {
     display: "form",
     access: [
       {
-        roles: [
-          "5d0797bc872fc747da559858",
-          "5d0797bc872fc71d05559859",
-          "5d0797bc872fc7da3b55985a"
-        ],
+        roles: ["5d0797bc872fc747da559858", "5d0797bc872fc71d05559859", "5d0797bc872fc7da3b55985a"],
         type: "read_all"
       }
     ],
@@ -360,11 +352,7 @@ WithoutTags.args = {
     display: "form",
     access: [
       {
-        roles: [
-          "5d0797bc872fc747da559858",
-          "5d0797bc872fc71d05559859",
-          "5d0797bc872fc7da3b55985a"
-        ],
+        roles: ["5d0797bc872fc747da559858", "5d0797bc872fc71d05559859", "5d0797bc872fc7da3b55985a"],
         type: "read_all"
       }
     ],

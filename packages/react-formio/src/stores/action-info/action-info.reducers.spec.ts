@@ -1,9 +1,4 @@
-import {
-  failActionInfo,
-  receiveActionInfo,
-  requestActionInfo,
-  resetActionInfo
-} from "./action-info.actions";
+import { failActionInfo, receiveActionInfo, requestActionInfo, resetActionInfo } from "./action-info.actions";
 import { ACTION_INFO } from "./action-info.constant";
 import { actionInfoReducer } from "./action-info.reducers";
 

@@ -2,15 +2,12 @@ import { defaultFormioReducer } from "./index";
 
 describe("defaultFormioReducer", () => {
   it("should return initial state", () => {
-    const state = Object.entries(defaultFormioReducer).reduce(
-      (state, [key, reduce]) => {
-        return {
-          ...state,
-          [key]: reduce(undefined, {} as any)
-        };
-      },
-      {}
-    );
+    const state = Object.entries(defaultFormioReducer).reduce((state, [key, reduce]) => {
+      return {
+        ...state,
+        [key]: reduce(undefined, {} as any)
+      };
+    }, {});
 
     expect(state).toEqual({
       action: {

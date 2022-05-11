@@ -3,10 +3,7 @@ import PropTypes from "prop-types";
 import React, { useEffect, useMemo, useState } from "react";
 import { callLast } from "../../utils/callLast";
 import { getEventValue } from "../../utils/getEventValue";
-import {
-  FormControl,
-  FormControlProps
-} from "../form-control/formControl.component";
+import { FormControl, FormControlProps } from "../form-control/formControl.component";
 
 export interface InputTextProps<T = any> extends FormControlProps {
   type?: string;

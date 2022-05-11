@@ -29,18 +29,8 @@ export function useOperations<D extends object = {}>({
         {
           id: "operations",
           groupByBoundary: true,
-          Header: () => (
-            <div className={"text-center"}>{i18n("Operations")}</div>
-          ),
-          Cell: (props: any) => (
-            <CellOperations
-              {...props}
-              operations={operations}
-              onClick={onClick}
-              ctx={ctx}
-              i18n={i18n}
-            />
-          )
+          Header: () => <div className={"text-center"}>{i18n("Operations")}</div>,
+          Cell: (props: any) => <CellOperations {...props} operations={operations} onClick={onClick} ctx={ctx} i18n={i18n} />
         }
       ];
     });

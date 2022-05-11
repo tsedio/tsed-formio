@@ -93,9 +93,7 @@ function AddButton({ onCreate }: any) {
 }
 
 function HeaderChildren() {
-  return (
-    <div className={"px-3 bg-gray-100 border-b-1 border-gray-light"}>test</div>
-  );
+  return <div className={"px-3 bg-gray-100 border-b-1 border-gray-light"}>test</div>;
 }
 
 export const WithCloseable = (args: any) => {
@@ -104,12 +102,7 @@ export const WithCloseable = (args: any) => {
 
   return (
     <div className={"border-gray-300 border-1 shadow"}>
-      <Tabs
-        {...tabs}
-        i18n={(f) => f}
-        AddButton={AddButton}
-        HeaderChildren={HeaderChildren}
-      >
+      <Tabs {...tabs} i18n={(f) => f} AddButton={AddButton} HeaderChildren={HeaderChildren}>
         <div className={"p-5"}>{tabs?.current?.action}</div>
       </Tabs>
     </div>

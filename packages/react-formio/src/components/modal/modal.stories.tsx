@@ -81,11 +81,7 @@ export const WithFooter = (args: ModalProps) => {
           Save
         </button>
 
-        <button
-          data-testid='customCloseModal'
-          className={"btn btn-danger mx-1"}
-          onClick={closeModal}
-        >
+        <button data-testid='customCloseModal' className={"btn btn-danger mx-1"} onClick={closeModal}>
           Close
         </button>
       </div>

@@ -18,12 +18,7 @@ export const Sandbox = (args) => {
       <nav aria-label='...'>
         <ul className='pagination'>
           <li className='page-item disabled'>
-            <a
-              className='page-link'
-              href='#'
-              tabIndex='-1'
-              aria-disabled='true'
-            >
+            <a className='page-link' href='#' tabIndex='-1' aria-disabled='true'>
               Previous
             </a>
           </li>

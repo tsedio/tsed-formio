@@ -24,16 +24,9 @@ export class HttpClient {
     return this.makeRequest("delete", endpoint, data, options);
   }
 
-  makeRequest<T = any>(
-    method: string,
-    endpoint: string,
-    data?: any,
-    options?: any
-  ): Promise<T> {
+  makeRequest<T = any>(method: string, endpoint: string, data?: any, options?: any): Promise<T> {
     return Formio.makeStaticRequest(
-      endpoint[0] === "/"
-        ? `${this.host || Formio.getApiUrl()}${endpoint}`
-        : endpoint,
+      endpoint[0] === "/" ? `${this.host || Formio.getApiUrl()}${endpoint}` : endpoint,
       method,
       data,
       options

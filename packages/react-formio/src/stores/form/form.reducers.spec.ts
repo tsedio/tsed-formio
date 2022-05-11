@@ -1,10 +1,4 @@
-import {
-  clearFormError,
-  failForm,
-  receiveForm,
-  requestForm,
-  resetForm
-} from "./form.actions";
+import { clearFormError, failForm, receiveForm, requestForm, resetForm } from "./form.actions";
 import { formReducer } from "./form.reducers";
 
 describe("Form reducer", () => {

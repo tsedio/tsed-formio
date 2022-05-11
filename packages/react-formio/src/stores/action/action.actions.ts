@@ -18,11 +18,7 @@ function getFormio(formId: string, id: string) {
   return new Formio(url);
 }
 
-export const getAction = (
-  formId: string,
-  actionId: string,
-  done = noop
-) => async (dispatch: any) => {
+export const getAction = (formId: string, actionId: string, done = noop) => async (dispatch: any) => {
   dispatch(clearActionError(ACTION));
   dispatch(requestAction(ACTION));
 
@@ -40,9 +36,7 @@ export const getAction = (
   }
 };
 
-export const saveAction = (formId: string, action: any, done = noop) => async (
-  dispatch: any
-) => {
+export const saveAction = (formId: string, action: any, done = noop) => async (dispatch: any) => {
   dispatch(clearActionError(ACTION));
   dispatch(sendAction(ACTION, { action }));
 

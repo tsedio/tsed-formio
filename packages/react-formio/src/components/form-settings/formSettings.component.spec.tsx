@@ -30,11 +30,7 @@ describe("FormSettings", () => {
       _id: "6023f8fe4b1a2ab9a3aae096",
       access: [
         {
-          roles: [
-            "5d0797bc872fc747da559858",
-            "5d0797bc872fc71d05559859",
-            "5d0797bc872fc7da3b55985a"
-          ],
+          roles: ["5d0797bc872fc747da559858", "5d0797bc872fc71d05559859", "5d0797bc872fc7da3b55985a"],
           type: "read_all"
         }
       ],
@@ -46,9 +42,7 @@ describe("FormSettings", () => {
       path: "textfield",
       properties: {},
       settings: {},
-      submissionAccess: [
-        { roles: ["5d0797bc872fc747da559858"], type: "read_all" }
-      ],
+      submissionAccess: [{ roles: ["5d0797bc872fc747da559858"], type: "read_all" }],
       tags: [],
       type: "form"
     });

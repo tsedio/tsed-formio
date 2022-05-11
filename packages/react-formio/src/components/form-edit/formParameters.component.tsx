@@ -71,33 +71,16 @@ export function FormParameters({
         />
       </div>
       <div className={"w-1/3"}>
-        <Select
-          label={"Display as"}
-          name={"display"}
-          value={form.display}
-          choices={displayChoices}
-          onChange={onChange}
-        />
+        <Select label={"Display as"} name={"display"} value={form.display} choices={displayChoices} onChange={onChange} />
       </div>
       {hasTypeChoices && (
         <div className={"w-1/3"}>
-          <Select
-            label={"Type"}
-            name={"type"}
-            value={form.type}
-            choices={typeChoices}
-            onChange={onChange}
-          />
+          <Select label={"Type"} name={"type"} value={form.type} choices={typeChoices} onChange={onChange} />
         </div>
       )}
       {enableTags && (
         <div className={"w-1/3"}>
-          <InputTags
-            label={"Tags"}
-            name={"tags"}
-            value={form.tags}
-            onChange={onChange}
-          />
+          <InputTags label={"Tags"} name={"tags"} value={form.tags} onChange={onChange} />
         </div>
       )}
     </div>

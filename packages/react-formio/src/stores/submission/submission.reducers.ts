@@ -44,10 +44,7 @@ export const submissionReducer = createReducer<SubmissionState>(
       data: {},
       isActive: true
     }),
-    [sendSubmission.toString()]: (
-      state: any,
-      { formId, submission, id, url }: any
-    ) => ({
+    [sendSubmission.toString()]: (state: any, { formId, submission, id, url }: any) => ({
       ...state,
       formId,
       id,

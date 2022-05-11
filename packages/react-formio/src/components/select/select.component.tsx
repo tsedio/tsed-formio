@@ -3,10 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import React, { ReactElement, useEffect, useRef } from "react";
 import { getEventValue } from "../../utils/getEventValue";
-import {
-  FormControl,
-  FormControlProps
-} from "../form-control/formControl.component";
+import { FormControl, FormControlProps } from "../form-control/formControl.component";
 
 export interface SelectProps<T = any> extends FormControlProps {
   value?: any;
@@ -56,18 +53,17 @@ export function Select<T = any>({
   choices =
     layout === "choicesjs" || multiple || !placeholder
       ? choices
-      : ([{ label: placeholder, value: "" }, ...choices] as any[]);
+      : ([
+          {
+            label: placeholder,
+            value: ""
+          },
+          ...choices
+        ] as any[]);
 
   return (
-    <FormControl
-      name={name}
-      label={label}
-      required={required}
-      description={description}
-      prefix={prefix}
-      suffix={suffix}
-      shadow={false}
-    >
+    <FormControl name={name} label={label} required={required} description={description} prefix={prefix} suffix={suffix} shadow={false}>
+      {/* eslint-disable-next-line jsx-a11y/no-onchange */}
       <select
         ref={ref}
         {...props}

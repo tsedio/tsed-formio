@@ -14,19 +14,10 @@ export const resetForm = createAction();
 export const sendForm = createAction();
 
 function shouldGet(form: Partial<FormSchema>, id: string) {
-  return (
-    form &&
-    form.components &&
-    Array.isArray(form.components) &&
-    form.components.length &&
-    form._id === id
-  );
+  return form && form.components && Array.isArray(form.components) && form.components.length && form._id === id;
 }
 
-export const getForm = (name: string, id = "", done = noop) => async (
-  dispatch: any,
-  getState: any
-) => {
+export const getForm = (name: string, id = "", done = noop) => async (dispatch: any, getState: any) => {
   dispatch(clearFormError(name));
   // Check to see if the form is already loaded.
   const form = selectForm(name, getState());
@@ -52,11 +43,7 @@ export const getForm = (name: string, id = "", done = noop) => async (
   }
 };
 
-export const saveForm = (
-  name: string,
-  form: Partial<FormSchema>,
-  done = noop
-) => async (dispatch: any) => {
+export const saveForm = (name: string, form: Partial<FormSchema>, done = noop) => async (dispatch: any) => {
   dispatch(clearFormError(name));
   dispatch(sendForm(name, { form }));
 
@@ -74,9 +61,7 @@ export const saveForm = (
   }
 };
 
-export const deleteForm = (name: string, id: string, done = noop) => async (
-  dispatch: any
-) => {
+export const deleteForm = (name: string, id: string, done = noop) => async (dispatch: any) => {
   dispatch(clearFormError(name));
   const url = getFormUrl(id);
   const formio = new Formio(url);

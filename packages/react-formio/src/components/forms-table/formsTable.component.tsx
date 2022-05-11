@@ -19,9 +19,7 @@ export function FormsTable({ Cell, ...props }: FormsTableProps) {
         Header: i18n("Title"),
         accessor: "title",
         id: "title",
-        Cell: (props: any) => (
-          <FormCell {...props} icon={props.icon} i18n={i18n} />
-        ),
+        Cell: (props: any) => <FormCell {...props} icon={props.icon} i18n={i18n} />,
         Filter: DefaultColumnFilter,
         colspan: 2
       },
@@ -32,10 +30,7 @@ export function FormsTable({ Cell, ...props }: FormsTableProps) {
         hidden: true,
         Filter: (props: any) =>
           tags && tags.length ? (
-            <SelectColumnFilter
-              {...props}
-              column={{ ...props.columns, choices: tags }}
-            />
+            <SelectColumnFilter {...props} column={{ ...props.columns, choices: tags }} />
           ) : (
             <DefaultColumnFilter {...props} />
           )

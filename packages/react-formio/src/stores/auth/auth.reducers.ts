@@ -44,10 +44,7 @@ function createInitialState(): AuthState {
   };
 }
 
-function mapProjectRolesToUserRoles(
-  projectRoles: Record<string, any>,
-  userRoles: any[]
-) {
+function mapProjectRolesToUserRoles(projectRoles: Record<string, any>, userRoles: any[]) {
   return Object.entries(projectRoles).reduce(
     (result, [name, role]) => ({
       ...result,

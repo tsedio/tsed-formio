@@ -1,14 +1,7 @@
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
 import { ActionSchema } from "../../interfaces";
 
-import {
-  clearActionError,
-  failAction,
-  receiveAction,
-  requestAction,
-  resetAction,
-  sendAction
-} from "./action.actions";
+import { clearActionError, failAction, receiveAction, requestAction, resetAction, sendAction } from "./action.actions";
 import { ACTION } from "./action.constant";
 
 export interface ActionState {

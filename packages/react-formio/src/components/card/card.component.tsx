@@ -7,11 +7,7 @@ export interface CardProps {
   className?: string;
 }
 
-export function Card({
-  children,
-  label,
-  className
-}: PropsWithChildren<CardProps>) {
+export function Card({ children, label, className }: PropsWithChildren<CardProps>) {
   return (
     <div className={classnames("card", className)}>
       <div className={"card-header "}>

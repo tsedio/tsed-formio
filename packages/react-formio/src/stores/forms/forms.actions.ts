@@ -15,17 +15,14 @@ export const failForms = createAction();
 
 export type GetFormsCB = (err: any, forms?: FormSchema[]) => void;
 
-export const getForms = (
-  name: string,
-  parameters: Partial<RequestParamsOptions>,
-  done: GetFormsCB = noop
-) => async (dispatch: any, getState: any) => {
+export const getForms = (name: string, parameters: Partial<RequestParamsOptions>, done: GetFormsCB = noop) => async (
+  dispatch: any,
+  getState: any
+) => {
   dispatch(requestForms(name, { parameters }));
 
   const formio = new Formio(`${Formio.getProjectUrl()}/form`);
-  const requestParams = mapRequestParams(
-    selectFormsParameters(name, getState())
-  );
+  const requestParams = mapRequestParams(selectFormsParameters(name, getState()));
 
   try {
     const result: FormSchema[] = await formio.loadForms({

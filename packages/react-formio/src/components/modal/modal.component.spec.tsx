@@ -8,9 +8,7 @@ describe("Modal", () => {
     it("should display the modal when we click on the button", async () => {
       const onClose = jest.fn();
 
-      const { queryByTestId, getByTestId } = render(
-        <WithTitle {...WithTitle.args} onClose={onClose} />
-      );
+      const { queryByTestId, getByTestId } = render(<WithTitle {...WithTitle.args} onClose={onClose} />);
 
       expect(queryByTestId("modalTitle")).toBeFalsy();
       expect(queryByTestId("modalBody")).toBeFalsy();
@@ -37,9 +35,7 @@ describe("Modal", () => {
 
   describe("WithFooter", () => {
     it("should display the modal when we click on the button", async () => {
-      const { getByRole, queryByTestId, getByTestId } = render(
-        <WithFooter {...WithFooter.args} />
-      );
+      const { getByRole, queryByTestId, getByTestId } = render(<WithFooter {...WithFooter.args} />);
 
       expect(queryByTestId("modalTitle")).toBeFalsy();
       expect(queryByTestId("modalBody")).toBeFalsy();
@@ -63,9 +59,7 @@ describe("Modal", () => {
     });
     it("should call the onSubmit listener", async () => {
       const onSubmit = jest.fn();
-      const { getByRole, queryByTestId, getByTestId } = render(
-        <WithFooter {...WithFooter.args} onSubmit={onSubmit} />
-      );
+      const { getByRole, queryByTestId, getByTestId } = render(<WithFooter {...WithFooter.args} onSubmit={onSubmit} />);
 
       fireEvent.click(getByRole("button", { name: "Open modal" }));
 

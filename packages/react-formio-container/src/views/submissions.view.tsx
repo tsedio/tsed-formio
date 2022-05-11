@@ -46,14 +46,7 @@ export function SubmissionsView(props: UseSubmissionProps) {
 
   return (
     <Switch>
-      <Route
-        exact={true}
-        path={[
-          submissions.basePath,
-          ":submissionId",
-          ":submissionAction?"
-        ].join("/")}
-      >
+      <Route exact={true} path={[submissions.basePath, ":submissionId", ":submissionAction?"].join("/")}>
         <SubmissionView {...submissions} />
       </Route>
       <Route path={submissions.basePath}>

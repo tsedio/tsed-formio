@@ -33,23 +33,23 @@ See our [storybook](https://formio.tsed.io/) to see all available components.
 
 ## Features
 
-* Many components are provided to build your own backoffice based on Formio.js API:
-  * [ActionsTable](https://formio.tsed.io/?path=/story/reactformio-actionstable--sandbox),
-  * [FormAccess](https://formio.tsed.io/?path=/story/reactformio-formaccess--sandbox),
-  * [FormAction](https://formio.tsed.io/?path=/story/reactformio-formaction--sandbox),
-  * [Form](https://formio.tsed.io/?path=/story/reactformio-form--sandbox),
-  * [FormBuilder](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox),
-  * [FormEdit](https://formio.tsed.io/?path=/story/reactformio-formedit--sandbox),
-  * [FormsTable](https://formio.tsed.io/?path=/story/reactformio-formstable--sandbox),
-  * [InputTags](https://formio.tsed.io/?path=/story/reactformio-inputtags--sandbox),  
-  * [InputText](https://formio.tsed.io/?path=/story/reactformio-inputtext--sandbox),   
-  * [Pagination](https://formio.tsed.io/?path=/story/reactformio-pagination--sandbox),
-  * [Select](https://formio.tsed.io/?path=/story/reactformio-select--sandbox),
-  * [SubmissionsTable](https://formio.tsed.io/?path=/story/reactformio-subssionsstable--sandbox).
-  * [Table](https://formio.tsed.io/?path=/story/reactformio-table--sandbox),
-* Predefined Reducers for Actions, Action, Form, Forms, Submission, Submissions, etc...,  
-* TypeScript support.
-* Tailwind support.
+- Many components are provided to build your own backoffice based on Formio.js API:
+  - [ActionsTable](https://formio.tsed.io/?path=/story/reactformio-actionstable--sandbox),
+  - [FormAccess](https://formio.tsed.io/?path=/story/reactformio-formaccess--sandbox),
+  - [FormAction](https://formio.tsed.io/?path=/story/reactformio-formaction--sandbox),
+  - [Form](https://formio.tsed.io/?path=/story/reactformio-form--sandbox),
+  - [FormBuilder](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox),
+  - [FormEdit](https://formio.tsed.io/?path=/story/reactformio-formedit--sandbox),
+  - [FormsTable](https://formio.tsed.io/?path=/story/reactformio-formstable--sandbox),
+  - [InputTags](https://formio.tsed.io/?path=/story/reactformio-inputtags--sandbox),
+  - [InputText](https://formio.tsed.io/?path=/story/reactformio-inputtext--sandbox),
+  - [Pagination](https://formio.tsed.io/?path=/story/reactformio-pagination--sandbox),
+  - [Select](https://formio.tsed.io/?path=/story/reactformio-select--sandbox),
+  - [SubmissionsTable](https://formio.tsed.io/?path=/story/reactformio-subssionsstable--sandbox).
+  - [Table](https://formio.tsed.io/?path=/story/reactformio-table--sandbox),
+- Predefined Reducers for Actions, Action, Form, Forms, Submission, Submissions, etc...,
+- TypeScript support.
+- Tailwind support.
 
 ## Install
 
@@ -66,30 +66,29 @@ npm install formiojs choices.js --save // Install formiojs since it is a peerDep
 
 ```tsx
 import React from "react";
-import {FormBuilder} from "@tsed/react-formio";
+import { FormBuilder } from "@tsed/react-formio";
 
 function App() {
   return (
-    <div className="App">
-      <FormBuilder display={'form'} components={[]} />
+    <div className='App'>
+      <FormBuilder display={"form"} components={[]} />
     </div>
   );
 }
 
 export default App;
-
 ```
 
 ## Components
 
 ### Form
 
-The form component is the primary component of the system. It is what takes the form definition (json) and renders the form into html. There are multiple ways to send the form to the Form component. The two main ways are to pass the ```src``` prop with a url to the form definition, usually a form.io server. The other is to pass the   ```form``` prop with the json definition and optionally a ```url``` prop with the location of the form.
+The form component is the primary component of the system. It is what takes the form definition (json) and renders the form into html. There are multiple ways to send the form to the Form component. The two main ways are to pass the `src` prop with a url to the form definition, usually a form.io server. The other is to pass the `form` prop with the json definition and optionally a `url` prop with the location of the form.
 
 #### Props
 
 | Name         | Type   | Default | Description                                                                                                                                                                                                                                                                  |
-|--------------|--------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------ | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `src`        | url    |         | The url of the form definition. This is commonly from a form.io server. When using src, the form will automatically submit the data to that url as well.                                                                                                                     |
 | `url`        | url    |         | The url of the form definition. The form will not be loaded from this url and the submission will not be saved here either. This is used for file upload, oauth and other components or actions that need to know where the server is. Use this in connection with `form`    |
 | `form`       | object |         | Instead of loading a form from the `src` url, you can preload the form definition and pass it in with the `form` prop. You should also set `url` if you are using any advanced components like file upload or oauth.                                                         |
@@ -101,13 +100,13 @@ The form component is the primary component of the system. It is what takes the 
 You can respond to various events in the form. Simply pass in a prop with a function for one of these events.
 
 | Name            | Parameters                                                                                                                                    | Description                                                                                                                      |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `onSubmit`      | `submission`: object                                                                                                                          | When the submit button is pressed and the submission has started. If `src` is not provided, this will be the final submit event. |
 | `onSubmitDone`  | `submission`: object                                                                                                                          | When the submission has successfully been made to the server. This will only fire if `src` is set.                               |
 | `onChange`      | `submission`: object, `submission.changed`: object of what changed, `submission.isValid`: boolean - if the submission passes validations.     | A value in the submission has changed.                                                                                           |
 | `onError`       | `errors`: array or string or boolean                                                                                                          | Called when an error occurs during submission such as a validation issue.                                                        |
 | `onRender`      |                                                                                                                                               | Triggers when the form is finished rendering.                                                                                    |
-| `onCustomEvent` | { `type`: string - event type, `component`: object - triggering component, `data`: object - data for component, `event`: string - raw event } | Event that is triggered from a button configured with "Event" type.                                                              | 
+| `onCustomEvent` | { `type`: string - event type, `component`: object - triggering component, `data`: object - data for component, `event`: string - raw event } | Event that is triggered from a button configured with "Event" type.                                                              |
 | `onPrevPage`    | { `page`: integer - new page number, `submission`: object - submission data }                                                                 | Triggered for wizards when "Previous" button is pressed                                                                          |
 | `onNextPage`    | { `page`: integer - new page number, `submission`: object - submission data }                                                                 | Triggered for wizards when "Next" button is pressed                                                                              |
 | `onFormReady`   | `formInstance`: Webform/Wizard - form class instance                                                                                          | Called when the form gets ready state                                                                                            |
@@ -119,14 +118,11 @@ You can respond to various events in the form. Simply pass in a prop with a func
 Give `Form` a `src` property and render:
 
 ```tsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Form} from '@tsed/react-formio';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Form } from "@tsed/react-formio";
 
-ReactDOM.render(
-  <Form src="https://example.form.io/example" onSubmit={console.log} />
-  , document.getElementById('example')
-);
+ReactDOM.render(<Form src='https://example.form.io/example' onSubmit={console.log} />, document.getElementById("example"));
 ```
 
 ##### With form
@@ -134,53 +130,56 @@ ReactDOM.render(
 Give `Form` a `src` property and render:
 
 ```tsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Form} from '@tsed/react-formio';
- 
+import React from "react";
+import ReactDOM from "react-dom";
+import { Form } from "@tsed/react-formio";
+
 interface MyFormData {
   title: string;
-} 
-
-const form = {
-  display: 'form', 
-  components: [
-    {
-      key: 'title', 
-      type: 'textfield'
-    }
-  ]
 }
 
+const form = {
+  display: "form",
+  components: [
+    {
+      key: "title",
+      type: "textfield"
+    }
+  ]
+};
+
 ReactDOM.render(
-  <Form<MyFormData> form={form} onSubmit={(submission) => {
-    console.log(submission)
-  }} />
-  , document.getElementById('example')
+  <Form<MyFormData>
+    form={form}
+    onSubmit={(submission) => {
+      console.log(submission);
+    }}
+  />,
+  document.getElementById("example")
 );
 ```
 
 ### FormBuilder
 
-The [FormBuilder]([FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)) class can be used 
-to embed a form builder directly in your react application. 
+The [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)>) class can be used
+to embed a form builder directly in your react application.
 Please note that you'll need to include the CSS for the form builder from formio.js as well.
 
-Please note that the [FormBuilder]([FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)) component
-does not load and save from/to a url. You must handle the form definition loading and saving yourself or use 
+Please note that the [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)>) component
+does not load and save from/to a url. You must handle the form definition loading and saving yourself or use
 the [FormEdit](https://formio.tsed.io/?path=/story/reactformio-formedit--sandbox) component.
 
 #### Props
 
 | Name      | Type   | Default | Description                                                                                                                                  |
-|-----------|--------|---------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| --------- | ------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `form`    | object |         | This is the form definition object. It should at least have a `display` property set to form, wizard or pdf.                                 |
 | `options` | object |         | an options object that can pass options to the formio.js Form that is rendered. There are many options to be found in the formio.js library. |
 
 #### Event Props
 
 | Name                | Parameters          | Description                                                      |
-|---------------------|---------------------|------------------------------------------------------------------|
+| ------------------- | ------------------- | ---------------------------------------------------------------- |
 | `onChange`          | `schema`: object    | Triggered any time the form definition changes                   |
 | `onEditComponent`   | `component`: object | Triggered when the component settings dialog is opened           |
 | `onSaveComponent`   | `component`: object | Triggered when the component settings dialog is saved and closed |
@@ -191,33 +190,30 @@ the [FormEdit](https://formio.tsed.io/?path=/story/reactformio-formedit--sandbox
 #### Example
 
 ```tsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {FormBuilder} from '@tsed/react-formio';
+import React from "react";
+import ReactDOM from "react-dom";
+import { FormBuilder } from "@tsed/react-formio";
 
-ReactDOM.render(
-  <FormBuilder form={{display: 'form'}} onChange={(schema) => console.log(schema)} />
-  , document.getElementById('builder')
-);
+ReactDOM.render(<FormBuilder form={{ display: "form" }} onChange={(schema) => console.log(schema)} />, document.getElementById("builder"));
 ```
 
 ### FormEdit
 
-The [FormEdit](https://formio.tsed.io/?path=/story/reactformio-formedit--sandbox) component wraps 
-the [FormBuilder]([FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)) component and adds the title, display, name and path fields at the top along with a save button.
+The [FormEdit](https://formio.tsed.io/?path=/story/reactformio-formedit--sandbox) component wraps
+the [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)>) component and adds the title, display, name and path fields at the top along with a save button.
 
 #### Props
 
-| Name       | Type   | Default            | Description                                          |
-|------------|--------|--------------------|------------------------------------------------------|
-| `form`     | object | {display: 'form' \ | 'wizard'}                                            | The form definition of the exiting form that is to be modified. |
-| `options`  | object | {}                 | The options to be passed to FormBuilder              |
-| `saveText` | string | ''                 | The string that will be displayed in the save-button |
+| Name       | Type   | Default             | Description                                          |
+| ---------- | ------ | ------------------- | ---------------------------------------------------- | --------------------------------------------------------------- |
+| `form`     | object | {display: 'form' \  | 'wizard'}                                            | The form definition of the exiting form that is to be modified. |
+| `options`  | object | {}                  | The options to be passed to FormBuilder              |
+| `saveText` | string | ''                  | The string that will be displayed in the save-button |
 
 #### Event Props
 
 | Name       | Parameters | Description                                                                            |
-|------------|------------|----------------------------------------------------------------------------------------|
+| ---------- | ---------- | -------------------------------------------------------------------------------------- |
 | `onSubmit` | form       | Called when the save button is pressed. Will pass the form definition to the callback. |
 
 ### FormsTable
@@ -227,7 +223,7 @@ The [FormsTable](https://formio.tsed.io/?path=/story/reactformio-formstable--san
 #### Props
 
 | Name   | Type           | Default | Description                                 |
-|--------|----------------|---------|---------------------------------------------|
+| ------ | -------------- | ------- | ------------------------------------------- |
 | `data` | array of forms | []      | A list of forms to be rendered in the grid. |
 
 ### SubmissionsTable
@@ -237,7 +233,7 @@ The submisison grid will render a list of submissions and allow clicking on one 
 #### Props
 
 | Name   | Type                 | Default | Description                                                                      |
-|--------|----------------------|---------|----------------------------------------------------------------------------------|
+| ------ | -------------------- | ------- | -------------------------------------------------------------------------------- |
 | `data` | array of submissions | []      | A list of submissions to be rendered in the grid.                                |
 | `form` | object               | {}      | The form definition for the submissions. This is used to render the submissions. |
 
@@ -287,29 +283,28 @@ import { connectRouter } from "connected-react-router";
 import { combineReducers } from "redux";
 
 export const rootReducers = (history: any) =>
-combineReducers({
-  router: connectRouter(history),
-  ...defaultFormioReducer,
-  // override defaultFormioReducer can done as following
-  ...combine(
-    formsReducer("forms", { query: { type: "form", tags: ['common'] } }), // return only forms with the common tags
-    formsReducer("resources", { query: { type: "resource", tags: ['common'] } }) // return only resources with the common tags
-  )
-});
+  combineReducers({
+    router: connectRouter(history),
+    ...defaultFormioReducer,
+    // override defaultFormioReducer can done as following
+    ...combine(
+      formsReducer("forms", { query: { type: "form", tags: ["common"] } }), // return only forms with the common tags
+      formsReducer("resources", { query: { type: "resource", tags: ["common"] } }) // return only resources with the common tags
+    )
+  });
 ```
 
 ## Contributors
+
 Please read [contributing guidelines here](./CONTRIBUTING.md).
 
 <a href="https://github.com/TypedProject/tsed/graphs/contributors"><img src="https://opencollective.com/tsed/contributors.svg?width=890" /></a>
-
 
 ## Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/tsed#backer)]
 
 <a href="https://opencollective.com/tsed#backers" target="_blank"><img src="https://opencollective.com/tsed/tiers/backer.svg?width=890"></a>
-
 
 ## Sponsors
 

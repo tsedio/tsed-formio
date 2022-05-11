@@ -10,10 +10,7 @@
     "rootDir": "src",
     "allowJs": true,
     "noEmit": true,
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictNullChecks": false,
@@ -24,14 +21,6 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src/*.ts",
-    "src/*.ejs",
-    "src/**/*.ts",
-    "src/**/*.ejs"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/*.ts", "src/*.ejs", "src/**/*.ts", "src/**/*.ejs"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

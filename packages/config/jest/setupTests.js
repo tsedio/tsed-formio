@@ -1,15 +1,15 @@
 /* eslint-disable */
 // polyfill request animation frames
 
-if (typeof window !== 'undefined') {
-  window.matchMedia = () => ({ matches: false })
-  window.scrollTo = jest.fn()
+if (typeof window !== "undefined") {
+  window.matchMedia = () => ({ matches: false });
+  window.scrollTo = jest.fn();
 
   jest.mock(
-    'react-svg',
+    "react-svg",
     () =>
-      function Svg () {
-        return ''
+      function Svg() {
+        return "";
       }
-  )
+  );
 }

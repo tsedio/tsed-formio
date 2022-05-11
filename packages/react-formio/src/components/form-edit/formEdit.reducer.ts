@@ -3,10 +3,7 @@ import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import { FormSchema } from "../../interfaces";
 
-export const hasChanged = (
-  form: Partial<FormSchema>,
-  value: Partial<FormSchema>
-): boolean => !isEqual(form, value);
+export const hasChanged = (form: Partial<FormSchema>, value: Partial<FormSchema>): boolean => !isEqual(form, value);
 
 export interface FormEditState {
   past: Partial<FormSchema>[];
@@ -24,10 +21,7 @@ export function createInitialState(props: any): FormEditState {
   };
 }
 
-export const reducer = (
-  state: FormEditState,
-  { type, value }: any
-): FormEditState => {
+export const reducer = (state: FormEditState, { type, value }: any): FormEditState => {
   const { past, current, future } = state;
 
   const update = (newValue: any): any => {

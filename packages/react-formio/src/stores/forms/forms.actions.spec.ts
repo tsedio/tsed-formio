@@ -1,11 +1,6 @@
 import { Formio } from "formiojs";
 import { mapRequestParams } from "../../utils/mapRequestParams";
-import {
-  failForms,
-  getForms,
-  receiveForms,
-  requestForms
-} from "./forms.actions";
+import { failForms, getForms, receiveForms, requestForms } from "./forms.actions";
 
 jest.mock("formiojs");
 jest.mock("../../utils/mapRequestParams");
@@ -18,9 +13,7 @@ describe("Forms actions", () => {
   describe("getForms", () => {
     it("should return a result", async () => {
       // GIVEN
-      (Formio as any).prototype.loadForms.mockReturnValue(
-        Promise.resolve([{}])
-      );
+      (Formio as any).prototype.loadForms.mockReturnValue(Promise.resolve([{}]));
       (Formio as any).getProjectUrl.mockReturnValue("https://formio");
       const dispatch = jest.fn();
       const name = "name";
@@ -36,9 +29,7 @@ describe("Forms actions", () => {
       });
 
       // WHEN
-      await new Promise((resolve) =>
-        getForms(name, parameters, resolve)(dispatch, getState)
-      );
+      await new Promise((resolve) => getForms(name, parameters, resolve)(dispatch, getState));
 
       // THEN
       expect(Formio).toHaveBeenCalledWith("https://formio/form");
@@ -60,9 +51,7 @@ describe("Forms actions", () => {
     });
     it("should return a error", async () => {
       // GIVEN
-      (Formio.prototype.loadForms as any).mockReturnValue(
-        Promise.reject(new Error("message"))
-      );
+      (Formio.prototype.loadForms as any).mockReturnValue(Promise.reject(new Error("message")));
       (Formio.getProjectUrl as any).mockReturnValue("https://formio");
 
       const dispatch = jest.fn();
@@ -79,9 +68,7 @@ describe("Forms actions", () => {
       });
 
       // WHEN
-      await new Promise((resolve) =>
-        getForms(name, parameters, resolve)(dispatch, getState)
-      );
+      await new Promise((resolve) => getForms(name, parameters, resolve)(dispatch, getState));
 
       // THEN
       expect(Formio).toHaveBeenCalledWith("https://formio/form");

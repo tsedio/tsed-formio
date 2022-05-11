@@ -7,35 +7,19 @@ export interface ReducerEvent<Payload = any> {
 export interface ReduceFunction<State = any, Payload = any> {
   (state: State, event: ReducerEvent<Payload>): State;
 
-  $emit(
-    type: string | { toString(): string },
-    state: State,
-    payload: Payload
-  ): State;
+  $emit(type: string | { toString(): string }, state: State, payload: Payload): State;
 
   toString(): string;
 }
 
-export type InitialStateCreator<State = any> = (
-  state?: Partial<State> | any
-) => State;
+export type InitialStateCreator<State = any> = (state?: Partial<State> | any) => State;
 
-export type Reducer<State = any, Payload = any> = (
-  state: State,
-  payload: Payload,
-  reset: InitialStateCreator<State>
-) => State;
+export type Reducer<State = any, Payload = any> = (state: State, payload: Payload, reset: InitialStateCreator<State>) => State;
 
-export type Reducers<State = any, Payload = any> = Record<
-  string,
-  Reducer<State, Payload>
->;
+export type Reducers<State = any, Payload = any> = Record<string, Reducer<State, Payload>>;
 
 export interface On<State = any, Payload = any> {
-  (name: string | { toString(): string }, reducer: Reducer<State, Payload>): On<
-    State,
-    Payload
-  >;
+  (name: string | { toString(): string }, reducer: Reducer<State, Payload>): On<State, Payload>;
 }
 
 export interface ReducersCreator<State = any, Payload = any> {
@@ -43,15 +27,9 @@ export interface ReducersCreator<State = any, Payload = any> {
 }
 
 export interface SandboxReducers<State = any, Payload = any> {
-  (
-    reducerName: string | { toString(): string },
-    defaultStateOptions?: Partial<State>
-  ): ReduceFunction<State, Payload>;
+  (reducerName: string | { toString(): string }, defaultStateOptions?: Partial<State>): ReduceFunction<State, Payload>;
 
-  on(
-    name: string | { toString(): string },
-    reducer: Reducer<State, Payload>
-  ): SandboxReducers<State, Payload>;
+  on(name: string | { toString(): string }, reducer: Reducer<State, Payload>): SandboxReducers<State, Payload>;
 }
 /**
  * Create a new Reducer
@@ -75,20 +53,14 @@ export function createReducer<State = any, Payload = any>(
     return createReducer<State, Payload>(localReducers, createInitialState);
   }
 
-  const sandboxReducers = (
-    reducerName: string | { toString(): string },
-    defaultStateOptions?: any
-  ): ReduceFunction<State, Payload> => {
+  const sandboxReducers = (reducerName: string | { toString(): string }, defaultStateOptions?: any): ReduceFunction<State, Payload> => {
     const name = String(reducerName);
     const initialState: State & { name: string } = {
       name,
       ...createInitialState(defaultStateOptions)
     };
 
-    const reduce = (
-      state: State = initialState,
-      event: ReducerEvent
-    ): State => {
+    const reduce = (state: State = initialState, event: ReducerEvent): State => {
       const { type, name: actionName, payload } = event;
 
       if (actionName !== name) {
@@ -108,9 +80,7 @@ export function createReducer<State = any, Payload = any>(
 
     reduce.$emit = (type: string, state: State, payload: any): State => {
       return {
-        ...reducers[type](state, payload, () =>
-          createInitialState(defaultStateOptions)
-        ),
+        ...reducers[type](state, payload, () => createInitialState(defaultStateOptions)),
         name
       };
     };
@@ -120,10 +90,7 @@ export function createReducer<State = any, Payload = any>(
     return reduce as any;
   };
 
-  sandboxReducers.on = (
-    name: string | { toString(): string },
-    reducer: Reducer<State, Payload>
-  ): SandboxReducers => {
+  sandboxReducers.on = (name: string | { toString(): string }, reducer: Reducer<State, Payload>): SandboxReducers => {
     reducers[String(name)] = reducer;
 
     return sandboxReducers;

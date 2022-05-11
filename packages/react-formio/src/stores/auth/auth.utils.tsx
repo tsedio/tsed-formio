@@ -23,19 +23,13 @@ export function isAuthorized(auth: AuthState, roles: string[] = []): boolean {
   return false;
 }
 
-export function checkRoleFormAccess(
-  auth: AuthState,
-  form?: Partial<FormSchema>,
-  roles?: string[]
-) {
+export function checkRoleFormAccess(auth: AuthState, form?: Partial<FormSchema>, roles?: string[]) {
   if (roles && roles.length) {
     if (isAuthorized(auth, roles)) {
       return true;
     }
 
-    return !!(
-      roles.includes("owner") && get(form, "owner") === get(auth, "user._id")
-    );
+    return !!(roles.includes("owner") && get(form, "owner") === get(auth, "user._id"));
   }
 
   return true;

@@ -1,9 +1,4 @@
-import {
-  failActions,
-  receiveActions,
-  requestActions,
-  resetActions
-} from "./actions.actions";
+import { failActions, receiveActions, requestActions, resetActions } from "./actions.actions";
 import { ACTIONS } from "./actions.constant";
 import { actionsReducer } from "./actions.reducers";
 

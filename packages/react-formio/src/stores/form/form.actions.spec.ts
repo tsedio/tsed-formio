@@ -1,14 +1,5 @@
 import { Formio } from "formiojs";
-import {
-  deleteForm,
-  failForm,
-  getForm,
-  receiveForm,
-  requestForm,
-  resetForm,
-  saveForm,
-  sendForm
-} from "./form.actions";
+import { deleteForm, failForm, getForm, receiveForm, requestForm, resetForm, saveForm, sendForm } from "./form.actions";
 
 jest.mock("formiojs");
 
@@ -34,9 +25,7 @@ describe("Form actions", () => {
       });
 
       // WHEN
-      await new Promise((resolve) =>
-        getForm(name, formId, resolve)(dispatch, getState)
-      );
+      await new Promise((resolve) => getForm(name, formId, resolve)(dispatch, getState));
 
       // THEN
       expect(Formio).toHaveBeenCalledWith("/formId");
@@ -87,9 +76,7 @@ describe("Form actions", () => {
       // GIVEN
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
-      Formio.prototype.loadForm.mockReturnValue(
-        Promise.reject(new Error("message"))
-      );
+      Formio.prototype.loadForm.mockReturnValue(Promise.reject(new Error("message")));
 
       const dispatch = jest.fn();
       const name = "name";
@@ -100,9 +87,7 @@ describe("Form actions", () => {
       });
 
       // WHEN
-      await new Promise((resolve) =>
-        getForm(name, formId, resolve)(dispatch, getState)
-      );
+      await new Promise((resolve) => getForm(name, formId, resolve)(dispatch, getState));
 
       // THEN
       expect(Formio).toHaveBeenCalledWith("/formId");
@@ -153,9 +138,7 @@ describe("Form actions", () => {
       // GIVEN
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
-      Formio.prototype.saveForm.mockReturnValue(
-        Promise.reject(new Error("message"))
-      );
+      Formio.prototype.saveForm.mockReturnValue(Promise.reject(new Error("message")));
 
       const dispatch = jest.fn();
       const name = "name";
@@ -189,9 +172,7 @@ describe("Form actions", () => {
       const formId = "formId";
 
       // WHEN
-      await new Promise((resolve) =>
-        deleteForm(name, formId, resolve)(dispatch)
-      );
+      await new Promise((resolve) => deleteForm(name, formId, resolve)(dispatch));
 
       // THEN
       expect(Formio).toHaveBeenCalledWith("/formId");
@@ -205,18 +186,14 @@ describe("Form actions", () => {
       // GIVEN
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
-      Formio.prototype.deleteForm.mockReturnValue(
-        Promise.reject(new Error("message"))
-      );
+      Formio.prototype.deleteForm.mockReturnValue(Promise.reject(new Error("message")));
 
       const dispatch = jest.fn();
       const name = "name";
       const formId = "formId";
 
       // WHEN
-      await new Promise((resolve) =>
-        deleteForm(name, formId, resolve)(dispatch)
-      );
+      await new Promise((resolve) => deleteForm(name, formId, resolve)(dispatch));
 
       // THEN
       expect(Formio).toHaveBeenCalledWith("/formId");

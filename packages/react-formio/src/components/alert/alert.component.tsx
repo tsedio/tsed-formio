@@ -29,20 +29,14 @@ function formatError(error: any): any {
   }
 
   // If this is a joy validation error.
-  if (
-    Object.prototype.hasOwnProperty.call(error, "name") &&
-    error.name === "ValidationError"
-  ) {
+  if (Object.prototype.hasOwnProperty.call(error, "name") && error.name === "ValidationError") {
     return error.details.map((item: any, index: number) => {
       return <div key={index}>{item.message}</div>;
     });
   }
 
   // If a conflict error occurs on a form, the form is returned.
-  if (
-    Object.prototype.hasOwnProperty.call(error, "_id") &&
-    Object.prototype.hasOwnProperty.call(error, "display")
-  ) {
+  if (Object.prototype.hasOwnProperty.call(error, "_id") && Object.prototype.hasOwnProperty.call(error, "display")) {
     return "Another user has saved this form already. Please reload and re-apply your changes.";
   }
 

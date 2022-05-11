@@ -1126,8 +1126,7 @@ Sandbox.args = {
           key: "address1",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -1189,8 +1188,7 @@ Sandbox.args = {
           key: "address2",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -1252,8 +1250,7 @@ Sandbox.args = {
           key: "city",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -1315,8 +1312,7 @@ Sandbox.args = {
           key: "state",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -1378,8 +1374,7 @@ Sandbox.args = {
           key: "country",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -1441,8 +1436,7 @@ Sandbox.args = {
           key: "zip",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -2947,8 +2941,7 @@ Wizard.args = {
           key: "address1",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -3010,8 +3003,7 @@ Wizard.args = {
           key: "address2",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -3073,8 +3065,7 @@ Wizard.args = {
           key: "city",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -3136,8 +3127,7 @@ Wizard.args = {
           key: "state",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -3199,8 +3189,7 @@ Wizard.args = {
           key: "country",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",
@@ -3262,8 +3251,7 @@ Wizard.args = {
           key: "zip",
           type: "textfield",
           input: true,
-          customConditional:
-            "show = _.get(instance, 'parent.manualMode', false);",
+          customConditional: "show = _.get(instance, 'parent.manualMode', false);",
           placeholder: "",
           prefix: "",
           customClass: "",

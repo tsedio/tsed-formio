@@ -11,10 +11,7 @@ describe("SelectColumnFilter", () => {
       setFilter: mockSetFilter,
       column: {
         id: "id",
-        preFilteredRows: [
-          { values: { id: "select-choice-1" } },
-          { values: { id: "select-choice-2" } }
-        ]
+        preFilteredRows: [{ values: { id: "select-choice-1" } }, { values: { id: "select-choice-2" } }]
       }
     };
 
@@ -34,10 +31,7 @@ describe("SelectColumnFilter", () => {
       setFilter: mockSetFilter,
       column: {
         id: "id",
-        preFilteredRows: [
-          { values: { id: "select-choice-1" } },
-          { values: { id: "select-choice-2" } }
-        ],
+        preFilteredRows: [{ values: { id: "select-choice-1" } }, { values: { id: "select-choice-2" } }],
         choices: [{ label: "fake-choice", value: "fake-choice" }]
       }
     };

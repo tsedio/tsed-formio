@@ -2,17 +2,13 @@ import React from "react";
 import { FilterProps } from "react-table";
 import { Select } from "../../select/select.component";
 
-export function SelectColumnFilter<D extends Record<string, unknown> = {}>({
-  column
-}: FilterProps<D>) {
+export function SelectColumnFilter<D extends Record<string, unknown> = {}>({ column }: FilterProps<D>) {
   const { id, preFilteredRows, filterValue, setFilter } = column;
   const { choices: customChoices } = column as any;
 
   const choices =
     customChoices ||
-    [...new Set(preFilteredRows.map((row) => row.values[id]))]
-      .filter((value) => value)
-      .map((value) => ({ label: value, value }));
+    [...new Set(preFilteredRows.map((row) => row.values[id]))].filter((value) => value).map((value) => ({ label: value, value }));
 
   return (
     <Select

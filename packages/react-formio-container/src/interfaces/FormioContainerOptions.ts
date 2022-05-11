@@ -54,11 +54,7 @@ export interface FormioContainerOptions extends Record<string, unknown> {
    */
   onError?: FormioErrorHandler;
   onSubmitForm?: (type: string, form: FormSchema) => void;
-  onSubmitSubmission?: (
-    submissionType: string,
-    formId: string,
-    submission: Submission
-  ) => void;
+  onSubmitSubmission?: (submissionType: string, formId: string, submission: Submission) => void;
   /**
    * i18n function to translate sentences
    */

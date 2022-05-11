@@ -18,16 +18,10 @@ export interface ActionReducer<T = any> {
   toString(): string;
 }
 
-export function createAction<T = any>(
-  options: CreateActionOptions = {}
-): ActionReducer {
+export function createAction<T = any>(options: CreateActionOptions = {}): ActionReducer {
   const { type = getActionType(), mapper = (f: any): any => f } = options;
 
-  const action = (
-    name: string,
-    payload?: T,
-    ...args: any[]
-  ): { type: string; name: string; payload: T } => ({
+  const action = (name: string, payload?: T, ...args: any[]): { type: string; name: string; payload: T } => ({
     type,
     name,
     payload: mapper(payload, ...args)

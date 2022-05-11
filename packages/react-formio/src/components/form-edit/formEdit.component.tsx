@@ -12,31 +12,13 @@ export interface FormEditProps extends UseFormEditHookProps {
 }
 
 export function FormEdit(props: FormEditProps) {
-  const {
-    form,
-    isValid,
-    setChange,
-    hasRedo,
-    hasChanged,
-    hasUndo,
-    redo,
-    undo,
-    reset,
-    onSubmit,
-    onCopy
-  } = useFormEdit(props);
+  const { form, isValid, setChange, hasRedo, hasChanged, hasUndo, redo, undo, reset, onSubmit, onCopy } = useFormEdit(props);
   const { options = {}, builder } = props;
 
   return (
     <div>
       <div className='form-edit'>
-        <FormParameters
-          {...props}
-          className={""}
-          key={`form-settings-${form._id}`}
-          form={form}
-          onChange={setChange}
-        />
+        <FormParameters {...props} className={""} key={`form-settings-${form._id}`} form={form} onChange={setChange} />
         <FormEditCTAs
           {...props}
           className={""}

@@ -16,14 +16,7 @@ export function FormAccessView(props: ReturnType<typeof useForm>) {
 
   return (
     <div className={"p-3 pb-1"}>
-      <Component
-        {...props}
-        type={formType}
-        form={form}
-        roles={roles}
-        onSubmit={saveForm}
-        options={{ i18n }}
-      />
+      <Component {...props} type={formType} form={form} roles={roles} onSubmit={saveForm} options={{ i18n }} />
     </div>
   );
 }

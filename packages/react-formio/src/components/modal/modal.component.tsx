@@ -48,9 +48,7 @@ export function Modal({
 
   useEffect(() => {
     if (titleRef.current || footerRef.current) {
-      const height =
-        (titleRef?.current?.offsetHeight || 0) +
-        (footerRef?.current?.offsetHeight || 0);
+      const height = (titleRef?.current?.offsetHeight || 0) + (footerRef?.current?.offsetHeight || 0);
 
       setMaxHeight(`calc(85vh - ${height}px)`);
     } else {
@@ -63,42 +61,23 @@ export function Modal({
   }
 
   return (
-    <div
-      role={"dialog"}
-      className={`formio-dialog formio-dialog-theme-default ${className}`}
-    >
+    <div role={"dialog"} className={`formio-dialog formio-dialog-theme-default ${className}`}>
       <div className='formio-dialog-overlay' onClick={onClickClose} />
       <div style={style} className={"formio-dialog-content"}>
         <div className={"formio-dialog-wrapper"}>
           {title ? (
-            <div
-              className={"formio-dialog-title"}
-              ref={titleRef}
-              data-testid={"modalTitle"}
-            >
+            <div className={"formio-dialog-title"} ref={titleRef} data-testid={"modalTitle"}>
               {title}
             </div>
           ) : null}
 
-          <div
-            className='formio-dialog-body'
-            style={{ maxHeight }}
-            data-testid={"modalBody"}
-          >
+          <div className='formio-dialog-body' style={{ maxHeight }} data-testid={"modalBody"}>
             {show && children}
           </div>
 
           {ModalFooter ? (
-            <div
-              className={"formio-dialog-footer"}
-              ref={footerRef}
-              data-testid={"modalFooter"}
-            >
-              <ModalFooter
-                {...props}
-                closeModal={closeModal}
-                onClose={onClickClose}
-              />
+            <div className={"formio-dialog-footer"} ref={footerRef} data-testid={"modalFooter"}>
+              <ModalFooter {...props} closeModal={closeModal} onClose={onClickClose} />
             </div>
           ) : null}
         </div>

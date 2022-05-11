@@ -1,9 +1,5 @@
 import { Formio } from "formiojs";
-import {
-  getActionInfo,
-  receiveActionInfo,
-  requestActionInfo
-} from "./action-info.actions";
+import { getActionInfo, receiveActionInfo, requestActionInfo } from "./action-info.actions";
 
 jest.mock("formiojs/Formio");
 

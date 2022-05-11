@@ -3,13 +3,13 @@ import { iconClass } from "../../utils/iconClass";
 import { InputText } from "./inputText.component";
 
 const useValue = (args: any) => {
-  const [value, useValue] = useState(args.value);
+  const [value, setValue] = useState(args.value);
 
   return {
     ...args,
     value,
     onChange(name: string, value: any) {
-      useValue(value);
+      setValue(value);
       args.onChange(name, value);
     }
   };
@@ -77,12 +77,7 @@ Sandbox.args = {
 };
 
 export const WithPrefix = (args: any) => {
-  return (
-    <InputText
-      prefix={<i className={iconClass(undefined, "calendar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <InputText prefix={<i className={iconClass(undefined, "calendar")} />} {...useValue(args)} />;
 };
 
 WithPrefix.args = {
@@ -93,12 +88,7 @@ WithPrefix.args = {
 };
 
 export const WithSuffix = (args: any) => {
-  return (
-    <InputText
-      suffix={<i className={iconClass(undefined, "calendar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <InputText suffix={<i className={iconClass(undefined, "calendar")} />} {...useValue(args)} />;
 };
 
 WithSuffix.args = {
@@ -109,12 +99,7 @@ WithSuffix.args = {
 };
 
 export const TypeNumber = (args: any) => {
-  return (
-    <InputText
-      suffix={<i className={iconClass(undefined, "dollar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <InputText suffix={<i className={iconClass(undefined, "dollar")} />} {...useValue(args)} />;
 };
 
 TypeNumber.args = {
@@ -127,12 +112,7 @@ TypeNumber.args = {
 };
 
 export const Sizing = (args: any) => {
-  return (
-    <InputText
-      suffix={<i className={iconClass(undefined, "dollar")} />}
-      {...useValue(args)}
-    />
-  );
+  return <InputText suffix={<i className={iconClass(undefined, "dollar")} />} {...useValue(args)} />;
 };
 
 Sizing.args = {

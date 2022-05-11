@@ -33,7 +33,7 @@ See our [storybook](https://formio.tsed.io/) to see all available components.
 
 ## Features
 
-* Provide extends component to create your formio backoffice
+- Provide extends component to create your formio backoffice
 
 ## Install
 
@@ -66,7 +66,7 @@ ReactDOM.render(
       <div>
         <ConnectedRouter history={history}>
           <Switch>
-            <Route path="/formio/:formType" exact={false}>
+            <Route path='/formio/:formType' exact={false}>
               <FormioContainer
                 basePath={"/formio/:formType"}
                 operationsSettings={{
@@ -78,16 +78,17 @@ ReactDOM.render(
                   delete: true
                 }}
                 onSuccess={(eventObj) => {
-                  console.log(eventObj)
+                  console.log(eventObj);
                 }}
                 onInfo={(eventObj) => {
-                  console.log(eventObj)
+                  console.log(eventObj);
                 }}
                 onError={(eventObj) => {
-                  console.log(eventObj)
-                }}/>
-            </Route>  
-          </Switch>  
+                  console.log(eventObj);
+                }}
+              />
+            </Route>
+          </Switch>
         </ConnectedRouter>
         <ToastContainer />
       </div>
@@ -223,10 +224,7 @@ export const defaultFormRoutes: FormRoute[] = [
 You can change the form routes as following:
 
 ```javascript
-<FormioContainer
-  basePath={"/formio/:formType"}
-  formRoutes={defaultFormRoutes}
-/>
+<FormioContainer basePath={"/formio/:formType"} formRoutes={defaultFormRoutes} />
 ```
 
 ### onInfo, onSuccess, onError
@@ -237,19 +235,20 @@ Example:
 
 ```javascript
 <FormContainer
-   onSuccess={(eventObj) => {
-     toastr.success(eventObj.title, eventObj.message);
-   }}
-   onInfo={(eventObj) => {
-     toastr.info(eventObj.title, eventObj.message);
-   }}
-   onError={(eventObj) => {
-     toastr.error(eventObj.title, eventObj.message);
-   }}
+  onSuccess={(eventObj) => {
+    toastr.success(eventObj.title, eventObj.message);
+  }}
+  onInfo={(eventObj) => {
+    toastr.info(eventObj.title, eventObj.message);
+  }}
+  onError={(eventObj) => {
+    toastr.error(eventObj.title, eventObj.message);
+  }}
 />
 ```
 
 ## Contributors
+
 Please read [contributing guidelines here](./CONTRIBUTING.md).
 
 <a href="https://github.com/TypedProject/tsed/graphs/contributors"><img src="https://opencollective.com/tsed/contributors.svg?width=890" /></a>
@@ -259,7 +258,6 @@ Please read [contributing guidelines here](./CONTRIBUTING.md).
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/tsed#backer)]
 
 <a href="https://opencollective.com/tsed#backers" target="_blank"><img src="https://opencollective.com/tsed/tiers/backer.svg?width=890"></a>
-
 
 ## Sponsors
 
@@ -278,4 +276,3 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [travis]: https://travis-ci.org/
-

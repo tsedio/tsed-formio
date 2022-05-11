@@ -1,9 +1,4 @@
-import {
-  failSubmissions,
-  receiveSubmissions,
-  requestSubmissions,
-  resetSubmissions
-} from "./submissions.actions";
+import { failSubmissions, receiveSubmissions, requestSubmissions, resetSubmissions } from "./submissions.actions";
 import { submissionsReducer } from "./submissions.reducers";
 
 describe("Submissions reducers", () => {
@@ -42,9 +37,7 @@ describe("Submissions reducers", () => {
       }
     };
 
-    expect(
-      reducer.$emit(requestSubmissions.toString(), state, payload)
-    ).toEqual({
+    expect(reducer.$emit(requestSubmissions.toString(), state, payload)).toEqual({
       error: null,
       formId: undefined,
       name: "name",
@@ -74,9 +67,7 @@ describe("Submissions reducers", () => {
     };
     payload.submissions.serverCount = 100;
 
-    expect(
-      reducer.$emit(receiveSubmissions.toString(), state, payload)
-    ).toEqual({
+    expect(reducer.$emit(receiveSubmissions.toString(), state, payload)).toEqual({
       name: "name",
       data: [
         {

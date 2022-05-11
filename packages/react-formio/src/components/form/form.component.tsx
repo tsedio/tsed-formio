@@ -17,13 +17,7 @@ export interface FormProps<Data = any> extends UseFormHookProps<Data> {
 export function Form(props: Partial<FormProps>) {
   const { element } = useForm(props);
 
-  return (
-    <div
-      data-testid={"formioContainer" + (props.name || "")}
-      ref={element}
-      className={props.className}
-    />
-  );
+  return <div data-testid={"formioContainer" + (props.name || "")} ref={element} className={props.className} />;
 }
 
 Form.propTypes = {

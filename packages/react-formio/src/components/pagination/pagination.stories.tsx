@@ -17,11 +17,7 @@ export const Sandbox = (args: any) => {
 
   return (
     <div>
-      <Pagination
-        {...args}
-        pageIndex={currentPageIndex}
-        gotoPage={setPageIndex}
-      />
+      <Pagination {...args} pageIndex={currentPageIndex} gotoPage={setPageIndex} />
     </div>
   );
 };

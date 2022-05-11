@@ -14,10 +14,7 @@
   },
   "scripts": {
     "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
-    "build": "tsc --noEmit false && gulp templates && yarn webpack",
-    "lint:fix": "yarn lint --fix",
-    "lint": "yarn eslint --config .eslintrc --cache --quiet \"./src/**/*.{ts,tsx,js,jsx}\"",
-    "prettier": "prettier '{src,test}/**/*.{ts,tsx,js,jsx}' --write"
+    "build": "tsc --noEmit false && gulp templates && yarn webpack"
   },
   "dependencies": {},
   "peerDependencies": {}
