@@ -17,9 +17,9 @@
     "configure": "monorepo ci configure",
     "test": "lerna run test --stream",
     "test:e2e": "lerna run test:e2e",
-    "lint": "lerna run lint",
-    "lint:fix": "lerna run lint:fix",
-    "prettier": "lerna run prettier",
+    "lint": "yarn eslint --config .eslintrc --cache --quiet \"**/*.{ts,tsx,js,jsx}\"",
+    "lint:fix": "yarn lint --fix",
+    "prettier": "prettier '**/*.{ts,js,json,md,yml,yaml}' --write",
     "build": "monorepo build",
     "publish": "monorepo publish --dry-run",
     "start": "lerna run start --stream --parallel",
@@ -27,7 +27,8 @@
     "build:storybook": "yarn build:tailwind && lerna run build:storybook --stream --scope @tsed/storybook",
     "build:tailwind": "lerna run build:tailwind --stream --scope @tsed/tailwind",
     "publish:storybook": "yarn build:storybook && monorepo publish ghpages",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "prepare": "is-ci || husky install"
   },
   "dependencies": {
     "@types/classnames": "^2.2.11",
@@ -92,26 +93,6 @@
       "packages/*/**/webpack-dev-server",
       "**/babel-loader",
       "**/babel-jest"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "post-commit": "git update-index --again"
-    }
-  },
-  "lint-staged": {
-    "packages/react-formio/**/*.{js,jsx}": [
-      "cd packages/react-formio && yarn lint:fix",
-      "git add"
-    ],
-    "packages/redux-utils/**/*.{ts,jsx}": [
-      "cd packages/redux-utils && yarn lint:fix",
-      "git add"
-    ],
-    "packages/tailwind-formio/**/*.{js,jsx}": [
-      "cd packages/react-formio && yarn lint:fix",
-      "git add"
     ]
   },
   "monorepo": {
