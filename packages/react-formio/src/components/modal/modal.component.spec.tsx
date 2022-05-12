@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/extend-expect";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { WithFooter, WithTitle } from "./modal.stories";
 
@@ -8,7 +8,7 @@ describe("Modal", () => {
     it("should display the modal when we click on the button", async () => {
       const onClose = jest.fn();
 
-      const { queryByTestId, getByTestId } = render(<WithTitle {...WithTitle.args} onClose={onClose} />);
+      const { queryByTestId, getByTestId, findByTestId } = render(<WithTitle {...WithTitle.args} onClose={onClose} />);
 
       expect(queryByTestId("modalTitle")).toBeFalsy();
       expect(queryByTestId("modalBody")).toBeFalsy();
@@ -16,7 +16,7 @@ describe("Modal", () => {
 
       fireEvent.click(screen.getByRole("button", { name: "Open modal" }));
 
-      await waitFor(() => getByTestId("modalTitle"));
+      await findByTestId("modalTitle");
 
       expect(getByTestId("modalTitle")).toBeTruthy();
       expect(getByTestId("modalTitle")).toHaveTextContent("Modal title");
@@ -35,7 +35,7 @@ describe("Modal", () => {
 
   describe("WithFooter", () => {
     it("should display the modal when we click on the button", async () => {
-      const { getByRole, queryByTestId, getByTestId } = render(<WithFooter {...WithFooter.args} />);
+      const { getByRole, queryByTestId, getByTestId, findByTestId } = render(<WithFooter {...WithFooter.args} />);
 
       expect(queryByTestId("modalTitle")).toBeFalsy();
       expect(queryByTestId("modalBody")).toBeFalsy();
@@ -43,13 +43,13 @@ describe("Modal", () => {
 
       fireEvent.click(getByRole("button", { name: "Open modal" }));
 
-      await waitFor(() => getByTestId("modalTitle"));
+      await findByTestId("modalTitle");
 
       expect(getByTestId("modalTitle")).toBeTruthy();
       expect(getByTestId("modalTitle")).toHaveTextContent("Modal title");
       expect(getByTestId("modalBody")).toBeTruthy();
       expect(getByTestId("modalBody")).toHaveTextContent("Hello body");
-      expect(queryByTestId("modalFooter")).toBeTruthy();
+      expect(getByTestId("modalFooter")).toBeTruthy();
 
       fireEvent.click(screen.getByTestId("customCloseModal"));
 
@@ -59,11 +59,11 @@ describe("Modal", () => {
     });
     it("should call the onSubmit listener", async () => {
       const onSubmit = jest.fn();
-      const { getByRole, queryByTestId, getByTestId } = render(<WithFooter {...WithFooter.args} onSubmit={onSubmit} />);
+      const { getByRole, queryByTestId, findByTestId } = render(<WithFooter {...WithFooter.args} onSubmit={onSubmit} />);
 
       fireEvent.click(getByRole("button", { name: "Open modal" }));
 
-      await waitFor(() => getByTestId("modalTitle"));
+      await findByTestId("modalTitle");
 
       fireEvent.click(screen.getByTestId("customSubmitModal"));
 

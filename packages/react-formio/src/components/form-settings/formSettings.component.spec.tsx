@@ -7,7 +7,6 @@ describe("FormSettings", () => {
   it("should render form settings", async () => {
     const onSubmit = jest.fn();
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     Sandbox.args.form.action = "https://test";
 

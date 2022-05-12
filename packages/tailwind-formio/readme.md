@@ -136,14 +136,7 @@ module.exports = {
         sans: ["Source Sans Pro", "sans-serif"],
         serif: ["Source Sans Pro", "sans-serif"],
         inconsolata: ["Inconsolata"],
-        source: [
-          "source-code-pro",
-          "Menlo",
-          "Monaco",
-          "Consolas",
-          "Courier New",
-          "monospace"
-        ]
+        source: ["source-code-pro", "Menlo", "Monaco", "Consolas", "Courier New", "monospace"]
       },
       minWidth: {
         site: "18.75rem",

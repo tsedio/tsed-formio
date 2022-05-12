@@ -3,9 +3,7 @@ const { plugins } = require("@tsed/config/postcss.config");
 
 const rootDir = join(__dirname, "..", "src");
 const formioDir = dirname(require.resolve("@tsed/react-formio"));
-const formioContainerDir = dirname(
-  require.resolve("@tsed/react-formio-container")
-);
+const formioContainerDir = dirname(require.resolve("@tsed/react-formio-container"));
 const tailwindDir = dirname(require.resolve("@tsed/tailwind-formio"));
 
 const scanDirs = (dir) => [
@@ -30,8 +28,7 @@ module.exports = {
     reactDocgen: "react-docgen-typescript",
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) =>
-        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
     }
   },
   webpackFinal: (config) => {

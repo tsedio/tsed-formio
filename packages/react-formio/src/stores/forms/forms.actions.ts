@@ -15,26 +15,25 @@ export const failForms = createAction();
 
 export type GetFormsCB = (err: any, forms?: FormSchema[]) => void;
 
-export const getForms = (name: string, parameters: Partial<RequestParamsOptions>, done: GetFormsCB = noop) => async (
-  dispatch: any,
-  getState: any
-) => {
-  dispatch(requestForms(name, { parameters }));
+export const getForms =
+  (name: string, parameters: Partial<RequestParamsOptions>, done: GetFormsCB = noop) =>
+  async (dispatch: any, getState: any) => {
+    dispatch(requestForms(name, { parameters }));
 
-  const formio = new Formio(`${Formio.getProjectUrl()}/form`);
-  const requestParams = mapRequestParams(selectFormsParameters(name, getState()));
+    const formio = new Formio(`${Formio.getProjectUrl()}/form`);
+    const requestParams = mapRequestParams(selectFormsParameters(name, getState()));
 
-  try {
-    const result: FormSchema[] = await formio.loadForms({
-      params: requestParams
-    });
-    dispatch(receiveForms(name, { forms: result }));
-    done(null, result);
-  } catch (error) {
-    dispatch(failForms(name, { error }));
-    done(error);
-  }
-};
+    try {
+      const result: FormSchema[] = await formio.loadForms({
+        params: requestParams
+      });
+      dispatch(receiveForms(name, { forms: result }));
+      done(null, result);
+    } catch (error) {
+      dispatch(failForms(name, { error }));
+      done(error);
+    }
+  };
 
 export const refreshForms = (name: string, done = noop) => {
   return async (dispatch: any, getState: any) => {

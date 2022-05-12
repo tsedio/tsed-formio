@@ -17,61 +17,67 @@ function shouldGet(form: Partial<FormSchema>, id: string) {
   return form && form.components && Array.isArray(form.components) && form.components.length && form._id === id;
 }
 
-export const getForm = (name: string, id = "", done = noop) => async (dispatch: any, getState: any) => {
-  dispatch(clearFormError(name));
-  // Check to see if the form is already loaded.
-  const form = selectForm(name, getState());
+export const getForm =
+  (name: string, id = "", done = noop) =>
+  async (dispatch: any, getState: any) => {
+    dispatch(clearFormError(name));
+    // Check to see if the form is already loaded.
+    const form = selectForm(name, getState());
 
-  if (shouldGet(form, id)) {
-    return;
-  }
+    if (shouldGet(form, id)) {
+      return;
+    }
 
-  const url = getFormUrl(id);
-  const formio = new Formio(url);
+    const url = getFormUrl(id);
+    const formio = new Formio(url);
 
-  dispatch(requestForm(name, { id, url }));
+    dispatch(requestForm(name, { id, url }));
 
-  try {
-    const form = await formio.loadForm();
+    try {
+      const form = await formio.loadForm();
 
-    dispatch(receiveForm(name, { form, url }));
-    dispatch(getActions(form._id));
-    done(null, form);
-  } catch (error) {
-    dispatch(failForm(name, { error }));
-    done({ error });
-  }
-};
+      dispatch(receiveForm(name, { form, url }));
+      dispatch(getActions(form._id));
+      done(null, form);
+    } catch (error) {
+      dispatch(failForm(name, { error }));
+      done({ error });
+    }
+  };
 
-export const saveForm = (name: string, form: Partial<FormSchema>, done = noop) => async (dispatch: any) => {
-  dispatch(clearFormError(name));
-  dispatch(sendForm(name, { form }));
+export const saveForm =
+  (name: string, form: Partial<FormSchema>, done = noop) =>
+  async (dispatch: any) => {
+    dispatch(clearFormError(name));
+    dispatch(sendForm(name, { form }));
 
-  const id = form._id || "";
-  const url = getFormUrl(id);
-  const formio = new Formio(url);
+    const id = form._id || "";
+    const url = getFormUrl(id);
+    const formio = new Formio(url);
 
-  try {
-    const result = await formio.saveForm(form);
-    dispatch(receiveForm(name, { form: result, url: getFormUrl(result._id) }));
-    done(null, result);
-  } catch (error) {
-    dispatch(failForm(name, { error }));
-    done(error);
-  }
-};
+    try {
+      const result = await formio.saveForm(form);
+      dispatch(receiveForm(name, { form: result, url: getFormUrl(result._id) }));
+      done(null, result);
+    } catch (error) {
+      dispatch(failForm(name, { error }));
+      done(error);
+    }
+  };
 
-export const deleteForm = (name: string, id: string, done = noop) => async (dispatch: any) => {
-  dispatch(clearFormError(name));
-  const url = getFormUrl(id);
-  const formio = new Formio(url);
+export const deleteForm =
+  (name: string, id: string, done = noop) =>
+  async (dispatch: any) => {
+    dispatch(clearFormError(name));
+    const url = getFormUrl(id);
+    const formio = new Formio(url);
 
-  try {
-    await formio.deleteForm();
-    dispatch(resetForm(name));
-    done();
-  } catch (error) {
-    dispatch(failForm(name, { error }));
-    done({ error });
-  }
-};
+    try {
+      await formio.deleteForm();
+      dispatch(resetForm(name));
+      done();
+    } catch (error) {
+      dispatch(failForm(name, { error }));
+      done({ error });
+    }
+  };
