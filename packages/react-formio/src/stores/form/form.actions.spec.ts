@@ -6,13 +6,11 @@ jest.mock("formiojs");
 describe("Form actions", () => {
   describe("getForm", () => {
     beforeEach(() => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       Formio.mockClear();
     });
     it("should return a result", async () => {
       // GIVEN
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       Formio.prototype.loadForm.mockReturnValue(Promise.resolve({}));
 
@@ -49,7 +47,6 @@ describe("Form actions", () => {
     });
     it("should do nothing when submission is already loaded", async () => {
       // GIVEN
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       Formio.prototype.loadForm.mockReturnValue(Promise.resolve({}));
 
@@ -74,7 +71,6 @@ describe("Form actions", () => {
     });
     it("should throw error", async () => {
       // GIVEN
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       Formio.prototype.loadForm.mockReturnValue(Promise.reject(new Error("message")));
 
@@ -109,7 +105,6 @@ describe("Form actions", () => {
       const formId = "formId";
       const data = { _id: formId };
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       Formio.prototype.saveForm.mockReturnValue(Promise.resolve(data));
       // WHEN
@@ -136,7 +131,6 @@ describe("Form actions", () => {
     });
     it("should throw error", async () => {
       // GIVEN
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       Formio.prototype.saveForm.mockReturnValue(Promise.reject(new Error("message")));
 
@@ -163,7 +157,6 @@ describe("Form actions", () => {
   describe("deleteForm", () => {
     it("should return a result", async () => {
       // GIVEN
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       Formio.prototype.deleteForm.mockReturnValue(Promise.resolve({}));
 
@@ -184,7 +177,6 @@ describe("Form actions", () => {
     });
     it("should throw error", async () => {
       // GIVEN
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       Formio.prototype.deleteForm.mockReturnValue(Promise.reject(new Error("message")));
 

@@ -16,7 +16,6 @@ describe("SelectColumnFilter", () => {
     };
 
     const { getByText } = render(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       <SelectColumnFilter {...props} />
     );
@@ -37,7 +36,6 @@ describe("SelectColumnFilter", () => {
     };
 
     const { queryByText, getByText } = render(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       <SelectColumnFilter {...props} />
     );

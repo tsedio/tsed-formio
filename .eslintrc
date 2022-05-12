@@ -1,45 +1,16 @@
 {
-  "parser": "@typescript-eslint/parser",
   "extends": [
     "react-app",
     "react-app/jest",
-    "prettier/react",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
+    "prettier",
     "plugin:jsx-a11y/strict"
   ],
   "plugins": [
-    "prettier",
-    "react-hooks"
+    "prettier"
   ],
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
-  },
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "@typescript-eslint/no-redeclare": 0,
-    "semi": [
-      "error",
-      "always"
-    ],
-    "space-before-function-paren": 0,
-    "react/prop-types": 0,
-    "react/jsx-handler-names": 0,
-    "react/jsx-fragments": 0,
-    "react/no-unescaped-entities": 0,
-    "react/no-unused-prop-types": 0,
-    "react/display-name": 1,
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/camelcase": 0,
-    "@typescript-eslint/no-empty-function": 0,
-    "@typescript-eslint/no-var-requires": 0,
-    "import/export": 0,
-    "jsx-a11y/no-autofocus": 1
+    "jsx-a11y/no-autofocus": 1,
+    "testing-library/prefer-screen-queries": 1
   },
   "overrides": [
     {

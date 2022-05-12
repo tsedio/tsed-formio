@@ -13,13 +13,13 @@ describe("DefaultColumnFilter", () => {
     };
 
     const { getByRole } = render(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       <DefaultColumnFilter {...props} />
     );
 
     const input = getByRole("textbox");
 
+    // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
       fireEvent.change(input, { target: { value: "value-test" } });
 
