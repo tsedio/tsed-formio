@@ -30,6 +30,7 @@ export function InputText<T = any>({
   suffix,
   description,
   className,
+  placeholder,
   ...props
 }: InputTextProps<T>) {
   const [localValue, setValue] = useState(value);
@@ -57,7 +58,8 @@ export function InputText<T = any>({
         className={classnames("form-control", size && `form-control-${size}`)}
         id={name}
         required={required}
-        value={(localValue || "") as any}
+        value={(localValue || placeholder  || "") as any}
+        placeholder={placeholder}
         onChange={(event) => {
           const value = getEventValue(event);
           setValue(value);
