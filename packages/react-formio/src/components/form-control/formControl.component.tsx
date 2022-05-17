@@ -8,42 +8,52 @@ export interface FormControlProps {
   label?: string;
   className?: string;
   description?: string | React.ComponentType | any;
-  prefix?: React.ComponentType | any;
-  suffix?: React.ComponentType | any;
+  prefix?: JSX.Element | React.ComponentType | any;
+  suffix?: JSX.Element | React.ComponentType | any;
   shadow?: boolean;
 }
 
 export function FormControl({
-  children,
-  name,
-  required,
-  prefix,
-  suffix,
-  description,
-  label,
-  className
-}: React.PropsWithChildren<FormControlProps>) {
+                              children,
+                              name,
+                              required,
+                              prefix,
+                              suffix,
+                              description,
+                              label,
+                              className
+                            }: React.PropsWithChildren<FormControlProps>) {
   return (
-    <div id={`form-group-${name || ""}`} className={classnames("form-group", className)}>
+    <div data-testid={name && `form-group-${name}`} id={`form-group-${name || ""}`}
+         className={classnames("form-group", className)}>
       {label && (
-        <label htmlFor={name} className={`col-form-label ${required ? " field-required" : ""}`}>
+        <label htmlFor={name} data-testid="form-control-label"
+               className={`col-form-label ${required ? " field-required" : ""}`}>
           {label}
         </label>
       )}
       <div className={"input-group"}>
         {prefix && (
-          <div className='input-group-prepend'>
-            <span className='input-group-text'>{prefix}</span>
+          <div className="input-group-prepend">
+            <span className="input-group-text" data-testid="form-control-prefix">
+              {prefix}
+            </span>
           </div>
         )}
         {children}
         {suffix && (
-          <div className='input-group-append'>
-            <span className='input-group-text'>{suffix}</span>
+          <div className="input-group-append">
+            <span className="input-group-text" data-testid="form-control-suffix">
+              {suffix}
+            </span>
           </div>
         )}
       </div>
-      {description && <div className='form-text text-muted'>{description}</div>}
+      {description && (
+        <div data-testid="form-control-description" className="form-text text-muted">
+          {description}
+        </div>
+      )}
     </div>
   );
 }
