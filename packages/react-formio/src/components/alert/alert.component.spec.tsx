@@ -17,7 +17,7 @@ describe("Alert component", () => {
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
-    expect(alert.textContent).toBe(error);
+    expect(alert).toHaveTextContent(error);
   });
 
   it("should display error(s) when the error is an array", () => {
@@ -46,7 +46,7 @@ describe("Alert component", () => {
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
-    expect(alert.textContent).toBe(arrayOfErrors.errors.map((error) => `${error.name} (${error.path}) - ${error.message}`).join(""));
+    expect(alert).toHaveTextContent(arrayOfErrors.errors.map((error) => `${error.name} (${error.path}) - ${error.message}`).join(""));
   });
 
   it("should display an error message when the error is a standard error", () => {
@@ -60,17 +60,16 @@ describe("Alert component", () => {
     expect(getByText(standardError.message)).toBeInTheDocument();
   });
 
-  it("should display error(s) message(s) when the error is a joy validation error", () => {
-    const joyValidationError = { name: "ValidationError", details: [{ message: "message 1" }, { message: "message 2" }] };
-    const { getByRole, getByText } = render(<Sandbox {...Sandbox.args} error={joyValidationError} />);
+  it("should display error(s) message(s) when the error is a joi validation error", () => {
+    const joiValidationError = { name: "ValidationError", details: [{ message: "message 1" }, { message: "message 2" }] };
+    const { getByRole, getByText } = render(<Sandbox {...Sandbox.args} error={joiValidationError} />);
 
     const alert = getByRole("alert") as HTMLDivElement;
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
-    joyValidationError.details.map((item) => {
-      return expect(getByText(item.message)).toBeInTheDocument();
-    });
+    expect(getByText("message 1")).toBeInTheDocument();
+    expect(getByText("message 2")).toBeInTheDocument();
   });
 
   it("should display a custom error message that asks to reload the form when a conflict error occurs in a form", () => {
@@ -82,7 +81,7 @@ describe("Alert component", () => {
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
-    expect(alert.textContent).toBe(messageReturned);
+    expect(alert).toHaveTextContent(messageReturned);
   });
 
   it("should display an error message by default when the error format does not match any of the conditions of the formatError() handler", () => {
@@ -93,6 +92,6 @@ describe("Alert component", () => {
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
-    expect(alert.textContent).toBe(messageError);
+    expect(alert).toHaveTextContent(messageError);
   });
 });
