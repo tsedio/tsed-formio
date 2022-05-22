@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactHTMLElement } from "react";
 import { render, within } from "@testing-library/react";
 import { Sandbox, WithDescription, WithPrefix, WithSuffix } from "./formControl.stories";
 import { iconClass } from "../../utils/iconClass";
@@ -34,7 +34,7 @@ describe("form-control", () => {
 
   it("should display prefix ", () => {
     const fontAwsomeCalendarIcon = "fa fa-calendar";
-    const prefix = <i className={iconClass(undefined, "calendar")} />;
+    const prefix = <i className={iconClass(undefined, "calendar")} /> as JSX.Element ;
     const { getByTestId } = render(<WithPrefix {...Sandbox.args} name='testPrefix' prefix={prefix} />);
 
     const formGroup = getByTestId("form-group-testPrefix") as HTMLFormElement;
@@ -42,13 +42,13 @@ describe("form-control", () => {
 
     expect(formGroup).toBeInTheDocument();
     expect(formControlPrefix).toBeInTheDocument();
-    expect(formControlPrefix.children).toHaveLength(1);
-    expect(formControlPrefix.firstChild).toHaveClass(fontAwsomeCalendarIcon);
+    expect(formControlPrefix).not.toBeEmptyDOMElement();
+    expect(formControlPrefix).toContainHTML(fontAwsomeCalendarIcon);
   });
 
   it("should display suffix ", () => {
     const fontAwsomeCalendarIcon = "fa fa-calendar";
-    const suffix = <i className={iconClass(undefined, "calendar")} />;
+    const suffix = <i className={iconClass(undefined, "calendar")} /> as JSX.Element;
     const { getByTestId } = render(<WithSuffix {...Sandbox.args} name='testSuffix' suffix={suffix} />);
 
     const formGroup = getByTestId("form-group-testSuffix") as HTMLFormElement;
@@ -56,8 +56,9 @@ describe("form-control", () => {
 
     expect(formGroup).toBeInTheDocument();
     expect(formControlSuffix).toBeInTheDocument();
-    expect(formControlSuffix.children).toHaveLength(1);
-    expect(formControlSuffix.firstChild).toHaveClass(fontAwsomeCalendarIcon);
+    expect(formControlSuffix).not.toBeEmptyDOMElement();
+    expect(formControlSuffix).toContainHTML(fontAwsomeCalendarIcon);
+
   });
 
   it("should display description ", () => {
