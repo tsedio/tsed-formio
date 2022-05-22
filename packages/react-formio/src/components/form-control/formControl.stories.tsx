@@ -18,7 +18,7 @@ export default {
     },
     children: {
       control: {
-        type: HTMLElement || HTMLCollection 
+        type: HTMLElement || HTMLCollection
       }
     }
   },
@@ -35,21 +35,23 @@ Sandbox.args = {
 };
 
 export const WithPrefix = (args: any) => {
-  return <FormControl {...args} prefix={<i className={iconClass(undefined, "calendar")} />} />;
+  return <FormControl {...args} />;
 };
 
 WithPrefix.args = {
   label: "Label",
-  children: <input type='text' className='form-control' placeholder='placeholder' />
+  children: <input type='text' className='form-control' placeholder='placeholder' />,
+  prefix: <i className={iconClass(undefined, "calendar")} />
 };
 
 export const WithSuffix = (args: any) => {
-  return <FormControl {...args} suffix={<i className={iconClass(undefined, "calendar")} />} />;
+  return <FormControl {...args} />;
 };
 
 WithSuffix.args = {
   label: "Label",
-  children: <input type='text' className='form-control' placeholder='placeholder' />
+  children: <input type='text' className='form-control' placeholder='placeholder' />,
+  suffix: <i className={iconClass(undefined, "calendar")} />
 };
 
 export const WithDescription = (args: any) => {

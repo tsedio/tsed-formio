@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, within } from "@testing-library/react";
 import { Sandbox, WithDescription, WithPrefix, WithSuffix } from "./formControl.stories";
 import { iconClass } from "../../utils/iconClass";
 
@@ -33,6 +33,7 @@ describe("form-control", () => {
   });
 
   it("should display prefix ", () => {
+    const fontAwsomeCalendarIcon = "fa fa-calendar";
     const prefix = <i className={iconClass(undefined, "calendar")} />;
     const { getByTestId } = render(<WithPrefix {...Sandbox.args} name='testPrefix' prefix={prefix} />);
 
@@ -41,9 +42,12 @@ describe("form-control", () => {
 
     expect(formGroup).toBeInTheDocument();
     expect(formControlPrefix).toBeInTheDocument();
+    expect(formControlPrefix.children).toHaveLength(1);
+    expect(formControlPrefix.firstChild).toHaveClass(fontAwsomeCalendarIcon);
   });
 
   it("should display suffix ", () => {
+    const fontAwsomeCalendarIcon = "fa fa-calendar";
     const suffix = <i className={iconClass(undefined, "calendar")} />;
     const { getByTestId } = render(<WithSuffix {...Sandbox.args} name='testSuffix' suffix={suffix} />);
 
@@ -52,16 +56,20 @@ describe("form-control", () => {
 
     expect(formGroup).toBeInTheDocument();
     expect(formControlSuffix).toBeInTheDocument();
+    expect(formControlSuffix.children).toHaveLength(1);
+    expect(formControlSuffix.firstChild).toHaveClass(fontAwsomeCalendarIcon);
   });
 
   it("should display description ", () => {
     const description = "test description";
-    const { getByTestId } = render(<WithDescription {...Sandbox.args} name='testDescription' description={description} />);
+    const { getByTestId, getByText } = render(<WithDescription {...Sandbox.args} name='testDescription' description={description} />);
 
     const formGroup = getByTestId("form-group-testDescription") as HTMLFormElement;
     const formControlDescription = getByTestId("form-control-description") as HTMLDivElement;
 
     expect(formGroup).toBeInTheDocument();
     expect(formControlDescription).toBeInTheDocument();
+    expect(formControlDescription).not.toBeEmptyDOMElement();
+    expect(getByText(description)).toBeInTheDocument();
   });
 });
