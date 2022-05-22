@@ -1,5 +1,5 @@
-import React, { ReactHTMLElement } from "react";
-import { render, within } from "@testing-library/react";
+import React from "react";
+import { render } from "@testing-library/react";
 import { Sandbox, WithDescription, WithPrefix, WithSuffix } from "./formControl.stories";
 import { iconClass } from "../../utils/iconClass";
 
