@@ -46,7 +46,7 @@ describe("form-control", () => {
     expect(formControlPrefix).toContainHTML(fontAwsomeCalendarIcon);
   });
 
-  it("should display suffix ", () => {
+  it("should display suffix", () => {
     const fontAwsomeCalendarIcon = "fa fa-calendar";
     const suffix = <i className={iconClass(undefined, "calendar")} /> as JSX.Element;
     const { getByTestId } = render(<WithSuffix {...Sandbox.args} name='testSuffix' suffix={suffix} />);
