@@ -5,7 +5,7 @@ import { iconClass } from "../../utils/iconClass";
 export function ButtonTab({ icon, back, onClick, isActive, reverse, children, className, after }: PropsWithChildren<any>) {
   return (
     <div className={classnames("tw-tabs__button-wrapper", isActive ? "-active" : "", back ? "-back" : "", className)}>
-      <button data-testid="button-tab"
+      <button
         className={classnames("tw-tabs__button", reverse ? "-reverse" : "", isActive ? "-active" : "", back ? "-back" : "")}
         onClick={onClick}
       >
@@ -50,7 +50,7 @@ export function Tabs({
   ...additionalProps
 }: PropsWithChildren<TabsProps>) {
   return (
-    <div data-testid="tabs-comp" className={`tw-tabs ${className}`} style={style}>
+    <div data-testid='tabs-comp' className={`tw-tabs ${className}`} style={style}>
       <div>
         <nav className='tw-tabs__header'>
           <div className='tw-tabs__header-wrapper'>
