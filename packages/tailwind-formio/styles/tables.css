@@ -6,6 +6,14 @@
   th,
   td {
     @apply p-3 align-top text-left border-t-1 border-solid border-gray-300;
+
+    &.align-middle {
+      vertical-align: middle;
+    }
+
+    &.align-bottom {
+      vertical-align: bottom;
+    }
   }
 
   thead th {

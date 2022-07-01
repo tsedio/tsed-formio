@@ -48,7 +48,8 @@ export const ICONS = {
   cubes: "bxs-cube",
   stop: "bx-stop",
   "check-square": "bx-checkbox-checked",
-  "remove-circle": "bx-x-circle"
+  "remove-circle": "bx-x",
+  bars: "bx-menu"
 };
 
 export default (iconset: string | undefined, name: string, spinning?: boolean) => {

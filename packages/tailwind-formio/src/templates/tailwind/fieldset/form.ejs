@@ -1,9 +1,9 @@
-<fieldset class="mb-5 mt-5">
+<fieldset>
   {% if (ctx.component.legend) { %}
-  <legend class="text-lg border-b-1 border-solid border-gray-300 w-full mb-3 pb-1" ref="header" class="{{ctx.component.collapsible ? 'formio-clickable' : ''}}">
-    {{ctx.t(ctx.component.legend)}}
+  <legend ref="header" class="{{ctx.component.collapsible ? 'formio-clickable' : ''}}">
+    {{ctx.t(ctx.component.legend, { _userInput: true })}}
     {% if (ctx.component.tooltip) { %}
-      <i ref="tooltip" class="{{ctx.iconClass('question-sign')}}" data-tooltip="{{ctx.component.tooltip}}"></i>
+      <i ref="tooltip" tabindex="0" class="{{ctx.iconClass('question-sign')}} text-muted" data-tooltip="{{ctx.component.tooltip}}"></i>
     {% } %}
   </legend>
   {% } %}
@@ -13,3 +13,4 @@
   </div>
   {% } %}
 </fieldset>
+

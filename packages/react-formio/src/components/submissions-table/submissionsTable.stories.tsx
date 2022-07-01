@@ -55,7 +55,7 @@ export const Sandbox = (args: any) => {
   const onChange = (obj: any) => {
     setLimit(obj.pageSize);
     setSkip(obj.pageIndex * obj.pageSize);
-    args.onChange(obj);
+    args.onChange && args.onChange(obj);
   };
 
   return (

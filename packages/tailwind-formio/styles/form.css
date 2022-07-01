@@ -136,6 +136,9 @@ textarea.form-control {
 
 .text-muted {
   @apply text-gray-500;
+  &[ref="tooltip"] {
+    @apply text-white;
+  }
 }
 
 .col-form-label {

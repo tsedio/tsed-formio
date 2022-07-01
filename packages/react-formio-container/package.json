@@ -14,13 +14,13 @@
   "peerDependencies": {
     "@tsed/react-formio": "^1.4.0",
     "@tsed/redux-utils": "^1.4.0",
-    "choices.js": "^9.0.1",
-    "classnames": "^2.2.6",
+    "choices.js": "^10.1.0",
+    "classnames": "^2.3.1",
     "connected-react-router": "^6.9.1",
     "file-saver": "^2.0.5",
-    "formiojs": "^4.12.7",
-    "lodash": "4.17.20",
-    "prop-types": "^15.7.2",
+    "formiojs": "^4.14.8",
+    "lodash": "^4.17.21",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.1",
@@ -36,5 +36,55 @@
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.5"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependenciesMeta": {
+    "formiojs": {
+      "optional": false
+    },
+    "choices.js": {
+      "optional": false
+    },
+    "classnames": {
+      "optional": false
+    },
+    "connected-react-router": {
+      "optional": false
+    },
+    "file-saver": {
+      "optional": false
+    },
+    "lodash": {
+      "optional": false
+    },
+    "prop-types": {
+      "optional": false
+    },
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    },
+    "react-is": {
+      "optional": false
+    },
+    "react-redux": {
+      "optional": false
+    },
+    "react-router": {
+      "optional": true
+    },
+    "react-router-dom": {
+      "optional": true
+    },
+    "react-table": {
+      "optional": false
+    },
+    "redux-thunk": {
+      "optional": true
+    },
+    "tooltip.js": {
+      "optional": false
+    }
+  }
 }
