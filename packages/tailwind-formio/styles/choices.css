@@ -188,6 +188,9 @@
     .choices__item {
       @apply w-full;
     }
+    .choices__item.choices__item--selectable{
+      margin-bottom: -0.375rem;
+    }
   }
 
   &--multiple {
