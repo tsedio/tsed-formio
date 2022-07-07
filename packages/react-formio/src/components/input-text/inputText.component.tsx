@@ -58,7 +58,7 @@ export function InputText<T = any>({
         className={classnames("form-control", size && `form-control-${size}`)}
         id={name}
         required={required}
-        value={(localValue || placeholder  || "") as any}
+        value={(localValue || "") as any}
         placeholder={placeholder}
         onChange={(event) => {
           const value = getEventValue(event);
