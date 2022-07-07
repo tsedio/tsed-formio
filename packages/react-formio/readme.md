@@ -25,9 +25,11 @@
 
 <hr />
 
-A [React](http://facebook.github.io/react/) library for rendering out forms based on the [Form.io](https://www.form.io) platform.
+A [React](http://facebook.github.io/react/) library for rendering out forms based on the [Form.io](https://www.form.io)
+platform.
 
-This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features listed above.
+This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features
+listed above.
 
 See our [storybook](https://formio.tsed.io/) to see all available components.
 
@@ -83,7 +85,10 @@ export default App;
 
 ### Form
 
-The form component is the primary component of the system. It is what takes the form definition (json) and renders the form into html. There are multiple ways to send the form to the Form component. The two main ways are to pass the `src` prop with a url to the form definition, usually a form.io server. The other is to pass the `form` prop with the json definition and optionally a `url` prop with the location of the form.
+The form component is the primary component of the system. It is what takes the form definition (json) and renders the
+form into html. There are multiple ways to send the form to the Form component. The two main ways are to pass the `src`
+prop with a url to the form definition, usually a form.io server. The other is to pass the `form` prop with the json
+definition and optionally a `url` prop with the location of the form.
 
 #### Props
 
@@ -101,6 +106,7 @@ You can respond to various events in the form. Simply pass in a prop with a func
 
 | Name            | Parameters                                                                                                                                    | Description                                                                                                                      |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `onAsyncSubmit` | `submission`: object                                                                                                                          | When the submit button is pressed and the submission has started. Use this event if you submit data to external service.         |
 | `onSubmit`      | `submission`: object                                                                                                                          | When the submit button is pressed and the submission has started. If `src` is not provided, this will be the final submit event. |
 | `onSubmitDone`  | `submission`: object                                                                                                                          | When the submission has successfully been made to the server. This will only fire if `src` is set.                               |
 | `onChange`      | `submission`: object, `submission.changed`: object of what changed, `submission.isValid`: boolean - if the submission passes validations.     | A value in the submission has changed.                                                                                           |
@@ -151,21 +157,35 @@ const form = {
 ReactDOM.render(
   <Form<MyFormData>
     form={form}
-    onSubmit={(submission) => {
-      console.log(submission);
+    onAsyncSubmit={(submission) => {
+      return httpClient.post("/path/to/external/service", { data: submission }).catch((er) => {
+        err.errors = [
+          {
+            message: "My custom message about this field",
+            type: "custom",
+            path: ["title"],
+            level: "error"
+          }
+        ];
+        throw error;
+      });
     }}
   />,
   document.getElementById("example")
 );
 ```
 
+> See [Form with error from server](https://formio.tsed.io/?path=/story/reactformio-form--trigger-error)
+
 ### FormBuilder
 
-The [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)>) class can be used
+The [FormBuilder](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)) class can be
+used
 to embed a form builder directly in your react application.
 Please note that you'll need to include the CSS for the form builder from formio.js as well.
 
-Please note that the [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)>) component
+Please note that the [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)>)
+component
 does not load and save from/to a url. You must handle the form definition loading and saving yourself or use
 the [FormEdit](https://formio.tsed.io/?path=/story/reactformio-formedit--sandbox) component.
 
@@ -200,15 +220,19 @@ ReactDOM.render(<FormBuilder form={{ display: "form" }} onChange={(schema) => co
 ### FormEdit
 
 The [FormEdit](https://formio.tsed.io/?path=/story/reactformio-formedit--sandbox) component wraps
-the [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)>) component and adds the title, display, name and path fields at the top along with a save button.
+the [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-formbuilder--sandbox)>) component and
+adds the title, display, name and path fields at the top along with a save button.
 
 #### Props
 
-| Name       | Type   | Default             | Description                                          |
-| ---------- | ------ | ------------------- | ---------------------------------------------------- | --------------------------------------------------------------- |
-| `form`     | object | {display: 'form' \  | 'wizard'}                                            | The form definition of the exiting form that is to be modified. |
-| `options`  | object | {}                  | The options to be passed to FormBuilder              |
-| `saveText` | string | ''                  | The string that will be displayed in the save-button |
+| Name                                                            | Type   | Default             | Description |
+| --------------------------------------------------------------- | ------ | ------------------- | ----------- | --------------------------------------------------------------- |
+| --------------------------------------------------------------- |
+| `form`                                                          | object | {display: 'form' \  | 'wizard'}   | The form definition of the exiting form that is to be modified. |
+
+|
+| `options` | object | {} | The options to be passed to FormBuilder |
+| `saveText` | string | '' | The string that will be displayed in the save-button |
 
 #### Event Props
 
@@ -218,7 +242,8 @@ the [FormBuilder](<[FormsTable](https://formio.tsed.io/?path=/story/reactformio-
 
 ### FormsTable
 
-The [FormsTable](https://formio.tsed.io/?path=/story/reactformio-formstable--sandbox) component can be used to render a list of forms with buttons to edit, view, delete, etc on each row.
+The [FormsTable](https://formio.tsed.io/?path=/story/reactformio-formstable--sandbox) component can be used to render a
+list of forms with buttons to edit, view, delete, etc on each row.
 
 #### Props
 
@@ -308,7 +333,8 @@ Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com
 
 ## Sponsors
 
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/tsed#sponsor)]
+Support this project by becoming a sponsor. Your logo will show up here with a link to your
+website. [[Become a sponsor](https://opencollective.com/tsed#sponsor)]
 
 ## License
 
@@ -316,8 +342,15 @@ The MIT License (MIT)
 
 Copyright (c) 2016 - 2021 Romain Lenzotti
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

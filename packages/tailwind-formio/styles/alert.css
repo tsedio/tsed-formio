@@ -12,6 +12,15 @@
   &:last-child {
     @apply mb-0;
   }
+
+  ul {
+    @apply ml-5 pt-3 pb-2;
+
+    li {
+      @apply list-disc;
+    }
+  }
+
 }
 
 .alert-heading {

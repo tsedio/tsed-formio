@@ -1,4 +1,4 @@
-const { theme: defaultTheme, variants, corePlugins } = require("tailwindcss/defaultConfig");
+const { theme: defaultTheme, variants } = require("tailwindcss/defaultConfig");
 
 const primary = "hsla(208, 100%, 43%, 1)";
 const secondary = "hsla(190, 81%, 42%, 1)";

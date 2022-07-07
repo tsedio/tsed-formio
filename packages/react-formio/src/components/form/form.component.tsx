@@ -47,7 +47,8 @@ Form.propTypes = {
     noAlerts: PropTypes.bool,
     i18n: PropTypes.any,
     template: PropTypes.string,
-    saveDraft: PropTypes.bool
+    saveDraft: PropTypes.bool,
+    hooks: PropTypes.any
   }),
   onPrevPage: PropTypes.func,
   onNextPage: PropTypes.func,
@@ -56,6 +57,7 @@ Form.propTypes = {
   onCustomEvent: PropTypes.func,
   onComponentChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  onAsyncSubmit: PropTypes.func,
   onSubmitDone: PropTypes.func,
   onFormLoad: PropTypes.func,
   onError: PropTypes.func,
