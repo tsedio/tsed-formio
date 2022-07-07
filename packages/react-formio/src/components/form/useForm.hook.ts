@@ -41,6 +41,7 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   onCustomEvent?: (obj: { type: string; event: string; component: ExtendedComponentSchema; data: any }) => void;
   onComponentChange?: (component: ExtendedComponentSchema) => void;
   onSubmit?: (submission: Submission<Data>) => void;
+  onAsyncSubmit?: (submission: Submission<Data>) => Promise<void>;
   onSubmitDone?: (submission: Submission<Data>) => void;
   onFormLoad?: Function;
   onError?: (errors: any) => void;
@@ -61,12 +62,29 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
   const instance = useRef<Form>();
   const events = useRef<Map<string, any>>(new Map());
 
+  async function customValidation(submission: Submission, callback: (err: Error | null) => void) {
+    if (events.current.has("onAsyncSubmit")) {
+      try {
+        await events.current.get("onAsyncSubmit")(submission);
+      } catch (err) {
+        callback(err?.errors || err);
+      }
+    } else {
+      callback(null);
+    }
+  }
+
   const createWebForm = (srcOrForm: any, options: any) => {
     options = Object.assign({}, options);
     srcOrForm = typeof srcOrForm === "string" ? srcOrForm : cloneDeep(srcOrForm);
 
     if (!instance.current) {
       isLoaded.current = false;
+      options.hooks = {
+        ...(options.hooks || {}),
+        customValidation: options?.hooks?.customValidation || customValidation
+      };
+
       instance.current = new Form(element.current, srcOrForm, options);
 
       instance.current.onAny((event: string, ...args: any[]): void => {
@@ -92,7 +110,9 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
               const fn = callLast(funcs[funcName], 100);
               events.current.set(funcName, fn);
             }
-            events.current.get(funcName)(...args);
+
+            instance.current.instance.setAlert("success", "");
+            events.current.get(funcName)(...args, instance.current);
           }
         }
       });
@@ -155,6 +175,10 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
   useEffect(() => {
     props.onSubmit && events.current.set("onSubmit", props.onSubmit);
   }, [props.onSubmit, events]);
+
+  useEffect(() => {
+    props.onAsyncSubmit && events.current.set("onAsyncSubmit", props.onAsyncSubmit);
+  }, [props.onAsyncSubmit, events]);
 
   useEffect(() => {
     props.onSubmitDone && events.current.set("onSubmitDone", props.onSubmitDone);
