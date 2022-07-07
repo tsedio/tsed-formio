@@ -25,7 +25,7 @@ describe("input-text", () => {
     const input = getByTestId("input_test") as HTMLInputElement;
 
     expect(input).toBeInTheDocument();
-    expect(input).toHaveDisplayValue(placeholderTest);
+    expect(input).toHaveAttribute("placeholder", placeholderTest);
   });
 
   it("should change the value of the input-text", () => {
