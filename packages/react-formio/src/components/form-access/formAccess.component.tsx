@@ -51,7 +51,7 @@ function useFormAccess({ form: formDefinition, roles, onSubmit, options }: FormA
     submissions,
     onChange,
     onSubmit: () => {
-      onSubmit(submissionsToDataAccess(formDefinition, submissions));
+      onSubmit && onSubmit(submissionsToDataAccess(formDefinition, submissions));
     }
   };
 }

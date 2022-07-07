@@ -52,7 +52,7 @@ export function useSubmission(props: UseSubmissionProps) {
   const formioRef = useRef<any>();
 
   const getSubmission = useCallback(() => {
-    if (submissionAction !== "create") {
+    if (submissionAction !== "create" && submissionId) {
       dispatch(getSubmissionAction(submissionType, formId, submissionId));
     }
   }, [form, submissionType, formId, submissionId]);
@@ -82,7 +82,7 @@ export function useSubmission(props: UseSubmissionProps) {
   );
 
   const removeSubmission = useCallback(() => {
-    dispatch(deleteSubmission(submissionType, formId, submissionId, onRemoveDone));
+    submissionId && dispatch(deleteSubmission(submissionType, formId, submissionId, onRemoveDone));
   }, [basePath, formAction, formId, submissionId, onRemoveDone]);
 
   const onSaveDone = useCallback(

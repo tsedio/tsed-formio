@@ -1,1 +1,1 @@
-module.exports = require("@tsed/config/jest.config")("redux-utils");
+module.exports = require('@tsed/config/jest/jest.web.config.js')

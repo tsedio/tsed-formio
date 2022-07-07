@@ -1,10 +1,10 @@
-import { ExtendedComponentSchema } from "formiojs";
+import {ExtendedComponentSchema} from "formiojs";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
-import { FormSchema, Submission } from "../../interfaces";
-import { RoleSchema } from "../../interfaces/RoleSchema";
-import { getAccessPermissionForm, getSubmissionPermissionForm } from "./formAccess.schema";
+import {FormSchema, Submission} from "../../interfaces";
+import {RoleSchema} from "../../interfaces/RoleSchema";
+import {getAccessPermissionForm, getSubmissionPermissionForm} from "./formAccess.schema";
 
 export interface Choice {
   label: string;
@@ -31,19 +31,19 @@ export type SubmissionAccess = {
 function rolesToChoices(roles: RoleSchema[]): Choice[] {
   return Object.values(roles).map((role) => {
     return {
-      label: role.title,
-      value: role._id
+      label: role.title || "",
+      value: role._id || ""
     };
   });
 }
 
-function accessToHash(keys: string[], access: Access[] = []): AccessRoles {
+function accessToHash(keys: (string | undefined)[] | undefined, access: Access[] = []): AccessRoles {
   const hash = Object.values(access).reduce((o: any, role: any) => {
     o[role.type] = role.roles;
     return o;
   }, {});
 
-  return keys.reduce((data, key) => {
+  return ((keys || []).filter(Boolean) as any[]).reduce((data, key: string) => {
     return {
       ...data,
       [key]: hash[key] || []
@@ -69,8 +69,8 @@ function hashToAccess(data: AccessRoles) {
 
 export function getFormAccess(roles: RoleSchema[]): FormAccessSchema {
   const choices = rolesToChoices(roles);
-  const access = getAccessPermissionForm({ choices });
-  const submissionAccess = getSubmissionPermissionForm({ choices });
+  const access = getAccessPermissionForm({choices});
+  const submissionAccess = getSubmissionPermissionForm({choices});
 
   return {
     access,
@@ -79,7 +79,7 @@ export function getFormAccess(roles: RoleSchema[]): FormAccessSchema {
 }
 
 export function dataAccessToSubmissions(form: Partial<FormSchema>, formAccess: FormAccessSchema): SubmissionAccess {
-  const getKeys = (components: ExtendedComponentSchema[]) => components.map(({ key }) => key);
+  const getKeys = (components: ExtendedComponentSchema[]) => components.map(({key}) => key);
 
   return {
     access: {
@@ -100,14 +100,14 @@ export function submissionsToDataAccess(form: Partial<FormSchema>, submissions: 
 }
 
 export function shouldUpdate(type: string, submission: Submission<AccessRoles>, submissions: SubmissionAccess) {
-  return !isEqual(submission.data, submissions[type].data);
+  return !isEqual(submission.data, (submissions as any)[type].data);
 }
 
 export function updateSubmissions(type: string, submission: Submission<AccessRoles>, submissions: SubmissionAccess, cb: Function = noop) {
   if (shouldUpdate(type, submission, submissions)) {
     submissions = {
       ...submissions,
-      [type]: { data: submission.data }
+      [type]: {data: submission.data}
     };
     cb(submissions);
   }

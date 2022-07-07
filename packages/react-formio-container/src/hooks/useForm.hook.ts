@@ -34,7 +34,7 @@ export function useForm(props: UseFormProps) {
 
   if (formId === "create") {
     formAction = "create";
-    formId = undefined;
+    formId = undefined as any;
   }
 
   const { parameters } = useSelector((state) => selectRoot(formType, state));
@@ -65,7 +65,7 @@ export function useForm(props: UseFormProps) {
 
   const routes = useMemo(() => {
     return getFormRoutes({
-      formRoutes,
+      formRoutes: formRoutes!,
       operationsSettings,
       formAction,
       auth,
@@ -100,7 +100,7 @@ export function useForm(props: UseFormProps) {
   );
 
   const removeForm = useCallback(() => {
-    dispatch(deleteForm(formType, form._id, onRemoveDone));
+    form._id && dispatch(deleteForm(formType, form._id, onRemoveDone));
   }, [formType, form._id, onRemoveDone]);
 
   const duplicateForm = useCallback(

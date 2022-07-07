@@ -18,23 +18,23 @@ export function FormsComponent({
       operationsSettings.edit && {
         action: "edit",
         icon: "edit",
-        title: i18n("Edit")
+        title: i18n && i18n("Edit")
       },
       operationsSettings.submissions && {
         action: "submissions",
         alias: "row",
         icon: "data",
-        title: i18n("Data")
+        title: i18n && i18n("Data")
       },
       operationsSettings.preview && {
         action: "preview",
         icon: "search",
-        title: i18n("Preview")
+        title: i18n && i18n("Preview")
       },
       operationsSettings.delete && {
         action: "delete",
         buttonType: "danger",
-        icon: i18n("trash")
+        icon: i18n && i18n("trash")
       }
     ].filter(Boolean);
   }, [operationsSettings]);
@@ -46,7 +46,7 @@ export function FormsComponent({
         className={className}
         icon={formType === "forms" ? "detail" : "folder"}
         data={data}
-        operations={operations}
+        operations={operations as any[]}
         {...parameters}
         onChange={setParameters}
         i18n={i18n}

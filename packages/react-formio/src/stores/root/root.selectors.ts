@@ -10,9 +10,9 @@ export function selectRoot<State = Record<string, any>>(name: string, state?: Re
   return (state: Record<string, any>) => selectRoot(name, state);
 }
 
-export const selectError = (name: string, state: Record<string, any>): null | Error => get(selectRoot(name, state), "error");
+export const selectError = (name: string, state: Record<string, any>): null | Error => get(selectRoot(name, state)!, "error");
 
-export const selectIsActive = (name: string, state: Record<string, any>): boolean => get(selectRoot(name, state), "isActive");
+export const selectIsActive = (name: string, state: Record<string, any>): boolean => get(selectRoot(name, state)!, "isActive");
 
 export function oneOfIsActive(...names: string[]) {
   return (state: any) => {

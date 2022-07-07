@@ -1,1 +1,1 @@
-module.exports = require("@tsed/config/jest.config")("react-formio-container");
+module.exports = require('@tsed/config/jest/jest.web.config.js')

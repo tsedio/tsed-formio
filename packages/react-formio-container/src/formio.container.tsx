@@ -32,10 +32,10 @@ export function FormioContainer(props: FormioContainerOptions) {
   return (
     <Switch>
       <Route path={options.basePath} exact={true}>
-        <FormsView {...options} />
+        <FormsView {...options as any} />
       </Route>
       <Route path={[options.basePath, ":formId", ":formAction?"].join("/")}>
-        <FormView {...options} />
+        <FormView {...options as any} />
       </Route>
     </Switch>
   );

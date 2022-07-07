@@ -9,15 +9,15 @@ async function getDatabase() {
 
 async function exportForm(form: FormSchema) {
   const database = await getDatabase();
-  return database.forms[form.machineName] || database.resources[form.machineName];
+  return database.forms[form.machineName!] || database.resources[form.machineName!];
 }
 
 async function exportActions(form: FormSchema) {
   const database = await getDatabase();
 
   return Object.entries(database.actions).reduce((obj, [machineName, action]) => {
-    if (machineName.startsWith(form.machineName)) {
-      obj[machineName] = action;
+    if (machineName.startsWith(form.machineName!)) {
+      (obj as any)[machineName] = action;
     }
 
     return obj;

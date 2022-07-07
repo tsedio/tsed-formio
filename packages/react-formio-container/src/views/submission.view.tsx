@@ -24,7 +24,7 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
     saveSubmission,
     onFormReady,
     url,
-    i18n
+    i18n = f => f
   } = props;
 
   const RemoveModalComponent = props.RemoveModalComponent || RemoveModal;
@@ -49,7 +49,7 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
           {ucfirst(form.type)} {form.title}{" "}
           <i className={classnames(iconClass(undefined, "chevron-right"), "text-md text-secondary mx-1")} />{" "}
           <span className={"text-gray-500"}>
-            {ucfirst(submissionAction)} {i18n("data")}
+            {ucfirst(submissionAction!)} {i18n("data")}
           </span>
         </div>
         <div>
@@ -67,7 +67,7 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
         <RemoveModalComponent
           i18n={i18n}
           show={true}
-          valueToCompare={form.name}
+          valueToCompare={form.name || ''}
           itemType={formAction}
           onSubmit={removeSubmission}
           onClose={gotoEdit}

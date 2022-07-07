@@ -8,7 +8,7 @@ function transformSubmissionAccess(forms: Record<string, FormSchema>) {
   return Object.values(forms).reduce(
     (result, form) => ({
       ...result,
-      [form.name]: form.submissionAccess.reduce(
+      [form.name as string]: form.submissionAccess.reduce(
         (formSubmissionAccess: any, access: any) => ({
           ...formSubmissionAccess,
           [access.type]: access.roles
@@ -24,7 +24,7 @@ function transformFormAccess(forms: Record<string, FormSchema>) {
   return Object.values(forms).reduce(
     (result, form) => ({
       ...result,
-      [form.name]: form.access.reduce(
+      [form.name as string]: form.access.reduce(
         (formAccess: any, access: any) => ({
           ...formAccess,
           [access.type]: access.roles

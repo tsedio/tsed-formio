@@ -1,13 +1,23 @@
 import classnames from "classnames";
 import noop from "lodash/noop";
-import React, { PropsWithChildren } from "react";
-import { CellProps, FilterProps, Renderer, TableOptions, useFilters, useGroupBy, usePagination, useSortBy, useTable } from "react-table";
-import { OnClickOperation, Operation, QueryOptions } from "../../interfaces";
-import { Pagination as DefaultPagination } from "../pagination/pagination.component";
-import { DefaultArrowSort } from "./components/defaultArrowSort.component";
-import { DefaultCellHeader, DefaultCellHeaderProps } from "./components/defaultCellHeader.component";
-import { DefaultColumnFilter } from "./filters/defaultColumnFilter.component";
-import { useOperations } from "./utils/useOperations.hook";
+import React, {PropsWithChildren} from "react";
+import {
+  CellProps,
+  FilterProps,
+  Renderer,
+  TableOptions,
+  useFilters,
+  useGroupBy,
+  usePagination,
+  useSortBy,
+  useTable
+} from "react-table";
+import {OnClickOperation, Operation, QueryOptions} from "../../interfaces";
+import {Pagination as DefaultPagination} from "../pagination/pagination.component";
+import {DefaultArrowSort} from "./components/defaultArrowSort.component";
+import {DefaultCellHeader, DefaultCellHeaderProps} from "./components/defaultCellHeader.component";
+import {DefaultColumnFilter} from "./filters/defaultColumnFilter.component";
+import {useOperations} from "./utils/useOperations.hook";
 
 export interface TableProps<Data extends object = any> extends TableOptions<Data>, Partial<QueryOptions> {
   className?: string;
@@ -92,7 +102,7 @@ function DefaultLoader() {
 }
 
 function DefaultEmptyData() {
-  return <div className='text-center p-2 pb-4 font-bold'>No data found</div>;
+  return <div className="text-center p-2 pb-4 font-bold">No data found</div>;
 }
 
 const hooks = [useFilters, useGroupBy, useSortBy, usePagination];
@@ -161,12 +171,12 @@ export function Table<Data extends object = any>(props: PropsWithChildren<TableP
       setFilterId
     } as any,
     ...hooks,
-    useOperations({ operations, CellOperations, onClick: _onClick, ctx, i18n })
+    useOperations({operations, CellOperations, onClick: _onClick, ctx, i18n})
   );
 
   const {
     setPageSize,
-    state: { pageIndex, pageSize, sortBy, filters }
+    state: {pageIndex, pageSize, sortBy, filters}
   } = tableInstance;
 
   React.useEffect(() => {
@@ -188,45 +198,49 @@ export function Table<Data extends object = any>(props: PropsWithChildren<TableP
         /* style={{ marginBottom: disablePagination ? "-1px" : "0px" }} */
       >
         <thead>
-          {tableInstance.headerGroups.map((headerGroup, i) => (
-            <tr key={`tableInstance.headerGroups${i}`} {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  key={`tableInstance.headers.column.${column.id}`}
-                  /* className='text-left py-2 align-top' */
-                  {...column.getHeaderProps()}
-                >
-                  <CellHeader column={column} />
-                </th>
-              ))}
-            </tr>
-          ))}
+        {tableInstance.headerGroups.map((headerGroup, i) => (
+          <tr {...headerGroup.getHeaderGroupProps()} key={`tableInstance.headerGroups${i}`}>
+            {headerGroup.headers.map((column) => (
+              <th
+                /* className='text-left py-2 align-top' */
+                {...column.getHeaderProps()}
+                key={`tableInstance.headers.column.${column.id}`}
+              >
+                <CellHeader column={column}/>
+              </th>
+            ))}
+          </tr>
+        ))}
         </thead>
         {!isLoading ? (
           <tbody {...tableInstance.getTableBodyProps()}>
-            {tableInstance.page.map((row) => {
-              tableInstance.prepareRow(row);
-              return (
-                <tr key={`tableInstance.page.${row.id}`} onClick={() => _onClick(row.original, "row")} {...row.getRowProps()}>
-                  {row.cells.map((cell, i) => {
-                    const { hidden, colspan } = cell.column as any;
-                    if (hidden) {
-                      return null;
-                    }
-                    return (
-                      <td key={`tableInstance.page.cells.${cell.value || "value"}.${i}`} colSpan={colspan} {...cell.getCellProps()}>
-                        {cell.render("Cell")}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
+          {tableInstance.page.map((row) => {
+            tableInstance.prepareRow(row);
+            return (
+              <tr onClick={() => _onClick(row.original, "row")} {...row.getRowProps()}
+                  key={`tableInstance.page.${row.id}`}>
+                {row.cells.map((cell, i) => {
+                  const {hidden, colspan} = cell.column as any;
+                  if (hidden) {
+                    return null;
+                  }
+                  return (
+                    <td
+                      colSpan={colspan}
+                      {...cell.getCellProps()}
+                      key={`tableInstance.page.cells.${cell.value || "value"}.${i}`}>
+                      {cell.render("Cell")}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
           </tbody>
         ) : null}
       </table>
-      {isLoading ? <Loader /> : null}
-      {!data.length ? <EmptyData /> : null}
+      {isLoading ? <Loader/> : null}
+      {!data.length ? <EmptyData/> : null}
       {!isLoading && data.length && !disablePagination ? (
         <div className={"overflow-hidden"}>
           <Pagination
