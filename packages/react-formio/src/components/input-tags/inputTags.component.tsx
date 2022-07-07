@@ -14,7 +14,7 @@ export interface InputTagsProps<T = any> extends Omit<FormControlProps, "descrip
 }
 
 export function InputTags({ name, value = [], label, onChange, required, description, prefix, suffix, ...props }: InputTagsProps) {
-  const ref = useRef();
+  const ref: any = useRef();
 
   useEffect(() => {
     const instance = new Choices(ref.current, {
@@ -26,11 +26,11 @@ export function InputTags({ name, value = [], label, onChange, required, descrip
     instance.setValue([].concat(value, []));
 
     instance.passedElement.element.addEventListener("addItem", (event: any) => {
-      onChange(name, uniq(value.concat(event.detail.value)));
+      onChange && onChange(name, uniq(value.concat(event.detail.value)));
     });
 
     instance.passedElement.element.addEventListener("removeItem", (event: any) => {
-      onChange(
+      onChange && onChange(
         name,
         value.filter((v: string) => v !== event.detail.value)
       );

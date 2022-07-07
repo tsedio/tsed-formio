@@ -11,7 +11,7 @@ export function mapFormToColumns(form: FormSchema): Column[] {
 
   FormioUtils.eachComponent(form.components, (component: ExtendedComponentSchema) => {
     if (component.tableView && component.key) {
-      const cmp: any = Components.create(component, null, null, true);
+      const cmp: any = Components.create(component, {}, null, true);
 
       const column: Column = {
         Header: component.label || component.title || component.key,

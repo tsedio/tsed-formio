@@ -71,7 +71,7 @@ export function Tabs({
                     {...additionalProps}
                     {...item}
                   >
-                    {i18n(item.label)}
+                    {i18n(item.label || "")}
                   </Button>
                 );
               })}

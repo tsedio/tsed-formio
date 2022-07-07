@@ -37,8 +37,8 @@ export function Modal({
   className = "",
   ...props
 }: PropsWithChildren<ModalProps>) {
-  const titleRef = useRef<HTMLDivElement>();
-  const footerRef = useRef<HTMLDivElement>();
+  const titleRef: any = useRef<HTMLDivElement>();
+  const footerRef: any = useRef<HTMLDivElement>();
   const [maxHeight, setMaxHeight] = useState<string>();
 
   const onClickClose = () => {

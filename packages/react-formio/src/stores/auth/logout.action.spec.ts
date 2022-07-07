@@ -4,6 +4,7 @@ import { AUTH } from "./auth.constant";
 import { logout } from "./logout.action";
 
 jest.mock("./auth.actions");
+jest.mock('formiojs')
 
 describe("logout()", () => {
   beforeEach(() => {

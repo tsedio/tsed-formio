@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/react-formio"
+    },
+    {
+      "path": "./packages/react-formio-container"
+    },
+    {
+      "path": "./packages/redux-utils"
+    },
+    {
+      "path": "./packages/tailwind-formio"
+    }
+  ]
+}

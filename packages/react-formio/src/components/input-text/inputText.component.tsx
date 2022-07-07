@@ -35,7 +35,7 @@ export function InputText<T = any>({
 }: InputTextProps<T>) {
   const [localValue, setValue] = useState(value);
 
-  const change = useMemo(() => callLast(onChange, 300), [onChange]);
+  const change = useMemo(() => onChange && callLast(onChange, 300), [onChange]);
 
   useEffect(() => {
     setValue(value);
@@ -64,7 +64,7 @@ export function InputText<T = any>({
           const value = getEventValue(event);
           setValue(value);
 
-          return change(name, value);
+          return change && change(name, value);
         }}
       />
     </FormControl>

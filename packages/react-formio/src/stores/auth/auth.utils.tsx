@@ -7,7 +7,7 @@ export function hasRole(auth: AuthState, role: string): boolean {
 }
 
 export function hasRoles(auth: AuthState, roles: string[]): boolean {
-  roles = [].concat(roles);
+  roles = ([] as string[]).concat(roles);
 
   return !!roles.find((role) => hasRole(auth, role));
 }
@@ -29,7 +29,7 @@ export function checkRoleFormAccess(auth: AuthState, form?: Partial<FormSchema>,
       return true;
     }
 
-    return !!(roles.includes("owner") && get(form, "owner") === get(auth, "user._id"));
+    return (roles.includes("owner") && get(form, "owner") === get(auth, "user._id"));
   }
 
   return true;

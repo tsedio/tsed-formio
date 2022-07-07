@@ -10,9 +10,9 @@ export type FormSettingsSchema = {
 export function formSettingsToSubmission(form: Partial<FormSchema>): Submission<FormSettingsSchema> {
   return {
     data: {
-      action: form.action,
-      tags: form.tags,
-      properties: form.properties
+      action: form.action!,
+      tags: form.tags!,
+      properties: form.properties!
     }
   };
 }

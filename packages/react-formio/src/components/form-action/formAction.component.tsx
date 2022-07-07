@@ -39,7 +39,7 @@ export interface FormActionProps {
 
 export function FormAction({ actionInfo, children, onSubmit, options, ...props }: PropsWithChildren<FormActionProps>): ReactElement {
   const { form, submission } = useMemo(() => {
-    const submission = mapData(props.submission || {}, actionInfo.defaults);
+    const submission = mapData(props.submission || {}, actionInfo.defaults!);
     const form = mapSettingsForm(actionInfo.settingsForm);
 
     return { form, submission: { data: submission } };

@@ -11,11 +11,19 @@
   "devDependencies": {
     "@tsed/tailwind": "1.13.1",
     "@tsed/yarn-workspaces": "1.19.3",
-    "postcss-nested": "4.2.3"
+    "fs-extra": "10.1.0",
+    "postcss-nested": "4.2.3",
+    "autoprefixer": "^10.4.7",
+    "camelcase": "6.3.0",
+    "postcss": "^8.4.14",
+    "postcss-import": "^14.1.0",
+    "postcss-nesting": "^10.1.10",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "tailwind-config-viewer": "^1.7.1",
+    "tailwindcss": "^3.1.4",
+    "tailwindcss-cli": "^0.1.2"
   },
-  "peerDependencies": {
-    "autoprefixer": "10.2.4",
-    "tailwindcss": "2.0.3"
-  },
+  "peerDependencies": {},
   "dependencies": {}
 }

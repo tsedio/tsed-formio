@@ -33,7 +33,7 @@ export function Select<T = any>({
   layout,
   ...props
 }: SelectProps<T>): ReactElement {
-  const ref = useRef();
+  const ref = useRef<any>();
 
   useEffect(() => {
     let instance: any;
@@ -75,7 +75,7 @@ export function Select<T = any>({
         value={value || ("" as any)}
         placeholder={placeholder}
         onChange={(event) => {
-          onChange(name, getEventValue(event));
+          onChange && onChange(name, getEventValue(event));
         }}
       >
         {choices.map(({ label, value }) => {

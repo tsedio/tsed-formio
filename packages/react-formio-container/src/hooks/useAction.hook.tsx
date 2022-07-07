@@ -56,7 +56,7 @@ export function useAction(props: UseActionProps) {
           data: actionInfo
         });
         dispatch(push([basePath, actionInfo._id, "edit"].join("/")));
-        dispatch(getActions(form?._id));
+        dispatch(getActions(form?._id!));
       } else {
         onError({
           name: `remove:action`,
@@ -72,7 +72,7 @@ export function useAction(props: UseActionProps) {
 
   const saveAction = useCallback(
     (actionInfo: Submission<ActionSchema>) => {
-      dispatch(saveAct(form?._id, actionInfo, onSaveDone));
+      dispatch(saveAct(form?._id!, actionInfo, onSaveDone));
     },
     [form?._id, onSaveDone]
   );
@@ -80,7 +80,7 @@ export function useAction(props: UseActionProps) {
   const onRemoveDone = useCallback(
     (err: Error) => {
       if (!err) {
-        dispatch(getActions(form?._id));
+        dispatch(getActions(form?._id!));
         dispatch(push(basePath));
         onSuccess({
           name: `remove:action`,
@@ -102,7 +102,7 @@ export function useAction(props: UseActionProps) {
   );
 
   const removeAction = useCallback(() => {
-    dispatch(deleteAction(form?._id, actionId, onRemoveDone));
+    dispatch(deleteAction(form?._id!, actionId, onRemoveDone));
   }, [form?._id, actionId, onRemoveDone]);
 
   useEffect(() => {

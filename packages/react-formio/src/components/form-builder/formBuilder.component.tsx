@@ -175,7 +175,7 @@ export class FormBuilder extends React.Component<FormBuilderProps, any> {
 
   whenComponentsChange(components: ComponentSchema[]) {
     this.setState({ components }, () => {
-      this.props?.onChange(components);
+      this.props?.onChange && this.props.onChange(components);
     });
   }
 

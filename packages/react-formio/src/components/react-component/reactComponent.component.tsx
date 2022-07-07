@@ -4,8 +4,8 @@ import { Submission } from "../../interfaces/Submission";
 
 export class ReactComponent<Data = any> extends Components.components.field {
   public reactInstance: any;
-  public shouldSetValue: boolean;
-  private dataForSetting: Data;
+  public shouldSetValue?: boolean;
+  private dataForSetting?: Data;
 
   /**
    * This is the first phase of component building where the component is instantiated.
@@ -20,7 +20,7 @@ export class ReactComponent<Data = any> extends Components.components.field {
   }
 
   get $reactNode() {
-    return this.refs[`react-${this.id}`];
+    return (this.refs as any)[`react-${this.id}`];
   }
 
   /**
@@ -67,7 +67,9 @@ export class ReactComponent<Data = any> extends Components.components.field {
       [`react-${this.id}`]: "single"
     });
 
+    // @ts-ignore
     if (this.refs[`react-${this.id}`]) {
+      // @ts-ignore
       this.reactInstance = this.attachReact(this.refs[`react-${this.id}`]);
 
       if (this.shouldSetValue) {
@@ -82,7 +84,9 @@ export class ReactComponent<Data = any> extends Components.components.field {
    * or it is being removed from the form.
    */
   detach() {
+    // @ts-ignore
     if (this.refs[`react-${this.id}`]) {
+      // @ts-ignore
       this.detachReact(this.refs[`react-${this.id}`]);
     }
     super.detach();
@@ -122,8 +126,7 @@ export class ReactComponent<Data = any> extends Components.components.field {
    * @param value
    * @param flags
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setValue(value: any, flags?: any): boolean {
+  setValue(value: any, flags?: any) {
     if (this.reactInstance) {
       this.reactInstance.setState({
         value: value
@@ -134,7 +137,7 @@ export class ReactComponent<Data = any> extends Components.components.field {
       this.dataForSetting = value;
     }
 
-    return undefined;
+    return false
   }
 
   /**

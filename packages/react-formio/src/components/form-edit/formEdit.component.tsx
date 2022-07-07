@@ -37,7 +37,7 @@ export function FormEdit(props: FormEditProps) {
 
       <FormBuilder
         key={`form-builder-${form._id}`}
-        components={form.components}
+        components={form.components!}
         display={form.display}
         options={options}
         builder={builder}
