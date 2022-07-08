@@ -30,5 +30,6 @@ module.exports = {
     'jsx',
     'node'
   ],
-  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname']
+  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
+  coverageReporters: ["clover", "json", "lcov", ["text", { skipFull: true }], "json-summary"]
 }
