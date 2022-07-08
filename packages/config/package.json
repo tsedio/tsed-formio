@@ -1,6 +1,6 @@
 {
   "name": "@tsed/config",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "main": "src/index.js",
   "main:src": "src/index.js",
   "description": "Shared configuration",
@@ -9,9 +9,9 @@
   "private": true,
   "scripts": {},
   "devDependencies": {
-    "@tsed/tailwind": "1.13.1",
+    "@tsed/tailwind": "1.13.2",
     "@tsed/yarn-workspaces": "1.19.3"
   },
-  "peerDependencies": {},
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {}
 }
