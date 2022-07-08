@@ -1,5 +1,6 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
+
 import { useQuery } from "./useQuery.hook";
 
 function FixtureQuery(props: any) {
@@ -19,7 +20,7 @@ function FixtureQuery(props: any) {
 describe("useQueryHook", () => {
   it("should call onChange", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(
+    render(
       <FixtureQuery
         onChange={onChange}
         parameters={{
@@ -37,7 +38,7 @@ describe("useQueryHook", () => {
       />
     );
 
-    fireEvent.click(getByRole("button"));
+    fireEvent.click(screen.getByRole("button"));
 
     expect(onChange).toHaveBeenCalledWith({
       pageSize: 1,
@@ -48,7 +49,7 @@ describe("useQueryHook", () => {
   });
   it("should not call onChange", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(
+    render(
       <FixtureQuery
         onChange={onChange}
         parameters={{
@@ -66,7 +67,7 @@ describe("useQueryHook", () => {
       />
     );
 
-    fireEvent.click(getByRole("button"));
+    fireEvent.click(screen.getByRole("button"));
 
     expect(onChange).not.toHaveBeenCalled();
   });

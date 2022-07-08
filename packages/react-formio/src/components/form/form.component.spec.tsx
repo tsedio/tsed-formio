@@ -1,6 +1,7 @@
-import {render} from "@testing-library/react";
-import {screen} from "@testing-library/dom";
-import {Form} from "./form.component";
+import { screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+
+import { Form } from "./form.component";
 
 async function createFixture(props: any = {}) {
   const onSubmit = jest.fn();
@@ -11,7 +12,7 @@ async function createFixture(props: any = {}) {
     components: [
       {
         label: "First name",
-        "placeholder": "Fill first name",
+        placeholder: "Fill first name",
         widget: {
           type: "input"
         },
@@ -33,9 +34,9 @@ async function createFixture(props: any = {}) {
     ]
   };
 
-  render(<Form {...props} form={form} onSubmit={onSubmit}/>);
+  render(<Form {...props} form={form} onSubmit={onSubmit} />);
 
-  return {onSubmit};
+  return { onSubmit };
 }
 
 describe("Form", () => {

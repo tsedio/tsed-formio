@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import React, {ReactElement} from "react";
-import {useTooltip} from "../../hooks/useTooltip";
-import {FormOptions} from "../../interfaces";
-import {iconClass} from "../../utils/iconClass";
+import React, { ReactElement } from "react";
+
+import { useTooltip } from "../../hooks/useTooltip";
+import { FormOptions } from "../../interfaces";
+import { iconClass } from "../../utils/iconClass";
 
 export interface FormEditCTAsProps extends Record<string, unknown> {
   saveText?: string;
@@ -18,18 +19,18 @@ export interface FormEditCTAsProps extends Record<string, unknown> {
 }
 
 export function FormEditCTAs({
-                               saveText = "Save",
-                               disabled,
-                               options = {},
-                               onCopy,
-                               hasUndo,
-                               hasRedo,
-                               onUndo,
-                               onRedo,
-                               onReset,
-                               onSubmit
-                             }: FormEditCTAsProps): ReactElement {
-  const {i18n: t = (t: string): string => t} = options;
+  saveText = "Save",
+  disabled,
+  options = {},
+  onCopy,
+  hasUndo,
+  hasRedo,
+  onUndo,
+  onRedo,
+  onReset,
+  onSubmit
+}: FormEditCTAsProps): ReactElement {
+  const { i18n: t = (t: string): string => t } = options;
 
   const copyTooltipRef: any = useTooltip({
     trigger: "hover",
@@ -63,31 +64,29 @@ export function FormEditCTAs({
           disabled={disabled}
           onClick={() => !disabled && onSubmit && onSubmit()}
         >
-          <i className={`mr-1 ${iconClass(options.iconset, "save")}`}/>
+          <i className={`mr-1 ${iconClass(options.iconset, "save")}`} />
           {saveText}
         </button>
 
         <div>
-          <button className={`btn btn-light btn-undo ${hasUndo ? "" : "disabled"}`} onClick={() => onUndo && onUndo()}
-                  ref={undoTooltipRef}>
-            <i className={iconClass(options.iconset, "undo")}/>
+          <button className={`btn btn-light btn-undo ${hasUndo ? "" : "disabled"}`} onClick={() => onUndo && onUndo()} ref={undoTooltipRef}>
+            <i className={iconClass(options.iconset, "undo")} />
           </button>
 
-          <button className={`btn btn-light btn-redo ${hasRedo ? "" : "disabled"}`} onClick={() => onRedo && onRedo()}
-                  ref={redoTooltipRef}>
-            <i className={iconClass(options.iconset, "redo")}/>
+          <button className={`btn btn-light btn-redo ${hasRedo ? "" : "disabled"}`} onClick={() => onRedo && onRedo()} ref={redoTooltipRef}>
+            <i className={iconClass(options.iconset, "redo")} />
           </button>
         </div>
 
         <div>
           {onCopy && (
-            <button className="btn btn-light" onClick={() => onCopy()} ref={copyTooltipRef!}>
-              <i className={iconClass(options.iconset, "copy")}/>
+            <button className='btn btn-light' onClick={() => onCopy()} ref={copyTooltipRef!}>
+              <i className={iconClass(options.iconset, "copy")} />
             </button>
           )}
 
           <button className={`btn btn-light btn-reset`} onClick={() => onReset && onReset()} ref={resetTooltipRef!}>
-            <i className={iconClass(options.iconset, "reset")}/>
+            <i className={iconClass(options.iconset, "reset")} />
           </button>
         </div>
       </div>

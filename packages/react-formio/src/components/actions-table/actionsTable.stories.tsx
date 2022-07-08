@@ -1,4 +1,5 @@
 import React from "react";
+
 import { ActionsTable } from "./actionsTable.component";
 
 export default {

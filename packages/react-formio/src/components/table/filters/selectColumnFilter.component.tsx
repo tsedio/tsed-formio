@@ -1,5 +1,6 @@
 import React from "react";
 import { FilterProps } from "react-table";
+
 import { Select } from "../../select/select.component";
 
 export function SelectColumnFilter<D extends Record<string, unknown> = {}>({ column }: FilterProps<D>) {

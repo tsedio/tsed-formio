@@ -1,7 +1,8 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { Sandbox } from "./formSettings.stories";
+
 import { FormSettings } from "./formSettings.component";
+import { Sandbox } from "./formSettings.stories";
 
 describe("FormSettings", () => {
   it("should render form settings", async () => {
@@ -10,7 +11,7 @@ describe("FormSettings", () => {
     // @ts-ignore
     Sandbox.args.form.action = "https://test";
 
-    const { getByTestId } = render(
+    render(
       <Sandbox
         {...Sandbox.args}
         onSubmit={onSubmit}
@@ -20,7 +21,7 @@ describe("FormSettings", () => {
       />
     );
 
-    const btn = getByTestId("submit");
+    const btn = screen.getByTestId("submit");
 
     await fireEvent.click(btn);
 
@@ -47,7 +48,7 @@ describe("FormSettings", () => {
     });
   });
   it("should render form settings with i18n options", async () => {
-    const { getByTestId } = render(
+    render(
       <FormSettings
         {...Sandbox.args}
         options={{
@@ -56,7 +57,7 @@ describe("FormSettings", () => {
       />
     );
 
-    const btn = getByTestId("submit");
+    const btn = screen.getByTestId("submit");
 
     await fireEvent.click(btn);
 

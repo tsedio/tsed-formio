@@ -1,4 +1,5 @@
 import cloneDeep from "lodash/cloneDeep";
+
 import { FormSchema, Submission } from "../../interfaces";
 
 export type FormSettingsSchema = {

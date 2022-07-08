@@ -1,4 +1,5 @@
 import { combine } from "@tsed/redux-utils";
+
 import { actionReducer } from "./action";
 import { actionInfoReducer } from "./action-info";
 import { actionsReducer } from "./actions";
@@ -8,15 +9,15 @@ import { formsReducer } from "./forms";
 import { submissionReducer } from "./submission";
 import { submissionsReducer } from "./submissions";
 
-export * from "./auth";
 export * from "./action";
 export * from "./action-info";
 export * from "./actions";
+export * from "./auth";
 export * from "./form";
 export * from "./forms";
+export * from "./root";
 export * from "./submission";
 export * from "./submissions";
-export * from "./root";
 
 export const defaultFormioReducer = combine(
   authReducer,

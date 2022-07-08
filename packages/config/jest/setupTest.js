@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect'
+import "@testing-library/jest-dom/extend-expect";
 
 window.matchMedia = (query) => ({
   matches: false,
@@ -9,21 +9,21 @@ window.matchMedia = (query) => ({
   dispatchEvent: jest.fn(),
   addListener: jest.fn(),
   removeListener: jest.fn()
-})
+});
 
-Object.defineProperty(URL, 'createObjectURL', {
+Object.defineProperty(URL, "createObjectURL", {
   writable: true,
   value: jest.fn()
-})
+});
 
-if (typeof window !== 'undefined') {
-  window.scrollTo = jest.fn()
+if (typeof window !== "undefined") {
+  window.scrollTo = jest.fn();
 
   jest.mock(
-    'react-svg',
+    "react-svg",
     () =>
-      function Svg () {
-        return ''
+      function Svg() {
+        return "";
       }
-  )
+  );
 }

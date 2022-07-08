@@ -2,7 +2,7 @@ import get from "lodash/get";
 
 export function selectRoot<State = Record<string, any>>(name: string): (state: Record<string, any>) => State;
 export function selectRoot<State = Record<string, any>>(name: string, state: Record<string, any>): State;
-export function selectRoot<State = Record<string, any>>(name: string, state?: Record<string, any>): any {
+export function selectRoot<State = Record<string, any>>(name: string, state?: Record<string, any>): State & any {
   if (state) {
     return state[name];
   }

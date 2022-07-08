@@ -1,18 +1,19 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+
 import { Choicesjs, Sandbox } from "./select.stories";
 
 describe("Select", () => {
   describe("select component Sandbox version", () => {
     it("should render the select component", () => {
-      const { getByTestId } = render(<Sandbox {...Sandbox.args} name={"test-sandbox"} />);
+      render(<Sandbox {...Sandbox.args} name={"test-sandbox"} />);
 
-      expect(getByTestId("select_test-sandbox")).toBeInTheDocument();
+      expect(screen.getByTestId("select_test-sandbox")).toBeInTheDocument();
     });
 
     it("should render the select component with a different size", () => {
-      const { getByTestId } = render(<Sandbox {...Sandbox.args} size='small' name={"test-sandbox"} />);
-      const select = getByTestId("select_test-sandbox");
+      render(<Sandbox {...Sandbox.args} size='small' name={"test-sandbox"} />);
+      const select = screen.getByTestId("select_test-sandbox");
       expect(select).toBeInTheDocument();
       expect(select).toHaveClass("form-control-small");
     });
@@ -25,11 +26,11 @@ describe("Select", () => {
 
       const placeHolderTest = "Placeholder test";
 
-      const { getByRole } = render(<Sandbox {...Sandbox.args} placeholder={placeHolderTest} choices={choices} name={"test-sandbox"} />);
+      render(<Sandbox {...Sandbox.args} placeholder={placeHolderTest} choices={choices} name={"test-sandbox"} />);
 
-      expect(getByRole("option", { name: "Placeholder test" })).toBeInTheDocument();
-      expect(getByRole("option", { name: "test1" })).toBeInTheDocument();
-      expect(getByRole("option", { name: "test2" })).toBeInTheDocument();
+      expect(screen.getByRole("option", { name: "Placeholder test" })).toBeInTheDocument();
+      expect(screen.getByRole("option", { name: "test1" })).toBeInTheDocument();
+      expect(screen.getByRole("option", { name: "test2" })).toBeInTheDocument();
     });
 
     it("should have Placeholder label as selected option by default", () => {
@@ -39,8 +40,8 @@ describe("Select", () => {
       ];
       const placeHolderTest = "Placeholder test";
 
-      const { getByRole } = render(<Sandbox {...Sandbox.args} placeholder={placeHolderTest} choices={choices} name={"test-sandbox"} />);
-      const option = getByRole("option", { name: placeHolderTest }) as HTMLOptionElement;
+      render(<Sandbox {...Sandbox.args} placeholder={placeHolderTest} choices={choices} name={"test-sandbox"} />);
+      const option = screen.getByRole("option", { name: placeHolderTest }) as HTMLOptionElement;
 
       expect(option.selected).toBeTruthy();
     });
@@ -53,15 +54,13 @@ describe("Select", () => {
       const placeHolderTest = "Placeholder test";
       const onChange = jest.fn();
 
-      const { getByRole, getByTestId } = render(
-        <Sandbox {...Sandbox.args} placeholder={placeHolderTest} choices={choices} name={"test-sandbox"} onChange={onChange} />
-      );
+      render(<Sandbox {...Sandbox.args} placeholder={placeHolderTest} choices={choices} name={"test-sandbox"} onChange={onChange} />);
 
-      fireEvent.change(getByTestId("select_test-sandbox"), {
+      fireEvent.change(screen.getByTestId("select_test-sandbox"), {
         target: { value: "value1" }
       });
 
-      const option = getByRole("option", { name: "test1" }) as HTMLOptionElement;
+      const option = screen.getByRole("option", { name: "test1" }) as HTMLOptionElement;
 
       expect(option.selected).toBeTruthy();
       expect(onChange).toHaveBeenCalledWith("test-sandbox", "value1");
@@ -76,11 +75,11 @@ describe("Select", () => {
       ];
       const placeHolderTest = "Placeholder test";
 
-      const { getByRole } = render(
+      render(
         <Choicesjs {...Choicesjs.args} layout={"choicesjs"} choices={choices} placeholder={placeHolderTest} name={"test-choicesjs"} />
       );
 
-      expect(getByRole("option", { name: "test1" })).toBeInTheDocument();
+      expect(screen.getByRole("option", { name: "test1" })).toBeInTheDocument();
     });
   });
 });

@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { FilterProps } from "react-table";
+
 import { InputText } from "../../input-text/inputText.component";
 
 export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(

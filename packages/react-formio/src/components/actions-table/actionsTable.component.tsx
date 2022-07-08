@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import noop from "lodash/noop";
 import React, { useState } from "react";
+
 import { ActionSchema } from "../../interfaces";
 import { iconClass } from "../../utils/iconClass";
 import { Select } from "../select/select.component";
@@ -21,15 +22,13 @@ export function ActionsTable({
   const { i18n = (f: string) => f } = props;
   const [currentAction, setAction] = useState("");
 
-  const columns = React.useMemo(() => {
-    return [
-      {
-        Header: i18n("Actions"),
-        accessor: "title",
-        id: "title"
-      }
-    ];
-  }, []);
+  const columns = [
+    {
+      Header: i18n("Actions"),
+      accessor: "title",
+      id: "title"
+    }
+  ];
 
   return (
     <Table {...props} disableFilters={disableFilters} disablePagination={disablePagination} columns={columns}>

@@ -1,6 +1,7 @@
 import camelCase from "lodash/camelCase";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
+
 import { FormSchema } from "../../interfaces";
 
 export const hasChanged = (form: Partial<FormSchema>, value: Partial<FormSchema>): boolean => !isEqual(form, value);

@@ -1,7 +1,8 @@
 import React from "react";
-import { SubmissionsComponent } from "./submissions.view";
+
 import formSchema from "../__fixtures__/form-schema.json";
 import formSubmissions from "../__fixtures__/form-submissions.json";
+import { SubmissionsComponent } from "./submissions.view";
 
 export default {
   title: "ReactFormioContainer/SubmissionsView",

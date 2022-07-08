@@ -1,6 +1,7 @@
 import React from "react";
-import {FormControl} from "./formControl.component";
-import {iconClass} from "../../utils/iconClass";
+
+import { iconClass } from "../../utils/iconClass";
+import { FormControl } from "./formControl.component";
 
 export default {
   title: "ReactFormio/FormControl",
@@ -31,7 +32,7 @@ export const Sandbox = (args: any) => {
 
 Sandbox.args = {
   label: "Label",
-  children: <input type="text" className="form-control" placeholder="placeholder"/>
+  children: <input type='text' className='form-control' placeholder='placeholder' />
 };
 
 export const WithPrefix = (args: any) => {
@@ -40,8 +41,8 @@ export const WithPrefix = (args: any) => {
 
 WithPrefix.args = {
   label: "Label",
-  children: <input type="text" className="form-control" placeholder="placeholder"/>,
-  prefix: <i className={iconClass(undefined, "calendar")}/>
+  children: <input type='text' className='form-control' placeholder='placeholder' />,
+  prefix: <i className={iconClass(undefined, "calendar")} />
 };
 
 export const WithSuffix = (args: any) => {
@@ -50,8 +51,8 @@ export const WithSuffix = (args: any) => {
 
 WithSuffix.args = {
   label: "Label",
-  children: <input type="text" className="form-control" placeholder="placeholder"/>,
-  suffix: <i className={iconClass(undefined, "calendar")}/>
+  children: <input type='text' className='form-control' placeholder='placeholder' />,
+  suffix: <i className={iconClass(undefined, "calendar")} />
 };
 
 export const WithDescription = (args: any) => {
@@ -60,5 +61,5 @@ export const WithDescription = (args: any) => {
 
 WithDescription.args = {
   label: "Label",
-  children: <input type="text" className="form-control" placeholder="placeholder"/>
+  children: <input type='text' className='form-control' placeholder='placeholder' />
 };

@@ -1,10 +1,11 @@
 import { Formio } from "formiojs";
+
 import { logoutUser } from "./auth.actions";
 import { AUTH } from "./auth.constant";
 import { logout } from "./logout.action";
 
 jest.mock("./auth.actions");
-jest.mock('formiojs')
+jest.mock("formiojs");
 
 describe("logout()", () => {
   beforeEach(() => {

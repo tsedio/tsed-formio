@@ -1,6 +1,7 @@
 import { createAction } from "@tsed/redux-utils";
-import noop from "lodash/noop";
 import { Formio } from "formiojs";
+import noop from "lodash/noop";
+
 import { getFormUrl } from "../../utils/url";
 import { ACTION_INFO } from "./action-info.constant";
 

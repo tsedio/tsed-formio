@@ -1,5 +1,6 @@
+import { render, screen } from "@testing-library/react";
 import React from "react";
-import { render } from "@testing-library/react";
+
 import { Sandbox } from "./alert.stories";
 
 describe("Alert component", () => {
@@ -11,9 +12,10 @@ describe("Alert component", () => {
 
   it("should display an error when the error is in string format", () => {
     const error = "error in string format";
-    const { getByRole } = render(<Sandbox {...Sandbox.args} error={error} />);
 
-    const alert = getByRole("alert") as HTMLDivElement;
+    render(<Sandbox {...Sandbox.args} error={error} />);
+
+    const alert = screen.getByRole("alert") as HTMLDivElement;
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
@@ -23,13 +25,13 @@ describe("Alert component", () => {
   it("should display error(s) when the error is an array", () => {
     const arrayOfErrors = ["first error", "second error", "third error"];
     const joinedErrors = arrayOfErrors.map((error) => error).join("");
-    const { getByRole, getByText } = render(<Sandbox {...Sandbox.args} error={arrayOfErrors} />);
+    render(<Sandbox {...Sandbox.args} error={arrayOfErrors} />);
 
-    const alert = getByRole("alert") as HTMLDivElement;
+    const alert = screen.getByRole("alert") as HTMLDivElement;
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
-    expect(getByText(joinedErrors)).toBeInTheDocument();
+    expect(screen.getByText(joinedErrors)).toBeInTheDocument();
   });
 
   it("should display error's names paths and messages when the error is an object that has an 'errors' property that contains an array of error objects", () => {
@@ -40,9 +42,9 @@ describe("Alert component", () => {
         { name: "third error", path: "/path", message: "message" }
       ]
     };
-    const { getByRole } = render(<Sandbox {...Sandbox.args} error={arrayOfErrors} />);
+    render(<Sandbox {...Sandbox.args} error={arrayOfErrors} />);
 
-    const alert = getByRole("alert") as HTMLDivElement;
+    const alert = screen.getByRole("alert") as HTMLDivElement;
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
@@ -51,33 +53,33 @@ describe("Alert component", () => {
 
   it("should display an error message when the error is a standard error", () => {
     const standardError = { message: "first error" };
-    const { getByRole, getByText } = render(<Sandbox {...Sandbox.args} error={standardError} />);
+    render(<Sandbox {...Sandbox.args} error={standardError} />);
 
-    const alert = getByRole("alert") as HTMLDivElement;
+    const alert = screen.getByRole("alert") as HTMLDivElement;
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
-    expect(getByText(standardError.message)).toBeInTheDocument();
+    expect(screen.getByText(standardError.message)).toBeInTheDocument();
   });
 
   it("should display error(s) message(s) when the error is a joi validation error", () => {
     const joiValidationError = { name: "ValidationError", details: [{ message: "message 1" }, { message: "message 2" }] };
-    const { getByRole, getByText } = render(<Sandbox {...Sandbox.args} error={joiValidationError} />);
+    render(<Sandbox {...Sandbox.args} error={joiValidationError} />);
 
-    const alert = getByRole("alert") as HTMLDivElement;
+    const alert = screen.getByRole("alert") as HTMLDivElement;
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
-    expect(getByText("message 1")).toBeInTheDocument();
-    expect(getByText("message 2")).toBeInTheDocument();
+    expect(screen.getByText("message 1")).toBeInTheDocument();
+    expect(screen.getByText("message 2")).toBeInTheDocument();
   });
 
   it("should display a custom error message that asks to reload the form when a conflict error occurs in a form", () => {
     const error = { _id: "some id", display: "some value" };
     const messageReturned = "Another user has saved this form already. Please reload and re-apply your changes.";
-    const { getByRole } = render(<Sandbox {...Sandbox.args} error={error} />);
+    render(<Sandbox {...Sandbox.args} error={error} />);
 
-    const alert = getByRole("alert") as HTMLDivElement;
+    const alert = screen.getByRole("alert") as HTMLDivElement;
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");
@@ -86,9 +88,9 @@ describe("Alert component", () => {
 
   it("should display an error message by default when the error format does not match any of the conditions of the formatError() handler", () => {
     const messageError: string = "An error occurred. See console logs for details.";
-    const { getByRole } = render(<Sandbox {...Sandbox.args} error={true} />);
+    render(<Sandbox {...Sandbox.args} error={true} />);
 
-    const alert = getByRole("alert") as HTMLDivElement;
+    const alert = screen.getByRole("alert") as HTMLDivElement;
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass("alert alert-danger");

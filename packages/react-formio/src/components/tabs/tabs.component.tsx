@@ -1,12 +1,16 @@
 import classnames from "classnames";
 import React, { PropsWithChildren } from "react";
+
 import { iconClass } from "../../utils/iconClass";
 
 export function ButtonTab({ icon, back, onClick, isActive, reverse, children, className, after }: PropsWithChildren<any>) {
   return (
-    <div title={'button-wrapper'} className={classnames("tw-tabs__button-wrapper", isActive ? "-active" : "", back ? "-back" : "", className)}>
+    <div
+      title={"button-wrapper"}
+      className={classnames("tw-tabs__button-wrapper", isActive ? "-active" : "", back ? "-back" : "", className)}
+    >
       <button
-        title={'button-tab'}
+        title={"button-tab"}
         className={classnames("tw-tabs__button", reverse ? "-reverse" : "", isActive ? "-active" : "", back ? "-back" : "")}
         onClick={onClick}
       >
@@ -51,7 +55,7 @@ export function Tabs({
   ...additionalProps
 }: PropsWithChildren<TabsProps>) {
   return (
-    <div data-testid={'tabs-comp'} className={`tw-tabs ${className}`} style={style}>
+    <div data-testid={"tabs-comp"} className={`tw-tabs ${className}`} style={style}>
       <div>
         <nav className='tw-tabs__header'>
           <div className='tw-tabs__header-wrapper'>
@@ -80,7 +84,9 @@ export function Tabs({
         </nav>
         {HeaderChildren && <HeaderChildren {...additionalProps} current={current} />}
       </div>
-      <div title={"tab-body"} className={"tw-tabs__body"}>{children}</div>
+      <div title={"tab-body"} className={"tw-tabs__body"}>
+        {children}
+      </div>
     </div>
   );
 }

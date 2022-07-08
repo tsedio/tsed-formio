@@ -1,11 +1,12 @@
-import {AuthState, selectAuth, selectForm} from "@tsed/react-formio";
-import {useSelector} from "react-redux";
+import { AuthState, selectAuth, selectForm } from "@tsed/react-formio";
 import noop from "lodash/noop";
-import {exportAs} from "../utils/ExportClient";
-import {UseFormProps} from "./useForm.hook";
+import { useSelector } from "react-redux";
+
+import { exportAs } from "../utils/ExportClient";
+import { UseFormProps } from "./useForm.hook";
 
 export function useFormExport(props: UseFormProps) {
-  const {formType, onInfo = noop, onSuccess = noop, onError = noop, i18n = f => f} = props;
+  const { formType, onInfo = noop, onSuccess = noop, onError = noop, i18n = (f) => f } = props;
   const type = formType.replace(/s$/, "");
 
   const auth: AuthState = useSelector(selectAuth);

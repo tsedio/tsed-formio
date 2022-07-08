@@ -1,6 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
-import { render } from "@testing-library/react";
+
+import { render, screen } from "@testing-library/react";
 import React from "react";
+
 import { SelectColumnFilter } from "./selectColumnFilter.component";
 
 describe("SelectColumnFilter", () => {
@@ -15,13 +17,13 @@ describe("SelectColumnFilter", () => {
       }
     };
 
-    const { getByText } = render(
+    render(
       // @ts-ignore
       <SelectColumnFilter {...props} />
     );
 
-    expect(getByText("select-choice-1")).toBeDefined();
-    expect(getByText("select-choice-2")).toBeDefined();
+    expect(screen.getByText("select-choice-1")).toBeDefined();
+    expect(screen.getByText("select-choice-2")).toBeDefined();
   });
   it("should display select with custom choices", async () => {
     const mockSetFilter = jest.fn();
@@ -35,12 +37,12 @@ describe("SelectColumnFilter", () => {
       }
     };
 
-    const { queryByText, getByText } = render(
+    render(
       // @ts-ignore
       <SelectColumnFilter {...props} />
     );
 
-    expect(queryByText("select-choice-1")).toBeNull();
-    expect(getByText("fake-choice")).toBeDefined();
+    expect(screen.queryByText("select-choice-1")).toBeNull();
+    expect(screen.getByText("fake-choice")).toBeDefined();
   });
 });

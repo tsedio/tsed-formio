@@ -1,4 +1,3 @@
-export * from "./utils/useOperations.hook";
 export * from "./components/defaultArrowSort.component";
 export * from "./components/defaultCell.component";
 export * from "./components/defaultCellHeader.component";
@@ -9,3 +8,4 @@ export * from "./filters/defaultColumnFilter.component";
 export * from "./filters/selectColumnFilter.component";
 export * from "./filters/sliderColumnFilter.component";
 export * from "./table.component";
+export * from "./utils/useOperations.hook";

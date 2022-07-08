@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { FormOptions, FormSchema } from "../../interfaces";
-import { getFormSettingsSchema } from "./formSettings.schema";
-import { Form } from "../form/form.component";
-import { FormSettingsSchema, formSettingsToSubmission, submissionToFormSettings } from "./formSettings.utils";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
+import React, { useEffect, useState } from "react";
+
+import { FormOptions, FormSchema } from "../../interfaces";
+import { Form } from "../form/form.component";
 import { ChangedSubmission } from "../form/useForm.hook";
+import { getFormSettingsSchema } from "./formSettings.schema";
+import { FormSettingsSchema, formSettingsToSubmission, submissionToFormSettings } from "./formSettings.utils";
 
 export interface FormSettingsProps {
   form: Partial<FormSchema>;
@@ -18,15 +19,12 @@ function useFormSettings({ form: formDefinition, onSubmit = noop, options }: For
   const [isValid, setIsValid] = useState(true);
   const [submission, setSubmission] = useState(() => formSettingsToSubmission(formDefinition));
 
-  const onChange = useCallback(
-    ({ data, isValid }: ChangedSubmission<FormSettingsSchema>) => {
-      if (isValid) {
-        setSubmission({ data });
-      }
-      setIsValid(isValid);
-    },
-    [submission]
-  );
+  const onChange = ({ data, isValid }: ChangedSubmission<FormSettingsSchema>) => {
+    if (isValid) {
+      setSubmission({ data });
+    }
+    setIsValid(isValid);
+  };
 
   useEffect(() => {
     const input = formSettingsToSubmission(formDefinition);

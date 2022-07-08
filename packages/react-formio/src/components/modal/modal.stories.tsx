@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Modal, ModalProps, useModal } from "./modal.component";
 import { RemoveModal, RemoveModalProps } from "./removeModal.component";
 

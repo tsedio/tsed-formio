@@ -1,4 +1,5 @@
 import React from "react";
+
 import { FormsComponent } from "./forms.view";
 
 export default {

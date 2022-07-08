@@ -1,15 +1,16 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
+
 import { Sandbox } from "./pagination.stories";
 
 describe("Pagination", () => {
   it("should render the pagination component", () => {
-    const { container, getByTestId, queryAllByTestId } = render(<Sandbox {...Sandbox.args} />);
-    const paginationBtn = queryAllByTestId("pagination-button");
-    const allBtnBlocks = paginationBtn.map((bloc) => bloc.textContent);
-    const select = getByTestId("select_page");
+    render(<Sandbox {...Sandbox.args} />);
 
-    expect(container).toBeInTheDocument();
+    const paginationBtn = screen.queryAllByTestId("pagination-button");
+    const allBtnBlocks = paginationBtn.map((bloc) => bloc.textContent);
+    const select = screen.getByTestId("select_page");
+
     paginationBtn.forEach((child) => expect(child).toBeInTheDocument());
     expect(select).toBeInTheDocument();
     expect(allBtnBlocks[0]).toBe("Previous");
@@ -18,11 +19,11 @@ describe("Pagination", () => {
 
   it("should call previousPage() callback", () => {
     const previousPageSpy = jest.fn();
-    const { queryAllByTestId } = render(<Sandbox previousPage={previousPageSpy} canPreviousPage={true} />);
-    const paginationBtn = queryAllByTestId("pagination-button");
+    render(<Sandbox previousPage={previousPageSpy} canPreviousPage={true} />);
+    const paginationBtn = screen.queryAllByTestId("pagination-button");
     const btnPreviousPage = paginationBtn.find((btn) => btn.textContent === "Previous");
 
-    fireEvent.click(btnPreviousPage);
+    fireEvent.click(btnPreviousPage!);
 
     expect(previousPageSpy).toHaveBeenCalledTimes(1);
   });
@@ -40,13 +41,14 @@ describe("Pagination", () => {
     const gotoPageSpy = jest.fn();
     let page: number;
 
-    const { queryAllByTestId } = render(<Sandbox {...Sandbox.args} gotoPage={gotoPageSpy} />);
-    const paginationBtn = queryAllByTestId("pagination-button");
+    render(<Sandbox {...Sandbox.args} gotoPage={gotoPageSpy} />);
+
+    const paginationBtn = screen.queryAllByTestId("pagination-button");
     const buttonsPage = paginationBtn.filter((btn) => btn.textContent !== "Previous" && btn.textContent !== "Next");
 
     buttonsPage.forEach((btn) => {
       if (btn.textContent !== "...") {
-        page = +btn.textContent;
+        page = +btn.textContent!;
         fireEvent.click(btn);
         // eslint-disable-next-line jest/no-conditional-expect
         expect(gotoPageSpy).toHaveBeenCalled();
@@ -58,8 +60,9 @@ describe("Pagination", () => {
 
   it("should have Previous button disabled and not clickable", () => {
     const previousPageSpy = jest.fn();
-    const { getByText } = render(<Sandbox canPreviousPage={false} previousPage={previousPageSpy} {...Sandbox.args} />);
-    const previousButton = getByText("Previous");
+    render(<Sandbox canPreviousPage={false} previousPage={previousPageSpy} {...Sandbox.args} />);
+
+    const previousButton = screen.getByText("Previous");
 
     expect(previousButton).toHaveAttribute("disabled");
     fireEvent.click(previousButton);
@@ -68,9 +71,9 @@ describe("Pagination", () => {
 
   it("should have Previous button NOT disabled and clickable", () => {
     const previousPageSpy = jest.fn();
-    const { getByText } = render(<Sandbox {...Sandbox.args} canPreviousPage={true} previousPage={previousPageSpy} />);
+    render(<Sandbox {...Sandbox.args} canPreviousPage={true} previousPage={previousPageSpy} />);
 
-    const previousButton = getByText("Previous");
+    const previousButton = screen.getByText("Previous");
 
     expect(previousButton).not.toHaveAttribute("disabled");
     fireEvent.click(previousButton);
@@ -79,9 +82,9 @@ describe("Pagination", () => {
 
   it("should have Next button disabled and not clickable", () => {
     const nextPageSpy = jest.fn();
-    const { getByText } = render(<Sandbox canNextPage={false} nextPage={nextPageSpy} {...Sandbox.args} />);
+    render(<Sandbox canNextPage={false} nextPage={nextPageSpy} {...Sandbox.args} />);
 
-    const nextButton = getByText("Next");
+    const nextButton = screen.getByText("Next");
     expect(nextButton).toHaveAttribute("disabled");
     fireEvent.click(nextButton);
     expect(nextPageSpy).not.toHaveBeenCalled();
@@ -89,8 +92,8 @@ describe("Pagination", () => {
 
   it("should have Next button NOT disabled and clickable", () => {
     const nextPageSpy = jest.fn();
-    const { getByText } = render(<Sandbox canNextPage={true} nextPage={nextPageSpy} {...Sandbox.args} />);
-    const nextButton = getByText("Next");
+    render(<Sandbox canNextPage={true} nextPage={nextPageSpy} {...Sandbox.args} />);
+    const nextButton = screen.getByText("Next");
     expect(nextButton).not.toHaveAttribute("disabled");
     fireEvent.click(nextButton);
     expect(nextPageSpy).toHaveBeenCalled();
@@ -99,8 +102,8 @@ describe("Pagination", () => {
   it("should correctly render select component", () => {
     const pageSizes = [10, 25, 50, 100, 200, 500];
 
-    const { getByTestId } = render(<Sandbox {...Sandbox.args} pageSizes={pageSizes} />);
-    const selectComp = getByTestId("select_page");
+    render(<Sandbox {...Sandbox.args} pageSizes={pageSizes} />);
+    const selectComp = screen.getByTestId("select_page");
     const selectChilds = Array.prototype.map.call(selectComp, function (child) {
       return +child.textContent;
     });

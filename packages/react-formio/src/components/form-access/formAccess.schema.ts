@@ -1,4 +1,5 @@
 import { ExtendedComponentSchema } from "formiojs";
+
 import { FormSchema } from "../../interfaces/FormSchema";
 
 export function getRoleComponent({ label, key, description, choices, data }: any): ExtendedComponentSchema {

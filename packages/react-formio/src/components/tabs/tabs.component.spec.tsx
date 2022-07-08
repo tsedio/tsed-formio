@@ -1,7 +1,8 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import * as React from "react";
-import {fireEvent, render, screen} from "@testing-library/react";
-import {Sandbox} from "./tabs.component.stories";
-import {Tabs} from "./tabs.component";
+
+import { Tabs } from "./tabs.component";
+import { Sandbox } from "./tabs.component.stories";
 
 describe("tabs", () => {
   it("should display the tabs component and children", () => {
@@ -20,7 +21,7 @@ describe("tabs", () => {
       }
     ];
 
-    render(<Sandbox {...Sandbox.args} items={items}/>);
+    render(<Sandbox {...Sandbox.args} items={items} />);
 
     const tabsComponent = screen.getByTestId("tabs-comp");
 
@@ -67,7 +68,7 @@ describe("tabs", () => {
     ];
     const onClick = jest.fn();
 
-    render(<Tabs items={items} onClick={onClick}/>);
+    render(<Tabs items={items} onClick={onClick} />);
 
     const buttonsTab = screen.getAllByTitle("button-tab");
     const chevronLeftButtonTab = buttonsTab[0];

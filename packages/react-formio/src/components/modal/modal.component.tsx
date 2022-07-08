@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
 import noop from "lodash";
+import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
 
 export function useModal() {
   const [show, setShowModal] = useState(false);

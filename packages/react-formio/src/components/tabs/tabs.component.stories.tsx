@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Tabs } from "./tabs.component";
 
 const useTabs = (args: any) => {

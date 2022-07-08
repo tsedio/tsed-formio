@@ -1,5 +1,6 @@
 import { Components, ComponentSchema } from "formiojs";
 import ReactDOM from "react-dom";
+
 import { Submission } from "../../interfaces/Submission";
 
 export class ReactComponent<Data = any> extends Components.components.field {
@@ -14,7 +15,7 @@ export class ReactComponent<Data = any> extends Components.components.field {
    * @param options - Any options passed into the renderer.
    * @param data - The submission data where this component's data exists.
    */
-  // eslint-disable-next-line no-useless-constructor
+  // eslint-disable-next-line no-useless-constructor,import/no-anonymous-default-export
   constructor(component: ComponentSchema, options: any, data: Submission<Data>) {
     super(component, options, data);
   }
@@ -137,7 +138,7 @@ export class ReactComponent<Data = any> extends Components.components.field {
       this.dataForSetting = value;
     }
 
-    return false
+    return false;
   }
 
   /**
