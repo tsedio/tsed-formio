@@ -31,9 +31,11 @@
   }
 }
 
+.form-control:disabled, .form-control[readonly] {
+  @apply bg-gray-200 border-transparent shadow-none;
+}
 
 .formio-modified:not(.has-error) {
-
   label {
     @apply text-green-600;
   }

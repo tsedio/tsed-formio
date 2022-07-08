@@ -1967,6 +1967,29 @@
       "defaultValue": null
     },
     {
+      "label": "Edit Grid",
+      "tableView": false,
+      "rowDrafts": false,
+      "key": "editGrid",
+      "type": "editgrid",
+      "displayAsTable": false,
+      "input": true,
+      "components": [
+        {
+          "label": "Currency",
+          "mask": false,
+          "spellcheck": true,
+          "tableView": true,
+          "currency": "USD",
+          "inputFormat": "plain",
+          "key": "currency",
+          "type": "currency",
+          "input": true,
+          "delimiter": true
+        }
+      ]
+    },
+    {
       "type": "button",
       "label": "Submit",
       "key": "submit",

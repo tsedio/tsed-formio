@@ -1,10 +1,10 @@
-import { ExtendedComponentSchema, Form } from "formiojs";
-import { get } from "lodash";
+import {ExtendedComponentSchema, Form} from "formiojs";
+import {get} from "lodash";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
-import { useEffect, useRef } from "react";
-import { callLast } from "../../utils/callLast";
-import { FormOptions, FormSchema, Submission } from "../../interfaces";
+import {useEffect, useRef} from "react";
+import {callLast} from "../../utils/callLast";
+import {FormOptions, FormSchema, Submission} from "../../interfaces";
 
 export interface ChangedSubmission<T = any> extends Submission<T> {
   changed: any;
@@ -56,7 +56,7 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
 }
 
 export function useForm<Data = any>(props: UseFormHookProps<Data>) {
-  const { src, form, options = {}, submission, url, ...funcs } = props;
+  const {src, form, options = {}, submission, url, ...funcs} = props;
   const element = useRef<any>();
   const isLoaded = useRef<boolean>();
   const instance = useRef<Form>();

@@ -97,3 +97,28 @@ TriggerError.args = {
     ]
   }
 };
+
+
+export const ReadOnly = (args: any) => {
+  delete args.onRender;
+  delete args.onComponentChange;
+  return (
+    <Form
+      {...args}
+      form={args.form}
+      submission={{
+        data: {
+          editGrid: [
+            {currency: 'EUR'}
+          ]
+        }
+      }}
+      options={{template: "tailwind", iconset: "bx", readOnly: args.readonly}}
+    />
+  );
+};
+
+ReadOnly.args = {
+  readonly: true,
+  form
+};
