@@ -309,6 +309,6 @@ Object.assign(exports, {
     userSelect: false
   },
   purge: {
-    enable: false
+    enabled: false
   }
 });

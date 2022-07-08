@@ -1,5 +1,4 @@
 const {dirname, join} = require('path')
-
 const rootDir = join(__dirname, '..', 'src')
 const formioDir = dirname(require.resolve('@tsed/react-formio'))
 const formioContainerDir = dirname(require.resolve('@tsed/react-formio-container'))
@@ -22,11 +21,16 @@ module.exports = {
       name: '@storybook/addon-postcss',
       options: {
         cssLoaderOptions: {
-          importLoaders: 1
+          importLoaders: 1,
+          sourceMap: true
         },
         postcssLoaderOptions: {
           // When using postCSS 8
-          implementation: require('postcss')
+          implementation: require('postcss'),
+          postcssOptions: {
+            plugins: require('../postcss.config.js').plugins
+          },
+          sourceMap: true
         }
       }
     }
@@ -46,16 +50,5 @@ module.exports = {
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
     }
-  },
-  webpackFinal: (config) => {
-    const rules = config.module.rules
-
-    rules.forEach((rule) => {
-      if (rule.test?.test('.js')) {
-        rule.use[0].loader = require.resolve('babel-loader')
-      }
-    })
-
-    return config
   }
 }

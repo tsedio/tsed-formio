@@ -1,0 +1,5 @@
+src/styles
+src/stories
+postcss.config.js
+tailwind.config.js
+web.config.js
