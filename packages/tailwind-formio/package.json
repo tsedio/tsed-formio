@@ -4,6 +4,16 @@
   "description": "Tailwind templates for form.io forms.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "scripts": {
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "yarn lint --fix",
+    "start:storybook": "start-storybook -p 6006",
+    "build:storybook": "build-storybook -c ../tailwind-formio/.storybook -o .out",
+    "serve": "serve .out",
+    "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
+    "build": "tsc --noEmit false && gulp templates && yarn webpack"
+  },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-insert": "^0.5.0",
@@ -11,14 +21,39 @@
     "gulp-template": "^5.0.0",
     "nodemon": "2.0.7",
     "webpack": "4.44.2",
-    "webpack-cli": "4.9.2"
+    "webpack-cli": "4.9.2",
+    "@babel/core": "^7.10.2",
+    "@sambego/storybook-state": "2.0.1",
+    "@storybook/addon-viewport": "^6.5.9",
+    "@storybook/addon-actions": "6.5.9",
+    "@storybook/addon-docs": "6.5.9",
+    "@storybook/addon-essentials": "6.5.9",
+    "@storybook/addon-links": "6.5.9",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addons": "6.5.9",
+    "@storybook/react": "6.5.9",
+    "@svgr/webpack": "5.5.0",
+    "@tsed/config": "1.13.2",
+    "@tsed/tailwind": "1.13.2",
+    "@tsed/yarn-workspaces": "1.19.3",
+    "babel-loader": "8.2.2",
+    "cross-env": "7.0.3",
+    "react-svg": "10.0.23",
+    "url-loader": "4.1.1",
+    "serve": "^13.0.4"
   },
-  "scripts": {
-    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "yarn lint --fix",
-    "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
-    "build": "tsc --noEmit false && gulp templates && yarn webpack"
-  },
-  "dependencies": {},
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
+
