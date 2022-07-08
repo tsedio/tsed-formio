@@ -1,4 +1,4 @@
-import FormioFormBuilder from "formiojs/FormBuilder";
+import FormioFormBuilder from "formiojs/FormBuilder.js";
 import React, { useEffect, useRef } from "react";
 
 function WrapperFormBuilder({ options, form }) {
