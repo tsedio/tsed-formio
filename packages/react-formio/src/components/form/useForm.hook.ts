@@ -34,6 +34,8 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
    * Data submission
    */
   submission?: Submission<Data>;
+
+  /// events
   onPrevPage?: (obj: FormPageChangeProps<Data>) => void;
   onNextPage?: (obj: FormPageChangeProps<Data>) => void;
   onCancel?: Function;
@@ -41,7 +43,7 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   onCustomEvent?: (obj: { type: string; event: string; component: ExtendedComponentSchema; data: any }) => void;
   onComponentChange?: (component: ExtendedComponentSchema) => void;
   onSubmit?: (submission: Submission<Data>) => void;
-  onAsyncSubmit?: (submission: Submission<Data>) => Promise<void>;
+  onAsyncSubmit?: (submission: Submission<Data>) => Promise<any>;
   onSubmitDone?: (submission: Submission<Data>) => void;
   onFormLoad?: Function;
   onError?: (errors: any) => void;
@@ -52,7 +54,30 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   onBlur?: Function;
   onInitialized?: Function;
   onFormReady?: (formio: Form) => void;
-  formioform?: any;
+}
+
+function useDebounce(event: string, callback: any, events: Map<string, any>) {
+  useEffect(() => {
+    callback && events.set(event, callLast(callback, 100));
+  }, [callback, event, events]);
+}
+
+function useEvents(funcs: any) {
+  const events = useRef<Map<string, any>>(new Map());
+
+  const hasEvent = (event: string) => {
+    return funcs.hasOwnProperty(event) && typeof funcs[event] === "function"
+  }
+  const emit = (event: string, ...args: any[]) => {
+    if (hasEvent(event)) {
+      const fn = events.current.has(event) ? events.current.get(event) : funcs[event]
+      return fn(...args);
+    }
+  };
+
+  useDebounce("onChange", funcs.onChange, events.current);
+
+  return {events, emit, hasEvent};
 }
 
 export function useForm<Data = any>(props: UseFormHookProps<Data>) {
@@ -60,12 +85,12 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
   const element = useRef<any>();
   const isLoaded = useRef<boolean>();
   const instance = useRef<Form>();
-  const events = useRef<Map<string, any>>(new Map());
+  const {emit, hasEvent} = useEvents(funcs);
 
   async function customValidation(submission: Submission, callback: (err: Error | null) => void) {
-    if (events.current.has("onAsyncSubmit")) {
+    if (hasEvent("onAsyncSubmit")) {
       try {
-        await events.current.get("onAsyncSubmit")(submission);
+        await emit("onAsyncSubmit", submission, instance.current);
       } catch (err) {
         callback(err?.errors || err);
       }
@@ -93,27 +118,15 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
         }
 
         if (event.startsWith("formio.")) {
-          const funcName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
+          const eventName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
 
-          if (funcName === "onChange") {
+          if (eventName === "onChange") {
             if (isEqual(get(submission, "data"), args[0].data)) {
               return;
             }
           }
 
-          if (
-            // eslint-disable-next-line no-prototype-builtins
-            props.hasOwnProperty(funcName) &&
-            typeof funcs[funcName] === "function"
-          ) {
-            if (!events.current.has(funcName)) {
-              const fn = callLast(funcs[funcName], 100);
-              events.current.set(funcName, fn);
-            }
-
-            instance.current.instance.setAlert("success", "");
-            events.current.get(funcName)(...args, instance.current);
-          }
+          emit(eventName, ...args, instance.current)
         }
       });
 
@@ -171,18 +184,6 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
       instance.current && (instance.current as any).destroy(true);
     };
   }, []);
-
-  useEffect(() => {
-    props.onSubmit && events.current.set("onSubmit", props.onSubmit);
-  }, [props.onSubmit, events]);
-
-  useEffect(() => {
-    props.onAsyncSubmit && events.current.set("onAsyncSubmit", props.onAsyncSubmit);
-  }, [props.onAsyncSubmit, events]);
-
-  useEffect(() => {
-    props.onSubmitDone && events.current.set("onSubmitDone", props.onSubmitDone);
-  }, [props.onSubmitDone, events]);
 
   return {
     element
