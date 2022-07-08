@@ -1,4 +1,5 @@
-import { InitialStateCreator, createReducer } from "@tsed/redux-utils";
+import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
+
 import { ActionSchema } from "../../interfaces";
 import { failActionInfo, receiveActionInfo, requestActionInfo, resetActionInfo } from "./action-info.actions";
 import { ACTION_INFO } from "./action-info.constant";

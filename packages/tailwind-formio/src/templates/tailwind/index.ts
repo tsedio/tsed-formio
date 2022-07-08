@@ -1,4 +1,5 @@
 import address from "./address";
+import alert from "./alert";
 import builder from "./builder";
 import builderComponent from "./builderComponent";
 import builderComponents from "./builderComponents";
@@ -13,13 +14,14 @@ import columns from "./columns";
 import component from "./component";
 import componentModal from "./componentModal";
 import components from "./components";
-import tableComponents from "./tableComponents";
 import container from "./container";
+import cssClasses from "./cssClasses";
 import datagrid from "./datagrid";
 import day from "./day";
 import dialog from "./dialog";
 import editgrid from "./editgrid";
 import editgridTable from "./editgridTable";
+import errorsList from "./errorsList";
 import field from "./field";
 import fieldset from "./fieldset";
 import file from "./file";
@@ -50,6 +52,7 @@ import signature from "./signature";
 import survey from "./survey";
 import tab from "./tab";
 import table from "./table";
+import tableComponents from "./tableComponents";
 import tree from "./tree";
 import treePartials from "./tree/partials";
 import webform from "./webform";
@@ -59,9 +62,6 @@ import wizardHeader from "./wizardHeader";
 import wizardHeaderClassic from "./wizardHeaderClassic";
 import wizardHeaderVertical from "./wizardHeaderVertical";
 import wizardNav from "./wizardNav";
-import cssClasses from "./cssClasses";
-import errorsList from "./errorsList";
-import alert from "./alert";
 
 export default {
   transform(type: string, text: string) {

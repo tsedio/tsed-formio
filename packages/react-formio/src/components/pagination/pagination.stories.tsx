@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Pagination } from "./pagination.component";
 
 export default {

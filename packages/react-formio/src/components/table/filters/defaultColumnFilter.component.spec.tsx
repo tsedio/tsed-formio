@@ -1,6 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
-import { fireEvent, render, act } from "@testing-library/react";
+
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
+
 import { DefaultColumnFilter } from "./defaultColumnFilter.component";
 
 describe("DefaultColumnFilter", () => {
@@ -12,12 +14,12 @@ describe("DefaultColumnFilter", () => {
       column: { id: "id", filterValue: "", setFilter: jest.fn() }
     };
 
-    const { getByRole } = render(
+    render(
       // @ts-ignore
       <DefaultColumnFilter {...props} />
     );
 
-    const input = getByRole("textbox");
+    const input = screen.getByRole("textbox");
 
     // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {

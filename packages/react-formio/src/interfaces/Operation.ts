@@ -1,4 +1,5 @@
 import React from "react";
+
 import { OperationButtonProps } from "../components/table/components/defaultOperationButton.component";
 
 export type PermissionsResolver<Data = any> = (data: Data, ctx: any) => void;

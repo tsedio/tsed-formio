@@ -1,10 +1,11 @@
-import {ExtendedComponentSchema, Form} from "formiojs";
-import {get} from "lodash";
+import { ExtendedComponentSchema, Form } from "formiojs";
+import { get } from "lodash";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
-import {useEffect, useRef} from "react";
-import {callLast} from "../../utils/callLast";
-import {FormOptions, FormSchema, Submission} from "../../interfaces";
+import { useEffect, useRef } from "react";
+
+import { FormOptions, FormSchema, Submission } from "../../interfaces";
+import { callLast } from "../../utils/callLast";
 
 export interface ChangedSubmission<T = any> extends Submission<T> {
   changed: any;
@@ -66,26 +67,26 @@ function useEvents(funcs: any) {
   const events = useRef<Map<string, any>>(new Map());
 
   const hasEvent = (event: string) => {
-    return funcs.hasOwnProperty(event) && typeof funcs[event] === "function"
-  }
+    return funcs.hasOwnProperty(event) && typeof funcs[event] === "function";
+  };
   const emit = (event: string, ...args: any[]) => {
     if (hasEvent(event)) {
-      const fn = events.current.has(event) ? events.current.get(event) : funcs[event]
+      const fn = events.current.has(event) ? events.current.get(event) : funcs[event];
       return fn(...args);
     }
   };
 
   useDebounce("onChange", funcs.onChange, events.current);
 
-  return {events, emit, hasEvent};
+  return { events, emit, hasEvent };
 }
 
 export function useForm<Data = any>(props: UseFormHookProps<Data>) {
-  const {src, form, options = {}, submission, url, ...funcs} = props;
+  const { src, form, options = {}, submission, url, ...funcs } = props;
   const element = useRef<any>();
   const isLoaded = useRef<boolean>();
   const instance = useRef<Form>();
-  const {emit, hasEvent} = useEvents(funcs);
+  const { emit, hasEvent } = useEvents(funcs);
 
   async function customValidation(submission: Submission, callback: (err: Error | null) => void) {
     if (hasEvent("onAsyncSubmit")) {
@@ -126,7 +127,7 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
             }
           }
 
-          emit(eventName, ...args, instance.current)
+          emit(eventName, ...args, instance.current);
         }
       });
 

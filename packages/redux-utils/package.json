@@ -8,6 +8,8 @@
   "author": "Romain Lenzotti",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "yarn lint --fix",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:coverage:update": "write-coverage",
     "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement",

@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import noop from "lodash/noop";
 import React, { PropsWithChildren, useState } from "react";
+
 import { iconClass } from "../../utils/iconClass";
 import { InputText } from "../input-text/inputText.component";
 import { Modal, ModalProps } from "./modal.component";

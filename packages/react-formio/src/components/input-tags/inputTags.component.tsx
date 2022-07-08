@@ -30,10 +30,11 @@ export function InputTags({ name, value = [], label, onChange, required, descrip
     });
 
     instance.passedElement.element.addEventListener("removeItem", (event: any) => {
-      onChange && onChange(
-        name,
-        value.filter((v: string) => v !== event.detail.value)
-      );
+      onChange &&
+        onChange(
+          name,
+          value.filter((v: string) => v !== event.detail.value)
+        );
     });
 
     return () => {

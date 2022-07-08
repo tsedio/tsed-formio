@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 import React, { PropsWithChildren, ReactElement, useCallback, useEffect, useMemo, useState } from "react";
+
 import { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";
 import { Form } from "../form/form.component";
+import { ChangedSubmission } from "../form/useForm.hook";
 import {
   AccessRoles,
   dataAccessToSubmissions,
@@ -13,7 +15,6 @@ import {
   submissionsToDataAccess,
   updateSubmissions
 } from "./formAccess.utils";
-import { ChangedSubmission } from "../form/useForm.hook";
 
 export interface FormAccessProps {
   form: Partial<FormSchema>;

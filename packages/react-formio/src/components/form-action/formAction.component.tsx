@@ -1,5 +1,6 @@
 import FormioUtils from "formiojs/utils";
-import React, { PropsWithChildren, ReactElement, useMemo } from "react";
+import React, { PropsWithChildren, ReactElement } from "react";
+
 import { ActionDefaultsSchema, ActionSchema, FormOptions, Submission } from "../../interfaces";
 import { Form } from "../form/form.component";
 
@@ -38,12 +39,12 @@ export interface FormActionProps {
 }
 
 export function FormAction({ actionInfo, children, onSubmit, options, ...props }: PropsWithChildren<FormActionProps>): ReactElement {
-  const { form, submission } = useMemo(() => {
+  const { form, submission } = (() => {
     const submission = mapData(props.submission || {}, actionInfo.defaults!);
     const form = mapSettingsForm(actionInfo.settingsForm);
 
     return { form, submission: { data: submission } };
-  }, [props.submission, actionInfo.settingsForm]);
+  })();
 
   return (
     <div>

@@ -1,6 +1,6 @@
-import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 
 import { Sandbox } from "./actionsTable.stories";
 
@@ -8,11 +8,11 @@ describe("ActionsTable", () => {
   it("should render the table actions", async () => {
     const onAddAction = jest.fn();
 
-    const { getByRole, getAllByRole } = render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
+    render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
 
-    const btn = getByRole("button", { name: /add action/i });
-    const cells = getAllByRole("cell");
-    const options = getAllByRole("option");
+    const btn = screen.getByRole("button", { name: /add action/i });
+    const cells = screen.getAllByRole("cell");
+    const options = screen.getAllByRole("option");
 
     expect(btn).toHaveProperty("disabled");
     expect(btn.innerHTML).toMatch("Add action");
@@ -25,9 +25,9 @@ describe("ActionsTable", () => {
   it("should not call addAction when the default item is selected", async () => {
     const onAddAction = jest.fn();
 
-    const { getByRole } = render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
+    render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
 
-    const btn = getByRole("button", { name: /add action/i });
+    const btn = screen.getByRole("button", { name: /add action/i });
 
     await fireEvent.click(btn);
     expect(onAddAction).not.toHaveBeenCalled();
@@ -35,10 +35,10 @@ describe("ActionsTable", () => {
   it("should call addAction with the selected action", async () => {
     const onAddAction = jest.fn();
 
-    const { getByRole } = render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
+    render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
 
-    const btn = getByRole("button", { name: /add action/i });
-    const select = getByRole("combobox");
+    const btn = screen.getByRole("button", { name: /add action/i });
+    const select = screen.getByRole("combobox");
 
     await userEvent.selectOptions(select, String(Sandbox.args.availableActions[1].value));
 

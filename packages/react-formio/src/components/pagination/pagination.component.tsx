@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import React, { PropsWithChildren } from "react";
+
 import { Select } from "../select/select.component";
 import { getPageNumbers, LEFT_PAGE, RIGHT_PAGE } from "../table/utils/getPageNumbers";
 

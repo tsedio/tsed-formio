@@ -1,5 +1,6 @@
 import React from "react";
 import { Hooks } from "react-table";
+
 import { Operation } from "../../../interfaces";
 import { DefaultCellOperations } from "../components/defaultCellOperations.component";
 

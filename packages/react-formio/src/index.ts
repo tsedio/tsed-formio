@@ -11,11 +11,10 @@ export {
   // editFormUtils,
 };
 
-export * from "./stores";
-export * from "./interfaces";
 export * from "./components";
 export * from "./hooks/useTooltip";
+export * from "./interfaces";
+export * from "./stores";
 export * from "./utils/iconClass";
 export * from "./utils/url";
-
-export { Components, Formio, Utils, Templates } from "formiojs";
+export { Components, Formio, Templates, Utils } from "formiojs";

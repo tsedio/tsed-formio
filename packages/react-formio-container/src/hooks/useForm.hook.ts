@@ -3,6 +3,7 @@ import {
   deleteForm,
   FormSchema,
   getForm as getFormAction,
+  oneOfIsActive,
   receiveForm,
   refreshForms,
   resetSubmission,
@@ -11,13 +12,13 @@ import {
   selectAuth,
   selectError,
   selectForm,
-  selectRoot,
-  oneOfIsActive
+  selectRoot
 } from "@tsed/react-formio";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { FormioContainerOptions } from "../interfaces/FormioContainerOptions";
 import { findRoute, getFormRoutes } from "../views/form.routes";
 
@@ -55,101 +56,87 @@ export function useForm(props: UseFormProps) {
     form.type = type;
   }
 
-  const getForm = useCallback(() => {
+  const getForm = () => {
     if (formAction !== "create") {
       dispatch(resetSubmissions("submissions"));
       dispatch(resetSubmission("submission"));
       dispatch(getFormAction(type, formId));
     }
-  }, [formType, formId]);
+  };
 
-  const routes = useMemo(() => {
-    return getFormRoutes({
-      formRoutes: formRoutes!,
-      operationsSettings,
-      formAction,
-      auth,
-      form
-    });
-  }, [formRoutes, operationsSettings, formType, formId]);
+  const routes = getFormRoutes({
+    formRoutes: formRoutes!,
+    operationsSettings,
+    formAction,
+    auth,
+    form
+  });
 
   const [currentRoute, setCurrentRoute] = useState(findRoute(routes, formAction));
 
-  const onRemoveDone = useCallback(
-    (err: Error) => {
-      if (!err) {
-        dispatch(refreshForms(formType));
-        dispatch(push(basePath));
-        onSuccess({
-          name: `remove:${type}`,
-          title: `${type} removed`,
-          message: `The ${type} has been successfully removed!`,
-          data: form._id
-        });
-      } else {
-        onError({
-          name: `remove:${type}`,
-          title: `${type} failed`,
-          message: err.message,
-          error: err,
-          data: form._id
-        });
-      }
-    },
-    [basePath, formType, form._id]
-  );
-
-  const removeForm = useCallback(() => {
-    form._id && dispatch(deleteForm(formType, form._id, onRemoveDone));
-  }, [formType, form._id, onRemoveDone]);
-
-  const duplicateForm = useCallback(
-    (form: Partial<FormSchema>) => {
-      dispatch(receiveForm(formType, { ...form, _id: undefined }));
-      dispatch(push(`${basePath}/create`));
+  const onRemoveDone = (err: Error) => {
+    if (!err) {
+      dispatch(refreshForms(formType));
+      dispatch(push(basePath));
       onSuccess({
-        name: `duplicate:${type}`,
-        title: `${type} duplicated`,
-        message: `The ${type} has been successfully duplicated!`,
+        name: `remove:${type}`,
+        title: `${type} removed`,
+        message: `The ${type} has been successfully removed!`,
+        data: form._id
+      });
+    } else {
+      onError({
+        name: `remove:${type}`,
+        title: `${type} failed`,
+        message: err.message,
+        error: err,
+        data: form._id
+      });
+    }
+  };
+
+  const removeForm = () => {
+    form._id && dispatch(deleteForm(formType, form._id, onRemoveDone));
+  };
+
+  const duplicateForm = (form: Partial<FormSchema>) => {
+    dispatch(receiveForm(formType, { ...form, _id: undefined }));
+    dispatch(push(`${basePath}/create`));
+    onSuccess({
+      name: `duplicate:${type}`,
+      title: `${type} duplicated`,
+      message: `The ${type} has been successfully duplicated!`,
+      data: form
+    });
+  };
+
+  const onSaveDone = async (err: Error | null, updatedForm: FormSchema) => {
+    if (!err) {
+      dispatch(refreshForms(formType));
+
+      dispatch(push([basePath, updatedForm._id, formAction === "create" ? "edit" : formAction].join("/")));
+
+      onSuccess({
+        name: `${formAction}:${type}`,
+        title: `${type} saved`,
+        message: `The ${type} has been successfully updated!`,
+        data: updatedForm
+      });
+    } else {
+      onError({
+        name: `${formAction}:${type}`,
+        title: `Save ${type} failed`,
+        message: err.message,
+        error: err,
         data: form
       });
-    },
-    [basePath, type, form]
-  );
+    }
+  };
 
-  const onSaveDone = useCallback(
-    async (err: Error | null, updatedForm: FormSchema) => {
-      if (!err) {
-        dispatch(refreshForms(formType));
-
-        dispatch(push([basePath, updatedForm._id, formAction === "create" ? "edit" : formAction].join("/")));
-
-        onSuccess({
-          name: `${formAction}:${type}`,
-          title: `${type} saved`,
-          message: `The ${type} has been successfully updated!`,
-          data: updatedForm
-        });
-      } else {
-        onError({
-          name: `${formAction}:${type}`,
-          title: `Save ${type} failed`,
-          message: err.message,
-          error: err,
-          data: form
-        });
-      }
-    },
-    [formType, formAction, form._id]
-  );
-
-  const saveForm = useCallback(
-    (form: Partial<FormSchema>) => {
-      onSubmitForm(type, form);
-      dispatch(saveFormAction(type, form, onSaveDone));
-    },
-    [formType, form._id, onSaveDone]
-  );
+  const saveForm = (form: Partial<FormSchema>) => {
+    onSubmitForm(type, form);
+    dispatch(saveFormAction(type, form, onSaveDone));
+  };
 
   useEffect(() => {
     getForm();

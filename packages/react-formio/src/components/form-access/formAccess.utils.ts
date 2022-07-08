@@ -1,10 +1,11 @@
-import {ExtendedComponentSchema} from "formiojs";
+import { ExtendedComponentSchema } from "formiojs";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
-import {FormSchema, Submission} from "../../interfaces";
-import {RoleSchema} from "../../interfaces/RoleSchema";
-import {getAccessPermissionForm, getSubmissionPermissionForm} from "./formAccess.schema";
+
+import { FormSchema, Submission } from "../../interfaces";
+import { RoleSchema } from "../../interfaces/RoleSchema";
+import { getAccessPermissionForm, getSubmissionPermissionForm } from "./formAccess.schema";
 
 export interface Choice {
   label: string;
@@ -69,8 +70,8 @@ function hashToAccess(data: AccessRoles) {
 
 export function getFormAccess(roles: RoleSchema[]): FormAccessSchema {
   const choices = rolesToChoices(roles);
-  const access = getAccessPermissionForm({choices});
-  const submissionAccess = getSubmissionPermissionForm({choices});
+  const access = getAccessPermissionForm({ choices });
+  const submissionAccess = getSubmissionPermissionForm({ choices });
 
   return {
     access,
@@ -79,7 +80,7 @@ export function getFormAccess(roles: RoleSchema[]): FormAccessSchema {
 }
 
 export function dataAccessToSubmissions(form: Partial<FormSchema>, formAccess: FormAccessSchema): SubmissionAccess {
-  const getKeys = (components: ExtendedComponentSchema[]) => components.map(({key}) => key);
+  const getKeys = (components: ExtendedComponentSchema[]) => components.map(({ key }) => key);
 
   return {
     access: {
@@ -107,7 +108,7 @@ export function updateSubmissions(type: string, submission: Submission<AccessRol
   if (shouldUpdate(type, submission, submissions)) {
     submissions = {
       ...submissions,
-      [type]: {data: submission.data}
+      [type]: { data: submission.data }
     };
     cb(submissions);
   }

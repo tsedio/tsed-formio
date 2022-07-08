@@ -1,7 +1,8 @@
-import { Form, iconClass, RemoveModal, useTooltip, Loader } from "@tsed/react-formio";
+import { Form, iconClass, Loader, RemoveModal, useTooltip } from "@tsed/react-formio";
 import classnames from "classnames";
 import React from "react";
 import { useParams } from "react-router";
+
 import { UseFormProps } from "../hooks/useForm.hook";
 import { useSubmission } from "../hooks/useSubmission.hook";
 import { ucfirst } from "../utils/ucfirst";
@@ -24,7 +25,7 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
     saveSubmission,
     onFormReady,
     url,
-    i18n = f => f
+    i18n = (f) => f
   } = props;
 
   const RemoveModalComponent = props.RemoveModalComponent || RemoveModal;
@@ -67,7 +68,7 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
         <RemoveModalComponent
           i18n={i18n}
           show={true}
-          valueToCompare={form.name || ''}
+          valueToCompare={form.name || ""}
           itemType={formAction}
           onSubmit={removeSubmission}
           onClose={gotoEdit}

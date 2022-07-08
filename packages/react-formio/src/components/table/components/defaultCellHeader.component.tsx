@@ -5,7 +5,7 @@ export interface DefaultCellHeaderProps<Data extends object = any> extends Recor
   column: HeaderGroup<Data>;
 }
 
-export function DefaultCellHeader<Data extends Record<string, unknown> = {}>({ column }: DefaultCellHeaderProps) {
+export function DefaultCellHeader<Data extends Record<string, unknown> = {}>({ column }: DefaultCellHeaderProps<Data>) {
   return (
     <div className={"table-cell-header"}>
       <div className='table-cell-header__label' {...column.getSortByToggleProps()}>

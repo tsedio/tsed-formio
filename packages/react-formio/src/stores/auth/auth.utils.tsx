@@ -1,4 +1,5 @@
 import get from "lodash/get";
+
 import { FormSchema } from "../../interfaces/FormSchema";
 import { AuthState } from "./auth.reducers";
 
@@ -29,7 +30,7 @@ export function checkRoleFormAccess(auth: AuthState, form?: Partial<FormSchema>,
       return true;
     }
 
-    return (roles.includes("owner") && get(form, "owner") === get(auth, "user._id"));
+    return roles.includes("owner") && get(form, "owner") === get(auth, "user._id");
   }
 
   return true;
