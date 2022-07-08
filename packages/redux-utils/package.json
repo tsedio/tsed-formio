@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:coverage:update": "write-coverage",
     "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
     "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement"
   },

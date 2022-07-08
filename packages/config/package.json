@@ -8,6 +8,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {},
+  "bin": {
+    "write-coverage": "./bin/write-coverage.js"
+  },
   "devDependencies": {
     "@tsed/tailwind": "1.13.2",
     "@tsed/yarn-workspaces": "1.19.3"
