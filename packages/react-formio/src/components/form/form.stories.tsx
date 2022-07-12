@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Submission } from "../../interfaces";
 import form from "../__fixtures__/form.fixture.json";
@@ -188,4 +188,61 @@ export const ReadOnly = (args: any) => {
 ReadOnly.args = {
   readonly: true,
   form
+};
+
+export const OnChange = (args: any) => {
+  const [data, setForm] = useState<any>(() => {});
+  const props = wrap(args);
+
+  return (
+    <Form
+      {...props}
+      options={{ template: "tailwind", iconset: "bx", readOnly: args.readOnly }}
+      form={args.form}
+      submission={{ data }}
+      onChange={(changedSubmission) => {
+        setForm(changedSubmission.data);
+      }}
+    />
+  );
+};
+
+OnChange.args = {
+  form: {
+    type: "form",
+    display: "form",
+    tags: [],
+    components: [
+      {
+        label: "First name",
+        widget: {
+          type: "input"
+        },
+        errorLabel: "",
+        key: "firstName",
+        inputType: "text",
+        type: "textfield",
+        id: "eqb1o4r",
+        defaultValue: "",
+        validate: {
+          required: true
+        }
+      },
+      {
+        label: "Last name",
+        widget: {
+          type: "input"
+        },
+        errorLabel: "",
+        key: "lastName",
+        inputType: "text",
+        type: "textfield",
+        id: "eqb1o4r",
+        defaultValue: "",
+        validate: {
+          required: true
+        }
+      }
+    ]
+  }
 };

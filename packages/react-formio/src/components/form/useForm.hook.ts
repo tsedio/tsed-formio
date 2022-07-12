@@ -8,7 +8,11 @@ import { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { callLast } from "../../utils/callLast";
 
 export interface ChangedSubmission<T = any> extends Submission<T> {
-  changed: any;
+  changed: {
+    component: ExtendedComponentSchema;
+    instance: Form;
+    value: any;
+  } & Record<string, any>;
   isValid: boolean;
 }
 
@@ -57,9 +61,14 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   onFormReady?: (formio: Form) => void;
 }
 
-function useDebounce(event: string, callback: any, events: Map<string, any>) {
+function useEvent(event: string, callback: any, events: Map<string, any>) {
   useEffect(() => {
-    callback && events.set(event, callLast(callback, 100));
+    if (callback) {
+      // if (event === "onChange") {
+      //   callback = callLast(callback, 200);
+      // }
+      events.set(event, callback);
+    }
   }, [callback, event, events]);
 }
 
@@ -69,6 +78,7 @@ function useEvents(funcs: any) {
   const hasEvent = (event: string) => {
     return funcs.hasOwnProperty(event) && typeof funcs[event] === "function";
   };
+
   const emit = (event: string, ...args: any[]) => {
     if (hasEvent(event)) {
       const fn = events.current.has(event) ? events.current.get(event) : funcs[event];
@@ -76,7 +86,24 @@ function useEvents(funcs: any) {
     }
   };
 
-  useDebounce("onChange", funcs.onChange, events.current);
+  useEvent("onBlur", funcs["onBlur"], events.current);
+  useEvent("onPrevPage", funcs["onPrevPage"], events.current);
+  useEvent("onNextPage", funcs["onNextPage"], events.current);
+  useEvent("onCancel", funcs["onCancel"], events.current);
+  useEvent("onChange", funcs["onChange"], events.current);
+  useEvent("onCustomEvent", funcs["onCustomEvent"], events.current);
+  useEvent("onComponentChange", funcs["onComponentChange"], events.current);
+  useEvent("onSubmit", funcs["onSubmit"], events.current);
+  useEvent("onAsyncSubmit", funcs["onAsyncSubmit"], events.current);
+  useEvent("onSubmitDone", funcs["onSubmitDone"], events.current);
+  useEvent("onFormLoad", funcs["onFormLoad"], events.current);
+  useEvent("onError", funcs["onError"], events.current);
+  useEvent("onRender", funcs["onRender"], events.current);
+  useEvent("onAttach", funcs["onAttach"], events.current);
+  useEvent("onBuild", funcs["onBuild"], events.current);
+  useEvent("onFocus", funcs["onFocus"], events.current);
+  useEvent("onBlur", funcs["onBlur"], events.current);
+  useEvent("onInitialized", funcs["onInitialized"], events.current);
 
   return { events, emit, hasEvent };
 }
@@ -121,10 +148,8 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
         if (event.startsWith("formio.")) {
           const eventName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
 
-          if (eventName === "onChange") {
-            if (isEqual(get(submission, "data"), args[0].data)) {
-              return;
-            }
+          if (eventName === "onChange" && !args[0].changed) {
+            return;
           }
 
           emit(eventName, ...args, instance.current);
@@ -148,6 +173,10 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
   useEffect(() => {
     if (instance.current) {
       instance.current.ready.then((formio: any) => {
+        if (isEqual(formio.submission.data, submission?.data)) {
+          return;
+        }
+
         submission && (formio.submission = cloneDeep(submission));
       });
     }
