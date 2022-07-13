@@ -1,16 +1,14 @@
 import { ExtendedComponentSchema, Form } from "formiojs";
-import { get } from "lodash";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import { useEffect, useRef } from "react";
 
 import { FormOptions, FormSchema, Submission } from "../../interfaces";
-import { callLast } from "../../utils/callLast";
 
 export interface ChangedSubmission<T = any> extends Submission<T> {
   changed: {
     component: ExtendedComponentSchema;
-    instance: Form;
+    instance: any;
     value: any;
   } & Record<string, any>;
   isValid: boolean;
@@ -58,15 +56,12 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   onFocus?: Function;
   onBlur?: Function;
   onInitialized?: Function;
-  onFormReady?: (formio: Form) => void;
+  onFormReady?: (formio: any) => void;
 }
 
 function useEvent(event: string, callback: any, events: Map<string, any>) {
   useEffect(() => {
     if (callback) {
-      // if (event === "onChange") {
-      //   callback = callLast(callback, 200);
-      // }
       events.set(event, callback);
     }
   }, [callback, event, events]);
