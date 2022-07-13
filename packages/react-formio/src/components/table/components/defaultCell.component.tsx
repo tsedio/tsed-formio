@@ -2,7 +2,7 @@ import React from "react";
 
 export function DefaultCell({ value, render = (f: any) => f }: any): JSX.Element {
   if (value === undefined) {
-    return <></>;
+    return <span></span>;
   }
 
   const rendered = render(value);

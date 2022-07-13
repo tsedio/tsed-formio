@@ -11,8 +11,8 @@
     "lint:fix": "yarn lint --fix",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:coverage:update": "write-coverage",
-    "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
-    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement"
+    "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx",
+    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx"
   },
   "peerDependencies": {
     "@tsed/react-formio": "^1.4.0",
