@@ -1,12 +1,27 @@
 {
   "name": "@tsed/redux-utils",
   "version": "1.13.6",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
   "description": "An opinionated lib to create actions and reducers for Redux written in TypeScript",
   "author": "Romain Lenzotti",
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.tsx",
+  "exports": {
+    ".": {
+      "node": {
+        "module": "./dist/index.modern.js",
+        "require": "./dist/index.js",
+        "import": "./dist/index.modern.js"
+      },
+      "browser": {
+        "import": "./dist/index.modern.js",
+        "require": "./dist/index.js"
+      },
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "yarn lint --fix",

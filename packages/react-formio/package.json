@@ -5,6 +5,21 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
+  "exports": {
+    ".": {
+      "node": {
+        "module": "./dist/index.modern.js",
+        "require": "./dist/index.js",
+        "import": "./dist/index.modern.js"
+      },
+      "browser": {
+        "import": "./dist/index.modern.js",
+        "require": "./dist/index.js"
+      },
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "license": "MIT",
   "scripts": {
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
