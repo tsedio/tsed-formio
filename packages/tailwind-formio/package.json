@@ -1,6 +1,6 @@
 {
   "name": "@tsed/tailwind-formio",
-  "version": "1.13.6",
+  "version": "1.13.7-rc.1",
   "description": "Tailwind templates for form.io forms.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -25,8 +25,8 @@
     "@storybook/addons": "6.5.9",
     "@storybook/react": "6.5.9",
     "@svgr/webpack": "5.5.0",
-    "@tsed/config": "1.13.6",
-    "@tsed/tailwind": "1.13.6",
+    "@tsed/config": "1.13.7-rc.1",
+    "@tsed/tailwind": "1.13.7-rc.1",
     "@tsed/yarn-workspaces": "1.19.3",
     "babel-loader": "8.2.2",
     "cross-env": "7.0.3",

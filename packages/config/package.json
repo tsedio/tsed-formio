@@ -1,6 +1,6 @@
 {
   "name": "@tsed/config",
-  "version": "1.13.6",
+  "version": "1.13.7-rc.1",
   "main": "src/index.js",
   "main:src": "src/index.js",
   "description": "Shared configuration",
@@ -15,7 +15,7 @@
     "write-coverage": "./bin/write-coverage.js"
   },
   "devDependencies": {
-    "@tsed/tailwind": "1.13.6",
+    "@tsed/tailwind": "1.13.7-rc.1",
     "@tsed/yarn-workspaces": "1.19.3"
   },
   "dependencies": {},
