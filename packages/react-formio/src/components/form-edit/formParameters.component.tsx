@@ -19,6 +19,8 @@ export interface FormParametersProps {
   displayChoices?: { label: string; value: any }[];
   enableTags?: boolean;
   className?: string;
+  baseUrl?: string;
+  readonly?: Record<string, boolean>;
 }
 
 export function FormParameters({
@@ -27,7 +29,9 @@ export function FormParameters({
   enableTags = true,
   typeChoices = [],
   displayChoices = defaultDisplayChoices,
-  className = ""
+  className = "",
+  readonly = {},
+  baseUrl = window.location.origin
 }: FormParametersProps): ReactElement {
   const hasTypeChoices = typeChoices && typeChoices.length > 1;
 
@@ -40,6 +44,7 @@ export function FormParameters({
           name={"title"}
           required={true}
           value={form.title}
+          disabled={!!readonly["title"]}
           onChange={onChange}
         />
       </div>
@@ -49,6 +54,7 @@ export function FormParameters({
           placeholder='Enter the form machine name'
           name={"name"}
           required={true}
+          disabled={!!readonly["name"]}
           value={form.name}
           onChange={onChange}
         />
@@ -62,17 +68,25 @@ export function FormParameters({
           description={
             <span className={"text-xxs flex items-center"}>
               <i className={"bx bx-link ml-1 mr-1"} />
-              {window.location.origin + "/" + form.path}
+              {`${baseUrl}/${form.path}`}
             </span>
           }
           required={true}
           value={form.path}
+          disabled={!!readonly["path"]}
           style={{ textTransform: "lowercase", width: "120px" }}
           onChange={onChange}
         />
       </div>
       <div className={"w-1/3"}>
-        <Select label={"Display as"} name={"display"} value={form.display} choices={displayChoices} onChange={onChange} />
+        <Select
+          label={"Display as"}
+          name={"display"}
+          disabled={!!readonly["display"]}
+          value={form.display}
+          choices={displayChoices}
+          onChange={onChange}
+        />
       </div>
       {hasTypeChoices && (
         <div className={"w-1/3"}>
