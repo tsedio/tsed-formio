@@ -24,7 +24,7 @@
     "@storybook/addon-viewport": "^6.5.9",
     "@storybook/addons": "6.5.9",
     "@storybook/react": "6.5.9",
-    "@svgr/webpack": "5.5.0",
+    "@svgr/webpack": "6.5.1",
     "@tsed/config": "1.14.1",
     "@tsed/tailwind": "1.14.1",
     "@tsed/yarn-workspaces": "1.19.3",
