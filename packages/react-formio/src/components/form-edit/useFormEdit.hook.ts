@@ -1,3 +1,4 @@
+import cloneDeep from "lodash/cloneDeep";
 import { useEffect, useReducer } from "react";
 
 import { FormSchema } from "../../interfaces/FormSchema";
@@ -47,7 +48,7 @@ export function useFormEdit(props: UseFormEditHookProps) {
   };
 
   return {
-    form: current,
+    form: cloneDeep(current),
     redo,
     undo,
     reset,
