@@ -13,7 +13,7 @@ import {
   selectRoot,
   selectSubmission,
   Submission
-} from "@tsed/react-formio";
+} from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";
 import { useEffect, useRef } from "react";

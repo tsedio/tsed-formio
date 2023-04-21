@@ -7,7 +7,7 @@ import {
   selectAvailableActions,
   selectError,
   selectForm
-} from "@tsed/react-formio";
+} from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

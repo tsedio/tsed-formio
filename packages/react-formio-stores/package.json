@@ -1,7 +1,7 @@
 {
-  "name": "@tsed/react-formio",
+  "name": "@tsed/react-formio-stores",
   "version": "1.14.1",
-  "description": "Provide a react formio wrapper. Written in TypeScript.",
+  "description": "Provide redux stores and action around formio.js API. Written in TypeScript.",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
@@ -15,11 +15,13 @@
     "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx"
   },
   "dependencies": {
+    "@tsed/redux-utils": "1.14.1",
+    "@tsed/react-formio": "1.14.1",
     "eventemitter2": "^6.4.3",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@formio/choices.js": ">=10.2.0",
+    "@formio/choices.js": ">=9.0.1",
     "formiojs": ">=4.0.0",
     "lodash": ">=4.17.20",
     "prop-types": ">=15.7.2",

@@ -13,7 +13,8 @@ export {
 export * from "./components";
 export * from "./hooks/useTooltip";
 export * from "./interfaces";
-export * from "./stores";
+export * from "./utils/callLast";
 export * from "./utils/iconClass";
-export * from "./utils/url";
+export * from "./utils/mapPagination";
+export * from "./utils/stopPropagationWrapper";
 export { Components, Formio, Templates, Utils } from "formiojs";

@@ -1,4 +1,4 @@
-import Choices from "choices.js";
+import Choices from "@formio/choices.js";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import React, { ReactElement, useEffect, useRef } from "react";
