@@ -15,10 +15,9 @@
     "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx"
   },
   "peerDependencies": {
-    "@formio/choices.js": "^10.2.0",
-    "@tsed/react-formio": "^1.4.0",
-    "@tsed/react-formio-stores": "^1.4.0",
-    "@tsed/redux-utils": "^1.4.0",
+    "@formio/choices.js": "^9.0.1",
+    "@tsed/react-formio": "^2.0.0",
+    "@tsed/react-formio-stores": "^2.0.0",
     "classnames": "^2.3.1",
     "connected-react-router": "^6.9.1",
     "file-saver": "^2.0.5",
