@@ -1,6 +1,6 @@
 {
   "name": "@tsed/react-formio-stores",
-  "version": "1.14.1",
+  "version": "2.0.0",
   "description": "Provide redux stores and action around formio.js API. Written in TypeScript.",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -15,8 +15,8 @@
     "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx"
   },
   "dependencies": {
-    "@tsed/redux-utils": "1.14.1",
-    "@tsed/react-formio": "1.14.1",
+    "@tsed/react-formio": "2.0.0",
+    "@tsed/redux-utils": "2.0.0",
     "eventemitter2": "^6.4.3",
     "prop-types": "^15.7.2"
   },
@@ -31,7 +31,7 @@
     "tooltip.js": ">=1.3.3"
   },
   "devDependencies": {
-    "@tsed/tailwind": "1.14.1",
-    "@tsed/tailwind-formio": "1.14.1"
+    "@tsed/tailwind": "2.0.0",
+    "@tsed/tailwind-formio": "2.0.0"
   }
 }
