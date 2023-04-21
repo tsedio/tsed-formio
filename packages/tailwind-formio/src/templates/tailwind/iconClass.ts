@@ -1,4 +1,4 @@
-export const ICONS = {
+export const ICONS: Record<string, any> = {
   remove: "bxs-trash",
   "question-sign":
     "bx-question-mark inline-block border-1 bg-gray-400 border-solid border-gray-400 text-white text-xxs rounded-full mx-2 mt-px",
