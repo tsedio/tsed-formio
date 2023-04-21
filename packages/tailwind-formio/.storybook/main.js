@@ -4,7 +4,7 @@ const formioDir = dirname(require.resolve('@tsed/react-formio'))
 const formioContainerDir = dirname(require.resolve('@tsed/react-formio-container'))
 const tailwindDir = dirname(require.resolve('@tsed/tailwind-formio'))
 
-const scanDirs = (dir) => [
+const scanDirs = dir => [
   join(dir, '**/*.stories.mdx'),
   join(dir, '**/*.story.mdx'),
   join(dir, '**/*.story.@(js|jsx|ts|tsx)'),
@@ -33,8 +33,7 @@ module.exports = {
           sourceMap: true
         }
       }
-    }
-  ],
+    }],
   stories: [
     join(rootDir, '**/*.stories.mdx'),
     join(rootDir, '**/*.stories.@(js|jsx|ts|tsx)'),
@@ -48,7 +47,12 @@ module.exports = {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
+      propFilter: prop => prop.parent ? !/node_modules/.test(prop.parent.fileName) : true
     }
-  }
+  },
+  babel: options => ({
+    ...options,
+    'plugins': ['@babel/plugin-proposal-class-properties']
+  }),
+  framework: '@storybook/react'
 }
