@@ -1,5 +1,5 @@
-import { AuthState, checkRoleFormAccess, FormSchema } from "@tsed/react-formio";
-import { TabsItemProps } from "@tsed/react-formio/src/components/tabs/tabs.component";
+import type { TabsItemProps } from "@tsed/react-formio";
+import { AuthState, checkRoleFormAccess, FormSchema } from "@tsed/react-formio-stores";
 import React from "react";
 
 import { FormAccessView } from "./formAccess.view";

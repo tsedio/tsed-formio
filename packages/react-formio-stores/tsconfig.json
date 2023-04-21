@@ -1,0 +1,15 @@
+{
+  "extends": "@tsed/config/tsconfig.web.json",
+  "compilerOptions": {
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "../redux-utils/tsconfig.json"
+    }
+  ]
+}

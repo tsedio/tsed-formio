@@ -1,8 +1,8 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   roots: ["<rootDir>/src"],
-  collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts", "!src/mocks/**", "!src/__mock__/**"],
-  coveragePathIgnorePatterns: [],
+  collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"],
+  coveragePathIgnorePatterns: [".stories.tsx", "__mock__/", "mocks/"],
   testEnvironment: "jsdom",
   setupFilesAfterEnv: [require.resolve("./setupTest.js")],
   transform: {
