@@ -53,6 +53,15 @@ See our [storybook](https://formio.tsed.io/) to see all available components.
 - TypeScript support.
 - Tailwind support.
 
+## Migrate from v1
+
+If you use redux actions from v1, you have to install `@tsed/redux-formio-stores` and remplace your imports:
+
+```diff
+- import { defaultFormioReducer, formsReducer } from "@tsed/react-formio";
++ import { defaultFormioReducer, formsReducer } from "@tsed/react-formio-stores";
+```
+
 ## Install
 
 `@tsed/react-formio` can be used on the server, or bundled for the client using an
@@ -261,63 +270,6 @@ The submisison grid will render a list of submissions and allow clicking on one 
 | ------ | -------------------- | ------- | -------------------------------------------------------------------------------- |
 | `data` | array of submissions | []      | A list of submissions to be rendered in the grid.                                |
 | `form` | object               | {}      | The form definition for the submissions. This is used to render the submissions. |
-
-## Redux
-
-@tsed/react-formio contain Redux actions, reducers and selectors to simplify the API requests made for `form.io` forms.
-reducers, actions and selectors.
-The following reducers have names:
-
-- formsReducers: manage the forms,
-- formReducers: manage the current form,
-- submissionsReducers: manage the submissions of a form.
-- submissionReducers: manage the current submission of a form
-
-This provides namespaces so the same actions and reducers can be re-used within the same redux state.
-
-In addition, the package provides the follwing reducers
-
-- actionsReducers: Manage actions of a form.
-- actionReducers: Manage the current action of a form.
-- actionInfoReducers: Manage the available actions for all forms and resources.
-- authReducers: Manage formio authentication.
-
-By default, `@tsed/react-formio` provides defaults combined reducers as following:
-
-```typescript
-export const defaultFormioReducer = combine(
-  authReducer,
-  actionsReducer,
-  actionReducer,
-  actionInfoReducer,
-  formReducer("form"),
-  formsReducer("forms", { query: { type: "form" } }),
-  formReducer("resource"),
-  formsReducer("resources", { query: { type: "resource" } }),
-  submissionReducer("submission"),
-  submissionsReducer("submissions")
-);
-```
-
-This `defaultFormioReducer` can be added and configured in your rootReducer as following :
-
-```typescript
-import { combine } from "@tsed/redux-utils";
-import { defaultFormioReducer, formsReducer } from "@tsed/react-formio";
-import { connectRouter } from "connected-react-router";
-import { combineReducers } from "redux";
-
-export const rootReducers = (history: any) =>
-  combineReducers({
-    router: connectRouter(history),
-    ...defaultFormioReducer,
-    // override defaultFormioReducer can done as following
-    ...combine(
-      formsReducer("forms", { query: { type: "form", tags: ["common"] } }), // return only forms with the common tags
-      formsReducer("resources", { query: { type: "resource", tags: ["common"] } }) // return only resources with the common tags
-    )
-  });
-```
 
 ## Contributors
 

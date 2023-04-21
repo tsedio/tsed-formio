@@ -1,4 +1,4 @@
-import { AuthState, selectAuth, selectForm } from "@tsed/react-formio";
+import { AuthState, selectAuth, selectForm } from "@tsed/react-formio-stores";
 import noop from "lodash/noop";
 import { useSelector } from "react-redux";
 
