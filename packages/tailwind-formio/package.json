@@ -1,6 +1,6 @@
 {
   "name": "@tsed/tailwind-formio",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Tailwind templates for form.io forms.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -25,11 +25,11 @@
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/addon-viewport": "6.5.16",
     "@storybook/addons": "6.5.16",
-    "@storybook/react": "6.5.16",
     "@storybook/builder-vite": "0.4.2",
+    "@storybook/react": "6.5.16",
     "@svgr/webpack": "6.5.1",
-    "@tsed/config": "2.0.2",
-    "@tsed/tailwind": "2.0.2",
+    "@tsed/config": "2.0.3",
+    "@tsed/tailwind": "2.0.3",
     "@tsed/yarn-workspaces": "1.19.3",
     "@vitejs/plugin-react": "4.0.0",
     "babel-loader": "^8.2.5",
@@ -42,10 +42,10 @@
     "react-svg": "10.0.23",
     "serve": "^13.0.4",
     "url-loader": "4.1.1",
-    "webpack": "4.44.2",
-    "webpack-cli": "4.9.2",
     "vite": "^4.3.5",
-    "vite-plugin-svgr": "^2.4.0"
+    "vite-plugin-svgr": "^2.4.0",
+    "webpack": "4.44.2",
+    "webpack-cli": "4.9.2"
   },
   "browserslist": {
     "production": [
