@@ -3,6 +3,8 @@ const rootDir = join(__dirname, '..', 'src')
 const formioDir = dirname(require.resolve('@tsed/react-formio'))
 const formioContainerDir = dirname(require.resolve('@tsed/react-formio-container'))
 const tailwindDir = dirname(require.resolve('@tsed/tailwind-formio'))
+const {mergeConfig} = require('vite')
+const svgr = require("vite-plugin-svgr");
 
 const scanDirs = dir => [
   join(dir, '**/*.stories.mdx'),
@@ -41,18 +43,21 @@ module.exports = {
     ...scanDirs(join(formioContainerDir, '..', 'src')),
     ...scanDirs(join(tailwindDir, '..', 'src', 'templates'))
   ],
-  typescript: {
-    check: false,
-    checkOptions: {},
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      propFilter: prop => prop.parent ? !/node_modules/.test(prop.parent.fileName) : true
-    }
+  core: {
+    builder: "@storybook/builder-vite"
   },
-  babel: options => ({
-    ...options,
-    'plugins': ['@babel/plugin-proposal-class-properties']
-  }),
-  framework: '@storybook/react'
+  features: {
+    storyStoreV7: true
+  },
+  async viteFinal (config) {
+    // return the customized config
+    return mergeConfig(config, {
+      // customize the Vite config here
+      base: "./",
+      define: {
+        "process.env.NODE_ENV": `'${process.env.NODE_ENV}'`
+      },
+      plugins: [svgr()]
+    });
+  }
 }

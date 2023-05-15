@@ -1,25 +1,14 @@
 {
+  "extends": "@tsed/config/tsconfig.web.json",
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "preserveConstEnums": true,
     "outDir": "lib",
-    "noImplicitAny": true,
-    "sourceMap": false,
-    "declaration": true,
     "rootDir": "src",
-    "allowJs": true,
-    "noEmit": true,
-    "lib": ["dom", "esnext"],
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "strictNullChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "allowJs": true
   },
-  "include": ["src/*.ts", "src/*.ejs", "src/**/*.ts", "src/**/*.ejs"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": ["src"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

@@ -11,10 +11,12 @@
     "build:storybook": "build-storybook -c ../tailwind-formio/.storybook -o .out",
     "serve": "serve .out",
     "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
+    "build:tsc": "tsc --noEmit false",
+    "build:templates": "gulp templates",
     "build": "tsc --noEmit false && gulp templates && yarn webpack"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
+    "@babel/core": "^7.18.9",
     "@sambego/storybook-state": "2.0.1",
     "@storybook/addon-actions": "6.5.16",
     "@storybook/addon-docs": "6.5.16",
@@ -24,11 +26,13 @@
     "@storybook/addon-viewport": "6.5.16",
     "@storybook/addons": "6.5.16",
     "@storybook/react": "6.5.16",
+    "@storybook/builder-vite": "0.4.2",
     "@svgr/webpack": "6.5.1",
     "@tsed/config": "2.0.2",
     "@tsed/tailwind": "2.0.2",
     "@tsed/yarn-workspaces": "1.19.3",
-    "babel-loader": "8.2.2",
+    "@vitejs/plugin-react": "4.0.0",
+    "babel-loader": "^8.2.5",
     "cross-env": "7.0.3",
     "gulp": "^4.0.2",
     "gulp-insert": "^0.5.0",
@@ -39,7 +43,9 @@
     "serve": "^13.0.4",
     "url-loader": "4.1.1",
     "webpack": "4.44.2",
-    "webpack-cli": "4.9.2"
+    "webpack-cli": "4.9.2",
+    "vite": "^4.3.5",
+    "vite-plugin-svgr": "^2.4.0"
   },
   "browserslist": {
     "production": [

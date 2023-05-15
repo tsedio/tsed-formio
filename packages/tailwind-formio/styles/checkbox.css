@@ -11,7 +11,7 @@
   @apply appearance-none p-0 inline-block align-middle flex-shrink-0 bg-white border-1;
   @apply rounded border-gray-300 text-primary-600 shadow-sm;
   @apply mr-2;
-  color-adjust: exact;
+  print-color-adjust: exact;
   background-origin: border-box;
   user-select: none;
   height: theme('spacing.4');
