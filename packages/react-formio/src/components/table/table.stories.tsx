@@ -62,3 +62,59 @@ Sandbox.args = {
     }
   ]
 };
+
+export const TableWithDragNDrop = (args: any) => {
+  const [skip, setSkip] = React.useState(0);
+  const [limit, setLimit] = React.useState(10);
+  const [serverCount] = React.useState(87);
+  const [data, setData] = React.useState(() => formSubmissions);
+
+  const onChange = (obj: any) => {
+    setLimit(obj.pageSize);
+    setSkip(obj.pageIndex * obj.pageSize);
+    args.onChange && args.onChange(obj);
+  };
+
+  return (
+    <Table
+      {...args}
+      data={data}
+      onChange={onChange}
+      {...mapPagination({
+        skip,
+        limit,
+        serverCount
+      })}
+      onDrag={(data) => {
+        setData(data);
+      }}
+    />
+  );
+};
+
+TableWithDragNDrop.args = {
+  enableDragNDrop: true,
+  data: [],
+  columns: mapFormToColumns(formSchema as any),
+  operations: [
+    {
+      title: "Edit",
+      action: "edit",
+      alias: "row",
+      path: "/resources/:resourceId/submissions/:submissionId",
+      icon: "edit",
+      permissionsResolver() {
+        return true;
+      }
+    },
+    {
+      action: "delete",
+      path: "/resources/:resourceId/submissions/:submissionId/delete",
+      icon: "trash",
+      buttonType: "danger",
+      permissionsResolver() {
+        return true;
+      }
+    }
+  ]
+};

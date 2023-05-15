@@ -1,5 +1,5 @@
 import noop from "lodash/noop";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import { CellProps, FilterProps, Renderer, TableOptions, useFilters, useGroupBy, usePagination, useSortBy, useTable } from "react-table";
 
 import { OnClickOperation, Operation, QueryOptions } from "../../../interfaces";
@@ -8,6 +8,7 @@ import { DefaultArrowSort } from "../components/defaultArrowSort.component";
 import { DefaultCellHeader, DefaultCellHeaderProps } from "../components/defaultCellHeader.component";
 import { DefaultRow, DefaultRowProps } from "../components/defaultRow.component";
 import { DefaultColumnFilter } from "../filters/defaultColumnFilter.component";
+import { swapElements } from "../utils/swapElements";
 import { useOperations } from "./useOperations.hook";
 
 export interface TableProps<Data extends object = any> extends TableOptions<Data>, Partial<QueryOptions> {
@@ -81,6 +82,13 @@ export interface TableProps<Data extends object = any> extends TableOptions<Data
   operations?: Operation[];
 
   i18n?: (f: string) => string;
+
+  /**
+   * Enable drag and drop rows
+   */
+  enableDragNDrop?: boolean;
+  onDrag?: (data: Data[]) => void;
+  onDrop?: (item: Data) => void;
 }
 
 export function getOperationCallback(operations: Operation[], onClick: OnClickOperation) {
@@ -110,6 +118,8 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
     data,
     onChange = noop,
     onClick = noop,
+    onDrag = noop,
+    onDrop = noop,
     operations = [],
     pageSizes = [10, 25, 50, 100],
     filters: controlledFilters,
@@ -145,6 +155,16 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
 
   const [filterId, setFilterId] = React.useState(controlledFilterId);
 
+  // DND
+  const [records, setRecords] = useState<Data[]>(data);
+  const _onDrag = (dragIndex: number, hoverIndex: number) => {
+    const newRecords = swapElements([...records], dragIndex, hoverIndex);
+
+    setRecords(newRecords);
+
+    onDrag(newRecords);
+  };
+
   const tableInstance = useTable<Data>(
     {
       ...props,
@@ -152,6 +172,7 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
       data,
       ctx,
       defaultColumn,
+      // getRowId,
       initialState: {
         ...(props.initialState || {}),
         filters: controlledFilters || [],
@@ -203,6 +224,8 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
     pageSizes,
     setPageSize,
     i18n,
-    children
+    children,
+    onDrag: _onDrag,
+    onDrop: onDrop
   };
 }

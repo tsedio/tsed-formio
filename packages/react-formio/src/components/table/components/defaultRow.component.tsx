@@ -1,24 +1,50 @@
+import classnames from "classnames";
+import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import { Row } from "react-table";
 
-export interface DefaultRowProps<Data extends object = {}> {
+import { iconClass } from "../../../utils/iconClass";
+import { useDndRow } from "../hooks/useDragnDropRow.hook";
+import { DefaultCells } from "./defaultCells.component";
+
+export interface DefaultRowProps<Data extends object = {}>
+  extends Omit<DetailedHTMLProps<HTMLAttributes<HTMLTableRowElement>, HTMLTableRowElement>, "onClick" | "onDrag" | "onDrop"> {
   onClick: (data: any, action: string) => void;
   row: Row<Data>;
+  index: number;
+  onDrop: (item: Data) => void;
+  onDrag: (index: number, hoverIndex: number) => void;
+  enableDragNDrop?: boolean;
 }
 
-export function DefaultRow<Data extends object = {}>({ onClick, row }: DefaultRowProps<Data>) {
+export function DefaultDndRow<Data extends object = {}>(props: DefaultRowProps<Data>) {
+  const { isDragging, dragRef, dropRef, opacity } = useDndRow(props);
+
   return (
-    <tr onClick={() => onClick(row.original, "row")} {...row.getRowProps()}>
-      {row.cells.map((cell, i) => {
-        const { hidden, colspan } = cell.column as any;
-        if (hidden) {
-          return null;
-        }
-        return (
-          <td colSpan={colspan} {...cell.getCellProps()} key={`tableInstance.page.cells.${cell.value || "value"}.${i}`}>
-            {cell.render("Cell")}
-          </td>
-        );
-      })}
+    <tr ref={dropRef} style={{ opacity }}>
+      <td ref={dragRef} role='cell' style={{ cursor: isDragging ? "grabbing" : "grab" }} className='align-middle'>
+        <div className='flex items-center justify-center'>
+          <i className={classnames(iconClass(undefined, "dots-vertical-rounded"))} />
+        </div>
+      </td>
+      <DefaultCells<Data> {...props} />
+    </tr>
+  );
+}
+
+export function DefaultRow<Data extends object = {}>({ onClick, row, enableDragNDrop, onDrop, onDrag, ...props }: DefaultRowProps<Data>) {
+  const opts = {
+    ...props,
+    onClick: () => onClick(row.original, "row"),
+    ...row.getRowProps()
+  };
+
+  if (enableDragNDrop) {
+    return <DefaultDndRow<Data> {...opts} row={row} onDrag={onDrag} onDrop={onDrop} />;
+  }
+
+  return (
+    <tr {...opts}>
+      <DefaultCells<Data> row={row} />
     </tr>
   );
 }
