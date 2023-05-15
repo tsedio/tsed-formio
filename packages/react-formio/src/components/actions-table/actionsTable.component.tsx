@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import { ActionSchema } from "../../interfaces";
 import { iconClass } from "../../utils/iconClass";
 import { Select } from "../select/select.component";
-import { Table, TableProps } from "../table/table.component";
+import { TableProps } from "../table/hooks/useCustomTable.hook";
+import { Table } from "../table/table.component";
 
 export type ActionsTableProps = Omit<TableProps<ActionSchema>, "columns"> & {
   onAddAction?: (actionName: string) => void;

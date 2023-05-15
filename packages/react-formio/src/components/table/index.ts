@@ -7,5 +7,6 @@ export * from "./components/defaultOperationButton.component";
 export * from "./filters/defaultColumnFilter.component";
 export * from "./filters/selectColumnFilter.component";
 export * from "./filters/sliderColumnFilter.component";
+export * from "./hooks/useCustomTable.hook";
+export * from "./hooks/useOperations.hook";
 export * from "./table.component";
-export * from "./utils/useOperations.hook";

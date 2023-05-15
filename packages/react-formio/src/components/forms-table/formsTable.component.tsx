@@ -3,7 +3,8 @@ import React from "react";
 import { FormSchema } from "../../interfaces";
 import { DefaultColumnFilter } from "../table/filters/defaultColumnFilter.component";
 import { SelectColumnFilter } from "../table/filters/selectColumnFilter.component";
-import { Table, TableProps } from "../table/table.component";
+import { TableProps } from "../table/hooks/useCustomTable.hook";
+import { Table } from "../table/table.component";
 import { FormsCell as DefaultFormCell } from "./components/formCell.component";
 
 export type FormsTableProps = Omit<TableProps<FormSchema>, "columns"> & {
