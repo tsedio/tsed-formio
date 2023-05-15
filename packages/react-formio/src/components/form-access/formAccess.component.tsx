@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { PropsWithChildren, ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 
-import { FormOptions, FormSchema, Submission } from "../../interfaces";
+import type { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";
 import { Form } from "../form/form.component";
 import { ChangedSubmission } from "../form/useForm.hook";

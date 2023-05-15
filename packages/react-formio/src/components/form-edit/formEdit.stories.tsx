@@ -1,8 +1,8 @@
 import React from "react";
 
-import { FormEdit } from "../../index";
+import { FormEdit } from "./formEdit.component";
 import { defaultDisplayChoices } from "./formParameters.component";
-
+console.log("===", FormEdit);
 export default {
   title: "ReactFormio/FormEdit",
   component: FormEdit,

@@ -1,4 +1,4 @@
-import { ICONS } from "@tsed/tailwind-formio/lib/templates/tailwind/iconClass";
+import tailwind from "@tsed/tailwind-formio";
 import React from "react";
 
 import { FormsTable } from "./formsTable.component";
@@ -10,7 +10,7 @@ export default {
     icon: {
       control: {
         type: "select",
-        options: Object.keys(ICONS)
+        options: Object.keys(tailwind.templates.tailwind.ICONS)
       }
     },
     data: {

@@ -15,11 +15,11 @@ gulp.task("templates", () =>
         variable: "ctx"
       })
     )
-    .pipe(insert.prepend('Object.defineProperty(exports, "__esModule", {\n' + "  value: true\n" + "});\n" + "exports.default="))
+    .pipe(insert.prepend("export default "))
     .pipe(
       rename({
         extname: ".ejs.js"
       })
     )
-    .pipe(gulp.dest("lib"))
+    .pipe(gulp.dest("src"))
 );

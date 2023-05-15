@@ -1,9 +1,9 @@
 import { Formio, Templates } from "@tsed/react-formio";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-// import tailwind from "../lib/index.js";
+import tailwind from "../dist/index.modern.js";
 import "./styles/index.css";
 
-// Formio.use(tailwind);
+Formio.use(tailwind);
 Templates.framework = "tailwind";
 
 export const parameters = {

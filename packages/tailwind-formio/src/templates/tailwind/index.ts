@@ -27,7 +27,7 @@ import fieldset from "./fieldset";
 import file from "./file";
 import html from "./html";
 import icon from "./icon";
-import iconClass from "./iconClass";
+import iconClass, { ICONS } from "./iconClass";
 import input from "./input";
 import label from "./label";
 import loader from "./loader";
@@ -64,6 +64,7 @@ import wizardHeaderVertical from "./wizardHeaderVertical";
 import wizardNav from "./wizardNav";
 
 export default {
+  ICONS,
   transform(type: string, text: string) {
     if (!text) {
       return text;

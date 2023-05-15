@@ -2,8 +2,9 @@
   "name": "@tsed/tailwind-formio",
   "version": "2.0.3",
   "description": "Tailwind templates for form.io forms.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.ts",
   "scripts": {
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "yarn lint --fix",
@@ -11,9 +12,9 @@
     "build:storybook": "build-storybook -c ../tailwind-formio/.storybook -o .out",
     "serve": "serve .out",
     "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
-    "build:tsc": "tsc --noEmit false",
     "build:templates": "gulp templates",
-    "build": "tsc --noEmit false && gulp templates && yarn webpack"
+    "build:source": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx",
+    "build": "gulp templates && yarn build:source"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",

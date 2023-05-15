@@ -54,3 +54,4 @@ build
 .DS_Store
 .nyc_output
 /docs/.vuepress/dist/
+/packages/tailwind/COLORS.JSON

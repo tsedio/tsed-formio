@@ -1,4 +1,6 @@
-export const COLORS = Object.keys(require("./tailwind.config").theme.colors).reduce((obj, key) => {
+import colors from "./dist/colors.json";
+
+export const COLORS = Object.keys(colors).reduce((obj, key) => {
   return {
     ...obj,
     [key]: key
