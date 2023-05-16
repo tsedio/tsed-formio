@@ -1,3 +1,4 @@
+import React from "react";
 import { Row } from "react-table";
 
 export function DefaultCells<Data extends object = {}>({ row }: { row: Row<Data> }) {
