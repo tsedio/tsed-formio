@@ -1,6 +1,6 @@
 {
   "name": "@tsed/tailwind-formio",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Tailwind templates for form.io forms.",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -29,8 +29,8 @@
     "@storybook/builder-vite": "0.4.2",
     "@storybook/react": "6.5.16",
     "@svgr/webpack": "6.5.1",
-    "@tsed/config": "2.1.0",
-    "@tsed/tailwind": "2.1.0",
+    "@tsed/config": "2.1.1",
+    "@tsed/tailwind": "2.1.1",
     "@tsed/yarn-workspaces": "1.19.3",
     "@vitejs/plugin-react": "4.0.0",
     "babel-loader": "^8.2.5",
