@@ -1,5 +1,5 @@
 import noop from "lodash/noop";
-import React, { PropsWithChildren, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import { CellProps, FilterProps, Renderer, TableOptions, useFilters, useGroupBy, usePagination, useSortBy, useTable } from "react-table";
 
 import { OnClickOperation, Operation, QueryOptions } from "../../../interfaces";
@@ -157,6 +157,11 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
 
   // DND
   const [records, setRecords] = useState<Data[]>(data);
+
+  useEffect(() => {
+    setRecords(data);
+  }, [data]);
+
   const _onDrag = (dragIndex: number, hoverIndex: number) => {
     const newRecords = swapElements([...records], dragIndex, hoverIndex);
 
