@@ -1,6 +1,6 @@
 {
   "name": "@tsed/redux-utils",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
@@ -16,7 +16,7 @@
     "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement"
   },
   "devDependencies": {
-    "@tsed/config": "2.1.1"
+    "@tsed/config": "2.1.2"
   },
   "peerDependencies": {
     "react": "^17.0.2",
