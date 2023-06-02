@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import noop from "lodash/noop";
 import React, { PropsWithChildren, useState } from "react";
 
 import { iconClass } from "../../utils/iconClass";
@@ -37,7 +36,7 @@ export interface RemoveModalProps extends ModalProps {
 }
 
 export function RemoveModal({ maxWidth = "300px", children, ...props }: PropsWithChildren<RemoveModalProps>) {
-  const { i18n = noop } = props;
+  const { i18n = (f) => f } = props;
   const [value, setValue] = useState();
 
   return (
@@ -49,8 +48,8 @@ export function RemoveModal({ maxWidth = "300px", children, ...props }: PropsWit
       value={value}
       footer={RemoveModalFooter}
     >
-      <div className={"px-4 pt-3 pb-5"}>
-        <div className={"pb-1"}>
+      <div className='px-4 pt-3 pb-5'>
+        <div className='pb-1'>
           {children}
           {i18n("To drop")} <strong>{props.valueToCompare}</strong>,&nbsp;
           {i18n("type the")}&nbsp;

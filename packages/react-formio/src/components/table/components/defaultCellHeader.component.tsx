@@ -9,11 +9,11 @@ export function DefaultCellHeader<Data extends Record<string, unknown> = {}>({ c
   return (
     <div className={"table-cell-header"}>
       <div className='table-cell-header__label' {...column.getSortByToggleProps()}>
-        <span>{column.render("Header")}</span>
+        <span>{column.render("Header") as any}</span>
 
-        {column.render("ArrowSort")}
+        {column.render("ArrowSort") as any}
       </div>
-      {column.canFilter ? <div className='table-cell-header__filter'>{column.render("Filter")}</div> : null}
+      {column.canFilter ? <div className='table-cell-header__filter'>{column.render("Filter") as any}</div> : null}
     </div>
   );
 }

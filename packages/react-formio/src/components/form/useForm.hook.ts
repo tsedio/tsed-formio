@@ -114,7 +114,7 @@ export function useForm<Data = any>(props: UseFormHookProps<Data>) {
     if (hasEvent("onAsyncSubmit")) {
       try {
         await emit("onAsyncSubmit", submission, instance.current);
-      } catch (err) {
+      } catch (err: any) {
         callback(err?.errors || err);
       }
     } else {

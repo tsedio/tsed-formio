@@ -15,7 +15,7 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
   const [value, setValue] = useState(filterValue || "");
 
   const onChange = useCallback(
-    (name, value) => {
+    (name: string, value: any) => {
       setValue(value);
       setFilterId(id);
       setFilter(value || undefined);
