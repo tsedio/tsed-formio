@@ -1,0 +1,128 @@
+import {Canvas, Meta} from '@storybook/blocks'
+import * as FormStories from '../../react-formio/src/components/form/form.stories'
+
+<Meta title="Documentation/Form"/>
+
+<style>
+  {`
+  .sbdocs-wrapper {
+    background: #f7f7f7;
+  }
+  .sbdocs-wrapper .sbdocs-wrapper  {
+    background: #fff;
+  }
+  `}
+</style>
+
+# Form
+
+The form component is the primary component of the system. It is what takes the form definition (json) and renders the
+form into html. There are multiple ways to send the form to the Form component. The two main ways are to pass the `src`
+prop with an url to the form definition, usually a form.io server. The other is to pass the `form` prop with the json
+definition and optionally a `url` prop with the location of the form.
+
+## Props
+
+| Name         | Type   | Default | Description                                                                                                                                                                                                                                                                  |
+|--------------|--------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `src`        | url    |         | The url of the form definition. This is commonly from a form.io server. When using src, the form will automatically submit the data to that url as well.                                                                                                                     |
+| `url`        | url    |         | The url of the form definition. The form will not be loaded from this url and the submission will not be saved here either. This is used for file upload, oauth and other components or actions that need to know where the server is. Use this in connection with `form`    |
+| `form`       | object |         | Instead of loading a form from the `src` url, you can preload the form definition and pass it in with the `form` prop. You should also set `url` if you are using any advanced components like file upload or oauth.                                                         |
+| `submission` | object |         | Submission data to fill the form. You can either load a previous submission or create a submission with some pre-filled data. If you do not provide a submissions the form will initialize an empty submission using default values from the form.                           |
+| `options`    | object |         | an options object that can pass options to the formio.js Form that is rendered. You can set options such as `readOnly`, `noAlerts` or `hide`. There are [many options to be found in the formio.js library](https://github.com/formio/formio.js/wiki/Form-Renderer#options). |
+
+## Event Props
+
+| Name                | Parameters          | Description                                                      |
+|---------------------|---------------------|------------------------------------------------------------------|
+| `onChange`          | `schema`: object    | Triggered any time the form definition changes                   |
+| `onEditComponent`   | `component`: object | Triggered when the component settings dialog is opened           |
+| `onSaveComponent`   | `component`: object | Triggered when the component settings dialog is saved and closed |
+| `onCancelComponent` | `component`: object | Triggered when the component settings dialog is cancelled        |
+| `onDeleteComponent` | `component`: object | Triggered when a component is removed from the form              |
+| `onUpdateComponent` | `component`: object | Triggered when a component is added or moved in the form         |
+
+## Example
+
+### Basic usage
+```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Form } from "@tsed/react-formio";
+
+ReactDOM.render(
+   <Form form={{ display: "form", components: [/**/] }} onChange={(schema) => console.log(schema)} />,
+   document.getElementById("builder")
+);
+```
+
+Will render:
+
+<Canvas of={FormStories.Sandbox}/>
+
+### With src/url
+
+Give `Form` a `src` property and render:
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Form } from "@tsed/react-formio";
+
+ReactDOM.render(
+  <Form src='https://example.form.io/example' onSubmit={console.log} />,
+  document.getElementById("example")
+);
+```
+
+### With error management
+
+Give `Form` a `src` property and render:
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Form } from "@tsed/react-formio";
+
+interface MyFormData {
+  title: string;
+}
+
+
+const form = {
+  display: "form",
+  components: [
+    {
+      key: "title",
+      type: "textfield"
+    }
+  ]
+};
+
+ReactDOM.render(
+  <Form<MyFormData>
+    form={form}
+    onAsyncSubmit={(submission) => {
+      return httpClient.post("/path/to/external/service", { data: submission }).catch((er) => {
+        err.errors = [
+          {
+            message: "My custom message about this field",
+            type: "custom",
+            path: ["title"],
+            level: "error"
+          }
+        ];
+        throw error;
+      });
+    }}
+  />,
+  document.getElementById("example")
+);
+```
+
+Will render:
+
+<Canvas of={FormStories.TriggerError}/>
+
+> Clic on the Submit button to see the error.
+

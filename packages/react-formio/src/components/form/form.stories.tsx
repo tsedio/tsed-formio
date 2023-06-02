@@ -112,137 +112,143 @@ function wrap(args: any) {
   };
 }
 
-export const Sandbox = (args: any) => {
-  return <Form {...wrap(args)} form={args.form} options={{ template: "tailwind", iconset: "bx" }} />;
-};
-
-Sandbox.args = {
-  form
-};
-
-export const TriggerError = (args: any) => {
-  const onAsyncSubmit = (submission: Submission) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject(new Error("server error"));
-      }, 500);
-    }).catch((error) => {
-      error.errors = {
-        message: "My custom message about this field",
-        type: "custom",
-        path: ["firstName"],
-        level: "error"
-      };
-      throw error;
-    });
-  };
-
-  return <Form<any> {...wrap(args)} form={args.form} onAsyncSubmit={onAsyncSubmit} />;
-};
-
-TriggerError.args = {
-  form: {
-    type: "form",
-    display: "form",
-    tags: [],
-    components: [
-      {
-        label: "First name",
-        widget: {
-          type: "input"
-        },
-        errorLabel: "",
-        key: "firstName",
-        inputType: "text",
-        type: "textfield",
-        id: "eqb1o4r",
-        defaultValue: ""
-      },
-      {
-        label: "Submit",
-        showValidations: false,
-        tableView: false,
-        key: "submit",
-        type: "button",
-        input: true
-      }
-    ]
+export const Sandbox = {
+  args: {
+    form
+  },
+  render: (args: any) => {
+    return <Form {...wrap(args)} form={args.form} options={{ template: "tailwind", iconset: "bx" }} />;
   }
 };
 
-export const ReadOnly = (args: any) => {
-  return (
-    <Form
-      {...wrap(args)}
-      options={{ template: "tailwind", iconset: "bx", readOnly: args.readOnly }}
-      form={args.form}
-      submission={{
-        data: {
-          editGrid: [{ currency: "EUR" }]
-        }
-      }}
-    />
-  );
-};
+export const TriggerError = {
+  render: (args: any) => {
+    const onAsyncSubmit = (submission: Submission) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject(new Error("server error"));
+        }, 500);
+      }).catch((error) => {
+        error.errors = {
+          message: "My custom message about this field",
+          type: "custom",
+          path: ["firstName"],
+          level: "error"
+        };
+        throw error;
+      });
+    };
 
-ReadOnly.args = {
-  readonly: true,
-  form
-};
-
-export const OnChange = (args: any) => {
-  const [data, setForm] = useState<any>(() => {});
-  const props = wrap(args);
-
-  return (
-    <Form
-      {...props}
-      options={{ template: "tailwind", iconset: "bx", readOnly: args.readOnly }}
-      form={args.form}
-      submission={{ data }}
-      onChange={(changedSubmission) => {
-        setForm(changedSubmission.data);
-      }}
-    />
-  );
-};
-
-OnChange.args = {
-  form: {
-    type: "form",
-    display: "form",
-    tags: [],
-    components: [
-      {
-        label: "First name",
-        widget: {
-          type: "input"
+    return <Form<any> {...wrap(args)} form={args.form} onAsyncSubmit={onAsyncSubmit} />;
+  },
+  args: {
+    form: {
+      type: "form",
+      display: "form",
+      tags: [],
+      components: [
+        {
+          label: "First name",
+          widget: {
+            type: "input"
+          },
+          errorLabel: "",
+          key: "firstName",
+          inputType: "text",
+          type: "textfield",
+          id: "eqb1o4r",
+          defaultValue: ""
         },
-        errorLabel: "",
-        key: "firstName",
-        inputType: "text",
-        type: "textfield",
-        id: "eqb1o4r",
-        defaultValue: "",
-        validate: {
-          required: true
+        {
+          label: "Submit",
+          showValidations: false,
+          tableView: false,
+          key: "submit",
+          type: "button",
+          input: true
         }
-      },
-      {
-        label: "Last name",
-        widget: {
-          type: "input"
+      ]
+    }
+  }
+};
+
+export const ReadOnly = {
+  render: (args: any) => {
+    return (
+      <Form
+        {...wrap(args)}
+        options={{ template: "tailwind", iconset: "bx", readOnly: args.readOnly }}
+        form={args.form}
+        submission={{
+          data: {
+            editGrid: [{ currency: "EUR" }]
+          }
+        }}
+      />
+    );
+  },
+
+  args: {
+    readonly: true,
+    form
+  }
+};
+
+export const OnChange = {
+  render: function Render(args: any) {
+    const [data, setForm] = useState<any>(() => {});
+    const props = wrap(args);
+
+    return (
+      <Form
+        {...props}
+        options={{ template: "tailwind", iconset: "bx", readOnly: args.readOnly }}
+        form={args.form}
+        submission={{ data }}
+        onChange={(changedSubmission) => {
+          setForm(changedSubmission.data);
+        }}
+      />
+    );
+  },
+
+  args: {
+    form: {
+      type: "form",
+      display: "form",
+      tags: [],
+      components: [
+        {
+          label: "First name",
+          widget: {
+            type: "input"
+          },
+          errorLabel: "",
+          key: "firstName",
+          inputType: "text",
+          type: "textfield",
+          id: "eqb1o4r",
+          defaultValue: "",
+          validate: {
+            required: true
+          }
         },
-        errorLabel: "",
-        key: "lastName",
-        inputType: "text",
-        type: "textfield",
-        id: "eqb1o4r",
-        defaultValue: "",
-        validate: {
-          required: true
+        {
+          label: "Last name",
+          widget: {
+            type: "input"
+          },
+          errorLabel: "",
+          key: "lastName",
+          inputType: "text",
+          type: "textfield",
+          id: "eqb1o4r",
+          defaultValue: "",
+          validate: {
+            required: true
+          }
         }
-      }
-    ]
+      ]
+    }
   }
 };

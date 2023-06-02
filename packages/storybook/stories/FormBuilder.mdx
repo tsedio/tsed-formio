@@ -1,0 +1,64 @@
+import {Canvas, Meta} from '@storybook/blocks'
+import * as FormBuilderStories from '../../react-formio/src/components/form-builder/formBuilder.stories'
+
+<Meta title="Documentation/FormBuilder"/>
+
+<style>
+  {`
+  .sbdocs-wrapper {
+    background: #f7f7f7;
+  }
+  .sbdocs-wrapper .sbdocs-wrapper  {
+    background: #fff;
+  }
+  `}
+</style>
+
+# Form Builder
+
+The [FormBuilder](/story/reactformio-formbuilder--sandbox) class can be used to embed a form builder directly in your React application.
+
+Please note that you'll need to include the CSS for the form builder from formio.js as well.
+
+Please note that the [FormBuilder](/story/reactformio-formbuilder--sandbox) component does not load and save from/to an url.
+You must handle the form definition loading and saving yourself or use the [FormEdit](/docs/documentation-formedit--docs) component.
+
+## Props
+
+| Name      | Type   | Default | Description                                                                                                                                  |
+|-----------|--------|---------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `form`    | object |         | This is the form definition object. It should at least have a `display` property set to form, wizard or pdf.                                 |
+| `options` | object |         | an options object that can pass options to the formio.js Form that is rendered. There are many options to be found in the formio.js library. |
+
+## Event Props
+
+| Name                | Parameters          | Description                                                      |
+|---------------------|---------------------|------------------------------------------------------------------|
+| `onChange`          | `schema`: object    | Triggered any time the form definition changes                   |
+| `onEditComponent`   | `component`: object | Triggered when the component settings dialog is opened           |
+| `onSaveComponent`   | `component`: object | Triggered when the component settings dialog is saved and closed |
+| `onCancelComponent` | `component`: object | Triggered when the component settings dialog is cancelled        |
+| `onDeleteComponent` | `component`: object | Triggered when a component is removed from the form              |
+| `onUpdateComponent` | `component`: object | Triggered when a component is added or moved in the form         |
+
+## Example
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { FormBuilder } from "@tsed/react-formio";
+
+
+ReactDOM.render(
+  <FormBuilder form={{ display: "form" }} onChange={(schema) => console.log(schema)} />,
+  document.getElementById("builder")
+);
+```
+
+Will render the following:
+
+<Canvas of={FormBuilderStories.Sandbox} />
+
+## Example of a wizard form
+
+<Canvas of={FormBuilderStories.Wizard} />

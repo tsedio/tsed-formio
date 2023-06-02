@@ -198,7 +198,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   &.btn-block {
-    @applu w-full;
+    @apply w-full;
   }
 }
 

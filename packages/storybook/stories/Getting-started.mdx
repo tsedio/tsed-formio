@@ -1,19 +1,41 @@
-<p style="text-align: center" align="center">
- <a href="https://tsed.io" target="_blank"><img src="https://tsed.io/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
-</p>
+import {Canvas, Meta} from '@storybook/blocks'
+import * as FormBuilderStories from '../../react-formio/src/components/form-builder/formBuilder.stories'
 
-<div align="center">
+<Meta title="Getting started" />
 
-   <h1>Ts.ED - React Formio</h1>
+<style>
+  {`
+  .sbdocs-wrapper {
+    background: #f7f7f7;
+  }
+  .sbdocs-wrapper .sbdocs-wrapper  {
+    background: #fff;
+  }
+  `}
+</style>
 
-[![Build & Release](https://github.com/tsedio/tsed-formio/actions/workflows/build.yml/badge.svg)](https://github.com/tsedio/tsed-formio/actions/workflows/build.yml)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![backers](https://opencollective.com/tsed/tiers/badge.svg)](https://opencollective.com/tsed)
-
+<div className="flex items-center justify-center pb-5">
+  <a href="https://tsed.io" target="_blank"><img className="rounded-full overflow-hidden block"
+                                                 src="https://tsed.io/tsed-og.png" width="150" alt="Ts.ED logo"/></a>
 </div>
 
-<div align="center">
+<div className="text-center pb-5">
+  <h1>Ts.ED - React Formio</h1>
+
+  <div className="flex items-center justify-center gap-3">
+    <a href="https://github.com/tsedio/tsed-formio/actions/workflows/build.yml"><img
+      src="https://github.com/tsedio/tsed-formio/actions/workflows/build.yml/badge.svg" alt="Build & Release"/></a>
+    <a href="https://github.com/semantic-release/semantic-release"><img
+      src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg"
+      alt="semantic-release"/></a>
+    <a href="https://github.com/prettier/prettier"><img
+      src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square"
+      alt="code style: prettier"/></a>
+    <a href="https://opencollective.com/tsed"><img src="https://opencollective.com/tsed/tiers/badge.svg" alt="backers"/></a>
+  </div>
+</div>
+
+<div className="text-center pb-5">
   <a href="https://tsed.io/">Website</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://tsed.io/tutorials/prisma.html">Tutorial</a>
@@ -23,7 +45,7 @@
   <a href="https://twitter.com/TsED_io">Twitter</a>
 </div>
 
-<hr />
+<hr/>
 
 A [React](http://facebook.github.io/react/) library for rendering out forms based on the [Form.io](https://www.form.io)
 platform.
@@ -31,25 +53,25 @@ platform.
 This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features
 listed above.
 
-See our [storybook](https://formio.tsed.io/?path=/docs/getting-started--docs) to see all available components.
+See our [storybook](https://formio.tsed.io/) to see all available components.
 
 ## Features
 
 Many components are provided to build your own backoffice based on Formio.js API:
 
-- [ActionsTable](https://formio.tsed.io/?path=story/reactformio-actionstable--sandbox),
-- [FormAccess](https://formio.tsed.io/?path=story/reactformio-formaccess--sandbox),
-- [FormAction](https://formio.tsed.io/?path=story/reactformio-formaction--sandbox),
-- [Form](https://formio.tsed.io/?path=docs/documentation-form--docs),
-- [FormBuilder](https://formio.tsed.io/?path=docs/documentation-formbuilder--docs),
-- [FormEdit](https://formio.tsed.io/?path=docs/documentation-formedit--docs),
-- [FormsTable](https://formio.tsed.io/?path=docs/documentation-formstable--docs),
-- [InputTags](https://formio.tsed.io/?path=story/reactformio-inputtags--sandbox),
-- [InputText](https://formio.tsed.io/?path=story/reactformio-inputtext--sandbox),
-- [Pagination](https://formio.tsed.io/?path=story/reactformio-pagination--sandbox),
-- [Select](https://formio.tsed.io/?path=/story/reactformio-select--sandbox),
-- [SubmissionsTable](https://formio.tsed.io/?path=/docs/documentation-submissionstable--docs).
-- [Table](https://formio.tsed.io/?path=/story/reactformio-table--sandbox),
+- [ActionsTable](/story/reactformio-actionstable--sandbox),
+- [FormAccess](/story/reactformio-formaccess--sandbox),
+- [FormAction](/story/reactformio-formaction--sandbox),
+- [Form](/docs/documentation-form--docs),
+- [FormBuilder](/docs/documentation-formbuilder--docs),
+- [FormEdit](/docs/documentation-formedit--docs),
+- [FormsTable](/docs/documentation-formstable--docs),
+- [InputTags](/story/reactformio-inputtags--sandbox),
+- [InputText](/story/reactformio-inputtext--sandbox),
+- [Pagination](/story/reactformio-pagination--sandbox),
+- [Select](/story/reactformio-select--sandbox),
+- [SubmissionsTable](/docs/documentation-submissionstable--docs).
+- [Table](/story/reactformio-table--sandbox),
 - Predefined Reducers for Actions, Action, Form, Forms, Submission, Submissions, etc...,
 - TypeScript support.
 - Tailwind support.
@@ -69,7 +91,7 @@ If you use redux actions from v1, you have to install `@tsed/redux-formio-stores
 npm-compatible packaging system such as [Browserify](http://browserify.org/) or
 [webpack](http://webpack.github.io/).
 
-```bash
+```
 npm install @tsed/react-formio react-table --save
 npm install formiojs choices.js --save // Install formiojs since it is a peerDependency
 ```
@@ -83,7 +105,7 @@ import { FormBuilder } from "@tsed/react-formio";
 function App() {
   return (
     <div className='App'>
-      <FormBuilder display={"form"} components={[]} />
+      <FormBuilder display={"form"} components={[/**/]} />
     </div>
   );
 }
@@ -91,19 +113,21 @@ function App() {
 export default App;
 ```
 
-See more on http://formio.tsed.io/?path=/docs/getting-started--docs
+<Canvas of={FormBuilderStories.Sandbox} />
 
 ## Contributors
 
 Please read [contributing guidelines here](./CONTRIBUTING.md).
 
-<a href="https://github.com/TypedProject/tsed/graphs/contributors"><img src="https://opencollective.com/tsed/contributors.svg?width=890" /></a>
+<a href="https://github.com/TypedProject/tsed/graphs/contributors"><img
+  src="https://opencollective.com/tsed/contributors.svg?width=890"/></a>
 
 ## Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/tsed#backer)]
 
-<a href="https://opencollective.com/tsed#backers" target="_blank"><img src="https://opencollective.com/tsed/tiers/backer.svg?width=890"></a>
+<a href="https://opencollective.com/tsed#backers" target="_blank"><img
+  src="https://opencollective.com/tsed/tiers/backer.svg?width=890"/></a>
 
 ## Sponsors
 
@@ -128,3 +152,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+

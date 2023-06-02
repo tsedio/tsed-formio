@@ -119,7 +119,7 @@
     "developBranch": "master",
     "npmAccess": "public",
     "ghpages": {
-      "dir": "./packages/tailwind-formio/.out",
+      "dir": "./packages/storybook/.out",
       "url": "https://github.com/TypedProject/tsed-formio.git",
       "branch": "gh-pages",
       "cname": "formio.tsed.io"

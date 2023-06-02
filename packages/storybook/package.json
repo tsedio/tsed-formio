@@ -1,0 +1,50 @@
+{
+  "name": "@tsed/storybook",
+  "version": "2.1.2",
+  "private": true,
+  "description": "storybook package",
+  "scripts": {
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "yarn lint --fix",
+    "start:storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build -c ./.storybook -o .out",
+    "serve": "serve .out",
+    "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\""
+  },
+  "dependencies": {
+    "@tsed/config": "2.1.2",
+    "@tsed/tailwind-formio": "2.1.2",
+    "@tsed/react-formio": "2.1.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.18",
+    "@storybook/addon-interactions": "^7.0.18",
+    "@storybook/addon-links": "^7.0.18",
+    "@storybook/blocks": "^7.0.18",
+    "@storybook/react": "^7.0.18",
+    "@storybook/react-vite": "^7.0.18",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@storybook/addon-viewport": "^7.0.18",
+    "remark-gfm": "^3.0.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-svg": "10.0.23",
+    "vite": "4.3.9",
+    "vite-plugin-svgr": "^2.4.0",
+    "storybook": "^7.0.18",
+    "serve": "^13.0.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
