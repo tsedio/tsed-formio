@@ -1,0 +1,30 @@
+import {Canvas, Meta} from '@storybook/blocks'
+import * as FormsTableStories from '../../react-formio/src/components/forms-table/formsTable.stories'
+
+<Meta title="Documentation/FormsTable"/>
+
+<style>
+  {`
+  .sbdocs-wrapper {
+    background: #f7f7f7;
+  }
+  .sbdocs-wrapper .sbdocs-wrapper  {
+    background: #fff;
+  }
+  `}
+</style>
+
+# FormsTable
+
+The [FormsTable](https://formio.tsed.io/?path=/story/reactformio-formstable--sandbox) component can be used to render a
+list of forms with buttons to edit, view, delete, etc on each row.
+
+## Props
+
+| Name   | Type           | Default | Description                                 |
+|--------|----------------|---------|---------------------------------------------|
+| `data` | array of forms | []      | A list of forms to be rendered in the grid. |
+
+## Example
+
+<Canvas of={FormsTableStories.Sandbox} />

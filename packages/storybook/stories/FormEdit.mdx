@@ -1,0 +1,41 @@
+import {Canvas, Meta} from '@storybook/blocks'
+import * as FormEditStories from '../../react-formio/src/components/form-edit/formEdit.stories'
+
+<Meta title="Documentation/FormEdit"/>
+
+<style>
+  {`
+  .sbdocs-wrapper {
+    background: #f7f7f7;
+  }
+  .sbdocs-wrapper .sbdocs-wrapper  {
+    background: #fff;
+  }
+  `}
+</style>
+
+
+# FormEdit
+
+The [FormEdit](/story/reactformio-formedit--sandbox) component wraps
+the [FormBuilder](/docs/documentation-formbuilder--docs) component and
+adds the title, display, name and path fields at the top along with a save button.
+
+## Props
+
+| Name       | Type   | Default             | Description                                                     |
+|------------|--------|---------------------|-----------------------------------------------------------------|
+| `form`     | object | `{display: 'form'}` | The form definition of the exiting form that is to be modified. |
+| `options`  | object | `{}`                | The options to be passed to FormBuilder                         |
+| `saveText` | string | `''`                | The string that will be displayed in the save-button            |
+
+
+## Event Props
+
+| Name       | Parameters | Description                                                                            |
+|------------|------------|----------------------------------------------------------------------------------------|
+| `onSubmit` | form       | Called when the save button is pressed. Will pass the form definition to the callback. |
+
+## Example
+
+<Canvas of={FormEditStories.Sandbox} />

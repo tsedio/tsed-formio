@@ -65,7 +65,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^14.2.1",
-    "@tsed/monorepo-utils": "1.17.8",
+    "@tsed/monorepo-utils": "^1.22.6",
     "@types/ejs": "^3.0.5",
     "@types/jest": "27.0.2",
     "@types/lodash": "4.14.168",
@@ -106,7 +106,7 @@
     "rimraf": "^3.0.2",
     "semantic-release": "19.0.3",
     "semantic-release-slack-bot": "3.5.3",
-    "typescript": "5.1.3",
+    "typescript": "4.9.5",
     "webpack": "4.44.2"
   },
   "workspaces": {
@@ -118,11 +118,13 @@
     "productionBranch": "master",
     "developBranch": "master",
     "npmAccess": "public",
-    "ghpages": {
-      "dir": "./packages/tailwind-formio/.out",
-      "url": "https://github.com/TypedProject/tsed-formio.git",
-      "branch": "gh-pages",
-      "cname": "formio.tsed.io"
-    }
+    "ghpages": [
+      {
+        "dir": "./packages/storybook/.out",
+        "url": "https://github.com/tsedio/tsed-formio.git",
+        "branch": "gh-pages",
+        "cname": "formio.tsed.io"
+      }
+    ]
   }
 }
