@@ -1,6 +1,17 @@
 import noop from "lodash/noop";
 import React, { PropsWithChildren, useEffect, useState } from "react";
-import { CellProps, FilterProps, Renderer, TableOptions, useFilters, useGroupBy, usePagination, useSortBy, useTable } from "react-table";
+import {
+  CellProps,
+  FilterProps,
+  Renderer,
+  TableInstance,
+  TableOptions,
+  useFilters,
+  useGroupBy,
+  usePagination,
+  useSortBy,
+  useTable
+} from "react-table";
 
 import { OnClickOperation, Operation, QueryOptions } from "../../../interfaces";
 import { Pagination as DefaultPagination } from "../../pagination/pagination.component";
@@ -156,7 +167,7 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
   const [filterId, setFilterId] = React.useState(controlledFilterId);
 
   // DND
-  const [records, setRecords] = useState<Data[]>(data);
+  const [records, setRecords] = useState<readonly Data[]>(data);
 
   useEffect(() => {
     setRecords(data);
@@ -212,12 +223,10 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
   }, [onChange, pageIndex, pageSize, sortBy, filters, filterId]);
 
   return {
-    ...props,
     className,
     tableInstance,
     CellHeader,
     isLoading,
-    onClick: _onClick,
     Loader,
     EmptyData,
     Row,
@@ -230,7 +239,9 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
     setPageSize,
     i18n,
     children,
+    onClick: _onClick as any,
     onDrag: _onDrag,
-    onDrop: onDrop
+    onDrop: onDrop,
+    enableDragNDrop: props.enableDragNDrop
   };
 }

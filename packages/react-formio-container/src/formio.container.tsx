@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch, useParams } from "react-router";
+import { useParams } from "react-router";
+import { Route, Switch } from "react-router-dom";
 
 import { FormioContainerOptions } from "./interfaces/FormioContainerOptions";
 import { FormView } from "./views/form.view";
@@ -31,13 +32,15 @@ export function FormioContainer(props: FormioContainerOptions) {
   };
 
   return (
-    <Switch>
-      <Route path={options.basePath} exact={true}>
-        <FormsView {...(options as any)} />
-      </Route>
-      <Route path={[options.basePath, ":formId", ":formAction?"].join("/")}>
-        <FormView {...(options as any)} />
-      </Route>
-    </Switch>
+    <>
+      <Switch>
+        <Route path={options.basePath} exact={true}>
+          <FormsView {...(options as any)} />
+        </Route>
+        <Route path={[options.basePath, ":formId", ":formAction?"].join("/")}>
+          <FormView {...(options as any)} />
+        </Route>
+      </Switch>
+    </>
   );
 }

@@ -9,7 +9,7 @@ export function shouldUpdate(options: Partial<QueryOptions>, cmp: Partial<QueryO
 
 export function useQuery(fetch: any, parameters: Partial<QueryOptions>) {
   return useCallback(
-    (options) => {
+    (options: any) => {
       if (shouldUpdate(options, parameters)) {
         fetch(options);
       }

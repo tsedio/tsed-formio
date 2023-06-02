@@ -13,7 +13,7 @@ export function DefaultCells<Data extends object = {}>({ row }: { row: Row<Data>
 
         return (
           <td colSpan={colspan} {...cell.getCellProps()} key={`tableInstance.page.cells.${cell.value || "value"}.${i}`}>
-            {cell.render("Cell")}
+            {cell.render("Cell") as any}
           </td>
         );
       })}

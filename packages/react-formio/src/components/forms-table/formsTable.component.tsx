@@ -38,5 +38,5 @@ export function FormsTable({ Cell, ...props }: FormsTableProps) {
     }
   ];
 
-  return <Table {...props} columns={columns} />;
+  return <Table {...(props as any)} columns={columns} />;
 }

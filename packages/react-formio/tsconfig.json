@@ -1,7 +1,8 @@
 {
   "extends": "@tsed/config/tsconfig.web.json",
   "compilerOptions": {
-    "rootDir": "src"
+    "rootDir": "src",
+    "moduleResolution": "node"
   },
   "include": ["src"],
   "references": [
