@@ -56,6 +56,18 @@ module.exports = {
 }
 ```
 
+Or:
+
+```diff
+export default {
+  plugins: {
+    'tailwindcss/nesting': {},
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```
+
 ### Configure tailwind
 
 Generate the initial `tailwind.config.js` with the following command:
@@ -214,6 +226,11 @@ module.exports = {
         2: "2 2 0%",
         3: "3 3 0%"
       }
+    },
+    outline: {
+      none: ["2px solid transparent", "2px"],
+      white: ["2px dotted white", "2px"],
+      black: ["2px dotted black", "2px"]
     }
   },
   variants: {
