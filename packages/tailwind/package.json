@@ -1,6 +1,6 @@
 {
   "name": "@tsed/tailwind",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "main": "./tailwind.config.js",
   "description": "Tailwind configuration",
   "license": "MIT",
@@ -23,8 +23,6 @@
     "tailwindcss-inset": "1.0.0",
     "tailwindcss-transforms": "2.2.0"
   },
-  "dependencies": {},
-  "peerDependencies": {},
   "browserslist": {
     "production": [
       ">0.2%",
