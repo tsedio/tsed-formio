@@ -20,6 +20,7 @@ export function Table<Data extends object = any>(props: PropsWithChildren<TableP
     pageSize,
     pageSizes,
     setPageSize,
+    totalLength,
     i18n,
     enableDragNDrop,
     children,
@@ -81,6 +82,7 @@ export function Table<Data extends object = any>(props: PropsWithChildren<TableP
           <div className={"overflow-hidden"}>
             <Pagination
               {...tableInstance}
+              totalLength={totalLength}
               className={"text-sm"}
               pageIndex={pageIndex}
               pageSize={pageSize}

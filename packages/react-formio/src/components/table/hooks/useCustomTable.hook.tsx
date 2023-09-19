@@ -26,6 +26,10 @@ export interface TableProps<Data extends object = any> extends TableOptions<Data
    */
   pageSizes?: number[];
   /**
+   * Total length of the data
+   */
+  totalLength?: number;
+  /**
    *
    */
   isLoading?: boolean;
@@ -126,6 +130,7 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
     filterId: controlledFilterId,
     pageSize: controlledPageSize,
     pageIndex: controlledPageIndex,
+    totalLength,
     sortBy: controlledSortBy,
     isLoading,
     disableFilters,
@@ -225,6 +230,7 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
     pageIndex,
     pageSize,
     pageSizes,
+    totalLength,
     setPageSize,
     i18n,
     children,
