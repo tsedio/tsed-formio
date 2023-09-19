@@ -1,6 +1,6 @@
 {
   "name": "@tsed/storybook",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "private": true,
   "description": "storybook package",
   "scripts": {
@@ -13,9 +13,9 @@
     "deploy": "npx gh-pages -d ./.out -t true --history false"
   },
   "dependencies": {
-    "@tsed/config": "2.1.4",
-    "@tsed/react-formio": "2.1.4",
-    "@tsed/tailwind-formio": "2.1.4"
+    "@tsed/config": "2.2.0",
+    "@tsed/react-formio": "2.2.0",
+    "@tsed/tailwind-formio": "2.2.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.18",
