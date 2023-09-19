@@ -41,6 +41,7 @@ export interface PaginationProps {
   pageOptions?: any;
   pageSize: number;
   setPageSize: any;
+  totalLength?: number;
   i18n?: (f: string) => string;
 }
 
@@ -58,6 +59,7 @@ export function Pagination(props: PaginationProps) {
     pageOptions,
     pageSize,
     setPageSize,
+    totalLength,
     i18n = (f: string) => f
   } = props;
 
@@ -120,6 +122,11 @@ export function Pagination(props: PaginationProps) {
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
+          {totalLength !== undefined && (
+            <span className='ml-3'>
+              {i18n("Totals")}: <strong>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
+            </span>
+          )}
         </li>
       )}
     </nav>

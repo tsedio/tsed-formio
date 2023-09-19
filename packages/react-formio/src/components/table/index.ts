@@ -10,3 +10,6 @@ export * from "./filters/sliderColumnFilter.component";
 export * from "./hooks/useCustomTable.hook";
 export * from "./hooks/useOperations.hook";
 export * from "./table.component";
+export * from "./utils/getPageNumbers";
+export * from "./utils/mapFormToColumns";
+export * from "./utils/swapElements";
