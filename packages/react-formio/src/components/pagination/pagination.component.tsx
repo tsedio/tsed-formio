@@ -122,16 +122,11 @@ export function Pagination(props: PaginationProps) {
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
-          {totalLength !== undefined && (
-            <span className='ml-3'>
-              {i18n("Totals")}: <strong>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
-            </span>
-          )}
         </li>
       )}
       {totalLength !== undefined && (
         <li className={"mb-3 flex items-center"} data-testid='pagination-total-items'>
-          {i18n("Totals")}: <strong>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
+          {i18n("Total")}: <strong>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
         </li>
       )}
     </nav>
