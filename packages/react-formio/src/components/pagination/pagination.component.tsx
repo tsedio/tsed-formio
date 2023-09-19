@@ -38,7 +38,7 @@ export interface PaginationProps {
   canNextPage: boolean;
   pageCount: number;
   pageIndex: number;
-  pageOptions?: any;
+  pageOptions?: number[];
   pageSize: number;
   setPageSize: any;
   totalLength?: number;
@@ -117,7 +117,7 @@ export function Pagination(props: PaginationProps) {
         <span className={"ml-3"}>{i18n("items per page")}</span>
       </li>
       {pageOptions && (
-        <li className={"mb-3 flex items-center"}>
+        <li className={"mb-3 mr-3 flex items-center"}>
           <span>{i18n("Page")}&nbsp;</span>
           <strong>
             {pageIndex + 1} of {pageOptions.length}
@@ -127,6 +127,11 @@ export function Pagination(props: PaginationProps) {
               {i18n("Totals")}: <strong>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
             </span>
           )}
+        </li>
+      )}
+      {totalLength !== undefined && (
+        <li className={"mb-3 flex items-center"} data-testid='pagination-total-items'>
+          {i18n("Totals")}: <strong>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
         </li>
       )}
     </nav>

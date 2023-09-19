@@ -111,4 +111,12 @@ describe("Pagination", () => {
     expect(selectComp).toBeInTheDocument();
     expect(selectChilds.length === pageSizes.length).toBeTruthy();
   });
+
+  it("should display total length", () => {
+    const pageSizes = [10, 25, 50, 100, 200, 500];
+
+    render(<Sandbox {...Sandbox.args} pageSizes={pageSizes} totalLength={1000} />);
+
+    expect(screen.getByTestId("pagination-total-items")).toHaveTextContent("1,000 items");
+  });
 });

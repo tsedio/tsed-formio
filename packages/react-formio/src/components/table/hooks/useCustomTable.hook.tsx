@@ -1,17 +1,6 @@
 import noop from "lodash/noop";
 import React, { PropsWithChildren, useEffect, useState } from "react";
-import {
-  CellProps,
-  FilterProps,
-  Renderer,
-  TableInstance,
-  TableOptions,
-  useFilters,
-  useGroupBy,
-  usePagination,
-  useSortBy,
-  useTable
-} from "react-table";
+import { CellProps, FilterProps, Renderer, TableOptions, useFilters, useGroupBy, usePagination, useSortBy, useTable } from "react-table";
 
 import { OnClickOperation, Operation, QueryOptions } from "../../../interfaces";
 import { Pagination as DefaultPagination } from "../../pagination/pagination.component";
