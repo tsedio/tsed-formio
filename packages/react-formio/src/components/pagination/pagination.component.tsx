@@ -126,7 +126,7 @@ export function Pagination(props: PaginationProps) {
       )}
       {totalLength !== undefined && (
         <li className={"mb-3 flex items-center"} data-testid='pagination-total-items'>
-          {i18n("Total")}: <strong>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
+          {i18n("Total")}: <strong className='mx-1'>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
         </li>
       )}
     </nav>
