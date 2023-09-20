@@ -1,6 +1,6 @@
 {
   "name": "@tsed/tailwind-formio",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Tailwind templates for form.io forms.",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -14,8 +14,8 @@
     "build": "gulp templates && yarn build:source"
   },
   "devDependencies": {
-    "@tsed/config": "2.2.2",
-    "@tsed/tailwind": "2.2.2",
+    "@tsed/config": "2.2.3",
+    "@tsed/tailwind": "2.2.3",
     "cross-env": "7.0.3",
     "gulp": "^4.0.2",
     "gulp-insert": "^0.5.0",
