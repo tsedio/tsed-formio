@@ -13,9 +13,9 @@
     "deploy": "npx gh-pages -d ./.out -t true --history false"
   },
   "dependencies": {
-    "@tsed/config": "2.2.3",
-    "@tsed/react-formio": "2.2.3",
-    "@tsed/tailwind-formio": "2.2.3"
+    "@tsed/config": "workspace:*",
+    "@tsed/react-formio": "workspace:*",
+    "@tsed/tailwind-formio": "workspace:*"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.18",

@@ -16,7 +16,7 @@
     "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement"
   },
   "devDependencies": {
-    "@tsed/config": "2.2.3"
+    "@tsed/config": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

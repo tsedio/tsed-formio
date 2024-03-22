@@ -55,3 +55,13 @@ build
 .nyc_output
 /docs/.vuepress/dist/
 /packages/tailwind/COLORS.JSON
+
+# Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+

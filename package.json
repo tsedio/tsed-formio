@@ -21,7 +21,7 @@
     "lint": "lerna run lint --stream",
     "lint:fix": "lerna run lint:fix --stream",
     "prettier": "prettier '**/*.{ts,js,json,md,yml,yaml}' --write",
-    "build": "monorepo build",
+    "build": "monorepo build --verbose",
     "publish": "monorepo publish --dry-run",
     "start": "lerna run start --stream --parallel",
     "start:storybook": "lerna run start:storybook --stream",
@@ -35,18 +35,18 @@
     "@formio/choices.js": "^9.0.1",
     "@types/classnames": "^2.2.11",
     "@types/react": "^18.2.8",
+    "@types/react-dnd": "3.0.2",
+    "@types/react-dnd-html5-backend": "3.0.2",
     "@types/react-dom": "^18.2.4",
     "@types/react-redux": "^7.1.25",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-table": "^7.7.14",
-    "@types/react-dnd": "3.0.2",
-    "@types/react-dnd-html5-backend": "3.0.2",
     "connected-react-router": "6.9.1",
     "formiojs": "^4.14.13",
     "history": "5.3.0",
-    "lerna": "5.1.8",
-    "lodash": "4.17.20",
+    "lerna": "8.1.2",
+    "lodash": "4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "7.2.6",
@@ -65,7 +65,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^14.2.1",
-    "@tsed/monorepo-utils": "^1.22.6",
+    "@tsed/monorepo-utils": "2.1.2",
     "@types/ejs": "^3.0.5",
     "@types/jest": "27.0.2",
     "@types/lodash": "4.14.168",
@@ -126,5 +126,6 @@
         "cname": "formio.tsed.io"
       }
     ]
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
