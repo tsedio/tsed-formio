@@ -3,6 +3,7 @@ import React, { PropsWithChildren } from "react";
 
 import { DrapNDropContainer } from "./components/dragNDropContainer";
 import { TableProps, useCustomTable } from "./hooks/useCustomTable.hook";
+
 export function Table<Data extends object = any>(props: PropsWithChildren<TableProps<Data>>) {
   const {
     className,
