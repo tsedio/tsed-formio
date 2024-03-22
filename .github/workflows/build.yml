@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --network-timeout 500000
+        run: yarn install --immutable --network-timeout 500000
       - name: Run lint
         run: yarn lint
 
@@ -42,7 +42,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --network-timeout 500000
+        run: yarn install --immutable --network-timeout 500000
       - name: Run test
         run: yarn test
 
@@ -62,7 +62,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --network-timeout 500000
+        run: yarn install --immutable --network-timeout 500000
       - name: Release packages
         env:
           CI: true
@@ -93,7 +93,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
       - name: Release packages
         env:
           CI: true

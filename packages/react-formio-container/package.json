@@ -35,15 +35,12 @@
     "tooltip.js": "^1.3.3"
   },
   "devDependencies": {
-    "@tsed/react-formio": "2.2.3",
-    "@tsed/react-formio-stores": "2.2.3",
+    "@tsed/react-formio": "workspace:*",
+    "@tsed/react-formio-stores": "workspace:*",
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.5"
   },
   "peerDependenciesMeta": {
-    "formiojs": {
-      "optional": false
-    },
     "choices.js": {
       "optional": false
     },
@@ -54,6 +51,9 @@
       "optional": false
     },
     "file-saver": {
+      "optional": false
+    },
+    "formiojs": {
       "optional": false
     },
     "lodash": {
