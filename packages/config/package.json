@@ -17,7 +17,5 @@
   "devDependencies": {
     "@tsed/tailwind": "2.2.3",
     "@tsed/yarn-workspaces": "1.19.3"
-  },
-  "dependencies": {},
-  "peerDependencies": {}
+  }
 }

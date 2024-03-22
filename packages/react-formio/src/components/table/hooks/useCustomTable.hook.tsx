@@ -1,6 +1,18 @@
 import noop from "lodash/noop";
 import React, { PropsWithChildren, useEffect, useState } from "react";
-import { CellProps, FilterProps, Renderer, TableOptions, useFilters, useGroupBy, usePagination, useSortBy, useTable } from "react-table";
+import {
+  Cell,
+  CellProps,
+  Column,
+  FilterProps,
+  Renderer,
+  TableOptions,
+  useFilters,
+  useGroupBy,
+  usePagination,
+  useSortBy,
+  useTable
+} from "react-table";
 
 import { OnClickOperation, Operation, QueryOptions } from "../../../interfaces";
 import { Pagination as DefaultPagination } from "../../pagination/pagination.component";
@@ -11,7 +23,25 @@ import { DefaultColumnFilter } from "../filters/defaultColumnFilter.component";
 import { swapElements } from "../utils/swapElements";
 import { useOperations } from "./useOperations.hook";
 
+export interface ExtraColumnProps {
+  colspan?: number;
+  hidden?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export type ExtendedColumn<Data extends object = any> = Column<Data> & ExtraColumnProps;
+
+export type ExtendedCell<Data extends object = any> = Cell<Data, any> & {
+  column: ExtraColumnProps;
+};
+
 export interface TableProps<Data extends object = any> extends TableOptions<Data>, Partial<QueryOptions> {
+  /**
+   * extended columns interface
+   */
+  columns: ReadonlyArray<ExtendedColumn<Data>>;
+
   className?: string;
   /**
    * Call the listener when a filter / pagination  / sort change.

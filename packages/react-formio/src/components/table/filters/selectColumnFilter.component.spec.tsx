@@ -45,4 +45,25 @@ describe("SelectColumnFilter", () => {
     expect(screen.queryByText("select-choice-1")).toBeNull();
     expect(screen.getByText("fake-choice")).toBeDefined();
   });
+
+  it("should display select with custom choices (function)", async () => {
+    const mockSetFilter = jest.fn();
+    const props = {
+      name: "data.id",
+      setFilter: mockSetFilter,
+      column: {
+        id: "id",
+        preFilteredRows: [{ values: { id: "select-choice-1" } }, { values: { id: "select-choice-2" } }],
+        choices: () => [{ label: "fake-choice", value: "fake-choice" }]
+      }
+    };
+
+    render(
+      // @ts-ignore
+      <SelectColumnFilter {...props} />
+    );
+
+    expect(screen.queryByText("select-choice-1")).toBeNull();
+    expect(screen.getByText("fake-choice")).toBeDefined();
+  });
 });
