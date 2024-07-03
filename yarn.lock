@@ -5657,11 +5657,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsed/config@npm:2.3.0, @tsed/config@workspace:*, @tsed/config@workspace:packages/config":
+"@tsed/config@npm:2.3.1, @tsed/config@workspace:*, @tsed/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@tsed/config@workspace:packages/config"
   dependencies:
-    "@tsed/tailwind": "npm:2.3.0"
+    "@tsed/tailwind": "npm:2.3.1"
     "@tsed/yarn-workspaces": "npm:1.19.3"
   bin:
     write-coverage: ./bin/write-coverage.js
@@ -5711,8 +5711,8 @@ __metadata:
     file-saver: "npm:^2.0.5"
   peerDependencies:
     "@formio/choices.js": ^9.0.1
-    "@tsed/react-formio": 2.3.0
-    "@tsed/react-formio-stores": 2.3.0
+    "@tsed/react-formio": 2.3.1
+    "@tsed/react-formio-stores": 2.3.1
     classnames: ^2.3.1
     connected-react-router: ^6.9.1
     file-saver: ^2.0.5
@@ -5930,8 +5930,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tsed/tailwind-formio@workspace:packages/tailwind-formio"
   dependencies:
-    "@tsed/config": "npm:2.3.0"
-    "@tsed/tailwind": "npm:2.3.0"
+    "@tsed/config": "npm:2.3.1"
+    "@tsed/tailwind": "npm:2.3.1"
     cross-env: "npm:7.0.3"
     gulp: "npm:^4.0.2"
     gulp-insert: "npm:^0.5.0"
@@ -5941,7 +5941,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tsed/tailwind@npm:2.3.0, @tsed/tailwind@workspace:*, @tsed/tailwind@workspace:packages/tailwind":
+"@tsed/tailwind@npm:2.3.1, @tsed/tailwind@workspace:*, @tsed/tailwind@workspace:packages/tailwind":
   version: 0.0.0-use.local
   resolution: "@tsed/tailwind@workspace:packages/tailwind"
   dependencies:
