@@ -4,6 +4,10 @@
   "description": "Provide a react formio wrapper. Written in TypeScript.",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
+  "exports": {
+    "import": "dist/index.modern.js",
+    "require": "dist/index.js"
+  },
   "source": "src/index.ts",
   "license": "MIT",
   "scripts": {
