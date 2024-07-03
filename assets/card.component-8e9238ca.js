@@ -1,0 +1,2 @@
+import{a as e,j as a}from"./jsx-runtime-91a467a5.js";import{c as d}from"./index-582f377c.js";function m({children:r,label:s,className:c}){return e("div",{className:d("card",c),children:[a("div",{className:"card-header ",children:a("h4",{className:"card-title",children:s})}),a("div",{className:"card-body",role:"article",children:r})]})}export{m as C};
+//# sourceMappingURL=card.component-8e9238ca.js.map
