@@ -7,6 +7,12 @@
   "description": "An opinionated lib to create actions and reducers for Redux written in TypeScript",
   "author": "Romain Lenzotti",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/index.modern.js",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "yarn lint --fix",
@@ -21,5 +27,6 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "redux": "^4.0.5"
-  }
+  },
+  "dependencies": {}
 }

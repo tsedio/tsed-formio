@@ -1,11 +1,11 @@
-import React from "react";
+import React, { type ComponentType, type FunctionComponent } from "react";
 import { Hooks } from "react-table";
 
 import { Operation } from "../../../interfaces";
 import { DefaultCellOperations } from "../components/defaultCellOperations.component";
 
 export type UseOperationsHookProps = {
-  CellOperations?: React.ComponentType;
+  CellOperations?: FunctionComponent | ComponentType<{}>;
   operations: Operation[];
   onClick?: (data: any, event: string) => void;
   i18n?: (f: string) => string;
@@ -14,7 +14,7 @@ export type UseOperationsHookProps = {
 
 export function useOperations<D extends object = {}>({
   operations,
-  CellOperations = DefaultCellOperations,
+  CellOperations = DefaultCellOperations as FunctionComponent,
   onClick,
   i18n = (f: string) => f,
   ctx
