@@ -20,9 +20,13 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Build tailwind
+        run: yarn tailwind:build
+
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
-          workingDir: packages/storybook
+          storybookBaseDir: .
+          storybookConfigDir: ./.storybook
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_TOKEN }}

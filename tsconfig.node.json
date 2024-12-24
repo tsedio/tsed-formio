@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "nodenext",
+    "target": "esnext",
+    "esModuleInterop": true,
+    "noEmit": true
+  },
+  "include": ["**/.storybook/**/*.ts", "vite.config.mts"]
+}

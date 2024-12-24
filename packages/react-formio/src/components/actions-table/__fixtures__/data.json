@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "602967600685b2158b24e99a",
+    "handler": ["before"],
+    "method": ["create", "update"],
+    "priority": 10,
+    "name": "save",
+    "title": "Save Submission",
+    "form": "602967600685b24dbe24e999",
+    "machineName": "tcspjwhsevrzpcd:testForm:save"
+  }
+]

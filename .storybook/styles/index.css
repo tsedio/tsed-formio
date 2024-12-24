@@ -1,0 +1,6 @@
+@import "tailwind.css";
+@import "fonts/index.css";
+@import "typography.css";
+@import "../../node_modules/formiojs/dist/formio.full.css";
+@import "../../packages/tailwind-formio/styles/index.css";
+

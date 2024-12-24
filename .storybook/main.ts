@@ -1,14 +1,14 @@
 import type {StorybookConfig} from "@storybook/react-vite";
 
 const config: StorybookConfig = {
-  staticDirs: ["../../tailwind/build"],
+  staticDirs: ["../packages/tailwind/build"],
 
   stories: [
     "../stories/Getting-started.mdx",
     "../stories/**/*.mdx",
-    "../../{tailwind-formio,react-formio}/src/**/*.mdx",
-    "../../{tailwind-formio,react-formio}/src/**/*.stories.@(js|jsx|ts|tsx)",
-    "../../{tailwind-formio,react-formio}/src/**/*.story.@(js|jsx|ts|tsx)"
+    "../packages/{tailwind-formio,react-formio}/src/**/*.mdx",
+    "../packages/{tailwind-formio,react-formio}/src/**/*.stories.@(js|jsx|ts|tsx)",
+    "../packages/{tailwind-formio,react-formio}/src/**/*.story.@(js|jsx|ts|tsx)"
   ],
 
   addons: [

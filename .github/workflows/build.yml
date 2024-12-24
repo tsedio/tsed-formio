@@ -52,13 +52,13 @@ jobs:
       - name: Install dependencies 🚀
         run: yarn install --immutable
       - name: Install Playwright 🚀
-        run: cd packages/storybook && yarn playwright install
+        run: yarn playwright install
       - name: Build Storybook
         run: yarn storybook:build --quiet
       - name: Serve Storybook and run tests 🔍
         run: |
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-            "npx http-server packages/storybook/.out --port 6006 --silent" \
+            "npx http-server storybook-static --port 6006 --silent" \
             "npx wait-on tcp:6006 && yarn storybook:test:ci"
 
   deploy-packages:

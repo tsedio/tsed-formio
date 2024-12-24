@@ -44,12 +44,12 @@ jobs:
       - name: Build with Storybook
         run: |
           yarn storybook:build
-          touch packages/storybook/.out/.nojekyll
-          echo "formio.tsed.dev" > packages/storybook/.out/CNAME
+          touch ./storybook-static/.nojekyll
+          echo "formio.tsed.dev" > ./storybook-static/CNAME
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: packages/storybook/.out
+          path: ./storybook-static
 
   # Deployment job
   deploy:

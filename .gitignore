@@ -43,7 +43,7 @@ test/*.js.map
 lib
 dist
 build
-.out
+storybook-static
 /docs/api
 /docs/api/**/*.md
 
