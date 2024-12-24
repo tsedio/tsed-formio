@@ -1,12 +1,13 @@
 import classnames from "classnames";
-import PropTypes from "prop-types";
-import React from "react";
+import React, { HTMLAttributes } from "react";
 
-export interface FormControlProps {
+export interface FormControlProps<Data = any> {
   name: string;
+  value?: Data;
   required?: boolean;
   label?: string;
   className?: string;
+  onChange?: (name: string, value: any) => void;
   description?: string | React.ComponentType | any;
   prefix?: JSX.Element | React.ComponentType | any;
   suffix?: JSX.Element | React.ComponentType | any;
@@ -55,11 +56,3 @@ export function FormControl({
     </div>
   );
 }
-
-FormControl.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  children: PropTypes.any,
-  required: PropTypes.bool,
-  description: PropTypes.any
-};

@@ -35,6 +35,7 @@ export function ActionsTable({
     <Table {...props} disableFilters={disableFilters} disablePagination={disablePagination} columns={columns}>
       <div className={"pagination-group"}>
         <Select
+          data-testid={"action-table-select"}
           name={"actions"}
           value={currentAction}
           choices={[{ label: i18n("Select an action"), value: "" }].concat(availableActions)}
@@ -42,7 +43,7 @@ export function ActionsTable({
         />
         <div className={"pl-3"}>
           <button
-            data-testid={"submit"}
+            data-testid={"action-table-add"}
             disabled={currentAction === ""}
             className={"btn btn-success"}
             onClick={() => currentAction && onAddAction(currentAction)}
