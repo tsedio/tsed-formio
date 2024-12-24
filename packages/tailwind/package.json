@@ -9,9 +9,9 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "yarn lint --fix",
     "build": "node ./build-colors.js",
-    "build:tailwind": "tailwindcss-cli build -o build/tailwind.css && yarn build:tailwind:viewer",
+    "tailwind:build": "tailwindcss-cli build -o build/tailwind.css && yarn tailwind:build:viewer",
     "start:tailwind:viewer": "tailwind-config-viewer -o",
-    "build:tailwind:viewer": "tailwind-config-viewer export ./build && cp ./build/index.html ./build/tailwind.html && yarn clean:tailwind:viewer",
+    "tailwind:build:viewer": "tailwind-config-viewer export ./build && cp ./build/index.html ./build/tailwind.html && yarn clean:tailwind:viewer",
     "clean:tailwind:viewer": "rimraf build/index.html build/favicon.ico"
   },
   "devDependencies": {
@@ -33,5 +33,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "dependencies": {},
+  "peerDependencies": {}
 }

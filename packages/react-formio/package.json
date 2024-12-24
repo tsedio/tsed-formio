@@ -2,11 +2,13 @@
   "name": "@tsed/react-formio",
   "version": "2.3.1",
   "description": "Provide a react formio wrapper. Written in TypeScript.",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.modern.js",
   "exports": {
-    "import": "dist/index.modern.js",
-    "require": "dist/index.js"
+    ".": {
+      "import": "./dist/index.modern.js",
+      "require": "./dist/index.js"
+    }
   },
   "source": "src/index.ts",
   "license": "MIT",
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "@tsed/tailwind": "workspace:*",
-    "@tsed/tailwind-formio": "workspace:*"
+    "@tsed/tailwind-formio": "workspace:*",
+    "microbundle": "0.13.0"
   }
 }

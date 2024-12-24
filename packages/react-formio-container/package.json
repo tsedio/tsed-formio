@@ -6,6 +6,12 @@
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/index.modern.js",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "yarn lint --fix",
@@ -89,5 +95,6 @@
     "tooltip.js": {
       "optional": false
     }
-  }
+  },
+  "dependencies": {}
 }

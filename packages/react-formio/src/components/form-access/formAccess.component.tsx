@@ -1,5 +1,4 @@
-import PropTypes from "prop-types";
-import React, { PropsWithChildren, ReactElement, useCallback, useEffect, useMemo, useState } from "react";
+import React, { PropsWithChildren, useCallback, useEffect, useMemo, useState } from "react";
 
 import type { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";
@@ -96,7 +95,7 @@ function NamedFormAccess({ name, form, submissions, options, onChange, onSubmit,
   );
 }
 
-export function FormAccess(props: PropsWithChildren<FormAccessProps>): ReactElement {
+export function FormAccess(props: PropsWithChildren<FormAccessProps>) {
   const { type, form, submissions, options, onChange, onSubmit } = useFormAccess(props);
 
   return (
@@ -155,12 +154,3 @@ export function FormAccess(props: PropsWithChildren<FormAccessProps>): ReactElem
     </div>
   );
 }
-
-FormAccess.propTypes = {
-  type: PropTypes.string.isRequired,
-  form: PropTypes.object,
-  roles: PropTypes.any,
-  children: PropTypes.any,
-  options: PropTypes.any,
-  onSubmit: PropTypes.func
-};

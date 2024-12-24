@@ -10,6 +10,7 @@ export interface SelectProps<Data = any> extends FormControlProps, Omit<HTMLAttr
   placeholder?: string;
   choices: { label: string; value: Data }[];
   layout?: "html5" | "choicesjs";
+  disabled?: boolean;
   multiple?: boolean;
 }
 
