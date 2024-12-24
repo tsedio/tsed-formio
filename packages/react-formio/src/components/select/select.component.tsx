@@ -1,24 +1,19 @@
 import Choices from "@formio/choices.js";
 import classnames from "classnames";
-import PropTypes from "prop-types";
-import React, { ReactElement, useEffect, useRef } from "react";
+import React, { HTMLAttributes, ReactElement, useEffect, useRef } from "react";
 
 import { getEventValue } from "../../utils/getEventValue";
 import { FormControl, FormControlProps } from "../form-control/formControl.component";
 
-export interface SelectProps<T = any> extends FormControlProps {
-  value?: any;
+export interface SelectProps<Data = any> extends FormControlProps, Omit<HTMLAttributes<HTMLSelectElement>, "onChange" | "prefix"> {
   size?: string;
-  onChange?: (name: string, value: any) => void;
   placeholder?: string;
-  choices: { label: string; value: T }[];
+  choices: { label: string; value: Data }[];
   layout?: "html5" | "choicesjs";
   multiple?: boolean;
-
-  [key: string]: any;
 }
 
-export function Select<T = any>({
+export function Select<Data = any>({
   name,
   label,
   size,
@@ -33,14 +28,14 @@ export function Select<T = any>({
   multiple,
   layout,
   ...props
-}: SelectProps<T>): ReactElement {
-  const ref = useRef<any>();
+}: SelectProps<Data>): ReactElement {
+  const ref = useRef<HTMLSelectElement>(null);
 
   useEffect(() => {
     let instance: any;
 
     if (layout === "choicesjs") {
-      instance = new Choices(ref.current, {
+      instance = new Choices(ref.current as unknown as HTMLInputElement, {
         removeItemButton: true,
         placeholderValue: placeholder
       });
@@ -67,8 +62,8 @@ export function Select<T = any>({
       {/* eslint-disable-next-line jsx-a11y/no-onchange */}
       <select
         ref={ref}
-        {...props}
         data-testid={`select_${name}`}
+        {...props}
         className={classnames("form-control", size && `form-control-${size}`)}
         name={name}
         id={name}
@@ -90,12 +85,3 @@ export function Select<T = any>({
     </FormControl>
   );
 }
-
-Select.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.any,
-  required: PropTypes.bool,
-  onChange: PropTypes.func,
-  choices: PropTypes.array.isRequired
-};

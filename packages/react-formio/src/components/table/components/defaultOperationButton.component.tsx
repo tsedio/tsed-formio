@@ -1,11 +1,10 @@
 import classnames from "classnames";
-import React from "react";
+import { HTMLAttributes } from "react";
 
 import { iconClass } from "../../../utils/iconClass";
 import { stopPropagationWrapper } from "../../../utils/stopPropagationWrapper";
 
-export interface OperationButtonProps {
-  className?: string;
+export interface OperationButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, "onClick"> {
   buttonType?: string;
   buttonSize?: string;
   buttonOutline?: boolean;
@@ -15,6 +14,7 @@ export interface OperationButtonProps {
   icon?: string;
   title?: string;
   i18n?: (i18n: string) => string;
+  ctx?: any;
 }
 
 export function DefaultOperationButton(props: OperationButtonProps) {
@@ -27,11 +27,16 @@ export function DefaultOperationButton(props: OperationButtonProps) {
     action,
     icon = "",
     title = "",
-    i18n = (f: string) => f
+    i18n = (f: string) => f,
+    data,
+    ctx,
+    ...otherProps
   } = props;
 
   return (
     <button
+      {...otherProps}
+      aria-label={"Operation button: " + (title || action)}
       className={classnames(className, ["btn", buttonOutline && "outline", buttonType].filter(Boolean).join("-"), `btn-${buttonSize}`)}
       onClick={stopPropagationWrapper(() => onClick(action))}
     >
