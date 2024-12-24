@@ -2,32 +2,63 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 
-import { Sandbox } from "./actionsTable.stories";
+import availableActions from "../__fixtures__/form-actions.json";
+import data from "./__fixtures__/data.json";
+import { ActionsTable } from "./actionsTable.component";
+
+const args: any = {
+  data: data,
+  availableActions: availableActions.map(({ name, title }) => ({
+    label: title,
+    value: name
+  })),
+  operations: [
+    {
+      title: "Edit",
+      action: "edit",
+      alias: "row",
+      path: "/resources/:resourceId/submissions/:submissionId",
+      icon: "edit",
+      permissionsResolver() {
+        return true;
+      }
+    },
+    {
+      action: "delete",
+      path: "/resources/:resourceId/submissions/:submissionId/delete",
+      icon: "trash",
+      buttonType: "danger",
+      permissionsResolver() {
+        return true;
+      }
+    }
+  ]
+};
 
 describe("ActionsTable", () => {
   it("should render the table actions", async () => {
     const onAddAction = jest.fn();
 
-    render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
+    render(<ActionsTable {...args} onAddAction={onAddAction} />);
 
-    const btn = screen.getByRole("button", { name: /add action/i });
+    const btn = screen.getByTestId("action-table-add");
     const cells = screen.getAllByRole("cell");
     const options = screen.getAllByRole("option");
 
     expect(btn).toHaveProperty("disabled");
     expect(btn.innerHTML).toMatch("Add action");
     expect(cells[0].innerHTML).toMatch("Save Submission");
-    expect(options.length).toEqual(Sandbox.args.availableActions.length + 1);
+    expect(options.length).toEqual(availableActions.length + 1);
 
     expect(options[0].innerHTML).toMatch("Select an action");
-    expect(options[1].innerHTML).toMatch("Email");
+    expect(options[1].innerHTML).toMatch("Webhook (Premium)");
   });
   it("should not call addAction when the default item is selected", async () => {
     const onAddAction = jest.fn();
 
-    render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
+    render(<ActionsTable {...args} onAddAction={onAddAction} />);
 
-    const btn = screen.getByRole("button", { name: /add action/i });
+    const btn = screen.getByTestId("action-table-add");
 
     await fireEvent.click(btn);
     expect(onAddAction).not.toHaveBeenCalled();
@@ -35,16 +66,16 @@ describe("ActionsTable", () => {
   it("should call addAction with the selected action", async () => {
     const onAddAction = jest.fn();
 
-    render(<Sandbox {...Sandbox.args} onAddAction={onAddAction} />);
+    render(<ActionsTable {...args} onAddAction={onAddAction} />);
 
-    const btn = screen.getByRole("button", { name: /add action/i });
+    const btn = screen.getByTestId("action-table-add");
     const select = screen.getByRole("combobox");
 
-    await userEvent.selectOptions(select, String(Sandbox.args.availableActions[1].value));
+    await userEvent.selectOptions(select, String(args.availableActions[1].value));
 
     await fireEvent.click(btn);
 
     expect(btn).not.toHaveProperty("disabled", true);
-    expect(onAddAction).toHaveBeenCalledWith("webhook");
+    expect(onAddAction).toHaveBeenCalledWith("sql");
   });
 });

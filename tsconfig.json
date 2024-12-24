@@ -5,6 +5,9 @@
       "path": "./packages/react-formio"
     },
     {
+      "path": "./tsconfig.node.json"
+    },
+    {
       "path": "./packages/react-formio-container"
     },
     {

@@ -24,7 +24,7 @@
     "@tsed/react-formio": "workspace:*",
     "@tsed/redux-utils": "workspace:*",
     "eventemitter2": "^6.4.3",
-    "prop-types": "^15.7.2"
+    "prop-types": "15.8.1"
   },
   "peerDependencies": {
     "@formio/choices.js": ">=9.0.1",

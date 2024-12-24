@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, userEvent, within } from "@storybook/test";
 
 import availableActions from "../__fixtures__/form-actions.json";
+import data from "./__fixtures__/data.json";
 import { ActionsTable } from "./actionsTable.component";
 
 export default {
@@ -86,18 +87,7 @@ export const Sandbox: Story = {
       label: title,
       value: name
     })),
-    data: [
-      {
-        _id: "602967600685b2158b24e99a",
-        handler: ["before"],
-        method: ["create", "update"],
-        priority: 10,
-        name: "save",
-        title: "Save Submission",
-        form: "602967600685b24dbe24e999",
-        machineName: "tcspjwhsevrzpcd:testForm:save"
-      } as never
-    ],
+    data: data as never,
     operations: [
       {
         title: "Edit",
