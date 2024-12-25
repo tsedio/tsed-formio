@@ -71,7 +71,6 @@ export const reducer = (state: FormEditState, { type, value }: any): FormEditSta
       return update(cloneDeep(state.original));
 
     case "formChange":
-      // eslint-disable-next-line no-case-declarations
       const newValue = { ...state.current, ...value };
 
       if (hasChanged(state.current, newValue)) {

@@ -4,7 +4,6 @@ describe("root Selectors", () => {
   describe("selectRoot()", () => {
     it("should return submission", () => {
       expect(
-        // eslint-disable-next-line no-undef
         selectRoot("submission", {
           submission: {
             data: {

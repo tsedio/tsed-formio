@@ -21,5 +21,5 @@ export async function getProjectAccess(dispatch: any) {
     const projectAccess = transformProjectAccess(project.access);
 
     dispatch(projectAccessUser(AUTH, projectAccess));
-  } catch (er) {}
+  } catch {}
 }

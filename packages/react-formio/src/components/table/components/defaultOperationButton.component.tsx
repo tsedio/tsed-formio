@@ -28,7 +28,9 @@ export function DefaultOperationButton(props: OperationButtonProps) {
     icon = "",
     title = "",
     i18n = (f: string) => f,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     data,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ctx,
     ...otherProps
   } = props;

@@ -60,7 +60,7 @@ describe("ActionsTable", () => {
 
     const btn = screen.getByTestId("action-table-add");
 
-    await fireEvent.click(btn);
+    fireEvent.click(btn);
     expect(onAddAction).not.toHaveBeenCalled();
   });
   it("should call addAction with the selected action", async () => {
@@ -73,7 +73,7 @@ describe("ActionsTable", () => {
 
     await userEvent.selectOptions(select, String(args.availableActions[1].value));
 
-    await fireEvent.click(btn);
+    fireEvent.click(btn);
 
     expect(btn).not.toHaveProperty("disabled", true);
     expect(onAddAction).toHaveBeenCalledWith("sql");

@@ -23,6 +23,7 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
     [id, setValue, setFilterId, setFilter]
   );
 
+  /* eslint-disable jsx-a11y/no-autofocus */
   return (
     <InputText
       size={"sm"}

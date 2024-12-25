@@ -11,6 +11,7 @@ function mapData(options: any, defaults: ActionDefaultsSchema): any {
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function mapSettingsForm({ action, ...settingsForm }: any): any {
   FormioUtils.eachComponent(settingsForm.components, (component: any) => {
     const resourceExclude = "";

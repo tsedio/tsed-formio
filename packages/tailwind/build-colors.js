@@ -5,6 +5,8 @@ const fs = require("fs");
 
 try {
   fs.mkdirSync("./dist", { recursive: true });
-} catch (er) {}
+} catch (er) {
+  console.error(er);
+}
 
 fs.writeFileSync("./dist/colors.json", JSON.stringify(colors, null, 2), { encoding: "utf8" });

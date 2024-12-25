@@ -1,4 +1,4 @@
-import type {StorybookConfig} from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
   staticDirs: ["../packages/tailwind/build"],

@@ -52,5 +52,5 @@ export async function getAccess(dispatch: any) {
     dispatch(formAccessUser(AUTH, { formAccess }));
     dispatch(userRoles(AUTH, { roles: result.roles }));
     dispatch(userForms(AUTH, { forms: result.forms }));
-  } catch (err) {}
+  } catch {}
 }

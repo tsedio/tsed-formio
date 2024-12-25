@@ -12,7 +12,7 @@ export default {
   }
 };
 
-export const Sandbox = (args) => {
+export const Sandbox = () => {
   return (
     <div>
       <div className='alert alert-primary' role='alert'>

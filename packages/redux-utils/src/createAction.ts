@@ -10,7 +10,11 @@ function getActionType(): string {
 }
 
 export interface ActionReducer<T = any> {
-  (name: string, payload?: T, ...args: any[]): {
+  (
+    name: string,
+    payload?: T,
+    ...args: any[]
+  ): {
     type: string;
     name: string;
     payload: T;

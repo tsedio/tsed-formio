@@ -60,7 +60,7 @@ export function Select<Data = any>({
 
   return (
     <FormControl name={name} label={label} required={required} description={description} prefix={prefix} suffix={suffix} shadow={false}>
-      {/* eslint-disable-next-line jsx-a11y/no-onchange */}
+      {}
       <select
         ref={ref}
         data-testid={`select_${name}`}

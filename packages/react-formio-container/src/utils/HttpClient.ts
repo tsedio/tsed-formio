@@ -1,7 +1,6 @@
 import { Formio } from "@tsed/react-formio";
 
 export class HttpClient {
-  // eslint-disable-next-line no-useless-constructor
   constructor(private host?: string) {}
 
   get<T = any>(endpoint: string, data?: any, options?: any): Promise<T> {

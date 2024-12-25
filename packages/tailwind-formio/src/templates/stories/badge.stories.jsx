@@ -12,7 +12,7 @@ export default {
   }
 };
 
-export const Sandbox = (args) => {
+export const Sandbox = () => {
   return (
     <div>
       <span className='badge bg-primary text-white mx-1'>Primary</span>
