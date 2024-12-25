@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { Submission } from "../../interfaces";
 import form from "../__fixtures__/form.fixture.json";
 import { Form } from "./form.component";
 
@@ -123,7 +122,7 @@ export const Sandbox = {
 
 export const TriggerError = {
   render: (args: any) => {
-    const onAsyncSubmit = (submission: Submission) => {
+    const onAsyncSubmit = () => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           reject(new Error("server error"));

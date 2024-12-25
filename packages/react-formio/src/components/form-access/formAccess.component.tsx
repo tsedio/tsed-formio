@@ -23,7 +23,6 @@ export interface FormAccessProps {
 }
 
 function useFormAccess({ form: formDefinition, roles, onSubmit, options }: FormAccessProps) {
-  // eslint-disable-next-line no-undef
   const form = useMemo(() => getFormAccess(roles), [roles]);
 
   const [submissions, setSubmissions] = useState(() => dataAccessToSubmissions(formDefinition, form));

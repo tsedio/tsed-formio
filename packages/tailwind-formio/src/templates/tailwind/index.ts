@@ -71,7 +71,6 @@ export default {
     }
     switch (type) {
       case "class":
-        // eslint-disable-next-line no-prototype-builtins
         return this.cssClasses.hasOwnProperty(text.toString()) ? (this.cssClasses as any)[text.toString()] : text;
     }
     return text;

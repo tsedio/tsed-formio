@@ -6,8 +6,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "yarn lint --fix",
     "build": "node ./build-colors.js",
     "tailwind:build": "tailwindcss-cli build -o build/tailwind.css && yarn tailwind:build:viewer",
     "start:tailwind:viewer": "tailwind-config-viewer -o",

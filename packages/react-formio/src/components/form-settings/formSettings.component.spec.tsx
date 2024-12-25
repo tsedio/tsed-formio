@@ -5,7 +5,7 @@ import { FormSettings } from "./formSettings.component";
 import { Sandbox } from "./formSettings.stories";
 
 describe("FormSettings", () => {
-  it("should render form settings", async () => {
+  it("should render form settings", () => {
     const onSubmit = jest.fn();
 
     // @ts-ignore
@@ -23,7 +23,7 @@ describe("FormSettings", () => {
 
     const btn = screen.getByTestId("submit");
 
-    await fireEvent.click(btn);
+    fireEvent.click(btn);
 
     expect(btn).toHaveTextContent("Save settings");
     expect(onSubmit).toHaveBeenCalledWith({
@@ -47,7 +47,7 @@ describe("FormSettings", () => {
       type: "form"
     });
   });
-  it("should render form settings with i18n options", async () => {
+  it("should render form settings with i18n options", () => {
     render(
       <FormSettings
         {...Sandbox.args}
@@ -59,7 +59,7 @@ describe("FormSettings", () => {
 
     const btn = screen.getByTestId("submit");
 
-    await fireEvent.click(btn);
+    fireEvent.click(btn);
 
     expect(btn).toHaveTextContent("Save settings i18N");
   });

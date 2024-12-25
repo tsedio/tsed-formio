@@ -50,9 +50,7 @@ describe("Pagination", () => {
       if (btn.textContent !== "...") {
         page = +btn.textContent!;
         fireEvent.click(btn);
-        // eslint-disable-next-line jest/no-conditional-expect
         expect(gotoPageSpy).toHaveBeenCalled();
-        // eslint-disable-next-line jest/no-conditional-expect
         expect(gotoPageSpy).toHaveBeenCalledWith(page - 1);
       }
     });

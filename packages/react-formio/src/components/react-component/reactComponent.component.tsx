@@ -15,7 +15,6 @@ export class ReactComponent<Data = any> extends Components.components.field {
    * @param options - Any options passed into the renderer.
    * @param data - The submission data where this component's data exists.
    */
-  // eslint-disable-next-line no-useless-constructor,import/no-anonymous-default-export
   constructor(component: ComponentSchema, options: any, data: Submission<Data>) {
     super(component, options, data);
   }
@@ -105,18 +104,19 @@ export class ReactComponent<Data = any> extends Components.components.field {
    *
    * @param element
    */
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   attachReact(element?: any) {
-    // eslint-disable-next-line react/no-render-return-value
+    // eslint-disable-next-line react/no-render-return-value,react/no-deprecated
     return ReactDOM.render(this.renderReact(), element);
   }
 
   /**
    * Override this function.
    */
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   detachReact(element?: any) {
     if (element) {
+      // eslint-disable-next-line react/no-deprecated
       ReactDOM.unmountComponentAtNode(element);
     }
   }
@@ -127,7 +127,7 @@ export class ReactComponent<Data = any> extends Components.components.field {
    * @param value
    * @param flags
    */
-  setValue(value: any, flags?: any) {
+  setValue(value: any) {
     if (this.reactInstance) {
       this.reactInstance.setState({
         value: value

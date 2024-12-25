@@ -8,10 +8,6 @@
   "license": "MIT",
   "private": true,
   "type": "commonjs",
-  "scripts": {
-    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "yarn lint --fix"
-  },
   "bin": {
     "write-coverage": "./bin/write-coverage.js"
   },

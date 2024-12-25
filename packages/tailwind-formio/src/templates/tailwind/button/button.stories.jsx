@@ -12,7 +12,7 @@ export default {
   }
 };
 
-export const Sandbox = (args) => {
+export const Sandbox = () => {
   return (
     <div>
       <div className={"mb-5"}>
@@ -74,7 +74,7 @@ export const Sandbox = (args) => {
 
 Sandbox.args = {};
 
-export const ButtonWithIcon = (args) => {
+export const ButtonWithIcon = () => {
   return (
     <div>
       <div className={"mb-5"}>

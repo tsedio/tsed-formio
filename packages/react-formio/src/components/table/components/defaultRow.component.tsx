@@ -21,6 +21,7 @@ export function DefaultDndRow<Data extends object = {}>(props: DefaultRowProps<D
 
   return (
     <tr ref={dropRef} style={{ opacity }}>
+      {/* eslint-disable-next-line jsx-a11y/no-interactive-element-to-noninteractive-role */}
       <td ref={dragRef} role='cell' style={{ cursor: isDragging ? "grabbing" : "grab" }} className='align-middle'>
         <div className='flex items-center justify-center'>
           <i className={classnames(iconClass(undefined, "dots-vertical-rounded"))} />
