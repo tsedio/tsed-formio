@@ -15,6 +15,7 @@ export interface OperationButtonProps extends Omit<HTMLAttributes<HTMLButtonElem
   title?: string;
   i18n?: (i18n: string) => string;
   ctx?: any;
+  permissionsResolver?: (ctx: any) => boolean;
 }
 
 export function DefaultOperationButton(props: OperationButtonProps) {
@@ -32,6 +33,8 @@ export function DefaultOperationButton(props: OperationButtonProps) {
     data,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ctx,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    permissionsResolver,
     ...otherProps
   } = props;
 

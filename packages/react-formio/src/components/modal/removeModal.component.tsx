@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React, { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 
 import { iconClass } from "../../utils/iconClass";
 import { InputText } from "../input-text/inputText.component";

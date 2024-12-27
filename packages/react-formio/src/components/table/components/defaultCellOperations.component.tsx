@@ -1,5 +1,3 @@
-import React from "react";
-
 import { DefaultOperationButton, OperationButtonProps } from "./defaultOperationButton.component";
 
 export interface DefaultCellOperationsProps {

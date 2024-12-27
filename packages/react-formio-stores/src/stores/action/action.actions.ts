@@ -34,6 +34,7 @@ export const getAction =
       dispatch(receiveAction(ACTION, { action }));
       done(null, action);
     } catch (error) {
+      console.log(error);
       dispatch(failAction(ACTION, { error }));
       done(error);
     }

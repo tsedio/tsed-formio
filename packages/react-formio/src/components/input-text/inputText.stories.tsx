@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { iconClass } from "../../utils/iconClass";
 import { InputText } from "./inputText.component";

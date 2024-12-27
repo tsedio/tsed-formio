@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useCallback, useEffect, useMemo, useState } from "react";
+import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from "react";
 
 import type { FormOptions, FormSchema, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";

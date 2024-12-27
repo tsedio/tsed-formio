@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React, { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { Row } from "react-table";
 
 import { iconClass } from "../../../utils/iconClass";

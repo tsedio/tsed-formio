@@ -1,5 +1,5 @@
 import noop from "lodash/noop";
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import { ComponentType, CSSProperties, PropsWithChildren, useEffect, useState } from "react";
 import {
   Cell,
   CellProps,
@@ -27,7 +27,7 @@ export interface ExtraColumnProps {
   colspan?: number;
   hidden?: boolean;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 export type ExtendedColumn<Data extends object = any> = Column<Data> & ExtraColumnProps;
@@ -66,11 +66,11 @@ export interface TableProps<Data extends object = any> extends TableOptions<Data
   /**
    * Custom EmptyData displayed when there is no data
    */
-  EmptyData?: React.ComponentType;
+  EmptyData?: ComponentType;
   /**
    * Custom ArrowSort
    */
-  ArrowSort?: React.ComponentType;
+  ArrowSort?: ComponentType;
   /**
    * Custom default ColumnFilter
    */
@@ -78,27 +78,27 @@ export interface TableProps<Data extends object = any> extends TableOptions<Data
   /**
    * Custom cell
    */
-  Cell?: React.ComponentType<CellProps<Data>>;
+  Cell?: ComponentType<CellProps<Data>>;
   /**
    * Custom Row
    */
-  Row?: React.ComponentType<DefaultRowProps<Data>>;
+  Row?: ComponentType<DefaultRowProps<Data>>;
   /**
    *
    */
-  CellHeader?: React.ComponentType<DefaultCellHeaderProps<Data>>;
+  CellHeader?: ComponentType<DefaultCellHeaderProps<Data>>;
   /**
    *
    */
-  CellOperations?: React.ComponentType;
+  CellOperations?: ComponentType;
   /**
    * Custom Loader
    */
-  Loader?: React.ComponentType;
+  Loader?: ComponentType;
   /**
    * Custom Loader
    */
-  Pagination?: React.ComponentType;
+  Pagination?: ComponentType;
   /**
    * Disable filters
    */
@@ -179,16 +179,12 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
 
   const _onClick = getOperationCallback(operations, onClick);
 
-  const defaultColumn = React.useMemo(
-    () => ({
-      // Let's set up our default Filter UI
-      Filter: ColumnFilter,
-      ArrowSort
-    }),
-    [ColumnFilter, ArrowSort]
-  ) as any;
+  const defaultColumn = {
+    Filter: ColumnFilter,
+    ArrowSort
+  };
 
-  const [filterId, setFilterId] = React.useState(controlledFilterId);
+  const [filterId, setFilterId] = useState(controlledFilterId);
 
   // DND
   const [records, setRecords] = useState<readonly Data[]>(data);
@@ -236,7 +232,7 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
     state: { pageIndex, pageSize, sortBy, filters }
   } = tableInstance;
 
-  React.useEffect(() => {
+  useEffect(() => {
     onChange({
       pageIndex,
       pageSize,

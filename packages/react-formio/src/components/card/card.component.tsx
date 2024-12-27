@@ -1,8 +1,7 @@
 import classnames from "classnames";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
 export interface CardProps {
-  children: React.ReactNode;
   label: string;
   className?: string;
 }

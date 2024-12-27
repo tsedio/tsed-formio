@@ -6,7 +6,6 @@ import preserveDirectives from "rollup-preserve-directives";
 import {defineConfig} from "vite";
 import dts from "vite-plugin-dts";
 import {resolve} from "node:path";
-import * as fs from "node:fs";
 
 const ejsPlugin = () => {
   const opts = {

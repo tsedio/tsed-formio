@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import React from "react";
 
 import availableActions from "../__fixtures__/form-actions.json";
 import data from "./__fixtures__/data.json";
@@ -37,7 +36,7 @@ const args: any = {
 
 describe("ActionsTable", () => {
   it("should render the table actions", async () => {
-    const onAddAction = jest.fn();
+    const onAddAction = vi.fn();
 
     render(<ActionsTable {...args} onAddAction={onAddAction} />);
 
@@ -54,7 +53,7 @@ describe("ActionsTable", () => {
     expect(options[1].innerHTML).toMatch("Webhook (Premium)");
   });
   it("should not call addAction when the default item is selected", async () => {
-    const onAddAction = jest.fn();
+    const onAddAction = vi.fn();
 
     render(<ActionsTable {...args} onAddAction={onAddAction} />);
 
@@ -64,7 +63,7 @@ describe("ActionsTable", () => {
     expect(onAddAction).not.toHaveBeenCalled();
   });
   it("should call addAction with the selected action", async () => {
-    const onAddAction = jest.fn();
+    const onAddAction = vi.fn();
 
     render(<ActionsTable {...args} onAddAction={onAddAction} />);
 

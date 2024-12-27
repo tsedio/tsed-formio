@@ -1,6 +1,5 @@
 import { Components, ExtendedComponentSchema } from "formiojs";
 import FormioUtils from "formiojs/utils";
-import React from "react";
 
 import { FormSchema } from "../../../interfaces";
 import { DefaultCell } from "../components/defaultCell.component";

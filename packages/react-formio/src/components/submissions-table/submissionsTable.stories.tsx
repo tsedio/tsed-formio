@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 
 import { mapPagination } from "../../utils/mapPagination";
 import formSchema from "../__fixtures__/form-schema.json";
@@ -49,9 +49,9 @@ export default {
 };
 
 export const Sandbox = (args: any) => {
-  const [skip, setSkip] = React.useState(0);
-  const [limit, setLimit] = React.useState(10);
-  const [serverCount] = React.useState(87);
+  const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(10);
+  const [serverCount] = useState(87);
 
   const onChange = (obj: any) => {
     setLimit(obj.pageSize);

@@ -2,21 +2,27 @@
   "name": "@tsed/react-formio-container",
   "description": "Provide advanced components and tools to create your own formio backoffice.",
   "version": "2.3.2",
+  "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
+  "module": "dist/index.js",
+  "source": "src/index.ts",
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./dist/index.modern.js",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "tsed-source": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "tsed-source": "./src/*",
+      "default": "./dist/*.js"
     }
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --coverage",
-    "test:coverage:update": "write-coverage",
-    "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx",
-    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx"
+    "test": "vitest run --coverage",
+    "build": "vite build",
+    "watch": "vite watch"
   },
   "peerDependencies": {
     "@formio/choices.js": "^9.0.1",
@@ -25,11 +31,11 @@
     "classnames": "^2.3.1",
     "connected-react-router": "^6.9.1",
     "file-saver": "^2.0.5",
-    "formiojs": "^4.14.13",
+    "formiojs": "^4.21.6",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-is": "^17.0.1",
     "react-redux": "^7.2.6",
     "react-router": "^5.2.1",
@@ -42,7 +48,9 @@
     "@tsed/react-formio": "workspace:*",
     "@tsed/react-formio-stores": "workspace:*",
     "@types/file-saver": "^2.0.1",
-    "file-saver": "^2.0.5"
+    "file-saver": "^2.0.5",
+    "vite": "5.4.11",
+    "vitest": "2.1.8"
   },
   "peerDependenciesMeta": {
     "choices.js": {

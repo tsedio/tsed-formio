@@ -1,5 +1,3 @@
-import React from "react";
-
 function formatError(error: any): any {
   if (typeof error === "string") {
     return error;

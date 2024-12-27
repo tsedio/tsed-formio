@@ -1,15 +1,18 @@
 {
-  "extends": "@tsed/config/tsconfig.web.json",
   "compilerOptions": {
-    "rootDir": "src"
+    "baseUrl": ".",
+    "composite": true
   },
-  "include": ["src"],
+  "include": [],
   "references": [
     {
-      "path": "./tsconfig.node.json"
+      "path": "../react-formio/tsconfig.json"
     },
     {
-      "path": "../react-formio/tsconfig.json"
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
     }
   ]
 }

@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { ComponentSchema } from "formiojs";
 import AllComponents from "formiojs/components";
 import Components from "formiojs/components/Components";
@@ -7,7 +5,7 @@ import FormioFormBuilder from "formiojs/FormBuilder";
 import cloneDeep from "lodash/cloneDeep";
 import noop from "lodash/noop";
 import PropTypes from "prop-types";
-import React from "react";
+import { Component } from "react";
 
 import { callLast } from "../../utils/callLast";
 
@@ -73,7 +71,7 @@ export interface FormBuilderProps {
   onPasteComponent?: Function;
 }
 
-export class FormBuilder extends React.Component<FormBuilderProps, any> {
+export class FormBuilder extends Component<FormBuilderProps, any> {
   static defaultProps = {
     options: {},
     onChange: noop,
@@ -180,6 +178,8 @@ export class FormBuilder extends React.Component<FormBuilderProps, any> {
     });
   }
 
+  /* eslint-disable jsx-a11y/no-static-element-interactions */
+  /* eslint-disable jsx-a11y/click-events-have-key-events */
   render() {
     return (
       <div

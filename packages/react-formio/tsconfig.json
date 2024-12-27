@@ -1,16 +1,18 @@
 {
-  "extends": "@tsed/config/tsconfig.web.json",
+  "extends": "@tsed/typescript/tsconfig.web.json",
   "compilerOptions": {
-    "rootDir": "src",
-    "moduleResolution": "node"
+    "baseUrl": ".",
+    "composite": true,
+    "noEmit": true
   },
-  "include": ["src"],
+  "include": [],
+  "exclude": [],
   "references": [
     {
-      "path": "./tsconfig.node.json"
+      "path": "./tsconfig.app.json"
     },
     {
-      "path": "../redux-utils/tsconfig.json"
+      "path": "./tsconfig.spec.json"
     }
   ]
 }

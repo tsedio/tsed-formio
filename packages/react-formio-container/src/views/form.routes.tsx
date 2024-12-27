@@ -1,6 +1,6 @@
 import type { TabsItemProps } from "@tsed/react-formio";
 import { AuthState, checkRoleFormAccess, FormSchema } from "@tsed/react-formio-stores";
-import React from "react";
+import { ComponentType } from "react";
 
 import { FormAccessView } from "./formAccess.view";
 import { FormActionsView } from "./formActions.view";
@@ -13,7 +13,7 @@ import { SubmissionsView } from "./submissions.view";
 export interface FormRoute<User = any> extends TabsItemProps, Record<string, unknown> {
   action: string;
   exact: boolean;
-  component?: React.ComponentType<any>;
+  component?: ComponentType<any>;
   roles?: string[];
 
   when?(ctx: { formAction: string; auth: AuthState<User>; form: Partial<FormSchema>; item: FormRoute }): boolean;

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { FilterProps } from "react-table";
 
 import { InputText } from "../../input-text/inputText.component";

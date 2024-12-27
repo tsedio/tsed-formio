@@ -4,18 +4,18 @@ import { formAccessUser, submissionAccessUser, userForms, userRoles } from "./au
 import { AUTH } from "./auth.constant";
 import { getAccess } from "./getAccess.action";
 
-jest.mock("./auth.actions");
+vi.mock("./auth.actions");
 
 describe("getAccess()", () => {
   beforeEach(() => {
-    jest.spyOn(Formio, "makeStaticRequest");
-    jest.spyOn(Formio, "getProjectUrl");
+    vi.spyOn(Formio, "makeStaticRequest");
+    vi.spyOn(Formio, "getProjectUrl");
   });
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
   it("should get access", async () => {
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
     const access = {
       roles: {
         administrator: {

@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 import { Form } from "./form.component";
 
 async function createFixture(props: any = {}) {
-  const onSubmit = jest.fn();
+  const onSubmit = vi.fn();
   const form = {
     type: "form",
     display: "form",

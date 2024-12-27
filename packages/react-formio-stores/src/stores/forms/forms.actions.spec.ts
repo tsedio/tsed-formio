@@ -3,20 +3,37 @@ import { Formio } from "formiojs";
 import { mapRequestParams } from "../../utils/mapRequestParams";
 import { failForms, getForms, receiveForms, requestForms } from "./forms.actions";
 
-jest.mock("formiojs");
-jest.mock("../../utils/mapRequestParams");
+vi.mock("formiojs", async (originalImport) => {
+  return {
+    ...(await originalImport()),
+    Formio: class {
+      static url: string;
+
+      constructor(public url: string) {
+        (Formio as any).url = url;
+      }
+
+      static getProjectUrl() {}
+      loadForms() {}
+    }
+  };
+});
+vi.mock("../../utils/mapRequestParams");
 
 describe("Forms actions", () => {
   beforeEach(() => {
+    vi.resetAllMocks();
+    (Formio as any).url = undefined;
     (mapRequestParams as any).mockImplementation((o: any) => o);
   });
-  afterEach(() => jest.resetAllMocks());
+
   describe("getForms", () => {
     it("should return a result", async () => {
       // GIVEN
-      (Formio as any).prototype.loadForms.mockReturnValue(Promise.resolve([{}]));
-      (Formio as any).getProjectUrl.mockReturnValue("https://formio");
-      const dispatch = jest.fn();
+      vi.spyOn(Formio.prototype, "loadForms").mockResolvedValue([{}]);
+      vi.spyOn(Formio, "getProjectUrl").mockReturnValue("https://formio");
+
+      const dispatch = vi.fn();
       const name = "name";
       const parameters = {
         pageSize: 10,
@@ -33,7 +50,7 @@ describe("Forms actions", () => {
       await new Promise((resolve) => getForms(name, parameters, resolve)(dispatch, getState));
 
       // THEN
-      expect(Formio).toHaveBeenCalledWith("https://formio/form");
+      expect((Formio as any).url).toEqual("https://formio/form");
       expect(Formio.prototype.loadForms).toHaveBeenCalledWith({
         params: parameters
       });
@@ -52,10 +69,10 @@ describe("Forms actions", () => {
     });
     it("should return a error", async () => {
       // GIVEN
-      (Formio.prototype.loadForms as any).mockReturnValue(Promise.reject(new Error("message")));
-      (Formio.getProjectUrl as any).mockReturnValue("https://formio");
+      vi.spyOn(Formio.prototype, "loadForms").mockRejectedValue(new Error("message"));
+      vi.spyOn(Formio, "getProjectUrl").mockReturnValue("https://formio");
 
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
       const name = "name";
       const parameters = {
         pageSize: 10,
@@ -72,7 +89,7 @@ describe("Forms actions", () => {
       await new Promise((resolve) => getForms(name, parameters, resolve)(dispatch, getState));
 
       // THEN
-      expect(Formio).toHaveBeenCalledWith("https://formio/form");
+      expect((Formio as any).url).toEqual("https://formio/form");
       expect(Formio.prototype.loadForms).toHaveBeenCalledWith({
         params: parameters
       });

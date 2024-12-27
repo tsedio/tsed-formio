@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import * as React from "react";
+import { expect, vi } from "vitest";
 
 import { Tabs } from "./tabs.component";
 import { Sandbox } from "./tabs.component.stories";
@@ -66,7 +66,7 @@ describe("tabs", () => {
         label: "Edit"
       }
     ];
-    const onClick = jest.fn();
+    const onClick = vi.fn();
 
     render(<Tabs items={items} onClick={onClick} />);
 

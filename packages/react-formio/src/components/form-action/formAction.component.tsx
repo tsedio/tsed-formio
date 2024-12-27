@@ -1,5 +1,5 @@
 import FormioUtils from "formiojs/utils";
-import React, { PropsWithChildren, ReactElement } from "react";
+import { PropsWithChildren, ReactElement } from "react";
 
 import { ActionDefaultsSchema, ActionSchema, FormOptions, Submission } from "../../interfaces";
 import { Form } from "../form/form.component";

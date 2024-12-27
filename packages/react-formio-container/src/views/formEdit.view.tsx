@@ -1,6 +1,5 @@
 import { FormEdit } from "@tsed/react-formio";
 import classnames from "classnames";
-import React from "react";
 
 import { useForm } from "../hooks/useForm.hook";
 

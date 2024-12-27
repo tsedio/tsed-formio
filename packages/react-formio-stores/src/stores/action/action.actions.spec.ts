@@ -12,21 +12,37 @@ import {
   sendAction
 } from "./action.actions";
 
-jest.mock("formiojs/Formio");
-jest.mock("../action-info");
+vi.mock("formiojs", async (originalImport) => {
+  return {
+    ...(await originalImport()),
+    Formio: class {
+      static url: string;
+      constructor(public url: string) {
+        (Formio as any).url = url;
+      }
+      static getProjectUrl() {}
+      loadAction() {
+        return;
+      }
+      saveAction() {}
+      deleteAction() {}
+    }
+  };
+});
+vi.mock("../action-info");
 
 describe("Action actions", () => {
   beforeEach(() => {
     (getActionInfo as any).mockReturnValue({ type: "actionInfo" });
   });
-  afterEach(() => jest.resetAllMocks());
+  afterEach(() => vi.resetAllMocks());
   describe("getAction", () => {
     it("should get action", async () => {
       const formId = "formId";
       const actionId = "actionId";
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
 
-      (Formio.prototype.loadAction as any).mockReturnValue({
+      vi.spyOn(Formio.prototype, "loadAction").mockReturnValue({
         _id: actionId,
         name: "oidc"
       });
@@ -37,7 +53,7 @@ describe("Action actions", () => {
         type: requestAction.toString(),
         name: "action"
       });
-      expect(Formio).toHaveBeenCalledWith("/formId/action/actionId");
+      expect((Formio as any).url).toEqual("/formId/action/actionId");
       expect(Formio.prototype.loadAction).toHaveBeenCalledWith();
       expect(getActionInfo).toHaveBeenCalledWith("formId", "oidc");
       expect(dispatch).toHaveBeenCalledWith({ type: "actionInfo" });
@@ -57,9 +73,9 @@ describe("Action actions", () => {
     it("should save action", async () => {
       const formId = "formId";
       const actionId = "actionId";
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
 
-      (Formio.prototype.saveAction as any).mockReturnValue({
+      vi.spyOn(Formio.prototype, "saveAction").mockReturnValue({
         _id: actionId
       });
 
@@ -76,7 +92,7 @@ describe("Action actions", () => {
           action: { _id: actionId }
         }
       });
-      expect(Formio).toHaveBeenCalledWith("/formId/action");
+      expect((Formio as any).url).toEqual("/formId/action");
       expect(Formio.prototype.saveAction).toHaveBeenCalledWith({
         _id: actionId
       });
@@ -95,7 +111,9 @@ describe("Action actions", () => {
     it("should delete action", async () => {
       const formId = "formId";
       const actionId = "actionId";
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
+
+      vi.spyOn(Formio.prototype, "deleteAction");
 
       await deleteAction(formId, actionId)(dispatch);
 
@@ -103,7 +121,7 @@ describe("Action actions", () => {
         type: clearActionError.toString(),
         name: "action"
       });
-      expect(Formio).toHaveBeenCalledWith("/formId/action/actionId");
+      expect((Formio as any).url).toEqual("/formId/action/actionId");
       expect(Formio.prototype.deleteAction).toHaveBeenCalledWith();
       expect(dispatch).toHaveBeenCalledWith({
         type: resetAction.toString(),

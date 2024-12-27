@@ -1,29 +1,31 @@
 {
   "name": "@tsed/redux-utils",
   "version": "2.3.2",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
   "description": "An opinionated lib to create actions and reducers for Redux written in TypeScript",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "source": "src/index.ts",
   "author": "Romain Lenzotti",
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./dist/index.modern.js",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "tsed-source": "./src/index.ts",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --coverage",
-    "test:coverage:update": "write-coverage",
-    "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
-    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement"
+    "test": "vitest run --coverage",
+    "build": "vite build",
+    "watch": "vite watch"
   },
   "devDependencies": {
-    "@tsed/config": "workspace:*"
+    "vite": "5.4.11",
+    "vitest": "2.1.8"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "redux": "^4.0.5"
   }
 }

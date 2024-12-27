@@ -1,12 +1,15 @@
+import { join } from "node:path";
+
 import { defineConfig } from "vitest/config";
 
 export const presets = defineConfig({
   resolve: {
-    // alias
+    conditions: ["tsed-source"]
   },
   test: {
     globals: true,
-    environment: "happy-dom",
+    environment: "jsdom",
+    setupFiles: join(import.meta.dirname, "../setup/setup.ts"),
     coverage: {
       enabled: true,
       reporter: ["text", "json", "html"],

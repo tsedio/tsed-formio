@@ -1,5 +1,3 @@
-import React from "react";
-
 import { iconClass } from "../../utils/iconClass";
 import { FormControl } from "./formControl.component";
 

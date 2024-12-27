@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
 import { DrapNDropContainer } from "./components/dragNDropContainer";
 import { TableProps, useCustomTable } from "./hooks/useCustomTable.hook";

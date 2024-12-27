@@ -8,22 +8,22 @@ import { initAuth } from "./initAuth.action";
 import { logout } from "./logout.action";
 import { setUser } from "./setUser.action";
 
-jest.mock("./getAccess.action");
-jest.mock("./getProjectAccess.action");
-jest.mock("./setUser.action");
-jest.mock("./logout.action");
-jest.mock("./auth.actions");
+vi.mock("./getAccess.action");
+vi.mock("./getProjectAccess.action");
+vi.mock("./setUser.action");
+vi.mock("./logout.action");
+vi.mock("./auth.actions");
 
 describe("initAuth()", () => {
   beforeEach(() => {
-    jest.spyOn(Formio, "currentUser");
+    vi.spyOn(Formio, "currentUser");
   });
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
   it("should init auth", async () => {
-    const dispatch = jest.fn();
-    const done = jest.fn();
+    const dispatch = vi.fn();
+    const done = vi.fn();
     const user = { data: {} };
 
     (Formio.currentUser as any).mockResolvedValue(user);
@@ -38,8 +38,8 @@ describe("initAuth()", () => {
     expect(logout).not.toHaveBeenCalled();
   });
   it("should call logout when user is null", async () => {
-    const dispatch = jest.fn();
-    const done = jest.fn();
+    const dispatch = vi.fn();
+    const done = vi.fn();
     const user: any = null;
 
     (Formio.currentUser as any).mockResolvedValue(user);

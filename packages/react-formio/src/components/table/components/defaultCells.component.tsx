@@ -1,4 +1,3 @@
-import React from "react";
 import { Row } from "react-table";
 
 import type { ExtendedCell } from "../hooks/useCustomTable.hook";

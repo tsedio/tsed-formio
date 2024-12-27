@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React from "react";
+import type { PropsWithChildren, ReactNode } from "react";
 
 export interface FormControlProps<Data = any> {
   name: string;
@@ -8,9 +8,9 @@ export interface FormControlProps<Data = any> {
   label?: string;
   className?: string;
   onChange?: (name: string, value: any) => void;
-  description?: string | React.ComponentType | any;
-  prefix?: JSX.Element | React.ComponentType | any;
-  suffix?: JSX.Element | React.ComponentType | any;
+  description?: string | ReactNode;
+  prefix?: ReactNode | string;
+  suffix?: ReactNode | string;
   shadow?: boolean;
 }
 
@@ -23,7 +23,7 @@ export function FormControl({
   description,
   label,
   className
-}: React.PropsWithChildren<FormControlProps>) {
+}: PropsWithChildren<FormControlProps>) {
   return (
     <div data-testid={name && `form-group-${name}`} id={`form-group-${name || ""}`} className={classnames("form-group", className)}>
       {label && (

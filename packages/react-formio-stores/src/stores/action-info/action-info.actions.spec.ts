@@ -2,17 +2,33 @@ import { Formio } from "formiojs";
 
 import { getActionInfo, receiveActionInfo, requestActionInfo } from "./action-info.actions";
 
-jest.mock("formiojs/Formio");
+vi.mock("formiojs", async (originalImport) => {
+  return {
+    ...(await originalImport()),
+    Formio: class {
+      static url: string;
+
+      constructor(public url: string) {
+        (Formio as any).url = url;
+      }
+
+      static getProjectUrl() {
+        return "http://localhost";
+      }
+
+      actionInfo() {}
+    }
+  };
+});
 
 describe("ActionInfo actions", () => {
   describe("getAction", () => {
     it("should get action", async () => {
       const formId = "formId";
       const actionType = "oidc";
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
 
-      (Formio.getProjectUrl as any).mockReturnValue("http://localhost");
-      (Formio.prototype.actionInfo as any).mockReturnValue({
+      vi.spyOn(Formio.prototype, "actionInfo").mockReturnValue({
         _id: "actionId",
         name: "oidc",
         settingsForm: {
@@ -26,7 +42,7 @@ describe("ActionInfo actions", () => {
         type: requestActionInfo.toString(),
         name: "actionInfo"
       });
-      expect(Formio).toHaveBeenCalledWith("http://localhost/formId");
+      expect((Formio as any).url).toEqual("http://localhost/formId");
       expect(Formio.prototype.actionInfo).toHaveBeenCalledWith("oidc");
       expect(dispatch).toHaveBeenCalledWith({
         type: receiveActionInfo.toString(),

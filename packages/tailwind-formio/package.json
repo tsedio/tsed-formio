@@ -2,21 +2,39 @@
   "name": "@tsed/tailwind-formio",
   "version": "2.3.2",
   "description": "Tailwind templates for form.io forms.",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "source": "src/index.ts",
-  "type": "module",
   "exports": {
-    ".": "./dist/index.js",
-    "./tailwind.preset": "./dist/tailwind/tailwind.preset.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "tsed-source": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles/*": "./styles/*",
+    "./tailwind.preset": {
+      "types": "./dist/tailwind/preset.d.ts",
+      "default": "./dist/tailwind/preset.js"
+    },
+    "./tailwind.colors": {
+      "types": "./dist/tailwind/colors.d.ts",
+      "default": "./dist/tailwind/colors.js"
+    }
   },
   "scripts": {
-    "build": "vite build",
-    "watch": "vite watch"
+    "build": "vite build && yarn tailwind:build",
+    "watch": "vite build --watch",
+    "tailwind:build": "tailwindcss build -o build/tailwind.css && yarn tailwind:build:viewer",
+    "start:tailwind:viewer": "tailwind-config-viewer -o",
+    "tailwind:build:viewer": "tailwind-config-viewer export ./build && cp ./build/index.html ./build/tailwind.html && yarn clean:tailwind:viewer",
+    "clean:tailwind:viewer": "rimraf build/index.html build/favicon.ico"
   },
   "devDependencies": {
-    "@tsed/tailwind": "workspace:*",
     "cross-env": "7.0.3",
+    "rimraf": "3.0.2",
+    "tailwind-config-viewer": "2.0.4",
+    "tailwindcss": "3.4.17",
     "vite": "5.4.11",
     "vite-plugin-ejs": "1.7.0"
   },
