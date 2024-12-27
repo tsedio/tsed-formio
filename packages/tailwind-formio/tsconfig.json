@@ -1,14 +1,13 @@
 {
-  "extends": "@tsed/config/tsconfig.web.json",
   "compilerOptions": {
-    "outDir": "lib",
-    "rootDir": "src",
-    "allowJs": true
+    "baseUrl": ".",
+    "composite": true,
+    "noEmit": true
   },
-  "include": ["src"],
+  "include": [],
   "references": [
     {
-      "path": "./tsconfig.node.json"
+      "path": "./tsconfig.app.json"
     }
   ]
 }

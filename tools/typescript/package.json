@@ -1,0 +1,11 @@
+{
+  "name": "@tsed/typescript",
+  "version": "2.3.2",
+  "description": "Util to compile source",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    "./tsconfig.web.json": "./tsconfig.web.json"
+  }
+}
