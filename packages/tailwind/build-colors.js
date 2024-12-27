@@ -1,12 +1,14 @@
-const {
-  theme: { colors }
-} = require("./tailwind.config.js");
-const fs = require("fs");
+import fs from "node:fs/promises";
 
-try {
-  fs.mkdirSync("./dist", { recursive: true });
-} catch (er) {
-  console.error(er);
-}
+import colors from "tailwindcss/colors.js";
 
-fs.writeFileSync("./dist/colors.json", JSON.stringify(colors, null, 2), { encoding: "utf8" });
+import tailwindConfig from "./tailwind.config.js";
+
+const mergedColors = {
+  ...colors,
+  ...tailwindConfig.theme.extend.colors
+};
+
+await fs.mkdir("./dist", { recursive: true }).catch(() => {});
+
+await fs.writeFile("./dist/colors.json", JSON.stringify(mergedColors, null, 2), { encoding: "utf8" });
