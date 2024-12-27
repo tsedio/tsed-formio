@@ -1,5 +1,3 @@
-import React from "react";
-
 import { FormSchema, Submission } from "../../interfaces";
 import { TableProps } from "../table/hooks/useCustomTable.hook";
 import { Table } from "../table/table.component";

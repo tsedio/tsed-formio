@@ -1,5 +1,3 @@
-import React from "react";
-
 import { FormAction } from "./formAction.component";
 
 export default {

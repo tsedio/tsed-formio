@@ -1,6 +1,6 @@
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FormOptions, FormSchema } from "../../interfaces";
 import { Form } from "../form/form.component";

@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import React from "react";
 
 import { Choicesjs, Sandbox } from "./select.stories";
 
@@ -52,7 +51,7 @@ describe("Select", () => {
         { label: "test2", value: "value2" }
       ];
       const placeHolderTest = "Placeholder test";
-      const onChange = jest.fn();
+      const onChange = vi.fn();
 
       render(<Sandbox {...Sandbox.args} placeholder={placeHolderTest} choices={choices} name={"test-sandbox"} onChange={onChange} />);
 

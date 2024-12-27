@@ -4,17 +4,17 @@ import { receiveUser } from "./auth.actions";
 import { AUTH } from "./auth.constant";
 import { setUser } from "./setUser.action";
 
-jest.mock("./auth.actions");
+vi.mock("./auth.actions");
 
 describe("setUser()", () => {
   beforeEach(() => {
-    jest.spyOn(Formio, "setUser");
+    vi.spyOn(Formio, "setUser");
   });
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
   it("should call logout", async () => {
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
     const user = {};
 
     await setUser(user)(dispatch);

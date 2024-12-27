@@ -1,6 +1,6 @@
 import Choices from "@formio/choices.js";
 import classnames from "classnames";
-import React, { HTMLAttributes, ReactElement, useEffect, useRef } from "react";
+import { HTMLAttributes, ReactElement, useEffect, useRef } from "react";
 
 import { getEventValue } from "../../utils/getEventValue";
 import { FormControl, FormControlProps } from "../form-control/formControl.component";

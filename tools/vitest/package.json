@@ -6,6 +6,7 @@
   "exports": {
     ".": "./index.js",
     "./plugins/*": "./plugins/*",
+    "./setup/*": "./setup/*",
     "./presets": "./presets/index.js"
   },
   "devDependencies": {

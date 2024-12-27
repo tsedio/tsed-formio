@@ -2,22 +2,40 @@ import { Formio } from "formiojs";
 
 import { getActions, receiveActions, requestActions, resetActions } from "./actions.actions";
 
-jest.mock("formiojs");
+vi.mock("formiojs", async (originalImport) => {
+  return {
+    ...(await originalImport()),
+    Formio: class {
+      static url: string;
+
+      constructor(public url: string) {
+        (Formio as any).url = url;
+      }
+
+      static getProjectUrl() {}
+      loadActions() {}
+      availableActions() {}
+    }
+  };
+});
 
 describe("Actions actions", () => {
+  beforeEach(() => {
+    (Formio as any).url = undefined;
+  });
   describe("getActions", () => {
     it("should return a result", async () => {
       const formId = "formId";
       const actionId = "actionId";
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
 
-      (Formio.prototype.loadActions as any).mockReturnValue([
+      vi.spyOn(Formio.prototype, "loadActions").mockReturnValue([
         {
           _id: actionId,
           name: "oidc"
         }
       ]);
-      (Formio.prototype.availableActions as any).mockReturnValue([
+      vi.spyOn(Formio.prototype, "availableActions").mockReturnValue([
         {
           name: "oidc"
         }
@@ -34,7 +52,7 @@ describe("Actions actions", () => {
         name: "actions"
       });
 
-      expect(Formio).toHaveBeenCalledWith("/formId");
+      expect((Formio as any).url).toEqual("/formId");
       expect(Formio.prototype.loadActions).toHaveBeenCalledWith({
         params: {}
       });

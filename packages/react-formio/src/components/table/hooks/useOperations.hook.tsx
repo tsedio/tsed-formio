@@ -1,4 +1,4 @@
-import React, { type ComponentType, type FunctionComponent } from "react";
+import { type ComponentType, type FunctionComponent } from "react";
 import { Hooks } from "react-table";
 
 import { Operation } from "../../../interfaces";

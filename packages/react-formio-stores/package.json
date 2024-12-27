@@ -3,26 +3,24 @@
   "version": "2.3.2",
   "description": "Provide redux stores and action around formio.js API. Written in TypeScript.",
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "module": "dist/index.js",
   "source": "src/index.ts",
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./dist/index.modern.js",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "tsed-source": "./src/index.js",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --coverage",
-    "test:coverage:update": "write-coverage",
-    "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx",
-    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx"
+    "test": "vitest run --coverage",
+    "build": "vite build",
+    "watch": "vite watch"
   },
   "dependencies": {
     "@tsed/react-formio": "workspace:*",
-    "@tsed/redux-utils": "workspace:*",
-    "eventemitter2": "^6.4.3",
-    "prop-types": "15.8.1"
+    "@tsed/redux-utils": "workspace:*"
   },
   "peerDependencies": {
     "@formio/choices.js": ">=9.0.1",
@@ -35,7 +33,8 @@
     "tooltip.js": ">=1.3.3"
   },
   "devDependencies": {
-    "@tsed/tailwind": "workspace:*",
-    "@tsed/tailwind-formio": "workspace:*"
+    "@tsed/tailwind-formio": "workspace:*",
+    "vite": "5.4.11",
+    "vitest": "2.1.8"
   }
 }

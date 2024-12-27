@@ -2,20 +2,35 @@ import { Formio } from "formiojs";
 
 import { deleteForm, failForm, getForm, receiveForm, requestForm, resetForm, saveForm, sendForm } from "./form.actions";
 
-jest.mock("formiojs");
+vi.mock("formiojs", async (originalImport) => {
+  return {
+    ...(await originalImport()),
+    Formio: class {
+      static url: string;
+
+      constructor(public url: string) {
+        (Formio as any).url = url;
+      }
+
+      static getProjectUrl() {}
+      loadForms() {}
+      loadForm() {}
+      saveForm() {}
+      deleteForm() {}
+    }
+  };
+});
 
 describe("Form actions", () => {
+  beforeEach(() => {
+    (Formio as any).url = undefined;
+  });
   describe("getForm", () => {
-    beforeEach(() => {
-      // @ts-ignore
-      Formio.mockClear();
-    });
     it("should return a result", async () => {
       // GIVEN
-      // @ts-ignore
-      Formio.prototype.loadForm.mockReturnValue(Promise.resolve({}));
+      vi.spyOn(Formio.prototype, "loadForm").mockResolvedValue({});
 
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
       const name = "name";
       const formId = "formId";
 
@@ -27,7 +42,7 @@ describe("Form actions", () => {
       await new Promise((resolve) => getForm(name, formId, resolve)(dispatch, getState));
 
       // THEN
-      expect(Formio).toHaveBeenCalledWith("/formId");
+      expect((Formio as any).url).toEqual("/formId");
       expect(Formio.prototype.loadForm).toHaveBeenCalledWith();
       expect(dispatch).toHaveBeenCalledWith({
         name: "name",
@@ -49,9 +64,9 @@ describe("Form actions", () => {
     it("should do nothing when submission is already loaded", async () => {
       // GIVEN
       // @ts-ignore
-      Formio.prototype.loadForm.mockReturnValue(Promise.resolve({}));
+      vi.spyOn(Formio.prototype, "loadForm").mockResolvedValue({});
 
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
       const name = "name";
       const formId = "formId";
 
@@ -68,14 +83,14 @@ describe("Form actions", () => {
       getForm(name, formId)(dispatch, getState);
 
       // THEN
-      expect(Formio).not.toHaveBeenCalled();
+      expect((Formio as any).url).toBeUndefined();
     });
     it("should throw error", async () => {
       // GIVEN
       // @ts-ignore
-      Formio.prototype.loadForm.mockReturnValue(Promise.reject(new Error("message")));
+      vi.spyOn(Formio.prototype, "loadForm").mockRejectedValue(new Error("message"));
 
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
       const name = "name";
       const formId = "formId";
 
@@ -87,7 +102,7 @@ describe("Form actions", () => {
       await new Promise((resolve) => getForm(name, formId, resolve)(dispatch, getState));
 
       // THEN
-      expect(Formio).toHaveBeenCalledWith("/formId");
+      expect((Formio as any).url).toEqual("/formId");
       expect(Formio.prototype.loadForm).toHaveBeenCalledWith();
       expect(dispatch).toHaveBeenCalledWith({
         name: "name",
@@ -101,18 +116,18 @@ describe("Form actions", () => {
   describe("saveForm", () => {
     it("should return a result", async () => {
       // GIVEN
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
       const name = "name";
       const formId = "formId";
       const data = { _id: formId };
 
       // @ts-ignore
-      Formio.prototype.saveForm.mockReturnValue(Promise.resolve(data));
+      vi.spyOn(Formio.prototype, "saveForm").mockResolvedValue(data);
       // WHEN
       await new Promise((resolve) => saveForm(name, data, resolve)(dispatch));
 
       // THEN
-      expect(Formio).toHaveBeenCalledWith("/formId");
+      expect((Formio as any).url).toEqual("/formId");
       expect(Formio.prototype.saveForm).toHaveBeenCalledWith(data);
       expect(dispatch).toHaveBeenCalledWith({
         name: "name",
@@ -132,10 +147,9 @@ describe("Form actions", () => {
     });
     it("should throw error", async () => {
       // GIVEN
-      // @ts-ignore
-      Formio.prototype.saveForm.mockReturnValue(Promise.reject(new Error("message")));
+      vi.spyOn(Formio.prototype, "saveForm").mockRejectedValue(new Error("message"));
 
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
       const name = "name";
       const formId = "formId";
       const data = { _id: formId };
@@ -144,7 +158,7 @@ describe("Form actions", () => {
       await new Promise((resolve) => saveForm(name, data, resolve)(dispatch));
 
       // THEN
-      expect(Formio).toHaveBeenCalledWith("/formId");
+      expect((Formio as any).url).toEqual("/formId");
       expect(Formio.prototype.saveForm).toHaveBeenCalledWith(data);
       expect(dispatch).toHaveBeenCalledWith({
         name: "name",
@@ -159,9 +173,9 @@ describe("Form actions", () => {
     it("should return a result", async () => {
       // GIVEN
       // @ts-ignore
-      Formio.prototype.deleteForm.mockReturnValue(Promise.resolve({}));
+      vi.spyOn(Formio.prototype, "deleteForm").mockResolvedValue({});
 
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
       const name = "name";
       const formId = "formId";
 
@@ -169,7 +183,7 @@ describe("Form actions", () => {
       await new Promise((resolve) => deleteForm(name, formId, resolve)(dispatch));
 
       // THEN
-      expect(Formio).toHaveBeenCalledWith("/formId");
+      expect((Formio as any).url).toEqual("/formId");
       expect(Formio.prototype.deleteForm).toHaveBeenCalledWith();
       expect(dispatch).toHaveBeenCalledWith({
         name: "name",
@@ -178,10 +192,9 @@ describe("Form actions", () => {
     });
     it("should throw error", async () => {
       // GIVEN
-      // @ts-ignore
-      Formio.prototype.deleteForm.mockReturnValue(Promise.reject(new Error("message")));
+      vi.spyOn(Formio.prototype, "deleteForm").mockRejectedValue(new Error("message"));
 
-      const dispatch = jest.fn();
+      const dispatch = vi.fn();
       const name = "name";
       const formId = "formId";
 
@@ -189,7 +202,7 @@ describe("Form actions", () => {
       await new Promise((resolve) => deleteForm(name, formId, resolve)(dispatch));
 
       // THEN
-      expect(Formio).toHaveBeenCalledWith("/formId");
+      expect((Formio as any).url).toEqual("/formId");
       expect(Formio.prototype.deleteForm).toHaveBeenCalledWith();
       expect(dispatch).toHaveBeenCalledWith({
         name: "name",

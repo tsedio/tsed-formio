@@ -1,5 +1,4 @@
 import { Alert, Loader, RemoveModal, Tabs } from "@tsed/react-formio";
-import React from "react";
 import { Route, Switch, useParams } from "react-router";
 
 import { useForm } from "../hooks/useForm.hook";

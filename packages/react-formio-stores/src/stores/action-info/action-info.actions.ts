@@ -16,6 +16,7 @@ export const getActionInfo =
     dispatch(requestActionInfo(ACTION_INFO));
 
     const url = getFormUrl(formId);
+
     const formio = new Formio(url);
 
     try {

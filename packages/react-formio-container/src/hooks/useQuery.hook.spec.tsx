@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import React from "react";
 
 import { useQuery } from "./useQuery.hook";
 
@@ -19,7 +18,7 @@ function FixtureQuery(props: any) {
 
 describe("useQueryHook", () => {
   it("should call onChange", () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <FixtureQuery
         onChange={onChange}
@@ -48,7 +47,7 @@ describe("useQueryHook", () => {
     });
   });
   it("should not call onChange", () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <FixtureQuery
         onChange={onChange}

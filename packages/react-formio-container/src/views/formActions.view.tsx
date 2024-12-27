@@ -1,5 +1,4 @@
 import { ActionsTable } from "@tsed/react-formio";
-import React from "react";
 import { Route, Switch } from "react-router";
 
 import { useActions, UseActionsProps } from "../hooks/useActions.hook";

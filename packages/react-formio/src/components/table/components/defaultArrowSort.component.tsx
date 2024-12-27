@@ -1,5 +1,3 @@
-import React from "react";
-
 import { iconClass } from "../../../utils/iconClass";
 
 export function DefaultArrowSort({ column }: any) {

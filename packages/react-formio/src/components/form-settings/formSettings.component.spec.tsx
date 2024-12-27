@@ -1,12 +1,11 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import React from "react";
 
 import { FormSettings } from "./formSettings.component";
 import { Sandbox } from "./formSettings.stories";
 
 describe("FormSettings", () => {
   it("should render form settings", () => {
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
 
     // @ts-ignore
     Sandbox.args.form.action = "https://test";

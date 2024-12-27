@@ -1,5 +1,4 @@
 import tailwind from "@tsed/tailwind-formio";
-import React from "react";
 
 import { FormsTable } from "./formsTable.component";
 

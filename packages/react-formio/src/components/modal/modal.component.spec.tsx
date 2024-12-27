@@ -1,14 +1,11 @@
-import "@testing-library/jest-dom/extend-expect";
-
 import { fireEvent, render, screen } from "@testing-library/react";
-import React from "react";
 
 import { WithFooter, WithTitle } from "./modal.stories";
 
 describe("Modal", () => {
   describe("WithTitle", () => {
     it("should display the modal when we click on the button", async () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
       render(<WithTitle {...WithTitle.args} onClose={onClose} />);
 
@@ -60,7 +57,7 @@ describe("Modal", () => {
       expect(screen.queryByTestId("modalFooter")).toBeFalsy();
     });
     it("should call the onSubmit listener", async () => {
-      const onSubmit = jest.fn();
+      const onSubmit = vi.fn();
 
       render(<WithFooter {...WithFooter.args} onSubmit={onSubmit} />);
 

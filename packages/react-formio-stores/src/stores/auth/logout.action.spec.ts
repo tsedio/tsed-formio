@@ -4,18 +4,18 @@ import { logoutUser } from "./auth.actions";
 import { AUTH } from "./auth.constant";
 import { logout } from "./logout.action";
 
-jest.mock("./auth.actions");
-jest.mock("formiojs");
+vi.mock("./auth.actions");
+vi.mock("formiojs");
 
 describe("logout()", () => {
   beforeEach(() => {
-    jest.spyOn(Formio, "logout");
+    vi.spyOn(Formio, "logout");
   });
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
   it("should call logout", async () => {
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     await logout()(dispatch);
 

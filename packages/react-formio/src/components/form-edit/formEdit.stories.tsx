@@ -1,5 +1,3 @@
-import React from "react";
-
 import { FormEdit } from "./formEdit.component";
 import { defaultDisplayChoices } from "./formParameters.component";
 

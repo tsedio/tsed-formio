@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Loader } from "./loader.component";
 
 export default {

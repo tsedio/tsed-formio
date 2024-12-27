@@ -1,5 +1,6 @@
-import { COLORS_LIST } from "@tsed/tailwind/colors";
 import React from "react";
+
+import { COLORS_LIST } from "../../tailwind/colors.ts";
 
 export default {
   title: "Formiojs/Breadcrumbs",

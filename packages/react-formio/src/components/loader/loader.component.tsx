@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import PropTypes from "prop-types";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
 import { iconClass } from "../../utils/iconClass";
 

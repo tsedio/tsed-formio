@@ -1,5 +1,3 @@
-import React from "react";
-
 import { FormSettings } from "./formSettings.component";
 
 export default {

@@ -1,13 +1,10 @@
-import "@testing-library/jest-dom/extend-expect";
-
 import { render, screen } from "@testing-library/react";
-import React from "react";
 
 import { SelectColumnFilter } from "./selectColumnFilter.component";
 
 describe("SelectColumnFilter", () => {
   it("should display select with choices", async () => {
-    const mockSetFilter = jest.fn();
+    const mockSetFilter = vi.fn();
     const props = {
       name: "data.id",
       setFilter: mockSetFilter,
@@ -26,7 +23,7 @@ describe("SelectColumnFilter", () => {
     expect(screen.getByText("select-choice-2")).toBeDefined();
   });
   it("should display select with custom choices", async () => {
-    const mockSetFilter = jest.fn();
+    const mockSetFilter = vi.fn();
     const props = {
       name: "data.id",
       setFilter: mockSetFilter,
@@ -47,7 +44,7 @@ describe("SelectColumnFilter", () => {
   });
 
   it("should display select with custom choices (function)", async () => {
-    const mockSetFilter = jest.fn();
+    const mockSetFilter = vi.fn();
     const props = {
       name: "data.id",
       setFilter: mockSetFilter,

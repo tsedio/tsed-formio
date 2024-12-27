@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import form from "../__fixtures__/form.fixture.json";
 import { Form } from "./form.component";

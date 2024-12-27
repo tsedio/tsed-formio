@@ -1,0 +1,11 @@
+{
+  "extends": "@tsed/typescript/tsconfig.web.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "declaration": false,
+    "composite": false
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.mts"],
+  "exclude": ["node_modules", "dist", "src/**/*.spec.ts", "src/**/*.spec.tsx"]
+}

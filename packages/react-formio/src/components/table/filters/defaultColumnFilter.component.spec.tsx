@@ -1,7 +1,4 @@
-import "@testing-library/jest-dom/extend-expect";
-
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import React from "react";
 
 import { DefaultColumnFilter } from "./defaultColumnFilter.component";
 
@@ -9,9 +6,9 @@ describe("DefaultColumnFilter", () => {
   it("should display text-field and handle change", async () => {
     const props = {
       filterId: "data.id",
-      setFilterId: jest.fn(),
+      setFilterId: vi.fn(),
       name: "data.id",
-      column: { id: "id", filterValue: "", setFilter: jest.fn() }
+      column: { id: "id", filterValue: "", setFilter: vi.fn() }
     };
 
     render(

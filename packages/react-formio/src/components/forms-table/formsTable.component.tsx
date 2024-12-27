@@ -1,5 +1,3 @@
-import React from "react";
-
 import { FormSchema } from "../../interfaces";
 import { DefaultColumnFilter } from "../table/filters/defaultColumnFilter.component";
 import { SelectColumnFilter } from "../table/filters/selectColumnFilter.component";

@@ -2,5 +2,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["templates/**"]
+  "include": ["templates/**", "setup/**"]
 }

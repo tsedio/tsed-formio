@@ -1,0 +1,14 @@
+{
+  "extends": "@tsed/typescript/tsconfig.web.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "declaration": false,
+    "composite": false,
+    "noEmit": true,
+    "paths": {},
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": ["src/**/*.spec.tsx", "src/**/*.spec.ts", "vitest.config.mts"],
+  "exclude": ["node_modules", "dist", "coverage"]
+}
