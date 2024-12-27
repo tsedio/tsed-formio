@@ -1,10 +1,10 @@
 {
+  "extends": "@tsed/typescript/tsconfig.web.json",
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "nodenext",
-    "target": "esnext",
-    "esModuleInterop": true,
-    "noEmit": true
+    "baseUrl": ".",
+    "noEmit": true,
+    "composite": false,
+    "declaration": false
   },
-  "include": ["**/.storybook/**/*.ts", "vite.config.mts"]
+  "include": ["**/.storybook/**/*.ts", "vite.config.mts", "vitest.workspace.mts"]
 }

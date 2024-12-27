@@ -65,3 +65,4 @@ storybook-static
 !.yarn/sdks
 !.yarn/versions
 
+**/tsconfig.*.tsbuildinfo

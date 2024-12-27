@@ -3,24 +3,22 @@
   "version": "2.3.2",
   "description": "Tailwind templates for form.io forms.",
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "module": "dist/index.js",
   "source": "src/index.ts",
-  "type": "commonjs",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./tailwind.preset": "./dist/tailwind/tailwind.preset.js"
+  },
   "scripts": {
-    "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
-    "build:templates": "gulp templates",
-    "build:source": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx",
-    "build": "gulp templates && yarn build:source"
+    "build": "vite build",
+    "watch": "vite watch"
   },
   "devDependencies": {
-    "@tsed/config": "2.3.2",
-    "@tsed/tailwind": "2.3.2",
+    "@tsed/tailwind": "workspace:*",
     "cross-env": "7.0.3",
-    "gulp": "^4.0.2",
-    "gulp-insert": "^0.5.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-template": "^5.0.0",
-    "nodemon": "2.0.20"
+    "vite": "5.4.11",
+    "vite-plugin-ejs": "1.7.0"
   },
   "browserslist": {
     "production": [
