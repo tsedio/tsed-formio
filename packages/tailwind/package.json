@@ -1,10 +1,18 @@
 {
   "name": "@tsed/tailwind",
   "version": "2.3.2",
+  "type": "module",
   "main": "./tailwind.config.js",
+  "module": "./tailwind.config.js",
   "description": "Tailwind configuration",
   "license": "MIT",
   "private": true,
+  "exports": {
+    ".": {
+      "source": "./tailwind.config.js",
+      "default": "./tailwind.config.js"
+    }
+  },
   "scripts": {
     "build": "node ./build-colors.js",
     "tailwind:build": "tailwindcss-cli build -o build/tailwind.css && yarn tailwind:build:viewer",
@@ -15,7 +23,7 @@
   "devDependencies": {
     "rimraf": "3.0.2",
     "tailwind-config-viewer": "^1.3.1",
-    "tailwindcss": "2.2.19",
+    "tailwindcss": "3.4.17",
     "tailwindcss-cli": "0.1.2",
     "tailwindcss-inset": "1.0.0",
     "tailwindcss-transforms": "2.2.0"
