@@ -1,9 +1,4 @@
-import { Components } from "formiojs";
-import AllComponents from "formiojs/components";
-
 import { useForm, UseFormHookProps } from "./useForm.hook";
-
-Components.setComponents(AllComponents);
 
 export interface FormProps<Data = any> extends UseFormHookProps<Data> {
   name?: string;

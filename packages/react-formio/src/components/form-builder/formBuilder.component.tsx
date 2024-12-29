@@ -1,14 +1,15 @@
-import { ComponentSchema } from "formiojs";
-import AllComponents from "formiojs/components";
-import Components from "formiojs/components/Components";
-import FormioFormBuilder from "formiojs/FormBuilder";
+import { Component as FormComponent } from "@formio/core";
+import { FormBuilder as FormioFormBuilder } from "@formio/js";
 import cloneDeep from "lodash/cloneDeep";
 import noop from "lodash/noop";
 import { Component } from "react";
 
 import { callLast } from "../../utils/callLast";
 
-Components.setComponents(AllComponents);
+/**
+ * @deprecated use Component from @formio/core
+ */
+export type ComponentSchema = FormComponent;
 
 const EVENTS = [
   "addComponent",
@@ -25,7 +26,7 @@ const EVENTS = [
 
 const EVENTS_CHANGE = ["addComponent", "saveComponent", "updateComponent", "removeComponent"];
 
-async function createBuilder(el: Element, { components = [], display, options, onChange, events = {} }: any): Promise<void> {
+async function createBuilder(el: HTMLElement, { components = [], display, options, onChange, events = {} }: any): Promise<void> {
   const form = {
     display,
     components: [...components]
@@ -53,11 +54,11 @@ async function createBuilder(el: Element, { components = [], display, options, o
 }
 
 export interface FormBuilderProps {
-  components: ComponentSchema[];
+  components: FormComponent[];
   display?: string;
   options?: any;
   builder?: any;
-  onChange?: (components: ComponentSchema[]) => void;
+  onChange?: (components: FormComponent[]) => void;
   onAddComponent?: Function;
   onUpdateComponent?: Function;
   onRemoveComponent?: Function;

@@ -24,7 +24,7 @@
   },
   "peerDependencies": {
     "@formio/choices.js": ">=9.0.1",
-    "formiojs": ">=4.0.0",
+    "@formio/js": ">=5.0.0",
     "lodash": ">=4.17.20",
     "react": ">=16.14.0",
     "react-dom": ">=16.14.0",

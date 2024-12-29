@@ -1,5 +1,5 @@
-import { Components, ExtendedComponentSchema } from "formiojs";
-import FormioUtils from "formiojs/utils";
+import { Components, ExtendedComponentSchema } from "@formio/js";
+import FormioUtils from "@formio/js/utils";
 
 import { FormSchema } from "../../../interfaces";
 import { DefaultCell } from "../components/defaultCell.component";

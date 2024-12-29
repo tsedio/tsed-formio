@@ -1,4 +1,4 @@
-import { ExtendedComponentSchema } from "formiojs";
+import { ExtendedComponentSchema } from "@formio/js";
 
 export type FormSchema = {
   _id?: string;

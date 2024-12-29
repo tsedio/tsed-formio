@@ -138,7 +138,7 @@ Then create a `tailwind.css` in `styles` directory and add the following lines:
 Import the `tailwind.css` in the `index.css` created by create-react-app:
 
 ```css
-@import "~formiojs/dist/formio.full.css";
+@import "~@formio/js/dist/formio.full.css";
 @import "./tailwind.css";
 @import "~@tsed/tailwind-formio/styles/index.css";
 ```
@@ -146,7 +146,7 @@ Import the `tailwind.css` in the `index.css` created by create-react-app:
 Optionally, you can import fonts and icons:
 
 ```diff
-@import "~formiojs/dist/formio.full.css";
+@import "~@formio/js/dist/formio.full.css";
 @import "./tailwind.css";
 +@import "./fonts/source-sans-pro/index.css";
 +@import "./fonts/inconsolata/index.css";

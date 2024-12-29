@@ -1,4 +1,4 @@
-import { ExtendedComponentSchema } from "formiojs";
+import { ExtendedComponentSchema } from "@formio/js";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";

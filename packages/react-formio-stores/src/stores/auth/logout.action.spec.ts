@@ -1,11 +1,11 @@
-import { Formio } from "formiojs";
+import { Formio } from "@formio/js";
 
 import { logoutUser } from "./auth.actions";
 import { AUTH } from "./auth.constant";
 import { logout } from "./logout.action";
 
 vi.mock("./auth.actions");
-vi.mock("formiojs");
+vi.mock("@formio/js");
 
 describe("logout()", () => {
   beforeEach(() => {

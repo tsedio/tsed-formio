@@ -1,4 +1,4 @@
-import { ExtendedComponentSchema, Form } from "formiojs";
+import { ExtendedComponentSchema, Form } from "@formio/js";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import { useEffect, useRef } from "react";
