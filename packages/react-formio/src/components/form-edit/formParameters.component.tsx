@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { ReactElement } from "react";
 
 import { FormSchema } from "../../interfaces/FormSchema";
@@ -101,12 +100,3 @@ export function FormParameters({
     </div>
   );
 }
-
-FormParameters.propTypes = {
-  onChange: PropTypes.func,
-  form: PropTypes.object,
-  enableTags: PropTypes.bool,
-  typeChoices: PropTypes.array,
-  displayChoices: PropTypes.array,
-  className: PropTypes.string
-};

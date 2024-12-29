@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import PropTypes from "prop-types";
 import { PropsWithChildren } from "react";
 
 import { iconClass } from "../../utils/iconClass";
@@ -26,10 +25,3 @@ export function Loader({ isActive, color = "blue", icon = "radio-circle", classN
   }
   return null;
 }
-
-Loader.propTypes = {
-  isActive: PropTypes.bool,
-  icon: PropTypes.string,
-  color: PropTypes.string,
-  className: PropTypes.string
-};

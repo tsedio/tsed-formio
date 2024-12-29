@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import PropTypes from "prop-types";
 import { useEffect, useMemo, useState } from "react";
 
 import { callLast } from "../../utils/callLast";
@@ -71,15 +70,3 @@ export function InputText<T = any>({
     </FormControl>
   );
 }
-
-InputText.propTypes = {
-  label: PropTypes.string,
-  type: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.any,
-  size: PropTypes.string,
-  required: PropTypes.bool,
-  onChange: PropTypes.func,
-  prefix: PropTypes.any,
-  suffix: PropTypes.any
-};

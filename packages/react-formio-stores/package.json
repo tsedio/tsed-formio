@@ -26,7 +26,6 @@
     "@formio/choices.js": ">=9.0.1",
     "formiojs": ">=4.0.0",
     "lodash": ">=4.17.20",
-    "prop-types": ">=15.7.2",
     "react": ">=16.14.0",
     "react-dom": ">=16.14.0",
     "react-table": ">=7.6.3",

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { ReactElement } from "react";
 
 import { useTooltip } from "../../hooks/useTooltip";
@@ -11,11 +10,11 @@ export interface FormEditCTAsProps extends Record<string, unknown> {
   hasUndo?: boolean;
   hasRedo?: boolean;
   disabled?: boolean;
-  onCopy?: Function;
-  onSubmit?: Function;
-  onReset?: Function;
-  onUndo?: Function;
-  onRedo?: Function;
+  onCopy?: () => void;
+  onSubmit?: () => void;
+  onReset?: () => void;
+  onUndo?: () => void;
+  onRedo?: () => void;
 }
 
 export function FormEditCTAs({
@@ -93,14 +92,3 @@ export function FormEditCTAs({
     </div>
   );
 }
-
-FormEditCTAs.propTypes = {
-  saveText: PropTypes.string,
-  options: PropTypes.object,
-  hasUndo: PropTypes.bool,
-  hasRedo: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onCopy: PropTypes.func,
-  onSubmit: PropTypes.func,
-  onReset: PropTypes.func
-};

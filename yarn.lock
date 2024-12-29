@@ -5353,7 +5353,6 @@ __metadata:
     file-saver: ^2.0.5
     formiojs: ^4.21.6
     lodash: ^4.17.21
-    prop-types: ^15.8.1
     react: ^18.3.1
     react-dom: ^18.3.1
     react-is: ^17.0.1
@@ -5375,8 +5374,6 @@ __metadata:
     formiojs:
       optional: false
     lodash:
-      optional: false
-    prop-types:
       optional: false
     react:
       optional: false
@@ -5409,14 +5406,12 @@ __metadata:
     classnames: "npm:^2.3.1"
     eventemitter2: "npm:^6.4.3"
     microbundle: "npm:0.13.0"
-    prop-types: "npm:15.8.1"
     vite: "npm:5.4.11"
     vitest: "npm:2.1.8"
   peerDependencies:
     "@formio/choices.js": ">=9.0.1"
     formiojs: ">=4.0.0"
     lodash: ">=4.17.20"
-    prop-types: ">=15.7.2"
     react: ">=16.14.0"
     react-dnd: ">=16.0.1"
     react-dnd-html5-backend: ">=16.0.1"
@@ -5439,7 +5434,6 @@ __metadata:
     "@formio/choices.js": ">=9.0.1"
     formiojs: ">=4.0.0"
     lodash: ">=4.17.20"
-    prop-types: ">=15.7.2"
     react: ">=16.14.0"
     react-dom: ">=16.14.0"
     react-table: ">=7.6.3"
@@ -5456,7 +5450,6 @@ __metadata:
     classnames: "npm:^2.3.1"
     eventemitter2: "npm:^6.4.3"
     microbundle: "npm:0.13.0"
-    prop-types: "npm:15.8.1"
     vite: "npm:5.4.11"
     vitest: "npm:2.1.8"
   peerDependencies:
@@ -5464,7 +5457,6 @@ __metadata:
     formiojs: ">=4.0.0"
     lodash: ">=4.17.20"
     moment: ">=2.30.1"
-    prop-types: ">=15.7.2"
     react: ">=16.14.0"
     react-dnd: ">=16.0.1"
     react-dnd-html5-backend: ">=16.0.1"
@@ -5517,7 +5509,6 @@ __metadata:
     "@types/jest": "npm:27.0.2"
     "@types/lodash": "npm:4.14.168"
     "@types/node": "npm:^20.14.8"
-    "@types/prop-types": "npm:^15.7.5"
     "@types/react": "npm:^18.2.8"
     "@types/react-dnd": "npm:3.0.2"
     "@types/react-dnd-html5-backend": "npm:3.0.2"
@@ -5560,7 +5551,6 @@ __metadata:
     postcss-nested: "npm:7.0.2"
     postcss-normalize: "npm:13.0.1"
     prettier: "npm:3.4.2"
-    prop-types: "npm:^15.8.1"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-redux: "npm:7.2.6"
@@ -5947,7 +5937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:*, @types/prop-types@npm:^15.7.5":
+"@types/prop-types@npm:*":
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
   checksum: 10c0/648aae41423821c61c83823ae36116c8d0f68258f8b609bdbc257752dcd616438d6343d554262aa9a7edaee5a19aca2e028a74fa2d0f40fffaf2816bc7056857
@@ -19221,7 +19211,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:15.8.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:

@@ -1,6 +1,5 @@
 import Choices from "@formio/choices.js";
 import uniq from "lodash/uniq";
-import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
 
 import { FormControl, FormControlProps } from "../form-control/formControl.component";
@@ -48,11 +47,3 @@ export function InputTags({ name, value = [], label, onChange, required, descrip
     </FormControl>
   );
 }
-
-InputTags.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.array,
-  required: PropTypes.bool,
-  onChange: PropTypes.func
-};
