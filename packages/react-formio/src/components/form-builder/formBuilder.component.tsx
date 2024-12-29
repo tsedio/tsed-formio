@@ -4,7 +4,6 @@ import Components from "formiojs/components/Components";
 import FormioFormBuilder from "formiojs/FormBuilder";
 import cloneDeep from "lodash/cloneDeep";
 import noop from "lodash/noop";
-import PropTypes from "prop-types";
 import { Component } from "react";
 
 import { callLast } from "../../utils/callLast";
@@ -77,23 +76,6 @@ export class FormBuilder extends Component<FormBuilderProps, any> {
     onChange: noop,
     onReady: noop,
     onDestroy: noop
-  };
-
-  static propTypes = {
-    components: PropTypes.array,
-    display: PropTypes.string,
-    options: PropTypes.object,
-    onChange: PropTypes.func,
-    onAddComponent: PropTypes.func,
-    onUpdateComponent: PropTypes.func,
-    onRemoveComponent: PropTypes.func,
-    onSaveComponent: PropTypes.func,
-    onCancelComponent: PropTypes.func,
-    onMoveComponent: PropTypes.func,
-    onEditComponent: PropTypes.func,
-    onEditJson: PropTypes.func,
-    onCopyComponent: PropTypes.func,
-    onPasteComponent: PropTypes.func
   };
 
   private elRef: any;

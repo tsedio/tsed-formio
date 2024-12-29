@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import { FormOptions } from "../../interfaces/FormOptions";
 import { FormBuilder } from "../form-builder/formBuilder.component";
 import { FormEditCTAs } from "./formCtas.component";
@@ -48,12 +46,3 @@ export function FormEdit(props: FormEditProps) {
     </div>
   );
 }
-
-FormEdit.propTypes = {
-  form: PropTypes.object.isRequired,
-  options: PropTypes.object,
-  typeChoices: PropTypes.array,
-  displayChoices: PropTypes.array,
-  enableTags: PropTypes.bool,
-  onSubmit: PropTypes.func
-};
