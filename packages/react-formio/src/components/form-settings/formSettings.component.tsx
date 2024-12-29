@@ -1,15 +1,16 @@
+import type { Form as FormType } from "@formio/core";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
 import { useEffect, useState } from "react";
 
-import { FormOptions, FormSchema } from "../../interfaces";
+import { FormOptions } from "../../interfaces";
 import { Form } from "../form/form.component";
 import { ChangedSubmission } from "../form/useForm.hook";
 import { getFormSettingsSchema } from "./formSettings.schema";
 import { FormSettingsSchema, formSettingsToSubmission, submissionToFormSettings } from "./formSettings.utils";
 
 export interface FormSettingsProps {
-  form: Partial<FormSchema>;
+  form: Partial<FormType>;
   onSubmit?: Function;
   options?: FormOptions;
 }

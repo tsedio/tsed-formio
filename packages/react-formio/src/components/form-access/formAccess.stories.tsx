@@ -57,7 +57,6 @@ export const Sandbox: Story = {
       ],
       controller: "",
       properties: {},
-      settings: {},
       name: "textField",
       path: "textfield",
       machineName: "tcspjwhsevrzpcd:textField"

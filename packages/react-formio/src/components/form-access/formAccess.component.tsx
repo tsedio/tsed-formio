@@ -1,6 +1,7 @@
+import type { Form as FormType } from "@formio/core";
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from "react";
 
-import type { FormOptions, FormSchema, Submission } from "../../interfaces";
+import type { FormOptions, Submission } from "../../interfaces";
 import { Card } from "../card/card.component";
 import { Form } from "../form/form.component";
 import { ChangedSubmission } from "../form/useForm.hook";
@@ -16,7 +17,7 @@ import {
 } from "./formAccess.utils";
 
 export interface FormAccessProps {
-  form: Partial<FormSchema>;
+  form: Partial<FormType>;
   roles: any;
   onSubmit?: Function;
   options?: FormOptions;

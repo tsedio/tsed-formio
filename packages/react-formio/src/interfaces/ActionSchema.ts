@@ -1,4 +1,4 @@
-import { FormSchema } from "./FormSchema";
+import type { Form as FormType } from "@formio/core";
 
 export interface ActionDefaultsSchema {
   handler: string[];
@@ -18,7 +18,7 @@ export interface ActionInfoSchema extends Record<string, unknown> {
 
 export interface ActionSchema extends ActionInfoSchema {
   _id?: string;
-  settingsForm: Partial<FormSchema>;
+  settingsForm: Partial<FormType>;
   access?: {
     handler: boolean;
     method: boolean;

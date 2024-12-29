@@ -1,9 +1,9 @@
-import { ExtendedComponentSchema } from "formiojs";
+import type { BaseComponent, Form } from "@formio/core";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
 
-import { FormSchema, Submission } from "../../interfaces";
+import { Submission } from "../../interfaces";
 import { RoleSchema } from "../../interfaces/RoleSchema";
 import { getAccessPermissionForm, getSubmissionPermissionForm } from "./formAccess.schema";
 
@@ -20,8 +20,8 @@ export interface Access {
 export type AccessRoles = Record<string, string[]>;
 
 export type FormAccessSchema = {
-  access: FormSchema;
-  submissionAccess: FormSchema;
+  access: Form;
+  submissionAccess: Form;
 };
 
 export type SubmissionAccess = {
@@ -79,8 +79,8 @@ export function getFormAccess(roles: RoleSchema[]): FormAccessSchema {
   };
 }
 
-export function dataAccessToSubmissions(form: Partial<FormSchema>, formAccess: FormAccessSchema): SubmissionAccess {
-  const getKeys = (components: ExtendedComponentSchema[]) => components.map(({ key }) => key);
+export function dataAccessToSubmissions(form: Partial<Form>, formAccess: FormAccessSchema): SubmissionAccess {
+  const getKeys = (components: BaseComponent[]) => components.map(({ key }) => key);
 
   return {
     access: {
@@ -92,7 +92,7 @@ export function dataAccessToSubmissions(form: Partial<FormSchema>, formAccess: F
   };
 }
 
-export function submissionsToDataAccess(form: Partial<FormSchema>, submissions: SubmissionAccess): Partial<FormSchema> {
+export function submissionsToDataAccess(form: Partial<Form>, submissions: SubmissionAccess): Partial<Form> {
   return {
     ...cloneDeep(form),
     access: hashToAccess(submissions.access.data),

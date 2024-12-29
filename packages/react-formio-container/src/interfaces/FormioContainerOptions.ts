@@ -1,4 +1,6 @@
-import { FormSchema, Submission } from "@tsed/react-formio";
+import type { Form } from "@formio/core";
+import { Submission } from "@tsed/react-formio";
+import { ComponentType } from "react";
 
 import { FormRoute } from "../views/form.routes";
 
@@ -54,7 +56,7 @@ export interface FormioContainerOptions extends Record<string, unknown> {
    * Handler called when an event is an error
    */
   onError?: FormioErrorHandler;
-  onSubmitForm?: (type: string, form: FormSchema) => void;
+  onSubmitForm?: (type: string, form: Form) => void;
   onSubmitSubmission?: (submissionType: string, formId: string, submission: Submission) => void;
   /**
    * i18n function to translate sentences
@@ -62,16 +64,16 @@ export interface FormioContainerOptions extends Record<string, unknown> {
   i18n?: (f: string) => string;
 
   // override components
-  FormsComponent?: React.ComponentType<any>;
-  FormComponent?: React.ComponentType<any>;
-  FormActionsComponent?: React.ComponentType<any>;
-  FormActionComponent?: React.ComponentType<any>;
-  FormExportComponent?: React.ComponentType<any>;
-  FormEditComponent?: React.ComponentType<any>;
-  FormSettingsComponent?: React.ComponentType<any>;
-  FormAccessComponent?: React.ComponentType<any>;
-  SubmissionComponent?: React.ComponentType<any>;
-  SubmissionsComponent?: React.ComponentType<any>;
-  RemoveModalComponent?: React.ComponentType<any>;
-  LoaderComponent?: React.ComponentType<any>;
+  FormsComponent?: ComponentType<any>;
+  FormComponent?: ComponentType<any>;
+  FormActionsComponent?: ComponentType<any>;
+  FormActionComponent?: ComponentType<any>;
+  FormExportComponent?: ComponentType<any>;
+  FormEditComponent?: ComponentType<any>;
+  FormSettingsComponent?: ComponentType<any>;
+  FormAccessComponent?: ComponentType<any>;
+  SubmissionComponent?: ComponentType<any>;
+  SubmissionsComponent?: ComponentType<any>;
+  RemoveModalComponent?: ComponentType<any>;
+  LoaderComponent?: ComponentType<any>;
 }

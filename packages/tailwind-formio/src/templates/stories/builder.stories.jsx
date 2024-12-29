@@ -1,4 +1,4 @@
-import FormioFormBuilder from "formiojs/FormBuilder.js";
+import { FormBuilder } from "@formio/js";
 import React, { useEffect, useRef } from "react";
 
 function WrapperFormBuilder({ options, form }) {
@@ -8,7 +8,7 @@ function WrapperFormBuilder({ options, form }) {
     options = Object.assign({}, options);
     form = Object.assign({}, form);
 
-    const builder = new FormioFormBuilder(ref.current, form, options);
+    const builder = new FormBuilder(ref.current, form, options);
     builder.ready.then(() => {
       // onChange();
       // builderEvents.forEach(({name, action}) => builder.instance.on(name, action));

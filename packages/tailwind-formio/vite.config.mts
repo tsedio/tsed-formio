@@ -1,4 +1,5 @@
 import {fileURLToPath} from "node:url";
+// @ts-ignore
 import compile from "lodash/template";
 import {globbySync} from "globby";
 import {extname, relative} from "path";

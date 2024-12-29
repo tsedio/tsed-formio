@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import { PropsWithChildren } from "react";
 
+import { PaginationProps } from "../pagination/pagination.component";
 import { DrapNDropContainer } from "./components/dragNDropContainer";
 import { TableProps, useCustomTable } from "./hooks/useCustomTable.hook";
 
@@ -60,7 +61,7 @@ export function Table<Data extends object = any>(props: PropsWithChildren<TableP
           </thead>
           {!isLoading ? (
             <tbody {...tableInstance.getTableBodyProps()}>
-              {tableInstance.page.map((row, index) => {
+              {(tableInstance as unknown as { page: any[] }).page.map((row: any, index: number) => {
                 tableInstance.prepareRow(row);
                 return (
                   <Row<Data>
@@ -82,7 +83,7 @@ export function Table<Data extends object = any>(props: PropsWithChildren<TableP
         {!isLoading && data.length && !disablePagination ? (
           <div className={"overflow-hidden"}>
             <Pagination
-              {...tableInstance}
+              {...(tableInstance as unknown as PaginationProps)}
               totalLength={totalLength}
               className={"text-sm"}
               pageIndex={pageIndex}

@@ -48,6 +48,7 @@ describe("FormSettings", () => {
   });
   it("should render form settings with i18n options", () => {
     render(
+      // @ts-ignore
       <FormSettings
         {...Sandbox.args}
         options={{
