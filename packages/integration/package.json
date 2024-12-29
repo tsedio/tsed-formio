@@ -1,6 +1,6 @@
 {
   "name": "@tsed/react-formio-integration",
-  "version": "2.3.2",
+  "version": "3.0.0-alpha.1",
   "description": "",
   "private": true,
   "type": "module",
