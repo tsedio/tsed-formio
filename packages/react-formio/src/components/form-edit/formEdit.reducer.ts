@@ -1,16 +1,15 @@
+import type { Form } from "@formio/core";
 import camelCase from "lodash/camelCase";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 
-import { FormSchema } from "../../interfaces";
-
-export const hasChanged = (form: Partial<FormSchema>, value: Partial<FormSchema>): boolean => !isEqual(form, value);
+export const hasChanged = (form: Partial<Form>, value: Partial<Form>): boolean => !isEqual(form, value);
 
 export interface FormEditState {
-  past: Partial<FormSchema>[];
-  future: Partial<FormSchema>[];
-  current: Partial<FormSchema>;
-  original: Partial<FormSchema>;
+  past: Partial<Form>[];
+  future: Partial<Form>[];
+  current: Partial<Form>;
+  original: Partial<Form>;
 }
 
 export function createInitialState(props: any): FormEditState {

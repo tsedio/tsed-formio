@@ -1,6 +1,6 @@
-import { FormSchema } from "../../interfaces";
+import type { Form as FormType } from "@formio/core";
 
-export function getFormSettingsSchema(): FormSchema {
+export function getFormSettingsSchema(): FormType {
   return {
     type: "form",
     tags: [],

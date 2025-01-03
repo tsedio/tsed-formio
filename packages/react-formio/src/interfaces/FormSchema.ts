@@ -1,13 +1,6 @@
-import { ExtendedComponentSchema } from "formiojs";
+import type { Form } from "@formio/core";
 
-export type FormSchema = {
-  _id?: string;
-  title?: string;
-  name?: string;
-  machineName?: string;
-  components: ExtendedComponentSchema[];
-  tags?: string[];
-  action?: string;
-  properties?: Record<string, any>;
-  [key: string]: any;
-};
+/**
+ * @deprecated use Form from @formio/core
+ */
+export type FormSchema = Form;

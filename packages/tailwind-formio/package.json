@@ -31,6 +31,7 @@
     "clean:tailwind:viewer": "rimraf build/index.html build/favicon.ico"
   },
   "devDependencies": {
+    "@types/lodash": "4.17.13",
     "cross-env": "7.0.3",
     "rimraf": "3.0.2",
     "tailwind-config-viewer": "2.0.4",
@@ -49,7 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "dependencies": {},
-  "peerDependencies": {}
+  }
 }

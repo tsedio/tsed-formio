@@ -1,6 +1,6 @@
+import { Formio } from "@formio/js";
 import type { FormSchema } from "@tsed/react-formio";
 import { createAction } from "@tsed/redux-utils";
-import { Formio } from "formiojs";
 import noop from "lodash/noop";
 
 import { mapRequestParams, RequestParamsOptions } from "../../utils/mapRequestParams";

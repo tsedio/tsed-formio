@@ -6,6 +6,6 @@
     "declaration": false,
     "composite": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.mts", "tailwind.config.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "dist", "src/**/*.spec.ts", "src/**/*.spec.tsx"]
 }

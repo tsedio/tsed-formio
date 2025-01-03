@@ -1,6 +1,7 @@
+import type { Form as FormType } from "@formio/core";
 import cloneDeep from "lodash/cloneDeep";
 
-import { FormSchema, Submission } from "../../interfaces";
+import { Submission } from "../../interfaces";
 
 export type FormSettingsSchema = {
   action: string;
@@ -8,7 +9,7 @@ export type FormSettingsSchema = {
   properties: Record<string, any>;
 };
 
-export function formSettingsToSubmission(form: Partial<FormSchema>): Submission<FormSettingsSchema> {
+export function formSettingsToSubmission(form: Partial<FormType>): Submission<FormSettingsSchema> {
   return {
     data: {
       action: form.action!,
@@ -18,7 +19,7 @@ export function formSettingsToSubmission(form: Partial<FormSchema>): Submission<
   };
 }
 
-export function submissionToFormSettings(form: Partial<FormSchema>, submission: Submission<FormSettingsSchema>): Partial<FormSchema> {
+export function submissionToFormSettings(form: Partial<FormType>, submission: Submission<FormSettingsSchema>): Partial<FormType> {
   return {
     ...cloneDeep(form),
     tags: submission.data.tags,

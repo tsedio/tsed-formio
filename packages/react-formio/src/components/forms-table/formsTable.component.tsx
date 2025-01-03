@@ -1,11 +1,12 @@
-import { FormSchema } from "../../interfaces";
+import type { Form as FormType } from "@formio/core";
+
 import { DefaultColumnFilter } from "../table/filters/defaultColumnFilter.component";
 import { SelectColumnFilter } from "../table/filters/selectColumnFilter.component";
 import { TableProps } from "../table/hooks/useCustomTable.hook";
 import { Table } from "../table/table.component";
 import { FormsCell as DefaultFormCell } from "./components/formCell.component";
 
-export type FormsTableProps = Omit<TableProps<FormSchema>, "columns"> & {
+export type FormsTableProps = Omit<TableProps<FormType>, "columns"> & {
   icon?: string;
   tags?: { label: string; value: string }[];
 };

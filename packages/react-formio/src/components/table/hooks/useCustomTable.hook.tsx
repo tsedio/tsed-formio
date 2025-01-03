@@ -90,15 +90,15 @@ export interface TableProps<Data extends object = any> extends TableOptions<Data
   /**
    *
    */
-  CellOperations?: ComponentType;
+  CellOperations?: ComponentType<any>;
   /**
    * Custom Loader
    */
-  Loader?: ComponentType;
+  Loader?: ComponentType<any>;
   /**
    * Custom Loader
    */
-  Pagination?: ComponentType;
+  Pagination?: ComponentType<any>;
   /**
    * Disable filters
    */
@@ -230,7 +230,7 @@ export function useCustomTable<Data extends object = {}>(props: PropsWithChildre
   const {
     setPageSize,
     state: { pageIndex, pageSize, sortBy, filters }
-  } = tableInstance;
+  } = tableInstance as any;
 
   useEffect(() => {
     onChange({

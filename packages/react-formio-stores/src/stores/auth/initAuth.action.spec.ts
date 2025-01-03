@@ -1,4 +1,4 @@
-import { Formio } from "formiojs";
+import { Formio } from "@formio/js";
 
 import { requestUser } from "./auth.actions";
 import { AUTH } from "./auth.constant";

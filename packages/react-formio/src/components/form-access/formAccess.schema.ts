@@ -1,8 +1,6 @@
-import { ExtendedComponentSchema } from "formiojs";
+import type { Form as FormType } from "@formio/core";
 
-import { FormSchema } from "../../interfaces/FormSchema";
-
-export function getRoleComponent({ label, key, description, choices, data }: any): ExtendedComponentSchema {
+export function getRoleComponent({ label, key, description, choices, data }: any) {
   return {
     label,
     key,
@@ -34,7 +32,7 @@ function toDescription(description: string, hr = true): string {
   return '<span class="text-sm">' + description + "</span> " + (hr ? '<hr class="mt-6 mb-5 border-gray-200 mx-20"/>' : "");
 }
 
-export function getSubmissionPermissionForm({ choices }: any): FormSchema {
+export function getSubmissionPermissionForm({ choices }: any): FormType & { description: string } {
   return {
     description: "<strong>Elevated permissions allow users to access and modify other user's entities. Assign with caution.</strong>",
     components: [
@@ -107,7 +105,7 @@ export function getSubmissionPermissionForm({ choices }: any): FormSchema {
   };
 }
 
-export function getAccessPermissionForm({ choices }: any): FormSchema {
+export function getAccessPermissionForm({ choices }: any): FormType & { description: string } {
   return {
     description: "<strong>Elevated permissions allow users to access and modify other user's entities. Assign with caution.</strong>",
     components: [

@@ -1,4 +1,4 @@
-import FormioUtils from "formiojs/utils";
+import FormioUtils from "@formio/js/utils";
 import { PropsWithChildren, ReactElement } from "react";
 
 import { ActionDefaultsSchema, ActionSchema, FormOptions, Submission } from "../../interfaces";

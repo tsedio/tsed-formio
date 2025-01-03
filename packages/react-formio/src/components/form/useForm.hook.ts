@@ -1,13 +1,14 @@
-import { ExtendedComponentSchema, Form } from "formiojs";
+import type { BaseComponent, Form as FormType } from "@formio/core";
+import { Form } from "@formio/js";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import { useEffect, useRef } from "react";
 
-import { FormOptions, FormSchema, Submission } from "../../interfaces";
+import { FormOptions, Submission } from "../../interfaces";
 
 export interface ChangedSubmission<T = any> extends Submission<T> {
   changed: {
-    component: ExtendedComponentSchema;
+    component: BaseComponent;
     instance: any;
     value: any;
   } & Record<string, any>;
@@ -28,7 +29,7 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   /**
    * Raw form object
    */
-  form?: Partial<FormSchema>;
+  form?: Partial<FormType>;
   /**
    * Configuration option
    */
@@ -43,8 +44,8 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   onNextPage?: (obj: FormPageChangeProps<Data>) => void;
   onCancel?: Function;
   onChange?: (submission: ChangedSubmission) => void;
-  onCustomEvent?: (obj: { type: string; event: string; component: ExtendedComponentSchema; data: any }) => void;
-  onComponentChange?: (component: ExtendedComponentSchema) => void;
+  onCustomEvent?: (obj: { type: string; event: string; component: BaseComponent; data: any }) => void;
+  onComponentChange?: (component: BaseComponent) => void;
   onSubmit?: (submission: Submission<Data>) => void;
   onAsyncSubmit?: (submission: Submission<Data>) => Promise<any>;
   onSubmitDone?: (submission: Submission<Data>) => void;

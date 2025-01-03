@@ -1,4 +1,5 @@
-import { FormSchema } from "../../interfaces";
+import type { Form } from "@formio/core";
+
 import { dataAccessToSubmissions, getFormAccess, SubmissionAccess, submissionsToDataAccess, updateSubmissions } from "./formAccess.utils";
 
 const roles: any[] = [
@@ -13,7 +14,7 @@ const roles: any[] = [
 describe("formAccess.utils", () => {
   describe("dataAccessToSubmissions()", () => {
     it("should map data access to form submissions", () => {
-      const data: FormSchema = {
+      const data: Form = {
         _id: "id",
         components: [],
         access: [
@@ -85,7 +86,7 @@ describe("formAccess.utils", () => {
         }
       };
 
-      const originalForm: FormSchema = {
+      const originalForm: Form = {
         _id: "id",
         components: [],
         access: [

@@ -1,4 +1,4 @@
-import { Formio } from "formiojs";
+import { Formio } from "@formio/js";
 
 import { getActionInfo } from "../action-info";
 import {
@@ -12,7 +12,7 @@ import {
   sendAction
 } from "./action.actions";
 
-vi.mock("formiojs", async (originalImport) => {
+vi.mock("@formio/js", async (originalImport) => {
   return {
     ...(await originalImport()),
     Formio: class {

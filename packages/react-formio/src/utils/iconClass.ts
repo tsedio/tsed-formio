@@ -1,4 +1,4 @@
-import * as formio from "formiojs";
+import * as formio from "@formio/js";
 
 const { Templates } = formio;
 
