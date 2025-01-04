@@ -1,7 +1,7 @@
 import { FormAction } from "./formAction.component";
 
 export default {
-  title: "ReactFormio/FormAction",
+  title: "@tsed/react-formio/FormAction",
   component: FormAction,
   argTypes: {
     onSubmit: { action: "onSubmit" },

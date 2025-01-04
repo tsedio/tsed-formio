@@ -2,7 +2,7 @@ import { Modal, ModalProps, useModal } from "./modal.component";
 import { RemoveModal, RemoveModalProps } from "./removeModal.component";
 
 export default {
-  title: "ReactFormio/Modal",
+  title: "@tsed/react-formio/Modal",
   component: Modal,
   argTypes: {
     onSubmit: {

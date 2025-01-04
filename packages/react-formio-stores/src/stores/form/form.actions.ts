@@ -1,4 +1,4 @@
-import type { FormSchema } from "@tsed/react-formio";
+import type { FormType } from "@tsed/react-formio";
 import { createAction } from "@tsed/redux-utils";
 import { Formio } from "formiojs";
 import noop from "lodash/noop";
@@ -14,7 +14,7 @@ export const failForm = createAction();
 export const resetForm = createAction();
 export const sendForm = createAction();
 
-function shouldGet(form: Partial<FormSchema>, id: string) {
+function shouldGet(form: Partial<FormType>, id: string) {
   return form && form.components && Array.isArray(form.components) && form.components.length && form._id === id;
 }
 
@@ -47,7 +47,7 @@ export const getForm =
   };
 
 export const saveForm =
-  (name: string, form: Partial<FormSchema>, done = noop) =>
+  (name: string, form: Partial<FormType>, done = noop) =>
   async (dispatch: any) => {
     dispatch(clearFormError(name));
     dispatch(sendForm(name, { form }));

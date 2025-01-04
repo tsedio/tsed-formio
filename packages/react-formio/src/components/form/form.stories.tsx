@@ -4,7 +4,7 @@ import form from "../__fixtures__/form.fixture.json";
 import { Form } from "./form.component";
 
 export default {
-  title: "ReactFormio/Form",
+  title: "@tsed/react-formio/Form",
   component: Form,
   argTypes: {
     form: {

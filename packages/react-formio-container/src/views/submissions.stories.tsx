@@ -1,4 +1,4 @@
-import formSchema from "../__fixtures__/form-schema.json";
+import FormType from "../__fixtures__/form-schema.json";
 import formSubmissions from "../__fixtures__/form-submissions.json";
 import { SubmissionsComponent } from "./submissions.view";
 
@@ -22,6 +22,6 @@ export const Sandbox = (args: any) => {
 };
 
 Sandbox.args = {
-  form: formSchema,
+  form: FormType,
   data: formSubmissions
 };

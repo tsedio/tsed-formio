@@ -1,4 +1,4 @@
-import type { Submission } from "@tsed/react-formio";
+import type { SubmissionType } from "@tsed/react-formio";
 import { createReducer } from "@tsed/redux-utils";
 
 import { failSubmissions, receiveSubmissions, requestSubmissions, resetSubmissions } from "./submissions.actions";
@@ -15,7 +15,7 @@ export interface SubmissionsState {
     select: any;
     sortBy: any[];
   };
-  data: Submission[];
+  data: SubmissionType[];
 }
 
 export function createInitialState({ pageIndex = 0, pageSize = 10, query = {}, select = "", sortBy = [] }: any = {}): SubmissionsState {

@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 import { mapPagination } from "../../utils/mapPagination";
-import formSchema from "../__fixtures__/form-schema.json";
+import FormType from "../__fixtures__/form-schema.json";
 import formSubmissions from "../__fixtures__/form-submissions.json";
 import { Table } from "./table.component";
 import { mapFormToColumns } from "./utils/mapFormToColumns";
 
 export default {
-  title: "ReactFormio/Table",
+  title: "@tsed/react-formio/Table",
   component: Table,
   argTypes: {},
   parameters: {}
@@ -39,7 +39,7 @@ export const Sandbox = (args: any) => {
 
 Sandbox.args = {
   data: formSubmissions,
-  columns: mapFormToColumns(formSchema as any),
+  columns: mapFormToColumns(FormType as any),
   operations: [
     {
       title: "Edit",
@@ -95,7 +95,7 @@ export const TableWithDragNDrop = (args: any) => {
 TableWithDragNDrop.args = {
   enableDragNDrop: true,
   data: [],
-  columns: mapFormToColumns(formSchema as any),
+  columns: mapFormToColumns(FormType as any),
   operations: [
     {
       title: "Edit",

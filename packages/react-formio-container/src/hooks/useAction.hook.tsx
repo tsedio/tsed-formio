@@ -1,6 +1,6 @@
 import {
-  ActionInfoSchema,
-  ActionSchema,
+  ActionInfoType,
+  ActionType,
   deleteAction,
   getAction,
   getActionInfo,
@@ -11,7 +11,7 @@ import {
   selectAuth,
   selectError,
   selectForm,
-  Submission,
+  SubmissionType,
   Utils
 } from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
@@ -35,7 +35,7 @@ export function useAction(props: UseActionProps) {
   const form = useSelector((state) => selectForm(type, state));
   const error = useSelector((state) => selectError("action", state));
   const action = useSelector(selectAction);
-  const actionInfo: ActionInfoSchema | undefined = useSelector(selectActionInfo) as any;
+  const actionInfo: ActionInfoType | undefined = useSelector(selectActionInfo) as any;
 
   const fetch = useCallback(() => {
     if (form?._id) {
@@ -47,7 +47,7 @@ export function useAction(props: UseActionProps) {
     }
   }, [form?._id, actionId]);
 
-  const onSaveDone = (err: Error | null, actionInfo: ActionSchema) => {
+  const onSaveDone = (err: Error | null, actionInfo: ActionType) => {
     if (!err) {
       onSuccess({
         name: `${actionAction}:action`,
@@ -68,7 +68,7 @@ export function useAction(props: UseActionProps) {
     }
   };
 
-  const saveAction = (actionInfo: Submission<ActionSchema>) => {
+  const saveAction = (actionInfo: SubmissionType<ActionType>) => {
     dispatch(saveAct(form?._id!, actionInfo, onSaveDone));
   };
 

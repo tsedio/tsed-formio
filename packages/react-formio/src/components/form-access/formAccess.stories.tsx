@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "@storybook/test";
 import { FormAccess } from "./formAccess.component";
 
 export default {
-  title: "ReactFormio/FormAccess",
+  title: "@tsed/react-formio/FormAccess",
   component: FormAccess,
   argTypes: {
     onSubmit: { action: "onSubmit" }

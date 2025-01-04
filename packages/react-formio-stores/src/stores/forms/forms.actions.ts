@@ -1,4 +1,4 @@
-import type { FormSchema } from "@tsed/react-formio";
+import type { FormType } from "@tsed/react-formio";
 import { createAction } from "@tsed/redux-utils";
 import { Formio } from "formiojs";
 import noop from "lodash/noop";
@@ -10,10 +10,10 @@ export const resetForms = createAction();
 export const requestForms = createAction<{
   parameters: Partial<RequestParamsOptions>;
 }>();
-export const receiveForms = createAction<{ forms: FormSchema[] }>();
+export const receiveForms = createAction<{ forms: FormType[] }>();
 export const failForms = createAction();
 
-export type GetFormsCB = (err: any, forms?: FormSchema[]) => void;
+export type GetFormsCB = (err: any, forms?: FormType[]) => void;
 
 export const getForms =
   (name: string, parameters: Partial<RequestParamsOptions>, done: GetFormsCB = noop) =>
@@ -24,7 +24,7 @@ export const getForms =
     const requestParams = mapRequestParams(selectFormsParameters(name, getState()));
 
     try {
-      const result: FormSchema[] = await formio.loadForms({
+      const result: FormType[] = await formio.loadForms({
         params: requestParams
       });
       dispatch(receiveForms(name, { forms: result }));

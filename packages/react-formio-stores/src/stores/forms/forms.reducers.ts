@@ -1,4 +1,4 @@
-import type { FormSchema } from "@tsed/react-formio";
+import type { FormType } from "@tsed/react-formio";
 import { createReducer } from "@tsed/redux-utils";
 
 import { failForms, receiveForms, requestForms, resetForms } from "./forms.actions";
@@ -15,7 +15,7 @@ export interface FormsState {
     sortBy: any[];
     filters: any[];
   };
-  data: FormSchema[];
+  data: FormType[];
 }
 
 const createInitialState = ({ pageIndex = 0, pageSize = 10, query = {}, select = "", sortBy = [] }: any = {}): FormsState => {

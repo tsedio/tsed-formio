@@ -1,22 +1,21 @@
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from "react";
 
-import type { FormOptions, FormSchema, Submission } from "../../interfaces";
+import type { FormOptions, FormType, SubmissionType } from "../../interfaces";
 import { Card } from "../card/card.component";
 import { Form } from "../form/form.component";
-import { ChangedSubmission } from "../form/useForm.hook";
 import {
-  AccessRoles,
+  AccessRolesType,
   dataAccessToSubmissions,
-  FormAccessSchema,
+  FormAccessType,
   getFormAccess,
   shouldUpdate,
-  SubmissionAccess,
+  SubmissionAccessType,
   submissionsToDataAccess,
   updateSubmissions
 } from "./formAccess.utils";
 
 export interface FormAccessProps {
-  form: Partial<FormSchema>;
+  form: Partial<FormType>;
   roles: any;
   onSubmit?: Function;
   options?: FormOptions;
@@ -28,7 +27,7 @@ function useFormAccess({ form: formDefinition, roles, onSubmit, options }: FormA
   const [submissions, setSubmissions] = useState(() => dataAccessToSubmissions(formDefinition, form));
 
   const onChange = useCallback(
-    (type: string, submission: Submission<AccessRoles>) => {
+    (type: string, submission: SubmissionType<AccessRolesType>) => {
       updateSubmissions(type, submission, submissions, setSubmissions);
     },
     [submissions]
@@ -57,12 +56,12 @@ function useFormAccess({ form: formDefinition, roles, onSubmit, options }: FormA
 
 interface NamedFormAccessProps {
   name: "access" | "submissionAccess";
-  form: FormAccessSchema;
-  submissions: SubmissionAccess;
+  form: FormAccessType;
+  submissions: SubmissionAccessType;
   options: any;
   onSubmit: any;
 
-  onChange(name: "access" | "submissionAccess", submission: Submission<AccessRoles>): void;
+  onChange(name: "access" | "submissionAccess", submission: SubmissionType<AccessRolesType>): void;
 }
 
 function NamedFormAccess({ name, form, submissions, options, onChange, onSubmit, children }: PropsWithChildren<NamedFormAccessProps>) {
@@ -70,12 +69,12 @@ function NamedFormAccess({ name, form, submissions, options, onChange, onSubmit,
 
   return (
     <>
-      <Form
+      <Form<AccessRolesType>
         name={name}
         form={form[name]}
         submission={submissions[name]}
-        onChange={({ data, isValid }: ChangedSubmission<AccessRoles>) => {
-          isValid && onChange(name, { data });
+        onChange={({ data, isValid }) => {
+          isValid && onChange(name, { data: data as unknown as AccessRolesType });
           setIsValid(isValid);
         }}
         options={options}

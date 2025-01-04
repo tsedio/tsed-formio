@@ -12,7 +12,7 @@ import {
   selectIsActive,
   selectRoot,
   selectSubmission,
-  Submission
+  SubmissionType
 } from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";
@@ -82,7 +82,7 @@ export function useSubmission(props: UseSubmissionProps) {
     submissionId && dispatch(deleteSubmission(submissionType, formId, submissionId, onRemoveDone));
   };
 
-  const onSaveDone = async (err: Error | null, updatedSubmission: Submission) => {
+  const onSaveDone = async (err: Error | null, updatedSubmission: SubmissionType) => {
     if (!err) {
       onSuccess({
         name: `${submissionAction}:${submissionType}`,
@@ -104,7 +104,7 @@ export function useSubmission(props: UseSubmissionProps) {
     }
   };
 
-  const saveSubmission = (submission: Submission) => {
+  const saveSubmission = (submission: SubmissionType) => {
     onSubmitSubmission(submissionType, formId, submission);
     dispatch(saveSubmissionAction(submissionType, formId, submission, onSaveDone));
   };

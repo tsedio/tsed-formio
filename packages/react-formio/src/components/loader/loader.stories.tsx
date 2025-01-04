@@ -1,7 +1,7 @@
 import { Loader } from "./loader.component";
 
 export default {
-  title: "ReactFormio/Loader",
+  title: "@tsed/react-formio/Loader",
   component: Loader,
   argTypes: {},
   parameters: {}

@@ -2,7 +2,7 @@ import { FormEdit } from "./formEdit.component";
 import { defaultDisplayChoices } from "./formParameters.component";
 
 export default {
-  title: "ReactFormio/FormEdit",
+  title: "@tsed/react-formio/FormEdit",
   component: FormEdit,
   argTypes: {
     form: {

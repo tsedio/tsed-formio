@@ -2,11 +2,11 @@ import classnames from "classnames";
 import moment from "moment";
 import { CellProps } from "react-table";
 
-import { FormSchema } from "../../../interfaces";
+import { FormType } from "../../../interfaces";
 import { iconClass } from "../../../utils/iconClass";
 import { stopPropagationWrapper } from "../../../utils/stopPropagationWrapper";
 
-export function FormsCell(props: CellProps<FormSchema> & { icon: string; i18n: (f: string) => string }) {
+export function FormsCell(props: CellProps<FormType> & { icon: string; i18n: (f: string) => string }) {
   const {
     icon = "server",
     row: { original: form }

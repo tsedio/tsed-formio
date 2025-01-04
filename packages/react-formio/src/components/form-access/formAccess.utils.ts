@@ -1,10 +1,9 @@
-import { ExtendedComponentSchema } from "formiojs";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
 
-import { FormSchema, Submission } from "../../interfaces";
-import { RoleSchema } from "../../interfaces/RoleSchema";
+import { ComponentType, FormType, SubmissionType } from "../../interfaces";
+import { RoleType } from "../../interfaces/RoleType";
 import { getAccessPermissionForm, getSubmissionPermissionForm } from "./formAccess.schema";
 
 export interface Choice {
@@ -17,19 +16,19 @@ export interface Access {
   type: string;
 }
 
-export type AccessRoles = Record<string, string[]>;
+export type AccessRolesType = Record<string, string[]>;
 
-export type FormAccessSchema = {
-  access: FormSchema;
-  submissionAccess: FormSchema;
+export type FormAccessType = {
+  access: FormType;
+  submissionAccess: FormType;
 };
 
-export type SubmissionAccess = {
-  access: Submission<AccessRoles>;
-  submissionAccess: Submission<AccessRoles>;
+export type SubmissionAccessType = {
+  access: SubmissionType<AccessRolesType>;
+  submissionAccess: SubmissionType<AccessRolesType>;
 };
 
-function rolesToChoices(roles: RoleSchema[]): Choice[] {
+function rolesToChoices(roles: RoleType[]): Choice[] {
   return Object.values(roles).map((role) => {
     return {
       label: role.title || "",
@@ -38,7 +37,7 @@ function rolesToChoices(roles: RoleSchema[]): Choice[] {
   });
 }
 
-function accessToHash(keys: (string | undefined)[] | undefined, access: Access[] = []): AccessRoles {
+function accessToHash(keys: (string | undefined)[] | undefined, access: Access[] = []): AccessRolesType {
   const hash = Object.values(access).reduce((o: any, role: any) => {
     o[role.type] = role.roles;
     return o;
@@ -52,7 +51,7 @@ function accessToHash(keys: (string | undefined)[] | undefined, access: Access[]
   }, {});
 }
 
-function hashToAccess(data: AccessRoles) {
+function hashToAccess(data: AccessRolesType) {
   const accessRoles: any[] = [];
 
   Object.entries(data).forEach(([accessType, roles]) => {
@@ -68,7 +67,7 @@ function hashToAccess(data: AccessRoles) {
   return accessRoles;
 }
 
-export function getFormAccess(roles: RoleSchema[]): FormAccessSchema {
+export function getFormAccess(roles: RoleType[]): FormAccessType {
   const choices = rolesToChoices(roles);
   const access = getAccessPermissionForm({ choices });
   const submissionAccess = getSubmissionPermissionForm({ choices });
@@ -79,8 +78,8 @@ export function getFormAccess(roles: RoleSchema[]): FormAccessSchema {
   };
 }
 
-export function dataAccessToSubmissions(form: Partial<FormSchema>, formAccess: FormAccessSchema): SubmissionAccess {
-  const getKeys = (components: ExtendedComponentSchema[]) => components.map(({ key }) => key);
+export function dataAccessToSubmissions(form: Partial<FormType>, formAccess: FormAccessType): SubmissionAccessType {
+  const getKeys = (components: ComponentType[]) => components.map(({ key }) => key);
 
   return {
     access: {
@@ -92,7 +91,7 @@ export function dataAccessToSubmissions(form: Partial<FormSchema>, formAccess: F
   };
 }
 
-export function submissionsToDataAccess(form: Partial<FormSchema>, submissions: SubmissionAccess): Partial<FormSchema> {
+export function submissionsToDataAccess(form: Partial<FormType>, submissions: SubmissionAccessType): Partial<FormType> {
   return {
     ...cloneDeep(form),
     access: hashToAccess(submissions.access.data),
@@ -100,11 +99,16 @@ export function submissionsToDataAccess(form: Partial<FormSchema>, submissions: 
   };
 }
 
-export function shouldUpdate(type: string, submission: Submission<AccessRoles>, submissions: SubmissionAccess) {
+export function shouldUpdate(type: string, submission: SubmissionType<AccessRolesType>, submissions: SubmissionAccessType) {
   return !isEqual(submission.data, (submissions as any)[type].data);
 }
 
-export function updateSubmissions(type: string, submission: Submission<AccessRoles>, submissions: SubmissionAccess, cb: Function = noop) {
+export function updateSubmissions(
+  type: string,
+  submission: SubmissionType<AccessRolesType>,
+  submissions: SubmissionAccessType,
+  cb: Function = noop
+) {
   if (shouldUpdate(type, submission, submissions)) {
     submissions = {
       ...submissions,

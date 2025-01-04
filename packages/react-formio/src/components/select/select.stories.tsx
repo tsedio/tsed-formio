@@ -22,7 +22,7 @@ const useValue = (args: any) => {
 };
 
 export default {
-  title: "ReactFormio/Select",
+  title: "@tsed/react-formio/Select",
   component: Select,
   argTypes: {
     label: {

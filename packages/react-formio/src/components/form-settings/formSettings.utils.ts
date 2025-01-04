@@ -1,14 +1,14 @@
 import cloneDeep from "lodash/cloneDeep";
 
-import { FormSchema, Submission } from "../../interfaces";
+import { FormType, SubmissionType } from "../../interfaces";
 
-export type FormSettingsSchema = {
+export type FormSettingsType = {
   action: string;
   tags: string[];
   properties: Record<string, any>;
 };
 
-export function formSettingsToSubmission(form: Partial<FormSchema>): Submission<FormSettingsSchema> {
+export function formSettingsToSubmission(form: Partial<FormType>): SubmissionType<FormSettingsType> {
   return {
     data: {
       action: form.action!,
@@ -18,7 +18,7 @@ export function formSettingsToSubmission(form: Partial<FormSchema>): Submission<
   };
 }
 
-export function submissionToFormSettings(form: Partial<FormSchema>, submission: Submission<FormSettingsSchema>): Partial<FormSchema> {
+export function submissionToFormSettings(form: Partial<FormType>, submission: SubmissionType<FormSettingsType>): Partial<FormType> {
   return {
     ...cloneDeep(form),
     tags: submission.data.tags,

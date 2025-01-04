@@ -1,7 +1,7 @@
 import {
   AuthState,
   deleteForm,
-  FormSchema,
+  FormType,
   getForm as getFormAction,
   oneOfIsActive,
   receiveForm,
@@ -99,7 +99,7 @@ export function useForm(props: UseFormProps) {
     form._id && dispatch(deleteForm(formType, form._id, onRemoveDone));
   };
 
-  const duplicateForm = (form: Partial<FormSchema>) => {
+  const duplicateForm = (form: Partial<FormType>) => {
     dispatch(receiveForm(formType, { ...form, _id: undefined }));
     dispatch(push(`${basePath}/create`));
     onSuccess({
@@ -110,7 +110,7 @@ export function useForm(props: UseFormProps) {
     });
   };
 
-  const onSaveDone = async (err: Error | null, updatedForm: FormSchema) => {
+  const onSaveDone = async (err: Error | null, updatedForm: FormType) => {
     if (!err) {
       dispatch(refreshForms(formType));
 
@@ -133,7 +133,7 @@ export function useForm(props: UseFormProps) {
     }
   };
 
-  const saveForm = (form: Partial<FormSchema>) => {
+  const saveForm = (form: Partial<FormType>) => {
     onSubmitForm(type, form);
     dispatch(saveFormAction(type, form, onSaveDone));
   };

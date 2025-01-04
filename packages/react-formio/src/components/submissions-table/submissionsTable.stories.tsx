@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 import { mapPagination } from "../../utils/mapPagination";
-import formSchema from "../__fixtures__/form-schema.json";
+import FormType from "../__fixtures__/form-schema.json";
 import formSubmissions from "../__fixtures__/form-submissions.json";
 import { SubmissionsTable } from "./submissionsTable.component";
 
 export default {
-  title: "ReactFormio/SubmissionsTable",
+  title: "@tsed/react-formio/SubmissionsTable",
   component: SubmissionsTable,
   argTypes: {
     form: {
@@ -73,7 +73,7 @@ export const Sandbox = (args: any) => {
 };
 
 Sandbox.args = {
-  form: formSchema,
+  form: FormType,
   data: formSubmissions,
   operations: [
     {

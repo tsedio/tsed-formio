@@ -1,7 +1,7 @@
 import { FormSettings } from "./formSettings.component";
 
 export default {
-  title: "ReactFormio/FormSettings",
+  title: "@tsed/react-formio/FormSettings",
   component: FormSettings,
   argTypes: {
     onSubmit: { action: "onSubmit" },

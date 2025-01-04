@@ -1,4 +1,4 @@
-import { Submission } from "@tsed/react-formio";
+import { SubmissionType } from "@tsed/react-formio";
 import { createAction } from "@tsed/redux-utils";
 import { Formio } from "formiojs";
 import noop from "lodash/noop";
@@ -38,7 +38,7 @@ export const getSubmission =
   };
 
 export const saveSubmission =
-  (name: string, formId: string, data: Submission, done = noop) =>
+  (name: string, formId: string, data: SubmissionType, done = noop) =>
   async (dispatch: any) => {
     dispatch(clearSubmissionError(name));
     dispatch(sendSubmission(name, { submission: data, formId }));

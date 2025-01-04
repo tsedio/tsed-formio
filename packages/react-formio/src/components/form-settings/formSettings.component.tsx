@@ -2,14 +2,13 @@ import isEqual from "lodash/isEqual";
 import noop from "lodash/noop";
 import { useEffect, useState } from "react";
 
-import { FormOptions, FormSchema } from "../../interfaces";
+import type { ChangedSubmission, FormOptions, FormType } from "../../interfaces";
 import { Form } from "../form/form.component";
-import { ChangedSubmission } from "../form/useForm.hook";
 import { getFormSettingsSchema } from "./formSettings.schema";
-import { FormSettingsSchema, formSettingsToSubmission, submissionToFormSettings } from "./formSettings.utils";
+import { formSettingsToSubmission, FormSettingsType, submissionToFormSettings } from "./formSettings.utils";
 
 export interface FormSettingsProps {
-  form: Partial<FormSchema>;
+  form: Partial<FormType>;
   onSubmit?: Function;
   options?: FormOptions;
 }
@@ -19,7 +18,7 @@ function useFormSettings({ form: formDefinition, onSubmit = noop, options }: For
   const [isValid, setIsValid] = useState(true);
   const [submission, setSubmission] = useState(() => formSettingsToSubmission(formDefinition));
 
-  const onChange = ({ data, isValid }: ChangedSubmission<FormSettingsSchema>) => {
+  const onChange = ({ data, isValid }: ChangedSubmission<FormSettingsType>) => {
     if (isValid) {
       setSubmission({ data });
     }
@@ -54,7 +53,7 @@ export function FormSettings(props: FormSettingsProps) {
 
   return (
     <div>
-      <Form form={form} submission={submission} onChange={onChange} options={options} />
+      <Form<FormSettingsType> form={form} submission={submission} onChange={onChange} options={options} />
 
       <button data-testid='submit' disabled={!isValid} className={"mt-5 btn btn-primary"} onClick={onSubmit} type={"submit"}>
         {i18n("Save settings")}

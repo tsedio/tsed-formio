@@ -1,7 +1,7 @@
 import { Alert } from "./alert.component";
 
 export default {
-  title: "ReactFormio/Alert",
+  title: "@tsed/react-formio/Alert",
   component: Alert,
   argTypes: {},
   parameters: {}

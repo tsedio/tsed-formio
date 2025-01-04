@@ -1,5 +1,11 @@
-import { FormSchema } from "../../interfaces";
-import { dataAccessToSubmissions, getFormAccess, SubmissionAccess, submissionsToDataAccess, updateSubmissions } from "./formAccess.utils";
+import { FormType } from "../../interfaces";
+import {
+  dataAccessToSubmissions,
+  getFormAccess,
+  SubmissionAccessType,
+  submissionsToDataAccess,
+  updateSubmissions
+} from "./formAccess.utils";
 
 const roles: any[] = [
   {
@@ -13,7 +19,7 @@ const roles: any[] = [
 describe("formAccess.utils", () => {
   describe("dataAccessToSubmissions()", () => {
     it("should map data access to form submissions", () => {
-      const data: FormSchema = {
+      const data: FormType = {
         _id: "id",
         components: [],
         access: [
@@ -60,7 +66,7 @@ describe("formAccess.utils", () => {
   });
   describe("submissionsToDataAccess()", () => {
     it("should map form submissions to data access", () => {
-      const submissions: SubmissionAccess = {
+      const submissions: SubmissionAccessType = {
         access: {
           data: {
             delete_all: [],
@@ -85,7 +91,7 @@ describe("formAccess.utils", () => {
         }
       };
 
-      const originalForm: FormSchema = {
+      const originalForm: FormType = {
         _id: "id",
         components: [],
         access: [
@@ -173,7 +179,7 @@ describe("formAccess.utils", () => {
 
   describe("updateSubmissions()", () => {
     it("should update submissions", () => {
-      const submissions: SubmissionAccess = {
+      const submissions: SubmissionAccessType = {
         access: {
           data: {
             delete_all: [],
@@ -239,7 +245,7 @@ describe("formAccess.utils", () => {
       });
     });
     it("should do nothing", () => {
-      const submissions: SubmissionAccess = {
+      const submissions: SubmissionAccessType = {
         access: {
           data: {
             delete_all: [],

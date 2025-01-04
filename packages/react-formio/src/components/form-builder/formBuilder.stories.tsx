@@ -1,7 +1,7 @@
 import { FormBuilder } from "../../index";
 
 export default {
-  title: "ReactFormio/FormBuilder",
+  title: "@tsed/react-formio/FormBuilder",
   component: FormBuilder,
   argTypes: {
     display: {

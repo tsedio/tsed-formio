@@ -41,16 +41,16 @@ async function createFixture(props: any = {}) {
 describe("Form", () => {
   it("should render the Form", async () => {
     await createFixture({
+      "data-testid": "formio-container",
       data: [],
       model: "MyForm",
       groups: ["creation"],
       params: {
         env: "prod"
-      },
-      isActive: false
+      }
     });
 
-    expect(screen.getByTestId("formioContainer")).toBeInTheDocument();
+    expect(screen.getByTestId("formio-container")).toBeInTheDocument();
     expect(screen.getByText("First name")).toBeInTheDocument();
   });
 });

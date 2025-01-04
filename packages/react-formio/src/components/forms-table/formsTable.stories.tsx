@@ -3,7 +3,7 @@ import tailwind from "@tsed/tailwind-formio";
 import { FormsTable } from "./formsTable.component";
 
 export default {
-  title: "ReactFormio/FormsTable",
+  title: "@tsed/react-formio/FormsTable",
   component: FormsTable,
   argTypes: {
     icon: {

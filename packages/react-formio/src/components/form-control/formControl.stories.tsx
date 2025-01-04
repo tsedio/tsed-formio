@@ -2,7 +2,7 @@ import { iconClass } from "../../utils/iconClass";
 import { FormControl } from "./formControl.component";
 
 export default {
-  title: "ReactFormio/FormControl",
+  title: "@tsed/react-formio/FormControl",
   component: FormControl,
   argTypes: {
     label: {

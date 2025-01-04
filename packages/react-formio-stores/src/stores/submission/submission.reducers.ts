@@ -1,4 +1,4 @@
-import type { Submission } from "@tsed/react-formio";
+import type { SubmissionType } from "@tsed/react-formio";
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
 
 import {
@@ -15,7 +15,7 @@ export interface SubmissionState {
   id: string;
   isActive: boolean;
   lastUpdated: number;
-  data: Partial<Submission>;
+  data: Partial<SubmissionType>;
   url: string;
   error: null | Error;
 }

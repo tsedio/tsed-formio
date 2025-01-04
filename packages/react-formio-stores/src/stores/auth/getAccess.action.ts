@@ -1,10 +1,10 @@
-import type { FormSchema, RoleSchema } from "@tsed/react-formio";
+import type { FormType, RoleType } from "@tsed/react-formio";
 import { Formio } from "formiojs";
 
 import { formAccessUser, submissionAccessUser, userForms, userRoles } from "./auth.actions";
 import { AUTH } from "./auth.constant";
 
-function transformSubmissionAccess(forms: Record<string, FormSchema>) {
+function transformSubmissionAccess(forms: Record<string, FormType>) {
   return Object.values(forms).reduce(
     (result, form) => ({
       ...result,
@@ -20,7 +20,7 @@ function transformSubmissionAccess(forms: Record<string, FormSchema>) {
   );
 }
 
-function transformFormAccess(forms: Record<string, FormSchema>) {
+function transformFormAccess(forms: Record<string, FormType>) {
   return Object.values(forms).reduce(
     (result, form) => ({
       ...result,
@@ -41,8 +41,8 @@ export async function getAccess(dispatch: any) {
 
   try {
     const result: {
-      roles: Record<string, RoleSchema>;
-      forms: Record<string, FormSchema>;
+      roles: Record<string, RoleType>;
+      forms: Record<string, FormType>;
     } = await Formio.makeStaticRequest(`${projectUrl}/access`);
 
     const submissionAccess = transformSubmissionAccess(result.forms);
