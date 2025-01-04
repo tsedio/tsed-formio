@@ -4,9 +4,9 @@ import { Select } from "../../select/select.component";
 
 export function useSelectColumnFilter<D extends Record<string, unknown> = {}>(props: FilterProps<D>) {
   const { column } = props;
-  const { id, preFilteredRows } = column;
+  const { id, preFilteredRows } = column as any;
   const { choices: customChoices } = column as any;
-  const { filterValue, setFilter } = column;
+  const { filterValue, setFilter } = column as any;
 
   const choices = (() => {
     if (customChoices) {
@@ -16,7 +16,7 @@ export function useSelectColumnFilter<D extends Record<string, unknown> = {}>(pr
       return customChoices;
     }
 
-    return [...new Set(preFilteredRows.map((row) => row.values[id]))]
+    return [...new Set(preFilteredRows.map((row: any) => row.values[id]))]
       .filter((value) => value)
       .map((value) => ({
         label: value,

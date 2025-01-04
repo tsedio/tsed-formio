@@ -1,11 +1,13 @@
 {
   "extends": "@tsed/typescript/tsconfig.web.json",
   "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "baseUrl": ".",
     "noEmit": true,
     "declaration": false,
     "composite": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["vite.config.mts", "tailwind.config.ts"],
   "exclude": ["node_modules", "dist", "src/**/*.spec.ts", "src/**/*.spec.tsx"]
 }
