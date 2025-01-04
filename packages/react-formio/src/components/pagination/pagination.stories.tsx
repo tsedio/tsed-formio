@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Pagination } from "./pagination.component";
 
 export default {
-  title: "ReactFormio/Pagination",
+  title: "@tsed/react-formio/Pagination",
   component: Pagination,
 
   parameters: {}

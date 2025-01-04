@@ -17,7 +17,7 @@ const useValue = (args: any) => {
 };
 
 export default {
-  title: "ReactFormio/InputText",
+  title: "@tsed/react-formio/InputText",
   component: InputText,
   argTypes: {
     label: {

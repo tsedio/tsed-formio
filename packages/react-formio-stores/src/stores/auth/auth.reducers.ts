@@ -1,4 +1,4 @@
-import type { FormSchema, RoleSchema, Submission } from "@tsed/react-formio";
+import type { FormType, RoleType, SubmissionType } from "@tsed/react-formio";
 import { createReducer } from "@tsed/redux-utils";
 
 import {
@@ -17,13 +17,13 @@ import { AUTH } from "./auth.constant";
 export interface AuthState<User = any> {
   init: boolean;
   isActive: boolean;
-  user: null | Submission<User>;
+  user: null | SubmissionType<User>;
   authenticated: boolean;
   projectAccess: Record<string, string[]>;
   formAccess: Record<string, string[]>;
   submissionAccess: Record<string, string[]>;
-  roles: Record<string, RoleSchema>;
-  forms: Record<string, FormSchema>;
+  roles: Record<string, RoleType>;
+  forms: Record<string, FormType>;
   is: Record<string, boolean>;
   error: null | Error;
 }
@@ -54,7 +54,7 @@ function mapProjectRolesToUserRoles(projectRoles: Record<string, any>, userRoles
   );
 }
 
-function getUserRoles(projectRoles: Record<string, RoleSchema>) {
+function getUserRoles(projectRoles: Record<string, RoleType>) {
   return Object.keys(projectRoles).reduce(
     (result, name) => ({
       ...result,

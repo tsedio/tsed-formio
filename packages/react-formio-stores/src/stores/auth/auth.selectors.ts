@@ -1,4 +1,4 @@
-import type { RoleSchema, Submission } from "@tsed/react-formio";
+import type { RoleType, SubmissionType } from "@tsed/react-formio";
 import get from "lodash/get";
 
 import { selectRoot } from "../root";
@@ -7,8 +7,8 @@ import { AuthState } from "./auth.reducers";
 
 export const selectAuth = (state: any) => selectRoot<AuthState>(AUTH, state);
 
-export const selectUser = <User = any>(state: any): null | Submission<User> => get(selectAuth(state), "user");
+export const selectUser = <User = any>(state: any): null | SubmissionType<User> => get(selectAuth(state), "user");
 
-export const selectRoles = (state: any): Record<string, RoleSchema> => get(selectAuth(state), "roles");
+export const selectRoles = (state: any): Record<string, RoleType> => get(selectAuth(state), "roles");
 
 export const selectIsAuthenticated = (state: any): boolean => get(selectAuth(state), "authenticated");

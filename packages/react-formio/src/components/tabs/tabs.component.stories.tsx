@@ -13,7 +13,7 @@ const useTabs = (args: any) => {
 };
 
 export default {
-  title: "ReactFormio/Tabs",
+  title: "@tsed/react-formio/Tabs",
   component: Tabs,
   argTypes: {},
   parameters: {}

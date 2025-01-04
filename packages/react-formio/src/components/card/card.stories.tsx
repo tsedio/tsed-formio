@@ -1,7 +1,7 @@
 import { Card } from "./card.component";
 
 export default {
-  title: "ReactFormio/Card",
+  title: "@tsed/react-formio/Card",
   component: Card,
   argTypes: {},
   parameters: {}

@@ -1,4 +1,4 @@
-import type { ActionInfoSchema, ActionSchema } from "@tsed/react-formio";
+import type { ActionInfoType, ActionType } from "@tsed/react-formio";
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
 
 import { failActions, receiveActions, requestActions, resetActions } from "./actions.actions";
@@ -6,8 +6,8 @@ import { ACTIONS } from "./actions.constant";
 
 export interface ActionsState {
   error: null | Error;
-  data: ActionSchema[];
-  availableActions: ActionInfoSchema[];
+  data: ActionType[];
+  availableActions: ActionInfoType[];
   isActive: boolean;
 }
 

@@ -1,15 +1,16 @@
+import { JSON } from "../../interfaces";
 import { useForm, UseFormHookProps } from "./useForm.hook";
 
-export interface FormProps<Data = any> extends UseFormHookProps<Data> {
-  name?: string;
+export interface FormProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> extends UseFormHookProps<Data> {
+  ["data-testid"]?: string;
   /**
    *
    */
   className?: string;
 }
 
-export function Form<Data = any>(props: Partial<FormProps<Data>>) {
-  const { element } = useForm(props);
+export function Form<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: Partial<FormProps<Data>>) {
+  const { element } = useForm<Data>(props);
 
-  return <div data-testid={`formioContainer${props.name || ""}`} ref={element} className={props.className} />;
+  return <div data-testid={props["data-testid"]} className={props.className} ref={element} />;
 }

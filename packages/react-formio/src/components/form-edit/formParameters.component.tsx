@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import { FormSchema } from "../../interfaces/FormSchema";
+import { FormType } from "../../interfaces/FormType";
 import { InputTags } from "../input-tags/inputTags.component";
 import { InputText } from "../input-text/inputText.component";
 import { Select } from "../select/select.component";
@@ -13,7 +13,7 @@ export const defaultDisplayChoices = [
 
 export interface FormParametersProps {
   onChange?: (name: string, value: any) => void;
-  form: Partial<FormSchema>;
+  form: Partial<FormType>;
   typeChoices?: { label: string; value: any }[];
   displayChoices?: { label: string; value: any }[];
   enableTags?: boolean;

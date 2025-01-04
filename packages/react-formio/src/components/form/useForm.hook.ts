@@ -1,25 +1,12 @@
-import { ExtendedComponentSchema, Form } from "formiojs";
+import { Form } from "formiojs";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 import { useEffect, useRef } from "react";
 
-import { FormOptions, FormSchema, Submission } from "../../interfaces";
+import type { ChangedSubmission, ComponentType, FormOptions, FormType, JSON, SubmissionType } from "../../interfaces";
+import { FormCustomEvent, FormPageChangeProps } from "./types";
 
-export interface ChangedSubmission<T = any> extends Submission<T> {
-  changed: {
-    component: ExtendedComponentSchema;
-    instance: any;
-    value: any;
-  } & Record<string, any>;
-  isValid: boolean;
-}
-
-export interface FormPageChangeProps<Data = any> {
-  page: number;
-  submission: Submission<Data>;
-}
-
-export interface UseFormHookProps<Data = any> extends Record<string, any> {
+export interface UseFormHookProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> extends Record<string, any> {
   src?: string;
   /**
    * url to fetch form
@@ -28,7 +15,7 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   /**
    * Raw form object
    */
-  form?: Partial<FormSchema>;
+  form?: Partial<FormType>;
   /**
    * Configuration option
    */
@@ -36,18 +23,18 @@ export interface UseFormHookProps<Data = any> extends Record<string, any> {
   /**
    * Data submission
    */
-  submission?: Submission<Data>;
+  submission?: SubmissionType<Data>;
 
   /// events
   onPrevPage?: (obj: FormPageChangeProps<Data>) => void;
   onNextPage?: (obj: FormPageChangeProps<Data>) => void;
   onCancel?: Function;
-  onChange?: (submission: ChangedSubmission) => void;
-  onCustomEvent?: (obj: { type: string; event: string; component: ExtendedComponentSchema; data: any }) => void;
-  onComponentChange?: (component: ExtendedComponentSchema) => void;
-  onSubmit?: (submission: Submission<Data>) => void;
-  onAsyncSubmit?: (submission: Submission<Data>) => Promise<any>;
-  onSubmitDone?: (submission: Submission<Data>) => void;
+  onChange?: (submission: ChangedSubmission<Data>) => void;
+  onCustomEvent?: (obj: FormCustomEvent) => void;
+  onComponentChange?: (component: ComponentType) => void;
+  onSubmit?: (submission: SubmissionType<Data>) => void;
+  onAsyncSubmit?: (submission: SubmissionType<Data>) => Promise<any>;
+  onSubmitDone?: (submission: SubmissionType<Data>) => void;
   onFormLoad?: Function;
   onError?: (errors: any) => void;
   onRender?: () => void;
@@ -103,14 +90,14 @@ function useEvents(funcs: any) {
   return { events, emit, hasEvent };
 }
 
-export function useForm<Data = any>(props: UseFormHookProps<Data>) {
+export function useForm<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseFormHookProps<Data>) {
   const { src, form, options = {}, submission, url, ...funcs } = props;
   const element = useRef<any>();
   const isLoaded = useRef<boolean>();
   const instance = useRef<Form>();
   const { emit, hasEvent } = useEvents(funcs);
 
-  async function customValidation(submission: Submission, callback: (err: Error | null) => void) {
+  async function customValidation(submission: SubmissionType, callback: (err: Error | null) => void) {
     if (hasEvent("onAsyncSubmit")) {
       try {
         await emit("onAsyncSubmit", submission, instance.current);

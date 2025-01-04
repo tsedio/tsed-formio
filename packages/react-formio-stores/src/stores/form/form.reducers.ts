@@ -1,11 +1,11 @@
-import type { FormSchema } from "@tsed/react-formio";
+import type { FormType } from "@tsed/react-formio";
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
 
 import { clearFormError, failForm, receiveForm, requestForm, resetForm, sendForm } from "./form.actions";
 
 export interface FormState {
   error: null | Error;
-  data?: Partial<FormSchema>;
+  data?: Partial<FormType>;
   isActive: boolean;
   lastUpdated: number;
   url: string;

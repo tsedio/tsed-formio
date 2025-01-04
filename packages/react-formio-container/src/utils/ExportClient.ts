@@ -1,4 +1,4 @@
-import { FormSchema } from "@tsed/react-formio";
+import { FormType } from "@tsed/react-formio";
 import FileSaver from "file-saver";
 import moment from "moment";
 
@@ -8,12 +8,12 @@ async function getDatabase() {
   return httpClient.get("/export");
 }
 
-async function exportForm(form: FormSchema) {
+async function exportForm(form: FormType) {
   const database = await getDatabase();
   return database.forms[form.machineName!] || database.resources[form.machineName!];
 }
 
-async function exportActions(form: FormSchema) {
+async function exportActions(form: FormType) {
   const database = await getDatabase();
 
   return Object.entries(database.actions).reduce((obj, [machineName, action]) => {
@@ -25,7 +25,7 @@ async function exportActions(form: FormSchema) {
   }, {});
 }
 
-async function getContent(form: FormSchema, type: string, format = "json") {
+async function getContent(form: FormType, type: string, format = "json") {
   let result;
   console.log(form, type, format);
   switch (type) {

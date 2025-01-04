@@ -2,13 +2,13 @@ import classnames from "classnames";
 import noop from "lodash/noop";
 import { useState } from "react";
 
-import { ActionSchema } from "../../interfaces";
+import { ActionType } from "../../interfaces";
 import { iconClass } from "../../utils/iconClass";
 import { Select } from "../select/select.component";
 import { TableProps } from "../table/hooks/useCustomTable.hook";
 import { Table } from "../table/table.component";
 
-export type ActionsTableProps = Omit<TableProps<ActionSchema>, "columns"> & {
+export type ActionsTableProps = Omit<TableProps<ActionType>, "columns"> & {
   onAddAction?: (actionName: string) => void;
   availableActions?: { label: string; value: string }[];
 };

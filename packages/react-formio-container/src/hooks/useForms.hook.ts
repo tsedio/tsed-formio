@@ -1,4 +1,4 @@
-import { FormSchema, FormsState, getForms, Operation, selectRoot } from "@tsed/react-formio-stores";
+import { FormsState, FormType, getForms, Operation, selectRoot } from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,9 +23,9 @@ export function useForms(props: UseFormsProps) {
   const { error, data, isActive, parameters } = useSelector((state) => selectRoot<FormsState>(formType, state));
   const setParameters = useQuery(fetch, parameters);
   const [operation, setOperation] = useState<Operation>();
-  const [currentData, setCurrentData] = useState<FormSchema>();
+  const [currentData, setCurrentData] = useState<FormType>();
 
-  const dispatchOperation = (data: FormSchema, operation: Operation) => {
+  const dispatchOperation = (data: FormType, operation: Operation) => {
     setOperation(operation);
     setCurrentData(currentData);
     dispatch(push([basePath.replace(":formType", formType), data._id, operation.action].join("/")));

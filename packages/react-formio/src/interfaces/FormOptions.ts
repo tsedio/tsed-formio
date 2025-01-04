@@ -1,4 +1,4 @@
-import { EventEmitter2 } from "eventemitter2";
+import type { EventEmitter2 } from "eventemitter2";
 
 export interface FormOptions {
   iconset?: string;
@@ -8,4 +8,7 @@ export interface FormOptions {
   template?: string;
   saveDraft?: boolean;
   events?: EventEmitter2;
+  hooks?: {
+    customValidation?: Function;
+  };
 }

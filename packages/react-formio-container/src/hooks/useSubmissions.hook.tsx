@@ -1,4 +1,4 @@
-import { getSubmissions, Operation, selectAuth, selectForm, selectRoot, Submission, SubmissionsState } from "@tsed/react-formio-stores";
+import { getSubmissions, Operation, selectAuth, selectForm, selectRoot, SubmissionsState, SubmissionType } from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,9 +28,9 @@ export function useSubmissions(props: UseSubmissionsProps) {
 
   const setParameters = useQuery(fetch, parameters);
   const [operation, setOperation] = useState<Operation>();
-  const [currentData, setCurrentData] = useState<Submission>();
+  const [currentData, setCurrentData] = useState<SubmissionType>();
 
-  const dispatchOperation = (data: Submission, operation: Operation) => {
+  const dispatchOperation = (data: SubmissionType, operation: Operation) => {
     setOperation(operation);
     setCurrentData(currentData);
     dispatch(push([basePath, data._id, operation.action].join("/")));

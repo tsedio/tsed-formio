@@ -1,4 +1,4 @@
-import type { ActionSchema } from "@tsed/react-formio";
+import type { ActionType } from "@tsed/react-formio";
 import { createReducer, InitialStateCreator } from "@tsed/redux-utils";
 
 import { failActionInfo, receiveActionInfo, requestActionInfo, resetActionInfo } from "./action-info.actions";
@@ -6,7 +6,7 @@ import { ACTION_INFO } from "./action-info.constant";
 
 export interface ActionInfoState {
   error: null | Error;
-  data?: Partial<ActionSchema>;
+  data?: Partial<ActionType>;
   isActive: boolean;
 }
 

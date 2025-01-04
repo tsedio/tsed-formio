@@ -6,7 +6,7 @@ import data from "./__fixtures__/data.json";
 import { ActionsTable } from "./actionsTable.component";
 
 export default {
-  title: "ReactFormio/ActionsTable",
+  title: "@tsed/react-formio/ActionsTable",
   component: ActionsTable,
   argTypes: {
     data: {

@@ -1,4 +1,4 @@
-import type { FormSchema } from "@tsed/react-formio";
+import type { FormType } from "@tsed/react-formio";
 import get from "lodash/get";
 
 import { AuthState } from "./auth.reducers";
@@ -24,7 +24,7 @@ export function isAuthorized(auth: AuthState, roles: string[] = []): boolean {
   return false;
 }
 
-export function checkRoleFormAccess(auth: AuthState, form?: Partial<FormSchema>, roles?: string[]) {
+export function checkRoleFormAccess(auth: AuthState, form?: Partial<FormType>, roles?: string[]) {
   if (roles && roles.length) {
     if (isAuthorized(auth, roles)) {
       return true;

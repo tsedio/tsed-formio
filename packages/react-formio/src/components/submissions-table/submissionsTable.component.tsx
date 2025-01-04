@@ -1,10 +1,10 @@
-import { FormSchema, Submission } from "../../interfaces";
+import { FormType, SubmissionType } from "../../interfaces";
 import { TableProps } from "../table/hooks/useCustomTable.hook";
 import { Table } from "../table/table.component";
 import { mapFormToColumns } from "../table/utils/mapFormToColumns";
 
-export type SubmissionsTableProps = Omit<TableProps<Submission>, "columns"> & {
-  form?: FormSchema;
+export type SubmissionsTableProps = Omit<TableProps<SubmissionType>, "columns"> & {
+  form?: FormType;
 };
 
 export function SubmissionsTable({ form, ...props }: SubmissionsTableProps) {

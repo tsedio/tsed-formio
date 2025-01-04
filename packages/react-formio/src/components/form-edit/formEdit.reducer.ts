@@ -2,15 +2,15 @@ import camelCase from "lodash/camelCase";
 import cloneDeep from "lodash/cloneDeep";
 import isEqual from "lodash/isEqual";
 
-import { FormSchema } from "../../interfaces";
+import { FormType } from "../../interfaces";
 
-export const hasChanged = (form: Partial<FormSchema>, value: Partial<FormSchema>): boolean => !isEqual(form, value);
+export const hasChanged = (form: Partial<FormType>, value: Partial<FormType>): boolean => !isEqual(form, value);
 
 export interface FormEditState {
-  past: Partial<FormSchema>[];
-  future: Partial<FormSchema>[];
-  current: Partial<FormSchema>;
-  original: Partial<FormSchema>;
+  past: Partial<FormType>[];
+  future: Partial<FormType>[];
+  current: Partial<FormType>;
+  original: Partial<FormType>;
 }
 
 export function createInitialState(props: any): FormEditState {

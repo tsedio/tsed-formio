@@ -1,16 +1,16 @@
 import cloneDeep from "lodash/cloneDeep";
 import { useEffect, useReducer } from "react";
 
-import { FormSchema } from "../../interfaces/FormSchema";
+import { FormType } from "../../interfaces/FormType";
 import { createInitialState, hasChanged, reducer } from "./formEdit.reducer";
 
 export interface UseFormEditHookProps extends Record<string, unknown> {
-  form?: Partial<FormSchema>;
+  form?: Partial<FormType>;
   typeChoices?: { label: string; value: any }[];
   displayChoices?: { label: string; value: any }[];
   enableTags?: boolean;
-  onSubmit?: (form: Partial<FormSchema>) => void;
-  onCopy?: (form: Partial<FormSchema>) => void;
+  onSubmit?: (form: Partial<FormType>) => void;
+  onCopy?: (form: Partial<FormType>) => void;
 }
 
 export function useFormEdit(props: UseFormEditHookProps) {
@@ -33,7 +33,7 @@ export function useFormEdit(props: UseFormEditHookProps) {
     }
   }, [props.form]);
 
-  const formChange = (newForm: Partial<FormSchema>) => {
+  const formChange = (newForm: Partial<FormType>) => {
     if (hasChanged(current, { ...current, ...newForm })) {
       dispatchFormAction({ type: "formChange", value: newForm });
     }
