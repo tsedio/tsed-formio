@@ -4,7 +4,11 @@ import { FilterProps } from "react-table";
 import { InputText } from "../../input-text/inputText.component";
 
 export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
-  props: FilterProps<D> & { filterId: string; setFilterId: any }
+  props: FilterProps<D> & {
+    filterId: string;
+    setFilterId: any;
+    column: { id: string; filterValue: any; setFilter: any };
+  }
 ) {
   const {
     filterId,
