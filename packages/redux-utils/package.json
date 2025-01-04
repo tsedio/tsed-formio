@@ -1,6 +1,6 @@
 {
   "name": "@tsed/redux-utils",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "An opinionated lib to create actions and reducers for Redux written in TypeScript",
   "type": "module",
   "main": "dist/index.js",
@@ -27,6 +27,5 @@
   "peerDependencies": {
     "react": "^18.3.1",
     "redux": "^4.0.5"
-  },
-  "dependencies": {}
+  }
 }
