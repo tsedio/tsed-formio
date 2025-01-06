@@ -1,19 +1,20 @@
 import classnames from "classnames";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
-import { callLast } from "../../utils/callLast";
 import { getEventValue } from "../../utils/getEventValue";
 import { FormControl, FormControlProps } from "../form-control/formControl.component";
 
-export interface InputTextProps<T = any> extends FormControlProps {
+export interface InputTextProps<Data = any> extends FormControlProps<Data> {
   type?: string;
-  value?: T;
+  value?: Data;
   /**
    * The input size
    */
   size?: string;
-  onChange?: (name: string, value: T) => void;
+  onChange?: (name: string, value: Data) => void;
   placeholder?: string;
+  debounceDelay?: number;
 
   [key: string]: any;
 }
@@ -31,11 +32,11 @@ export function InputText<T = any>({
   description,
   className,
   placeholder,
+  debounceDelay = 300,
   ...props
 }: InputTextProps<T>) {
   const [localValue, setValue] = useState(value);
-
-  const change = useMemo(() => onChange && callLast(onChange, 300), [onChange]);
+  const change = useDebouncedCallback(onChange || (() => {}), debounceDelay);
 
   useEffect(() => {
     setValue(value);

@@ -1,17 +1,18 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { Sandbox } from "./inputText.stories";
+import { InputText } from "./inputText.component";
+import { Usage } from "./inputText.stories";
 
 describe("input-text", () => {
   it("should display the input-text component", () => {
-    render(<Sandbox {...Sandbox.args} name={"test"} />);
+    render(<InputText {...Usage.args} name={"test"} />);
     const input = screen.getByTestId("input_test") as HTMLInputElement;
 
     expect(input).toBeInTheDocument();
   });
 
   it("should display the input-text component with a different size", () => {
-    render(<Sandbox {...Sandbox.args} name={"test"} size='small' />);
+    render(<InputText {...Usage.args} name={"test"} size='small' />);
     const input = screen.getByTestId("input_test") as HTMLInputElement;
 
     expect(input).toBeInTheDocument();
@@ -21,7 +22,7 @@ describe("input-text", () => {
   it("should display the input-text with placeholder", () => {
     const placeholderTest = "placeholder test";
 
-    render(<Sandbox {...Sandbox.args} name={"test"} placeholder={placeholderTest} />);
+    render(<InputText {...Usage.args} name={"test"} placeholder={placeholderTest} />);
     const input = screen.getByTestId("input_test") as HTMLInputElement;
 
     expect(input).toBeInTheDocument();
@@ -31,7 +32,7 @@ describe("input-text", () => {
   it("should change the value of the input-text", () => {
     const placeholderTest = "placeholder test";
 
-    render(<Sandbox {...Sandbox.args} name={"test"} placeholder={placeholderTest} />);
+    render(<InputText {...Usage.args} name={"test"} placeholder={placeholderTest} />);
     const input = screen.getByTestId("input_test") as HTMLInputElement;
 
     expect(input).toBeInTheDocument();
@@ -43,7 +44,7 @@ describe("input-text", () => {
   it("should NOT change the value of the input-text if the value is NOT of type number", () => {
     const placeholderTest = "placeholder test";
 
-    render(<Sandbox {...Sandbox.args} type='number' name={"test"} placeholder={placeholderTest} />);
+    render(<InputText {...Usage.args} type='number' name={"test"} placeholder={placeholderTest} />);
     const input = screen.getByTestId("input_test") as HTMLInputElement;
 
     expect(input).toBeInTheDocument();

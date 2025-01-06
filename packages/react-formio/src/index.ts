@@ -13,7 +13,6 @@ export {
 export * from "./components";
 export * from "./hooks/useTooltip";
 export * from "./interfaces";
-export * from "./utils/callLast";
 export * from "./utils/iconClass";
 export * from "./utils/mapPagination";
 export * from "./utils/stopPropagationWrapper";

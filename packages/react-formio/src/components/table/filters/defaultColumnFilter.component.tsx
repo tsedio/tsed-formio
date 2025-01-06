@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { FilterProps } from "react-table";
 
 import { InputText } from "../../input-text/inputText.component";
@@ -18,15 +18,6 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
 
   const [value, setValue] = useState(filterValue || "");
 
-  const onChange = useCallback(
-    (name: string, value: any) => {
-      setValue(value);
-      setFilterId(id);
-      setFilter(value || undefined);
-    },
-    [id, setValue, setFilterId, setFilter]
-  );
-
   /* eslint-disable jsx-a11y/no-autofocus */
   return (
     <InputText
@@ -36,7 +27,11 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
       key={id}
       autoFocus={id === filterId}
       value={value}
-      onChange={onChange}
+      onChange={(name: string, value: any) => {
+        setValue(value);
+        setFilterId(id);
+        setFilter(value || undefined);
+      }}
       placeholder={"Search records..."}
     />
   );
