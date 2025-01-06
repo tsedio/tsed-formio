@@ -36,7 +36,7 @@ export function FormParameters({
 
   return (
     <div className={`form-edit__settings ${className}`}>
-      <div className={"w-1/3"}>
+      <div>
         <InputText
           label={"Title"}
           placeholder='Enter the form title'
@@ -47,7 +47,7 @@ export function FormParameters({
           onChange={onChange}
         />
       </div>
-      <div className={"w-1/3"}>
+      <div>
         <InputText
           label={"Name"}
           placeholder='Enter the form machine name'
@@ -58,7 +58,7 @@ export function FormParameters({
           onChange={onChange}
         />
       </div>
-      <div className={"w-1/3"}>
+      <div>
         <InputText
           label={"Path"}
           placeholder='example'
@@ -77,7 +77,7 @@ export function FormParameters({
           onChange={onChange}
         />
       </div>
-      <div className={"w-1/3"}>
+      <div>
         <Select
           label={"Display as"}
           name={"display"}
@@ -88,12 +88,12 @@ export function FormParameters({
         />
       </div>
       {hasTypeChoices && (
-        <div className={"w-1/3"}>
+        <div>
           <Select label={"Type"} name={"type"} value={form.type} choices={typeChoices} onChange={onChange} />
         </div>
       )}
       {enableTags && (
-        <div className={"w-1/3"}>
+        <div>
           <InputTags label={"Tags"} name={"tags"} value={form.tags} onChange={onChange} />
         </div>
       )}

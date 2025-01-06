@@ -1,7 +1,7 @@
 import cloneDeep from "lodash/cloneDeep";
 import { useEffect, useReducer } from "react";
 
-import { FormType } from "../../interfaces/FormType";
+import type { FormType } from "../../interfaces";
 import { createInitialState, hasChanged, reducer } from "./formEdit.reducer";
 
 export interface UseFormEditHookProps extends Record<string, unknown> {

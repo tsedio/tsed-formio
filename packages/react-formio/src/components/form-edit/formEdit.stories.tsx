@@ -1,3 +1,5 @@
+import { Meta, StoryObj } from "@storybook/react";
+
 import { FormEdit } from "./formEdit.component";
 import { defaultDisplayChoices } from "./formParameters.component";
 
@@ -21,6 +23,8 @@ export default {
       }
     },
     options: {
+      description:
+        "The form builder options. See [here](https://help.form.io/developers/form-development/form-builder#form-builder-options) for more details.",
       control: {
         type: "object"
       }
@@ -31,8 +35,32 @@ export default {
       }
     },
     onSubmit: { action: "onSubmit" },
-    onChange: { action: "onChange" },
-    onCopy: { action: "onCopy" }
+    onCopy: { action: "onCopy" },
+    onBuilderReady: {
+      description:
+        "A callback function that gets called when the form builder has rendered. It is useful for accessing the underlying @formio/js FormBuilder instance.",
+      action: "onBuilderReady"
+    },
+    onChange: {
+      description: "A callback function that gets called when the form being built has changed.",
+      action: "onChange"
+    },
+    onSaveComponent: {
+      description: "A callback function that gets called when a component is saved in the builder.",
+      action: "onSaveComponent"
+    },
+    onEditComponent: {
+      description: "A callback function that gets called when a component is edited in the builder.",
+      action: "onEditComponent"
+    },
+    onUpdateComponent: {
+      description: "A callback function that gets called when a component is updated in the builder.",
+      action: "onUpdateComponent"
+    },
+    onDeleteComponent: {
+      description: "A callback function that gets called when a component is deleted in the builder.",
+      action: "onDeleteComponent"
+    }
   },
   parameters: {
     docs: {
@@ -41,12 +69,11 @@ export default {
       }
     }
   }
-};
+} satisfies Meta<typeof FormEdit>;
 
-export const Sandbox = {
-  render: ({ form, typeChoices, displayChoices, enableTags, options }: any) => {
-    return <FormEdit form={form} typeChoices={typeChoices} displayChoices={displayChoices} enableTags={enableTags} options={options} />;
-  },
+type Story = StoryObj<typeof FormEdit>;
+
+export const EditWebForm: Story = {
   args: {
     typeChoices: [
       { label: "Form", value: "form" },
@@ -151,14 +178,11 @@ export const Sandbox = {
       name: "textField",
       path: "textfield",
       machineName: "tcspjwhsevrzpcd:textField"
-    }
+    } as any
   }
 };
 
-export const WithoutTypeChoices = {
-  render: (args: any) => {
-    return <FormEdit {...args} />;
-  },
+export const WithoutTypeChoices: Story = {
   args: {
     form: {
       type: "form",
@@ -256,17 +280,14 @@ export const WithoutTypeChoices = {
       name: "textField",
       path: "textfield",
       machineName: "tcspjwhsevrzpcd:textField"
-    },
+    } as any,
     displayChoices: defaultDisplayChoices,
     enableTags: true,
     options: { template: "tailwind", iconset: "bx" }
   }
 };
 
-export const WithoutTags = {
-  render: (args: any) => {
-    return <FormEdit {...args} />;
-  },
+export const WithoutTags: Story = {
   args: {
     form: {
       type: "form",
@@ -364,7 +385,7 @@ export const WithoutTags = {
       name: "textField",
       path: "textfield",
       machineName: "tcspjwhsevrzpcd:textField"
-    },
+    } as any,
     displayChoices: defaultDisplayChoices,
     enableTags: false,
     options: { template: "tailwind", iconset: "bx" }
