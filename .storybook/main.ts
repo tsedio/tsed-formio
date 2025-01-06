@@ -19,7 +19,8 @@ const config: StorybookConfig = {
     "@storybook/addon-mdx-gfm",
     "@storybook/addon-links",
     "@storybook/addon-interactions",
-    "@chromatic-com/storybook"
+    "@chromatic-com/storybook",
+    "storybook-addon-mock"
   ],
 
   framework: {

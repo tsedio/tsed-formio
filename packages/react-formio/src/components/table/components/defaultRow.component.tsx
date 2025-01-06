@@ -1,4 +1,5 @@
 import classnames from "classnames";
+import omit from "lodash/omit";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { Row } from "react-table";
 
@@ -44,7 +45,7 @@ export function DefaultRow<Data extends object = {}>({ onClick, row, enableDragN
   }
 
   return (
-    <tr {...opts}>
+    <tr {...omit(opts, ["key"])}>
       <DefaultCells<Data> row={row} />
     </tr>
   );
