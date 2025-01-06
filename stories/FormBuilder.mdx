@@ -28,7 +28,7 @@ You must handle the form definition loading and saving yourself or use the [Form
 | Name      | Type   | Default | Description                                                                                                                                  |
 |-----------|--------|---------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | `form`    | object |         | This is the form definition object. It should at least have a `display` property set to form, wizard or pdf.                                 |
-| `options` | object |         | an options object that can pass options to the formio.js Form that is rendered. There are many options to be found in the formio.js library. |
+| `options` | object |         | The form builder options. See [here](https://help.form.io/developers/form-development/form-builder#form-builder-options) for more details. |
 
 ## Event Props
 
@@ -50,15 +50,25 @@ import { FormBuilder } from "@tsed/react-formio";
 
 
 ReactDOM.render(
-  <FormBuilder form={{ display: "form" }} onChange={(schema) => console.log(schema)} />,
+  <FormBuilder components={[]} display={"form"} onChange={(schema) => console.log(schema)} />,
   document.getElementById("builder")
 );
 ```
 
 Will render the following:
 
-<Canvas of={FormBuilderStories.Sandbox} />
+<Canvas of={FormBuilderStories.WebForm} />
 
 ## Example of a wizard form
 
+This form configuration allows users to progress through the form in bite-size sections instead of presenting the entire form to the user.
+If you are creating a form containing many fields, this is a great option to improve the user experience.
+
 <Canvas of={FormBuilderStories.Wizard} />
+
+## Example of a pdf form
+
+PDF-First forms allow users to upload a PDF form and add overlay fields to the form, modernizing the traditional old and clunky PDF form.
+For a more in-depth guide on the PDF forms please navigate to the [following documentation](https://help.form.io/userguide/forms/pdf#introduction).
+
+<Canvas of={FormBuilderStories.Pdf} />
