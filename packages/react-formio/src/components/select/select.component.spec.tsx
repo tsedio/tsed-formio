@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Choicesjs, Sandbox } from "./select.stories";
 
 describe("Select", () => {
-  describe("select component Sandbox version", () => {
+  describe("select component Usage version", () => {
     it("should render the select component", () => {
       render(<Sandbox {...Sandbox.args} name={"test-sandbox"} />);
 
