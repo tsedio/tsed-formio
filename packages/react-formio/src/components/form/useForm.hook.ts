@@ -1,203 +1,223 @@
+import { EventEmitter2 } from "eventemitter2";
 import { Form } from "formiojs";
-import cloneDeep from "lodash/cloneDeep";
-import isEqual from "lodash/isEqual";
-import { useEffect, useRef } from "react";
+import { type MutableRefObject, useEffect, useRef, useState } from "react";
 
 import type { ChangedSubmission, ComponentType, FormOptions, FormType, JSON, SubmissionType } from "../../interfaces";
-import { FormCustomEvent, FormPageChangeProps } from "./types";
+import { FormCustomEvent } from "./types";
 
-export interface UseFormHookProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> extends Record<string, any> {
+type Webform = any;
+type EventError = string | Error | Error[] | { message: string } | { message: string }[];
+
+export interface UseFormProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> {
   src?: string;
-  /**
-   * url to fetch form
-   */
   url?: string;
-  /**
-   * Raw form object
-   */
-  form?: Partial<FormType>;
-  /**
-   * Configuration option
-   */
+  form?: FormType;
+  submission?: SubmissionType;
+  // TODO: once events is typed correctly in @formio/js options, we can remove this override
   options?: FormOptions;
-  /**
-   * Data submission
-   */
-  submission?: SubmissionType<Data>;
-
-  /// events
-  onPrevPage?: (obj: FormPageChangeProps<Data>) => void;
-  onNextPage?: (obj: FormPageChangeProps<Data>) => void;
-  onCancel?: Function;
-  onChange?: (submission: ChangedSubmission<Data>) => void;
-  onCustomEvent?: (obj: FormCustomEvent) => void;
-  onComponentChange?: (component: ComponentType) => void;
-  onSubmit?: (submission: SubmissionType<Data>) => void;
-  onAsyncSubmit?: (submission: SubmissionType<Data>) => Promise<any>;
-  onSubmitDone?: (submission: SubmissionType<Data>) => void;
-  onFormLoad?: Function;
-  onError?: (errors: any) => void;
-  onRender?: () => void;
-  onAttach?: Function;
-  onBuild?: Function;
-  onFocus?: Function;
-  onBlur?: Function;
-  onInitialized?: Function;
-  onFormReady?: (formio: any) => void;
-}
-
-function useEvent(event: string, callback: any, events: Map<string, any>) {
-  useEffect(() => {
-    if (callback) {
-      events.set(event, callback);
-    }
-  }, [callback, event, events]);
-}
-
-function useEvents(funcs: any) {
-  const events = useRef<Map<string, any>>(new Map());
-
-  const hasEvent = (event: string) => {
-    return funcs.hasOwnProperty(event) && typeof funcs[event] === "function";
+  FormClass?: any;
+  onFormReady?: (instance: Webform) => void;
+  onPrevPage?: (page: number, submission: SubmissionType) => void;
+  onNextPage?: (page: number, submission: SubmissionType) => void;
+  onCancelSubmit?: () => void;
+  onCancelComponent?: (component: ComponentType) => void;
+  onChange?: (value: ChangedSubmission<Data>, flags: any, modified: boolean) => void;
+  onCustomEvent?: (event: FormCustomEvent) => void;
+  onComponentChange?: (changed: { instance: Webform; component: Webform; value: any; flags: any }) => void;
+  onSubmit?: (submission: SubmissionType, saved?: boolean) => void;
+  onAsyncSubmit?: (submission: SubmissionType) => void;
+  onSubmitDone?: (submission: SubmissionType) => void;
+  onSubmitError?: (error: EventError) => void;
+  onFormLoad?: (form: JSON) => void;
+  onError?: (error: EventError | false) => void;
+  onRender?: (param: any) => void;
+  onAttach?: (param: any) => void;
+  onBuild?: (param: any) => void;
+  onFocus?: (instance: Webform) => void;
+  onBlur?: (instance: Webform) => void;
+  onInitialized?: () => void;
+  onLanguageChanged?: () => void;
+  onBeforeSetSubmission?: (submission: SubmissionType) => void;
+  onSaveDraftBegin?: () => void;
+  onSaveDraft?: (submission: SubmissionType) => void;
+  onRestoreDraft?: (submission: SubmissionType | null) => void;
+  onSubmissionDeleted?: (submission: SubmissionType) => void;
+  onRequestDone?: () => void;
+  otherEvents?: {
+    [event: string]: (...args: any[]) => void;
   };
-
-  const emit = (event: string, ...args: any[]) => {
-    if (hasEvent(event)) {
-      const fn = events.current.has(event) ? events.current.get(event) : funcs[event];
-      return fn(...args);
-    }
-  };
-
-  useEvent("onBlur", funcs["onBlur"], events.current);
-  useEvent("onPrevPage", funcs["onPrevPage"], events.current);
-  useEvent("onNextPage", funcs["onNextPage"], events.current);
-  useEvent("onCancel", funcs["onCancel"], events.current);
-  useEvent("onChange", funcs["onChange"], events.current);
-  useEvent("onCustomEvent", funcs["onCustomEvent"], events.current);
-  useEvent("onComponentChange", funcs["onComponentChange"], events.current);
-  useEvent("onSubmit", funcs["onSubmit"], events.current);
-  useEvent("onAsyncSubmit", funcs["onAsyncSubmit"], events.current);
-  useEvent("onSubmitDone", funcs["onSubmitDone"], events.current);
-  useEvent("onFormLoad", funcs["onFormLoad"], events.current);
-  useEvent("onError", funcs["onError"], events.current);
-  useEvent("onRender", funcs["onRender"], events.current);
-  useEvent("onAttach", funcs["onAttach"], events.current);
-  useEvent("onBuild", funcs["onBuild"], events.current);
-  useEvent("onFocus", funcs["onFocus"], events.current);
-  useEvent("onBlur", funcs["onBlur"], events.current);
-  useEvent("onInitialized", funcs["onInitialized"], events.current);
-
-  return { events, emit, hasEvent };
 }
 
-export function useForm<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseFormHookProps<Data>) {
-  const { src, form, options = {}, submission, url, ...funcs } = props;
-  const element = useRef<any>();
-  const isLoaded = useRef<boolean>();
-  const instance = useRef<Form>();
-  const { emit, hasEvent } = useEvents(funcs);
+const getDefaultEmitter = () => {
+  return new EventEmitter2({
+    wildcard: false,
+    maxListeners: 0
+  });
+};
 
-  async function customValidation(submission: SubmissionType, callback: (err: Error | null) => void) {
-    if (hasEvent("onAsyncSubmit")) {
-      try {
-        await emit("onAsyncSubmit", submission, instance.current);
-      } catch (err: any) {
-        callback(err?.errors || err);
-      }
-    } else {
-      callback(null);
+function onAnyEvent<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(
+  handlers: Omit<UseFormProps<Data>, "src" | "url" | "form" | "submission" | "options" | "formReady" | "formioform" | "Formio">,
+  ...args: [string, ...any[]]
+) {
+  const [event, ...outputArgs] = args;
+
+  if (event.startsWith("formio.")) {
+    const funcName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
+
+    if (funcName in handlers) {
+      (handlers as any)[funcName](...outputArgs);
     }
   }
+  if (handlers.otherEvents && handlers.otherEvents[event]) {
+    handlers.otherEvents[event](...outputArgs);
+  }
+}
 
-  const createWebForm = (srcOrForm: any, options: any) => {
-    options = Object.assign({}, options);
-    srcOrForm = typeof srcOrForm === "string" ? srcOrForm : cloneDeep(srcOrForm);
+const createWebformInstance = async (
+  FormConstructor: any | undefined,
+  formSource: any,
+  element: HTMLDivElement,
+  options: FormOptions = {}
+) => {
+  if (!options?.events) {
+    options.events = getDefaultEmitter();
+  }
 
-    if (!instance.current) {
-      isLoaded.current = false;
-      options.hooks = {
-        ...(options.hooks || {}),
-        customValidation: options?.hooks?.customValidation || customValidation
-      };
+  if (typeof formSource !== "string") {
+    formSource = structuredClone(formSource);
+  }
 
-      instance.current = new Form(element.current, srcOrForm, options);
+  const promise = new FormConstructor(element, formSource, options);
+  const webform = await promise.ready;
 
-      instance.current.onAny((event: string, ...args: any[]): void => {
-        if (!instance.current) {
-          return;
-        }
+  webform.toJSON = () => ({ __WEBFORM__: true });
 
-        if (event.startsWith("formio.")) {
-          const eventName = `on${event.charAt(7).toUpperCase()}${event.slice(8)}`;
+  return webform;
+};
 
-          if (eventName === "onChange" && !args[0].changed) {
-            return;
-          }
+// Define effective props (aka I want to rename these props but also maintain backwards compatibility)
+function getEffectiveProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseFormProps<Data>) {
+  const { FormClass = Form, form, src, url, options, submission, onFormReady, onAsyncSubmit, ...handlers } = props;
 
-          emit(eventName, ...args, instance.current);
-        }
-      });
-
-      instance.current.ready.then((formio: any) => {
-        submission && (formio.submission = cloneDeep(submission));
-
-        if (props.onFormReady) {
-          props.onFormReady(formio);
-        }
-
-        isLoaded.current = true;
-      });
-    }
-
-    return instance.current;
+  return {
+    FormClass,
+    formSource: form !== undefined ? form : src,
+    handlers,
+    options,
+    url,
+    submission,
+    onFormReady,
+    onAsyncSubmit
   };
+}
 
-  useEffect(() => {
-    if (instance.current) {
-      instance.current.ready.then((formio: any) => {
-        if (isEqual(formio.submission.data, submission?.data)) {
-          return;
-        }
+function createCustomValidation(customAction: any, ref: MutableRefObject<Webform | null>) {
+  return async (submission: SubmissionType, next: (error: null | Error) => void) => {
+    try {
+      const updatedSubmission = await customAction(submission);
 
-        submission && (formio.submission = cloneDeep(submission));
-      });
+      next(null);
+
+      ref.current.onSubmit(updatedSubmission, true);
+    } catch (er: any) {
+      next(er.errors || er);
+    } finally {
+      ref.current.submissionInProcess = false;
     }
-  }, [submission]);
+  };
+}
+
+export function useForm<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseFormProps<Data>) {
+  const webformRef = useRef<Webform | null>(null);
+  const renderElement = useRef<HTMLDivElement | null>(null);
+  const { formSource, FormClass, options, url, submission, handlers, onFormReady, onAsyncSubmit } = getEffectiveProps(props);
+
+  const [instanceIsReady, setInstanceIsReady] = useState(false);
 
   useEffect(() => {
-    if (form && instance.current) {
-      instance.current.ready.then((formio: any) => {
-        formio.form = form;
-        if (url) {
-          formio.url = url;
-        }
-      });
-    }
-  }, [form, url]);
-
-  useEffect(() => {
-    if (src) {
-      if (instance.current) {
-        isLoaded.current = false;
-        (instance.current as any).destroy(true);
+    let ignore = false;
+    const createInstance = async () => {
+      if (renderElement.current === null) {
+        console.warn("Form element not found");
+        return;
       }
 
-      createWebForm(src, options);
-    }
-  }, [src]);
+      if (typeof formSource === "undefined") {
+        console.warn("Form source not found");
+        return;
+      }
+
+      let opts = options || {};
+
+      if (onAsyncSubmit) {
+        opts.hooks = opts.hooks || {};
+        opts.hooks.customValidation = createCustomValidation(props.onAsyncSubmit, webformRef);
+      }
+
+      const webform = await createWebformInstance(FormClass, formSource, renderElement.current, options);
+
+      if (webform) {
+        if (ignore) {
+          webform.destroy(true);
+          return;
+        }
+
+        if (typeof formSource === "string") {
+          webform.src = formSource;
+        } else if (typeof formSource === "object") {
+          if (submission) {
+            webform.setSubmission(submission);
+          }
+
+          if (url) {
+            webform.url = url;
+          }
+        }
+
+        if (onFormReady) {
+          onFormReady(webform);
+        }
+
+        renderElement.current.className = "formio-form-ready";
+        webformRef.current = webform;
+        setInstanceIsReady(true);
+      } else {
+        console.warn("Failed to create form instance");
+      }
+    };
+
+    createInstance();
+
+    return () => {
+      ignore = true;
+      if (webformRef.current) {
+        webformRef.current.destroy(true);
+      }
+    };
+  }, [formSource, url]);
 
   useEffect(() => {
-    if (form) {
-      createWebForm(form, options);
+    if (instanceIsReady && webformRef.current && Object.keys(handlers).length > 0) {
+      webformRef.current.onAny((...args: [string, ...any[]]) => {
+        instanceIsReady && onAnyEvent(handlers, ...args);
+      });
     }
 
     return () => {
-      isLoaded.current = false;
-      instance.current && (instance.current as any).destroy(true);
+      if (instanceIsReady && webformRef.current && Object.keys(handlers).length > 0) {
+        webformRef.current.offAny((...args: [string, ...any[]]) => onAnyEvent(handlers, ...args));
+      }
     };
-  }, []);
+  }, [instanceIsReady, handlers]);
+
+  useEffect(() => {
+    if (instanceIsReady && webformRef.current && submission) {
+      webformRef.current.setSubmission(submission);
+    }
+  }, [instanceIsReady, submission]);
 
   return {
-    element
+    element: renderElement,
+    instance: webformRef.current
   };
 }

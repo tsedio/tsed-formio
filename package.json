@@ -123,6 +123,7 @@
     "semantic-release": "23.0.5",
     "semantic-release-slack-bot": "4.0.2",
     "storybook": "^8.4.7",
+    "storybook-addon-mock": "5.0.0",
     "typescript": "5.7.2",
     "vite": "5.4.11",
     "vite-plugin-dts": "4.4.0",

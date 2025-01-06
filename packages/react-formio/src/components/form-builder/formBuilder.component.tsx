@@ -1,4 +1,3 @@
-import { ComponentSchema } from "formiojs";
 import AllComponents from "formiojs/components";
 import Components from "formiojs/components/Components";
 import FormioFormBuilder from "formiojs/FormBuilder";
@@ -6,6 +5,7 @@ import cloneDeep from "lodash/cloneDeep";
 import noop from "lodash/noop";
 import { Component } from "react";
 
+import { ComponentType } from "../../interfaces";
 import { callLast } from "../../utils/callLast";
 
 Components.setComponents(AllComponents);
@@ -53,11 +53,11 @@ async function createBuilder(el: Element, { components = [], display, options, o
 }
 
 export interface FormBuilderProps {
-  components: ComponentSchema[];
+  components: ComponentType[];
   display?: string;
   options?: any;
   builder?: any;
-  onChange?: (components: ComponentSchema[]) => void;
+  onChange?: (components: ComponentType[]) => void;
   onAddComponent?: Function;
   onUpdateComponent?: Function;
   onRemoveComponent?: Function;
@@ -154,7 +154,7 @@ export class FormBuilder extends Component<FormBuilderProps, any> {
     }
   }
 
-  whenComponentsChange(components: ComponentSchema[]) {
+  whenComponentsChange(components: ComponentType[]) {
     this.setState({ components }, () => {
       this.props?.onChange && this.props.onChange(components);
     });

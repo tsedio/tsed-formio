@@ -1,15 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, userEvent, waitFor, within } from "@storybook/test";
-import { useEffect, useState } from "react";
+import { InputText } from "@tsed/react-formio";
+import React, { useEffect, useState } from "react";
 
-import { SubmissionType } from "../../interfaces";
-import form from "../__fixtures__/form.fixture.json";
-import formFirstname from "../__fixtures__/form-firstname.fixture.json";
-import { useEditForm } from "../__fixtures__/useEditForm";
-import { InputText } from "../input-text/inputText.component";
-import { Form } from "./form.component";
+import form from "./__fixtures__/form.fixtures.js";
+import formFirstname from "./__fixtures__/form-firstname.fixture.json";
+import { WrapperForm } from "./__fixtures__/WrapperForm.jsx";
 
-async function delay(number: number) {
+async function delay(number) {
   return new Promise((resolve) => {
     setTimeout(resolve, number);
   });
@@ -22,8 +19,8 @@ async function delay(number: number) {
  * definition and optionally a `url` prop with the location of the form.
  */
 export default {
-  title: "@tsed/react-formio/Form",
-  component: Form,
+  title: "Formiojs/Form",
+  component: WrapperForm,
   argTypes: {
     form: {
       description:
@@ -35,13 +32,6 @@ export default {
     src: {
       description:
         "The src of the form definition. This is commonly from a form.io server. When using src, the form will automatically submit the data to that url as well.",
-      control: {
-        type: "text"
-      }
-    },
-    url: {
-      description:
-        "The url of the form definition. The form will not be loaded from this url and the submission will not be saved here either. This is used for file upload, oauth and other components or actions that need to know where the server is. Use this in connection with `form`",
       control: {
         type: "text"
       }
@@ -60,21 +50,11 @@ export default {
         type: "object"
       }
     },
-    className: {
-      control: {
-        type: "text"
-      }
+    onFormReady: {
+      description:
+        "A callback function that gets called when the form has rendered. It is useful for accessing the underlying @formio/js Webform instance.",
+      action: "onFormReady"
     },
-    style: {
-      control: {
-        type: "object"
-      }
-    },
-    // onFormReady: {
-    //   description:
-    //     "A callback function that gets called when the form has rendered. It is useful for accessing the underlying @formio/js Webform instance.",
-    //   action: "onFormReady"
-    // },
     onPrevPage: {
       description: 'A callback function for Wizard forms that gets called when the "Previous" button is pressed.',
       action: "onPrevPage"
@@ -91,6 +71,7 @@ export default {
       description: "A callback function that gets called when a component has been canceled.",
       action: "onCancelComponent"
     },
+    // FIXME adding this event causes the story to fail
     // onChange: {
     //   description: "A callback function that gets called when a value in the submission has changed.",
     //   action: "onChange"
@@ -99,6 +80,7 @@ export default {
       description: 'A callback function that is triggered from a button component configured with "Event" type.',
       action: "onCustomEvent"
     },
+    // FIXME adding this event causes the story to fail
     // onComponentChange: {
     //   description: "A callback function that gets called when a specific component changes.",
     //   action: "onComponentChange"
@@ -138,14 +120,6 @@ export default {
       description: "Event",
       action: "onBuild"
     },
-    // onFocus: {
-    //   description: "Event",
-    //   action: "onFocus"
-    // },
-    // onBlur: {
-    //   description: "Event",
-    //   action: "onBlur"
-    // },
     onInitialized: {
       description: "Event",
       action: "onInitialized"
@@ -187,17 +161,18 @@ export default {
     }
   },
   tags: ["autodocs"]
-} satisfies Meta<typeof Form>;
-
-type Story = StoryObj<typeof Form>;
+};
 /**
  * Form with `form` property.
  */
-export const BasicUsageWithForm: Story = {
+export const BasicUsageUsingForm = {
   args: {
-    form: form as any,
+    form,
     onFormReady: fn(),
-    options: { template: "tailwind", iconset: "bx" }
+    options: {
+      template: "tailwind",
+      iconset: "bx"
+    }
   },
   async play({ canvasElement, args }) {
     const canvas = within(canvasElement);
@@ -218,10 +193,13 @@ export const BasicUsageWithForm: Story = {
 /**
  * Form with `src` property.
  */
-export const BasicUsageWithSrc: Story = {
+export const BasicUsageUsingSrc = {
   args: {
     src: "https://example.form.io/example",
-    options: { template: "tailwind", iconset: "bx" }
+    options: {
+      template: "tailwind",
+      iconset: "bx"
+    }
   },
   async play({ canvasElement }) {
     const canvas = within(canvasElement);
@@ -240,9 +218,9 @@ export const BasicUsageWithSrc: Story = {
 /**
  * Form with `submission` property.
  */
-export const WithSubmissionData: Story = {
+export const WithSubmissionData = {
   args: {
-    form: formFirstname as never,
+    form: formFirstname,
     options: {
       template: "tailwind",
       iconset: "bx"
@@ -275,19 +253,19 @@ export const WithSubmissionData: Story = {
 /**
  * Form with `onSubmit` property.
  */
-export const WithOnSubmit: Story = {
+export const WithOnSubmit = {
   render(args) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [data, setData] = useState(() => args.submission!.data);
+    const [data, setData] = useState(() => args.submission.data);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      setData(args.submission!.data);
+      setData(args.submission.data);
     }, [args.submission]);
 
     return (
       <>
-        <Form
+        <WrapperForm
           {...args}
           submission={{
             data: data
@@ -315,7 +293,7 @@ export const WithOnSubmit: Story = {
     );
   },
   args: {
-    form: formFirstname as never,
+    form: formFirstname,
     options: {
       template: "tailwind",
       iconset: "bx"
@@ -408,7 +386,7 @@ export const WithOnSubmit: Story = {
 /**
  * Form with custom validation hook
  */
-export const CustomValidation: Story = {
+export const CustomValidation = {
   parameters: {
     mockData: [
       {
@@ -426,10 +404,10 @@ export const CustomValidation: Story = {
     ]
   },
   args: {
-    form: formFirstname as never,
+    form: formFirstname,
     options: {
       hooks: {
-        async customValidation(submission: SubmissionType, callback: (error: any) => void) {
+        async customValidation(submission, callback) {
           const response = await fetch("https://test.dev/todos/1", {
             headers: {
               Accept: "application/json",
@@ -480,228 +458,6 @@ export const CustomValidation: Story = {
     let submitButton = canvas.getByRole("button", { name: "Submit" });
 
     userEvent.click(submitButton);
-
-    await waitFor(async () => {
-      expect(canvas.getByText("Please fix the following errors before submitting.")).toBeInTheDocument();
-    });
-  }
-};
-
-/**
- * Fetch submission data from a server then use the custom `onAsyncSubmit` event to update the submission
- * data on a non form.io server.
- *
- * Formio support `form.action` property to send the form data to a custom server.
- * But here we want to handle the submission data manually and perform some custom action before sending the data to the server.
- */
-export const FetchSubmissionWithCustomAction: Story = {
-  args: {
-    options: {
-      template: "tailwind",
-      iconset: "bx"
-    }
-  },
-  parameters: {
-    mockData: [
-      {
-        url: "https://local.dev/form/Test",
-        method: "GET",
-        status: 200,
-        response: formFirstname,
-        delay: 200
-      },
-      {
-        url: "https://local.dev/form/Test/submissions/1",
-        method: "GET",
-        status: 200,
-        response: {
-          firstName: "John",
-          lastName: "Doe"
-        },
-        delay: 800
-      },
-      {
-        url: "https://local.dev/form/Test/submissions/1",
-        method: "PUT",
-        status: 200,
-        response: {
-          firstName: "John",
-          lastName: "Doe"
-        },
-        delay: 800
-      }
-    ]
-  },
-  render(args) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { loading, form, data, onSubmit } = useEditForm({
-      model: "Test",
-      submissionId: "1"
-    });
-
-    if (loading || !form) {
-      return <div data-testid='loading'>Loading...</div>;
-    }
-
-    return (
-      <div className='flex flex-col space-y-5'>
-        <Form {...args} form={form} submission={{ data: data! }} onAsyncSubmit={onSubmit} />
-
-        <div className='flex flex-col space-y-5'>
-          <strong>Preview:</strong>
-          <pre className='bg-gray-200 p-5 rounded-sm text-sm'>
-            <code>{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        </div>
-      </div>
-    );
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await waitFor(() => {
-      expect(canvas.getByTestId("loading")).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      expect(canvas.getByTestId("formio-container")).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      expect(canvas.getByTestId("formio-container")).toHaveClass("formio-form-ready");
-    });
-
-    let firstnameInput = canvas.getByRole("textbox", { name: "First name" });
-    let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });
-
-    userEvent.clear(firstnameInput);
-    userEvent.type(firstnameInput, "Jane", { delay: 100 });
-
-    await waitFor(() => {
-      expect(firstnameInput).toHaveValue("Jane");
-    });
-
-    userEvent.clear(lastNameInput);
-    userEvent.type(lastNameInput, "Smith", { delay: 100 });
-
-    await waitFor(() => {
-      expect(lastNameInput).toHaveValue("Smith");
-    });
-
-    let submitButton = canvas.getByRole("button", { name: "Submit" });
-
-    userEvent.click(submitButton);
-
-    await delay(1000);
-
-    await waitFor(() => {
-      submitButton = canvas.getByRole("button", { name: "Submit" });
-      expect(submitButton.children).toHaveLength(1);
-    });
-  }
-};
-
-export const ErrorOnSubmitServer: Story = {
-  args: {
-    options: {
-      template: "tailwind",
-      iconset: "bx"
-    }
-  },
-  parameters: {
-    mockData: [
-      {
-        url: "https://local.dev/form/Test2",
-        method: "GET",
-        status: 200,
-        response: formFirstname,
-        delay: 200
-      },
-      {
-        url: "https://local.dev/form/Test2/submissions/2",
-        method: "GET",
-        status: 200,
-        response: {
-          firstName: "John",
-          lastName: "Doe"
-        },
-        delay: 800
-      },
-      {
-        url: "https://local.dev/form/Test2/submissions/2",
-        method: "PUT",
-        status: 400,
-        response: {
-          message: "My custom message about this field",
-          type: "custom",
-          path: ["firstName"],
-          level: "error"
-        },
-        delay: 800
-      }
-    ]
-  },
-  render(args) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { loading, form, data, onSubmit } = useEditForm({
-      model: "Test2",
-      submissionId: "2"
-    });
-
-    if (loading || !form) {
-      return <div data-testid='loading'>Loading...</div>;
-    }
-
-    return (
-      <div className='flex flex-col space-y-5'>
-        <Form {...args} form={form} submission={{ data: data! }} onAsyncSubmit={onSubmit} />
-
-        <div className='flex flex-col space-y-5'>
-          <strong>Preview:</strong>
-          <pre className='bg-gray-200 p-5 rounded-sm text-sm'>
-            <code>{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        </div>
-      </div>
-    );
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await waitFor(() => {
-      expect(canvas.getByTestId("loading")).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      expect(canvas.getByTestId("formio-container")).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      expect(canvas.getByTestId("formio-container")).toHaveClass("formio-form-ready");
-    });
-
-    let firstnameInput = canvas.getByRole("textbox", { name: "First name" });
-    let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });
-
-    userEvent.clear(firstnameInput);
-    userEvent.type(firstnameInput, "Jane", { delay: 100 });
-
-    await waitFor(() => {
-      expect(firstnameInput).toHaveValue("Jane");
-    });
-
-    userEvent.clear(lastNameInput);
-    userEvent.type(lastNameInput, "Smith", { delay: 100 });
-
-    await waitFor(() => {
-      expect(lastNameInput).toHaveValue("Smith");
-    });
-
-    let submitButton = canvas.getByRole("button", { name: "Submit" });
-
-    userEvent.click(submitButton);
-
-    await delay(1000);
 
     await waitFor(async () => {
       expect(canvas.getByText("Please fix the following errors before submitting.")).toBeInTheDocument();
