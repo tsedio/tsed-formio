@@ -51,7 +51,7 @@ export function FormAction({ actionInfo, children, onSubmit, options, ...props }
     <div>
       {children}
 
-      <Form form={form} submission={submission} onSubmit={onSubmit} options={options} />
+      <Form<ActionType> form={form} submission={submission} onSubmit={onSubmit} options={options} />
 
       {children}
     </div>
