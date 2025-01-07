@@ -1,10 +1,11 @@
 import { render, screen } from "@testing-library/react";
 
-import { Sandbox } from "./card.stories";
+import { Card } from "./Card";
+import { Sandbox } from "./Card.stories";
 
 describe("Card", () => {
   it("should render the card component", () => {
-    render(<Sandbox {...Sandbox.args} />);
+    render(<Card {...Sandbox.args} />);
 
     const title = screen.getByRole("heading");
     const body = screen.getByRole("article");

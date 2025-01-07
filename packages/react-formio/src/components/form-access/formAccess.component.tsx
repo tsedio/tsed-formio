@@ -1,7 +1,7 @@
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from "react";
 
 import type { FormOptions, FormType, SubmissionType } from "../../interfaces";
-import { Card } from "../card/card.component";
+import { Card } from "../../molecules/card/Card";
 import { Form } from "../form/form.component";
 import {
   AccessRolesType,
@@ -70,7 +70,6 @@ function NamedFormAccess({ name, form, submissions, options, onChange, onSubmit,
   return (
     <>
       <Form<AccessRolesType>
-        name={name}
         form={form[name]}
         submission={submissions[name]}
         onChange={({ data, isValid }) => {
