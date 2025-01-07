@@ -3,8 +3,8 @@ import noop from "lodash/noop";
 import { useState } from "react";
 
 import { ActionType } from "../../interfaces";
+import { Select } from "../../molecules/forms/select/Select";
 import { iconClass } from "../../utils/iconClass";
-import { Select } from "../select/select.component";
 import { TableProps } from "../table/hooks/useCustomTable.hook";
 import { Table } from "../table/table.component";
 

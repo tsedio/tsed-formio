@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { PropsWithChildren } from "react";
 
-import { Select } from "../select/select.component";
+import { Select } from "../../molecules/forms/select/Select";
 import { getPageNumbers, LEFT_PAGE, RIGHT_PAGE } from "../table/utils/getPageNumbers";
 
 function PaginationButton(

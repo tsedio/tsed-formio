@@ -2,8 +2,8 @@ import Choices from "@formio/choices.js";
 import classnames from "classnames";
 import { HTMLAttributes, ReactElement, useEffect, useRef } from "react";
 
-import { FormControl, FormControlProps } from "../../molecules/forms/form-control/FormControl";
-import { getEventValue } from "../../utils/getEventValue";
+import { getEventValue } from "../../../utils/getEventValue";
+import { FormControl, FormControlProps } from "../form-control/FormControl";
 
 export interface SelectProps<Data = any> extends FormControlProps, Omit<HTMLAttributes<HTMLSelectElement>, "onChange" | "prefix"> {
   size?: string;
