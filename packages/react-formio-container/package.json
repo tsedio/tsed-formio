@@ -1,7 +1,7 @@
 {
   "name": "@tsed/react-formio-container",
   "description": "Provide advanced components and tools to create your own formio backoffice.",
-  "version": "3.0.0-alpha.5",
+  "version": "3.0.0-alpha.6",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -26,8 +26,8 @@
   },
   "peerDependencies": {
     "@formio/choices.js": "^9.0.1",
-    "@tsed/react-formio": "3.0.0-alpha.5",
-    "@tsed/react-formio-stores": "3.0.0-alpha.5",
+    "@tsed/react-formio": "3.0.0-alpha.6",
+    "@tsed/react-formio-stores": "3.0.0-alpha.6",
     "classnames": "^2.3.1",
     "connected-react-router": "^6.9.1",
     "file-saver": "^2.0.5",
