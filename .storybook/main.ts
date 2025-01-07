@@ -10,10 +10,10 @@ const config: StorybookConfig = {
       titlePrefix: "Molecules",
       directory: "../packages/react-formio/src/molecules"
     },
-    // {
-    //   titlePrefix: "@tsed/react-formio/Organisms",
-    //   directory: "../packages/react-formio/src/organisms/**/*.stories.@(js|jsx|ts|tsx)"
-    // },
+    {
+      titlePrefix: "Organisms",
+      directory: "../packages/react-formio/src/organisms"
+    },
     "../packages/react-formio/src/components/**/*.mdx",
     "../packages/react-formio/src/components/**/*.stories.@(js|jsx|ts|tsx)",
     "../packages/react-formio/src/components/**/*.story.@(js|jsx|ts|tsx)",

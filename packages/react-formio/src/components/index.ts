@@ -10,8 +10,6 @@ export * from "./form-edit/formParameters.component";
 export * from "./form-edit/useFormEdit.hook";
 export * from "./form-settings/formSettings.component";
 export * from "./forms-table/formsTable.component";
-export * from "./modal/modal.component";
-export * from "./modal/removeModal.component";
 export * from "./pagination/pagination.component";
 export * from "./submissions-table/submissionsTable.component";
 export * from "./table";

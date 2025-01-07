@@ -2,8 +2,8 @@ import classnames from "classnames";
 import { PropsWithChildren, useState } from "react";
 
 import { InputText } from "../../molecules/forms/input-text/InputText";
+import { Modal, ModalProps } from "../../molecules/modal/Modal";
 import { iconClass } from "../../utils/iconClass";
-import { Modal, ModalProps } from "./modal.component";
 
 function RemoveModalFooter({ value, valueToCompare, onSubmit, onClose, i18n = (f: string) => f }: ModalProps) {
   return (
