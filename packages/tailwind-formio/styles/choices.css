@@ -201,7 +201,7 @@
     }
 
     .choices__item {
-      @apply inline-block align-middle rounded py-1 px-2.5 text-xs font-semibold mr-1 mb-1 bg-primary-500 border-1 border-solid border-primary-600 text-white ;
+      @apply inline-flex align-middle rounded py-1 px-2.5 text-xs font-semibold mr-1 mb-1 bg-primary-500 border-1 border-solid border-primary-600 text-white ;
       word-break: break-all;
       box-sizing: border-box;
 

@@ -1,11 +1,12 @@
 import { render, screen } from "@testing-library/react";
 
-import { iconClass } from "../../utils/iconClass";
-import { Sandbox, WithDescription, WithPrefix, WithSuffix } from "./formControl.stories";
+import { iconClass } from "../../../utils/iconClass";
+import { FormControl } from "./FormControl";
+import { Sandbox } from "./FormControl.stories";
 
 describe("form-control", () => {
   it("should display form control component", () => {
-    render(<Sandbox {...Sandbox.args} name='test' />);
+    render(<FormControl {...Sandbox.args} name='test' />);
 
     const formGroup = screen.getByTestId("form-group-test") as HTMLFormElement;
 
@@ -14,7 +15,7 @@ describe("form-control", () => {
 
   it("should NOT display form-control component without a name attribute defined", () => {
     const name = "";
-    render(<Sandbox {...Sandbox.args} name={name} />);
+    render(<FormControl {...Sandbox.args} name={name} />);
 
     const formGroup = screen.queryByTestId(`form-group-${name}`) as HTMLFormElement;
 
@@ -22,7 +23,7 @@ describe("form-control", () => {
   });
 
   it("should display form-control component with className 'field-required' when the props 'required' is set to true", () => {
-    render(<Sandbox {...Sandbox.args} required={true} name='test' />);
+    render(<FormControl {...Sandbox.args} required={true} name='test' />);
 
     const formGroup = screen.getByTestId("form-group-test") as HTMLFormElement;
     const formControlLabel = screen.getByTestId(`form-control-label`) as HTMLLabelElement;
@@ -35,7 +36,7 @@ describe("form-control", () => {
   it("should display prefix", () => {
     const fontAwsomeCalendarIcon = "fa fa-calendar";
     const prefix = (<i className={iconClass(undefined, "calendar")} />) as JSX.Element;
-    render(<WithPrefix {...Sandbox.args} name='testPrefix' prefix={prefix} />);
+    render(<FormControl {...Sandbox.args} name='testPrefix' prefix={prefix} />);
 
     const formGroup = screen.getByTestId("form-group-testPrefix") as HTMLFormElement;
     const formControlPrefix = screen.getByTestId("form-control-prefix") as HTMLSpanElement;
@@ -49,7 +50,7 @@ describe("form-control", () => {
   it("should display suffix", () => {
     const fontAwsomeCalendarIcon = "fa fa-calendar";
     const suffix = (<i className={iconClass(undefined, "calendar")} />) as JSX.Element;
-    render(<WithSuffix {...Sandbox.args} name='testSuffix' suffix={suffix} />);
+    render(<FormControl {...Sandbox.args} name='testSuffix' suffix={suffix} />);
 
     const formGroup = screen.getByTestId("form-group-testSuffix") as HTMLFormElement;
     const formControlSuffix = screen.getByTestId("form-control-suffix") as HTMLSpanElement;
@@ -62,7 +63,7 @@ describe("form-control", () => {
 
   it("should display description", () => {
     const description = "test description";
-    render(<WithDescription {...Sandbox.args} name='testDescription' description={description} />);
+    render(<FormControl {...Sandbox.args} name='testDescription' description={description} />);
 
     const formGroup = screen.getByTestId("form-group-testDescription") as HTMLFormElement;
     const formControlDescription = screen.getByTestId("form-control-description") as HTMLDivElement;
