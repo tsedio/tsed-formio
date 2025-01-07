@@ -1,4 +1,10 @@
+import { PropsWithChildren } from "react";
+
 function formatError(error: any): any {
+  if (!error || (Array.isArray(error) && !error.length)) {
+    return "";
+  }
+
   if (typeof error === "string") {
     return error;
   }
@@ -42,18 +48,15 @@ function formatError(error: any): any {
 }
 
 export interface AlertProps {
-  error?: any | any[];
+  message?: string | any | string[];
   type?: string;
 }
 
-export function Alert({ error, type = "danger" }: AlertProps) {
-  if (!error || (Array.isArray(error) && !error.length)) {
-    return null;
-  }
-
+export function Alert({ children, message, type = "danger" }: PropsWithChildren<AlertProps>) {
   return (
     <div className={`alert alert-${type}`} role='alert'>
-      {formatError(error)}
+      {formatError(message)}
+      {children}
     </div>
   );
 }
