@@ -29,7 +29,6 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-mdx-gfm",
     "@storybook/addon-links",
-    "@storybook/addon-interactions",
     "@chromatic-com/storybook",
     "storybook-addon-mock"
   ],

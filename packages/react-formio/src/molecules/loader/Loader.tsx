@@ -10,7 +10,7 @@ export interface LoaderProps {
   className?: string;
 }
 
-export function Loader({ isActive, color = "blue", icon = "radio-circle", className = "" }: PropsWithChildren<LoaderProps>) {
+export function Loader({ isActive, color = "text-primary", icon = "radio-circle", className = "" }: PropsWithChildren<LoaderProps>) {
   if (isActive) {
     return (
       <div
@@ -19,7 +19,7 @@ export function Loader({ isActive, color = "blue", icon = "radio-circle", classN
           className
         )}
       >
-        <span data-testid={`icon_${icon}`} color={color} className={`text-11xl ${iconClass(undefined, icon, true)}`} />
+        <span data-testid={`icon_${icon}`} className={`text-8xl ${color} ${iconClass(undefined, icon, true)}`} />
       </div>
     );
   }

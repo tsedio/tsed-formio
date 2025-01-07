@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 
-import { Sandbox } from "./loader.stories";
+import { Loader } from "./Loader";
 
 describe("Loader", () => {
   it("should render a component (when isActive = true)", () => {
-    render(<Sandbox isActive={true} />);
+    render(<Loader isActive={true} />);
 
     const icon = screen.getByTestId("icon_radio-circle");
 
@@ -13,7 +13,7 @@ describe("Loader", () => {
   });
 
   it("should render a component (when isActive = false)", () => {
-    render(<Sandbox isActive={false} />);
+    render(<Loader isActive={false} />);
 
     const icon = screen.queryByTestId("icon_radio-circle");
 
