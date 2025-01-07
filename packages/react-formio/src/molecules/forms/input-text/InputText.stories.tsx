@@ -1,27 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "@storybook/test";
-import { useState } from "react";
 
-import { iconClass } from "../../utils/iconClass";
-import { InputText } from "./inputText.component";
+import { iconClass } from "../../../utils/iconClass";
+import { useValue } from "../../__fixtures__/useValue.hook";
+import { InputText } from "./InputText";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-const useValue = (args: any) => {
-  const [value, setValue] = useState(args.value);
-
-  return {
-    ...args,
-    value,
-    onChange(name: string, value: any) {
-      setValue(value);
-      args.onChange(name, value);
-    }
-  };
-};
-
+/**
+ * Text Fields let users enter and edit text.
+ *
+ * ```tsx
+ * import {InputTags} from "@tsed/react-formio/molecules/forms/input-text/InputText";
+ * ```
+ */
 export default {
-  title: "@tsed/react-formio/InputText",
+  title: "forms/InputText",
   component: InputText,
   argTypes: {
     label: {

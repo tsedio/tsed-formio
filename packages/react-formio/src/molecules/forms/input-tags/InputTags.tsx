@@ -2,7 +2,7 @@ import Choices from "@formio/choices.js";
 import uniq from "lodash/uniq";
 import { useEffect, useRef } from "react";
 
-import { FormControl, FormControlProps } from "../form-control/formControl.component";
+import { FormControl, FormControlProps } from "../form-control/FormControl";
 
 export interface InputTagsProps<T = any> extends Omit<FormControlProps, "description" | "prefix" | "suffix"> {
   value?: T;

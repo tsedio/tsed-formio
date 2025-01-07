@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { InputText } from "./inputText.component";
-import { Usage } from "./inputText.stories";
+import { InputText } from "./InputText";
+import { Usage } from "./InputText.stories";
 
 describe("input-text", () => {
   it("should display the input-text component", () => {

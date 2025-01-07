@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FilterProps } from "react-table";
 
-import { InputText } from "../../input-text/inputText.component";
+import { InputText } from "../../../molecules/forms/input-text/InputText";
 
 export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
   props: FilterProps<D> & {

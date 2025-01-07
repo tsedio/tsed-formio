@@ -3,10 +3,10 @@ import { expect, fn, userEvent, waitFor, within } from "@storybook/test";
 import { useEffect, useState } from "react";
 
 import { SubmissionType } from "../../interfaces";
+import { InputText } from "../../molecules/forms/input-text/InputText";
 import form from "../__fixtures__/form.fixture.json";
 import formFirstname from "../__fixtures__/form-firstname.fixture.json";
 import { useEditForm } from "../__fixtures__/useEditForm";
-import { InputText } from "../input-text/inputText.component";
 import { Form } from "./form.component";
 
 async function delay(number: number) {

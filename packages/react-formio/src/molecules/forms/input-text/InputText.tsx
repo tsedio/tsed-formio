@@ -2,8 +2,8 @@ import classnames from "classnames";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-import { getEventValue } from "../../utils/getEventValue";
-import { FormControl, FormControlProps } from "../form-control/formControl.component";
+import { getEventValue } from "../../../utils/getEventValue";
+import { FormControl, FormControlProps } from "../form-control/FormControl";
 
 export interface InputTextProps<Data = any> extends FormControlProps<Data> {
   type?: string;

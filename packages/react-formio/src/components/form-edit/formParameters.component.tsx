@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 
 import { FormType } from "../../interfaces/FormType";
-import { InputTags } from "../input-tags/inputTags.component";
-import { InputText } from "../input-text/inputText.component";
+import { InputTags } from "../../molecules/forms/input-tags/InputTags";
+import { InputText } from "../../molecules/forms/input-text/InputText";
 import { Select } from "../select/select.component";
 
 export const defaultDisplayChoices = [
