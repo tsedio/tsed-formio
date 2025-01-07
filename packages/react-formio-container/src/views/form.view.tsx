@@ -1,4 +1,5 @@
-import { Alert, Loader, RemoveModal, Tabs } from "@tsed/react-formio";
+import { Loader, RemoveModal, Tabs } from "@tsed/react-formio";
+import { Alert } from "@tsed/react-formio/molecules/alert/Alert";
 import { Route, Switch, useParams } from "react-router";
 
 import { useForm } from "../hooks/useForm.hook";
@@ -13,7 +14,7 @@ function FormComponent({ className, ...props }: ReturnType<typeof useForm>) {
 
   return (
     <div>
-      <Alert error={error} />
+      <Alert message={error} />
       <div className={className}>
         <Tabs i18n={i18n} current={currentRoute} items={routes} className='' onClick={setCurrentRoute}>
           <Switch>

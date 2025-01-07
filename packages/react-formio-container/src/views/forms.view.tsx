@@ -1,4 +1,5 @@
-import { Alert, FormsTable } from "@tsed/react-formio";
+import { FormsTable } from "@tsed/react-formio";
+import { Alert } from "@tsed/react-formio/molecules/alert/Alert";
 
 import { useForms, UseFormsProps } from "../hooks/useForms.hook";
 
@@ -39,7 +40,7 @@ export function FormsComponent({
 
   return (
     <div className={"-m-px"}>
-      <Alert error={error} />
+      <Alert message={error} />
       <FormsTable
         className={className}
         icon={formType === "forms" ? "detail" : "folder"}

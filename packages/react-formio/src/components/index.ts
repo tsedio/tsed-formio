@@ -1,5 +1,4 @@
 export * from "./actions-table/actionsTable.component";
-export * from "./alert/alert.component";
 export * from "./card/card.component";
 export * from "./form/form.component";
 export * from "./form/useForm.hook";
