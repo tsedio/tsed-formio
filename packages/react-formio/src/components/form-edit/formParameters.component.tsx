@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 import { FormType } from "../../interfaces/FormType";
 import { InputTags } from "../../molecules/forms/input-tags/InputTags";
 import { InputText } from "../../molecules/forms/input-text/InputText";
-import { Select } from "../select/select.component";
+import { Select } from "../../molecules/forms/select/Select";
 
 export const defaultDisplayChoices = [
   { label: "Form", value: "form" },

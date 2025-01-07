@@ -1,4 +1,4 @@
-import { Form, iconClass, Loader, RemoveModal, useTooltip } from "@tsed/react-formio";
+import { Form, FormType, iconClass, Loader, RemoveModal, useTooltip } from "@tsed/react-formio";
 import classnames from "classnames";
 import { useParams } from "react-router";
 
@@ -62,7 +62,14 @@ export function SubmissionComponent(props: ReturnType<typeof useSubmission>) {
           </button>
         </div>
       </h2>
-      <Form form={form} submission={submission as any} onSubmit={saveSubmission} onFormReady={onFormReady} url={url} options={{ i18n }} />
+      <Form
+        form={form as FormType}
+        submission={submission as any}
+        onSubmit={saveSubmission}
+        onFormReady={onFormReady}
+        url={url}
+        options={{ i18n }}
+      />
       {submissionAction === "delete" && (
         <RemoveModalComponent
           i18n={i18n}

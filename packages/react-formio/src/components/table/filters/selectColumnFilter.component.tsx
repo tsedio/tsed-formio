@@ -1,6 +1,6 @@
 import { FilterProps } from "react-table";
 
-import { Select } from "../../select/select.component";
+import { Select } from "../../../molecules/forms/select/Select";
 
 export function useSelectColumnFilter<D extends Record<string, unknown> = {}>(props: FilterProps<D>) {
   const { column } = props;

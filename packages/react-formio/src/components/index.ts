@@ -14,7 +14,6 @@ export * from "./loader/loader.component";
 export * from "./modal/modal.component";
 export * from "./modal/removeModal.component";
 export * from "./pagination/pagination.component";
-export * from "./select/select.component";
 export * from "./submissions-table/submissionsTable.component";
 export * from "./table";
 export * from "./tabs/tabs.component";
