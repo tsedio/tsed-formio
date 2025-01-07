@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { Sandbox } from "./pagination.stories";
+import { Sandbox } from "./Pagination.stories";
 
 describe("Pagination", () => {
   it("should render the pagination component", () => {

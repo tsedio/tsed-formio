@@ -1,8 +1,8 @@
 import classnames from "classnames";
 import { PropsWithChildren } from "react";
 
-import { Select } from "../../molecules/forms/select/Select";
-import { getPageNumbers, LEFT_PAGE, RIGHT_PAGE } from "../table/utils/getPageNumbers";
+import { getPageNumbers, LEFT_PAGE, RIGHT_PAGE } from "../../components/table/utils/getPageNumbers";
+import { Select } from "../forms/select/Select";
 
 function PaginationButton(
   props: PropsWithChildren<
