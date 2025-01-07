@@ -15,7 +15,7 @@ import {
 } from "react-table";
 
 import { OnClickOperation, Operation, QueryOptions } from "../../../interfaces";
-import { Pagination as DefaultPagination } from "../../pagination/pagination.component";
+import { Pagination as DefaultPagination } from "../../../molecules/pagination/Pagination";
 import { DefaultArrowSort } from "../components/defaultArrowSort.component";
 import { DefaultCellHeader, DefaultCellHeaderProps } from "../components/defaultCellHeader.component";
 import { DefaultRow, DefaultRowProps } from "../components/defaultRow.component";

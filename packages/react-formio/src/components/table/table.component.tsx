@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { PropsWithChildren } from "react";
 
-import { PaginationProps } from "../pagination/pagination.component";
+import { PaginationProps } from "../../molecules/pagination/Pagination";
 import { DrapNDropContainer } from "./components/dragNDropContainer";
 import { TableProps, useCustomTable } from "./hooks/useCustomTable.hook";
 
