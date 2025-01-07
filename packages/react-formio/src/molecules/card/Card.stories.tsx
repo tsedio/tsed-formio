@@ -1,7 +1,14 @@
-import { Card } from "./card.component";
+import { Card } from "./Card";
 
+/**
+ * Cards contain content and actions about a single subject.
+ *
+ * ```ts
+ * import {Card} from "@tsed/react-formio/molecules/card/Card";
+ * ```
+ */
 export default {
-  title: "@tsed/react-formio/Card",
+  title: "Card",
   component: Card,
   argTypes: {},
   parameters: {}
