@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import tailwind from "@tsed/tailwind-formio";
 
 import { Loader } from "./Loader";
-console.log(Object.keys(tailwind.templates.tailwind.ICONS));
+
 /**
  * Component to display loader
  *
