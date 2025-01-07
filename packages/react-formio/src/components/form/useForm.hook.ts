@@ -12,21 +12,21 @@ export interface UseFormProps<Data extends { [key: string]: JSON } = { [key: str
   src?: string;
   url?: string;
   form?: FormType;
-  submission?: SubmissionType;
+  submission?: SubmissionType<Data>;
   // TODO: once events is typed correctly in @formio/js options, we can remove this override
   options?: FormOptions;
   FormClass?: any;
   onFormReady?: (instance: Webform) => void;
-  onPrevPage?: (page: number, submission: SubmissionType) => void;
-  onNextPage?: (page: number, submission: SubmissionType) => void;
+  onPrevPage?: (page: number, submission: SubmissionType<Data>) => void;
+  onNextPage?: (page: number, submission: SubmissionType<Data>) => void;
   onCancelSubmit?: () => void;
   onCancelComponent?: (component: ComponentType) => void;
   onChange?: (value: ChangedSubmission<Data>, flags: any, modified: boolean) => void;
   onCustomEvent?: (event: FormCustomEvent) => void;
   onComponentChange?: (changed: { instance: Webform; component: Webform; value: any; flags: any }) => void;
-  onSubmit?: (submission: SubmissionType, saved?: boolean) => void;
-  onAsyncSubmit?: (submission: SubmissionType) => void;
-  onSubmitDone?: (submission: SubmissionType) => void;
+  onSubmit?: (submission: SubmissionType<Data>, saved?: boolean) => void;
+  onAsyncSubmit?: (submission: SubmissionType<Data>) => void;
+  onSubmitDone?: (submission: SubmissionType<Data>) => void;
   onSubmitError?: (error: EventError) => void;
   onFormLoad?: (form: JSON) => void;
   onError?: (error: EventError | false) => void;
@@ -37,11 +37,11 @@ export interface UseFormProps<Data extends { [key: string]: JSON } = { [key: str
   onBlur?: (instance: Webform) => void;
   onInitialized?: () => void;
   onLanguageChanged?: () => void;
-  onBeforeSetSubmission?: (submission: SubmissionType) => void;
+  onBeforeSetSubmission?: (submission: SubmissionType<Data>) => void;
   onSaveDraftBegin?: () => void;
-  onSaveDraft?: (submission: SubmissionType) => void;
-  onRestoreDraft?: (submission: SubmissionType | null) => void;
-  onSubmissionDeleted?: (submission: SubmissionType) => void;
+  onSaveDraft?: (submission: SubmissionType<Data>) => void;
+  onRestoreDraft?: (submission: SubmissionType<Data> | null) => void;
+  onSubmissionDeleted?: (submission: SubmissionType<Data>) => void;
   onRequestDone?: () => void;
   otherEvents?: {
     [event: string]: (...args: any[]) => void;
