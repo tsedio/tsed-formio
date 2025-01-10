@@ -11,7 +11,7 @@ import { RemoveModal, RemoveModalProps } from "./RemoveModal";
  * ```
  */
 export default {
-  title: "RemoveModal",
+  title: "model/RemoveModal",
   component: RemoveModal,
   argTypes: {
     onSubmit: {

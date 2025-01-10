@@ -7,8 +7,5 @@
   "main": "index.js",
   "exports": {
     "./tsconfig.web.json": "./tsconfig.web.json"
-  },
-  "dependencies": {},
-  "devDependencies": {},
-  "peerDependencies": {}
+  }
 }

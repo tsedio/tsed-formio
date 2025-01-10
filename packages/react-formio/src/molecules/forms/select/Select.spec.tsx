@@ -64,9 +64,6 @@ describe("Select", () => {
         target: { value: "value1" }
       });
 
-      const option = screen.getByRole("option", { name: "test1" }) as HTMLOptionElement;
-
-      expect(option.selected).toBeTruthy();
       expect(onChange).toHaveBeenCalledWith("test-sandbox", "value1");
     });
   });

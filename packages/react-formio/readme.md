@@ -37,30 +37,43 @@ See our [storybook](https://formio.tsed.io/?path=/docs/getting-started--docs) to
 
 Many components are provided to build your own backoffice based on Formio.js API:
 
-- [ActionsTable](https://formio.tsed.io/?path=story/reactformio-actionstable--sandbox),
-- [FormAccess](https://formio.tsed.io/?path=story/reactformio-formaccess--sandbox),
-- [FormAction](https://formio.tsed.io/?path=story/reactformio-formaction--sandbox),
-- [Form](https://formio.tsed.io/?path=docs/documentation-form--docs),
-- [FormBuilder](https://formio.tsed.io/?path=docs/documentation-formbuilder--docs),
-- [FormEdit](https://formio.tsed.io/?path=docs/documentation-formedit--docs),
-- [FormsTable](https://formio.tsed.io/?path=docs/documentation-formstable--docs),
-- [InputTags](https://formio.tsed.io/?path=story/reactformio-inputtags--sandbox),
-- [InputText](https://formio.tsed.io/?path=story/reactformio-inputtext--sandbox),
-- [Pagination](https://formio.tsed.io/?path=story/reactformio-pagination--sandbox),
-- [Select](https://formio.tsed.io/?path=/story/reactformio-select--sandbox),
-- [SubmissionsTable](https://formio.tsed.io/?path=/docs/documentation-submissionstable--docs).
-- [Table](https://formio.tsed.io/?path=/story/reactformio-table--sandbox),
+- ActionsTable,
+- FormAccess,
+- FormAction,
+- Form,
+- FormBuilder,
+- FormEdit,
+- FormsTable,
+- InputTags,
+- InputText,
+- Pagination,
+- Select,
+- SubmissionsTable.
+- Table,
 - Predefined Reducers for Actions, Action, Form, Forms, Submission, Submissions, etc...,
 - TypeScript support.
 - Tailwind support.
 
-## Migrate from v1
+## Migrate to v2
 
 If you use redux actions from v1, you have to install `@tsed/redux-formio-stores` and remplace your imports:
 
 ```diff
 - import { defaultFormioReducer, formsReducer } from "@tsed/react-formio";
 + import { defaultFormioReducer, formsReducer } from "@tsed/react-formio-stores";
+```
+
+## Migrate to v3
+
+- `@tsed/react-formio` is now build only for ESM environment.
+- `@tsed/react-formio` use tree-shaking to reduce the bundle size, you have to import only what you need from the library.
+- `@tsed/react-formio` drop the support of TailwindCSS v2.
+
+Example:
+
+```diff
+- import { Form } from "@tsed/react-formio";
++ import { Form } from "@tsed/react-formio/organisms/form/Form";
 ```
 
 ## Install

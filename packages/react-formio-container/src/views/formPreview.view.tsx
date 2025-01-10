@@ -1,5 +1,6 @@
-import { Form, FormType } from "@tsed/react-formio";
+import type { FormType } from "@tsed/react-formio";
 import { Card } from "@tsed/react-formio/molecules/card/Card";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 import { useForm } from "../hooks";
 

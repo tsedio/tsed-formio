@@ -1,5 +1,5 @@
-import { iconClass } from "@tsed/react-formio";
 import { Card } from "@tsed/react-formio/molecules/card/Card";
+import { iconClass } from "@tsed/react-formio/utils/iconClass";
 
 import { UseFormProps } from "../hooks/useForm.hook";
 import { useFormExport } from "../hooks/useFormExport";

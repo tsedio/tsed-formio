@@ -7,19 +7,17 @@ const config: StorybookConfig = {
     "../stories/Getting-started.mdx",
     "../stories/**/*.mdx",
     {
+      titlePrefix: "Styling",
+      directory: "../packages/tailwind-formio"
+    },
+    {
       titlePrefix: "Molecules",
       directory: "../packages/react-formio/src/molecules"
     },
     {
       titlePrefix: "Organisms",
       directory: "../packages/react-formio/src/organisms"
-    },
-    "../packages/react-formio/src/components/**/*.mdx",
-    "../packages/react-formio/src/components/**/*.stories.@(js|jsx|ts|tsx)",
-    "../packages/react-formio/src/components/**/*.story.@(js|jsx|ts|tsx)",
-    "../packages/tailwind-formio/src/**/*.mdx",
-    "../packages/tailwind-formio/src/**/*.stories.@(js|jsx|ts|tsx)",
-    "../packages/tailwind-formio/src/**/*.story.@(js|jsx|ts|tsx)"
+    }
   ],
 
   addons: [

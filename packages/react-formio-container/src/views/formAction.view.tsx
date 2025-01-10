@@ -1,5 +1,7 @@
-import { FormAction, iconClass, useTooltip } from "@tsed/react-formio";
+import { useTooltip } from "@tsed/react-formio/hooks/useTooltip";
+import { FormAction } from "@tsed/react-formio/organisms/form/action/FormAction";
 import { RemoveModal } from "@tsed/react-formio/organisms/modal/RemoveModal";
+import { iconClass } from "@tsed/react-formio/utils/iconClass";
 import classnames from "classnames";
 import { useParams } from "react-router";
 

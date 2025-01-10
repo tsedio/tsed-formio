@@ -1,5 +1,5 @@
 import {Canvas, Meta} from '@storybook/blocks'
-import * as FormBuilderStories from '../packages/react-formio/src/components/form-builder/formBuilder.stories'
+import * as FormBuilderStories from '../packages/react-formio/src/organisms/form/builder/FormBuilder.stories'
 
 <Meta title="Getting started" />
 
@@ -48,9 +48,9 @@ See our [storybook](https://formio.tsed.io/) to see all available components.
 
 Many components are provided to build your own backoffice based on Formio.js API:
 
-- [ActionsTable](/story/reactformio-actionstable--sandbox),
-- [FormAccess](/story/reactformio-formaccess--sandbox),
-- [FormAction](/story/reactformio-formaction--sandbox),
+- [ActionsTable](/story/organisms-table-actions-actionstable--sandbox),
+- [FormAccess](/story/organisms-form-access-formaccess--sandbox),
+- [FormAction](/story/organisms-form-action-formaction--sandbox),
 - [Form](/docs/documentation-form--docs),
 - [FormBuilder](/docs/documentation-formbuilder--docs),
 - [FormEdit](/docs/documentation-formedit--docs),
@@ -65,13 +65,26 @@ Many components are provided to build your own backoffice based on Formio.js API
 - TypeScript support.
 - Tailwind support.
 
-## Migrate from v1
+## Migrate to v2
 
-If you use redux actions from v1, you have to install `@tsed/redux-formio-stores` and remplace your imports:
+If you use redux actions with v2, you have to install `@tsed/redux-formio-stores` and remplace your imports:
 
 ```diff
 - import { defaultFormioReducer, formsReducer } from "@tsed/react-formio";
 + import { defaultFormioReducer, formsReducer } from "@tsed/react-formio-stores";
+```
+
+## Migrate to v3
+
+- `@tsed/react-formio` is now build only for ESM environment.
+- `@tsed/react-formio` use tree-shaking to reduce the bundle size, you have to import only what you need from the library.
+- `@tsed/react-formio` drop the support of TailwindCSS v2.
+
+Example:
+
+```diff
+- import { Form } from "@tsed/react-formio";
++ import { Form } from "@tsed/react-formio/organisms/form/Form";
 ```
 
 ## Install

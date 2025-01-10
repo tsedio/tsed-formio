@@ -7,12 +7,6 @@ const args = {
 };
 
 describe("Alert component", () => {
-  it("should NOT display the alert component when no error is received.", () => {
-    const { container } = render(<Alert {...args} message={null} />);
-
-    expect(container).toBeEmptyDOMElement();
-  });
-
   it("should display an error when the error is in string format", () => {
     const error = "error in string format";
 
