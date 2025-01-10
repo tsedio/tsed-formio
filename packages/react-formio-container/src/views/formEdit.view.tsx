@@ -1,4 +1,4 @@
-import { FormEdit } from "@tsed/react-formio";
+import { FormEdit } from "@tsed/react-formio/organisms/form/builder/FormEdit";
 import classnames from "classnames";
 
 import { useForm } from "../hooks/useForm.hook";

@@ -1,5 +1,5 @@
-import { FormsTable } from "@tsed/react-formio";
 import { Alert } from "@tsed/react-formio/molecules/alert/Alert";
+import { FormsTable } from "@tsed/react-formio/organisms/table/forms/FormsTable";
 
 import { useForms, UseFormsProps } from "../hooks/useForms.hook";
 

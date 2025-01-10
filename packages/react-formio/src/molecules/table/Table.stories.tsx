@@ -7,7 +7,7 @@ import { Table } from "./Table";
 import { mapFormToColumns } from "./utils/mapFormToColumns";
 
 export default {
-  title: "@tsed/react-formio/Table",
+  title: "Table",
   component: Table,
   argTypes: {},
   parameters: {}

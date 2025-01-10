@@ -1,4 +1,4 @@
-import { FormSettings } from "@tsed/react-formio";
+import { FormSettings } from "@tsed/react-formio/organisms/form/settings/FormSettings";
 
 import { useForm } from "../hooks/useForm.hook";
 

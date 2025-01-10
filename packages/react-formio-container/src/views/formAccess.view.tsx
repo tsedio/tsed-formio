@@ -1,4 +1,4 @@
-import { FormAccess } from "@tsed/react-formio";
+import { FormAccess } from "@tsed/react-formio/organisms/form/access/FormAccess";
 
 import { useForm } from "../hooks/useForm.hook";
 
