@@ -1,4 +1,4 @@
-import type { TabsItemProps } from "@tsed/react-formio";
+import type { TabsItemProps } from "@tsed/react-formio/molecules/tabs/Tabs";
 import { AuthState, checkRoleFormAccess, FormType } from "@tsed/react-formio-stores";
 import { ComponentType } from "react";
 

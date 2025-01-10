@@ -3,6 +3,13 @@ import { useEffect, useState } from "react";
 
 import { Pagination } from "./Pagination";
 
+/**
+ * Pagination component
+ *
+ * ```tsx
+ * import {Modal} from "@tsed/react-formio/molecules/pagination/Pagination";
+ * ```
+ */
 export default {
   title: "Pagination",
   component: Pagination,

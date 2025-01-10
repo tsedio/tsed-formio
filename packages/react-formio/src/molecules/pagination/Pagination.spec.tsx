@@ -1,10 +1,16 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { Sandbox } from "./Pagination.stories";
+import { Pagination } from "./Pagination";
+
+const args: any = {
+  pageSizes: [10, 25, 50, 100],
+  pageCount: 50,
+  pageIndex: 1
+};
 
 describe("Pagination", () => {
   it("should render the pagination component", () => {
-    render(<Sandbox {...Sandbox.args} />);
+    render(<Pagination {...args} />);
 
     const paginationBtn = screen.queryAllByTestId("pagination-button");
     const allBtnBlocks = paginationBtn.map((bloc) => bloc.textContent);
@@ -18,7 +24,7 @@ describe("Pagination", () => {
 
   it("should call previousPage() callback", () => {
     const previousPageSpy = vi.fn();
-    render(<Sandbox previousPage={previousPageSpy} canPreviousPage={true} />);
+    render(<Pagination {...args} previousPage={previousPageSpy} canPreviousPage={true} />);
     const paginationBtn = screen.queryAllByTestId("pagination-button");
     const btnPreviousPage = paginationBtn.find((btn) => btn.textContent === "Previous");
 
@@ -29,7 +35,7 @@ describe("Pagination", () => {
 
   it("should call nextPage() callback", () => {
     const nextPageSpy = vi.fn();
-    render(<Sandbox nextPage={nextPageSpy} canNextPage={true} />);
+    render(<Pagination {...args} nextPage={nextPageSpy} canNextPage={true} />);
 
     fireEvent.click(screen.getByText(/Next/i));
 
@@ -40,7 +46,7 @@ describe("Pagination", () => {
     const gotoPageSpy = vi.fn();
     let page: number;
 
-    render(<Sandbox {...Sandbox.args} gotoPage={gotoPageSpy} />);
+    render(<Pagination {...args} gotoPage={gotoPageSpy} />);
 
     const paginationBtn = screen.queryAllByTestId("pagination-button");
     const buttonsPage = paginationBtn.filter((btn) => btn.textContent !== "Previous" && btn.textContent !== "Next");
@@ -57,7 +63,7 @@ describe("Pagination", () => {
 
   it("should have Previous button disabled and not clickable", () => {
     const previousPageSpy = vi.fn();
-    render(<Sandbox canPreviousPage={false} previousPage={previousPageSpy} {...Sandbox.args} />);
+    render(<Pagination canPreviousPage={false} previousPage={previousPageSpy} {...args} />);
 
     const previousButton = screen.getByText("Previous");
 
@@ -68,7 +74,7 @@ describe("Pagination", () => {
 
   it("should have Previous button NOT disabled and clickable", () => {
     const previousPageSpy = vi.fn();
-    render(<Sandbox {...Sandbox.args} canPreviousPage={true} previousPage={previousPageSpy} />);
+    render(<Pagination {...args} canPreviousPage={true} previousPage={previousPageSpy} />);
 
     const previousButton = screen.getByText("Previous");
 
@@ -79,7 +85,7 @@ describe("Pagination", () => {
 
   it("should have Next button disabled and not clickable", () => {
     const nextPageSpy = vi.fn();
-    render(<Sandbox canNextPage={false} nextPage={nextPageSpy} {...Sandbox.args} />);
+    render(<Pagination canNextPage={false} nextPage={nextPageSpy} {...args} />);
 
     const nextButton = screen.getByText("Next");
     expect(nextButton).toHaveAttribute("disabled");
@@ -89,7 +95,7 @@ describe("Pagination", () => {
 
   it("should have Next button NOT disabled and clickable", () => {
     const nextPageSpy = vi.fn();
-    render(<Sandbox canNextPage={true} nextPage={nextPageSpy} {...Sandbox.args} />);
+    render(<Pagination canNextPage={true} nextPage={nextPageSpy} {...args} />);
     const nextButton = screen.getByText("Next");
     expect(nextButton).not.toHaveAttribute("disabled");
     fireEvent.click(nextButton);
@@ -99,7 +105,7 @@ describe("Pagination", () => {
   it("should correctly render select component", () => {
     const pageSizes = [10, 25, 50, 100, 200, 500];
 
-    render(<Sandbox {...Sandbox.args} pageSizes={pageSizes} />);
+    render(<Pagination {...args} pageSizes={pageSizes} />);
     const selectComp = screen.getByTestId("select_page");
     const selectChilds = Array.prototype.map.call(selectComp, function (child) {
       return +child.textContent;
@@ -112,7 +118,7 @@ describe("Pagination", () => {
   it("should display total length", () => {
     const pageSizes = [10, 25, 50, 100, 200, 500];
 
-    render(<Sandbox {...Sandbox.args} pageSizes={pageSizes} totalLength={1000} />);
+    render(<Pagination {...args} pageSizes={pageSizes} totalLength={1000} />);
 
     expect(screen.getByTestId("pagination-total-items")).toHaveTextContent("1,000 items");
   });

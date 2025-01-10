@@ -1,10 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { expect, vi } from "vitest";
 
-import { Tabs } from "./tabs.component";
-import { Sandbox } from "./tabs.component.stories";
+import { Tabs } from "./Tabs";
+import { Sandbox } from "./Tabs.stories";
 
-describe("tabs", () => {
+describe("<Tabs>", () => {
   it("should display the tabs component and children", () => {
     const items = [
       {
@@ -21,7 +21,7 @@ describe("tabs", () => {
       }
     ];
 
-    render(<Sandbox {...Sandbox.args} items={items} />);
+    render(<Tabs {...Sandbox.args} items={items} />);
 
     const tabsComponent = screen.getByTestId("tabs-comp");
 
