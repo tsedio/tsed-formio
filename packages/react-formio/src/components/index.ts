@@ -12,4 +12,3 @@ export * from "./form-settings/formSettings.component";
 export * from "./forms-table/formsTable.component";
 export * from "./submissions-table/submissionsTable.component";
 export * from "./table";
-export * from "./tabs/tabs.component";

@@ -1,4 +1,6 @@
-import { Form, FormType, iconClass, Loader, RemoveModal, useTooltip } from "@tsed/react-formio";
+import { Form, FormType, iconClass, useTooltip } from "@tsed/react-formio";
+import { Loader } from "@tsed/react-formio/molecules/loader/Loader";
+import { RemoveModal } from "@tsed/react-formio/organisms/modal/RemoveModal";
 import classnames from "classnames";
 import { useParams } from "react-router";
 

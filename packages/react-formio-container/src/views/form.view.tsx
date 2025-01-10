@@ -1,5 +1,7 @@
-import { Loader, RemoveModal, Tabs } from "@tsed/react-formio";
 import { Alert } from "@tsed/react-formio/molecules/alert/Alert";
+import { Loader } from "@tsed/react-formio/molecules/loader/Loader";
+import { Tabs } from "@tsed/react-formio/molecules/tabs/Tabs";
+import { RemoveModal } from "@tsed/react-formio/organisms/modal/RemoveModal";
 import { Route, Switch, useParams } from "react-router";
 
 import { useForm } from "../hooks/useForm.hook";
