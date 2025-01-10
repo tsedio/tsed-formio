@@ -2,8 +2,8 @@ import classnames from "classnames";
 import { PropsWithChildren } from "react";
 
 import { PaginationProps } from "../../molecules/pagination/Pagination";
-import { DrapNDropContainer } from "./components/dragNDropContainer";
-import { TableProps, useCustomTable } from "./hooks/useCustomTable.hook";
+import { DrapNDropContainer } from "./components/DragNDropContainer";
+import { TableProps, useCustomTable } from "./hooks/useCustomTable";
 
 export function Table<Data extends object = any>(props: PropsWithChildren<TableProps<Data>>) {
   const {

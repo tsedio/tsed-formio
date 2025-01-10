@@ -1,8 +1,5 @@
 import { FormType } from "../../interfaces";
-import { DefaultColumnFilter } from "../table/filters/defaultColumnFilter.component";
-import { SelectColumnFilter } from "../table/filters/selectColumnFilter.component";
-import { TableProps } from "../table/hooks/useCustomTable.hook";
-import { Table } from "../table/table.component";
+import { DefaultColumnFilter, SelectColumnFilter, Table, TableProps } from "../../molecules/table";
 import { FormsCell as DefaultFormCell } from "./components/formCell.component";
 
 export type FormsTableProps = Omit<TableProps<FormType>, "columns"> & {

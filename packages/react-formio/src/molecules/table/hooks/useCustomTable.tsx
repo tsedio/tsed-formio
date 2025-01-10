@@ -16,12 +16,12 @@ import {
 
 import { OnClickOperation, Operation, QueryOptions } from "../../../interfaces";
 import { Pagination as DefaultPagination } from "../../../molecules/pagination/Pagination";
-import { DefaultArrowSort } from "../components/defaultArrowSort.component";
-import { DefaultCellHeader, DefaultCellHeaderProps } from "../components/defaultCellHeader.component";
-import { DefaultRow, DefaultRowProps } from "../components/defaultRow.component";
-import { DefaultColumnFilter } from "../filters/defaultColumnFilter.component";
+import { DefaultArrowSort } from "../components/DefaultArrowSort";
+import { DefaultCellHeader, DefaultCellHeaderProps } from "../components/DefaultCellHeader";
+import { DefaultRow, DefaultRowProps } from "../components/DefaultRow";
+import { DefaultColumnFilter } from "../filters/DefaultColumnFilter";
 import { swapElements } from "../utils/swapElements";
-import { useOperations } from "./useOperations.hook";
+import { useOperations } from "./useOperations";
 
 export interface ExtraColumnProps {
   colspan?: number;

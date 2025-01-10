@@ -1,6 +1,6 @@
 import React from "react";
 
-import { OperationButtonProps } from "../components/table/components/defaultOperationButton.component";
+import type { OperationButtonProps } from "../molecules/table";
 
 export type PermissionsResolver<Data = any> = (data: Data, ctx: any) => void;
 export type OnClickOperation<Data = any> = (data: Data, operation: Operation) => void;

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { mapPagination } from "../../utils/mapPagination";
 import FormType from "../__fixtures__/form-schema.json";
 import formSubmissions from "../__fixtures__/form-submissions.json";
-import { Table } from "./table.component";
+import { Table } from "./Table";
 import { mapFormToColumns } from "./utils/mapFormToColumns";
 
 export default {

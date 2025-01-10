@@ -1,16 +1,14 @@
-import { Components } from "formiojs";
-import FormioUtils from "formiojs/utils";
+import { Components, Utils } from "formiojs";
 
-import { FormType } from "../../../interfaces";
-import { ComponentType } from "../../../interfaces/ComponentType";
-import { DefaultCell } from "../components/defaultCell.component";
-import { SelectColumnFilter } from "../filters/selectColumnFilter.component";
-import { ExtendedColumn } from "../hooks/useCustomTable.hook";
+import type { ComponentType, FormType } from "../../../interfaces";
+import { DefaultCell } from "../components/DefaultCell";
+import { SelectColumnFilter } from "../filters/SelectColumnFilter";
+import { ExtendedColumn } from "../hooks/useCustomTable";
 
 export function mapFormToColumns(form: FormType): ExtendedColumn[] {
   const columns: ExtendedColumn[] = [];
 
-  FormioUtils.eachComponent(form.components, (component: ComponentType) => {
+  Utils.eachComponent(form.components, (component: ComponentType) => {
     if (component.tableView && component.key) {
       const cmp: any = Components.create(component, {}, null, true);
 
@@ -22,7 +20,7 @@ export function mapFormToColumns(form: FormType): ExtendedColumn[] {
       };
 
       if (component.type === "select" && component.dataSrc === "values") {
-        column.Filter = SelectColumnFilter;
+        (column as any).Filter = SelectColumnFilter;
         (column as any).choices = component.data.values;
       }
 

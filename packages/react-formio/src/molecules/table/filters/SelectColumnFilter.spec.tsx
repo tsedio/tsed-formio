@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { SelectColumnFilter } from "./selectColumnFilter.component";
+import { SelectColumnFilter } from "./SelectColumnFilter";
 
 describe("SelectColumnFilter", () => {
   it("should display select with choices", async () => {

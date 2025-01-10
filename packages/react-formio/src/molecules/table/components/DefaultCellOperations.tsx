@@ -1,4 +1,4 @@
-import { DefaultOperationButton, OperationButtonProps } from "./defaultOperationButton.component";
+import { DefaultOperationButton, OperationButtonProps } from "./DefaultOperationButton";
 
 export interface DefaultCellOperationsProps {
   operations: (OperationButtonProps & {

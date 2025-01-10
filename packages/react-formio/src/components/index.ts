@@ -11,4 +11,3 @@ export * from "./form-edit/useFormEdit.hook";
 export * from "./form-settings/formSettings.component";
 export * from "./forms-table/formsTable.component";
 export * from "./submissions-table/submissionsTable.component";
-export * from "./table";
