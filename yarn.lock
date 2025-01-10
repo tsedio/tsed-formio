@@ -5364,8 +5364,8 @@ __metadata:
     vitest: "npm:2.1.8"
   peerDependencies:
     "@formio/choices.js": ^9.0.1
-    "@tsed/react-formio": 3.0.0-alpha.6
-    "@tsed/react-formio-stores": 3.0.0-alpha.6
+    "@tsed/react-formio": 3.0.0-alpha.7
+    "@tsed/react-formio-stores": 3.0.0-alpha.7
     classnames: ^2.3.1
     connected-react-router: ^6.9.1
     file-saver: ^2.0.5
