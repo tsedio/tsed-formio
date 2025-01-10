@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
-import { DefaultRowProps } from "../components/defaultRow.component";
+import { DefaultRowProps } from "../components/DefaultRow";
 
 const DND_ITEM_TYPE = "row";
 

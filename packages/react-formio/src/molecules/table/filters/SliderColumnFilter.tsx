@@ -1,8 +1,8 @@
-import { FilterProps } from "react-table";
+import type { FilterProps } from "react-table";
 
 export function SliderColumnFilter<D extends Record<string, unknown> = {}>({
   column: { filterValue, setFilter, preFilteredRows, id }
-}: FilterProps<D>) {
+}: FilterProps<D> & { column: { filterValue: any; setFilter: any; preFilteredRows: any[]; id: string } }) {
   let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
   let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
 

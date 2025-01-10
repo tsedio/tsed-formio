@@ -1,6 +1,6 @@
 import { Row } from "react-table";
 
-import type { ExtendedCell } from "../hooks/useCustomTable.hook";
+import type { ExtendedCell } from "../hooks/useCustomTable";
 
 export function DefaultCells<Data extends object = {}>({ row }: { row: Row<Data> }) {
   return (

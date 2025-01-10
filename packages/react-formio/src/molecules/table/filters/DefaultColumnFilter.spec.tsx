@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 
-import { DefaultColumnFilter } from "./defaultColumnFilter.component";
+import { DefaultColumnFilter } from "./DefaultColumnFilter";
 
 describe("DefaultColumnFilter", () => {
   it("should display text-field and handle change", async () => {

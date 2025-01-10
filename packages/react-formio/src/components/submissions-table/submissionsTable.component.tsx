@@ -1,7 +1,5 @@
 import { FormType, SubmissionType } from "../../interfaces";
-import { TableProps } from "../table/hooks/useCustomTable.hook";
-import { Table } from "../table/table.component";
-import { mapFormToColumns } from "../table/utils/mapFormToColumns";
+import { mapFormToColumns, Table, type TableProps } from "../../molecules/table";
 
 export type SubmissionsTableProps = Omit<TableProps<SubmissionType>, "columns"> & {
   form?: FormType;

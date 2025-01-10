@@ -4,9 +4,8 @@ import { useState } from "react";
 
 import { ActionType } from "../../interfaces";
 import { Select } from "../../molecules/forms/select/Select";
+import { Table, type TableProps } from "../../molecules/table";
 import { iconClass } from "../../utils/iconClass";
-import { TableProps } from "../table/hooks/useCustomTable.hook";
-import { Table } from "../table/table.component";
 
 export type ActionsTableProps = Omit<TableProps<ActionType>, "columns"> & {
   onAddAction?: (actionName: string) => void;

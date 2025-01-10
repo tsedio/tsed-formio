@@ -2,7 +2,7 @@ import { type ComponentType, type FunctionComponent } from "react";
 import { Hooks } from "react-table";
 
 import { Operation } from "../../../interfaces";
-import { DefaultCellOperations } from "../components/defaultCellOperations.component";
+import { DefaultCellOperations } from "../components/DefaultCellOperations";
 
 export type UseOperationsHookProps = {
   CellOperations?: FunctionComponent | ComponentType<{}>;

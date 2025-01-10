@@ -4,8 +4,8 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { Row } from "react-table";
 
 import { iconClass } from "../../../utils/iconClass";
-import { useDndRow } from "../hooks/useDragnDropRow.hook";
-import { DefaultCells } from "./defaultCells.component";
+import { useDndRow } from "../hooks/useDragnDropRow";
+import { DefaultCells } from "./DefaultCells";
 
 export interface DefaultRowProps<Data extends object = {}>
   extends Omit<DetailedHTMLProps<HTMLAttributes<HTMLTableRowElement>, HTMLTableRowElement>, "onClick" | "onDrag" | "onDrop"> {
