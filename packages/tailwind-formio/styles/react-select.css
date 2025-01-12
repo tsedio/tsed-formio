@@ -4,7 +4,7 @@
   flex: 1;
 
   .react-select__control {
-    @apply appearance-none bg-white leading-normal w-full rounded-md border-1 border-gray-300 shadow-sm;
+    @apply appearance-none bg-white leading-normal w-full rounded-md border-1 border-gray-300;
 
     &--is-focused {
       @apply outline-none border-primary-300 ring ring-primary-50 ring-opacity-50;
@@ -58,9 +58,16 @@
     .react-select__control {
       min-height: 28px;
     }
+
+    .react-select__value-container {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
     .react-select__indicator {
       padding: 3px;
     }
+
     .react-select__multi-value {
       &__label {
         @apply text-white text-xs py-0.5 px-1;
@@ -77,9 +84,16 @@
     }
 
     .react-select__input-container {
-      margin-top:1px;
+      margin-top: 1px;
       margin-bottom: 1px;
     }
+
+    .react-select__placeholder {
+      @apply text-gray-500;
+    }
+
+    .react-select__option,
+    .react-select__placeholder,
     .react-select__single-value {
       @apply text-sm;
     }

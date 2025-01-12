@@ -5,7 +5,7 @@
 
   th,
   td {
-    @apply p-3 align-top text-left border-t-1 border-solid border-gray-300;
+    @apply p-3 align-top text-left border-t-1 border-solid border-gray-300 dark:border-gray-700;
 
     &.align-middle {
       vertical-align: middle;
@@ -17,23 +17,30 @@
   }
 
   thead th {
-    @apply border-b-2 border-solid border-gray-300;
+    @apply border-b-2 border-solid border-gray-300 dark:border-gray-700;
     border-style: solid;
   }
 
   tbody + tbody {
-    @apply border-t-2 border-solid border-gray-300;
+    @apply border-t-2 border-solid border-gray-300 dark:border-gray-700;
     border-style: solid;
   }
 }
 
 .table-cell-header {
+  @apply flex flex-col space-y-2;
   &__label {
-    @apply flex;
+    @apply flex items-center justify-center;
+
     > span:first-child {
       @apply flex-1;
     }
   }
+
+  &__sort {
+    @apply flex items-center justify-center;
+  }
+
   &__filter {
     @apply mt-1;
   }
@@ -51,11 +58,11 @@
 /* Border versions - Add or remove borders all around the table and between all the columns. */
 
 .table-bordered {
-  @apply border-1 border-solid border-gray-300;
+  @apply border-1 border-solid border-gray-300 dark:border-gray-700;
 
   th,
   td {
-    @apply border-1 border-solid border-gray-300;
+    @apply border-1 border-solid border-gray-300 dark:border-gray-700;
   }
 
   thead {
@@ -79,7 +86,7 @@
 
 .table-striped {
   tbody tr:nth-of-type(odd) {
-    @apply bg-gray-100;
+    @apply bg-gray-100 dark:bg-gray-800;
   }
 }
 
@@ -87,69 +94,25 @@
 
 .table-hover {
   tbody tr {
-    @apply hover:text-gray-900 hover:bg-gray-200;
+    @apply hover:text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-100;
   }
 }
 
 .table-group {
-  @apply border-1 border-gray-300;
+  @apply border-1 border-gray-300 dark:border-gray-700;
+
   .table {
     @apply border-t-0 mb-0;
     thead th {
       @apply border-t-0;
     }
   }
+
   .pagination-group {
-    @apply border-t-1 border-gray-300 p-3;
+    @apply border-t-1 border-gray-300 dark:border-gray-700 p-3;
   }
 }
-/*
-// Dark styles
-//
-// Same table markup, but inverted color scheme: dark background and light text.
-
-// stylelint-disable-next-line no-duplicate-selectors
-//.table {
-//  .thead-dark {
-//    th {
-//      color: $table-dark-color;
-//      background-color: $table-dark-bg;
-//      border-color: $table-dark-border-color;
-//    }
-//  }
-//
-//  .thead-light {
-//    th {
-//      color: $table-head-color;
-//      background-color: $table-head-bg;
-//      border-color: $table-border-color;
-//    }
-//  }
-//}*/
-/*
-// Responsive tables
-//
-// Generate series of `.table-responsive-*` classes for configuring the screen
-// size of where your table will overflow.
 
 .table-responsive {
-  @each $breakpoint in map-keys($grid-breakpoints) {
-    $next: breakpoint-next($breakpoint, $grid-breakpoints);
-    $infix: breakpoint-infix($next, $grid-breakpoints);
-
-    &#{$infix} {
-      @include media-breakpoint-down($breakpoint) {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-
-        // Prevent double border on horizontal scroll due to use of `display: block;`
-        > .table-bordered {
-          border: 0;
-        }
-      }
-    }
-  }
+  @apply block w-full overflow-x-auto;
 }
-*/

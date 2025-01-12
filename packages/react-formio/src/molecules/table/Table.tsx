@@ -1,101 +1,100 @@
-import classnames from "classnames";
+import { flexRender, RowData } from "@tanstack/react-table";
+import cx from "classnames";
 import { PropsWithChildren } from "react";
 
-import { PaginationProps } from "../../molecules/pagination/Pagination";
-import { DrapNDropContainer } from "./components/DragNDropContainer";
-import { TableProps, useCustomTable } from "./hooks/useCustomTable";
+import { getComponent } from "../../registries/components";
+import type { Pagination as DefaultPagination } from "../pagination/Pagination";
+import type { DefaultCellFooter } from "./components/DefaultCellFooter";
+import type { DefaultCellHeader } from "./components/DefaultCellHeader";
+import { useTable, UseTableProps } from "./hooks/useTable";
 
-export function Table<Data extends object = any>(props: PropsWithChildren<TableProps<Data>>) {
-  const {
-    className,
-    tableInstance,
-    CellHeader,
-    isLoading,
-    onClick,
-    Loader,
-    EmptyData,
-    Row,
-    data,
-    disablePagination,
-    Pagination,
-    pageIndex,
-    pageSize,
-    pageSizes,
-    setPageSize,
-    totalLength,
-    i18n,
-    enableDragNDrop,
-    children,
-    onDrag,
-    onDrop
-  } = useCustomTable(props);
+export interface TableProps<Data extends RowData = any> extends UseTableProps<Data> {
+  className?: string;
 
-  // Render the UI for your table
+  enableFooter?: boolean;
+
+  pageSizes?: number[];
+}
+
+export function Table<Data extends RowData = any>({ className, enableFooter, children, ...props }: PropsWithChildren<TableProps<Data>>) {
+  const { tableInstance, i18n } = useTable(props);
+  const CellHeader = getComponent<typeof DefaultCellHeader>("CellHeader");
+  const CellFooter = getComponent<typeof DefaultCellFooter>("CellFooter");
+  const Pagination = getComponent<typeof DefaultPagination>("Pagination");
+
+  const { pagination } = tableInstance.getState();
+
   return (
-    <DrapNDropContainer enableDragNDrop={enableDragNDrop}>
-      <div className={classnames("table-group table-responsive", className)}>
-        <table
-          className={"table table-striped table-hover"}
-          {...tableInstance.getTableProps()}
-          /* style={{ marginBottom: disablePagination ? "-1px" : "0px" }} */
-        >
-          <thead>
-            {tableInstance.headerGroups.map((headerGroup, i) => (
-              <tr {...headerGroup.getHeaderGroupProps()} key={`tableInstance.headerGroups${i}`}>
-                {enableDragNDrop ? (
-                  <th role='columnheader' className='text-center'>
-                    <div className='table-cell-header'></div>
-                  </th>
-                ) : null}
-                {headerGroup.headers.map((column) => (
+    <div className={cx("table-group table-responsive", className)}>
+      <table className='table table-striped table-hover'>
+        <thead>
+          {tableInstance.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                const sort = header.column.getIsSorted();
+                return (
                   <th
-                    /* className='text-left py-2 align-top' */
-                    {...column.getHeaderProps()}
-                    key={`tableInstance.headers.column.${column.id}`}
+                    data-testid={`head-cell-${header.id}`}
+                    key={header.id}
+                    aria-sort={sort ? (sort === "asc" ? "ascending" : "descending") : "none"}
                   >
-                    <CellHeader column={column} />
+                    {header.isPlaceholder ? null : <CellHeader header={header} i18n={i18n} />}
                   </th>
+                );
+              })}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {tableInstance.getRowModel().rows.map((row) => {
+            return (
+              <tr key={row.id} data-testid={`body-row-${row.id}`}>
+                {row
+                  .getVisibleCells()
+                  .filter((cell) => !cell.column.columnDef.meta?.hidden)
+                  .map((cell) => {
+                    return (
+                      <td {...cell.column.columnDef?.meta?.cellProps} key={cell.id} data-testid={`body-cell-${cell.id}`}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    );
+                  })}
+              </tr>
+            );
+          })}
+        </tbody>
+        {enableFooter && (
+          <tfoot>
+            {tableInstance.getFooterGroups().map((footerGroup) => (
+              <tr key={footerGroup.id}>
+                {footerGroup.headers.map((header) => (
+                  <th key={header.id}>{header.isPlaceholder ? null : <CellFooter header={header} i18n={i18n} />}</th>
                 ))}
               </tr>
             ))}
-          </thead>
-          {!isLoading ? (
-            <tbody {...tableInstance.getTableBodyProps()}>
-              {(tableInstance as unknown as { page: any[] }).page.map((row: any, index: number) => {
-                tableInstance.prepareRow(row);
-                return (
-                  <Row<Data>
-                    index={index}
-                    enableDragNDrop={enableDragNDrop}
-                    onClick={onClick}
-                    row={row}
-                    key={`tableInstance.page.${row.id}`}
-                    onDrag={onDrag}
-                    onDrop={onDrop}
-                  />
-                );
-              })}
-            </tbody>
-          ) : null}
-        </table>
-        {isLoading ? <Loader /> : null}
-        {!data.length ? <EmptyData /> : null}
-        {!isLoading && data.length && !disablePagination ? (
-          <div className={"overflow-hidden"}>
-            <Pagination
-              {...(tableInstance as unknown as PaginationProps)}
-              totalLength={totalLength}
-              className={"text-sm"}
-              pageIndex={pageIndex}
-              pageSize={pageSize}
-              pageSizes={pageSizes}
-              setPageSize={setPageSize}
-              i18n={i18n}
-            />
-          </div>
-        ) : null}
-        {children}
+          </tfoot>
+        )}
+      </table>
+      <div className={"overflow-hidden flex flex-wrap"}>
+        {props.data.length && pagination && (
+          <Pagination
+            className={"flex-1"}
+            canNextPage={tableInstance.getCanNextPage()}
+            canPreviousPage={tableInstance.getCanPreviousPage()}
+            pageIndex={pagination.pageIndex}
+            pageSize={pagination.pageSize}
+            pageSizes={props.pageSizes}
+            i18n={i18n}
+            pageCount={tableInstance.getPageCount()}
+            rowCount={props.rowCount}
+            onPageIndexChange={(page) => tableInstance.setPageIndex(page)}
+            onClickPreviousPage={() => tableInstance.previousPage()}
+            onClickNextPage={() => tableInstance.nextPage()}
+            onPageSizeChange={(pageSize) => tableInstance.setPageSize(pageSize)}
+          />
+        )}
+        <div>{children}</div>
       </div>
-    </DrapNDropContainer>
+    </div>
   );
 }
