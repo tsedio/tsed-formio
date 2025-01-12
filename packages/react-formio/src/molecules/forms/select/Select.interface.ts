@@ -27,16 +27,19 @@ export interface SelectProps<Data = string> extends FormControlProps<Data, Selec
   disableSearch?: boolean;
   searchEnabled?: boolean;
   customProperties?: Record<string, any>;
+  options: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
+  /**
+   * @deprecated
+   */
+  choices?: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
 }
 
 export interface SelectSingle<Data = string> extends SelectProps<Data> {
   multiple?: false | undefined;
-  options: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
 }
 
 export interface SelectMultiple<Data = string> extends SelectProps<Data[]> {
   multiple: true;
-  options: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
 }
 
 export type AllSelectProps<Data = string> = SelectSingle<Data> | SelectMultiple<Data>;

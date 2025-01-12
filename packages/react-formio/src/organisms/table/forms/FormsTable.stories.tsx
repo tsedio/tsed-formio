@@ -1,7 +1,9 @@
 import "../../../molecules/button/Button";
 import "../../../molecules/forms/input-text/InputText";
 import "../../../molecules/forms/select/all";
+import "../../../molecules/forms/form-control/FormControl";
 import "../../../molecules/pagination/all";
+import "../../../molecules/table/all";
 
 import tailwind from "@tsed/tailwind-formio";
 

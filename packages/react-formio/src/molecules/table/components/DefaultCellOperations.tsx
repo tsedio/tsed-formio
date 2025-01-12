@@ -1,37 +1,42 @@
-import { DefaultOperationButton, OperationButtonProps } from "./DefaultOperationButton";
+import type { CellContext } from "@tanstack/react-table";
 
-export interface DefaultCellOperationsProps {
-  operations: (OperationButtonProps & {
-    OperationButton: typeof DefaultOperationButton;
-    permissionsResolver?(data: unknown, ctx: any): boolean;
-  })[];
-  row: any;
+import type { Operation } from "../../../interfaces";
+import { getComponent, registerComponent } from "../../../registries/components";
+import type { DefaultOperationButton } from "./DefaultOperationButton";
 
-  onClick: (data: any, action: string) => void;
-  ctx: any;
+export interface DefaultCellOperationsProps<Data = any> {
+  info: CellContext<Data, unknown>;
+  operations: Operation<Data>[];
+  metadata?: Record<string, unknown>;
   i18n: (i18n: string) => string;
+  onClick?: (data: any, operation: Operation<Data>) => void;
 }
 
-export function DefaultCellOperations({ operations, row, onClick, ctx, i18n }: DefaultCellOperationsProps) {
-  const data = row.original;
-
+export function DefaultCellOperations({ info, metadata, operations, i18n, onClick }: DefaultCellOperationsProps) {
+  const Button = getComponent<typeof DefaultOperationButton>("OperationButton");
   return (
     <div className='btn-group'>
       {operations
-        .filter(({ permissionsResolver }) => !permissionsResolver || permissionsResolver(data, ctx))
-        .map(({ OperationButton = DefaultOperationButton, ...operation }, index: number) => {
+        .filter(({ permissionsResolver }) => {
+          return !permissionsResolver || permissionsResolver(info.row.original, metadata);
+        })
+        .map((operation) => {
           return (
-            <OperationButton
+            <Button
+              data-testid={`operation-${info.row.id}-${operation.action}`}
               key={operation.action}
-              {...operation}
-              data-testid={`operation-${index}-${operation.action}`}
-              onClick={(action: string) => onClick(data, action)}
-              data={data}
+              operation={operation}
+              metadata={metadata}
+              info={info}
               i18n={i18n}
-              ctx={ctx}
+              onClick={() => {
+                onClick?.(info.row.original, operation);
+              }}
             />
           );
         })}
     </div>
   );
 }
+
+registerComponent("CellOperations", DefaultCellOperations);

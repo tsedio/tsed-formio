@@ -350,7 +350,7 @@
     .choices__inner {
       @apply px-2;
       padding-top: 3px;
-      min-height: 0;
+      min-height: 32px;
       font-size: 14px;
     }
 

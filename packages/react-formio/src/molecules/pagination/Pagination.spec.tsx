@@ -22,9 +22,9 @@ describe("Pagination", () => {
     expect(allBtnBlocks[allBtnBlocks.length - 1]).toBe("Next");
   });
 
-  it("should call previousPage() callback", () => {
+  it("should call onClickPreviousPage() callback", () => {
     const previousPageSpy = vi.fn();
-    render(<Pagination {...args} previousPage={previousPageSpy} canPreviousPage={true} />);
+    render(<Pagination {...args} onClickPreviousPage={previousPageSpy} canPreviousPage={true} />);
     const paginationBtn = screen.queryAllByTestId("pagination-button");
     const btnPreviousPage = paginationBtn.find((btn) => btn.textContent === "Previous");
 
@@ -33,20 +33,20 @@ describe("Pagination", () => {
     expect(previousPageSpy).toHaveBeenCalledTimes(1);
   });
 
-  it("should call nextPage() callback", () => {
+  it("should call onClickNextPage() callback", () => {
     const nextPageSpy = vi.fn();
-    render(<Pagination {...args} nextPage={nextPageSpy} canNextPage={true} />);
+    render(<Pagination {...args} onClickNextPage={nextPageSpy} canNextPage={true} />);
 
     fireEvent.click(screen.getByText(/Next/i));
 
     expect(nextPageSpy).toHaveBeenCalledTimes(1);
   });
 
-  it("should call gotoPage() callback when cliking on a button page", () => {
+  it("should call onPageIndexChange() callback when cliking on a button page", () => {
     const gotoPageSpy = vi.fn();
     let page: number;
 
-    render(<Pagination {...args} gotoPage={gotoPageSpy} />);
+    render(<Pagination {...args} onPageIndexChange={gotoPageSpy} />);
 
     const paginationBtn = screen.queryAllByTestId("pagination-button");
     const buttonsPage = paginationBtn.filter((btn) => btn.textContent !== "Previous" && btn.textContent !== "Next");
@@ -63,7 +63,7 @@ describe("Pagination", () => {
 
   it("should have Previous button disabled and not clickable", () => {
     const previousPageSpy = vi.fn();
-    render(<Pagination canPreviousPage={false} previousPage={previousPageSpy} {...args} />);
+    render(<Pagination canPreviousPage={false} onClickPreviousPage={previousPageSpy} {...args} />);
 
     const previousButton = screen.getByText("Previous");
 
@@ -74,7 +74,7 @@ describe("Pagination", () => {
 
   it("should have Previous button NOT disabled and clickable", () => {
     const previousPageSpy = vi.fn();
-    render(<Pagination {...args} canPreviousPage={true} previousPage={previousPageSpy} />);
+    render(<Pagination {...args} canPreviousPage={true} onClickPreviousPage={previousPageSpy} />);
 
     const previousButton = screen.getByText("Previous");
 
@@ -85,7 +85,7 @@ describe("Pagination", () => {
 
   it("should have Next button disabled and not clickable", () => {
     const nextPageSpy = vi.fn();
-    render(<Pagination canNextPage={false} nextPage={nextPageSpy} {...args} />);
+    render(<Pagination canNextPage={false} onClickNextPage={nextPageSpy} {...args} />);
 
     const nextButton = screen.getByText("Next");
     expect(nextButton).toHaveAttribute("disabled");
@@ -95,7 +95,7 @@ describe("Pagination", () => {
 
   it("should have Next button NOT disabled and clickable", () => {
     const nextPageSpy = vi.fn();
-    render(<Pagination canNextPage={true} nextPage={nextPageSpy} {...args} />);
+    render(<Pagination canNextPage={true} onClickNextPage={nextPageSpy} {...args} />);
     const nextButton = screen.getByText("Next");
     expect(nextButton).not.toHaveAttribute("disabled");
     fireEvent.click(nextButton);
@@ -118,7 +118,7 @@ describe("Pagination", () => {
   it("should display total length", () => {
     const pageSizes = [10, 25, 50, 100, 200, 500];
 
-    render(<Pagination {...args} pageSizes={pageSizes} totalLength={1000} />);
+    render(<Pagination {...args} pageSizes={pageSizes} rowCount={1000} />);
 
     expect(screen.getByTestId("pagination-total-items")).toHaveTextContent("1,000 items");
   });

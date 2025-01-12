@@ -4702,6 +4702,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-themes@npm:^8.4.7":
+  version: 8.5.6
+  resolution: "@storybook/addon-themes@npm:8.5.6"
+  dependencies:
+    ts-dedent: "npm:^2.0.0"
+  peerDependencies:
+    storybook: ^8.5.6
+  checksum: 10c0/d7181f121eb2d4270ba2460b9cc0788e3b4ee169186abc1064dea1d00069a83544d7e4e701aeefc5d80d718fb446abff6553cdda0c6f7d962450976eb7918cd1
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-toolbars@npm:8.4.7":
   version: 8.4.7
   resolution: "@storybook/addon-toolbars@npm:8.4.7"
@@ -5388,6 +5399,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/react-table@npm:>=8.20.6":
+  version: 8.20.6
+  resolution: "@tanstack/react-table@npm:8.20.6"
+  dependencies:
+    "@tanstack/table-core": "npm:8.20.5"
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 10c0/3213dc146f647fbd571f4e347007b969320819e588439b2ee95dd3a65efcbe30d097c24426dd82617041ed1e186182a5b303382bcebed5d61a1c6045a55c58d3
+  languageName: node
+  linkType: hard
+
+"@tanstack/table-core@npm:8.20.5":
+  version: 8.20.5
+  resolution: "@tanstack/table-core@npm:8.20.5"
+  checksum: 10c0/3c27b5debd61b6bd9bfbb40bfc7c5d5af90873ae1a566b20e3bf2d2f4f2e9a78061c081aacc5259a00e256f8df506ec250eb5472f5c01ff04baf9918b554982b
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:10.4.0":
   version: 10.4.0
   resolution: "@testing-library/dom@npm:10.4.0"
@@ -5606,6 +5636,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tsed/react-formio@workspace:packages/react-formio"
   dependencies:
+    "@tanstack/react-table": "npm:>=8.20.6"
     "@tsed/tailwind-formio": "workspace:*"
     "@tsed/typescript": "workspace:*"
     classnames: "npm:^2.3.1"
@@ -5616,6 +5647,7 @@ __metadata:
     vitest: "npm:2.1.8"
   peerDependencies:
     "@formio/choices.js": ">=9.0.1"
+    "@tanstack/react-table": ">=8.20.6"
     formiojs: ">=4.0.0"
     lodash: ">=4.17.20"
     moment: ">=2.30.1"
@@ -5654,6 +5686,7 @@ __metadata:
     "@storybook/addon-interactions": "npm:^8.4.7"
     "@storybook/addon-links": "npm:^8.4.7"
     "@storybook/addon-mdx-gfm": "npm:^8.4.7"
+    "@storybook/addon-themes": "npm:^8.4.7"
     "@storybook/addon-viewport": "npm:^8.4.7"
     "@storybook/blocks": "npm:^8.4.7"
     "@storybook/react": "npm:^8.4.7"
@@ -5730,6 +5763,7 @@ __metadata:
     storybook-addon-mock: "npm:5.0.0"
     tooltip.js: "npm:^1.3.3"
     typescript: "npm:5.7.2"
+    uuid: "npm:^11.0.5"
     vite: "npm:5.4.11"
     vite-plugin-dts: "npm:4.4.0"
     vite-plugin-svgr: "npm:^2.4.0"
@@ -23194,6 +23228,15 @@ __metadata:
     is-typed-array: "npm:^1.1.3"
     which-typed-array: "npm:^1.1.2"
   checksum: 10c0/c27054de2cea2229a66c09522d0fa1415fb12d861d08523a8846bf2e4cbf0079d4c3f725f09dcb87493549bcbf05f5798dce1688b53c6c17201a45759e7253f3
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^11.0.5":
+  version: 11.0.5
+  resolution: "uuid@npm:11.0.5"
+  bin:
+    uuid: dist/esm/bin/uuid
+  checksum: 10c0/6f59f0c605e02c14515401084ca124b9cb462b4dcac866916a49862bcf831874508a308588c23a7718269226ad11a92da29b39d761ad2b86e736623e3a33b6e7
   languageName: node
   linkType: hard
 

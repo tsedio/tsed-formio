@@ -1,10 +1,11 @@
+import { ColumnDef } from "@tanstack/react-table";
 import classnames from "classnames";
 import noop from "lodash/noop";
 import { useState } from "react";
 
 import { ActionType } from "../../../interfaces";
 import { Select } from "../../../molecules/forms/select/Select";
-import { Table, type TableProps } from "../../../molecules/table";
+import { Table, type TableProps } from "../../../molecules/table/Table";
 import { iconClass } from "../../../utils/iconClass";
 
 export type ActionsTableProps = Omit<TableProps<ActionType>, "columns"> & {
@@ -12,26 +13,19 @@ export type ActionsTableProps = Omit<TableProps<ActionType>, "columns"> & {
   availableActions?: { label: string; value: string }[];
 };
 
-export function ActionsTable({
-  disableFilters = true,
-  disablePagination = true,
-  availableActions = [],
-  onAddAction = noop,
-  ...props
-}: ActionsTableProps) {
+export function ActionsTable({ availableActions = [], onAddAction = noop, ...props }: ActionsTableProps) {
   const { i18n = (f: string) => f } = props;
   const [currentAction, setAction] = useState("");
 
-  const columns = [
+  const columns: ColumnDef<ActionType>[] = [
     {
-      Header: i18n("Actions"),
-      accessor: "title",
-      id: "title"
+      header: i18n("Action"),
+      accessorKey: "title"
     }
   ];
 
   return (
-    <Table {...props} disableFilters={disableFilters} disablePagination={disablePagination} columns={columns}>
+    <Table {...props} columns={columns}>
       <div className={"pagination-group"}>
         <Select
           data-testid={"action-table-select"}

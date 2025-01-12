@@ -13,5 +13,11 @@ export function getComponent<Cmp>(type: string | string[]): Cmp {
     }
   }
 
-  return components.get(type as string) as unknown as Cmp;
+  const result = components.get(type as string) as unknown as Cmp;
+
+  if (!result) {
+    console.warn(`Missing component for ${type}`);
+  }
+
+  return result;
 }

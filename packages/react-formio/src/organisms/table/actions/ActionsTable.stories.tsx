@@ -1,4 +1,5 @@
 import "../../../molecules/forms/select/all.ts";
+import "../../../molecules/table/all.ts";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, userEvent, within } from "@storybook/test";
@@ -22,15 +23,15 @@ export default {
     operations: {
       control: "object"
     },
-    isLoading: {
-      control: "boolean"
-    },
-    disableFilters: {
-      control: "boolean"
-    },
-    disablePagination: {
-      control: "boolean"
-    },
+    // isLoading: {
+    //   control: "boolean"
+    // },
+    // disableFilters: {
+    //   control: "boolean"
+    // },
+    // disablePagination: {
+    //   control: "boolean"
+    // },
     onAddAction: {
       action: "onAddAction"
     }

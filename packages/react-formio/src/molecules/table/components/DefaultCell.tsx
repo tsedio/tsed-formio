@@ -1,4 +1,11 @@
-export function DefaultCell({ value, render = (f: any) => f }: any): JSX.Element {
+import { registerComponent } from "../../../registries/components";
+
+export interface DefaultCellProps<Data = any> {
+  value: Data;
+  render?: (value: Data) => any;
+}
+
+export function DefaultCell<Data = any>({ value, render = (f: any) => f }: DefaultCellProps<Data>): JSX.Element {
   if (value === undefined) {
     return <span></span>;
   }
@@ -11,3 +18,5 @@ export function DefaultCell({ value, render = (f: any) => f }: any): JSX.Element
 
   return <span>{String(value)}</span>;
 }
+
+registerComponent("Cell", DefaultCell);

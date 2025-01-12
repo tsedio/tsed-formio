@@ -1,5 +1,6 @@
 import type { FormType, SubmissionType } from "../../../interfaces";
-import { mapFormToColumns, Table, type TableProps } from "../../../molecules/table";
+import { Table, type TableProps } from "../../../molecules/table/Table";
+import { mapFormToColumns } from "../../../molecules/table/utils/mapFormToColumns.js";
 
 export type SubmissionsTableProps = Omit<TableProps<SubmissionType>, "columns"> & {
   form?: FormType;

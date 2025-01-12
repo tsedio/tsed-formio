@@ -2,42 +2,43 @@ import classnames from "classnames";
 
 import { getComponent, registerComponent } from "../../registries/components";
 import type { Select as DefaultSelect } from "../forms/select/Select";
-import { getPageNumbers, LEFT_PAGE, RIGHT_PAGE } from "../table";
 import type { PaginationButton as DefaultPaginationButton } from "./PaginationButton";
+import { getPageNumbers, LEFT_PAGE, RIGHT_PAGE } from "./utils/getPageNumbers.js";
 
 export interface PaginationProps {
   className?: string;
   pageSizes?: number[];
-  gotoPage: any;
   canPreviousPage: boolean;
-  previousPage: any;
-  nextPage: any;
   canNextPage: boolean;
   pageCount: number;
   pageIndex: number;
   pageOptions?: number[];
   pageSize: number;
-  setPageSize: any;
-  totalLength?: number;
+  rowCount?: number;
   layout?: "html5" | "react" | "choicesjs";
   i18n?: (f: string) => string;
+
+  onPageIndexChange: (pageIndex: number) => void;
+  onClickPreviousPage: () => void;
+  onClickNextPage: () => void;
+  onPageSizeChange: (pageSize: number) => void;
 }
 
 export function Pagination(props: PaginationProps) {
   const {
     className,
     pageSizes = [10, 25, 50, 100],
-    gotoPage,
+    onPageIndexChange,
     canPreviousPage,
-    previousPage,
-    nextPage,
+    onClickPreviousPage,
+    onClickNextPage,
     canNextPage,
     pageCount,
     pageIndex = 1,
     pageOptions,
     pageSize,
-    setPageSize,
-    totalLength,
+    onPageSizeChange,
+    rowCount,
     i18n = (f: string) => f
   } = props;
 
@@ -46,7 +47,8 @@ export function Pagination(props: PaginationProps) {
     // pageNeighbours,
     totalPages: pageCount
   });
-  const choices: any[] = pageSizes.map((value) => ({ value, label: value }));
+
+  const options: any[] = pageSizes.map((value) => ({ value, label: value }));
   const Select = getComponent<typeof DefaultSelect>("Select");
   const PaginationButton = getComponent<typeof DefaultPaginationButton>("PaginationButton");
 
@@ -54,7 +56,7 @@ export function Pagination(props: PaginationProps) {
     <nav aria-label='Page navigation' className={classnames("pagination-group -mb-3", className)}>
       <ul className='pagination mb-3 mr-3'>
         <li className={classnames("page-item", !canPreviousPage && "disabled")}>
-          <PaginationButton tabIndex={-1} disabled={!canPreviousPage} onClick={() => previousPage()}>
+          <PaginationButton tabIndex={-1} disabled={!canPreviousPage} onClick={() => onClickPreviousPage()}>
             {i18n("Previous")}
           </PaginationButton>
         </li>
@@ -71,7 +73,7 @@ export function Pagination(props: PaginationProps) {
           const active = page - 1 === pageIndex;
           return (
             <li className={classnames("page-item", active && "active")} key={page}>
-              <PaginationButton tabIndex={pageIndex} active={active} onClick={() => gotoPage(page - 1)}>
+              <PaginationButton tabIndex={pageIndex} active={active} onClick={() => onPageIndexChange(page - 1)}>
                 {page}
               </PaginationButton>
             </li>
@@ -79,7 +81,7 @@ export function Pagination(props: PaginationProps) {
         })}
 
         <li className={classnames("page-item", !canNextPage && "disabled")}>
-          <PaginationButton tabIndex={pageNumbers.length} disabled={!canNextPage} onClick={() => nextPage()}>
+          <PaginationButton tabIndex={pageNumbers.length} disabled={!canNextPage} onClick={() => onClickNextPage()}>
             {i18n("Next")}
           </PaginationButton>
         </li>
@@ -89,11 +91,12 @@ export function Pagination(props: PaginationProps) {
         <Select<number>
           name={"page"}
           value={pageSize}
-          options={choices}
+          options={options}
           multiple={false}
           layout={props.layout}
           onChange={(_, value) => {
-            setPageSize(+value);
+            console.log("On page change", value);
+            onPageSizeChange(+value);
           }}
         />
         <span className={"ml-3"}>{i18n("items per page")}</span>
@@ -106,9 +109,9 @@ export function Pagination(props: PaginationProps) {
           </strong>
         </li>
       )}
-      {totalLength !== undefined && (
+      {rowCount !== undefined && (
         <li className={"mb-3 flex items-center"} data-testid='pagination-total-items'>
-          {i18n("Total")}: <strong className='mx-1'>{new Intl.NumberFormat(undefined).format(totalLength)}</strong> {i18n("items")}
+          {i18n("Total")}: <strong className='mx-1'>{new Intl.NumberFormat(undefined).format(rowCount)}</strong> {i18n("items")}
         </li>
       )}
     </nav>

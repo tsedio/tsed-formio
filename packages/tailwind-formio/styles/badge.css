@@ -4,7 +4,7 @@ Requires one of the contextual, color modifier classes for `color` and
  */
 
 .badge {
-  @apply inline-flex  py-px px-1.5 font-bold text-center whitespace-nowrap items-center rounded transition-colors;
+  @apply inline-flex px-1.5 font-bold text-center whitespace-nowrap items-center rounded transition-colors;
   font-size: 75%;
 
   &:empty {
@@ -17,8 +17,8 @@ Requires one of the contextual, color modifier classes for `color` and
 }
 
 a .badge {
-  &:hover, &:focus {
-    @apply no-underline
+  &:hover, &:focus, &:active {
+    @apply no-underline text-white;
   }
 }
 
@@ -46,7 +46,7 @@ a .badge.bg-primary, .badge-hover.bg-primary {
 
 a .badge.bg-secondary, .badge-hover.bg-secondary {
   &:hover, &:focus {
-    @apply hover:text-white hover:bg-secondary-800 focus:bg-secondary-800 hover:border-secondary-800 focus:border-secondary-800 focus:text-secondary-800;
+    @apply hover:text-white hover:bg-secondary-800 focus:bg-secondary-800 hover:border-secondary-800 focus:border-secondary-800;
   }
 }
 
