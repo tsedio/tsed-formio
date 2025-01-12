@@ -1,32 +1,74 @@
-import { Components, Utils } from "formiojs";
+import "../interfaces/extends";
+
+import { ColumnDef, ColumnDefResolved, createColumnHelper } from "@tanstack/react-table";
+import { Components } from "formiojs";
+import cloneDeep from "lodash/cloneDeep";
+import get from "lodash/get";
 
 import type { ComponentType, FormType } from "../../../interfaces";
-import { DefaultCell } from "../components/DefaultCell";
-import { SelectColumnFilter } from "../filters/SelectColumnFilter";
-import { ExtendedColumn } from "../hooks/useCustomTable";
+import { getComponent } from "../../../registries/components";
+import type { DefaultCell } from "../components/DefaultCell";
+import type { FilterVariants } from "../filters/Filters.js";
 
-export function mapFormToColumns(form: FormType): ExtendedColumn[] {
-  const columns: ExtendedColumn[] = [];
+const MAP_TYPES: Record<string, FilterVariants> = {
+  number: "range",
+  currency: "range",
+  checkbox: "boolean"
+};
 
-  Utils.eachComponent(form.components, (component: ComponentType) => {
-    if (component.tableView && component.key) {
-      const cmp: any = Components.create(component, {}, null, true);
+export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefResolved<Data, any>[] = []): ColumnDef<Data, any>[] {
+  const columnHelper = createColumnHelper<Data>();
+  const columnsToKeep = cloneDeep(columns);
 
-      const column: ExtendedColumn = {
-        Header: component.label || component.title || component.key,
-        accessor: `data.${component.key}`,
-        className: "text-center",
-        Cell: (props: any) => <DefaultCell {...props} render={(value: any) => cmp.asString(value)} />
-      };
+  const Cell = getComponent<typeof DefaultCell>("Cell");
 
-      if (component.type === "select" && component.dataSrc === "values") {
-        (column as any).Filter = SelectColumnFilter;
-        (column as any).choices = component.data.values;
+  const columnsFromComponents = form.components
+    .flatMap((component) => {
+      if (component.type === "tabs") {
+        return component.components.flatMap((subComponent: ComponentType) => subComponent.components);
       }
 
-      columns.push(column);
-    }
-  });
+      return [component];
+    })
+    .filter((component) => component.tableView)
+    .map((component: ComponentType) => {
+      const cmp: any = Components.create(component, {}, null, true);
 
-  return columns;
+      const columnIndex = columnsToKeep.findIndex(({ accessorKey }) => {
+        return accessorKey === `data.${component.key}`;
+      });
+
+      let column = columnsToKeep[columnIndex];
+
+      if (column) {
+        columnsToKeep.splice(columnIndex, 1);
+      }
+
+      return columnHelper.accessor(`data.${component.key}` as any, {
+        header: (component.label || component.title || component.key)?.replace(/:/, ""),
+        cell: (info) => {
+          return <Cell value={info.getValue() as Data} render={(value: Data) => cmp.asString(value)} />;
+        },
+        meta: {
+          filter: { variant: MAP_TYPES[component.type!] || "text" },
+          ...(column?.meta || {})
+        },
+        ...(column || {})
+      });
+    });
+
+  const mergedColumns = columnsFromComponents.concat(columnsToKeep as any[]).map((column, index) => ({
+    ...column,
+    meta: {
+      ...(column.meta || {}),
+      order: get(column, "meta.order", index * 10)
+    },
+    cell:
+      column.cell ||
+      ((info) => {
+        return <Cell value={info.getValue() as Data} render={(value: Data) => value} />;
+      })
+  }));
+
+  return mergedColumns.sort((a, b) => (a.meta.order > b.meta.order ? 1 : -1)) as ColumnDef<Data, any>[];
 }

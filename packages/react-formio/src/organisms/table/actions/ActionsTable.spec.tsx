@@ -1,6 +1,7 @@
 import "../../../molecules/forms/select/all.ts";
+import "../../../molecules/table/all.ts";
 
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import availableActions from "../../__fixtures__/form-actions.json";
@@ -44,12 +45,13 @@ describe("ActionsTable", () => {
 
     const btn = screen.getByTestId("action-table-add");
     const cells = screen.getAllByRole("cell");
-    const options = screen.getAllByRole("option");
+    const options = within(screen.getByTestId("action-table-select")).getAllByRole("option");
 
     expect(btn).toHaveProperty("disabled");
     expect(btn.innerHTML).toMatch("Add action");
     expect(cells[0].innerHTML).toMatch("Save Submission");
-    expect(options.length).toEqual(availableActions.length + 1);
+
+    expect(options.length).toEqual(17);
 
     expect(options[0].innerHTML).toMatch("Select an action");
     expect(options[1].innerHTML).toMatch("Webhook (Premium)");
@@ -70,9 +72,9 @@ describe("ActionsTable", () => {
     render(<ActionsTable {...args} onAddAction={onAddAction} />);
 
     const btn = screen.getByTestId("action-table-add");
-    const select = screen.getByRole("combobox");
+    const select = screen.getByTestId("action-table-select");
 
-    await userEvent.selectOptions(select, String(args.availableActions[1].value));
+    await userEvent.selectOptions(select, "sql");
 
     fireEvent.click(btn);
 

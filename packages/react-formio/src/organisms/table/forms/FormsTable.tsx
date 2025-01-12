@@ -1,36 +1,65 @@
+import "./components/FormsCell.js";
+
+import { ColumnDef } from "@tanstack/react-table";
+
 import type { FormType } from "../../../interfaces";
-import { DefaultColumnFilter, SelectColumnFilter, Table, TableProps } from "../../../molecules/table";
-import { FormsCell as DefaultFormCell } from "./components/FormCell";
+import { Table, TableProps } from "../../../molecules/table/Table";
+import { getComponent } from "../../../registries/components.js";
+import { FormsCell } from "./components/FormsCell.js";
 
 export type FormsTableProps = Omit<TableProps<FormType>, "columns"> & {
-  icon?: string;
   tags?: { label: string; value: string }[];
 };
 
-export function FormsTable({ Cell, ...props }: FormsTableProps) {
+export function FormsTable({ ...props }: FormsTableProps) {
   const { i18n = (f: string) => f, tags } = props;
-  const FormCell = Cell || (DefaultFormCell as any);
-  const columns = [
+  const Cell = getComponent<typeof FormsCell>("FormsCell");
+
+  const columns: ColumnDef<any>[] = [
     {
-      Header: i18n("Title"),
-      accessor: "title",
-      id: "title",
-      Cell: (props: any) => <FormCell {...props} icon={props.icon} i18n={i18n} />,
-      Filter: DefaultColumnFilter,
-      colspan: 2
+      header: i18n("Title"),
+      accessorKey: "title",
+      cell: (context) => <Cell {...context} i18n={i18n} />,
+      meta: {
+        cellProps: {
+          colSpan: 2
+        }
+      }
     },
     {
-      Header: i18n("Tags"),
-      accessor: "tags",
-      id: "tags",
-      hidden: true,
-      Filter: (props: any) =>
-        tags && tags.length ? (
-          <SelectColumnFilter {...props} column={{ ...props.columns, choices: tags }} />
-        ) : (
-          <DefaultColumnFilter {...props} />
-        )
+      header: i18n("Tags"),
+      accessorKey: "tags",
+      meta: {
+        cellProps: {
+          hidden: true
+        },
+        filter: {
+          variant: "select",
+          layout: "react",
+          options: tags
+        }
+      }
     }
+    // {
+    //   Header: i18n("Title"),
+    //   accessor: "title",
+    //   id: "title",
+    //   Cell: (props: any) => <FormCell {...props} icon={props.icon} i18n={i18n} />,
+    //   Filter: DefaultColumnFilter,
+    //   colspan: 2
+    // },
+    // {
+    //   Header: i18n("Tags"),
+    //   accessor: "tags",
+    //   id: "tags",
+    //   hidden: true,
+    //   Filter: (props: any) =>
+    //     tags && tags.length ? (
+    //       <SelectColumnFilter {...props} column={{ ...props.columns, choices: tags }} />
+    //     ) : (
+    //       <DefaultColumnFilter {...props} />
+    //     )
+    // }
   ];
 
   return <Table {...(props as any)} columns={columns} />;

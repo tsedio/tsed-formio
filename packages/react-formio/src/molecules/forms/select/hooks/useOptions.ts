@@ -42,7 +42,11 @@ export function mapOptions(options: AllSelectProps["options"]) {
   return options;
 }
 
-export function useOptions<Data = string>({ options }: AllSelectProps<Data>) {
+export function useOptions<Data = string>({ options, choices }: AllSelectProps<Data>) {
+  if (choices) {
+    options = choices;
+  }
+
   return useMemo(() => {
     return mapOptions(options);
   }, [options]);

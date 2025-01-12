@@ -42,18 +42,47 @@ export default {
   title: "Pagination",
   component: Pagination,
   parameters: {},
+  argTypes: {
+    pageSizes: {
+      description: "Pagination steps list"
+    },
+    pageCount: {
+      description: "Total number of pages",
+      control: "number"
+    },
+    pageIndex: {
+      description: "Current page index",
+      control: "number"
+    },
+    onPageIndexChange: {
+      description: "Change page index event",
+      action: "onPageIndexChange"
+    },
+    onClickPreviousPage: {
+      description: "Click previous page event",
+      action: "onClickPreviousPage"
+    },
+    onClickNextPage: {
+      description: "Click next page event",
+      action: "onClickNextPage"
+    },
+    onPageSizeChange: {
+      description: "Change page size event",
+      action: "onPageSizeChange"
+    }
+  },
   render(args) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [currentPageIndex, setPageIndex] = useState(args.pageIndex);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      args.gotoPage && args.gotoPage(currentPageIndex);
+      args.onPageIndexChange && args.onPageIndexChange(currentPageIndex);
     }, [currentPageIndex]);
 
     return (
       <div>
-        <Pagination {...args} pageIndex={currentPageIndex} gotoPage={setPageIndex} />
+        <Pagination {...args} pageIndex={currentPageIndex} onPageIndexChange={setPageIndex} />
       </div>
     );
   }
