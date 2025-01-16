@@ -1,3 +1,6 @@
+import "../pagination/all";
+import "../forms/select/all";
+
 import { useState } from "react";
 
 import { mapPagination } from "../../utils/mapPagination";
@@ -5,7 +8,6 @@ import FormType from "../__fixtures__/form-schema.json";
 import formSubmissions from "../__fixtures__/form-submissions.json";
 import { Table } from "./Table";
 import { mapFormToColumns } from "./utils/mapFormToColumns";
-
 export default {
   title: "Table",
   component: Table,

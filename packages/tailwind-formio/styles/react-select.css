@@ -1,0 +1,41 @@
+
+.react-select-container {
+  display: block;
+  flex: 1;
+
+  .react-select__control {
+    @apply appearance-none bg-white leading-normal w-full rounded-md border-1 border-gray-300 shadow-sm;
+
+    &--is-focused {
+      @apply outline-none border-primary-300 ring ring-primary-50 ring-opacity-50;
+      outline-offset: theme('outline.none[1]');
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+      border-color: theme('colors.blue.600');
+    }
+  }
+
+  .react-select__multi-value {
+    @apply bg-primary-600 text-white rounded-md;
+
+    &__label {
+      @apply text-white text-xs py-1 px-2;
+      font-weight: 600;
+    }
+
+    &__remove {
+      @apply  opacity-80;
+      &:hover {
+        @apply bg-transparent text-white opacity-100;
+      }
+    }
+  }
+
+  .react-select__value-container.react-select__value-container--is-multi {
+    @apply px-2 py-1;
+  }
+}
+
+.input-group-prepend + .react-select-container .react-select__control {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

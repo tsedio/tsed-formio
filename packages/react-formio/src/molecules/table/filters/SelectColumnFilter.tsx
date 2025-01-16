@@ -31,20 +31,20 @@ export function useSelectColumnFilter<D extends Record<string, unknown> = {}>(pr
   return {
     value: filterValue,
     onChange,
-    choices: [{ value: "", label: "All" }].concat(choices)
+    options: [{ value: "", label: "All" }].concat(choices)
   };
 }
 
 export function SelectColumnFilter<D extends Record<string, unknown> = {}>(props: FilterProps<D>) {
-  const { value, choices, onChange } = useSelectColumnFilter(props);
+  const { value, options, onChange } = useSelectColumnFilter(props);
 
   return (
     <Select
       key={`filter-${props.column.id}`}
       name={`filter-${props.column.id}`}
-      size={"sm"}
+      size={"small"}
       value={value}
-      choices={choices}
+      options={options}
       onChange={onChange}
     />
   );

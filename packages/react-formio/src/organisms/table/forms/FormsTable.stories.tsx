@@ -13,45 +13,29 @@ export default {
   component: FormsTable,
   argTypes: {
     icon: {
-      control: {
-        type: "select",
-        options: Object.keys(tailwind.templates.tailwind.ICONS)
-      }
+      control: "select",
+      options: Object.keys(tailwind.templates.tailwind.ICONS)
     },
     data: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     operations: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     isLoading: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     isEmpty: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     disableFilters: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     disablePagination: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     tags: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     }
   },
   parameters: {}

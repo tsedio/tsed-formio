@@ -13,19 +13,13 @@ export default {
     onSubmit: { action: "onSubmit" },
 
     type: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     form: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     options: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     }
   },
   parameters: {

@@ -26,6 +26,15 @@
     line-height: inherit;
   }
 
+  &__small {
+    .choices__inner {
+      @apply px-2;
+      padding-top: 2px;
+      min-height: 0;
+      font-size: 14px;
+    }
+  }
+
   &__input {
     @apply bg-white;
   }
@@ -80,6 +89,10 @@
 
     .choices__inner {
       @apply pb-2;
+    }
+
+    &.choices__small .choices__inner {
+      padding-bottom: 1px;
     }
 
     .choices__input {
@@ -153,6 +166,7 @@
       }
     }
   }
+
   &[data-type=select-multiple] {
     &:after {
       @apply h-0 w-0 border-solid absolute border-0 h-full top-0 m-0 right-1.5;
@@ -168,14 +182,16 @@
       @apply pb-0;
     }
   }
+  .choices__list--multiple .choices__item {
+    @apply rounded-md bg-primary border-0 text-xs py-1 px-2;
+    font-weight: 600;
+  }
 }
 
-.choices__list--multiple .choices__item {
-  @apply rounded-sm;
-}
 
-.is-open .choices__inner , .is-flipped.is-open .choices__inner {
-  @apply rounded-md rounded-b-none;
+
+.is-open .choices__inner, .is-flipped.is-open .choices__inner {
+  @apply rounded-md;
 }
 
 .choices__list {
@@ -188,7 +204,8 @@
     .choices__item {
       @apply w-full;
     }
-    .choices__item.choices__item--selectable{
+
+    .choices__item.choices__item--selectable {
       margin-bottom: -0.375rem;
     }
   }
@@ -207,6 +224,7 @@
 
       &.is-highlighted {
         @apply bg-secondary-500 border-secondary-600;
+
         .choices__button {
           @apply border-secondary-600;
         }
@@ -214,8 +232,8 @@
     }
   }
 
-  &--dropdown {
-    @apply invisible absolute z-5 w-full bg-white border-1 border-solid border-gray-300 rounded overflow-hidden break-all top-full;
+  &--dropdown[aria-expanded=true] {
+    @apply invisible absolute z-5 w-full bg-white border-1 border-solid border-gray-300 rounded-md overflow-hidden break-all top-full;
     will-change: visibility;
 
     &.is-active {
@@ -280,6 +298,16 @@
 }
 
 @media (min-width: 640px) {
+  .choices__small {
+    .choices__list--dropdown .choices__item--selectable {
+      padding: 5px 10px;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
   .choices__list--dropdown {
     .choices__item--selectable {
       padding-right: 100px;

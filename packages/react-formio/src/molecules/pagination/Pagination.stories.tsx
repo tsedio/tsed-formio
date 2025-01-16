@@ -1,13 +1,41 @@
+import "../forms/select/all";
+
 import { Meta, StoryObj } from "@storybook/react";
 import { useEffect, useState } from "react";
 
-import { Pagination } from "./Pagination";
+import { Pagination } from "./all";
 
 /**
- * Pagination component
+ * Pagination component.
+ *
+ * You can import this component and use it like:
  *
  * ```tsx
- * import {Modal} from "@tsed/react-formio/molecules/pagination/Pagination";
+ * import {Pagination} from "@tsed/react-formio/molecules/pagination/all"
+ * import {Pagination} from "@tsed/react-formio/molecules/form/select/Select/all"
+ *
+ * or
+ *
+ * import {Pagination} from "@tsed/react-formio/molecules/pagination/Pagination";
+ * import "@tsed/react-formio/molecules/pagination/PaginationButton";
+ *
+ * or
+ *
+ * import {Pagination} from "@tsed/react-formio/molecules/pagination/Pagination";
+ *
+ * registerComponent("PaginationButton", MyPaginationButton);
+ * ```
+ *
+ * Pagination component support DI container and can be used with custom PaginationButton component.
+ *
+ * You can also override the Pagination component with your own implementation:
+ *
+ * ```tsx
+ * function MyPagination(props: PaginationProps) {
+ *
+ * }
+ *
+ * registerComponent("Pagination", MyPagination);
  * ```
  */
 export default {

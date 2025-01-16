@@ -22,22 +22,16 @@ export default {
   component: FormBuilder,
   argTypes: {
     display: {
-      control: {
-        type: "select",
-        options: ["form", "wizard", "pdf"]
-      }
+      control: "select",
+      options: ["form", "wizard", "pdf"]
     },
     components: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     options: {
       description:
         "The form builder options. See [here](https://help.form.io/developers/form-development/form-builder#form-builder-options) for more details.",
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     onBuilderReady: {
       description:

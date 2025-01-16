@@ -18,45 +18,29 @@ export default {
   component: InputText,
   argTypes: {
     label: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     type: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     name: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     value: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     required: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     size: {
-      control: {
-        type: "select",
-        options: ["sm", "normal"]
-      }
+      control: "select",
+      options: ["small", "normal"]
     },
     placeholder: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     description: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     onChange: {
       action: "onChange"
@@ -188,7 +172,7 @@ export const Sizing: Story = {
     label: "Label",
     type: "number",
     value: "",
-    size: "sm",
+    size: "small",
     placeholder: "Placeholder",
     description: "Use dollars!"
   }

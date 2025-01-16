@@ -1,88 +1,26 @@
-import Choices from "@formio/choices.js";
-import classnames from "classnames";
-import { HTMLAttributes, ReactElement, useEffect, useRef } from "react";
+import type { ComponentType } from "react";
 
-import { getEventValue } from "../../../utils/getEventValue";
-import { FormControl, FormControlProps } from "../form-control/FormControl";
+import { getComponent, registerComponent } from "../../../registries/components";
+import { FormControl } from "../form-control/FormControl";
+import { useOptions } from "./hooks/useOptions";
+import { AllSelectProps } from "./Select.interfaces";
 
-export interface SelectProps<Data = any> extends FormControlProps, Omit<HTMLAttributes<HTMLSelectElement>, "onChange" | "prefix"> {
-  size?: string;
-  placeholder?: string;
-  choices: { label: string; value: Data }[];
-  layout?: "html5" | "choicesjs";
-  disabled?: boolean;
-  multiple?: boolean;
-}
+let uuid = 0;
 
-export function Select<Data = any>({
-  name,
-  label,
-  size,
-  onChange,
-  required,
-  value,
-  choices,
-  description,
-  placeholder,
-  prefix,
-  suffix,
-  multiple,
-  layout,
-  ...props
-}: SelectProps<Data>): ReactElement {
-  const ref = useRef<HTMLSelectElement>(null);
+export function Select<Data = string>(props: AllSelectProps<Data>) {
+  const { className, name = "", id = `field-select-${++uuid}`, label, description = "" } = props;
+  const options = useOptions<Data>({
+    ...props,
+    value: (Array.isArray(props.value) ? props.value : [props.value]) as any
+  });
 
-  useEffect(() => {
-    let instance: any;
-
-    if (layout === "choicesjs") {
-      instance = new Choices(ref.current as unknown as HTMLInputElement, {
-        removeItemButton: true,
-        placeholderValue: placeholder
-      });
-    }
-
-    return () => {
-      instance && instance.destroy();
-    };
-  }, []);
-
-  choices =
-    layout === "choicesjs" || multiple || !placeholder
-      ? choices
-      : ([
-          {
-            label: placeholder,
-            value: ""
-          },
-          ...choices
-        ] as any[]);
+  const Component = getComponent<ComponentType<AllSelectProps<Data>>>(["Select." + props.layout, "Select.html5"]);
 
   return (
-    <FormControl name={name} label={label} required={required} description={description} prefix={prefix} suffix={suffix} shadow={false}>
-      {}
-      <select
-        ref={ref}
-        data-testid={`select_${name}`}
-        {...props}
-        className={classnames("form-control", size && `form-control-${size}`)}
-        name={name}
-        id={name}
-        multiple={multiple}
-        value={value || ("" as any)}
-        placeholder={placeholder}
-        onChange={(event) => {
-          onChange && onChange(name, getEventValue(event));
-        }}
-      >
-        {choices.map(({ label, value }) => {
-          return (
-            <option key={String(value)} label={label} value={value as any}>
-              {label}
-            </option>
-          );
-        })}
-      </select>
+    <FormControl {...props} id={id} description={description} shadow={false} className={className} label={label}>
+      <Component {...props} options={options} name={name} id={id} />
     </FormControl>
   );
 }
+
+registerComponent("Select", Select);

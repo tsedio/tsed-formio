@@ -15,29 +15,19 @@ export default {
   component: ActionsTable,
   argTypes: {
     data: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     operations: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     isLoading: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     disableFilters: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     disablePagination: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     onAddAction: {
       action: "onAddAction"

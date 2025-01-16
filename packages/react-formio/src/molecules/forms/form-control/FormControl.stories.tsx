@@ -12,19 +12,13 @@ export default {
   component: FormControl,
   argTypes: {
     label: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     name: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     children: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     }
   },
   parameters: {},

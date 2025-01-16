@@ -12,14 +12,10 @@ export default {
   argTypes: {
     onSubmit: { action: "onSubmit" },
     actionInfo: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     options: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     }
   },
   parameters: {

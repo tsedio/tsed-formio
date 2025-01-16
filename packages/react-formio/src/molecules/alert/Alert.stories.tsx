@@ -16,18 +16,18 @@ export default {
   component: Alert,
   argTypes: {
     message: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     type: {
-      control: {
-        type: "select",
-        options: ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"]
-      }
+      control: "select",
+      options: ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"]
     }
   },
-  parameters: {},
+  parameters: {
+    docs: {
+      source: { language: "tsx" }
+    }
+  },
   tags: ["autodocs"]
 };
 

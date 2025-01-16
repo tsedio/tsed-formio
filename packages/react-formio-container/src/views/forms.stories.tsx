@@ -5,9 +5,7 @@ export default {
   component: FormsComponent,
   argTypes: {
     data: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     setParameters: { action: "setParameters" },
     dispatchOperation: { action: "dispatchOperation" }
