@@ -1,32 +1,9 @@
 import classnames from "classnames";
-import { PropsWithChildren } from "react";
 
-import { Select } from "../forms/select/Select";
+import { getComponent, registerComponent } from "../../registries/components";
+import type { Select as DefaultSelect } from "../forms/select/Select";
 import { getPageNumbers, LEFT_PAGE, RIGHT_PAGE } from "../table";
-
-function PaginationButton(
-  props: PropsWithChildren<
-    {
-      component?: any;
-      disabled?: boolean;
-      className?: string;
-      active?: boolean;
-    } & Record<string, any>
-  >
-) {
-  const { component: Component = "button", children, disabled, active, ...otherProps } = props;
-
-  return (
-    <Component
-      {...otherProps}
-      data-testid='pagination-button'
-      disabled={disabled}
-      className={classnames("page-link", disabled ? "disabled" : "", active ? "" : "", props.className)}
-    >
-      {children}
-    </Component>
-  );
-}
+import type { PaginationButton as DefaultPaginationButton } from "./PaginationButton";
 
 export interface PaginationProps {
   className?: string;
@@ -42,6 +19,7 @@ export interface PaginationProps {
   pageSize: number;
   setPageSize: any;
   totalLength?: number;
+  layout?: "html5" | "react" | "choicesjs";
   i18n?: (f: string) => string;
 }
 
@@ -69,6 +47,8 @@ export function Pagination(props: PaginationProps) {
     totalPages: pageCount
   });
   const choices: any[] = pageSizes.map((value) => ({ value, label: value }));
+  const Select = getComponent<typeof DefaultSelect>("Select");
+  const PaginationButton = getComponent<typeof DefaultPaginationButton>("PaginationButton");
 
   return (
     <nav aria-label='Page navigation' className={classnames("pagination-group -mb-3", className)}>
@@ -106,11 +86,13 @@ export function Pagination(props: PaginationProps) {
       </ul>
 
       <li className='mb-3 mr-3 flex items-center'>
-        <Select
+        <Select<number>
           name={"page"}
           value={pageSize}
-          choices={choices}
-          onChange={(name: string, value: number) => {
+          options={choices}
+          multiple={false}
+          layout={props.layout}
+          onChange={(_: string, value: number) => {
             setPageSize(+value);
           }}
         />
@@ -132,3 +114,5 @@ export function Pagination(props: PaginationProps) {
     </nav>
   );
 }
+
+registerComponent("Pagination", Pagination);

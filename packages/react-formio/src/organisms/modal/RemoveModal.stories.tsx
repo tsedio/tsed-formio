@@ -16,9 +16,7 @@ export default {
   argTypes: {
     onSubmit: {
       title: {
-        control: {
-          type: "text"
-        }
+        control: "text"
       },
       control: {
         action: "onSubmit"

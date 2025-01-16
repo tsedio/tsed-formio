@@ -2,6 +2,7 @@ import Choices from "@formio/choices.js";
 import uniq from "lodash/uniq";
 import { useEffect, useRef } from "react";
 
+import { registerComponent } from "../../../registries/components";
 import { FormControl, FormControlProps } from "../form-control/FormControl";
 
 export interface InputTagsProps<T = any> extends Omit<FormControlProps, "description" | "prefix" | "suffix"> {
@@ -47,3 +48,5 @@ export function InputTags({ name, value = [], label, onChange, required, descrip
     </FormControl>
   );
 }
+
+registerComponent("InputTags", InputTags);

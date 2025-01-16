@@ -21,7 +21,7 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
   /* eslint-disable jsx-a11y/no-autofocus */
   return (
     <InputText
-      size={"sm"}
+      size={"small"}
       id={id}
       name={id}
       key={id}

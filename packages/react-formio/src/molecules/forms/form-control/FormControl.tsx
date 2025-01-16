@@ -2,6 +2,7 @@ import classnames from "classnames";
 import type { PropsWithChildren, ReactNode } from "react";
 
 export interface FormControlProps<Data = any> {
+  id?: string;
   name: string;
   value?: Data;
   required?: boolean;
@@ -17,6 +18,7 @@ export interface FormControlProps<Data = any> {
 export function FormControl({
   children,
   name,
+  id = name,
   required,
   prefix,
   suffix,
@@ -27,7 +29,7 @@ export function FormControl({
   return (
     <div data-testid={name && `form-group-${name}`} id={`form-group-${name || ""}`} className={classnames("form-group", className)}>
       {label && (
-        <label htmlFor={name} data-testid='form-control-label' className={`col-form-label ${required ? " field-required" : ""}`}>
+        <label htmlFor={id} data-testid='form-control-label' className={`col-form-label ${required ? " field-required" : ""}`}>
           {label}
         </label>
       )}

@@ -11,17 +11,14 @@ Templates.framework = "tailwind";
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
-    // actions: { argTypesRegex: "^on[A-Z].*" },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/
-      }
+    docs: {
+      source: { language: "tsx" }
     }
   },
   viewport: {
     viewports: INITIAL_VIEWPORTS
-  }
+  },
+  tags: ["autodocs"]
 };
 
 export default preview;

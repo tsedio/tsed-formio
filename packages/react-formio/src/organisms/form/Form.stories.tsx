@@ -32,47 +32,33 @@ export default {
     form: {
       description:
         "Instead of loading a form from the `src` url, you can preload the form definition and pass it in with the `form` prop. You should also set `url` if you are using any advanced components like file upload or oauth.",
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     src: {
       description:
         "The src of the form definition. This is commonly from a form.io server. When using src, the form will automatically submit the data to that url as well.",
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     url: {
       description:
         "The url of the form definition. The form will not be loaded from this url and the submission will not be saved here either. This is used for file upload, oauth and other components or actions that need to know where the server is. Use this in connection with `form`",
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     submission: {
       description:
         "Submission data to fill the form. You can either load a previous submission or create a submission with some pre-filled data. If you do not provide a submissions the form will initialize an empty submission using default values from the form.",
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     options: {
       description:
         "An options object that can pass options to the formio.js Form that is rendered. You can set options such as `readOnly`, `noAlerts` or `hide`. There are [many options to be found in the formio.js library](https://github.com/formio/formio.js/wiki/Form-Renderer#options).",
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     className: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     style: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     // onFormReady: {
     //   description:
@@ -185,9 +171,7 @@ export default {
     otherEvents: {
       description:
         'A "catch-all" prop for subscribing to other events (for a complete list, see [our documentation](https://help.form.io/developers/form-development/form-renderer#form-events)).',
-      control: {
-        type: "object"
-      }
+      control: "object"
     }
   },
   tags: ["autodocs"]

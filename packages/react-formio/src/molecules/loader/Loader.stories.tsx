@@ -15,25 +15,17 @@ export default {
   component: Loader,
   argTypes: {
     isActive: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     color: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     icon: {
-      control: {
-        type: "select",
-        options: Object.keys(tailwind.templates.tailwind.ICONS)
-      }
+      control: "select",
+      options: Object.keys(tailwind.templates.tailwind.ICONS)
     },
     className: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     }
   },
   parameters: {},

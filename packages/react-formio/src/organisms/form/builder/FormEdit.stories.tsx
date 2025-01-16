@@ -14,31 +14,21 @@ export default {
   component: FormEdit,
   argTypes: {
     form: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     typeChoices: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     displayChoices: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     options: {
       description:
         "The form builder options. See [here](https://help.form.io/developers/form-development/form-builder#form-builder-options) for more details.",
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     enableTags: {
-      control: {
-        type: "boolean"
-      }
+      control: "boolean"
     },
     onSubmit: { action: "onSubmit" },
     onCopy: { action: "onCopy" },

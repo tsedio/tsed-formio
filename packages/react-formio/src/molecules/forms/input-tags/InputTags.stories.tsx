@@ -14,40 +14,26 @@ export default {
   component: InputTags,
   argTypes: {
     label: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     name: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     value: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     size: {
-      control: {
-        type: "select",
-        options: ["sm", "normal"]
-      }
+      control: "select",
+      options: ["small", "normal"]
     },
     placeholder: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     },
     choices: {
-      control: {
-        type: "object"
-      }
+      control: "object"
     },
     description: {
-      control: {
-        type: "text"
-      }
+      control: "text"
     }
   },
   parameters: {},

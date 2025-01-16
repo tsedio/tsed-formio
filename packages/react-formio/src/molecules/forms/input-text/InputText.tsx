@@ -2,6 +2,7 @@ import classnames from "classnames";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
+import { registerComponent } from "../../../registries/components";
 import { getEventValue } from "../../../utils/getEventValue";
 import { FormControl, FormControlProps } from "../form-control/FormControl";
 
@@ -11,7 +12,7 @@ export interface InputTextProps<Data = any> extends FormControlProps<Data> {
   /**
    * The input size
    */
-  size?: string;
+  size?: "small" | string;
   onChange?: (name: string, value: Data) => void;
   placeholder?: string;
   debounceDelay?: number;
@@ -21,6 +22,7 @@ export interface InputTextProps<Data = any> extends FormControlProps<Data> {
 
 export function InputText<T = any>({
   name,
+  id = name,
   value,
   label,
   onChange,
@@ -57,7 +59,8 @@ export function InputText<T = any>({
         {...props}
         data-testid={`input_${name}`}
         className={classnames("form-control", size && `form-control-${size}`)}
-        id={name}
+        id={id}
+        name={name}
         required={required}
         value={(localValue || "") as any}
         placeholder={placeholder}
@@ -71,3 +74,5 @@ export function InputText<T = any>({
     </FormControl>
   );
 }
+
+registerComponent("InputText", InputText);
