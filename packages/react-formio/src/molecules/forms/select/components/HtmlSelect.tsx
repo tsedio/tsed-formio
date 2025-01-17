@@ -17,8 +17,8 @@ export function HTMLSelect({ name, id = name, size, value, multiple, onChange, o
 
   return (
     <select
-      {...(props as any)}
       data-testid={`select_${name}`}
+      {...(props as any)}
       className={cx("form-control", size && `form-control-${size}`)}
       name={name}
       id={id}

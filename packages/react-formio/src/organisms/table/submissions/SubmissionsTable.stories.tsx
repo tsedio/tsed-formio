@@ -1,3 +1,8 @@
+import "../../../molecules/button/Button";
+import "../../../molecules/forms/input-text/InputText";
+import "../../../molecules/forms/select/all";
+import "../../../molecules/pagination/all";
+
 import { useState } from "react";
 
 import { mapPagination } from "../../../utils/mapPagination";

@@ -1,3 +1,8 @@
+import "../../../molecules/button/Button";
+import "../../../molecules/forms/input-text/InputText";
+import "../../../molecules/forms/select/all";
+import "../../../molecules/pagination/all";
+
 import tailwind from "@tsed/tailwind-formio";
 
 import { FormsTable } from "./FormsTable";

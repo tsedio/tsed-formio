@@ -1,3 +1,5 @@
+import "../../../molecules/forms/select/all.ts";
+
 import { act, fireEvent, render, screen } from "@testing-library/react";
 
 import { DefaultColumnFilter } from "./DefaultColumnFilter";

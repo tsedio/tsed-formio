@@ -97,5 +97,6 @@
     "tooltip.js": {
       "optional": false
     }
-  }
+  },
+  "dependencies": {}
 }

@@ -1,73 +1,52 @@
 import {Canvas, Meta} from '@storybook/blocks'
 import * as FormBuilderStories from '../packages/react-formio/src/organisms/form/builder/FormBuilder.stories'
+import {StoryBanner} from './home/StoryBanner.jsx'
 
-<Meta title="Getting started" />
+<Meta title="Getting started"/>
 
-<div className="flex items-center justify-center pb-5">
-  <a href="https://tsed.io" target="_blank"><img className="overflow-hidden block"
-                                                 src="https://tsed.io/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
-</div>
 
-<div className="text-center pb-5">
-  <h1>Ts.ED - React Formio</h1>
 
-  <div className="flex items-center justify-center gap-3">
-    <a href="https://github.com/tsedio/tsed-formio/actions/workflows/build.yml"><img
-      src="https://github.com/tsedio/tsed-formio/actions/workflows/build.yml/badge.svg" alt="Build & Release"/></a>
-    <a href="https://github.com/semantic-release/semantic-release"><img
-      src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg"
-      alt="semantic-release"/></a>
-    <a href="https://github.com/prettier/prettier"><img
-      src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square"
-      alt="code style: prettier"/></a>
-    <a href="https://opencollective.com/tsed"><img src="https://opencollective.com/tsed/tiers/badge.svg" alt="backers"/></a>
-  </div>
-</div>
+<StoryBanner />
 
-<div className="text-center pb-5">
-  <a href="https://tsed.io/">Website</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://tsed.io/tutorials/prisma.html">Tutorial</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://api.tsed.io/rest/slack/tsedio/tsed">Slack</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://twitter.com/TsED_io">Twitter</a>
-</div>
-
-<hr/>
-
-A [React](http://facebook.github.io/react/) library for rendering out forms based on the [Form.io](https://www.form.io)
-platform.
-
-This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features
+> This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features
 listed above.
-
-See our [storybook](https://formio.tsed.io/) to see all available components.
 
 ## Features
 
 Many components are provided to build your own backoffice based on Formio.js API:
 
-- [ActionsTable](/story/organisms-table-actions-actionstable--sandbox),
-- [FormAccess](/story/organisms-form-access-formaccess--sandbox),
-- [FormAction](/story/organisms-form-action-formaction--sandbox),
-- [Form](/docs/documentation-form--docs),
-- [FormBuilder](/docs/documentation-formbuilder--docs),
-- [FormEdit](/docs/documentation-formedit--docs),
-- [FormsTable](/docs/documentation-formstable--docs),
-- [InputTags](/story/reactformio-inputtags--sandbox),
-- [InputText](/story/reactformio-inputtext--sandbox),
-- [Pagination](/story/reactformio-pagination--sandbox),
-- [Select](/story/reactformio-select--sandbox),
-- [SubmissionsTable](/docs/documentation-submissionstable--docs).
-- [Table](/story/reactformio-table--sandbox),
+- [ActionsTable](?path=/docs/organisms-table-actions-actionstable--docs),
+- [FormAccess](?path=/docs/organisms-form-access-formaccess--docs),
+- [FormAction](?path=/docs/organisms-form-action-formaction--docs),
+- [Form](?path=/docs/organisms-form-form--docs),
+- [FormBuilder](?path=/docs/organisms-form-builder-formbuilder--docs),
+- [FormEdit](?path=/docs/organisms-form-builder-formedit--docs),
+- [FormsTable](?path=/docs/organisms-table-forms-formstable--docs),
+- [InputTags](?path=/docs/molecules-forms-inputtags--docs),
+- [InputText](?path=/docs/molecules-forms-inputtext--docs),
+- [Pagination](?path=/docs/molecules-pagination--docs),
+- Select: [Choicejs](?path=/docs/molecules-forms-select-choicejs--docs), [HTML5](?path=/docs/molecules-forms-select-html5--docs) or [ReactSelect](?path=/docs/molecules-forms-select-react--docs),
+- [SubmissionsTable](?path=/docs/organisms-table-submissions-submissionstable--docs).
+- [Table](?path=/docs/molecules-table--docs),
 - Predefined Reducers for Actions, Action, Form, Forms, Submission, Submissions, etc...,
 - TypeScript support.
 - Tailwind support.
 
+## Install
+
+`@tsed/react-formio` can be used on the server, or bundled for the client using an
+npm-compatible packaging system such as [Vite](https://vite.dev/), [webpack](http://webpack.github.io/) or [Rollup](https://rollupjs.org/).
+
+
+```sh
+npm install @tsed/react-formio react-table --save
+npm install formiojs choices.js --save // Install formiojs since it is a peerDependency
+```
+
+
 ## Migrate to v2
 
-If you use redux actions with v2, you have to install `@tsed/redux-formio-stores` and remplace your imports:
+If you use redux actions with v2, you have to install `@tsed/redux-formio-stores` and replace your imports:
 
 ```diff
 - import { defaultFormioReducer, formsReducer } from "@tsed/react-formio";
@@ -87,22 +66,11 @@ Example:
 + import { Form } from "@tsed/react-formio/organisms/form/Form";
 ```
 
-## Install
-
-`@tsed/react-formio` can be used on the server, or bundled for the client using an
-npm-compatible packaging system such as [Browserify](http://browserify.org/) or
-[webpack](http://webpack.github.io/).
-
-```
-npm install @tsed/react-formio react-table --save
-npm install formiojs choices.js --save // Install formiojs since it is a peerDependency
-```
-
 ## Usage
 
 ```tsx
 import React from "react";
-import { FormBuilder } from "@tsed/react-formio";
+import { FormBuilder } from "@tsed/react-formio/organisms/form/builder/FormBuilder";
 
 function App() {
   return (
@@ -115,7 +83,41 @@ function App() {
 export default App;
 ```
 
-<Canvas of={FormBuilderStories.WebForm} />
+<Canvas of={FormBuilderStories.WebForm}/>
+
+## Registering react components
+
+You can register your own components to be used within the `@tsed/react-formio` library. This is useful if you want to
+customize `FormEdit` or `Table` components.
+
+For example FormEdit component use the followings components:
+
+```ts
+import "@tsed/react-formio/atoms/icon/Icon";
+import "@tsed/react-formio/molecules/button/Button";
+import "@tsed/react-formio/molecules/forms/input-text/InputText";
+import "@tsed/react-formio/molecules/forms/select/Select";
+import "@tsed/react-formio/molecules/forms/select/components/HtmlSelect";
+import "@tsed/react-formio/molecules/forms/input-tags/InputTags";
+import "@tsed/react-formio/organisms/form/builder/FormParameters";
+import "@tsed/react-formio/organisms/form/builder/FormBuilder";
+import "@tsed/react-formio/organisms/form/builder/FormEditCtas";
+```
+
+You can replace for example replace the default React Button component provided by the library by your own Button:
+
+```tsx
+import {registerComponent} from "@tsed/react-formio/registries/components";
+import type {ButtonProps} from "@tsed/react-formio/molecules/button/Button";
+
+registerComponent("button", (props: ButtonProps) => {
+  return <button {...props}>{props.label}</button>;
+});
+```
+A large part of the provided component from the library can be replaced by your own component.
+
+> Note: Override Button react component doesn't affect the button design and implementation used by formio.js.
+> To styling the original button component formio, you have to redefine the `.btn` class in your CSS.
 
 ## Contributors
 
@@ -140,7 +142,7 @@ website. [[Become a sponsor](https://opencollective.com/tsed#sponsor)]
 
 The MIT License (MIT)
 
-Copyright (c) 2016 - 2021 Romain Lenzotti
+Copyright (c) 2016 - Today Romain Lenzotti
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files (the "Software"), to deal in the Software without restriction, including without limitation the

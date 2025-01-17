@@ -7,12 +7,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TypedProject/tsed-formio.git"
+    "url": "https://github.com/tsedio/tsed-formio.git"
   },
   "bugs": {
-    "url": "https://github.com/TypedProject/tsed-formio/issues"
+    "url": "https://github.com/tsedio/tsed-formio/issues"
   },
-  "homepage": "https://github.com/TypedProject/tsed-formio",
+  "homepage": "https://github.com/tsedio/tsed-formio",
   "scripts": {
     "configure": "monorepo ci configure",
     "test": "lerna run test --stream",

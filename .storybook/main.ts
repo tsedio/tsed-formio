@@ -11,6 +11,10 @@ const config: StorybookConfig = {
       directory: "../packages/tailwind-formio"
     },
     {
+      titlePrefix: "Atoms",
+      directory: "../packages/react-formio/src/atoms"
+    },
+    {
       titlePrefix: "Molecules",
       directory: "../packages/react-formio/src/molecules"
     },
