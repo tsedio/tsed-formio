@@ -1,3 +1,5 @@
+import "../../../molecules/forms/select/all.ts";
+
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, userEvent, within } from "@storybook/test";
 

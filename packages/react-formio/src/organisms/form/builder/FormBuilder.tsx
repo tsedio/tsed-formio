@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 
+import { registerComponent } from "../../../registries/components";
 import { useFormBuilder, UseFormBuilderProps } from "./useFormBuilder";
 
 export function FormBuilder({
@@ -23,3 +24,5 @@ export function FormBuilder({
     </div>
   );
 }
+
+registerComponent("FormBuilder", FormBuilder);

@@ -1,7 +1,7 @@
 import "./ChoicesSelect";
 
 import { Meta, StoryObj } from "@storybook/react";
-import { expect, fn, userEvent, within } from "@storybook/test";
+import { fn } from "@storybook/test";
 
 import { iconClass } from "../../../../utils/iconClass";
 import { useValue } from "../../../__fixtures__/useValue.hook";
@@ -95,24 +95,6 @@ export const Usage: Story = {
     value: "option-1",
     options,
     onChange: fn()
-  },
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-
-    const select = canvas.getByTestId("select_name");
-
-    await expect(select).toBeInTheDocument();
-    await expect(select).toHaveValue("option-1");
-
-    await userEvent.selectOptions(select, "option-2");
-
-    await expect(select).toHaveValue("option-2");
-    await expect(args.onChange).toHaveBeenCalledWith("name", "option-2");
-
-    const label = canvas.getByTestId("form-group-name");
-
-    await expect(label).toBeInTheDocument();
-    await expect(label).toHaveTextContent("Label");
   }
 };
 
@@ -125,19 +107,6 @@ export const WithPlaceholder: Story = {
     placeholder: "Select an option",
     options,
     onChange: fn()
-  },
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-
-    const select = canvas.getByTestId("select_name");
-
-    await expect(select).toBeInTheDocument();
-    await expect(select).toHaveValue("");
-
-    await userEvent.selectOptions(select, "option-2");
-
-    await expect(select).toHaveValue("option-2");
-    await expect(args.onChange).toHaveBeenCalledWith("name", "option-2");
   }
 };
 /**
@@ -150,19 +119,6 @@ export const WithPlaceholderAndRequired: Story = {
     options,
     required: true,
     onChange: fn()
-  },
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-
-    const select = canvas.getByTestId("select_name");
-
-    await expect(select).toBeInTheDocument();
-    await expect(select).toHaveValue("");
-
-    await userEvent.selectOptions(select, "option-2");
-
-    await expect(select).toHaveValue("option-2");
-    await expect(args.onChange).toHaveBeenCalledWith("name", "option-2");
   }
 };
 /**

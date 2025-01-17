@@ -1,8 +1,10 @@
 import { ReactElement } from "react";
 
+import { Icon as DefaultIcon } from "../../../atoms/icon/Icon";
 import { useTooltip } from "../../../hooks/useTooltip";
 import type { FormOptions } from "../../../interfaces";
-import { iconClass } from "../../../utils/iconClass";
+import { Button as DefaultButton } from "../../../molecules/button/Button";
+import { getComponent, registerComponent } from "../../../registries/components";
 
 export interface FormEditCTAsProps extends Record<string, unknown> {
   saveText?: string;
@@ -55,40 +57,41 @@ export function FormEditCTAs({
     title: t("Reset all changes")
   });
 
+  const Button = getComponent<typeof DefaultButton>("Button");
+  const Icon = getComponent<typeof DefaultIcon>("Icon");
+
   return (
     <div className={"form-edit__actions"}>
       <div>
-        <button
-          className={`btn btn-primary btn-save flex ${disabled ? "disabled" : ""}`}
-          disabled={disabled}
-          onClick={() => !disabled && onSubmit && onSubmit()}
-        >
-          <i className={`mr-1 ${iconClass(options.iconset, "save")}`} />
+        <Button variant='primary' className='btn-save' disabled={disabled} onClick={() => onSubmit?.()}>
+          <Icon name='save' iconset={options.iconset} />
           {saveText}
-        </button>
+        </Button>
 
         <div>
-          <button className={`btn btn-light btn-undo ${hasUndo ? "" : "disabled"}`} onClick={() => onUndo && onUndo()} ref={undoTooltipRef}>
-            <i className={iconClass(options.iconset, "undo")} />
-          </button>
+          <Button variant='light' className='btn-undo' disabled={!hasUndo} onClick={() => onUndo?.()} ref={undoTooltipRef}>
+            <Icon name='undo' iconset={options.iconset} />
+          </Button>
 
-          <button className={`btn btn-light btn-redo ${hasRedo ? "" : "disabled"}`} onClick={() => onRedo && onRedo()} ref={redoTooltipRef}>
-            <i className={iconClass(options.iconset, "redo")} />
-          </button>
+          <Button variant='light' className='btn-redo' disabled={!hasRedo} onClick={() => onRedo?.()} ref={redoTooltipRef}>
+            <Icon name='redo' iconset={options.iconset} />
+          </Button>
         </div>
 
         <div>
           {onCopy && (
-            <button className='btn btn-light' onClick={() => onCopy()} ref={copyTooltipRef!}>
-              <i className={iconClass(options.iconset, "copy")} />
-            </button>
+            <Button variant='light' className='btn-copy' onClick={() => onCopy()} ref={copyTooltipRef}>
+              <Icon name='copy' iconset={options.iconset} />
+            </Button>
           )}
 
-          <button className={`btn btn-light btn-reset`} onClick={() => onReset && onReset()} ref={resetTooltipRef!}>
-            <i className={iconClass(options.iconset, "reset")} />
-          </button>
+          <Button variant='light' className='btn-reset' onClick={() => onReset && onReset()} ref={resetTooltipRef!}>
+            <Icon name='reset' iconset={options.iconset} />
+          </Button>
         </div>
       </div>
     </div>
   );
 }
+
+registerComponent("FormEditCTAs", FormEditCTAs);

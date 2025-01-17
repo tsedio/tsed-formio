@@ -1,12 +1,42 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { FormEdit } from "./FormEdit";
+import { FormEdit, FormParameters } from "./all";
 import { defaultDisplayChoices } from "./FormParameters";
-
+console.log(FormParameters);
 /**
+ * Form Edit component to edit form schema using the form builder.
+ *
+ * ## Usage
  *
  * ```tsx
+ * import {FormEdit} from "@tsed/react-formio/organisms/form/builder/all";
+ *
+ * or
+ *
+ * // register needed components
+ * import "@tsed/react-formio/atoms/icon/Icon";
+ * import "@tsed/react-formio/molecules/button/Button";
+ * import "@tsed/react-formio/molecules/forms/input-text/InputText";
+ * import "@tsed/react-formio/molecules/forms/select/Select";
+ * import "@tsed/react-formio/molecules/forms/select/components/HtmlSelect";
+ * import "@tsed/react-formio/molecules/forms/input-tags/InputTags";
+ * import "@tsed/react-formio/organisms/form/builder/FormParameters";
+ * import "@tsed/react-formio/organisms/form/builder/FormBuilder";
+ * import "@tsed/react-formio/organisms/form/builder/FormEditCtas";
+ *
+ * // use FormEdit component
  * import {FormEdit} from "@tsed/react-formio/organisms/form/builder/FormEdit";
+ * ```
+ *
+ * ## Override FormEdit
+ *
+ * This component is registered with the name `FormEdit` and can be overridden with the following code:
+ *
+ * ```ts
+ * registerComponent("FormEdit", MyFormEditComponent);
+ * registerComponent("FormEditCtas", MyFormEditCtasComponent);
+ * registerComponent("FormBuilder", MyFormBuilderComponent);
+ * registerComponent("FormParameters", MyFormParametersComponent);
  * ```
  */
 export default {

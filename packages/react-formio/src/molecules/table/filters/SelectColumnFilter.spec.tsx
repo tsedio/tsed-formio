@@ -1,3 +1,5 @@
+import "../../../molecules/forms/select/all.ts";
+
 import { render, screen } from "@testing-library/react";
 
 import { SelectColumnFilter } from "./SelectColumnFilter";

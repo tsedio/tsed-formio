@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { Pagination } from "./Pagination";
+import { Pagination } from "./all";
 
 const args: any = {
   pageSizes: [10, 25, 50, 100],

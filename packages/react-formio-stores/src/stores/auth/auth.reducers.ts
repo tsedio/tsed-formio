@@ -1,4 +1,4 @@
-import type { FormType, RoleType, SubmissionType } from "@tsed/react-formio";
+import { FormType, JSON, RoleType, SubmissionType } from "@tsed/react-formio";
 import { createReducer } from "@tsed/redux-utils";
 
 import {
@@ -14,7 +14,7 @@ import {
 } from "./auth.actions";
 import { AUTH } from "./auth.constant";
 
-export interface AuthState<User = any> {
+export interface AuthState<User extends { [key: string]: JSON } = any> {
   init: boolean;
   isActive: boolean;
   user: null | SubmissionType<User>;

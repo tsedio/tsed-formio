@@ -2,8 +2,9 @@ import { ReactElement } from "react";
 
 import type { FormType } from "../../../interfaces";
 import { InputTags } from "../../../molecules/forms/input-tags/InputTags";
-import { InputText } from "../../../molecules/forms/input-text/InputText";
-import { Select } from "../../../molecules/forms/select/Select";
+import { InputText as DefaultInputText } from "../../../molecules/forms/input-text/InputText";
+import { Select as DefaultSelect } from "../../../molecules/forms/select/Select";
+import { getComponent, registerComponent } from "../../../registries/components";
 
 export const defaultDisplayChoices = [
   { label: "Form", value: "form" },
@@ -34,6 +35,9 @@ export function FormParameters({
 }: FormParametersProps): ReactElement {
   const hasTypeChoices = typeChoices && typeChoices.length > 1;
 
+  const InputText = getComponent<typeof DefaultInputText>("InputText");
+  const Select = getComponent<typeof DefaultSelect>("Select");
+
   return (
     <div className={`form-edit__settings ${className}`}>
       <div>
@@ -43,7 +47,7 @@ export function FormParameters({
           name={"title"}
           required={true}
           value={form.title}
-          disabled={!!readonly["title"]}
+          disabled={readonly["title"]}
           onChange={onChange}
         />
       </div>
@@ -53,7 +57,7 @@ export function FormParameters({
           placeholder='Enter the form machine name'
           name={"name"}
           required={true}
-          disabled={!!readonly["name"]}
+          disabled={readonly["name"]}
           value={form.name}
           onChange={onChange}
         />
@@ -72,7 +76,7 @@ export function FormParameters({
           }
           required={true}
           value={form.path}
-          disabled={!!readonly["path"]}
+          disabled={readonly["path"]}
           style={{ textTransform: "lowercase", width: "120px" }}
           onChange={onChange}
         />
@@ -81,15 +85,15 @@ export function FormParameters({
         <Select
           label={"Display as"}
           name={"display"}
-          disabled={!!readonly["display"]}
+          disabled={readonly["display"]}
           value={form.display}
-          choices={displayChoices}
+          options={displayChoices}
           onChange={onChange}
         />
       </div>
       {hasTypeChoices && (
         <div>
-          <Select label={"Type"} name={"type"} value={form.type} choices={typeChoices} onChange={onChange} />
+          <Select label={"Type"} name={"type"} value={form.type} options={typeChoices} onChange={onChange} />
         </div>
       )}
       {enableTags && (
@@ -100,3 +104,5 @@ export function FormParameters({
     </div>
   );
 }
+
+registerComponent("FormParameters", FormParameters);

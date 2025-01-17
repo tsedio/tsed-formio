@@ -1,7 +1,8 @@
 import type { FormOptions } from "../../../interfaces";
-import { FormBuilder } from "./FormBuilder";
-import { FormEditCTAs } from "./FormEditCtas";
-import { FormParameters } from "./FormParameters";
+import { getComponent } from "../../../registries/components";
+import { FormBuilder as DefaultFormBuilder } from "./FormBuilder";
+import { FormEditCTAs as DefaultFormEditCTAs } from "./FormEditCtas";
+import { FormParameters as DefaultFormParameters } from "./FormParameters";
 import { FormBuilderEvents } from "./useFormBuilder";
 import { useFormEdit, UseFormEditHookProps } from "./useFormEdit";
 
@@ -28,7 +29,10 @@ export function FormEdit({
   });
 
   const { options = {} } = props;
-
+  const FormParameters = getComponent<typeof DefaultFormParameters>("FormParameters");
+  const FormBuilder = getComponent<typeof DefaultFormBuilder>("FormBuilder");
+  const FormEditCTAs = getComponent<typeof DefaultFormEditCTAs>("FormEditCTAs");
+  console.log(FormParameters, FormBuilder, FormEditCTAs);
   return (
     <div className='form-edit-container'>
       <div className='form-edit'>
