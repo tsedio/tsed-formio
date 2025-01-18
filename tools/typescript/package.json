@@ -1,14 +1,11 @@
 {
   "name": "@tsed/typescript",
-  "version": "3.0.0-alpha.7",
+  "version": "3.0.0-alpha.8",
   "description": "Util to compile source",
   "private": true,
   "type": "module",
   "main": "index.js",
   "exports": {
     "./tsconfig.web.json": "./tsconfig.web.json"
-  },
-  "dependencies": {},
-  "devDependencies": {},
-  "peerDependencies": {}
+  }
 }
