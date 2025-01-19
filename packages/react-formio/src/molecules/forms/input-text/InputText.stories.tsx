@@ -111,7 +111,7 @@ export const Debounced: Story = {
 /**
  * Add a prefix to the input text.
  */
-export const WithPrefix: Story = {
+export const AppendBefore: Story = {
   render(args) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const props = useValue(args);
@@ -127,7 +127,7 @@ export const WithPrefix: Story = {
 /**
  * Add a suffix to the input text.
  */
-export const WithSuffix: Story = {
+export const AppendAfter: Story = {
   render(args) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const props = useValue(args);

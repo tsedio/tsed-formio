@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { SelectHTMLAttributes } from "react";
 
 import { FormControlProps } from "../form-control/FormControl";
 
@@ -17,16 +17,13 @@ export interface SelectOptionProps<Data = string> extends SelectOptionBaseProps<
   options?: SelectOptionProps<Data>[];
 }
 
-export interface SelectProps<Data = string> extends FormControlProps, Omit<HTMLAttributes<HTMLSelectElement>, "onChange" | "prefix"> {
+export interface SelectProps<Data = string> extends FormControlProps<Data, SelectHTMLAttributes<HTMLSelectElement>> {
   layout?: "html5" | "react" | "choicesjs";
   /**
    * Error message
    */
   errorMessage?: string;
-  disabled?: boolean;
   readonly?: boolean;
-  size?: string;
-  options: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
   disableSearch?: boolean;
   searchEnabled?: boolean;
   customProperties?: Record<string, any>;
@@ -34,14 +31,12 @@ export interface SelectProps<Data = string> extends FormControlProps, Omit<HTMLA
 
 export interface SelectSingle<Data = string> extends SelectProps<Data> {
   multiple?: false | undefined;
-  value?: Data;
-  onChange?: (name: string, value: Data) => void;
+  options: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
 }
 
-export interface SelectMultiple<Data = string> extends SelectProps<Data> {
+export interface SelectMultiple<Data = string> extends SelectProps<Data[]> {
   multiple: true;
-  value?: Data[];
-  onChange?: (name: string, value: Data[]) => void;
+  options: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
 }
 
 export type AllSelectProps<Data = string> = SelectSingle<Data> | SelectMultiple<Data>;

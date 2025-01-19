@@ -27,7 +27,7 @@ export function DefaultColumnFilter<D extends Record<string, unknown> = {}>(
       key={id}
       autoFocus={id === filterId}
       value={value}
-      onChange={(name: string, value: any) => {
+      onChange={(_, value: any) => {
         setValue(value);
         setFilterId(id);
         setFilter(value || undefined);

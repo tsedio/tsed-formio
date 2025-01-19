@@ -13,7 +13,7 @@ export const defaultDisplayChoices = [
 ];
 
 export interface FormParametersProps {
-  onChange?: (name: string, value: any) => void;
+  onChange?: (name: string | undefined, value: any) => void;
   form: Partial<FormType>;
   typeChoices?: { label: string; value: any }[];
   displayChoices?: { label: string; value: any }[];

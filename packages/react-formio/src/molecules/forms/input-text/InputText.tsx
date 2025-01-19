@@ -1,42 +1,30 @@
-import classnames from "classnames";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 import { registerComponent } from "../../../registries/components";
 import { getEventValue } from "../../../utils/getEventValue";
-import { FormControl, FormControlProps } from "../form-control/FormControl";
+import { cleanFormControlProps, FormControl } from "../form-control/FormControl";
+import { InputTextProps } from "./InputText.interface";
 
-export interface InputTextProps<Data = any> extends FormControlProps<Data> {
-  type?: string;
-  value?: Data;
-  /**
-   * The input size
-   */
-  size?: "small" | string;
-  onChange?: (name: string, value: Data) => void;
-  placeholder?: string;
-  debounceDelay?: number;
+export function InputText<Data = any>(props: InputTextProps<Data>) {
+  const {
+    name,
+    id = name,
+    value,
+    label,
+    onChange,
+    required,
+    size,
+    type,
+    before,
+    after,
+    description,
+    className,
+    placeholder,
+    debounceDelay = 300,
+    ...otherProps
+  } = props;
 
-  [key: string]: any;
-}
-
-export function InputText<T = any>({
-  name,
-  id = name,
-  value,
-  label,
-  onChange,
-  required,
-  size,
-  type,
-  prefix,
-  suffix,
-  description,
-  className,
-  placeholder,
-  debounceDelay = 300,
-  ...props
-}: InputTextProps<T>) {
   const [localValue, setValue] = useState(value);
   const change = useDebouncedCallback(onChange || (() => {}), debounceDelay);
 
@@ -46,19 +34,21 @@ export function InputText<T = any>({
 
   return (
     <FormControl
+      id={id}
       name={name}
       label={label}
       required={required}
       description={description}
-      prefix={prefix}
-      suffix={suffix}
+      before={before}
+      after={after}
+      size={size}
       className={className}
     >
       <input
+        {...cleanFormControlProps(otherProps)}
         type={type || "text"}
-        {...props}
         data-testid={`input_${name}`}
-        className={classnames("form-control", size && `form-control-${size}`)}
+        className={"form-control"}
         id={id}
         name={name}
         required={required}

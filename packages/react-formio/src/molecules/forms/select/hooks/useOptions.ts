@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import type { AllSelectProps } from "../Select.interfaces";
+import type { AllSelectProps } from "../Select.interface";
 
 export function mapOptions(options: AllSelectProps["options"]) {
   if (options.find((item) => item.group)) {

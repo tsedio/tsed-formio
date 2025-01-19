@@ -1,51 +1,75 @@
 import classnames from "classnames";
-import type { PropsWithChildren, ReactNode } from "react";
+import omit from "lodash/omit";
+import { HTMLAttributes, InputHTMLAttributes, PropsWithChildren, ReactNode } from "react";
 
-export interface FormControlProps<Data = any> {
-  id?: string;
-  name: string;
-  value?: Data;
-  required?: boolean;
+import { registerComponent } from "../../../registries/components";
+
+export type BaseFormControlProps<Value = unknown> = {
   label?: string;
-  className?: string;
-  onChange?: (name: string, value: any) => void;
   description?: string | ReactNode;
-  prefix?: ReactNode | string;
-  suffix?: ReactNode | string;
+  before?: ReactNode | string;
+  after?: ReactNode | string;
   shadow?: boolean;
+  value?: Value;
+  onChange?: (name: string | undefined, value: Value) => void;
+  /**
+   * The input size
+   */
+  size?: "small" | string;
+};
+export type FormControlProps<
+  Value = unknown,
+  Attributes extends HTMLAttributes<HTMLElement> = InputHTMLAttributes<HTMLInputElement>
+> = BaseFormControlProps<Value> & Omit<Attributes, "onChange" | "value" | "size">;
+
+export function cleanFormControlProps(props: FormControlProps): any {
+  return omit(props, ["label", "description", "prefix", "suffix", "size", "shadow"]);
 }
 
-export function FormControl({
+export function FormControl<Value = unknown>({
   children,
-  name,
+  name = "",
   id = name,
   required,
-  prefix,
-  suffix,
+  before,
+  after,
   description,
   label,
+  size,
   className
-}: PropsWithChildren<FormControlProps>) {
+}: PropsWithChildren<FormControlProps<Value>>) {
   return (
-    <div data-testid={name && `form-group-${name}`} id={`form-group-${name || ""}`} className={classnames("form-group", className)}>
+    <div
+      data-testid={name && `form-group-${name}`}
+      id={`form-group-${name || ""}`}
+      className={classnames(
+        "form-group",
+        {
+          "-with-before": !!before,
+          "-with-after": !!after
+        },
+        size && `form-group-${size}`,
+        className
+      )}
+    >
       {label && (
         <label htmlFor={id} data-testid='form-control-label' className={`col-form-label ${required ? " field-required" : ""}`}>
           {label}
         </label>
       )}
       <div className={"input-group"}>
-        {prefix && (
+        {before && (
           <div className='input-group-prepend'>
             <span className='input-group-text' data-testid='form-control-prefix'>
-              {prefix}
+              {before}
             </span>
           </div>
         )}
         {children}
-        {suffix && (
+        {after && (
           <div className='input-group-append'>
             <span className='input-group-text' data-testid='form-control-suffix'>
-              {suffix}
+              {after}
             </span>
           </div>
         )}
@@ -58,3 +82,5 @@ export function FormControl({
     </div>
   );
 }
+
+registerComponent("FormControl", FormControl);
