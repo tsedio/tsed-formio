@@ -36,7 +36,7 @@ describe("form-control", () => {
   it("should display prefix", () => {
     const fontAwsomeCalendarIcon = "fa fa-calendar";
     const prefix = (<i className={iconClass(undefined, "calendar")} />) as JSX.Element;
-    render(<FormControl {...Sandbox.args} name='testPrefix' prefix={prefix} />);
+    render(<FormControl {...Sandbox.args} name='testPrefix' before={prefix} />);
 
     const formGroup = screen.getByTestId("form-group-testPrefix") as HTMLFormElement;
     const formControlPrefix = screen.getByTestId("form-control-prefix") as HTMLSpanElement;
@@ -50,7 +50,7 @@ describe("form-control", () => {
   it("should display suffix", () => {
     const fontAwsomeCalendarIcon = "fa fa-calendar";
     const suffix = (<i className={iconClass(undefined, "calendar")} />) as JSX.Element;
-    render(<FormControl {...Sandbox.args} name='testSuffix' suffix={suffix} />);
+    render(<FormControl {...Sandbox.args} name='testSuffix' after={suffix} />);
 
     const formGroup = screen.getByTestId("form-group-testSuffix") as HTMLFormElement;
     const formControlSuffix = screen.getByTestId("form-control-suffix") as HTMLSpanElement;

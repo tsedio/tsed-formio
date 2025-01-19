@@ -38,15 +38,15 @@ export const Usage: Story = {
   args: {
     label: "Label",
     children: "[TEXTFIELD]",
-    prefix: <i className={iconClass(undefined, "calendar")} />
+    before: <i className={iconClass(undefined, "calendar")} />
   }
 };
 
-export const WithSuffix: Story = {
+export const AppendAfter: Story = {
   args: {
     label: "Label",
     children: "[TEXTFIELD]",
-    suffix: <i className={iconClass(undefined, "calendar")} />
+    after: <i className={iconClass(undefined, "calendar")} />
   }
 };
 

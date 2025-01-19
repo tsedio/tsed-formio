@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 import { registerComponent } from "../../../../registries/components";
-import type { AllSelectProps } from "../Select.interfaces";
+import type { AllSelectProps } from "../Select.interface";
 import { callbackOnCreateTemplates } from "./choices.template";
 
 export function useChoices({
@@ -58,7 +58,7 @@ export function useChoices({
     return opts;
   }, [options, value, required, multiple, placeholder]);
 
-  const onChangeCallback = useDebouncedCallback((name: string, value: any) => {
+  const onChangeCallback = useDebouncedCallback((name: string | undefined, value: any) => {
     onChange?.(name, value);
   }, 50);
 

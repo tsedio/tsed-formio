@@ -2,7 +2,8 @@ import cx from "classnames";
 
 import { registerComponent } from "../../../../registries/components";
 import { getEventValue } from "../../../../utils/getEventValue";
-import { AllSelectProps, SelectOptionBaseProps } from "../Select.interfaces";
+import { cleanFormControlProps } from "../../form-control/FormControl";
+import { AllSelectProps, SelectOptionBaseProps } from "../Select.interface";
 
 function Option({ value, label, ...props }: SelectOptionBaseProps) {
   return (
@@ -18,7 +19,7 @@ export function HTMLSelect({ name, id = name, size, value, multiple, onChange, o
   return (
     <select
       data-testid={`select_${name}`}
-      {...(props as any)}
+      {...cleanFormControlProps(props as any)}
       className={cx("form-control", size && `form-control-${size}`)}
       name={name}
       id={id}

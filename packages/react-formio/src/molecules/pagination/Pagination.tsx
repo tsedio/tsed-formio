@@ -92,7 +92,7 @@ export function Pagination(props: PaginationProps) {
           options={choices}
           multiple={false}
           layout={props.layout}
-          onChange={(_: string, value: number) => {
+          onChange={(_, value) => {
             setPageSize(+value);
           }}
         />

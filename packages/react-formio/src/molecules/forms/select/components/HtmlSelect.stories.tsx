@@ -83,7 +83,7 @@ export default {
   }
 } satisfies Meta<typeof Select>;
 
-type Story = StoryObj<typeof Select>;
+type Story = StoryObj<typeof Select<string>>;
 /**
  * Basic select component using HTML5 syntax.
  */
@@ -193,9 +193,9 @@ export const WithSizeOption: Story = {
   }
 };
 
-export const WithPrefix: Story = {
+export const AppendBefore: Story = {
   args: {
-    prefix: <i className={iconClass(undefined, "calendar")} />,
+    before: <i className={iconClass(undefined, "calendar")} />,
     label: "Label",
     value: "",
     size: "",
@@ -204,9 +204,9 @@ export const WithPrefix: Story = {
   }
 };
 
-export const WithSuffix: Story = {
+export const AppendAfter: Story = {
   args: {
-    suffix: <i className={iconClass(undefined, "calendar")} />,
+    after: <i className={iconClass(undefined, "calendar")} />,
     label: "Label",
     value: "",
     size: "",

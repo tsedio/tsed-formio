@@ -43,8 +43,8 @@ export function useFormEdit(props: UseFormEditHookProps) {
   const undo = () => dispatchFormAction({ type: "undo" });
   const reset = () => dispatchFormAction({ type: "reset" });
 
-  const setChange = (path: string, value: any) => {
-    formChange({ ...current, [path]: value });
+  const setChange = (path: string | undefined, value: any) => {
+    formChange({ ...current, [path!]: value });
   };
 
   return {

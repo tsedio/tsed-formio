@@ -38,7 +38,7 @@ export function ActionsTable({
           name={"actions"}
           value={currentAction}
           options={[{ label: i18n("Select an action"), value: "" }].concat(availableActions)}
-          onChange={(name: string, action: string) => setAction(action)}
+          onChange={(_, action) => setAction(action)}
         />
         <div className={"pl-3"}>
           <button

@@ -10,7 +10,7 @@ import { FormPreviewView } from "./formPreview.view";
 import { FormSettingsView } from "./formSettings.view";
 import { SubmissionsView } from "./submissions.view";
 
-export interface FormRoute<User = any> extends TabsItemProps, Record<string, unknown> {
+export interface FormRoute<User extends { [key: string]: unknown } = any> extends TabsItemProps, Record<string, unknown> {
   action: string;
   exact: boolean;
   component?: ComponentType<any>;
@@ -19,7 +19,7 @@ export interface FormRoute<User = any> extends TabsItemProps, Record<string, unk
   when?(ctx: { formAction: string; auth: AuthState<User>; form: Partial<FormType>; item: FormRoute }): boolean;
 }
 
-export interface FormRoutesOptions<User = any> {
+export interface FormRoutesOptions<User extends { [key: string]: unknown } = any> {
   formRoutes: FormRoute[];
   operationsSettings: Record<string, boolean>;
   formAction: string;
@@ -99,7 +99,7 @@ export function findRoute(routes: FormRoute[], formAction: string): FormRoute | 
   return routes.find(({ action }) => (formAction === "delete" ? action === "edit" : formAction === action));
 }
 
-export function getFormRoutes<User = any>({
+export function getFormRoutes<User extends { [key: string]: unknown } = any>({
   formRoutes = defaultFormRoutes,
   operationsSettings,
   formAction,

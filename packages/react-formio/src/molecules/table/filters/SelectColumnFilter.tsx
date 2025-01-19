@@ -24,7 +24,7 @@ export function useSelectColumnFilter<D extends Record<string, unknown> = {}>(pr
       }));
   })();
 
-  const onChange = (_: string, value: any) => {
+  const onChange = (_: string | undefined, value: any) => {
     setFilter(value || undefined);
   };
 

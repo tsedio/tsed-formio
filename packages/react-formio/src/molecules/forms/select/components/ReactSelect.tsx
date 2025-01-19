@@ -2,7 +2,7 @@ import Select, { OptionsOrGroups } from "react-select";
 import makeAnimated from "react-select/animated";
 
 import { registerComponent } from "../../../../registries/components";
-import { AllSelectProps } from "../Select.interfaces";
+import { AllSelectProps } from "../Select.interface";
 
 const animatedComponents = makeAnimated();
 
