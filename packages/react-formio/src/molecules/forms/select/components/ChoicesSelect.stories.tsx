@@ -156,6 +156,7 @@ export const WithDisabledOption: Story = {
 
 export const WithSizeOption: Story = {
   args: {
+    label: "Label",
     size: "small",
     options: [
       {

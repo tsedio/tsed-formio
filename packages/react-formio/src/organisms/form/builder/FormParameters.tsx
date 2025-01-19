@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 
 import type { FormType } from "../../../interfaces";
-import { InputTags } from "../../../molecules/forms/input-tags/InputTags";
+import { InputTags as DefaultInputTags } from "../../../molecules/forms/input-tags/InputTags";
 import { InputText as DefaultInputText } from "../../../molecules/forms/input-text/InputText";
 import { Select as DefaultSelect } from "../../../molecules/forms/select/Select";
 import { getComponent, registerComponent } from "../../../registries/components";
@@ -20,6 +20,7 @@ export interface FormParametersProps {
   enableTags?: boolean;
   className?: string;
   baseUrl?: string;
+  layout?: "html5" | "choicesjs" | "react";
   readonly?: Record<string, boolean>;
 }
 
@@ -31,12 +32,14 @@ export function FormParameters({
   displayChoices = defaultDisplayChoices,
   className = "",
   readonly = {},
+  layout,
   baseUrl = window.location.origin
 }: FormParametersProps): ReactElement {
   const hasTypeChoices = typeChoices && typeChoices.length > 1;
 
   const InputText = getComponent<typeof DefaultInputText>("InputText");
   const Select = getComponent<typeof DefaultSelect>("Select");
+  const InputTags = getComponent<typeof DefaultInputTags>("InputTags");
 
   return (
     <div className={`form-edit__settings ${className}`}>
@@ -83,6 +86,7 @@ export function FormParameters({
       </div>
       <div>
         <Select
+          layout={layout}
           label={"Display as"}
           name={"display"}
           disabled={readonly["display"]}
@@ -93,12 +97,12 @@ export function FormParameters({
       </div>
       {hasTypeChoices && (
         <div>
-          <Select label={"Type"} name={"type"} value={form.type} options={typeChoices} onChange={onChange} />
+          <Select layout={layout} label={"Type"} name={"type"} value={form.type} options={typeChoices} onChange={onChange} />
         </div>
       )}
       {enableTags && (
         <div>
-          <InputTags label={"Tags"} name={"tags"} value={form.tags} onChange={onChange} />
+          <InputTags layout={layout} label={"Tags"} name={"tags"} value={form.tags} onChange={onChange} />
         </div>
       )}
     </div>

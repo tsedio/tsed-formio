@@ -22,8 +22,8 @@ export type FormControlProps<
   Attributes extends HTMLAttributes<HTMLElement> = InputHTMLAttributes<HTMLInputElement>
 > = BaseFormControlProps<Value> & Omit<Attributes, "onChange" | "value" | "size">;
 
-export function cleanFormControlProps(props: FormControlProps): any {
-  return omit(props, ["label", "description", "prefix", "suffix", "size", "shadow"]);
+export function cleanFormControlProps(props: FormControlProps, omitted: string[] = []): any {
+  return omit(props, ["label", "description", "prefix", "suffix", "size", "shadow", ...omitted]);
 }
 
 export function FormControl<Value = unknown>({
@@ -48,7 +48,7 @@ export function FormControl<Value = unknown>({
           "-with-before": !!before,
           "-with-after": !!after
         },
-        size && `form-group-${size}`,
+        size && `-size-${size}`,
         className
       )}
     >

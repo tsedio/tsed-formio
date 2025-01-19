@@ -26,15 +26,6 @@
     line-height: inherit;
   }
 
-  &__small {
-    .choices__inner {
-      @apply px-2;
-      padding-top: 2px;
-      min-height: 0;
-      font-size: 14px;
-    }
-  }
-
   &__input {
     @apply bg-white;
   }
@@ -89,10 +80,6 @@
 
     .choices__inner {
       @apply pb-2;
-    }
-
-    &.choices__small .choices__inner {
-      padding-bottom: 1px;
     }
 
     .choices__input {
@@ -182,12 +169,12 @@
       @apply pb-0;
     }
   }
+
   .choices__list--multiple .choices__item {
     @apply rounded-md bg-primary border-0 text-xs py-1 px-2;
     font-weight: 600;
   }
 }
-
 
 
 .is-open .choices__inner, .is-flipped.is-open .choices__inner {
@@ -298,16 +285,6 @@
 }
 
 @media (min-width: 640px) {
-  .choices__small {
-    .choices__list--dropdown .choices__item--selectable {
-      padding: 5px 10px;
-
-      &:after {
-        display: none;
-      }
-    }
-  }
-
   .choices__list--dropdown {
     .choices__item--selectable {
       padding-right: 100px;
@@ -338,7 +315,6 @@
   }
 }
 
-
 .choices__heading {
   @apply font-semibold p-2.5 border-solid border-gray-200 text-gray-600;
   font-size: inherit;
@@ -364,4 +340,35 @@
 
 .choices__placeholder {
   @apply opacity-50;
+}
+
+/**
+ * Choices Size rendering
+ */
+.form-group.-size-small {
+  .choices {
+    .choices__inner {
+      @apply px-2;
+      padding-top: 3px;
+      min-height: 0;
+      font-size: 14px;
+    }
+
+    &[data-type*=select-one] .choices__inner {
+      padding-bottom: 1px;
+    }
+
+    .choices__list--multiple .choices__item {
+      @apply py-0.5 px-1 text-xs;
+      margin-bottom: 3px;
+    }
+
+    .choices__input {
+      margin-bottom: 1px;
+    }
+    &[data-type*=select-multiple] .choices__button,
+    &[data-type*=text] .choices__button{
+      margin: 0 -2px 0 6px;
+    }
+  }
 }

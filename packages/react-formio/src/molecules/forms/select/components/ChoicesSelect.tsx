@@ -1,10 +1,10 @@
 import Choices from "@formio/choices.js";
 import cx from "classnames";
-import omit from "lodash/omit";
 import { useEffect, useMemo, useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 import { registerComponent } from "../../../../registries/components";
+import { cleanFormControlProps } from "../../form-control/FormControl";
 import type { AllSelectProps } from "../Select.interface";
 import { callbackOnCreateTemplates } from "./choices.template";
 
@@ -75,14 +75,7 @@ export function useChoices({
 
   useEffect(() => {
     if (!choicesRef.current) {
-      const {
-        allowHTML = true,
-        silent = true,
-        removeItemButton = true,
-        shouldSort = false,
-        itemSelectText = "",
-        classNames
-      } = customProperties;
+      const { allowHTML = true, silent = true, removeItemButton = true, shouldSort = false, itemSelectText = "" } = customProperties;
       choicesRef.current = new Choices(ref.current, {
         ...customProperties,
         allowHTML,
@@ -94,10 +87,6 @@ export function useChoices({
         placeholderValue: "" as string,
         itemSelectText,
         shouldSort,
-        classNames: {
-          ...classNames,
-          containerOuter: `choices ${size || ""}`
-        },
         callbackOnCreateTemplates
       } as any);
     }
@@ -148,7 +137,9 @@ export function ChoiceSelect(props: AllSelectProps) {
     <select
       ref={ref}
       data-testid={`select_${props.name}`}
-      {...omit(props as any, [
+      {...cleanFormControlProps(props as any, [
+        "className",
+        "size",
         "value",
         "options",
         "placeholder",

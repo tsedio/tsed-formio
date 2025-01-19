@@ -23,7 +23,8 @@
     }
 
     &__remove {
-      @apply  opacity-80;
+      @apply opacity-80;
+
       &:hover {
         @apply bg-transparent text-white opacity-100;
       }
@@ -35,7 +36,56 @@
   }
 }
 
-.input-group-prepend + .react-select-container .react-select__control {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.form-group.-with-before {
+  .react-select-container .react-select__control {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.form-group.-with-after {
+  .react-select-container .react-select__control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+/**
+ * React Select size rendering
+ */
+.form-group.-size-small {
+  .react-select-container {
+    .react-select__control {
+      min-height: 28px;
+    }
+    .react-select__indicator {
+      padding: 3px;
+    }
+    .react-select__multi-value {
+      &__label {
+        @apply text-white text-xs py-0.5 px-1;
+        font-weight: 600;
+      }
+
+      &__remove {
+        @apply opacity-80;
+
+        &:hover {
+          @apply bg-transparent text-white opacity-100;
+        }
+      }
+    }
+
+    .react-select__input-container {
+      margin-top:1px;
+      margin-bottom: 1px;
+    }
+    .react-select__single-value {
+      @apply text-sm;
+    }
+
+    .react-select__value-container.react-select__value-container--is-multi {
+      @apply px-1 py-0;
+    }
+  }
 }
