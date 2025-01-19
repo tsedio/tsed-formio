@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { FormEdit, FormParameters } from "./all";
+import { FormEdit } from "./all";
 import { defaultDisplayChoices } from "./FormParameters";
-console.log(FormParameters);
+
 /**
  * Form Edit component to edit form schema using the form builder.
  *
@@ -86,21 +86,20 @@ export default {
     onDeleteComponent: {
       description: "A callback function that gets called when a component is deleted in the builder.",
       action: "onDeleteComponent"
+    },
+    layout: {
+      control: "radio",
+      options: ["choicesjs", "react"]
     }
   },
-  parameters: {
-    docs: {
-      source: {
-        type: "code"
-      }
-    }
-  }
+  parameters: {}
 } satisfies Meta<typeof FormEdit>;
 
 type Story = StoryObj<typeof FormEdit>;
 
 export const EditWebForm: Story = {
   args: {
+    layout: "react",
     typeChoices: [
       { label: "Form", value: "form" },
       { label: "Resources", value: "resource" }

@@ -1,50 +1,28 @@
-import Choices from "@formio/choices.js";
-import uniq from "lodash/uniq";
-import { useEffect, useRef } from "react";
+import { ComponentType } from "react";
 
-import { registerComponent } from "../../../registries/components";
-import { FormControl, FormControlProps } from "../form-control/FormControl";
+import { getComponent, registerComponent } from "../../../registries/components";
+import { type FormControl as DefaultFormControl } from "../form-control/FormControl";
+import type { InputTagsProps } from "./InputTags.interface";
 
-export interface InputTagsProps<T = any> extends Omit<FormControlProps, "description" | "prefix" | "suffix"> {
-  value?: T;
-  onChange?: (name: string, value: T) => void;
-  placeholder?: string;
+export function InputTags<Data = string>(props: InputTagsProps) {
+  const { name, id = name, label, required, description, before, after, size, className, layout = "choicesjs", ...otherProps } = props;
 
-  [key: string]: any;
-}
-
-export function InputTags({ name, value = [], label, onChange, required, description, prefix, suffix, ...props }: InputTagsProps) {
-  const ref: any = useRef();
-
-  useEffect(() => {
-    const instance = new Choices(ref.current, {
-      delimiter: ",",
-      editItems: true,
-      removeItemButton: true
-    });
-
-    instance.setValue([].concat(value, []));
-
-    instance.passedElement.element.addEventListener("addItem", (event: any) => {
-      onChange && onChange(name, uniq(value.concat(event.detail.value)));
-    });
-
-    instance.passedElement.element.addEventListener("removeItem", (event: any) => {
-      onChange &&
-        onChange(
-          name,
-          value.filter((v: string) => v !== event.detail.value)
-        );
-    });
-
-    return () => {
-      instance.destroy();
-    };
-  }, []);
-
+  const FormControl = getComponent<typeof DefaultFormControl>("FormControl");
+  const Component = getComponent<ComponentType<InputTagsProps<Data>>>([`InputTags.${layout}`, "Input"]);
+  console.log("VALUE", props.value);
   return (
-    <FormControl name={name} label={label} required={required} description={description} prefix={prefix} suffix={suffix}>
-      <input ref={ref} type='text' {...props} id={name} required={required} />
+    <FormControl
+      id={id}
+      name={name}
+      label={label}
+      required={required}
+      description={description}
+      before={before}
+      after={after}
+      size={size}
+      className={className}
+    >
+      <Component {...(otherProps as any)} id={id} name={name} required={required} />
     </FormControl>
   );
 }

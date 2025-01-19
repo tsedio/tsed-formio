@@ -16,7 +16,7 @@ describe("input-text", () => {
     const input = screen.getByTestId("input_test") as HTMLInputElement;
 
     expect(input).toBeInTheDocument();
-    expect(input).toHaveClass("form-control-small");
+    expect(screen.getByTestId("form-group-test")).toHaveClass("-size-small");
   });
 
   it("should display the input-text with placeholder", () => {

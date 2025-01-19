@@ -8,6 +8,7 @@ import { useFormEdit, UseFormEditHookProps } from "./useFormEdit";
 
 export interface FormEditProps extends UseFormEditHookProps, FormBuilderEvents {
   options?: FormOptions;
+  layout?: "html5" | "choicesjs" | "react";
 }
 
 export function FormEdit({
@@ -32,7 +33,7 @@ export function FormEdit({
   const FormParameters = getComponent<typeof DefaultFormParameters>("FormParameters");
   const FormBuilder = getComponent<typeof DefaultFormBuilder>("FormBuilder");
   const FormEditCTAs = getComponent<typeof DefaultFormEditCTAs>("FormEditCTAs");
-  console.log(FormParameters, FormBuilder, FormEditCTAs);
+
   return (
     <div className='form-edit-container'>
       <div className='form-edit'>
@@ -43,6 +44,7 @@ export function FormEdit({
           key={`form-settings-${form._id}`}
           form={form}
           onChange={setChange}
+          layout={props.layout}
         />
         <FormEditCTAs
           key={`form-edit-ctas-${form._id}`}

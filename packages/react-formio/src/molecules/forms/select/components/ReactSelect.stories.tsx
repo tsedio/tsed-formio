@@ -1,4 +1,4 @@
-import "./ReactSelect";
+import "../all";
 
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
@@ -145,7 +145,9 @@ export const WithDisabledOption: Story = {
 
 export const WithSizeOption: Story = {
   args: {
+    multiple: true,
     size: "small",
+    value: ["option-1"],
     options: [
       {
         label: "Option 1",
