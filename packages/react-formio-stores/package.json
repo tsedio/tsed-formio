@@ -1,6 +1,6 @@
 {
   "name": "@tsed/react-formio-stores",
-  "version": "3.0.0-alpha.8",
+  "version": "3.0.0-alpha.9",
   "description": "Provide redux stores and action around formio.js API. Written in TypeScript.",
   "main": "dist/index.js",
   "module": "dist/index.js",

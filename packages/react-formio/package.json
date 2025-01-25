@@ -1,6 +1,6 @@
 {
   "name": "@tsed/react-formio",
-  "version": "3.0.0-alpha.8",
+  "version": "3.0.0-alpha.9",
   "description": "Provide a react formio wrapper. Written in TypeScript.",
   "type": "module",
   "main": "./dist/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@tsed/tailwind-formio",
-  "version": "3.0.0-alpha.8",
+  "version": "3.0.0-alpha.9",
   "description": "Tailwind templates for form.io forms.",
   "type": "module",
   "main": "dist/index.js",
