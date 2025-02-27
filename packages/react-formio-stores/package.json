@@ -8,8 +8,10 @@
   "license": "MIT",
   "exports": {
     ".": {
+      "tsed-source": "./src/index.ts",
       "import": "./dist/index.modern.js",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "default": "./dist/index.modern.js"
     }
   },
   "scripts": {

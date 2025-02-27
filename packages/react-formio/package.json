@@ -6,8 +6,10 @@
   "module": "./dist/index.modern.js",
   "exports": {
     ".": {
+      "tsed-source": "./src/index.ts",
       "import": "./dist/index.modern.js",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "default": "./dist/index.modern.js"
     }
   },
   "source": "src/index.ts",
