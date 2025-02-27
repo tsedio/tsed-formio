@@ -6,6 +6,14 @@
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
   "type": "commonjs",
+  "exports": {
+    ".": {
+      "tsed-source": "./src/index.ts",
+      "import": "./dist/index.modern.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.modern.js"
+    }
+  },
   "scripts": {
     "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
     "build:templates": "gulp templates",
