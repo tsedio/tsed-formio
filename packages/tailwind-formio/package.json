@@ -12,7 +12,8 @@
       "import": "./dist/index.modern.js",
       "require": "./dist/index.js",
       "default": "./dist/index.modern.js"
-    }
+    },
+    "./styles/*.css": "./styles/*.css"
   },
   "scripts": {
     "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
