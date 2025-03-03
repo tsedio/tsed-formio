@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { HTMLAttributes } from "react";
+import React, { type HTMLAttributes } from "react";
 
 import { iconClass } from "../../../utils/iconClass";
 import { stopPropagationWrapper } from "../../../utils/stopPropagationWrapper";
