@@ -1,5 +1,5 @@
 <p style="text-align: center" align="center">
- <a href="https://tsed.io" target="_blank"><img src="https://tsed.io/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
+ <a href="https://tsed.dev" target="_blank"><img src="https://tsed.dev/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
 </p>
 
 <div align="center">
@@ -14,11 +14,11 @@
 </div>
 
 <div align="center">
-  <a href="https://tsed.io/">Website</a>
+  <a href="https://tsed.dev/">Website</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://tsed.io/tutorials/prisma.html">Tutorial</a>
+  <a href="https://tsed.dev/tutorials/prisma.html">Tutorial</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://api.tsed.io/rest/slack/tsedio/tsed">Slack</a>
+  <a href="https://slack.tsed.dev">Slack</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://twitter.com/TsED_io">Twitter</a>
 </div>
@@ -29,7 +29,7 @@ A [React](http://facebook.github.io/react/) library for rendering out forms base
 
 This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features listed above.
 
-See our [storybook](https://formio.tsed.io/) to see all available components.
+See our [storybook](https://formio.tsed.dev/) to see all available components.
 
 ## Features
 

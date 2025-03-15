@@ -1,5 +1,5 @@
 <p style="text-align: center" align="center">
- <a href="https://tsed.io" target="_blank"><img src="https://tsed.io/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
+ <a href="https://tsed.dev" target="_blank"><img src="https://tsed.dev/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
 </p>
 
 <div align="center">
@@ -14,11 +14,11 @@
 </div>
 
 <div align="center">
-  <a href="https://tsed.io/">Website</a>
+  <a href="https://tsed.dev/">Website</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://tsed.io/tutorials/prisma.html">Tutorial</a>
+  <a href="https://tsed.dev/tutorials/prisma.html">Tutorial</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://api.tsed.io/rest/slack/tsedio/tsed">Slack</a>
+  <a href="https://slack.tsed.dev">Slack</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://twitter.com/TsED_io">Twitter</a>
 </div>
@@ -31,25 +31,25 @@ platform.
 This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features
 listed above.
 
-See our [storybook](https://formio.tsed.io/?path=/docs/getting-started--docs) to see all available components.
+See our [storybook](https://formio.tsed.dev/?path=/docs/getting-started--docs) to see all available components.
 
 ## Features
 
 Many components are provided to build your own backoffice based on Formio.js API:
 
-- [ActionsTable](https://formio.tsed.io/?path=story/reactformio-actionstable--sandbox),
-- [FormAccess](https://formio.tsed.io/?path=story/reactformio-formaccess--sandbox),
-- [FormAction](https://formio.tsed.io/?path=story/reactformio-formaction--sandbox),
-- [Form](https://formio.tsed.io/?path=docs/documentation-form--docs),
-- [FormBuilder](https://formio.tsed.io/?path=docs/documentation-formbuilder--docs),
-- [FormEdit](https://formio.tsed.io/?path=docs/documentation-formedit--docs),
-- [FormsTable](https://formio.tsed.io/?path=docs/documentation-formstable--docs),
-- [InputTags](https://formio.tsed.io/?path=story/reactformio-inputtags--sandbox),
-- [InputText](https://formio.tsed.io/?path=story/reactformio-inputtext--sandbox),
-- [Pagination](https://formio.tsed.io/?path=story/reactformio-pagination--sandbox),
-- [Select](https://formio.tsed.io/?path=/story/reactformio-select--sandbox),
-- [SubmissionsTable](https://formio.tsed.io/?path=/docs/documentation-submissionstable--docs).
-- [Table](https://formio.tsed.io/?path=/story/reactformio-table--sandbox),
+- [ActionsTable](https://formio.tsed.dev/?path=story/reactformio-actionstable--sandbox),
+- [FormAccess](https://formio.tsed.dev/?path=story/reactformio-formaccess--sandbox),
+- [FormAction](https://formio.tsed.dev/?path=story/reactformio-formaction--sandbox),
+- [Form](https://formio.tsed.dev/?path=docs/documentation-form--docs),
+- [FormBuilder](https://formio.tsed.dev/?path=docs/documentation-formbuilder--docs),
+- [FormEdit](https://formio.tsed.dev/?path=docs/documentation-formedit--docs),
+- [FormsTable](https://formio.tsed.dev/?path=docs/documentation-formstable--docs),
+- [InputTags](https://formio.tsed.dev/?path=story/reactformio-inputtags--sandbox),
+- [InputText](https://formio.tsed.dev/?path=story/reactformio-inputtext--sandbox),
+- [Pagination](https://formio.tsed.dev/?path=story/reactformio-pagination--sandbox),
+- [Select](https://formio.tsed.dev/?path=/story/reactformio-select--sandbox),
+- [SubmissionsTable](https://formio.tsed.dev/?path=/docs/documentation-submissionstable--docs).
+- [Table](https://formio.tsed.dev/?path=/story/reactformio-table--sandbox),
 - Predefined Reducers for Actions, Action, Form, Forms, Submission, Submissions, etc...,
 - TypeScript support.
 - Tailwind support.
@@ -91,7 +91,7 @@ function App() {
 export default App;
 ```
 
-See more on http://formio.tsed.io/?path=/docs/getting-started--docs
+See more on http://formio.tsed.dev/?path=/docs/getting-started--docs
 
 ## Contributors
 
