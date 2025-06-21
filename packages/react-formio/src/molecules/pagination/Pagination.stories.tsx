@@ -1,6 +1,6 @@
 import "../forms/select/all";
 
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useState } from "react";
 
 import { Pagination } from "./all";

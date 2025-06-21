@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import tailwind from "@tsed/tailwind-formio";
 
 import { Loader } from "./Loader";

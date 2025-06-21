@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { expect, fn, userEvent, waitFor, within } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useState } from "react";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import { SubmissionType } from "../../interfaces";
 import { InputText } from "../../molecules/forms/input-text/InputText";

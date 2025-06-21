@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 import { useModal } from "../../molecules/modal/Modal";
 import { RemoveModal, RemoveModalProps } from "./RemoveModal";
