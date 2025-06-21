@@ -2,8 +2,8 @@ export function StoryBanner() {
   return (
     <div>
       <div className='flex items-center justify-center gap-3'>
-        <a href='https://tsed.io' target='_blank' rel='noreferrer'>
-          <img className='overflow-hidden block' src='https://tsed.io/tsed-og.png' width='200' alt='Ts.ED logo' />
+        <a href='https://tsed.dev' target='_blank' rel='noreferrer'>
+          <img className='overflow-hidden block' src='https://tsed.dev/tsed-og.png' width='200' alt='Ts.ED logo' />
         </a>
         <a href='https://form.io' target='_blank' rel='noreferrer'>
           <img src='https://portal.form.io/template/images/formio-logo-with-slogan.png' width='200' alt='Form.io logo' />
@@ -21,11 +21,11 @@ export function StoryBanner() {
       <hr />
 
       <div className='text-center pb-5'>
-        <a href='https://tsed.io/'>Ts.ED</a>
+        <a href='https://tsed.dev/'>Ts.ED</a>
         <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-        <a href='https://tsed.io/tutorials/prisma.html'>Tutorial</a>
+        <a href='https://tsed.dev/tutorials/prisma.html'>Tutorial</a>
         <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-        <a href='https://api.tsed.io/rest/slack/tsedio/tsed'>Slack</a>
+        <a href='https://slack.tsed.dev'>Slack</a>
         <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
         <a href='https://twitter.com/TsED_io'>Twitter</a>
       </div>
