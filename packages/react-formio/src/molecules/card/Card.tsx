@@ -1,6 +1,8 @@
 import classnames from "classnames";
 import { PropsWithChildren } from "react";
 
+import { registerComponent } from "../../registries/components.js";
+
 export interface CardProps {
   label: string;
   className?: string;
@@ -18,3 +20,5 @@ export function Card({ children, label, className }: PropsWithChildren<CardProps
     </div>
   );
 }
+
+registerComponent("Card", Card);

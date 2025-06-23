@@ -12,18 +12,11 @@ import { Pagination } from "./all";
  *
  * ```tsx
  * import {Pagination} from "@tsed/react-formio/molecules/pagination/all"
- * import {Pagination} from "@tsed/react-formio/molecules/form/select/Select/all"
  *
  * or
  *
  * import {Pagination} from "@tsed/react-formio/molecules/pagination/Pagination";
  * import "@tsed/react-formio/molecules/pagination/PaginationButton";
- *
- * or
- *
- * import {Pagination} from "@tsed/react-formio/molecules/pagination/Pagination";
- *
- * registerComponent("PaginationButton", MyPaginationButton);
  * ```
  *
  * Pagination component support DI container and can be used with custom PaginationButton component.

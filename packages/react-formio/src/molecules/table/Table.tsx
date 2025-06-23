@@ -76,7 +76,7 @@ export function Table<Data extends RowData = any>({ className, enableFooter, chi
         )}
       </table>
       <div className={"overflow-hidden flex flex-wrap"}>
-        {props.data.length && pagination && (
+        {props.data.length && pagination ? (
           <Pagination
             className={"flex-1"}
             canNextPage={tableInstance.getCanNextPage()}
@@ -92,7 +92,7 @@ export function Table<Data extends RowData = any>({ className, enableFooter, chi
             onClickNextPage={() => tableInstance.nextPage()}
             onPageSizeChange={(pageSize) => tableInstance.setPageSize(pageSize)}
           />
-        )}
+        ) : null}
         <div>{children}</div>
       </div>
     </div>

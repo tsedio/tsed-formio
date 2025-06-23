@@ -1,63 +1,79 @@
 .tw-tabs {
-  &__header {
-    @apply overflow-auto;
+    &__header {
+        @apply overflow-auto;
 
-    &-wrapper {
-      @apply relative flex items-center pt-1 px-1;
-    }
-    &-border {
-      @apply  border-b-1 border-gray-300 absolute bottom-0 left-0 right-0 z-1;
-    }
-  }
+        &-wrapper{
+            @apply relative flex items-center pt-1 px-1 gap-1;
 
-  &__button {
-    @apply flex items-center border-1 border-b-0 border-gray-300 relative outline-none focus:outline-none bg-gray-100 text-gray-700 hover:text-secondary focus:text-secondary px-4 py-2;
+            > [role="tablist"] {
+                @apply relative flex items-center gap-1;
+            }
+        }
 
-    &-label {
-      @apply text-sm whitespace-nowrap;
-    }
-    &-icon {
-      @apply mr-2 -ml-1 -mt-px;
-    }
+        .btn {
+            @apply px-3;
+        }
 
-    &-border {
-      @apply border-transparent z-1 absolute top-0 right-0 left-0 border-t-2;
-      &.-active {
-        @apply border-primary;
-      }
-    }
-    &-wrapper {
-      @apply relative  mr-1;
-
-      &:last-child{
-        @apply mr-0;
-      }
-
-      &.-active {
-        @apply z-2;
-      }
-      &.-back{
-        @apply -ml-2 mr-0;
-      }
+        &-border {
+            @apply border-b-1 border-gray-300 absolute bottom-0 left-0 right-0 z-1;
+        }
     }
 
-    &.-active {
-      @apply text-primary bg-white;
+    &__button {
+        @apply flex items-center border-1 border-b-0 border-gray-300 relative outline-none focus:outline-none bg-gray-100 text-gray-700 hover:text-secondary focus:text-secondary px-4 py-2;
+
+        &-label {
+            @apply text-sm whitespace-nowrap;
+        }
+
+        &-icon {
+            @apply mr-2 -ml-1 -mt-px;
+        }
+
+        &-border {
+            @apply border-transparent z-1 absolute top-0 right-0 left-0 border-t-2;
+        }
+
+        &-wrapper {
+            @apply relative ;
+
+            &.-active {
+                @apply z-2;
+
+                .tw-tabs__button {
+                    @apply text-primary bg-white;
+                }
+
+                .tw-tabs__button-border {
+                    @apply border-primary;
+                }
+            }
+
+            &.-reverse {
+                .tw-tabs__button {
+                    @apply bg-white;
+
+                    &.-active {
+                        @apply bg-gray-100;
+                    }
+                }
+            }
+        }
     }
 
-    &.-reverse {
-      @apply bg-white;
-      &.-active {
-        @apply bg-gray-100;
-      }
+    &__body {
+        @apply grid grid-rows-1 overflow-hidden;
     }
 
-    &.-back {
-      @apply text-secondary bg-white px-2 border-transparent;
+    &__panel {
+        @apply col-start-1 col-end-1 row-start-1 row-end-1 transition-all duration-300 ease-in-out;
 
-      .tabs__button-icon {
-        @apply m-0;
-      }
+        &.-active {
+            @apply z-1 opacity-100 visible;
+        }
+
+        &:not(.-active) {
+            @apply z-0 opacity-0 invisible;
+        }
     }
-  }
 }

@@ -28,7 +28,7 @@ export function useFormEdit(props: UseFormEditHookProps) {
   };
 
   useEffect(() => {
-    if (props.form && (current._id !== props.form._id || current.modified !== props.form.modified)) {
+    if (props.form && (current?._id !== props.form._id || current.modified !== props.form.modified)) {
       dispatchFormAction({ type: "replaceForm", value: props.form });
     }
   }, [props.form]);

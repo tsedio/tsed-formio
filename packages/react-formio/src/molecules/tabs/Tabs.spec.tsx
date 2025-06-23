@@ -1,87 +1,140 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { expect, vi } from "vitest";
 
-import { Tabs } from "./Tabs";
-import { Sandbox } from "./Tabs.stories";
+import { Tab } from "./Tab.js";
+import { TabList } from "./TabList.js";
+import { TabPanel } from "./TabPanel.js";
+import { Tabs } from "./Tabs.js";
+import { TabsBody } from "./TabsBody.js";
+
+const props = {
+  reverse: false,
+  items: [
+    {
+      action: "edit",
+      exact: true,
+      icon: "edit",
+      label: "Edit",
+      children: <div className='bg-red-100 p-5'>Edit</div>
+    },
+    {
+      action: "submissions",
+      exact: false,
+      icon: "data",
+      label: "Data",
+      children: <div className='bg-orange-100 p-5'>Data</div>
+    },
+    {
+      action: "preview",
+      exact: true,
+      icon: "test-tube",
+      label: "Preview",
+      children: <div className='bg-yellow-100 p-5'>Preview</div>
+    },
+    {
+      action: "actions",
+      exact: false,
+      icon: "paper-plane",
+      label: "Actions",
+      children: <div className='bg-green-100 p-5'>Actions</div>
+    },
+    {
+      action: "access",
+      exact: true,
+      icon: "lock",
+      label: "Access",
+      children: <div className='bg-blue-100 p-5'>Access</div>
+    },
+    {
+      action: "export",
+      exact: true,
+      icon: "download",
+      label: "Export",
+      children: <div className='bg-purple-100 p-5'>Export</div>
+    },
+    {
+      action: "delete",
+      exact: true,
+      icon: "trash",
+      label: "Delete",
+      roles: ["administrator", "owner"],
+      children: <div className='bg-gray-100 p-5'>Trash</div>
+    }
+  ],
+  onClick: vi.fn()
+};
+
+function TestComponent({
+  selected,
+  onClick,
+  reverse,
+  items
+}: {
+  selected?: number;
+  onClick?: (item: any) => void;
+  reverse?: boolean;
+  items: any[];
+}) {
+  return (
+    <Tabs selected={selected}>
+      <TabList>
+        {items.map((item, index) => {
+          return (
+            <Tab onClick={() => onClick?.(item)} key={index} icon={item.icon} value={index} className={reverse ? "-reverse" : ""}>
+              {item.label}
+            </Tab>
+          );
+        })}
+      </TabList>
+      <TabsBody>
+        {items.map((item, index) => {
+          return (
+            <TabPanel key={index} value={index}>
+              {item.children}
+            </TabPanel>
+          );
+        })}
+      </TabsBody>
+    </Tabs>
+  );
+}
 
 describe("<Tabs>", () => {
-  it("should display the tabs component and children", () => {
-    const items = [
-      {
-        action: "back",
-        exact: true,
-        icon: "chevron-left",
-        back: true
-      },
-      {
-        action: "edit",
-        exact: true,
-        icon: "edit",
-        label: "Edit"
-      }
-    ];
+  it("should display the tabs component and children", async () => {
+    render(<TestComponent {...props} />);
 
-    render(<Tabs {...Sandbox.args} items={items} />);
+    // Vérifie que tous les onglets sont présents
+    expect(screen.getByRole("tab", { name: "Edit" })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "Data" })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "Preview" })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "Actions" })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "Access" })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "Export" })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "Delete" })).toBeInTheDocument();
 
-    const tabsComponent = screen.getByTestId("tabs-comp");
+    await waitFor(() => expect(screen.getByRole("tabpanel")).toHaveTextContent("Edit"));
 
-    const buttonsTabWrapper = screen.getAllByTitle("button-wrapper");
-    const chevronLeftButtonTabWrapper = buttonsTabWrapper[0];
-    const editButtonTabWrapper = buttonsTabWrapper[1];
+    // Clique sur l'onglet "Preview" et vérifie le contenu
+    await userEvent.click(screen.getByRole("tab", { name: "Preview" }));
 
-    const buttonsTab = screen.getAllByTitle("button-tab");
-    const chevronLeftButtonTab = buttonsTab[0];
-    const editButtonTab = buttonsTab[1];
+    expect(props.onClick).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: "preview"
+      })
+    );
 
-    const fontAwsomeChevronLeftIcon = "fa fa-chevron-left";
-    const fontAwsomeEditIcon = "fa fa-edit";
+    await waitFor(() => expect(screen.getByRole("tabpanel")).toHaveTextContent("Preview"));
 
-    expect(tabsComponent).toBeInTheDocument();
+    // Clique sur l'onglet "Delete" et vérifie le contenu
+    await userEvent.click(screen.getByRole("tab", { name: "Delete" }));
 
-    expect(chevronLeftButtonTabWrapper).toContainElement(chevronLeftButtonTab);
-    expect(chevronLeftButtonTabWrapper).toContainHTML("-back");
-    expect(chevronLeftButtonTab).toBeInTheDocument();
-    expect(chevronLeftButtonTab).toContainHTML(fontAwsomeChevronLeftIcon);
-    expect(chevronLeftButtonTab).toHaveTextContent("");
+    expect(props.onClick).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: "delete"
+      })
+    );
 
-    expect(editButtonTabWrapper).toContainElement(editButtonTab);
-    expect(editButtonTabWrapper).not.toContainHTML("-back");
-    expect(editButtonTab).toBeInTheDocument();
-    expect(editButtonTab).toContainHTML(fontAwsomeEditIcon);
-    expect(editButtonTab).toHaveTextContent("Edit");
-  });
-
-  it("should call dispatcher when clicking on a button tab", () => {
-    const items = [
-      {
-        action: "back",
-        exact: true,
-        icon: "chevron-left",
-        back: true
-      },
-      {
-        action: "edit",
-        exact: true,
-        icon: "edit",
-        label: "Edit"
-      }
-    ];
-    const onClick = vi.fn();
-
-    render(<Tabs items={items} onClick={onClick} />);
-
-    const buttonsTab = screen.getAllByTitle("button-tab");
-    const chevronLeftButtonTab = buttonsTab[0];
-    const editButtonTab = buttonsTab[1];
-
-    fireEvent.click(chevronLeftButtonTab);
-
-    expect(onClick).toHaveBeenCalledTimes(1);
-    expect(onClick).toHaveBeenCalledWith(items[0]);
-
-    fireEvent.click(editButtonTab);
-
-    expect(onClick).toHaveBeenCalledTimes(2);
-    expect(onClick).toHaveBeenCalledWith(items[1]);
+    await waitFor(() => expect(screen.getByRole("tabpanel")).toHaveTextContent("Trash"));
   });
 });

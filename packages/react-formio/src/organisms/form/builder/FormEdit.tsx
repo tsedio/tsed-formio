@@ -1,3 +1,5 @@
+import classnames from "classnames";
+
 import type { FormOptions } from "../../../interfaces";
 import { getComponent } from "../../../registries/components";
 import { FormBuilder as DefaultFormBuilder } from "./FormBuilder";
@@ -9,6 +11,8 @@ import { useFormEdit, UseFormEditHookProps } from "./useFormEdit";
 export interface FormEditProps extends UseFormEditHookProps, FormBuilderEvents {
   options?: FormOptions;
   layout?: "html5" | "choicesjs" | "react";
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export function FormEdit({
@@ -18,6 +22,8 @@ export function FormEdit({
   enableTags,
   onSubmit: initialOnSubmit,
   onCopy: initialOnCopy,
+  className,
+  style,
   ...props
 }: FormEditProps) {
   const { form, isValid, setChange, hasRedo, hasChanged, hasUndo, redo, undo, reset, onSubmit, onCopy } = useFormEdit({
@@ -35,7 +41,7 @@ export function FormEdit({
   const FormEditCTAs = getComponent<typeof DefaultFormEditCTAs>("FormEditCTAs");
 
   return (
-    <div className='form-edit-container'>
+    <div className={classnames("form-edit-container", className)} style={style}>
       <div className='form-edit'>
         <FormParameters
           enableTags={enableTags}
