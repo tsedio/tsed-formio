@@ -9,7 +9,7 @@ export function InputTags<Data = string>(props: InputTagsProps) {
 
   const FormControl = getComponent<typeof DefaultFormControl>("FormControl");
   const Component = getComponent<ComponentType<InputTagsProps<Data>>>([`InputTags.${layout}`, "Input"]);
-  console.log("VALUE", props.value);
+
   return (
     <FormControl
       id={id}

@@ -19,7 +19,40 @@ type ProductSubmission = SubmissionType<{
   price?: number;
   currency?: string;
 }>;
-
+/**
+ * Table component.
+ *
+ * You can import this component and use it like:
+ *
+ * ```tsx
+ * import {Table} from "@tsed/react-formio/molecules/table/all"
+ *
+ * or
+ *
+ * import {Table} from "@tsed/react-formio/molecules/table/Table";
+ * ```
+ *
+ * Table component support DI container and can be used with custom component. Here is the list of components that you can override:
+ *
+ * - DefaultFilter
+ * - DefaultArrowSort
+ * - DefaultCell
+ * - DefaultCellOperations
+ * - DefaultOperationButton
+ * - DefaultCellHeader
+ * - DefaultCellFooter
+ * - TextFieldFilter
+ * - SelectFilter
+ * - RangeFilter
+ *
+ * ```tsx
+ * function CustomDefaultFilter() {
+ *
+ * }
+ *
+ * registerComponent("DefaultFilter", DefaultFilter);
+ * ```
+ */
 export default {
   title: "Table",
   component: Table,
