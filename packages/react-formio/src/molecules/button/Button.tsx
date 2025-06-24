@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { type ButtonHTMLAttributes, forwardRef, type LegacyRef, type PropsWithChildren } from "react";
+import { type ButtonHTMLAttributes, forwardRef, type PropsWithChildren } from "react";
 
 import { registerComponent } from "../../registries/components";
 
@@ -24,31 +24,50 @@ export const BUTTON_VARIANTS = [
   "outline-link"
 ];
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface BaseButtonProps<T extends HTMLElement> extends ButtonHTMLAttributes<T> {
+  tag?: "button" | "a" | "input" | "div";
   variant?: (typeof BUTTON_VARIANTS)[keyof typeof BUTTON_VARIANTS] | string;
 }
 
-export const Button = forwardRef(
-  ({ variant, className, children, ...props }: PropsWithChildren<ButtonProps>, ref: LegacyRef<HTMLButtonElement>) => {
-    return (
-      <button
-        {...props}
-        ref={ref}
-        className={cx(
-          "btn flex gap-1",
-          {
-            disabled: props.disabled
-          },
-          `btn-${variant}`,
-          className
-        )}
-        disabled={props.disabled}
-        onClick={(evt) => !props.disabled && props.onClick?.(evt)}
-      >
-        {children}
-      </button>
-    );
-  }
-);
+interface HTMLAnchorProps extends BaseButtonProps<HTMLAnchorElement> {
+  tag: "a";
+}
+
+interface HTMLButtonProps extends BaseButtonProps<HTMLButtonElement> {
+  tag?: "button";
+}
+
+interface HTMLInputProps extends BaseButtonProps<HTMLInputElement> {
+  tag: "input";
+}
+
+interface HTMLDivProps extends BaseButtonProps<HTMLDivElement> {
+  tag: "div";
+}
+
+export type ButtonProps = HTMLAnchorProps | HTMLButtonProps | HTMLInputProps | HTMLDivProps;
+
+export const Button = forwardRef(({ tag: Tag = "button", variant, className, children, ...props }: PropsWithChildren<ButtonProps>, ref) => {
+  return (
+    <Tag
+      {...(props as any)}
+      ref={ref as any}
+      className={cx(
+        "btn flex gap-1",
+        {
+          disabled: props.disabled
+        },
+        `btn-${variant}`,
+        className
+      )}
+      disabled={props.disabled}
+      onClick={(evt) => !props.disabled && props.onClick?.(evt as any)}
+    >
+      {children}
+    </Tag>
+  );
+});
+
+Button.displayName = "Button";
 
 registerComponent("Button", Button);
