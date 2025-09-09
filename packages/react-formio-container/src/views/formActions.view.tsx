@@ -30,7 +30,7 @@ export function FormActionsComponent({
         availableActions={availableActions}
         data={actions}
         onAddAction={addAction}
-        onClick={dispatchOperation}
+        onClick={dispatchOperation as any}
       />
     </div>
   );

@@ -3,7 +3,7 @@
         @apply overflow-auto;
 
         &-wrapper{
-            @apply relative flex items-center pt-1 px-1 gap-1;
+            @apply relative flex items-center pt-1 gap-1;
 
             > [role="tablist"] {
                 @apply relative flex items-center gap-1;
@@ -70,10 +70,12 @@
 
         &.-active {
             @apply z-1 opacity-100 visible;
+            height: auto;
         }
 
         &:not(.-active) {
             @apply z-0 opacity-0 invisible;
+            height: 0;
         }
     }
 }

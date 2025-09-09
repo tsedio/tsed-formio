@@ -1,24 +1,30 @@
 import type { CellContext } from "@tanstack/react-table";
 
-import type { Operation } from "../../../interfaces";
+import type { CellMetadata, JSON, Operation } from "../../../interfaces";
 import { getComponent, registerComponent } from "../../../registries/components";
 import type { DefaultOperationButton } from "./DefaultOperationButton";
 
-export interface DefaultCellOperationsProps<Data = any> {
+export interface DefaultCellOperationsProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> {
   info: CellContext<Data, unknown>;
   operations: Operation<Data>[];
-  metadata?: Record<string, unknown>;
+  metadata?: CellMetadata;
   i18n: (i18n: string) => string;
   onClick?: (data: any, operation: Operation<Data>) => void;
 }
 
-export function DefaultCellOperations({ info, metadata, operations, i18n, onClick }: DefaultCellOperationsProps) {
-  const Button = getComponent<typeof DefaultOperationButton>("OperationButton");
+export function DefaultCellOperations<Data extends { [key: string]: JSON } = { [key: string]: JSON }>({
+  info,
+  metadata,
+  operations,
+  i18n,
+  onClick
+}: DefaultCellOperationsProps<Data>) {
+  const Button = getComponent<typeof DefaultOperationButton<Data>>("OperationButton");
   return (
     <div className='btn-group'>
       {operations
-        .filter(({ permissionsResolver }) => {
-          return !permissionsResolver || permissionsResolver(info.row.original, metadata);
+        .filter(({ permissionsResolver, ...operation }) => {
+          return !permissionsResolver || permissionsResolver(info.row.original, metadata || {}, operation);
         })
         .map((operation) => {
           return (

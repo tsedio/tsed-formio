@@ -1,13 +1,5 @@
-import {
-  ActionInfoType,
-  ActionType,
-  Operation,
-  selectActions,
-  selectAuth,
-  selectAvailableActions,
-  selectError,
-  selectForm
-} from "@tsed/react-formio-stores";
+import type { ActionInfoType, ActionType } from "@tsed/react-formio";
+import { Operation, selectActions, selectAuth, selectAvailableActions, selectError, selectForm } from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

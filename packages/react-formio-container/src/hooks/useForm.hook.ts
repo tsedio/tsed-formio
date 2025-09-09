@@ -1,7 +1,7 @@
+import type { FormType } from "@tsed/react-formio";
 import {
   AuthState,
   deleteForm,
-  FormType,
   getForm as getFormAction,
   oneOfIsActive,
   receiveForm,

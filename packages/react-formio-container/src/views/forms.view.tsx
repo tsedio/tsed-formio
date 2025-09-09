@@ -4,7 +4,7 @@ import { FormsTable } from "@tsed/react-formio/organisms/table/forms/FormsTable"
 import { useForms, UseFormsProps } from "../hooks/useForms.hook";
 
 export function FormsComponent({
-  formType,
+  //formType,
   className,
   data,
   error,
@@ -43,13 +43,13 @@ export function FormsComponent({
       <Alert message={error} />
       <FormsTable
         className={className}
-        icon={formType === "forms" ? "detail" : "folder"}
+        // icon={formType === "forms" ? "detail" : "folder" as any}
         data={data}
         operations={operations as any[]}
         {...parameters}
         onChange={setParameters}
         i18n={i18n}
-        onClick={dispatchOperation}
+        onClick={dispatchOperation as any}
       />
     </div>
   );

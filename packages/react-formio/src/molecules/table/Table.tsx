@@ -1,14 +1,15 @@
-import { flexRender, RowData } from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
 import cx from "classnames";
 import { PropsWithChildren } from "react";
 
+import type { JSON } from "../../interfaces/index.js";
 import { getComponent } from "../../registries/components";
 import type { Pagination as DefaultPagination } from "../pagination/Pagination";
 import type { DefaultCellFooter } from "./components/DefaultCellFooter";
 import type { DefaultCellHeader } from "./components/DefaultCellHeader";
 import { useTable, UseTableProps } from "./hooks/useTable";
 
-export interface TableProps<Data extends RowData = any> extends UseTableProps<Data> {
+export interface TableProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> extends UseTableProps<Data> {
   className?: string;
 
   enableFooter?: boolean;
@@ -16,8 +17,13 @@ export interface TableProps<Data extends RowData = any> extends UseTableProps<Da
   pageSizes?: number[];
 }
 
-export function Table<Data extends RowData = any>({ className, enableFooter, children, ...props }: PropsWithChildren<TableProps<Data>>) {
-  const { tableInstance, i18n } = useTable(props);
+export function Table<Data extends { [key: string]: JSON } = { [key: string]: JSON }>({
+  className,
+  enableFooter,
+  children,
+  ...props
+}: PropsWithChildren<TableProps<Data>>) {
+  const { tableInstance, i18n } = useTable<Data>(props);
   const CellHeader = getComponent<typeof DefaultCellHeader>("CellHeader");
   const CellFooter = getComponent<typeof DefaultCellFooter>("CellFooter");
   const Pagination = getComponent<typeof DefaultPagination>("Pagination");
