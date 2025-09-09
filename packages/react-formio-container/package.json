@@ -48,7 +48,7 @@
     "@tsed/react-formio-stores": "workspace:*",
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.5",
-    "vite": "5.4.11",
+    "vite": "7.1.5",
     "vitest": "3.2.4"
   },
   "peerDependenciesMeta": {
@@ -97,5 +97,6 @@
     "tooltip.js": {
       "optional": false
     }
-  }
+  },
+  "dependencies": {}
 }

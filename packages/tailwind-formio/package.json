@@ -35,7 +35,7 @@
     "rimraf": "3.0.2",
     "tailwind-config-viewer": "2.0.4",
     "tailwindcss": "3.4.17",
-    "vite": "5.4.11",
+    "vite": "7.1.5",
     "vite-plugin-ejs": "1.7.0"
   },
   "browserslist": {
@@ -49,5 +49,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "dependencies": {},
+  "peerDependencies": {}
 }
