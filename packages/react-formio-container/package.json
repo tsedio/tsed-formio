@@ -20,8 +20,8 @@
     }
   },
   "scripts": {
-    "test": "vitest run --coverage",
-    "build": "vite build",
+    "/test": "vitest run --coverage",
+    "/build": "vite build",
     "watch": "vite watch"
   },
   "peerDependencies": {
@@ -97,5 +97,6 @@
     "tooltip.js": {
       "optional": false
     }
-  }
+  },
+  "dependencies": {}
 }

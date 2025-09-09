@@ -9,6 +9,6 @@
     "paths": {},
     "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["src/**/*.spec.tsx", "src/**/*.spec.ts", "vitest.config.mts"],
-  "exclude": ["node_modules", "dist", "coverage"]
+  "include": ["src/**/*.spec.ts", "test/**/*.spec.ts", "vitest.config.mts"],
+  "exclude": ["node_modules", "lib", "benchmark", "coverage"]
 }
