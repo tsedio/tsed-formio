@@ -1,0 +1,24 @@
+{
+  "extends": "@tsed/typescript/tsconfig.web.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "composite": false,
+    "declaration": false,
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"],
+    "paths": {
+      "@tsed/react-formio": ["packages/react-formio/src"],
+      "@tsed/react-formio/*": ["packages/react-formio/src/*"],
+      "@tsed/redux-utils": ["packages/redux-utils/src"]
+    }
+  },
+  "include": [
+    "**/.storybook/**/*.ts",
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.tsx",
+    "**/vite.config.mts",
+    "**/vitest.config.mts",
+    "**/vitest.workspace.mts"
+  ],
+  "exclude": ["packages/react-formio-container", "packages/react-formio-stores", "packages/react-formio-redux", "packages/integration"]
+}

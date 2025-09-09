@@ -6,16 +6,16 @@ import {extname, relative} from "path";
 import preserveDirectives from "rollup-preserve-directives";
 import {defineConfig} from "vite";
 import dts from "vite-plugin-dts";
-import {resolve} from "node:path";
 
 import pkg from "./package.json" with {type: "json"};
+import {resolve} from "node:path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     dts({
-      tsconfigPath: "./tsconfig.app.json",
+      tsconfigPath: "../../tsconfig.app.json",
       aliasesExclude: [],
       include: ["src/**/*.{ts,tsx}"],
       exclude: ["**/*.spec.{ts,tsx}", "**/*.stories.{ts,tsx}", "**/__*__/**"]

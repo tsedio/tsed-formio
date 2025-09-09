@@ -13,7 +13,7 @@ export function hasRoles(auth: AuthState, roles: string[]): boolean {
   return !!roles.find((role) => hasRole(auth, role));
 }
 
-export function isAuthorized(auth: AuthState, roles: string[] = []): boolean {
+export function isAuthorized(auth: AuthState | undefined, roles: string[] = []): boolean {
   if (auth && auth.authenticated) {
     if (roles.length) {
       return !!hasRoles(auth, roles);

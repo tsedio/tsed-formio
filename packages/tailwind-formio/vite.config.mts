@@ -38,7 +38,7 @@ export default defineConfig({
   plugins: [
     ejsPlugin(),
     dts({
-      tsconfigPath: "./tsconfig.app.json",
+      tsconfigPath: "../../tsconfig.app.json",
       aliasesExclude: [],
       include: ["src/**/*.{ts,tsx}"],
       exclude: ["**/*.spec.{ts,tsx}", "**/*.stories.{ts,tsx}", "**/__*__/**"]

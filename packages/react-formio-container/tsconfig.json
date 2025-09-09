@@ -6,7 +6,7 @@
   "include": [],
   "references": [
     {
-      "path": "../react-formio/tsconfig.json"
+      "path": "../redux-utils/tsconfig.json"
     },
     {
       "path": "./tsconfig.app.json"

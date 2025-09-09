@@ -7,13 +7,13 @@
   "module": "./dist/index.modern.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "tsed-source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
     "./*": {
-      "types": "./dist/*.d.ts",
       "tsed-source": "./src/*",
+      "types": "./dist/*.d.ts",
       "default": "./dist/*.js"
     }
   },
