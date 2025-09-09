@@ -1,4 +1,5 @@
-import { FormsState, FormType, getForms, Operation, selectRoot } from "@tsed/react-formio-stores";
+import type { FormType } from "@tsed/react-formio";
+import { FormsState, getForms, Operation, selectRoot } from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

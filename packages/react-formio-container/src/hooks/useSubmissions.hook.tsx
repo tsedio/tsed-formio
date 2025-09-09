@@ -1,4 +1,5 @@
-import { getSubmissions, Operation, selectAuth, selectForm, selectRoot, SubmissionsState, SubmissionType } from "@tsed/react-formio-stores";
+import type { SubmissionType } from "@tsed/react-formio";
+import { getSubmissions, Operation, selectAuth, selectForm, selectRoot, SubmissionsState } from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

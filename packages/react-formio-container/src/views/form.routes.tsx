@@ -1,5 +1,5 @@
-import type { TabsItemProps } from "@tsed/react-formio/molecules/tabs/Tabs";
-import { AuthState, checkRoleFormAccess, FormType } from "@tsed/react-formio-stores";
+import type { FormType } from "@tsed/react-formio";
+import { AuthState, checkRoleFormAccess } from "@tsed/react-formio-stores";
 import { ComponentType } from "react";
 
 import { FormAccessView } from "./formAccess.view";
@@ -10,7 +10,7 @@ import { FormPreviewView } from "./formPreview.view";
 import { FormSettingsView } from "./formSettings.view";
 import { SubmissionsView } from "./submissions.view";
 
-export interface FormRoute<User extends { [key: string]: unknown } = any> extends TabsItemProps, Record<string, unknown> {
+export interface FormRoute<User extends { [key: string]: unknown } = any> extends Record<string, unknown>, Record<string, unknown> {
   action: string;
   exact: boolean;
   component?: ComponentType<any>;

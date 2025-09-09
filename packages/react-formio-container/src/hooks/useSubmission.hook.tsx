@@ -1,3 +1,4 @@
+import type { SubmissionType } from "@tsed/react-formio";
 import {
   deleteSubmission,
   getSubmission as getSubmissionAction,
@@ -11,8 +12,7 @@ import {
   selectForm,
   selectIsActive,
   selectRoot,
-  selectSubmission,
-  SubmissionType
+  selectSubmission
 } from "@tsed/react-formio-stores";
 import { push } from "connected-react-router";
 import noop from "lodash/noop";

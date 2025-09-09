@@ -1,4 +1,4 @@
-import { FormType } from "@tsed/react-formio";
+import type { FormType } from "@tsed/react-formio";
 import FileSaver from "file-saver";
 import moment from "moment";
 
@@ -27,7 +27,7 @@ async function exportActions(form: FormType) {
 
 async function getContent(form: FormType, type: string, format = "json") {
   let result;
-  console.log(form, type, format);
+
   switch (type) {
     case "schema":
       result = await exportForm(form);

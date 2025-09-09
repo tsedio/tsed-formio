@@ -6,18 +6,18 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  type RowData,
   type TableOptions,
   type TableState,
   useReactTable
 } from "@tanstack/react-table";
 import { useEffect } from "react";
 
-import { Operation } from "../../../interfaces";
+import { type JSON, Operation } from "../../../interfaces";
 import { getComponent } from "../../../registries/components";
 import type { DefaultCellOperations } from "../components/DefaultCellOperations";
 
-export interface UseTableProps<Data extends RowData> extends TableOptions<Data> {
+export interface UseTableProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }>
+  extends Omit<TableOptions<Data>, "getCoreRowModel" | "onClick"> {
   operations: Operation<Data>[];
   metadata?: Record<string, unknown>;
   i18n?: (i18n: string) => string;
@@ -27,8 +27,8 @@ export interface UseTableProps<Data extends RowData> extends TableOptions<Data> 
   pageSizes?: number[];
 }
 
-export function useTable<Data extends RowData>(props: UseTableProps<Data>) {
-  const Operations = getComponent<typeof DefaultCellOperations>("CellOperations");
+export function useTable<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseTableProps<Data>) {
+  const Operations = getComponent<typeof DefaultCellOperations<Data>>("CellOperations");
   const i18n = props.i18n || ((f: string) => f);
 
   // const [pagination, setPagination] = useState({

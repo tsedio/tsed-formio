@@ -20,7 +20,7 @@ export function SubmissionsComponent({
         data={data}
         form={form as any}
         {...parameters}
-        onClick={dispatchOperation}
+        onClick={dispatchOperation as any}
         onChange={setParameters}
         operations={[
           {
