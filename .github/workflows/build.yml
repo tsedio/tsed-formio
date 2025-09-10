@@ -39,7 +39,7 @@ jobs:
       - name: Install Playwright 🚀
         run: yarn playwright install
       - name: Run test 🔍
-        run: yarn test
+        run: yarn run tailwind:build && yarn test
 
   deploy-packages:
     runs-on: ubuntu-latest
