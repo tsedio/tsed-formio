@@ -1,7 +1,7 @@
 import "./all.js";
 
-import { Meta, StoryObj } from "@storybook/react";
-import { expect, fn, userEvent, waitFor, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import { Icon } from "../../atoms/icon/Icon.js";
 import { Button } from "../button/Button.js";

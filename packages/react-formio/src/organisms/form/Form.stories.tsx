@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { expect, fn, userEvent, waitFor, within } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useState } from "react";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import { SubmissionType } from "../../interfaces";
 import { InputText } from "../../molecules/forms/input-text/InputText";
@@ -332,15 +332,15 @@ export const WithOnSubmit: Story = {
     expect(firstnameInput).toHaveValue("John");
     expect(lastNameInput).toHaveValue("Doe");
 
-    userEvent.clear(firstnameInput);
-    userEvent.type(firstnameInput, "Jane", { delay: 100 });
+    await userEvent.clear(firstnameInput);
+    await userEvent.type(firstnameInput, "Jane", { delay: 100 });
 
     await waitFor(() => {
       expect(firstnameInput).toHaveValue("Jane");
     });
 
-    userEvent.clear(lastNameInput);
-    userEvent.type(lastNameInput, "Smith", { delay: 100 });
+    await userEvent.clear(lastNameInput);
+    await userEvent.type(lastNameInput, "Smith", { delay: 100 });
 
     await waitFor(() => {
       expect(lastNameInput).toHaveValue("Smith");
@@ -410,6 +410,18 @@ export const CustomValidation: Story = {
           level: "error"
         },
         delay: 800
+      },
+      {
+        url: "https://test.dev/todos/1",
+        method: "GET",
+        status: 500,
+        response: {
+          message: "Validation failed",
+          type: "custom",
+          path: ["firstName"],
+          level: "error"
+        },
+        delay: 200
       }
     ]
   },
@@ -451,15 +463,15 @@ export const CustomValidation: Story = {
     let firstnameInput = canvas.getByRole("textbox", { name: "First name" });
     let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });
 
-    userEvent.clear(firstnameInput);
-    userEvent.type(firstnameInput, "Jane", { delay: 100 });
+    await userEvent.clear(firstnameInput);
+    await userEvent.type(firstnameInput, "Jane", { delay: 100 });
 
     await waitFor(() => {
       expect(firstnameInput).toHaveValue("Jane");
     });
 
-    userEvent.clear(lastNameInput);
-    userEvent.type(lastNameInput, "Smith", { delay: 100 });
+    await userEvent.clear(lastNameInput);
+    await userEvent.type(lastNameInput, "Smith", { delay: 100 });
 
     await waitFor(() => {
       expect(lastNameInput).toHaveValue("Smith");
@@ -467,7 +479,7 @@ export const CustomValidation: Story = {
 
     let submitButton = canvas.getByRole("button", { name: "Submit" });
 
-    userEvent.click(submitButton);
+    await userEvent.click(submitButton);
 
     await waitFor(async () => {
       expect(canvas.getByText("Please fix the following errors before submitting.")).toBeInTheDocument();
@@ -562,15 +574,15 @@ export const FetchSubmissionWithCustomAction: Story = {
     let firstnameInput = canvas.getByRole("textbox", { name: "First name" });
     let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });
 
-    userEvent.clear(firstnameInput);
-    userEvent.type(firstnameInput, "Jane", { delay: 100 });
+    await userEvent.clear(firstnameInput);
+    await userEvent.type(firstnameInput, "Jane", { delay: 100 });
 
     await waitFor(() => {
       expect(firstnameInput).toHaveValue("Jane");
     });
 
-    userEvent.clear(lastNameInput);
-    userEvent.type(lastNameInput, "Smith", { delay: 100 });
+    await userEvent.clear(lastNameInput);
+    await userEvent.type(lastNameInput, "Smith", { delay: 100 });
 
     await waitFor(() => {
       expect(lastNameInput).toHaveValue("Smith");
@@ -578,7 +590,7 @@ export const FetchSubmissionWithCustomAction: Story = {
 
     let submitButton = canvas.getByRole("button", { name: "Submit" });
 
-    userEvent.click(submitButton);
+    await userEvent.click(submitButton);
 
     await delay(1000);
 
@@ -671,15 +683,15 @@ export const ErrorOnSubmitServer: Story = {
     let firstnameInput = canvas.getByRole("textbox", { name: "First name" });
     let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });
 
-    userEvent.clear(firstnameInput);
-    userEvent.type(firstnameInput, "Jane", { delay: 100 });
+    await userEvent.clear(firstnameInput);
+    await userEvent.type(firstnameInput, "Jane", { delay: 100 });
 
     await waitFor(() => {
       expect(firstnameInput).toHaveValue("Jane");
     });
 
-    userEvent.clear(lastNameInput);
-    userEvent.type(lastNameInput, "Smith", { delay: 100 });
+    await userEvent.clear(lastNameInput);
+    await userEvent.type(lastNameInput, "Smith", { delay: 100 });
 
     await waitFor(() => {
       expect(lastNameInput).toHaveValue("Smith");
@@ -687,7 +699,7 @@ export const ErrorOnSubmitServer: Story = {
 
     let submitButton = canvas.getByRole("button", { name: "Submit" });
 
-    userEvent.click(submitButton);
+    await userEvent.click(submitButton);
 
     await delay(1000);
 

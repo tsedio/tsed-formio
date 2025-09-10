@@ -9,7 +9,7 @@ export function SelectFilter<Data = any>({ header, options }: FilterProps<Data, 
   const Select = getComponent<typeof DefaultSelect>("Select");
   const columnFilterValue = header.column.getFilterValue();
   const uniqValues = useUniqValues<Data>({ header, filterVariant: "text" });
-  console.log(uniqValues);
+
   const opts =
     options.layout === "choicesjs"
       ? {

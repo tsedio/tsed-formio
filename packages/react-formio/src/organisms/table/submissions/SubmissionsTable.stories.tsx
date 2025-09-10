@@ -4,7 +4,7 @@ import "../../../molecules/forms/select/all";
 import "../../../molecules/pagination/all";
 import "../../../molecules/table/all";
 
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
 import { mapPagination } from "../../../utils/mapPagination";

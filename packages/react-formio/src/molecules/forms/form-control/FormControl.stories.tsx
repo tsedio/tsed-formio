@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 import { iconClass } from "../../../utils/iconClass";
 import { FormControl } from "./FormControl";

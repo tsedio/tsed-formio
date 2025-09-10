@@ -1,7 +1,7 @@
 import "../../../molecules/card/Card.js";
 import "../Form.js";
 
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 import formFirstname from "../../__fixtures__/form-firstname.fixture.json";
 import { FormPreview } from "./FormPreview.js";

@@ -9,7 +9,7 @@ import "../../molecules/card/Card";
 import "../form/builder/all";
 import "../form/Form";
 
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 import ActionsTableStory from "../table/actions/ActionsTable.stories.js";
 import SubmissionsTableStory from "../table/submissions/SubmissionsTable.stories.js";

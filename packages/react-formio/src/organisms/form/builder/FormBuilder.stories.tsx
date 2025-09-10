@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import form from "../../__fixtures__/form.fixture.json";
 import formWizard from "../../__fixtures__/form-wizard.fixture.json";

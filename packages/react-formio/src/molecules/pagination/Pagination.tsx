@@ -95,7 +95,6 @@ export function Pagination(props: PaginationProps) {
           multiple={false}
           layout={props.layout}
           onChange={(_, value) => {
-            console.log("On page change", value);
             onPageSizeChange(+value);
           }}
         />
