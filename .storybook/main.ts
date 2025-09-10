@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import remarkGfm from "remark-gfm";
 
 const config: StorybookConfig = {
   staticDirs: ["../packages/tailwind-formio/build"],
@@ -26,9 +27,17 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-onboarding",
-    "@storybook/addon-docs",
-    "@chromatic-com/storybook",
-    "storybook-addon-mock"
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm]
+          }
+        }
+      }
+    },
+    "@chromatic-com/storybook"
   ],
 
   framework: {

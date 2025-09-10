@@ -40,9 +40,9 @@ export default defineConfig({
       thresholds: {}
     },
     projects: [
-      // 'packages/react-formio/vitest.config.{mts,ts}',
-      // 'packages/react-formio-stores/vitest.config.{mts,ts}',
-      // 'packages/redux-utils/vitest.config.{mts,ts}',
+      'packages/react-formio/vitest.config.{mts,ts}',
+      'packages/react-formio-stores/vitest.config.{mts,ts}',
+      'packages/redux-utils/vitest.config.{mts,ts}',
       {
         extends: true,
         plugins: [

@@ -59,6 +59,9 @@ export default {
       action: "onDeleteComponent"
     }
   },
+  render(args) {
+    return <FormBuilder display={args.display} components={args.components} options={args.options} />;
+  },
   tags: ["autodocs"]
 } satisfies Meta<typeof FormBuilder>;
 
