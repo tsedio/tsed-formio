@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { delay, http, HttpResponse } from "msw";
 import { useEffect, useState } from "react";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
@@ -8,12 +9,6 @@ import form from "../__fixtures__/form.fixture.json";
 import formFirstname from "../__fixtures__/form-firstname.fixture.json";
 import { useEditForm } from "../__fixtures__/useEditForm";
 import { Form } from "./Form";
-
-async function delay(number: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, number);
-  });
-}
 
 /**
  * The form component is the primary component of the system. It is what takes the form definition (json) and renders the
@@ -397,54 +392,20 @@ export const WithOnSubmit: Story = {
  * Form with custom validation hook
  */
 export const CustomValidation: Story = {
-  parameters: {
-    mockData: [
-      {
-        url: "https://test.dev/todos/1",
-        method: "GET",
-        status: 500,
-        response: {
-          message: "My custom message about this field",
-          type: "custom",
-          path: ["firstName"],
-          level: "error"
-        },
-        delay: 800
-      },
-      {
-        url: "https://test.dev/todos/1",
-        method: "GET",
-        status: 500,
-        response: {
-          message: "Validation failed",
-          type: "custom",
-          path: ["firstName"],
-          level: "error"
-        },
-        delay: 200
-      }
-    ]
-  },
+  parameters: {},
   args: {
     form: formFirstname as never,
     options: {
       hooks: {
         async customValidation(submission: SubmissionType, callback: (error: any) => void) {
-          const response = await fetch("https://test.dev/todos/1", {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json"
-            },
-            method: "GET"
-          });
-
-          const responseData = await response.json();
-
-          if (response.ok) {
-            callback(null);
-          } else {
-            callback(responseData);
-          }
+          setTimeout(() => {
+            callback({
+              message: "My custom message about this field",
+              type: "custom",
+              path: ["firstName"],
+              level: "error"
+            });
+          }, 200);
         }
       }
     }
@@ -502,35 +463,28 @@ export const FetchSubmissionWithCustomAction: Story = {
     }
   },
   parameters: {
-    mockData: [
-      {
-        url: "https://local.dev/form/Test",
-        method: "GET",
-        status: 200,
-        response: formFirstname,
-        delay: 200
-      },
-      {
-        url: "https://local.dev/form/Test/submissions/1",
-        method: "GET",
-        status: 200,
-        response: {
-          firstName: "John",
-          lastName: "Doe"
-        },
-        delay: 800
-      },
-      {
-        url: "https://local.dev/form/Test/submissions/1",
-        method: "PUT",
-        status: 200,
-        response: {
-          firstName: "John",
-          lastName: "Doe"
-        },
-        delay: 800
-      }
-    ]
+    msw: {
+      handlers: [
+        http.get("https://local.dev/form/Test", async () => {
+          await delay(200);
+          return HttpResponse.json(formFirstname);
+        }),
+        http.get("https://local.dev/form/Test/submissions/1", async () => {
+          await delay(300);
+          return HttpResponse.json({
+            firstName: "John",
+            lastName: "Doe"
+          });
+        }),
+        http.put("https://local.dev/form/Test/submissions/1", async () => {
+          await delay(800);
+          return HttpResponse.json({
+            firstName: "John",
+            lastName: "Doe"
+          });
+        })
+      ]
+    }
   },
   render(args) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -609,37 +563,35 @@ export const ErrorOnSubmitServer: Story = {
     }
   },
   parameters: {
-    mockData: [
-      {
-        url: "https://local.dev/form/Test2",
-        method: "GET",
-        status: 200,
-        response: formFirstname,
-        delay: 200
-      },
-      {
-        url: "https://local.dev/form/Test2/submissions/2",
-        method: "GET",
-        status: 200,
-        response: {
-          firstName: "John",
-          lastName: "Doe"
-        },
-        delay: 800
-      },
-      {
-        url: "https://local.dev/form/Test2/submissions/2",
-        method: "PUT",
-        status: 400,
-        response: {
-          message: "My custom message about this field",
-          type: "custom",
-          path: ["firstName"],
-          level: "error"
-        },
-        delay: 800
-      }
-    ]
+    msw: {
+      handlers: [
+        http.get("https://local.dev/form/Test2", async () => {
+          await delay(200);
+          return HttpResponse.json(formFirstname);
+        }),
+        http.get("https://local.dev/form/Test2/submissions/2", async () => {
+          await delay(300);
+          return HttpResponse.json({
+            firstName: "John",
+            lastName: "Doe"
+          });
+        }),
+        http.put("https://local.dev/form/Test2/submissions/2", async () => {
+          await delay(800);
+          return HttpResponse.json(
+            {
+              message: "My custom message about this field",
+              type: "custom",
+              path: ["firstName"],
+              level: "error"
+            },
+            {
+              status: 400
+            }
+          );
+        })
+      ]
+    }
   },
   render(args) {
     // eslint-disable-next-line react-hooks/rules-of-hooks

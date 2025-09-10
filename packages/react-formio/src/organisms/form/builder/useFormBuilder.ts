@@ -124,7 +124,11 @@ export function useFormBuilder({ components, display, options = {}, onBuilderRea
             onBuilderReady && onBuilderReady(builderRef.current);
           })
           .catch((er) => {
-            console.error(er);
+            console.error({
+              event: "FORM_BUILDER_RECREATE_ERROR",
+              message: er.message,
+              stack: er.stack
+            });
           });
       } else if (components !== currentComponents) {
         builderRef.current.form = {

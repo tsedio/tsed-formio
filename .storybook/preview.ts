@@ -3,11 +3,14 @@ import "./styles/index.css";
 import { withThemeByClassName } from "@storybook/addon-themes";
 import { Formio, Templates } from "@tsed/react-formio";
 import tailwind from "@tsed/tailwind-formio";
+import { initialize, mswLoader } from "msw-storybook-addon";
 import { INITIAL_VIEWPORTS } from "storybook/viewport";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 Formio.use(tailwind);
 Templates.framework = "tailwind";
+
+initialize();
 
 /** @type { import("@storybook/react-vite").Preview } */
 const preview = {
@@ -19,6 +22,7 @@ const preview = {
   viewport: {
     viewports: INITIAL_VIEWPORTS
   },
+  loaders: [mswLoader],
   tags: ["autodocs"],
   decorators: [
     withThemeByClassName({
