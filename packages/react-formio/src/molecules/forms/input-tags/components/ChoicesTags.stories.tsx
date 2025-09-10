@@ -1,6 +1,6 @@
 import "../all";
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { iconClass } from "../../../../utils/iconClass";
 import { useValue } from "../../../__fixtures__/useValue.hook";

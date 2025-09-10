@@ -1,7 +1,7 @@
 import "../all";
 
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 
 import { iconClass } from "../../../../utils/iconClass";
 import { useValue } from "../../../__fixtures__/useValue.hook";

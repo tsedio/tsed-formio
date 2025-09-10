@@ -1,7 +1,7 @@
 import "../../../molecules/card/Card.js";
 import "../../../atoms/icon/Icon.js";
 
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 import { FormExport } from "./FormExport.js";
 

@@ -1,6 +1,6 @@
 import "../all";
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { type CreatableProps } from "react-select/creatable";
 
 import { iconClass } from "../../../../utils/iconClass";

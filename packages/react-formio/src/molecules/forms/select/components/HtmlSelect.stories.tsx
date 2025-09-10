@@ -1,7 +1,7 @@
 import "./HtmlSelect";
 
-import { Meta, StoryObj } from "@storybook/react";
-import { expect, fn, userEvent, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, userEvent, within } from "storybook/test";
 
 import { iconClass } from "../../../../utils/iconClass";
 import { useValue } from "../../../__fixtures__/useValue.hook";
