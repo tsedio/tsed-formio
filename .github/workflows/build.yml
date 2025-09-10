@@ -36,6 +36,8 @@ jobs:
           cache: "yarn"
       - name: Install dependencies 🚀
         run: yarn install --immutable
+      - name: Install Playwright 🚀
+        run: yarn playwright install
       - name: Run test 🔍
         run: yarn test
 
