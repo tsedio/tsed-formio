@@ -1,4 +1,7 @@
-import { defaultDisplayChoices, FormEdit } from "@tsed/react-formio";
+import "@tsed/react-formio/all"; // import all components. Remove this import if you want to customize components
+
+import { FormEdit } from "@tsed/react-formio/organisms/form/builder/FormEdit";
+import { defaultDisplayChoices } from "@tsed/react-formio/organisms/form/builder/FormParameters";
 
 const opts: any = {
   typeChoices: [
