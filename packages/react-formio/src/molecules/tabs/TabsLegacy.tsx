@@ -2,6 +2,8 @@ import "./all.js";
 
 import { CSSProperties, ReactNode } from "react";
 
+import { useI18n } from "../../hooks/useI18n.js";
+import type { FormOptions } from "../../interfaces/index.js";
 import { getComponent } from "../../registries/components.js";
 import type { Tab as DefaultTab } from "./Tab.js";
 import type { TabList as DefaultTabList } from "./TabList.js";
@@ -23,7 +25,7 @@ export interface TabsLegacyProps extends Record<string, any> {
   className?: string;
   reverse?: boolean;
   onClick?: (item: TabsItemProps) => void;
-  i18n?: (f: string) => string;
+  i18n?: FormOptions["i18n"];
 }
 
 export function TabsLegacy({
@@ -34,7 +36,6 @@ export function TabsLegacy({
   AddButton,
   className,
   onClick,
-  i18n = (f) => f,
   reverse,
   after,
   ...additionalProps
@@ -45,6 +46,7 @@ export function TabsLegacy({
   const TabPanel = getComponent<typeof DefaultTabPanel>("TabPanel");
   const Tabs = getComponent<typeof DefaultTabs>("Tabs");
   const tabs = items.filter((item) => item.label || item.icon);
+  const { t } = useI18n(additionalProps.i18n);
 
   return (
     <Tabs className={className} style={style}>
@@ -62,7 +64,7 @@ export function TabsLegacy({
                 className={reverse ? "-reverse" : ""}
                 after={after}
               >
-                {i18n(item.label || "")}
+                {t(item.label || "")}
               </Tab>
             );
           })}
