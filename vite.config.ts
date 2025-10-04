@@ -1,7 +1,10 @@
+import { join } from "node:path";
+
 import react from "@vitejs/plugin-react";
-import {defineConfig} from "vite";
-import svgr from "vite-plugin-svgr";
 import compile from "lodash/template";
+import { defineConfig } from "vite";
+import svgr from "vite-plugin-svgr";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const ejsPlugin = () => {
   const opts = {
@@ -28,18 +31,21 @@ const ejsPlugin = () => {
   };
 };
 
+const root = join(import.meta.dirname);
+
 export default defineConfig({
   // @ts-ignore
-  plugins: [ejsPlugin(), react(), svgr()],
+  plugins: [
+    ejsPlugin(),
+    react(),
+    svgr(),
+    tsconfigPaths({
+      projects: [join(root, "tsconfig.json")]
+    })
+  ],
   base: "./",
   resolve: {
-    conditions: [
-      "tsed-source",
-      "import",
-      "module",
-      "browser",
-      "default"
-    ],
+    conditions: ["tsed-source", "import", "module", "browser", "default"],
     alias: {}
   },
   define: {

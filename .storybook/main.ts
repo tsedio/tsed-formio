@@ -43,15 +43,16 @@ const config: StorybookConfig = {
   framework: {
     name: "@storybook/react-vite",
     options: {}
+  },
+  core: {
+    builder: {
+      name: "@storybook/builder-vite",
+      options: {
+        viteConfigPath: "./vite.config.ts"
+      }
+    },
+    disableTelemetry: true
   }
-  // core: {
-  // builder: {
-  //   name: "@storybook/builder-vite"
-  //   // options: {
-  //   //   viteConfigPath: "./vite.storybook.config.js"
-  //   // }
-  // }
-  // }
 };
 
 export default config;
