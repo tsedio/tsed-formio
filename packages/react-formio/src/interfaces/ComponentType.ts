@@ -1,3 +1,3 @@
-import { ExtendedComponentSchema } from "formiojs";
+import type { Component } from "@formio/core";
 
-export type ComponentType = ExtendedComponentSchema;
+export type ComponentType = Omit<Component, "components"> & { components?: ComponentType[] } & { title?: string } & Record<string, unknown>;

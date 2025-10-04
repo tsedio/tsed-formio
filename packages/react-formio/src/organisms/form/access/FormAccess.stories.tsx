@@ -63,7 +63,9 @@ export const Sandbox: Story = {
       ],
       controller: "",
       properties: {},
-      settings: {},
+      settings: {
+        hideTitle: false
+      },
       name: "textField",
       path: "textfield",
       machineName: "tcspjwhsevrzpcd:textField"

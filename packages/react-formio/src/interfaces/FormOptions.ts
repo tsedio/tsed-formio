@@ -1,14 +1,8 @@
-import type { EventEmitter2 } from "eventemitter2";
+import { EventEmitter, Form } from "@formio/js";
 
-export interface FormOptions {
-  iconset?: string;
-  readOnly?: boolean;
-  noAlerts?: boolean;
-  i18n?: (f: string) => string;
-  template?: string;
-  saveDraft?: boolean;
-  events?: EventEmitter2;
-  hooks?: {
-    customValidation?: Function;
-  };
-}
+import type { FormType } from "./FormType.js";
+
+export type FormOptions = Form["options"] & {
+  events?: EventEmitter;
+  currentForm?: FormType;
+};

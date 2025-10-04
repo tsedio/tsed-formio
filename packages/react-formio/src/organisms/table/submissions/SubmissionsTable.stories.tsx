@@ -78,7 +78,7 @@ export default {
   },
   args: {
     form: FormSchema as any,
-    data: formSubmissions,
+    data: formSubmissions as any[],
     operations: [
       {
         title: "Edit",
@@ -125,18 +125,15 @@ export const Empty: Story = {
  */
 export const Translated: Story = {
   args: {
-    i18n: (key: string) => {
-      const translations: Record<string, string> = {
-        "Search...": "Rechercher...",
-        "No results found": "Aucun résultat trouvé",
-        "Loading...": "Chargement...",
-        Page: "Page",
-        of: "sur",
-        rows: "lignes",
-        Edit: "Éditer",
-        Delete: "Supprimer"
-      };
-      return translations[key] || key;
+    i18n: {
+      "Search...": "Rechercher...",
+      "No results found": "Aucun résultat trouvé",
+      "Loading...": "Chargement...",
+      Page: "Page",
+      of: "sur",
+      rows: "lignes",
+      Edit: "Éditer",
+      Delete: "Supprimer"
     }
   }
 };

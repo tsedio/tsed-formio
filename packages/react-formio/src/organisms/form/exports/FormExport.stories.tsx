@@ -36,7 +36,7 @@ type Story = StoryObj<typeof FormExport>;
  */
 export const Usage: Story = {
   args: {
-    i18n: (key: string) => key,
+    i18n: {},
     onClick: (action: string, format: string) => console.log(`Action: ${action}, Format: ${format}`)
   }
 };
@@ -46,7 +46,7 @@ export const Usage: Story = {
  */
 export const Resource: Story = {
   args: {
-    i18n: (key: string) => key,
+    i18n: {},
     onClick: (action: string, format: string) => console.log(`Action: ${action}, Format: ${format}`)
   }
 };
@@ -56,15 +56,12 @@ export const Resource: Story = {
  */
 export const Translated: Story = {
   args: {
-    i18n: (key: string) => {
-      const translations: Record<string, string> = {
-        "Export schema": "Exporter le schéma",
-        "Export the formIO schema:": "Exporter le schéma formIO :",
-        Json: "Json",
-        Csv: "Csv",
-        "Export form submissions": "Exporter les soumissions du formulaire"
-      };
-      return translations[key] || key;
+    i18n: {
+      "Export schema": "Exporter le schéma",
+      "Export the formIO schema:": "Exporter le schéma formIO :",
+      Json: "Json",
+      Csv: "Csv",
+      "Export form submissions": "Exporter les soumissions du formulaire"
     },
     onClick: (action: string, format: string) => console.log(`Action: ${action}, Format: ${format}`)
   }

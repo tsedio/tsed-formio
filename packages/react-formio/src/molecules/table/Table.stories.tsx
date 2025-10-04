@@ -73,7 +73,7 @@ type Story = StoryObj<typeof Table<ProductSubmission>>;
 
 export const Usage: Story = {
   args: {
-    data: formSubmissions as ProductSubmission[],
+    data: formSubmissions as unknown as ProductSubmission[],
     columns: mapFormToColumns(FormType as any),
     operations: [
       {
@@ -93,7 +93,7 @@ export const Usage: Story = {
         }
       }
     ],
-    i18n: (f: string) => f,
+    i18n: {},
     onClick: fn(),
     onChange: fn()
   },
@@ -182,7 +182,7 @@ export const Usage: Story = {
 
 export const WithFilters: Story = {
   args: {
-    data: formSubmissions as ProductSubmission[],
+    data: formSubmissions as unknown as ProductSubmission[],
     columns: mapFormToColumns(FormType as any, [
       {
         accessorKey: "data.id",
@@ -212,14 +212,14 @@ export const WithFilters: Story = {
         }
       }
     ],
-    i18n: (f: string) => f,
+    i18n: {},
     onClick: fn()
   }
 };
 
 export const WithCustomCell: Story = {
   args: {
-    data: formSubmissions as ProductSubmission[],
+    data: formSubmissions as unknown as ProductSubmission[],
     columns: mapFormToColumns<ProductSubmission>(FormType as any, [
       {
         accessorKey: "data.id",
@@ -299,7 +299,7 @@ export const WithCustomCell: Story = {
         }
       }
     ],
-    i18n: (f: string) => f,
+    i18n: {},
     onClick: fn()
   }
 };

@@ -1,5 +1,5 @@
+import { Formio } from "@formio/js";
 import type { FormType, RoleType } from "@tsed/react-formio";
-import { Formio } from "formiojs";
 
 import { formAccessUser, submissionAccessUser, userForms, userRoles } from "./auth.actions";
 import { AUTH } from "./auth.constant";

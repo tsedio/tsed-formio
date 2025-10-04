@@ -56,6 +56,6 @@ Sandbox.args = {
     name: "textField",
     path: "textfield",
     machineName: "tcspjwhsevrzpcd:textField"
-  },
+  } as any,
   options: { template: "tailwind", iconset: "bx" }
 };

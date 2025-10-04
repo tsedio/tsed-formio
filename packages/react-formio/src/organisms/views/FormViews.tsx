@@ -1,4 +1,5 @@
-import type { FormType, JSON, PermissionsResolver } from "../../interfaces/index.js";
+import { useI18n } from "../../hooks/useI18n.js";
+import type { FormOptions, FormType, JSON, PermissionsResolver } from "../../interfaces/index.js";
 import type { Tab as DefaultTab } from "../../molecules/tabs/Tab.js";
 import type { TabList as DefaultTabList } from "../../molecules/tabs/TabList.js";
 import type { TabPanel as DefaultTabPanel } from "../../molecules/tabs/TabPanel.js";
@@ -19,7 +20,7 @@ export type FormViewsProps<Data extends { [key: string]: JSON } = { [key: string
   availableActions: ActionsTableProps["availableActions"];
   actions: ActionsTableProps["data"];
   roles?: FormAccessProps["roles"];
-  i18n?: (key: string) => string;
+  i18n?: FormOptions["i18n"];
   onAction: () => void;
   permissionsResolver?: PermissionsResolver<Data>;
 };
@@ -71,8 +72,9 @@ export function FormViews<Data extends { [key: string]: JSON } = { [key: string]
   actions,
   permissionsResolver,
   submissions,
-  i18n = (f) => f
+  ...props
 }: FormViewsProps<Data>) {
+  const { t } = useI18n(props.i18n);
   const Tabs = getComponent<typeof DefaultTabs>("Tabs");
   const TabList = getComponent<typeof DefaultTabList>("TabList");
   const Tab = getComponent<typeof DefaultTab>("Tab");
@@ -85,42 +87,42 @@ export function FormViews<Data extends { [key: string]: JSON } = { [key: string]
     <Tabs>
       <TabList>
         <Tab value={0} icon='edit'>
-          {i18n("Edit")}
+          {t("Edit")}
         </Tab>
         <Tab value={1} icon='data'>
-          {i18n("Data")}
+          {t("Data")}
         </Tab>
         <Tab value={2} icon='test-tube'>
-          {i18n("Preview")}
+          {t("Preview")}
         </Tab>
         <Tab value={3} icon='paper-plane'>
-          {i18n("Actions")}
+          {t("Actions")}
         </Tab>
         <Tab value={4} icon='lock'>
-          {i18n("Access")}
+          {t("Access")}
         </Tab>
         <Tab value={5} icon='download'>
-          {i18n("Export")}
+          {t("Export")}
         </Tab>
         <Tab value={6} icon='cog'>
-          {i18n("Settings")}
+          {t("Settings")}
         </Tab>
       </TabList>
       <TabsBody>
         <TabPanel value={0} className='p-3 border-l-1 border-b-1 border-r-1 border-gray-300'>
-          <FormEdit form={form} options={{ i18n }} />
+          <FormEdit form={form} />
         </TabPanel>
         <TabPanel value={1}>
           <SubmissionsTable<Data>
             className={"border-top-0"}
             form={form as FormType}
             data={submissions}
-            i18n={i18n}
+            i18n={props.i18n}
             operations={submissionsOperations}
           />
         </TabPanel>
         <TabPanel value={2}>
-          <FormPreview form={form as FormType} i18n={i18n} />
+          <FormPreview form={form as FormType} i18n={props.i18n} />
         </TabPanel>
         <TabPanel value={3}>
           <ActionsTable
@@ -128,14 +130,14 @@ export function FormViews<Data extends { [key: string]: JSON } = { [key: string]
             availableActions={availableActions}
             data={actions}
             operations={actionsOperations as any}
-            i18n={i18n}
+            i18n={props.i18n}
           />
         </TabPanel>
         <TabPanel value={4} className='pt-3'>
-          <FormAccess form={form as FormType} roles={roles} options={{ i18n }} />
+          <FormAccess form={form as FormType} roles={roles} options={props} />
         </TabPanel>
         <TabPanel value={5} className='pt-3'>
-          <FormExport i18n={i18n} />
+          <FormExport i18n={props.i18n} />
         </TabPanel>
         <TabPanel value={6} className='p-3 border-l-1 border-b-1 border-r-1 border-gray-300'>
           <FormSettings form={form as FormType} options={{}} />

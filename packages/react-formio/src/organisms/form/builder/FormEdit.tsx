@@ -1,6 +1,7 @@
 import classnames from "classnames";
+import type { CSSProperties } from "react";
 
-import type { FormOptions } from "../../../interfaces";
+import type { FormBuilderOptions, FormOptions } from "../../../interfaces/index.js";
 import { getComponent } from "../../../registries/components";
 import { FormBuilder as DefaultFormBuilder } from "./FormBuilder";
 import { FormEditCTAs as DefaultFormEditCTAs } from "./FormEditCtas";
@@ -9,10 +10,10 @@ import { FormBuilderEvents } from "./useFormBuilder";
 import { useFormEdit, UseFormEditHookProps } from "./useFormEdit";
 
 export interface FormEditProps extends UseFormEditHookProps, FormBuilderEvents {
-  options?: FormOptions;
+  options?: FormBuilderOptions & FormOptions;
   layout?: "html5" | "choicesjs" | "react";
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 export function FormEdit({
@@ -35,7 +36,6 @@ export function FormEdit({
     onCopy: initialOnCopy
   });
 
-  const { options = {} } = props;
   const FormParameters = getComponent<typeof DefaultFormParameters>("FormParameters");
   const FormBuilder = getComponent<typeof DefaultFormBuilder>("FormBuilder");
   const FormEditCTAs = getComponent<typeof DefaultFormEditCTAs>("FormEditCTAs");
@@ -54,7 +54,7 @@ export function FormEdit({
         />
         <FormEditCTAs
           key={`form-edit-ctas-${form._id}`}
-          options={options}
+          options={props.options}
           hasRedo={hasRedo}
           hasUndo={hasUndo}
           disabled={!(isValid && hasChanged)}
@@ -71,7 +71,7 @@ export function FormEdit({
         key={`form-builder-${form._id}`}
         components={form.components!}
         display={form.display}
-        options={options}
+        options={props.options}
         onChange={(components) => {
           setChange("components", components);
         }}

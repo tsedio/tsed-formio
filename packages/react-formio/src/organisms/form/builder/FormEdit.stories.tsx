@@ -92,7 +92,14 @@ export default {
       options: ["choicesjs", "react"]
     }
   },
-  parameters: {}
+  parameters: {},
+  args: {
+    options: {
+      template: "tailwind",
+      iconset: "bx",
+      noDefaultSubmitButton: true
+    }
+  }
 } satisfies Meta<typeof FormEdit>;
 
 type Story = StoryObj<typeof FormEdit>;
@@ -106,7 +113,6 @@ export const EditWebForm: Story = {
     ],
     displayChoices: defaultDisplayChoices,
     enableTags: true,
-    options: { template: "tailwind", iconset: "bx" },
     form: {
       type: "form",
       tags: [],
@@ -307,8 +313,7 @@ export const WithoutTypeChoices: Story = {
       machineName: "tcspjwhsevrzpcd:textField"
     } as any,
     displayChoices: defaultDisplayChoices,
-    enableTags: true,
-    options: { template: "tailwind", iconset: "bx" }
+    enableTags: true
   }
 };
 
@@ -412,7 +417,6 @@ export const WithoutTags: Story = {
       machineName: "tcspjwhsevrzpcd:textField"
     } as any,
     displayChoices: defaultDisplayChoices,
-    enableTags: false,
-    options: { template: "tailwind", iconset: "bx" }
+    enableTags: false
   }
 };

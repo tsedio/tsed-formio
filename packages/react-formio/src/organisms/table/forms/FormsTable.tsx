@@ -2,6 +2,7 @@ import "./components/FormsCell.js";
 
 import { ColumnDef } from "@tanstack/react-table";
 
+import { useI18n } from "../../../hooks/useI18n.js";
 import type { FormType } from "../../../interfaces";
 import { Table, TableProps } from "../../../molecules/table/Table";
 import { getComponent } from "../../../registries/components.js";
@@ -11,15 +12,15 @@ export type FormsTableProps = Omit<TableProps<FormType>, "columns"> & {
   tags?: { label: string; value: string }[];
 };
 
-export function FormsTable({ ...props }: FormsTableProps) {
-  const { i18n = (f: string) => f, tags } = props;
+export function FormsTable({ tags, ...props }: FormsTableProps) {
+  const { t } = useI18n(props.i18n);
   const Cell = getComponent<typeof FormsCell>("FormsCell");
 
   const columns: ColumnDef<any>[] = [
     {
-      header: i18n("Title"),
+      header: t("Title"),
       accessorKey: "title",
-      cell: (context) => <Cell {...context} i18n={i18n} />,
+      cell: (context) => <Cell {...context} i18n={t} />,
       meta: {
         cellProps: {
           colSpan: 2
@@ -27,7 +28,7 @@ export function FormsTable({ ...props }: FormsTableProps) {
       }
     },
     {
-      header: i18n("Tags"),
+      header: t("Tags"),
       accessorKey: "tags",
       meta: {
         cellProps: {

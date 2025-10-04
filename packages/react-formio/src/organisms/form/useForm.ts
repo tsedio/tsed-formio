@@ -1,5 +1,5 @@
+import { Form } from "@formio/js";
 import { EventEmitter2 } from "eventemitter2";
-import { Form } from "formiojs";
 import { type MutableRefObject, useEffect, useRef, useState } from "react";
 
 import type { ChangedSubmission, ComponentType, FormOptions, FormType, JSON, SubmissionType } from "../../interfaces";
@@ -13,9 +13,8 @@ export interface UseFormProps<Data extends { [key: string]: JSON } = { [key: str
   url?: string;
   form?: FormType;
   submission?: SubmissionType<Data>;
-  // TODO: once events is typed correctly in @formio/js options, we can remove this override
   options?: FormOptions;
-  FormClass?: any;
+  FormClass?: typeof Form;
   onFormReady?: (instance: Webform) => void;
   onPrevPage?: (page: number, submission: SubmissionType<Data>) => void;
   onNextPage?: (page: number, submission: SubmissionType<Data>) => void;

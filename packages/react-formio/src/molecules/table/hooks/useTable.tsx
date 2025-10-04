@@ -12,7 +12,8 @@ import {
 } from "@tanstack/react-table";
 import { useEffect } from "react";
 
-import { type JSON, Operation } from "../../../interfaces";
+import { useI18n } from "../../../hooks/useI18n.js";
+import { type FormOptions, type JSON, Operation } from "../../../interfaces";
 import { getComponent } from "../../../registries/components";
 import type { DefaultCellOperations } from "../components/DefaultCellOperations";
 
@@ -20,7 +21,7 @@ export interface UseTableProps<Data extends { [key: string]: JSON } = { [key: st
   extends Omit<TableOptions<Data>, "getCoreRowModel" | "onClick"> {
   operations: Operation<Data>[];
   metadata?: Record<string, unknown>;
-  i18n?: (i18n: string) => string;
+  i18n?: FormOptions["i18n"];
   onClick?: (data: any, operation: Operation<Data>) => void;
   manualFaceted?: boolean;
   onChange?: (query: TableState) => void;
@@ -29,7 +30,7 @@ export interface UseTableProps<Data extends { [key: string]: JSON } = { [key: st
 
 export function useTable<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseTableProps<Data>) {
   const Operations = getComponent<typeof DefaultCellOperations<Data>>("CellOperations");
-  const i18n = props.i18n || ((f: string) => f);
+  const { t } = useI18n(props.i18n);
 
   // const [pagination, setPagination] = useState({
   //   pageIndex: 0, //initial page index
@@ -40,9 +41,9 @@ export function useTable<Data extends { [key: string]: JSON } = { [key: string]:
     ? ([
         {
           id: "operations",
-          header: i18n("Operations"),
+          header: t("Operations"),
           cell: (info) => (
-            <Operations info={info} operations={props.operations} metadata={props.metadata} onClick={props.onClick} i18n={i18n} />
+            <Operations info={info} operations={props.operations} metadata={props.metadata} onClick={props.onClick} i18n={t} />
           )
         }
       ] satisfies ColumnDef<Data>[])
@@ -69,7 +70,7 @@ export function useTable<Data extends { [key: string]: JSON } = { [key: string]:
   }, [columnFilters, sorting, pagination, columnOrder, columnPinning, columnSizing, columnSizingInfo, columnVisibility, globalFilter]);
 
   return {
-    i18n,
+    i18n: t,
     tableInstance
   };
 }

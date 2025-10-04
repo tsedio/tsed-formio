@@ -1,10 +1,12 @@
-import { Formio } from "formiojs";
+import { Formio } from "@formio/js";
 
 import { formAccessUser, submissionAccessUser, userForms, userRoles } from "./auth.actions";
 import { AUTH } from "./auth.constant";
 import { getAccess } from "./getAccess.action";
 
 vi.mock("./auth.actions");
+
+Formio.setProjectUrl("https://api.form.io");
 
 describe("getAccess()", () => {
   beforeEach(() => {

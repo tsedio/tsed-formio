@@ -1,4 +1,4 @@
-import { Formio } from "formiojs";
+import { Formio } from "@formio/js";
 import noop from "lodash/noop";
 
 import { failUser, requestUser } from "./auth.actions";

@@ -1,5 +1,5 @@
+import { Formio } from "@formio/js";
 import { createAction } from "@tsed/redux-utils";
-import { Formio } from "formiojs";
 import get from "lodash/get";
 import noop from "lodash/noop";
 

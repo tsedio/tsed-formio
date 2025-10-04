@@ -51,7 +51,9 @@ describe("FormSettings", () => {
       <FormSettings
         {...Sandbox.args}
         options={{
-          i18n: (f: string) => f + " i18N"
+          i18n: {
+            "Save settings": "Save settings i18N"
+          }
         }}
       />
     );

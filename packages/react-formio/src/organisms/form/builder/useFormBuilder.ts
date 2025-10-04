@@ -1,11 +1,11 @@
-import { FormBuilder as FormioFormBuilder } from "formiojs";
+import { FormBuilder as FormioFormBuilder } from "@formio/js";
 import cloneDeep from "lodash/cloneDeep";
 import { useEffect, useRef, useState } from "react";
 
-import type { ComponentType, FormOptions, FormType } from "../../../interfaces";
+import type { ComponentType, FormBuilderOptions, FormType } from "../../../interfaces";
 
 interface BuilderConstructor {
-  new (element: HTMLDivElement, form: FormType, options: FormOptions): FormioFormBuilder;
+  new (element: HTMLDivElement, form: FormType, options: FormBuilderOptions): FormioFormBuilder;
 }
 
 const EVENTS = [
@@ -29,7 +29,7 @@ async function createBuilder(el: Element, { components = [], display, options, o
     components: [...components]
   };
 
-  const builder = await new FormioFormBuilder(el, form, { ...options }).ready;
+  const builder = await new FormioFormBuilder(el as HTMLElement, form, { ...options }).ready;
 
   const handleEvent = (event: string) => {
     return (...args: any[]) => {
@@ -45,6 +45,7 @@ async function createBuilder(el: Element, { components = [], display, options, o
 
   return builder;
 }
+
 export interface FormBuilderEvents {
   onAddComponent?: Function;
   onRemoveComponent?: Function;
@@ -73,7 +74,7 @@ export interface UseFormBuilderProps extends FormBuilderEvents {
   Builder?: BuilderConstructor;
   components: ComponentType[];
   display?: string;
-  options?: FormOptions;
+  options?: FormBuilderOptions;
 }
 
 export function useFormBuilder({ components, display, options = {}, onBuilderReady, onChange, ...props }: UseFormBuilderProps) {
@@ -111,7 +112,7 @@ export function useFormBuilder({ components, display, options = {}, onBuilderRea
 
   useEffect(() => {
     if (builderRef.current) {
-      if (display !== builderRef.current.form.display) {
+      if (display !== (builderRef.current.form as FormType).display) {
         createBuilder(renderElement.current!.firstChild as Element, {
           display,
           options: { ...options },
