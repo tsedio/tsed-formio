@@ -4460,9 +4460,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsed/monorepo-utils@npm:2.3.10":
-  version: 2.3.10
-  resolution: "@tsed/monorepo-utils@npm:2.3.10"
+"@tsed/monorepo-utils@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@tsed/monorepo-utils@npm:3.0.0"
   dependencies:
     "@samverschueren/stream-to-observable": "npm:>=0.3.1"
     "@typescript-eslint/typescript-estree": "npm:>=6.20.0"
@@ -4489,7 +4489,7 @@ __metadata:
     semantic-release: ">=19"
   bin:
     monorepo: bin/monorepo.js
-  checksum: 10c0/9111c2a1614a780ff32b50b5ae2c3a41e0bdb72731165f7c83f65f021fbf98252abac4495b829c2ed91fd785cb850897095c50cd0ed8bcbb3c00528e78cbc9d3
+  checksum: 10c0/ed80c49d0b82d6a087ae8a7709ccfeb68e7c2deee4c2d058cac3905f0b9dd05f95d723ae0a2e09a44eea14bdd95a986e2104c4d2b6503858f9ffcc81c93aac0e
   languageName: node
   linkType: hard
 
@@ -4663,7 +4663,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:6.5.0"
     "@testing-library/react": "npm:16.1.0"
     "@testing-library/user-event": "npm:14.5.2"
-    "@tsed/monorepo-utils": "npm:2.3.10"
+    "@tsed/monorepo-utils": "npm:3.0.0"
     "@types/classnames": "npm:^2.2.11"
     "@types/ejs": "npm:^3.0.5"
     "@types/jest": "npm:27.0.2"

@@ -79,7 +79,7 @@
     "@testing-library/jest-dom": "6.5.0",
     "@testing-library/react": "16.1.0",
     "@testing-library/user-event": "14.5.2",
-    "@tsed/monorepo-utils": "2.3.10",
+    "@tsed/monorepo-utils": "3.0.0",
     "@types/ejs": "^3.0.5",
     "@types/jest": "27.0.2",
     "@types/lodash": "4.14.168",
