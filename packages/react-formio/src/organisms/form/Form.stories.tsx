@@ -463,23 +463,24 @@ export const FetchSubmissionWithCustomAction: Story = {
     }
   },
   parameters: {
+    chromatic: { disableSnapshot: false },
     msw: {
       handlers: [
         http.get("https://local.dev/form/Test", async () => {
           await delay(200);
-          return HttpResponse.json(formFirstname);
+          return HttpResponse.json(JSON.parse(JSON.stringify(formFirstname)));
         }),
         http.get("https://local.dev/form/Test/submissions/1", async () => {
           await delay(300);
           return HttpResponse.json({
-            firstName: "John",
+            firstName: "Jane",
             lastName: "Doe"
           });
         }),
         http.put("https://local.dev/form/Test/submissions/1", async () => {
           await delay(800);
           return HttpResponse.json({
-            firstName: "John",
+            firstName: "Jane",
             lastName: "Doe"
           });
         })
@@ -529,6 +530,11 @@ export const FetchSubmissionWithCustomAction: Story = {
     let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });
 
     await userEvent.clear(firstnameInput);
+
+    await waitFor(() => {
+      expect(firstnameInput).toHaveValue("");
+    });
+
     await userEvent.type(firstnameInput, "Jane", { delay: 100 });
 
     await waitFor(() => {
@@ -563,11 +569,12 @@ export const ErrorOnSubmitServer: Story = {
     }
   },
   parameters: {
+    chromatic: { disableSnapshot: false },
     msw: {
       handlers: [
         http.get("https://local.dev/form/Test2", async () => {
           await delay(200);
-          return HttpResponse.json(formFirstname);
+          return HttpResponse.json(JSON.parse(JSON.stringify(formFirstname)));
         }),
         http.get("https://local.dev/form/Test2/submissions/2", async () => {
           await delay(300);
@@ -636,6 +643,11 @@ export const ErrorOnSubmitServer: Story = {
     let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });
 
     await userEvent.clear(firstnameInput);
+
+    await waitFor(() => {
+      expect(firstnameInput).toHaveValue("");
+    });
+
     await userEvent.type(firstnameInput, "Jane", { delay: 100 });
 
     await waitFor(() => {
