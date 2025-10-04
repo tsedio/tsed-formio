@@ -1,4 +1,4 @@
-import FormioUtils from "formiojs/utils";
+import FormioUtils from "@formio/js/utils";
 import { PropsWithChildren, ReactElement } from "react";
 
 import { ActionDefaultsType, ActionType, FormOptions, SubmissionType } from "../../../interfaces";
@@ -44,7 +44,7 @@ export function FormAction({ actionInfo, children, onSubmit, options, ...props }
     const submission = mapData(props.submission || {}, actionInfo.defaults!);
     const form = mapSettingsForm(actionInfo.settingsForm);
 
-    return { form, submission: { data: submission } };
+    return { form, submission: { data: submission } as SubmissionType<ActionType> };
   })();
 
   return (

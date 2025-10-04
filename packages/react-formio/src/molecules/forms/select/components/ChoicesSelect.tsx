@@ -66,9 +66,9 @@ export function useChoices({
     if (choicesRef.current) {
       if (multiple) {
         choicesRef.current.clearStore();
-        choicesRef.current.setChoices(opts, "value", "label", true);
+        choicesRef.current.setChoices(opts as any, "value", "label", true);
       } else {
-        choicesRef.current.setChoices(opts, "value", "label", true);
+        choicesRef.current.setChoices(opts as any, "value", "label", true);
       }
     }
   }, [opts]);

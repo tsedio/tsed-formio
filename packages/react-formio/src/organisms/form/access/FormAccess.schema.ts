@@ -11,6 +11,7 @@ export function getRoleComponent({ label, key, description, choices, data }: any
     placeholder: "Select roles...",
     tooltip: "",
     multiple: true,
+    input: true,
     dataSrc: "values",
     defaultValue: "",
     data: {

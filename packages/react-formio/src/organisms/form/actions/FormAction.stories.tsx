@@ -88,6 +88,7 @@ export const SaveAction: Story = {
             input: false,
             tree: true,
             legend: "Action Settings",
+            key: "settings",
             components: [
               {
                 input: false,
@@ -101,7 +102,8 @@ export const SaveAction: Story = {
                     placeholder: "This form",
                     basePath: "/project/5d0797bc872fc7d140559857/form",
                     form: "62b18b10fbbba513555c6c5e",
-                    required: false
+                    required: false,
+                    input: true
                   }
                 ]
               }
@@ -205,6 +207,7 @@ export const EmailAction: Story = {
             input: false,
             tree: true,
             legend: "Email Settings",
+            key: "settings",
             components: [
               {
                 type: "textfield",
@@ -340,6 +343,7 @@ export const WebhookAction: Story = {
             input: false,
             tree: true,
             legend: "Webhook Settings",
+            key: "settings",
             components: [
               {
                 type: "textfield",

@@ -1,5 +1,7 @@
 import classnames from "classnames";
 
+import { useI18n } from "../../hooks/useI18n.js";
+import type { FormOptions } from "../../interfaces/index.js";
 import { getComponent, registerComponent } from "../../registries/components";
 import type { Select as DefaultSelect } from "../forms/select/Select";
 import type { PaginationButton as DefaultPaginationButton } from "./PaginationButton";
@@ -16,8 +18,7 @@ export interface PaginationProps {
   pageSize: number;
   rowCount?: number;
   layout?: "html5" | "react" | "choicesjs";
-  i18n?: (f: string) => string;
-
+  i18n?: FormOptions["i18n"];
   onPageIndexChange: (pageIndex: number) => void;
   onClickPreviousPage: () => void;
   onClickNextPage: () => void;
@@ -38,9 +39,9 @@ export function Pagination(props: PaginationProps) {
     pageOptions,
     pageSize,
     onPageSizeChange,
-    rowCount,
-    i18n = (f: string) => f
+    rowCount
   } = props;
+  const { t } = useI18n(props.i18n);
 
   const pageNumbers = getPageNumbers({
     currentPage: pageIndex,
@@ -57,7 +58,7 @@ export function Pagination(props: PaginationProps) {
       <ul className='pagination mb-3 mr-3'>
         <li className={classnames("page-item", !canPreviousPage && "disabled")}>
           <PaginationButton tabIndex={-1} disabled={!canPreviousPage} onClick={() => onClickPreviousPage()}>
-            {i18n("Previous")}
+            {t("Previous")}
           </PaginationButton>
         </li>
 
@@ -82,7 +83,7 @@ export function Pagination(props: PaginationProps) {
 
         <li className={classnames("page-item", !canNextPage && "disabled")}>
           <PaginationButton tabIndex={pageNumbers.length} disabled={!canNextPage} onClick={() => onClickNextPage()}>
-            {i18n("Next")}
+            {t("Next")}
           </PaginationButton>
         </li>
       </ul>
@@ -98,11 +99,11 @@ export function Pagination(props: PaginationProps) {
             onPageSizeChange(+value);
           }}
         />
-        <span className={"ml-3"}>{i18n("items per page")}</span>
+        <span className={"ml-3"}>{t("items per page")}</span>
       </li>
       {pageOptions && (
         <li className={"mb-3 mr-3 flex items-center"}>
-          <span>{i18n("Page")}&nbsp;</span>
+          <span>{t("Page")}&nbsp;</span>
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
@@ -110,7 +111,7 @@ export function Pagination(props: PaginationProps) {
       )}
       {rowCount !== undefined && (
         <li className={"mb-3 flex items-center"} data-testid='pagination-total-items'>
-          {i18n("Total")}: <strong className='mx-1'>{new Intl.NumberFormat(undefined).format(rowCount)}</strong> {i18n("items")}
+          {t("Total")}: <strong className='mx-1'>{new Intl.NumberFormat(undefined).format(rowCount)}</strong> {t("items")}
         </li>
       )}
     </nav>

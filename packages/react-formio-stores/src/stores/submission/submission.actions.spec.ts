@@ -1,4 +1,4 @@
-import { Formio } from "formiojs";
+import { Formio } from "@formio/js";
 
 import {
   clearSubmissionError,
@@ -12,7 +12,7 @@ import {
   sendSubmission
 } from "./submission.actions";
 
-vi.mock("formiojs", async (originalImport) => {
+vi.mock("@formio/js", async (originalImport) => {
   return {
     ...(await originalImport()),
     Formio: class {

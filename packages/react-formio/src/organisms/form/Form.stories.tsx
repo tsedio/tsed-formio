@@ -526,6 +526,8 @@ export const FetchSubmissionWithCustomAction: Story = {
       expect(canvas.getByTestId("formio-container")).toHaveClass("formio-form-ready");
     });
 
+    await delay(200);
+
     let firstnameInput = canvas.getByRole("textbox", { name: "First name" });
     let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });
 
@@ -638,6 +640,8 @@ export const ErrorOnSubmitServer: Story = {
     await waitFor(() => {
       expect(canvas.getByTestId("formio-container")).toHaveClass("formio-form-ready");
     });
+
+    await delay(200);
 
     let firstnameInput = canvas.getByRole("textbox", { name: "First name" });
     let lastNameInput = canvas.getByRole("textbox", { name: "Last name" });

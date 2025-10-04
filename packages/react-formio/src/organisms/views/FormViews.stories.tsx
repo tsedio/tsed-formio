@@ -175,7 +175,7 @@ export const Usage: Story = {
         title: "Anonymous"
       }
     ],
-    i18n: (key: string) => key,
+    i18n: {},
     onAction: () => console.log("Action triggered")
   }
 };
@@ -203,21 +203,18 @@ export const Translated: Story = {
         title: "Anonymous"
       }
     ],
-    i18n: (key: string) => {
-      const translations: Record<string, string> = {
-        Edit: "Éditer",
-        Data: "Données",
-        Preview: "Aperçu",
-        Actions: "Actions",
-        Access: "Accès",
-        Export: "Exporter",
-        Settings: "Paramètres",
-        "Form with First Name": "Formulaire avec prénom",
-        "First name": "Prénom",
-        "Last name": "Nom de famille",
-        Submit: "Soumettre"
-      };
-      return translations[key] || key;
+    i18n: {
+      Edit: "Éditer",
+      Data: "Données",
+      Preview: "Aperçu",
+      Actions: "Actions",
+      Access: "Accès",
+      Export: "Exporter",
+      Settings: "Paramètres",
+      "Form with First Name": "Formulaire avec prénom",
+      "First name": "Prénom",
+      "Last name": "Nom de famille",
+      Submit: "Soumettre"
     },
     onAction: () => console.log("Action triggered")
   }

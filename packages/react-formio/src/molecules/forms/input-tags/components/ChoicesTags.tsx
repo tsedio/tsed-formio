@@ -37,12 +37,12 @@ export function useChoiceTags<Data = string>(props: InputTagsProps<Data>) {
 
       instanceRef.current = instance;
 
-      instance.passedElement.element.addEventListener("addItem", (event: { detail: { value: unknown } }) => {
-        onAdd(event.detail.value as Data);
+      instance.passedElement.element.addEventListener("addItem", (event) => {
+        onAdd((event.target as any).value as Data);
       });
 
-      instance.passedElement.element.addEventListener("removeItem", (event: { detail: { value: unknown } }) => {
-        onDelete(event.detail.value as Data);
+      instance.passedElement.element.addEventListener("removeItem", (event) => {
+        onDelete((event.target as any).value as Data);
       });
     }
 

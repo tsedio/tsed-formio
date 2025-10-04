@@ -1,9 +1,9 @@
-import { Formio } from "formiojs";
+import { Formio } from "@formio/js";
 
 import { mapRequestParams } from "../../utils/mapRequestParams";
 import { failSubmissions, getSubmissions, receiveSubmissions, requestSubmissions } from "./submissions.actions";
 
-vi.mock("formiojs", async (originalImport) => {
+vi.mock("@formio/js", async (originalImport) => {
   return {
     ...(await originalImport()),
     Formio: class {

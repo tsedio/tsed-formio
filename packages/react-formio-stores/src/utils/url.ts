@@ -1,4 +1,4 @@
-import { Formio, Utils } from "formiojs";
+import { Formio, Utils } from "@formio/js";
 
 export function getFormUrl(formId: string): string {
   const url = [Formio.getProjectUrl()];

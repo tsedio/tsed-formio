@@ -90,7 +90,7 @@ export function Table<Data extends { [key: string]: JSON } = { [key: string]: JS
             pageIndex={pagination.pageIndex}
             pageSize={pagination.pageSize}
             pageSizes={props.pageSizes}
-            i18n={i18n}
+            i18n={props.i18n}
             pageCount={tableInstance.getPageCount()}
             rowCount={props.rowCount}
             onPageIndexChange={(page) => tableInstance.setPageIndex(page)}

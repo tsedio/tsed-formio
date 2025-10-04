@@ -38,7 +38,7 @@ type Story = StoryObj<typeof FormPreview>;
 export const Usage: Story = {
   args: {
     form: formFirstname as any,
-    i18n: (key: string) => key
+    i18n: {}
   }
 };
 
@@ -48,14 +48,11 @@ export const Usage: Story = {
 export const Translated: Story = {
   args: {
     form: formFirstname as any,
-    i18n: (key: string) => {
-      const translations: Record<string, string> = {
-        "Form with First Name": "Formulaire avec prénom",
-        "First name": "Prénom",
-        "Last name": "Nom de famille",
-        Submit: "Soumettre"
-      };
-      return translations[key] || key;
+    i18n: {
+      "Form with First Name": "Formulaire avec prénom",
+      "First name": "Prénom",
+      "Last name": "Nom de famille",
+      Submit: "Soumettre"
     }
   }
 };

@@ -1,7 +1,7 @@
 import "../interfaces/extends";
 
+import { Components } from "@formio/js";
 import { ColumnDef, ColumnDefResolved, createColumnHelper } from "@tanstack/react-table";
-import { Components } from "formiojs";
 import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
 
@@ -25,14 +25,15 @@ export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefR
   const columnsFromComponents = form.components
     .flatMap((component) => {
       if (component.type === "tabs") {
-        return component.components.flatMap((subComponent: ComponentType) => subComponent.components);
+        return component.components?.flatMap((subComponent: ComponentType) => subComponent.components);
       }
 
       return [component];
     })
-    .filter((component) => component.tableView)
-    .map((component: ComponentType) => {
-      const cmp: any = Components.create(component, {}, null, true);
+    .filter((component) => component?.tableView)
+    .map((c) => {
+      const component = c as ComponentType;
+      const cmp: any = Components.create(component, {}, null);
 
       const columnIndex = columnsToKeep.findIndex(({ accessorKey }) => {
         return accessorKey === `data.${component.key}`;

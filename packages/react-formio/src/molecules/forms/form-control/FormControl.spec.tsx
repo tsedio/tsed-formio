@@ -1,8 +1,11 @@
+import { Formio } from "@formio/js";
 import { render, screen } from "@testing-library/react";
 
 import { iconClass } from "../../../utils/iconClass";
 import { FormControl } from "./FormControl";
 import { Sandbox } from "./FormControl.stories";
+
+Formio.setProjectUrl("https://api.form.io");
 
 describe("form-control", () => {
   it("should display form control component", () => {
@@ -34,7 +37,7 @@ describe("form-control", () => {
   });
 
   it("should display prefix", () => {
-    const fontAwsomeCalendarIcon = "fa fa-calendar";
+    const fontAwsomeCalendarIcon = "bi bi-calendar";
     const prefix = (<i className={iconClass(undefined, "calendar")} />) as JSX.Element;
     render(<FormControl {...Sandbox.args} name='testPrefix' before={prefix} />);
 
@@ -48,7 +51,7 @@ describe("form-control", () => {
   });
 
   it("should display suffix", () => {
-    const fontAwsomeCalendarIcon = "fa fa-calendar";
+    const fontAwsomeCalendarIcon = "bi bi-calendar";
     const suffix = (<i className={iconClass(undefined, "calendar")} />) as JSX.Element;
     render(<FormControl {...Sandbox.args} name='testSuffix' after={suffix} />);
 

@@ -1,14 +1,17 @@
 import { Icon } from "../../../atoms/icon/Icon.js";
+import { useI18n } from "../../../hooks/useI18n.js";
+import { FormOptions } from "../../../interfaces/FormOptions.js";
 import type { Card } from "../../../molecules/card/Card.js";
 import { getComponent } from "../../../registries/components.js";
 
 export interface FormExportProps {
-  i18n?: (key: string) => string;
+  i18n?: FormOptions["i18n"];
   onClick?: (action: "export:form" | "export:submissions", format: "json" | "csv") => void;
 }
 
-export function FormExport({ i18n = (f: string) => f, onClick }: FormExportProps) {
+export function FormExport({ onClick, ...props }: FormExportProps) {
   const FCard = getComponent<typeof Card>("Card");
+  const { t } = useI18n(props?.i18n);
 
   return (
     <div>
@@ -18,15 +21,15 @@ export function FormExport({ i18n = (f: string) => f, onClick }: FormExportProps
             label={
               (
                 <span className={"flex items-center"}>
-                  <Icon name={"detail"} className={"mr-1 text-secondary"} /> {i18n(`Export schema`)}
+                  <Icon name={"detail"} className={"mr-1 text-secondary"} /> {t(`Export schema`)}
                 </span>
               ) as any
             }
           >
-            <p className={"mb-5"}>{i18n("Export the formIO schema:")}</p>
+            <p className={"mb-5"}>{t("Export the formIO schema:")}</p>
             <div className={"flex items-center justify-center"}>
               <button className={"btn btn-primary"} onClick={() => onClick?.("export:form", "json")}>
-                <Icon name={"code"} className={"mr-1"} /> {i18n(`Json`)}
+                <Icon name={"code"} className={"mr-1"} /> {t(`Json`)}
               </button>
             </div>
           </FCard>
@@ -36,18 +39,18 @@ export function FormExport({ i18n = (f: string) => f, onClick }: FormExportProps
             label={
               (
                 <span className={"flex items-center"}>
-                  <Icon name={"data"} className={"mr-1 text-secondary"} /> {i18n(`Export submissions`)}
+                  <Icon name={"data"} className={"mr-1 text-secondary"} /> {t(`Export submissions`)}
                 </span>
               ) as any
             }
           >
-            <p className={"mb-5"}>{i18n("Export all submission as JSON or CSV:")}</p>
+            <p className={"mb-5"}>{t("Export all submission as JSON or CSV:")}</p>
             <div className={"flex items-center justify-center"}>
               <button className={"btn btn-primary mr-4"} onClick={() => onClick?.("export:submissions", "json")}>
-                <Icon name={"code"} className={"mr-1"} /> {i18n(`Json`)}
+                <Icon name={"code"} className={"mr-1"} /> {t(`Json`)}
               </button>
               <button className={"btn btn-primary"} onClick={() => onClick?.("export:submissions", "csv")}>
-                <Icon name={"spreadsheet"} className={"mr-1"} /> {i18n(`Csv`)}
+                <Icon name={"spreadsheet"} className={"mr-1"} /> {t(`Csv`)}
               </button>
             </div>
           </FCard>

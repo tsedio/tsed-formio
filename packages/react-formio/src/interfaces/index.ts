@@ -1,6 +1,7 @@
 export * from "./ActionType";
 export * from "./ColumnIdentifier";
 export * from "./ComponentType";
+export * from "./FormBuilderOptions";
 export * from "./FormOptions";
 export * from "./FormType";
 export * from "./Operation";

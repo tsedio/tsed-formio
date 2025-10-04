@@ -1,4 +1,8 @@
+import { Formio } from "@formio/js";
+
 import { getFormUrl, getSubmissionUrl } from "./url";
+
+Formio.setProjectUrl("https://api.form.io");
 
 describe("getUrl", () => {
   describe("getFormUrl()", () => {
