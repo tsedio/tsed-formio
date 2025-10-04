@@ -17,6 +17,7 @@
     "packages/*/src/**/*.ts",
     "packages/*/src/**/*.tsx",
     "**/vite.config.mts",
+    "**/vite.config.ts",
     "**/vitest.config.mts",
     "**/vitest.workspace.mts"
   ],
