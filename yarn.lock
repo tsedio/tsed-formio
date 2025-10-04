@@ -4533,68 +4533,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsed/react-formio-container@workspace:packages/react-formio-container":
-  version: 0.0.0-use.local
-  resolution: "@tsed/react-formio-container@workspace:packages/react-formio-container"
-  dependencies:
-    "@tsed/react-formio": "workspace:*"
-    "@tsed/react-formio-stores": "workspace:*"
-    "@types/file-saver": "npm:^2.0.1"
-    file-saver: "npm:^2.0.5"
-    vite: "npm:7.1.5"
-    vitest: "npm:3.2.4"
-  peerDependencies:
-    "@formio/choices.js": ^9.0.1
-    "@tsed/react-formio": 3.0.0-alpha.12
-    "@tsed/react-formio-stores": 3.0.0-alpha.12
-    classnames: ^2.3.1
-    connected-react-router: ^6.9.1
-    file-saver: ^2.0.5
-    formiojs: ^4.21.6
-    lodash: ^4.17.21
-    react: ^18.3.1
-    react-dom: ^18.3.1
-    react-is: ^17.0.1
-    react-redux: ^7.2.6
-    react-router: ^5.2.1
-    react-router-dom: ^5.2.1
-    react-table: ^7.8.0
-    redux-thunk: ^2.4.1
-    tooltip.js: ^1.3.3
-  peerDependenciesMeta:
-    choices.js:
-      optional: false
-    classnames:
-      optional: false
-    connected-react-router:
-      optional: false
-    file-saver:
-      optional: false
-    formiojs:
-      optional: false
-    lodash:
-      optional: false
-    react:
-      optional: false
-    react-dom:
-      optional: false
-    react-is:
-      optional: false
-    react-redux:
-      optional: false
-    react-router:
-      optional: true
-    react-router-dom:
-      optional: true
-    react-table:
-      optional: false
-    redux-thunk:
-      optional: true
-    tooltip.js:
-      optional: false
-  languageName: unknown
-  linkType: soft
-
 "@tsed/react-formio-integration@workspace:packages/integration":
   version: 0.0.0-use.local
   resolution: "@tsed/react-formio-integration@workspace:packages/integration"
@@ -4614,26 +4552,6 @@ __metadata:
     react: ">=16.14.0"
     react-dnd: ">=16.0.1"
     react-dnd-html5-backend: ">=16.0.1"
-    react-dom: ">=16.14.0"
-    react-table: ">=7.6.3"
-    tooltip.js: ">=1.3.3"
-  languageName: unknown
-  linkType: soft
-
-"@tsed/react-formio-stores@workspace:*, @tsed/react-formio-stores@workspace:packages/react-formio-stores":
-  version: 0.0.0-use.local
-  resolution: "@tsed/react-formio-stores@workspace:packages/react-formio-stores"
-  dependencies:
-    "@tsed/react-formio": "workspace:*"
-    "@tsed/redux-utils": "workspace:*"
-    "@tsed/tailwind-formio": "workspace:*"
-    vite: "npm:7.1.5"
-    vitest: "npm:3.2.4"
-  peerDependencies:
-    "@formio/choices.js": ">=9.0.1"
-    formiojs: ">=4.0.0"
-    lodash: ">=4.17.20"
-    react: ">=16.14.0"
     react-dom: ">=16.14.0"
     react-table: ">=7.6.3"
     tooltip.js: ">=1.3.3"
@@ -4666,18 +4584,6 @@ __metadata:
     react-select: ">=5.9.0"
     react-table: ">=7.6.3"
     tooltip.js: ">=1.3.3"
-  languageName: unknown
-  linkType: soft
-
-"@tsed/redux-utils@workspace:*, @tsed/redux-utils@workspace:packages/redux-utils":
-  version: 0.0.0-use.local
-  resolution: "@tsed/redux-utils@workspace:packages/redux-utils"
-  dependencies:
-    vite: "npm:7.1.5"
-    vitest: "npm:3.2.4"
-  peerDependencies:
-    react: ^18.3.1
-    redux: ^4.0.5
   languageName: unknown
   linkType: soft
 
@@ -4971,13 +4877,6 @@ __metadata:
   version: 0.0.39
   resolution: "@types/estree@npm:0.0.39"
   checksum: 10c0/f0af6c95ac1988c4827964bd9d3b51d24da442e2188943f6dfcb1e1559103d5d024d564b2e9d3f84c53714a02a0a7435c7441138eb63d9af5de4dfc66cdc0d92
-  languageName: node
-  linkType: hard
-
-"@types/file-saver@npm:^2.0.1":
-  version: 2.0.5
-  resolution: "@types/file-saver@npm:2.0.5"
-  checksum: 10c0/9d9ed75327f0e93cadc106e0acf952089436f495c52e0bcf690b1b07597038a44033a8c19af7bd6854016537d68e1086d604961c6277e25b09c89938093b7761
   languageName: node
   linkType: hard
 
@@ -9412,13 +9311,6 @@ __metadata:
   dependencies:
     flat-cache: "npm:^4.0.0"
   checksum: 10c0/9e2b5938b1cd9b6d7e3612bdc533afd4ac17b2fc646569e9a8abbf2eb48e5eb8e316bc38815a3ef6a1b456f4107f0d0f055a614ca613e75db6bf9ff4d72c1638
-  languageName: node
-  linkType: hard
-
-"file-saver@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "file-saver@npm:2.0.5"
-  checksum: 10c0/0a361f683786c34b2574aea53744cb70d0a6feb0fa5e3af00f2fcb6c9d40d3049cc1470e38c6c75df24219f247f6fb3076f86943958f580e62ee2ffe897af8b1
   languageName: node
   linkType: hard
 

@@ -37,7 +37,7 @@ export default {
   render: (args: any) => {
     return (
       <div className={"border-gray-300 border-1 shadow"}>
-        <TabsLegacy {...args} i18n={(f) => f} />
+        <TabsLegacy {...args} />
       </div>
     );
   }

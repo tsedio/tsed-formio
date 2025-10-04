@@ -45,7 +45,7 @@ export default defineConfig({
   ],
   base: "./",
   resolve: {
-    conditions: ["tsed-source", "import", "module", "browser", "default"],
+    // conditions: ["tsed-source", "import", "module", "browser", "default"],
     alias: {}
   },
   define: {
