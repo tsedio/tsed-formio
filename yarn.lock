@@ -1509,7 +1509,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:^4.1.1":
+"@chromatic-com/storybook@npm:4.1.1":
   version: 4.1.1
   resolution: "@chromatic-com/storybook@npm:4.1.1"
   dependencies:
@@ -4645,7 +4645,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tsed/root@workspace:."
   dependencies:
-    "@chromatic-com/storybook": "npm:^4.1.1"
+    "@chromatic-com/storybook": "npm:4.1.1"
     "@commitlint/cli": "npm:19.6.1"
     "@commitlint/config-conventional": "npm:19.6.0"
     "@formio/choices.js": "npm:^9.0.1"
@@ -4684,7 +4684,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:3.2.4"
     autoprefixer: "npm:^10.4.7"
     camelcase: "npm:6.3.0"
-    chromatic: "npm:11.20.2"
+    chromatic: "npm:13.3.0"
     connected-react-router: "npm:6.9.1"
     cross-env: "npm:7.0.3"
     eslint: "npm:9.17.0"
@@ -6878,9 +6878,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:11.20.2":
-  version: 11.20.2
-  resolution: "chromatic@npm:11.20.2"
+"chromatic@npm:13.3.0":
+  version: 13.3.0
+  resolution: "chromatic@npm:13.3.0"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -6893,7 +6893,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 10c0/9f60e966fc7dc22df920649e3860493dbf7c86ea34d96e9818e4450c7572e47b8554a3ecec273881184303ee9098ca15b4c85d519b37138ee0399387b1356b7d
+  checksum: 10c0/496656850cc6498fa101cb17bb8adc9256df70c404f01be1cc6edcdd66fd97ab573a3fe858c581cf45d7279bcab0e170cb054dc3b2e2ef104ac0af9e6df38223
   languageName: node
   linkType: hard
 
