@@ -41,6 +41,8 @@ export default defineConfig({
         '**/__fixtures__/**',
         '**/tests/**',
         '**/index.ts',
+        "**/all.ts",
+        "**/templates/tailwind"
       ],
       thresholds: {}
     },

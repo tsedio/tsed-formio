@@ -8,6 +8,7 @@ import { INITIAL_VIEWPORTS } from "storybook/viewport";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 Formio.use(tailwind);
+
 Templates.framework = "tailwind";
 
 initialize();

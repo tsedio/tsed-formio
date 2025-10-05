@@ -159,7 +159,7 @@ export const SaveAction: Story = {
         ]
       }
     },
-    options: { template: "tailwind", iconset: "bx" }
+    options: { template: "tailwind", iconset: "lu" }
   }
 };
 
@@ -295,7 +295,7 @@ export const EmailAction: Story = {
         ]
       }
     },
-    options: { template: "tailwind", iconset: "bx" }
+    options: { template: "tailwind", iconset: "lu" }
   }
 };
 
@@ -421,6 +421,6 @@ export const WebhookAction: Story = {
         ]
       }
     },
-    options: { template: "tailwind", iconset: "bx" }
+    options: { template: "tailwind", iconset: "lu" }
   }
 };

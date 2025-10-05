@@ -31,7 +31,7 @@ platform.
 This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features
 listed above.
 
-See our [storybook](https://formio.tsed.io/?path=/docs/getting-started--docs) to see all available components.
+See our [storybook](https://formio.tsed.io/?path=/docs/getting-started--docs) to see all available components and installation guide.
 
 ## Features
 
@@ -83,8 +83,7 @@ npm-compatible packaging system such as [Browserify](http://browserify.org/) or
 [webpack](http://webpack.github.io/).
 
 ```bash
-npm install @tsed/react-formio react-table --save
-npm install formiojs choices.js --save // Install formiojs since it is a peerDependency
+npm install @formio/js @tsed/react-formio react-table --save
 ```
 
 ## Usage

@@ -5,9 +5,11 @@ const config: StorybookConfig = {
   staticDirs: ["../packages/tailwind-formio/build"],
 
   stories: [
-    "../stories/Getting-started.mdx",
-    "../stories/Register-react-component.mdx",
-    "../stories/Optimize-your-bundle-size.mdx",
+    "../stories/GettingStarted.mdx",
+    "../stories/TailwindTheme.mdx",
+    "../stories/RegisterReactComponent.mdx",
+    "../stories/Hooks.mdx",
+    "../stories/OptimizeYourBundleSize.mdx",
     "../stories/**/*.mdx",
     {
       titlePrefix: "Styling",

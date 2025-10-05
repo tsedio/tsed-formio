@@ -10,7 +10,6 @@ const opts: any = {
   ],
   displayChoices: defaultDisplayChoices,
   enableTags: true,
-  // options: { template: "tailwind", iconset: "bx" },
   form: {
     type: "form",
     tags: [],

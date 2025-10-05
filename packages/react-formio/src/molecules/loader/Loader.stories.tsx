@@ -22,10 +22,14 @@ export default {
     },
     icon: {
       control: "select",
-      options: Object.keys(tailwind.templates.tailwind.ICONS)
+      options: Object.keys(tailwind.templates.tailwind.ICONS["bx"])
     },
     className: {
       control: "text"
+    },
+    iconset: {
+      control: "select",
+      options: ["lu", "bx"]
     }
   },
   parameters: {},
@@ -36,8 +40,7 @@ type Story = StoryObj<typeof Loader>;
 
 export const Usage: Story = {
   args: {
-    icon: "radio-circle",
-    color: "text-blue",
+    color: "text-primary",
     isActive: true
   }
 };

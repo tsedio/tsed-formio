@@ -37,9 +37,10 @@ npm-compatible packaging system such as [Vite](https://vite.dev/), [webpack](htt
 
 
 ```sh
+npm install @formio/js --save // Install formiojs since it is a peerDependency
 npm install @tsed/react-formio react-table --save
-npm install formiojs choices.js --save // Install formiojs since it is a peerDependency
 ```
+
 
 
 ## Migrate to v2
@@ -56,6 +57,7 @@ If you use redux actions with v2, you have to install `@tsed/redux-formio-stores
 - `@tsed/react-formio` is now build only for ESM environment.
 - `@tsed/react-formio` use tree-shaking to reduce the bundle size, you have to import only what you need from the library.
 - `@tsed/react-formio` drop the support of TailwindCSS v2.
+- `@tsed/react-formio-stores` and `@tsed/redux-utils` are removed from the project.
 
 Example:
 

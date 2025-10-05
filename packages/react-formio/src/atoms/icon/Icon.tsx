@@ -1,16 +1,26 @@
 import cx from "classnames";
-import type { HTMLAttributes } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
 import { registerComponent } from "../../registries/components";
 import { iconClass } from "../../utils/iconClass";
 
-export interface IconProps extends HTMLAttributes<HTMLElement> {
+export interface IconProps extends ComponentPropsWithoutRef<"i"> {
   iconset?: string;
+  spinning?: boolean;
   name: string;
 }
 
-export function Icon({ iconset, name, className, ...props }: IconProps) {
-  return <i {...props} className={cx(iconClass(iconset, name), className)} />;
+export function Icon({ iconset, name, className, spinning, ...props }: IconProps) {
+  const textClasses = className
+    ?.split(" ")
+    .filter((cls) => cls.startsWith("text-"))
+    .join(" ");
+
+  return (
+    <span className={cx(textClasses, "wrapper-icon")}>
+      <i {...props} className={cx(iconClass(iconset, name, spinning), className)} />
+    </span>
+  );
 }
 
 registerComponent("Icon", Icon);

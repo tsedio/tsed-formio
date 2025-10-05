@@ -72,7 +72,7 @@ type Story = StoryObj<typeof FormBuilder>;
 export const WebForm: Story = {
   args: {
     display: form.display as any,
-    options: { template: "tailwind", iconset: "bx" },
+    options: { template: "tailwind", iconset: "lu" },
     components: form.components as any
   }
 };
@@ -84,7 +84,7 @@ export const Wizard: Story = {
   args: {
     display: formWizard.display as any,
     components: formWizard.components as any,
-    options: { template: "tailwind", iconset: "bx" }
+    options: { template: "tailwind", iconset: "lu" }
   }
 };
 /**
@@ -95,6 +95,6 @@ export const Pdf: Story = {
   args: {
     display: "pdf",
     components: [],
-    options: { template: "tailwind", iconset: "bx" }
+    options: { template: "tailwind", iconset: "lu" }
   }
 };

@@ -96,7 +96,7 @@ export default {
   args: {
     options: {
       template: "tailwind",
-      iconset: "bx",
+      iconset: "lu",
       noDefaultSubmitButton: true
     }
   }
