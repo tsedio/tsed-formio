@@ -78,6 +78,6 @@ export const Sandbox: Story = {
       { title: "Authenticated", _id: "5d0797bc872fc71d05559859" },
       { title: "Anonymous", _id: "5d0797bc872fc7da3b55985a" }
     ],
-    options: { template: "tailwind", iconset: "bx" }
+    options: { template: "tailwind", iconset: "lu" }
   }
 };

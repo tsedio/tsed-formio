@@ -1,5 +1,5 @@
 import { Formio as ImportedFormio } from "@formio/js";
-import { createContext, useEffect, useState } from "react";
+import { createContext, type PropsWithChildren, useEffect, useState } from "react";
 
 type BaseConfigurationArgs = {
   baseUrl?: string;
@@ -81,14 +81,7 @@ const useAuthentication = ({ Formio }: { Formio: typeof ImportedFormio }) => {
 
 export const FormioContext = createContext<(ReturnType<typeof useBaseConfiguration> & ReturnType<typeof useAuthentication>) | null>(null);
 
-export function FormioProvider({
-  children,
-  baseUrl,
-  projectUrl,
-  Formio
-}: {
-  children: React.ReactNode;
-} & BaseConfigurationArgs) {
+export function FormioProvider({ children, baseUrl, projectUrl, Formio }: PropsWithChildren<BaseConfigurationArgs>) {
   const baseConfig = useBaseConfiguration({ baseUrl, projectUrl, Formio });
   const auth = useAuthentication({ Formio: baseConfig.Formio });
   const formio = { ...baseConfig, ...auth };

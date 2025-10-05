@@ -180,7 +180,7 @@ export const BasicUsageWithForm: Story = {
   args: {
     form: form as any,
     onFormReady: fn(),
-    options: { template: "tailwind", iconset: "bx" }
+    options: { template: "tailwind", iconset: "lu" }
   },
   async play({ canvasElement, args }) {
     const canvas = within(canvasElement);
@@ -204,7 +204,7 @@ export const BasicUsageWithForm: Story = {
 export const BasicUsageWithSrc: Story = {
   args: {
     src: "https://example.form.io/example",
-    options: { template: "tailwind", iconset: "bx" }
+    options: { template: "tailwind", iconset: "lu" }
   },
   async play({ canvasElement }) {
     const canvas = within(canvasElement);
@@ -228,7 +228,7 @@ export const WithSubmissionData: Story = {
     form: formFirstname as never,
     options: {
       template: "tailwind",
-      iconset: "bx"
+      iconset: "lu"
     },
     submission: {
       data: {
@@ -301,7 +301,7 @@ export const WithOnSubmit: Story = {
     form: formFirstname as never,
     options: {
       template: "tailwind",
-      iconset: "bx"
+      iconset: "lu"
     },
     submission: {
       data: {
@@ -459,7 +459,7 @@ export const FetchSubmissionWithCustomAction: Story = {
   args: {
     options: {
       template: "tailwind",
-      iconset: "bx"
+      iconset: "lu"
     }
   },
   parameters: {
@@ -567,7 +567,7 @@ export const ErrorOnSubmitServer: Story = {
   args: {
     options: {
       template: "tailwind",
-      iconset: "bx"
+      iconset: "lu"
     }
   },
   parameters: {

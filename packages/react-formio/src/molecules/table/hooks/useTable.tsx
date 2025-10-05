@@ -22,7 +22,7 @@ export interface UseTableProps<Data extends { [key: string]: JSON } = { [key: st
   operations: Operation<Data>[];
   metadata?: Record<string, unknown>;
   i18n?: FormOptions["i18n"];
-  onClick?: (data: any, operation: Operation<Data>) => void;
+  onClick?: (data: Data, operation: Operation<Data>) => void;
   manualFaceted?: boolean;
   onChange?: (query: TableState) => void;
   pageSizes?: number[];

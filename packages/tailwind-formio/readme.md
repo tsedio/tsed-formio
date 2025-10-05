@@ -31,52 +31,29 @@ This repository will change the rendering of forms in formio.js so that it uses 
 
 ```bash
 npm install @tsed/tailwind-formio --save
-npm install --save-dev postcss-nested@4
+npm install tailwindcss postcss autoprefixer postcss-normalize --save-dev
 ```
 
-### Tailwind and create-react-app
-
-If you use `create-react-app`, you'll need to follow the official tailwind guide installation here: https://tailwindcss.com/docs/guides/create-react-app
+## Tailwind configuration
 
 ### Configure postcss
 
-Edit the `craco.config.js` (or `postcss.config.js`) and add the `postcss-nested` to the postcss plugins list:
-
-```diff
-module.exports = {
-  style: {
-    postcss: {
-      plugins: [
-        require('tailwindcss'),
-+       require('postcss-nested')
-        require('autoprefixer')
-      ]
-    }
-  }
-}
-```
-
-Or:
+Edit `postcss.config.js` and add the postcss plugins list:
 
 ```diff
 export default {
   plugins: {
-    'tailwindcss/nesting': {},
+    "postcss-normalize": {},
+    "tailwindcss/nesting": {},
     tailwindcss: {},
-    autoprefixer: {},
-  },
-}
+    autoprefixer: {}
+  }
+};
 ```
 
 ### Configure tailwind
 
-Generate the initial `tailwind.config.js` with the following command:
-
-```bash
-npx tailwindcss-cli@latest init
-```
-
-Edit the `tailwind.config.js` and copy the following content:
+Edit your `tailwind.config.js` and copy the following content:
 
 ```js
 import { tailwindPreset } from "@tsed/tailwind-formio/tailwind.preset";
@@ -89,7 +66,7 @@ module.exports = {
     "./node_modules/**/*.{js,jsx,ts,tsx,ejs}"
     // add your paths
   ],
-  presets: [],
+  presets: [tailwindPreset],
   darkMode: "class",
   theme: {
     extend: {
@@ -138,20 +115,21 @@ Then create a `tailwind.css` in `styles` directory and add the following lines:
 Import the `tailwind.css` in the `index.css` created by create-react-app:
 
 ```css
-@import "~formiojs/dist/formio.full.css";
+@import "@formio/js/dist/formio.full.css";
 @import "./tailwind.css";
-@import "~@tsed/tailwind-formio/styles/index.css";
+@import "@tsed/tailwind-formio/styles/index.css";
 ```
 
 Optionally, you can import fonts and icons:
 
 ```diff
-@import "~formiojs/dist/formio.full.css";
+@import "@formio/js/dist/formio.full.css";
 @import "./tailwind.css";
 +@import "./fonts/source-sans-pro/index.css";
 +@import "./fonts/inconsolata/index.css";
-+@import "./fonts/bxicons/index.css";
-@import "~@tsed/tailwind-formio/styles/index.css";
++@import "lucide-static/font/lucide.css"; // if you want to use lucide icons (you have to install it)
++@import "./fonts/bxicons/index.css"; // if you want to use bxicons (you have to install it)
+@import "@tsed/tailwind-formio/styles/index.css";
 ```
 
 Now, we can configure formio to use the tailwind template in our React application.

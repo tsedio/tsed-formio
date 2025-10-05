@@ -4691,11 +4691,17 @@ __metadata:
   resolution: "@tsed/tailwind-formio@workspace:packages/tailwind-formio"
   dependencies:
     cross-env: "npm:7.0.3"
+    lucide-static: "npm:^0.544.0"
     rimraf: "npm:3.0.2"
     tailwind-config-viewer: "npm:2.0.4"
     tailwindcss: "npm:3.4.17"
     vite: "npm:7.1.5"
     vite-plugin-ejs: "npm:1.7.0"
+  peerDependencies:
+    lucide-static: ">=0.544.0"
+  peerDependenciesMeta:
+    lucide-static:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -12600,6 +12606,13 @@ __metadata:
   version: 7.18.3
   resolution: "lru-cache@npm:7.18.3"
   checksum: 10c0/b3a452b491433db885beed95041eb104c157ef7794b9c9b4d647be503be91769d11206bb573849a16b4cc0d03cbd15ffd22df7960997788b74c1d399ac7a4fed
+  languageName: node
+  linkType: hard
+
+"lucide-static@npm:^0.544.0":
+  version: 0.544.0
+  resolution: "lucide-static@npm:0.544.0"
+  checksum: 10c0/e0c58550b408dbb7b3eefee59c6e74897bc4c9c0df3bd517a4f3114397f39e3d62379aa5c67ffef2e35994d31d07817b162083302f0f8204b015435ffc83d675
   languageName: node
   linkType: hard
 
