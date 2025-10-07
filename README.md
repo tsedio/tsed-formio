@@ -1,5 +1,5 @@
 <p style="text-align: center" align="center">
- <a href="https://tsed.io" target="_blank"><img src="https://tsed.io/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
+ <a href="https://tsed.dev" target="_blank"><img src="https://tsed.dev/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
 </p>
 
 <div align="center">
@@ -14,11 +14,11 @@
 </div>
 
 <div align="center">
-  <a href="https://tsed.io/">Website</a>
+  <a href="https://tsed.dev/">Website</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://tsed.io/tutorials/prisma.html">Tutorial</a>
+  <a href="https://tsed.dev/tutorials/prisma.html">Tutorial</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://api.tsed.io/rest/slack/tsedio/tsed">Slack</a>
+  <a href="https://slack.tsed.dev">Slack</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://twitter.com/TsED_io">Twitter</a>
 </div>
@@ -33,11 +33,11 @@ Dedicated repository for Formio front-end related packages.
 - Provide a better TypeScript support,
 - Provide a [@tsed/tailwind-formio](./packages/tailwind-formio/readme.md) package to support tailwind CSS framework with formio.
 - Provide a lightweight redux utils packages.
-- Provide a [storybook](https://formio.tsed.io)
+- Provide a [storybook](https://formio.tsed.dev)
 
 ## Documentation
 
-Documentation is available on [https://formio.tsed.io](https://formio.tsed.io).
+Documentation is available on [https://formio.tsed.dev](https://formio.tsed.dev).
 
 ## Projects examples
 
