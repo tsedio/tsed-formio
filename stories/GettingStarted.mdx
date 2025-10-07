@@ -1,0 +1,134 @@
+import {Canvas, Meta} from '@storybook/addon-docs/blocks'
+import * as FormBuilderStories from '../packages/react-formio/src/organisms/form/builder/FormBuilder.stories'
+import {StoryBanner} from './home/StoryBanner.jsx'
+
+<Meta title="Getting started"/>
+
+<StoryBanner />
+
+> This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features
+listed above.
+
+## Features
+
+Many components are provided to build your own backoffice based on Formio.js API:
+
+- [ActionsTable](?path=/docs/organisms-table-actions-actionstable--docs),
+- [FormAccess](?path=/docs/organisms-form-access-formaccess--docs),
+- [FormAction](?path=/docs/organisms-form-action-formaction--docs),
+- [Form](?path=/docs/organisms-form-form--docs),
+- [FormBuilder](?path=/docs/organisms-form-builder-formbuilder--docs),
+- [FormEdit](?path=/docs/organisms-form-builder-formedit--docs),
+- [FormsTable](?path=/docs/organisms-table-forms-formstable--docs),
+- [InputTags](?path=/docs/molecules-forms-inputtags--docs),
+- [InputText](?path=/docs/molecules-forms-inputtext--docs),
+- [Pagination](?path=/docs/molecules-pagination--docs),
+- Select: [Choicejs](?path=/docs/molecules-forms-select-choicejs--docs), [HTML5](?path=/docs/molecules-forms-select-html5--docs) or [ReactSelect](?path=/docs/molecules-forms-select-react--docs),
+- [SubmissionsTable](?path=/docs/organisms-table-submissions-submissionstable--docs).
+- [Table](?path=/docs/molecules-table--docs),
+- Predefined Reducers for Actions, Action, Form, Forms, Submission, Submissions, etc...,
+- TypeScript support.
+- Tailwind support.
+
+## Install
+
+`@tsed/react-formio` can be used on the server, or bundled for the client using an
+npm-compatible packaging system such as [Vite](https://vite.dev/), [webpack](http://webpack.github.io/) or [Rollup](https://rollupjs.org/).
+
+
+```sh
+npm install @formio/js --save // Install formiojs since it is a peerDependency
+npm install @tsed/react-formio react-table --save
+```
+
+
+
+## Migrate to v2
+
+If you use redux actions with v2, you have to install `@tsed/redux-formio-stores` and replace your imports:
+
+```diff
+- import { defaultFormioReducer, formsReducer } from "@tsed/react-formio";
++ import { defaultFormioReducer, formsReducer } from "@tsed/react-formio-stores";
+```
+
+## Migrate to v3
+
+- `@tsed/react-formio` is now build only for ESM environment.
+- `@tsed/react-formio` use tree-shaking to reduce the bundle size, you have to import only what you need from the library.
+- `@tsed/react-formio` drop the support of TailwindCSS v2.
+- `@tsed/react-formio-stores` and `@tsed/redux-utils` are removed from the project.
+
+Example:
+
+```diff
+- import { Form } from "@tsed/react-formio";
++ import { Form } from "@tsed/react-formio/organisms/form/Form";
+```
+
+## Usage
+
+```tsx
+import React from "react";
+import "@tsed/react-formio/all"; // load all library components
+import { FormBuilder } from "@tsed/react-formio/organisms/form/builder/FormBuilder";
+
+function App() {
+  return (
+    <div className='App'>
+      <FormBuilder display={"form"} components={[/**/]} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+<Canvas of={FormBuilderStories.WebForm}/>
+
+## Registering react components
+
+See [Register react component](?path=/docs/register-react-component--docs) documentation.
+
+## Optimize your bundle size
+
+See [Optimize your bundle size](?path=/docs/optimize-your-bundle-size--docs) documentation.
+
+## Contributors
+
+Please read [contributing guidelines here](./CONTRIBUTING.md).
+
+<a href="https://github.com/TypedProject/tsed/graphs/contributors"><img
+  src="https://opencollective.com/tsed/contributors.svg?width=890"/></a>
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/tsed#backer)]
+
+<a href="https://opencollective.com/tsed#backers" target="_blank"><img
+  src="https://opencollective.com/tsed/tiers/backer.svg?width=890"/></a>
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your
+website. [[Become a sponsor](https://github.com/sponsors/Romakita)]
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2016 - Today Romain Lenzotti
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+

@@ -1,35 +1,51 @@
 {
   "name": "@tsed/tailwind-formio",
-  "version": "2.3.6",
+  "version": "3.0.0-alpha.12",
   "description": "Tailwind templates for form.io forms.",
+  "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "module": "dist/index.js",
   "source": "src/index.ts",
-  "type": "commonjs",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "tsed-source": "./src/index.ts",
-      "import": "./dist/index.modern.js",
-      "require": "./dist/index.js",
-      "default": "./dist/index.modern.js"
+      "default": "./dist/index.js"
     },
-    "./styles/*.css": "./styles/*.css"
+    "./styles/*": "./styles/*",
+    "./tailwind.preset": {
+      "types": "./dist/tailwind/preset.d.ts",
+      "default": "./dist/tailwind/preset.js"
+    },
+    "./tailwind.colors": {
+      "types": "./dist/tailwind/colors.d.ts",
+      "default": "./dist/tailwind/colors.js"
+    }
   },
   "scripts": {
-    "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
-    "build:templates": "gulp templates",
-    "build:source": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx",
-    "build": "gulp templates && yarn build:source"
+    "build": "vite build && yarn tailwind:build",
+    "watch": "vite build --watch",
+    "tailwind:build": "tailwindcss build -o build/tailwind.css && yarn tailwind:build:viewer",
+    "start:tailwind:viewer": "tailwind-config-viewer -o",
+    "tailwind:build:viewer": "tailwind-config-viewer export ./build && cp ./build/index.html ./build/tailwind.html && yarn clean:tailwind:viewer",
+    "clean:tailwind:viewer": "rimraf build/index.html build/favicon.ico"
   },
   "devDependencies": {
-    "@tsed/config": "2.3.6",
-    "@tsed/tailwind": "2.3.6",
     "cross-env": "7.0.3",
-    "gulp": "^4.0.2",
-    "gulp-insert": "^0.5.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-template": "^5.0.0",
-    "nodemon": "2.0.20"
+    "lucide-static": "^0.544.0",
+    "rimraf": "3.0.2",
+    "tailwind-config-viewer": "2.0.4",
+    "tailwindcss": "3.4.17",
+    "vite": "7.1.5",
+    "vite-plugin-ejs": "1.7.0"
+  },
+  "peerDependencies": {
+    "lucide-static": ">=0.544.0"
+  },
+  "peerDependenciesMeta": {
+    "lucide-static": {
+      "optional": true
+    }
   },
   "browserslist": {
     "production": [

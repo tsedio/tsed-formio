@@ -1,11 +1,17 @@
 import React from "react";
 
-import { OperationButtonProps } from "../components/table/components/defaultOperationButton.component";
+import type { OperationButtonProps } from "../molecules/table/components/DefaultOperationButton.js";
+import type { JSON } from "./SubmissionType.js";
 
-export type PermissionsResolver<Data = any> = (data: Data, ctx: any) => void;
-export type OnClickOperation<Data = any> = (data: Data, operation: Operation) => void;
+export type CellMetadata = Record<string, unknown>;
 
-export interface Operation<Data = any> {
+export type PermissionsResolver<Data extends { [key: string]: JSON } = { [key: string]: JSON }> = (
+  data: Data,
+  metadata: CellMetadata,
+  operation: Operation<Data>
+) => void;
+
+export interface Operation<Data extends { [key: string]: JSON } = { [key: string]: JSON }> {
   /**
    * Action identifier
    */

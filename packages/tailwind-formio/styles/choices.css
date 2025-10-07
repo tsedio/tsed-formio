@@ -153,6 +153,7 @@
       }
     }
   }
+
   &[data-type=select-multiple] {
     &:after {
       @apply h-0 w-0 border-solid absolute border-0 h-full top-0 m-0 right-1.5;
@@ -168,14 +169,16 @@
       @apply pb-0;
     }
   }
+
+  .choices__list--multiple .choices__item {
+    @apply rounded-md bg-primary border-0 text-xs py-1 px-2;
+    font-weight: 600;
+  }
 }
 
-.choices__list--multiple .choices__item {
-  @apply rounded-sm;
-}
 
-.is-open .choices__inner , .is-flipped.is-open .choices__inner {
-  @apply rounded-md rounded-b-none;
+.is-open .choices__inner, .is-flipped.is-open .choices__inner {
+  @apply rounded-md;
 }
 
 .choices__list {
@@ -188,7 +191,8 @@
     .choices__item {
       @apply w-full;
     }
-    .choices__item.choices__item--selectable{
+
+    .choices__item.choices__item--selectable {
       margin-bottom: -0.375rem;
     }
   }
@@ -201,12 +205,13 @@
     }
 
     .choices__item {
-      @apply inline-block align-middle rounded py-1 px-2.5 text-xs font-semibold mr-1 mb-1 bg-primary-500 border-1 border-solid border-primary-600 text-white ;
+      @apply inline-flex align-middle rounded py-1 px-2.5 text-xs font-semibold mr-1 mb-1 bg-primary-500 border-1 border-solid border-primary-600 text-white ;
       word-break: break-all;
       box-sizing: border-box;
 
       &.is-highlighted {
         @apply bg-secondary-500 border-secondary-600;
+
         .choices__button {
           @apply border-secondary-600;
         }
@@ -214,8 +219,8 @@
     }
   }
 
-  &--dropdown {
-    @apply invisible absolute z-5 w-full bg-white border-1 border-solid border-gray-300 rounded overflow-hidden break-all top-full;
+  &--dropdown[aria-expanded=true] {
+    @apply invisible absolute z-5 w-full bg-white border-1 border-solid border-gray-300 rounded-md overflow-hidden break-all top-full;
     will-change: visibility;
 
     &.is-active {
@@ -310,7 +315,6 @@
   }
 }
 
-
 .choices__heading {
   @apply font-semibold p-2.5 border-solid border-gray-200 text-gray-600;
   font-size: inherit;
@@ -336,4 +340,35 @@
 
 .choices__placeholder {
   @apply opacity-50;
+}
+
+/**
+ * Choices Size rendering
+ */
+.form-group.-size-small {
+  .choices {
+    .choices__inner {
+      @apply px-2;
+      padding-top: 3px;
+      min-height: 32px;
+      font-size: 14px;
+    }
+
+    &[data-type*=select-one] .choices__inner {
+      padding-bottom: 1px;
+    }
+
+    .choices__list--multiple .choices__item {
+      @apply py-0.5 px-1 text-xs;
+      margin-bottom: 3px;
+    }
+
+    .choices__input {
+      margin-bottom: 1px;
+    }
+    &[data-type*=select-multiple] .choices__button,
+    &[data-type*=text] .choices__button{
+      margin: 0 -2px 0 6px;
+    }
+  }
 }

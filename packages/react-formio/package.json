@@ -1,46 +1,54 @@
 {
   "name": "@tsed/react-formio",
-  "version": "2.3.6",
+  "version": "3.0.0-alpha.12",
   "description": "Provide a react formio wrapper. Written in TypeScript.",
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.modern.js",
   "exports": {
     ".": {
       "tsed-source": "./src/index.ts",
-      "import": "./dist/index.modern.js",
-      "require": "./dist/index.js",
-      "default": "./dist/index.modern.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "tsed-source": "./src/*",
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
     }
   },
   "source": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "lint:fix": "yarn lint --fix",
-    "test": "cross-env NODE_ENV=test jest --coverage",
-    "test:coverage:update": "write-coverage",
-    "build": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx",
-    "watch": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --globals react/jsx-runtime=jsx"
+    "test": "vitest run --coverage",
+    "build": "vite build",
+    "watch": "vite build --watch"
   },
   "dependencies": {
     "classnames": "^2.3.1",
     "eventemitter2": "^6.4.3",
-    "prop-types": "15.8.1"
+    "use-debounce": "^10.0.4"
   },
   "peerDependencies": {
     "@formio/choices.js": ">=9.0.1",
+    "@tanstack/react-table": ">=8.20.6",
     "formiojs": ">=4.0.0",
     "lodash": ">=4.17.20",
-    "prop-types": ">=15.7.2",
+    "moment": ">=2.30.1",
     "react": ">=16.14.0",
     "react-dnd": ">=16.0.1",
     "react-dnd-html5-backend": ">=16.0.1",
     "react-dom": ">=16.14.0",
+    "react-select": ">=5.9.0",
     "react-table": ">=7.6.3",
     "tooltip.js": ">=1.3.3"
   },
   "devDependencies": {
-    "@tsed/tailwind": "workspace:*",
+    "@tanstack/react-table": ">=8.20.6",
     "@tsed/tailwind-formio": "workspace:*",
-    "microbundle": "0.13.0"
+    "@tsed/typescript": "workspace:*",
+    "microbundle": "0.13.0",
+    "vite": "7.1.5",
+    "vitest": "3.2.4"
   }
 }

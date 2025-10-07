@@ -47,14 +47,16 @@
   </div>
   <div class="bg-white p-2 flex justify-center">
     <button class="btn btn-primary mx-2" ref="saveButton">
+      <i class="{{ctx.iconClass('save')}} mr-2"></i>
       {{ctx.t('Save')}}
     </button>
     <button class="btn btn-dark mx-2" ref="cancelButton">
+      <i class="{{ctx.iconClass('x')}} mr-2"></i>
       {{ctx.t('Cancel')}}
     </button>
     <button class="btn btn-danger mx-2" ref="removeButton">
-      <i class="{{ctx.iconClass('remove')}} sm:mr-2"></i>
-      <span class="hidden sm:inline">{{ctx.t('Remove')}}</span>
+      <i class="{{ctx.iconClass('remove')}} mr-2"></i>
+      {{ctx.t('Remove')}}
     </button>
   </div>
 </div>

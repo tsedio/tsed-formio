@@ -1,27 +1,39 @@
 import "./styles/index.css";
 
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { withThemeByClassName } from "@storybook/addon-themes";
 import { Formio, Templates } from "@tsed/react-formio";
 import tailwind from "@tsed/tailwind-formio";
+import { initialize, mswLoader } from "msw-storybook-addon";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 Formio.use(tailwind);
+
 Templates.framework = "tailwind";
 
-/** @type { import('@storybook/react').Preview } */
+initialize();
+
+/** @type { import("@storybook/react-vite").Preview } */
 const preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/
-      }
+    docs: {
+      source: { language: "tsx" }
     }
   },
   viewport: {
     viewports: INITIAL_VIEWPORTS
-  }
+  },
+  loaders: [mswLoader],
+  tags: ["autodocs"],
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: "",
+        dark: "dark"
+      },
+      defaultTheme: "light"
+    })
+  ]
 };
 
 export default preview;

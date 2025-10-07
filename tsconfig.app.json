@@ -1,0 +1,25 @@
+{
+  "extends": "@tsed/typescript/tsconfig.web.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "declaration": false,
+    "composite": false,
+    "paths": {
+      "@tsed/react-formio": ["packages/react-formio/src"],
+      "@tsed/react-formio/*": ["packages/react-formio/src/*"],
+      "@tsed/redux-utils": ["packages/redux-utils/src"]
+    }
+  },
+  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.tsx"],
+  "exclude": [
+    "packages/react-formio-container",
+    "packages/react-formio-stores",
+    "packages/react-formio-redux",
+    "packages/integration",
+    "node_modules",
+    "dist",
+    "packages/*/src/**/*.spec.ts",
+    "packages/*/src/**/*.spec.tsx"
+  ]
+}
