@@ -70,6 +70,7 @@ This guide distills the `git log master..rc` history into concrete steps so you 
      ```
    - Use the new molecules table hooks: `@tsed/react-formio/molecules/table/hooks/useTable`.
    - For lists such as Forms, Submissions, or Actions, prefer the new `organisms/table/*` components. They expose keyboard navigation and filter helpers out of the box.
+   - Need the full diff for `Table`/`UseTableProps`? See the dedicated section “Table & `useTable` specifics” below for column examples, prop mappings, and TanStack-specific notes.
 
 5. **Refactor FormBuilder flows**
    - The builder and edit experiences rely on hooks:  
@@ -91,7 +92,131 @@ This guide distills the `git log master..rc` history into concrete steps so you 
      yarn test
      yarn storybook:start
      ```
-   - For CI, update any scripts that referenced the removed packages or old Storybook CLI flags.
+- For CI, update any scripts that referenced the removed packages or old Storybook CLI flags.
+
+---
+
+## Table & `useTable` specifics
+
+The table layer moved from `react-table@7` (`useCustomTable`) to `@tanstack/react-table@8`. This section consolidates all API changes so teams can migrate custom tables without diffing the repo.
+
+### Snapshot of differences
+
+| Concern              | v2 (`react-table@7`)                                                                  | v3 (`@tanstack/react-table@8`)                                                                                                |
+|----------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| Component path       | `@tsed/react-formio/components/table/table.component`                                  | `@tsed/react-formio/molecules/table/Table`                                                                                   |
+| Hook                 | `useCustomTable` (wraps `useTable`, `useSortBy`, `usePagination`, etc.)                | `useTable` (wraps `useReactTable`, `getCoreRowModel`, filtering + faceting helpers)                                          |
+| Column definition    | `Column<Data>` + custom `ExtendedColumn` metadata                                      | `ColumnDef<Data>` with metadata in `column.columnDef.meta` and filters declared via `meta.filter`                            |
+| Operations           | Optional `operations?: Operation[]`, manual cell render                               | `operations: Operation<Data>[]` is required; hook automatically appends an “Operations” column when non-empty                |
+| Query events         | `onChange?(query: QueryOptions)` (filters/page/sort)                                   | `onChange?(state: TableState)` returns the TanStack state bag (pagination, sorting, column visibility, etc.)                 |
+| Pagination inputs    | `totalLength`, `pageSize`, `pageIndex`, `manualPagination`, `pageSizes`                | `rowCount`, `pageSizes`, `manualPagination`, `pageCount`; Table component wires them into the shared Pagination component    |
+| Filters              | Per-column `ColumnFilter` props, string filter ids                                     | Column metadata (`column.columnDef.meta.filter`), faceted row/unique value helpers, filter components under `molecules/table/filters` |
+| Custom cells/headers | Props such as `Cell`, `Row`, `CellHeader`, `CellOperations` passed directly            | Components resolved via registries (`getComponent("CellHeader")`, `CellFooter`, `CellOperations`) with TanStack render context |
+| Drag & drop          | Built-in via `DrapNDropContainer`, `onDrag`, `onDrop`                                  | Removed; implement drag-and-drop externally if still required                                                                |
+
+### `TableProps` / `UseTableProps` comparison
+
+| v2 property | v3 equivalent | Notes |
+|-------------|--------------|-------|
+| `columns: ExtendedColumn<Data>[]` | `columns: ColumnDef<Data, TValue>[]` | Column metadata such as filters, cell props, and visibility now lives under `column.columnDef.meta` (see `molecules/table/interfaces/extends.ts`). |
+| `data: Data[]` | `data: Data[]` | Must satisfy `{ [key: string]: JSON }` to align with FormIO data typing. |
+| `operations?: Operation[]` | `operations: Operation<Data>[]` **(required)** | Provide `[]` if you have no row-level actions; the hook appends an “Operations” column when the array is non-empty. |
+| `onClick?(row, operation)` | `onClick?(data, operation)` | Same behaviour, but bound to the injected operations column. |
+| `onChange?(QueryOptions)` | `onChange?(TableState)` | Expect the TanStack state bag (pagination, sorting, column order, column visibility, etc.). |
+| `totalLength` | `rowCount` (Pagination prop) | Keeps the pagination footer totals accurate in server/manual mode. |
+| `manualFilters`, `manualSortBy`, `manualPagination` | `manualFiltering`, `manualSorting`, `manualPagination` | TanStack renamed these flags. |
+| `ColumnFilter`, `ArrowSort`, `Cell`, `Row`, `CellHeader`, `CellOperations` props | Components resolved via registries (`getComponent("CellHeader")`, `getComponent("CellOperations")`, etc.). | Override registry entries to customise the visuals. |
+| `enableDragNDrop`, `onDrag`, `onDrop` | _Removed_ | Wrap `<Table />` with your own drag-and-drop solution if needed. |
+| `filters`, `sortBy`, `pageIndex`, `pageSize` (controlled props) | Provide TanStack `state`/`onStateChange` or rely on the built-in pagination state | Controlled mode now mirrors TanStack’s API. |
+| `metadata` | `metadata?: Record<string, unknown>` | Optional bag forwarded to `CellOperations`. |
+
+> **Tip:** Re-export the new type to ease adoption:  
+> `export type AdminTableProps<TData extends Record<string, JSON>> = TableProps<TData>;`
+
+### Code diff examples
+
+#### Columns definition
+
+```diff
+- import { Column } from "react-table";
++ import { ColumnDef } from "@tanstack/react-table";
+
+- const columns: Column<User>[] = [
+-   {
+-     Header: "Email",
+-     accessor: "email",
+-     Filter: EmailFilter,
+-     Cell: ({ value }) => <a href={`mailto:${value}`}>{value}</a>
+-   }
+- ];
++ const columns: ColumnDef<User>[] = [
++   {
++     header: "Email",
++     accessorKey: "email",
++     meta: {
++       filter: { type: "text" },
++       cellProps: { className: "text-blue-500" }
++     },
++     cell: ({ getValue }) => <a href={`mailto:${getValue<string>()}`}>{getValue<string>()}</a>
++   }
++ ];
+```
+
+#### Hook/component usage
+
+```diff
+- import { useCustomTable, TableProps } from "@tsed/react-formio/components/table";
+-
+- function UsersTable(props: TableProps<User>) {
+-   const table = useCustomTable({
+-     ...props,
+-     columns
+-   });
+-   // render table.tableInstance
+- }
++ import { Table, TableProps } from "@tsed/react-formio/molecules/table/Table";
++
++ function UsersTable(props: TableProps<User>) {
++   return (
++     <Table
++       {...props}
++       data={props.data}
++       columns={columns}
++       operations={[
++         { id: "view", label: "View", action: "view" },
++         { id: "delete", label: "Delete", action: "delete", variant: "danger" }
++       ]}
++       onClick={(row, operation) => handleOperation(row, operation)}
++       onChange={(state) => syncQuery(state)}
++       manualPagination
++       pageSizes={[10, 25, 50]}
++       rowCount={props.rowCount}
++     />
++   );
++ }
+```
+
+### Filters, sorting, and metadata
+
+1. **Filters:** Attach filter metadata via `column.columnDef.meta.filter`. Built-in helpers (TextField, Select, Range) live in `packages/react-formio/src/molecules/table/filters`, powered by TanStack’s faceted row/unique value helpers.
+2. **Sorting & headers:** Use `column.getIsSorted()` plus the registry-driven `DefaultCellHeader` for keyboard-accessible headers.
+3. **Hidden columns:** Set `column.columnDef.meta.hidden = true` to hide a column while keeping it in the data model (replaces `ExtendedColumn.hidden`).
+4. **Custom cell props:** Provide `column.columnDef.meta.cellProps` to tweak `<td>` attributes (`className`, `data-*`, etc.).
+
+### Query lifecycle changes
+
+- `onChange` emits the full `TableState` (pagination, sorting, column order, column pinning, column sizing, column visibility, global filter). Use it to update query params or trigger server requests.
+- Manual mode uses TanStack flags: `manualPagination`, `manualSorting`, `manualFiltering`, plus `pageCount`. Keep `rowCount` in sync so the pagination footer shows totals.
+- The hook injects an “Operations” column whenever `operations.length > 0`. Override the `CellOperations` registry entry for advanced layouts.
+
+### Table migration checklist
+
+1. Update imports to the new paths (`@tsed/react-formio/molecules/table/Table`, `ColumnDef` from `@tanstack/react-table`).
+2. Rewrite columns using `accessorKey`/`accessorFn` and move metadata to `meta`.
+3. Provide `operations`, `pageSizes`, and `rowCount` (set `operations: []` if you have none).
+4. Update `onChange` handlers to expect `TableState`.
+5. Remove `enableDragNDrop`, `onDrag`, and `onDrop`.
+6. Run `yarn lint && yarn test && yarn storybook:start` to ensure the new definitions compile and render.
 
 ---
 

@@ -75,6 +75,7 @@ See [`docs/migrations/v2-to-v3.md`](../../docs/migrations/v2-to-v3.md) for the f
   ```bash
   yarn add @formio/choices.js @tanstack/react-table react-select react-table use-debounce
   ```
+- **Tables** – if you rely on the Table component or `UseTableProps`, review the [Table & `useTable` specifics](../../docs/migrations/v2-to-v3.md#table--usetable-specifics) section for the TanStack-specific migration notes.
 
 Example import diff:
 

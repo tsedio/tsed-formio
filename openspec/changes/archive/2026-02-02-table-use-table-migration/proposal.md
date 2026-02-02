@@ -5,7 +5,7 @@ Developers upgrading from v2 to v3 struggled to understand how the Table compone
 ## What Changes
 
 - Produce an analysis comparing `packages/react-formio/src/molecules/table/Table.tsx` (v2 vs. v3) and the associated `UseTableProps` interface. **BREAKING** behavior (TanStack migration, filter helpers, keyboard support) must be called out.
-- Author a migration note (likely under `docs/migrations/table-use-table.md` or Storybook) that documents prop/return-type renames, column definition changes, and expected peer dependencies.
+- Author a migration note within `docs/migrations/v2-to-v3.md` (new “Table & `useTable` specifics” section) plus Storybook coverage that documents prop/return-type renames, column definition changes, and expected peer dependencies.
 - Update README/Storybook references if necessary so developers can find the table-specific migration instructions from the broader v3 guide.
 
 ## Capabilities
@@ -22,4 +22,4 @@ Developers upgrading from v2 to v3 struggled to understand how the Table compone
 
 - `packages/react-formio/src/molecules/table/Table.tsx` (analysis only, no code change expected but we must cite current APIs)
 - Source history for v2 vs v3 Table/UseTableProps definitions
-- New doc/story file (likely `docs/migrations/table-use-table.md` and/or `stories/TableMigration.mdx`)
+- New doc/story surfacing (repo doc section `docs/migrations/v2-to-v3.md#table--usetable-specifics` plus the Storybook “Migrate to v3” page)

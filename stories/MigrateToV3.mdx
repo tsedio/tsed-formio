@@ -80,8 +80,51 @@ Chromatic/CI users should also update snapshots once Storybook renders the new c
 
 ---
 
+## Table & `useTable` specifics
+
+The table layer moved from `react-table@7` (`useCustomTable`) to `@tanstack/react-table@8`. Key changes:
+
+1. **`ColumnDef` metadata** – define columns with `ColumnDef<T>` and move filter/sorting metadata into `column.columnDef.meta` (see `packages/react-formio/src/molecules/table/interfaces/extends.ts`). Built-in filters live under `molecules/table/filters`.
+2. **Hook + operations** – `useTable` appends an “Operations” column whenever `operations` is non-empty. Provide the array (or `[]`) and optional `metadata` so the injected `CellOperations` component can render buttons with i18n support.
+3. **State events** – `onChange` now receives TanStack’s `TableState` (pagination, sorting, filters, column visibility). Use it to drive remote queries instead of the old `QueryOptions`.
+4. **Pagination** – pass `rowCount` alongside `manualPagination`, `pageSizes`, and `pageCount` to keep the footer totals accurate.
+5. **Removed helpers** – the built-in drag-and-drop container is gone; wrap `<Table />` with your own drag-and-drop solution if you still need that behaviour.
+
+### Column diff example
+
+```diff
+- import { Column } from "react-table";
++ import { ColumnDef } from "@tanstack/react-table";
+
+- const columns: Column<User>[] = [
+-   { Header: "Email", accessor: "email" }
+- ];
++ const columns: ColumnDef<User>[] = [
++   {
++     header: "Email",
++     accessorKey: "email",
++     meta: {
++       filter: { type: "text" },
++       cellProps: { className: "text-blue-500" }
++     }
++   }
++ ];
+```
+
+### Table migration checklist
+
+1. Import the new component/hook paths: `@tsed/react-formio/molecules/table/Table`, `ColumnDef` from `@tanstack/react-table`.
+2. Rewrite columns using `accessorKey`/`accessorFn` and move filter/cell props to `meta`.
+3. Provide `operations`, `pageSizes`, and `rowCount` (set `operations: []` if you have no actions).
+4. Update `onChange` handlers to expect `TableState`.
+5. Remove any usage of `enableDragNDrop`/`onDrag`/`onDrop`.
+6. Refer to the [Table & `useTable` specifics](https://github.com/tsedio/tsed-formio/blob/rc/docs/migrations/v2-to-v3.md#table--usetable-specifics) for detailed before/after snippets and additional context.
+
+---
+
 ## Helpful resources
 
 - 📄 `docs/migrations/v2-to-v3.md` – canonical migration note
+- 📊 Table & `useTable` specifics (section inside `docs/migrations/v2-to-v3.md`)
 - 📘 README → “Migrate to v3”
 - 🤖 `docs/llm-migrate-v2-to-v3.md` – guidelines for LLM copilots

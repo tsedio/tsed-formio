@@ -27,8 +27,8 @@
 
 2. **Doc location & format**
 
-   - Add `docs/migrations/table-use-table.md` and optionally a Storybook MDX entry referencing it.
-   - Reasoning: keeps the main v3 migration guide lean while letting table consumers deep dive on TanStack-specific guidance.
+   - Add a “Table & `useTable` specifics” section to `docs/migrations/v2-to-v3.md` and mirror it in Storybook.
+   - Reasoning: keeps a single source of truth while still providing deep-dive content for table consumers.
 
 3. **Structure**
    - Document should contain:
@@ -46,7 +46,7 @@
 ## Migration Plan
 
 1. Extract the v2 Table + `UseTableProps` definitions (from `master` tag or history) and annotate the changes (e.g., renames, removed props, new generics).
-2. Write `docs/migrations/table-use-table.md` with the comparison tables and code examples.
+2. Expand `docs/migrations/v2-to-v3.md` with the table comparison tables and code examples.
 3. Link the new doc from the main v3 migration page and Storybook (if applicable).
 4. Review and ensure the doc references the correct file paths (`packages/react-formio/src/molecules/table/Table.tsx`, `.../hooks/useTable.tsx`, `.../interfaces/extends.ts`, etc.).
 

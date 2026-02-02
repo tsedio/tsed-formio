@@ -54,12 +54,15 @@ If you use redux actions with v2, you have to install `@tsed/redux-formio-stores
 
 ## Migrate to v3
 
-- `@tsed/react-formio` is now build only for ESM environment.
-- `@tsed/react-formio` use tree-shaking to reduce the bundle size, you have to import only what you need from the library.
-- `@tsed/react-formio` drop the support of TailwindCSS v2.
-- `@tsed/react-formio-stores` and `@tsed/redux-utils` are removed from the project.
+See [`docs/migrations/v2-to-v3.md`](https://github.com/tsedio/tsed-formio/blob/rc/docs/migrations/v2-to-v3.md) for the full upgrade path. Highlights:
 
-Example:
+- **ESM-only outputs** – the package now ships ESM bundles exclusively. Update bundlers/tests and import components from their atomic paths (e.g. `@tsed/react-formio/organisms/form/Form`). Use `import "@tsed/react-formio/all"` only when you need legacy side-effects.
+- **Tailwind 3 baseline** – upgrade to Tailwind ≥3.3 and install `@tsed/tailwind-formio@^3`; v2 tokens are removed.
+- **Store packages removed** – uninstall `@tsed/react-formio-stores`, `@tsed/redux-utils`, and `@tsed/react-formio-container`. Replace them with the provided hooks (`useForm`, `useFormioContext`, `useFormBuilder`) or your own state layer.
+- **Tables migrated to TanStack** – if you rely on the Table component or `UseTableProps`, read the [Table & `useTable` specifics](https://github.com/tsedio/tsed-formio/blob/rc/docs/migrations/v2-to-v3.md#table--usetable-specifics) for column definitions, prop mapping, and TanStack-only requirements.
+- **New peer dependencies** – install `@formio/choices.js`, `@tanstack/react-table`, `react-select`, `react-table`, and `use-debounce`.
+
+Example import change:
 
 ```diff
 - import { Form } from "@tsed/react-formio";
@@ -131,4 +134,3 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-

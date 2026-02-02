@@ -10,6 +10,7 @@ const config: StorybookConfig = {
     "../stories/RegisterReactComponent.mdx",
     "../stories/Hooks.mdx",
     "../stories/OptimizeYourBundleSize.mdx",
+    "../stories/MigrateToV3.mdx",
     "../stories/**/*.mdx",
     {
       titlePrefix: "Styling",
