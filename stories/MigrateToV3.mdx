@@ -1,0 +1,87 @@
+import {Meta} from '@storybook/addon-docs/blocks'
+import {StoryBanner} from './home/StoryBanner.jsx'
+
+<Meta title="Migration/Migrate to v3"/>
+
+<StoryBanner />
+
+# Migrate to v3
+
+This page summarises the delta between `@tsed/react-formio` v2 (master) and the current `rc` branch that will become v3. For the complete checklist, open `docs/migrations/v2-to-v3.md` inside the repository—this Storybook entry mirrors its content and links to the relevant component stories.
+
+---
+
+## Breaking changes at a glance
+
+1. **ESM-only builds** – the package now exports ESM bundles exclusively. Convert `require()` calls to `import` and ensure your bundler/test runner supports native ESM.
+2. **Tree-shaken import paths** – import each component from its atomic folder (`molecules/`, `organisms/`, etc.). Example: `@tsed/react-formio/organisms/form/Form`.
+3. **Tailwind v3 baseline** – Tailwind v2 tokens are removed. Upgrade to Tailwind ≥3.3 and adopt the new `@tsed/tailwind-formio` preset.
+4. **Redux helpers removed** – `@tsed/react-formio-stores`, `@tsed/redux-utils`, and `@tsed/react-formio-container` are gone. Use hooks and contexts instead.
+5. **New peers** – install `@formio/choices.js`, `react-select`, `@tanstack/react-table@^8`, and `use-debounce`.
+6. **Refreshed UX** – Tabs, Tables, FormBuilder, and FormViews gained keyboard navigation, lucide icons, and i18n hooks. Consume the new APIs showcased below.
+
+---
+
+## Step-by-step migration
+
+### 1. Dependencies
+
+- Upgrade to `@tsed/react-formio@^3`.
+- Install the new peers:
+  ```bash
+  yarn add @formio/choices.js @tanstack/react-table react-select use-debounce
+  ```
+- Remove deprecated packages:
+  ```bash
+  yarn remove @tsed/react-formio-stores @tsed/redux-utils @tsed/react-formio-container
+  ```
+
+### 2. Imports & bundler config
+
+- Use ESM imports everywhere (Vite/Vitest already configured in the monorepo).
+- Map old imports to the new paths:
+  ```diff
+  - import { FormBuilder } from "@tsed/react-formio";
+  + import { FormBuilder } from "@tsed/react-formio/organisms/form/builder/FormBuilder";
+  ```
+- Optionally register every component once via `import "@tsed/react-formio/all";` in your app entrypoint.
+
+### 3. Form & Builder flows
+
+- `<Form />` lives at [organisms/form/Form](?path=/docs/organisms-form-form--docs) and now exposes `useForm` hooks plus i18n helpers.
+- Use the new [FormBuilder](?path=/docs/organisms-form-builder-formbuilder--docs) and [FormViews](?path=/docs/organisms-views-formviews--docs) stories as references for the builder/edit/export pipeline.
+- Tabs ([docs](?path=/docs/molecules-tabs-tabs--docs)) and Tables ([docs](?path=/docs/molecules-table--docs)) ship with keyboard navigation—remove custom key handlers that conflict.
+
+### 4. Styling
+
+- Import the updated Tailwind preset:  
+  ```ts
+  // tailwind.config.ts
+  import {preset} from "@tsed/tailwind-formio";
+
+  export default {
+    content: ["./src/**/*.{ts,tsx}"],
+    presets: [preset]
+  };
+  ```
+- Include lucide icon fonts or use your own mapping via `@tsed/tailwind-formio/src/templates/tailwind/icon`.
+
+### 5. Verification
+
+Run the usual quality gates after updating imports:
+
+```bash
+yarn lint
+yarn test
+yarn storybook:start
+```
+
+Chromatic/CI users should also update snapshots once Storybook renders the new components correctly.
+
+---
+
+## Helpful resources
+
+- 📄 `docs/migrations/v2-to-v3.md` – canonical migration note
+- 📘 README → “Migrate to v3”
+- 🤖 `docs/llm-migrate-v2-to-v3.md` – guidelines for LLM copilots

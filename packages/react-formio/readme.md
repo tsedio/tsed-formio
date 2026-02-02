@@ -65,11 +65,18 @@ If you use redux actions from v1, you have to install `@tsed/redux-formio-stores
 
 ## Migrate to v3
 
-- `@tsed/react-formio` is now build only for ESM environment.
-- `@tsed/react-formio` use tree-shaking to reduce the bundle size, you have to import only what you need from the library.
-- `@tsed/react-formio` drop the support of TailwindCSS v2.
+See [`docs/migrations/v2-to-v3.md`](../../docs/migrations/v2-to-v3.md) for the full guide. Highlights:
 
-Example:
+- **ESM only** – the package now exports ESM bundles exclusively. Update any `require()` calls and ensure your bundler/test runner supports native ESM.
+- **Tree-shaken imports** – import components from their atomic folder (e.g. `@tsed/react-formio/organisms/form/Form`). Use `import "@tsed/react-formio/all"` once if you still need global side-effects/registrations.
+- **Tailwind 3 baseline** – install `@tsed/tailwind-formio@^3` and upgrade to Tailwind ≥3.3; legacy Tailwind v2 tokens were removed.
+- **Store packages removed** – uninstall `@tsed/react-formio-stores`, `@tsed/redux-utils`, and `@tsed/react-formio-container`. Use the provided hooks (`useForm`, `useFormBuilder`, `useFormioContext`) or your own state management.
+- **New peer dependencies** – install the updated UI stack:
+  ```bash
+  yarn add @formio/choices.js @tanstack/react-table react-select react-table use-debounce
+  ```
+
+Example import diff:
 
 ```diff
 - import { Form } from "@tsed/react-formio";
