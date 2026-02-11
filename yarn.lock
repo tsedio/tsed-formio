@@ -4624,6 +4624,7 @@ __metadata:
     "@types/react-router": "npm:^5.1.20"
     "@types/react-router-dom": "npm:^5.3.3"
     "@types/react-table": "npm:^7.7.14"
+    "@types/semver": "npm:^7"
     "@typescript-eslint/eslint-plugin": "npm:8.18.2"
     "@typescript-eslint/parser": "npm:8.18.2"
     "@vitejs/plugin-react": "npm:^4.3.4"
@@ -4674,6 +4675,7 @@ __metadata:
     rollup-preserve-directives: "npm:^1.1.3"
     semantic-release: "npm:23.0.5"
     semantic-release-slack-bot: "npm:4.0.2"
+    semver: "npm:^7.7.3"
     storybook: "npm:9.1.10"
     tooltip.js: "npm:^1.3.3"
     typescript: "npm:5.7.2"
@@ -5137,6 +5139,13 @@ __metadata:
   version: 0.16.3
   resolution: "@types/scheduler@npm:0.16.3"
   checksum: 10c0/c249d4b96fa05165ac22c214f94a045ee0af8beedefdbc54b769febd0044cab3a874e55419841a0dcc76439e379a63e257f3253c87168e3261e7bc783d623302
+  languageName: node
+  linkType: hard
+
+"@types/semver@npm:^7":
+  version: 7.7.1
+  resolution: "@types/semver@npm:7.7.1"
+  checksum: 10c0/c938aef3bf79a73f0f3f6037c16e2e759ff40c54122ddf0b2583703393d8d3127130823facb880e694caa324eb6845628186aac1997ee8b31dc2d18fafe26268
   languageName: node
   linkType: hard
 
@@ -17429,6 +17438,15 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 10c0/e3d79b609071caa78bcb6ce2ad81c7966a46a7431d9d58b8800cfa9cb6a63699b3899a0e4bcce36167a284578212d9ae6942b6929ba4aa5015c079a67751d42d
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.7.3":
+  version: 7.7.3
+  resolution: "semver@npm:7.7.3"
+  bin:
+    semver: bin/semver.js
+  checksum: 10c0/4afe5c986567db82f44c8c6faef8fe9df2a9b1d98098fc1721f57c696c4c21cebd572f297fc21002f81889492345b8470473bc6f4aff5fb032a6ea59ea2bc45e
   languageName: node
   linkType: hard
 

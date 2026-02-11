@@ -6,9 +6,7 @@ import {extname, relative} from "path";
 import preserveDirectives from "rollup-preserve-directives";
 import {defineConfig} from "vite";
 import dts from "vite-plugin-dts";
-
-import pkg from "./package.json" with {type: "json"};
-import {resolve} from "node:path";
+import { resolve } from "node:path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,6 +19,9 @@ export default defineConfig({
       exclude: ["**/*.spec.{ts,tsx}", "**/*.stories.{ts,tsx}", "**/__*__/**"]
     })
   ],
+  optimizeDeps: {
+    include: ["lodash"]
+  },
   resolve: {
     alias: {}
   },
@@ -33,13 +34,19 @@ export default defineConfig({
     copyPublicDir: false,
     rollupOptions: {
       external: [
-        ...Object.keys(pkg.peerDependencies || {}),
+        "@formio/choices.js",
+        "@tanstack/react-table",
+        "formiojs",
         "react",
         "react-dom",
         "react/jsx-runtime",
-        /lodash\/.*/,
+        "react-select",
+        "react-dnd",
+        "react-dnd-html5-backend",
+        "react-table",
         /formiojs\/.*/,
-        /@tsed\/.*/
+        /@tsed\/.*/,
+        "tooltip.js"
       ],
       plugins: [preserveDirectives() as any],
       input: Object.fromEntries(
