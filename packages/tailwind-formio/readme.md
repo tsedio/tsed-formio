@@ -125,8 +125,8 @@ Optionally, you can import fonts and icons:
 ```diff
 @import "@formio/js/dist/formio.full.css";
 @import "./tailwind.css";
-+@import "./fonts/source-sans-pro/index.css";
-+@import "./fonts/inconsolata/index.css";
++@import "@tsed/tailwind-formio/fonts/source-sans-pro/index.css";
++@import "@tsed/tailwind-formio/fonts/inconsolata/index.css";
 +@import "lucide-static/font/lucide.css"; // if you want to use lucide icons (you have to install it)
 +@import "./fonts/bxicons/index.css"; // if you want to use bxicons (you have to install it)
 @import "@tsed/tailwind-formio/styles/index.css";
