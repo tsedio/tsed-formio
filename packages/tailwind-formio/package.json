@@ -13,6 +13,7 @@
       "default": "./dist/index.js"
     },
     "./styles/*": "./styles/*",
+    "./fonts/*": "./fonts/*",
     "./tailwind.preset": {
       "types": "./dist/tailwind/preset.d.ts",
       "default": "./dist/tailwind/preset.js"

@@ -1,17 +1,17 @@
 import React from "react";
 
 import type { OperationButtonProps } from "../molecules/table/components/DefaultOperationButton.js";
-import type { JSON } from "./SubmissionType.js";
+import type { JSONRecord } from "./JSONRecord.js";
 
 export type CellMetadata = Record<string, unknown>;
 
-export type PermissionsResolver<Data extends { [key: string]: JSON } = { [key: string]: JSON }> = (
+export type PermissionsResolver<Data extends JSONRecord = JSONRecord> = (
   data: Data,
   metadata: CellMetadata,
   operation: Operation<Data>
 ) => void;
 
-export interface Operation<Data extends { [key: string]: JSON } = { [key: string]: JSON }> {
+export interface Operation<Data extends JSONRecord = JSONRecord> {
   /**
    * Action identifier
    */

@@ -1,6 +1,6 @@
-import { ComponentType, JSON, SubmissionType } from "../../interfaces";
+import { ComponentType, type JSONRecord, SubmissionType } from "../../interfaces";
 
-export interface FormPageChangeProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> {
+export interface FormPageChangeProps<Data extends JSONRecord = JSONRecord> {
   page: number;
   submission: SubmissionType<Data>;
 }

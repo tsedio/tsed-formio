@@ -2,13 +2,13 @@ import { Form } from "@formio/js";
 import { EventEmitter2 } from "eventemitter2";
 import { type MutableRefObject, useEffect, useRef, useState } from "react";
 
-import type { ChangedSubmission, ComponentType, FormOptions, FormType, JSON, SubmissionType } from "../../interfaces";
+import type { ChangedSubmission, ComponentType, FormOptions, FormType, JSON, JSONRecord, SubmissionType } from "../../interfaces";
 import { FormCustomEvent } from "./types";
 
 type Webform = any;
 type EventError = string | Error | Error[] | { message: string } | { message: string }[];
 
-export interface UseFormProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> {
+export interface UseFormProps<Data extends JSONRecord = JSONRecord> {
   src?: string;
   url?: string;
   form?: FormType;
@@ -54,7 +54,7 @@ const getDefaultEmitter = () => {
   });
 };
 
-function onAnyEvent<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(
+function onAnyEvent<Data extends JSONRecord = JSONRecord>(
   handlers: Omit<UseFormProps<Data>, "src" | "url" | "form" | "submission" | "options" | "formReady" | "formioform" | "Formio">,
   ...args: [string, ...any[]]
 ) {
@@ -95,7 +95,7 @@ const createWebformInstance = async (
 };
 
 // Define effective props (aka I want to rename these props but also maintain backwards compatibility)
-function getEffectiveProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseFormProps<Data>) {
+function getEffectiveProps<Data extends JSONRecord = JSONRecord>(props: UseFormProps<Data>) {
   const { FormClass = Form, form, src, url, options, submission, onFormReady, onAsyncSubmit, ...handlers } = props;
 
   return {
@@ -126,7 +126,7 @@ function createCustomValidation(customAction: any, ref: MutableRefObject<Webform
   };
 }
 
-export function useForm<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseFormProps<Data>) {
+export function useForm<Data extends JSONRecord = JSONRecord>(props: UseFormProps<Data>) {
   const webformRef = useRef<Webform | null>(null);
   const renderElement = useRef<HTMLDivElement | null>(null);
   const { formSource, FormClass, options, url, submission, handlers, onFormReady, onAsyncSubmit } = getEffectiveProps(props);

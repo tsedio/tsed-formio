@@ -1,16 +1,12 @@
 import type { Component, Submission } from "@formio/core";
 
-export type JSON = unknown | string | number | boolean | null | undefined | JSON[] | { [key: string]: JSON };
+import type { JSONRecord } from "./JSONRecord.js";
 
-export type SubmissionType<Data extends { [key: string]: JSON } = { [key: string]: JSON }> = Omit<Partial<Submission>, "data"> & {
+export type SubmissionType<Data extends JSONRecord = JSONRecord> = Omit<Partial<Submission>, "data"> & {
   data: Data;
 };
 
-export interface ChangedSubmission<
-  Data extends { [key: string]: JSON } = {
-    [key: string]: JSON;
-  }
-> extends SubmissionType<Data> {
+export interface ChangedSubmission<Data extends JSONRecord = JSONRecord> extends SubmissionType<Data> {
   data: Data;
   changed?: {
     component: Component;
