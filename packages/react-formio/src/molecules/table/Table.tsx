@@ -2,14 +2,14 @@ import { flexRender } from "@tanstack/react-table";
 import cx from "classnames";
 import { PropsWithChildren } from "react";
 
-import type { JSON } from "../../interfaces/index.js";
+import type { JSONRecord } from "../../interfaces/JSONRecord.js";
 import { getComponent } from "../../registries/components";
 import type { Pagination as DefaultPagination } from "../pagination/Pagination";
 import type { DefaultCellFooter } from "./components/DefaultCellFooter";
 import type { DefaultCellHeader } from "./components/DefaultCellHeader";
 import { useTable, UseTableProps } from "./hooks/useTable";
 
-export interface TableProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> extends UseTableProps<Data> {
+export interface TableProps<Data extends object = JSONRecord> extends UseTableProps<Data> {
   className?: string;
 
   enableFooter?: boolean;
@@ -17,7 +17,7 @@ export interface TableProps<Data extends { [key: string]: JSON } = { [key: strin
   pageSizes?: number[];
 }
 
-export function Table<Data extends { [key: string]: JSON } = { [key: string]: JSON }>({
+export function Table<Data extends object = JSONRecord>({
   className,
   enableFooter,
   children,
