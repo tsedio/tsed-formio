@@ -13,6 +13,7 @@ export interface TableProps<Data extends object = JSONRecord> extends UseTablePr
   className?: string;
 
   enableFooter?: boolean;
+  enablePagination?: boolean;
 
   pageSizes?: number[];
 }
@@ -20,6 +21,7 @@ export interface TableProps<Data extends object = JSONRecord> extends UseTablePr
 export function Table<Data extends object = JSONRecord>({
   className,
   enableFooter,
+  enablePagination = true,
   children,
   ...props
 }: PropsWithChildren<TableProps<Data>>) {
@@ -84,7 +86,7 @@ export function Table<Data extends object = JSONRecord>({
         </table>
       </div>
       <div className='table-group-footer'>
-        {props.data.length && pagination ? (
+        {props.data.length && pagination && enablePagination ? (
           <Pagination
             className={"flex-1"}
             canNextPage={tableInstance.getCanNextPage()}

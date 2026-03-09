@@ -217,6 +217,32 @@ export const WithFilters: Story = {
   }
 };
 
+export const WithPaginationOptions: Story = {
+  args: {
+    data: formSubmissions as unknown as ProductSubmission[],
+    columns: mapFormToColumns(FormType as any),
+    operations: [
+      {
+        title: "Edit",
+        action: "edit",
+        alias: "row",
+        path: "/resources/:resourceId/submissions/:submissionId",
+        icon: "edit"
+      }
+    ],
+    i18n: {},
+    enablePagination: true,
+    pageSizes: [5, 10, 25],
+    rowCount: formSubmissions.length,
+    initialState: {
+      pagination: {
+        pageIndex: 0,
+        pageSize: 5
+      }
+    }
+  }
+};
+
 export const WithCustomCell: Story = {
   args: {
     data: formSubmissions as unknown as ProductSubmission[],
