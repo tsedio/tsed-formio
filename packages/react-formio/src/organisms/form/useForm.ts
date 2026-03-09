@@ -3,7 +3,7 @@ import { EventEmitter2 } from "eventemitter2";
 import { type MutableRefObject, useEffect, useRef, useState } from "react";
 
 import type { ChangedSubmission, ComponentType, FormOptions, FormType, SubmissionType } from "../../interfaces";
-import type { JSONRecord } from "../../interfaces/JSONRecord.js";
+import type { JSON, JSONRecord } from "../../interfaces/JSONRecord.js";
 import { FormCustomEvent } from "./types";
 
 type Webform = any;

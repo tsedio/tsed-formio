@@ -12,6 +12,6 @@ export interface ChangedSubmission<Data extends object = JSONRecord> extends Sub
     component: Component;
     instance: any;
     value: unknown;
-  } & Record<string, JSON>;
+  } & JSONRecord;
   isValid: boolean;
 }

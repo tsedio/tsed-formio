@@ -13,12 +13,12 @@ import {
 import { useEffect } from "react";
 
 import { useI18n } from "../../../hooks/useI18n.js";
-import { type FormOptions, type JSON, Operation } from "../../../interfaces";
+import { type FormOptions, Operation } from "../../../interfaces";
+import type { JSONRecord } from "../../../interfaces/JSONRecord.js";
 import { getComponent } from "../../../registries/components";
 import type { DefaultCellOperations } from "../components/DefaultCellOperations";
 
-export interface UseTableProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }>
-  extends Omit<TableOptions<Data>, "getCoreRowModel" | "onClick"> {
+export interface UseTableProps<Data extends object = JSONRecord> extends Omit<TableOptions<Data>, "getCoreRowModel" | "onClick"> {
   operations: Operation<Data>[];
   metadata?: Record<string, unknown>;
   i18n?: FormOptions["i18n"];
@@ -28,7 +28,7 @@ export interface UseTableProps<Data extends { [key: string]: JSON } = { [key: st
   pageSizes?: number[];
 }
 
-export function useTable<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: UseTableProps<Data>) {
+export function useTable<Data extends object = JSONRecord>(props: UseTableProps<Data>) {
   const Operations = getComponent<typeof DefaultCellOperations<Data>>("CellOperations");
   const { t } = useI18n(props.i18n);
 

@@ -1,9 +1,9 @@
-import { JSON } from "../../interfaces";
+import type { JSONRecord } from "../../interfaces/JSONRecord.js";
 import { useForm, UseFormProps } from "./useForm";
 
 class CSSProperties {}
 
-export interface FormProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> extends UseFormProps<Data> {
+export interface FormProps<Data extends object = JSONRecord> extends UseFormProps<Data> {
   ["data-testid"]?: string;
   /**
    *
@@ -13,7 +13,7 @@ export interface FormProps<Data extends { [key: string]: JSON } = { [key: string
   style?: CSSProperties;
 }
 
-export function Form<Data extends { [key: string]: JSON } = { [key: string]: JSON }>({
+export function Form<Data extends object = JSONRecord>({
   style,
   className,
   "data-testid": dataTestId = "formio-container",

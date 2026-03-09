@@ -1,5 +1,6 @@
 import { useI18n } from "../../hooks/useI18n.js";
-import type { FormOptions, FormType, JSON, PermissionsResolver } from "../../interfaces/index.js";
+import type { FormOptions, FormType, PermissionsResolver } from "../../interfaces/index.js";
+import type { JSONRecord } from "../../interfaces/JSONRecord.js";
 import type { Tab as DefaultTab } from "../../molecules/tabs/Tab.js";
 import type { TabList as DefaultTabList } from "../../molecules/tabs/TabList.js";
 import type { TabPanel as DefaultTabPanel } from "../../molecules/tabs/TabPanel.js";
@@ -14,7 +15,7 @@ import { FormSettings } from "../form/settings/FormSettings.js";
 import { ActionsTable, type ActionsTableProps } from "../table/actions/ActionsTable.js";
 import { SubmissionsTable, type SubmissionsTableProps } from "../table/submissions/SubmissionsTable.js";
 
-export type FormViewsProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> = {
+export type FormViewsProps<Data extends object = JSONRecord> = {
   form: FormEditProps["form"];
   submissions: SubmissionsTableProps<Data>["data"];
   availableActions: ActionsTableProps["availableActions"];
@@ -25,9 +26,7 @@ export type FormViewsProps<Data extends { [key: string]: JSON } = { [key: string
   permissionsResolver?: PermissionsResolver<Data>;
 };
 
-function useSubmissionsOperations<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(
-  permissionsResolver?: PermissionsResolver<Data>
-) {
+function useSubmissionsOperations<Data extends object = JSONRecord>(permissionsResolver?: PermissionsResolver<Data>) {
   return [
     {
       title: "Edit",
@@ -45,9 +44,7 @@ function useSubmissionsOperations<Data extends { [key: string]: JSON } = { [key:
   ] as SubmissionsTableProps<Data>["operations"];
 }
 
-function useActionsOperations<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(
-  permissionsResolver?: PermissionsResolver<Data>
-) {
+function useActionsOperations<Data extends object = JSONRecord>(permissionsResolver?: PermissionsResolver<Data>) {
   return [
     {
       title: "Edit",
@@ -65,7 +62,7 @@ function useActionsOperations<Data extends { [key: string]: JSON } = { [key: str
   ] as SubmissionsTableProps<Data>["operations"];
 }
 
-export function FormViews<Data extends { [key: string]: JSON } = { [key: string]: JSON }>({
+export function FormViews<Data extends object = JSONRecord>({
   form,
   roles,
   availableActions,

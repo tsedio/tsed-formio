@@ -1,10 +1,11 @@
 import type { CellContext } from "@tanstack/react-table";
 
-import type { CellMetadata, JSON, Operation } from "../../../interfaces";
+import type { CellMetadata, Operation } from "../../../interfaces";
+import type { JSONRecord } from "../../../interfaces/JSONRecord.js";
 import { getComponent, registerComponent } from "../../../registries/components";
 import type { DefaultOperationButton } from "./DefaultOperationButton";
 
-export interface DefaultCellOperationsProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }> {
+export interface DefaultCellOperationsProps<Data extends object = JSONRecord> {
   info: CellContext<Data, unknown>;
   operations: Operation<Data>[];
   metadata?: CellMetadata;
@@ -12,7 +13,7 @@ export interface DefaultCellOperationsProps<Data extends { [key: string]: JSON }
   onClick?: (data: any, operation: Operation<Data>) => void;
 }
 
-export function DefaultCellOperations<Data extends { [key: string]: JSON } = { [key: string]: JSON }>({
+export function DefaultCellOperations<Data extends object = JSONRecord>({
   info,
   metadata,
   operations,

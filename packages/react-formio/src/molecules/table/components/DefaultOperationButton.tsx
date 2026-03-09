@@ -2,13 +2,13 @@ import { CellContext } from "@tanstack/react-table";
 import cx from "classnames";
 import { HTMLAttributes } from "react";
 
-import { type CellMetadata, type JSON, Operation } from "../../../interfaces";
+import { type CellMetadata, Operation } from "../../../interfaces";
+import type { JSONRecord } from "../../../interfaces/JSONRecord.js";
 import { registerComponent } from "../../../registries/components";
 import { iconClass } from "../../../utils/iconClass";
 import { stopPropagationWrapper } from "../../../utils/stopPropagationWrapper";
 
-export interface OperationButtonProps<Data extends { [key: string]: JSON } = { [key: string]: JSON }>
-  extends Omit<HTMLAttributes<HTMLButtonElement>, "onClick"> {
+export interface OperationButtonProps<Data extends object = JSONRecord> extends Omit<HTMLAttributes<HTMLButtonElement>, "onClick"> {
   operation: Operation<Data>;
   info: CellContext<Data, unknown>;
   metadata?: CellMetadata;
@@ -16,7 +16,7 @@ export interface OperationButtonProps<Data extends { [key: string]: JSON } = { [
   i18n?: (i18n: string) => string;
 }
 
-export function DefaultOperationButton<Data extends { [key: string]: JSON } = { [key: string]: JSON }>(props: OperationButtonProps<Data>) {
+export function DefaultOperationButton<Data extends object = JSONRecord>(props: OperationButtonProps<Data>) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { i18n = (f: string) => f, onClick, operation, info, ...extraProps } = props;
   const { className = "btn", buttonSize = "xs", buttonType = "primary", buttonOutline, action, title = "", icon = "" } = operation;
