@@ -68,5 +68,7 @@ export const LucideIconsMapping: Record<string, any> = {
   reset: "rotate-ccw",
   loader: "loader-circle",
   detail: "file-text",
-  spreadsheet: "file-spreadsheet"
+  spreadsheet: "file-spreadsheet",
+  "sort-up": "arrow-up-narrow-wide",
+  "sort-down": "arrow-down-narrow-wide"
 };

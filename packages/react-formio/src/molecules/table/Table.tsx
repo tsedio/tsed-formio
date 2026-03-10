@@ -11,11 +11,8 @@ import { useTable, UseTableProps } from "./hooks/useTable";
 
 export interface TableProps<Data extends object = JSONRecord> extends UseTableProps<Data> {
   className?: string;
-
   enableFooter?: boolean;
   enablePagination?: boolean;
-
-  pageSizes?: number[];
 }
 
 export function Table<Data extends object = JSONRecord>({
