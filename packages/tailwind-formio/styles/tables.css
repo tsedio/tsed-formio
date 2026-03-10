@@ -28,12 +28,13 @@
 }
 
 .table-cell-header {
-  @apply flex flex-col space-y-2;
+  @apply flex flex-col space-y-2
+  ;
   &__label {
     @apply flex items-center justify-center;
 
     > span:first-child {
-      @apply flex-1;
+      @apply flex-1 whitespace-nowrap overflow-hidden text-ellipsis;
     }
   }
 
