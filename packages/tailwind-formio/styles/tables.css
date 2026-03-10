@@ -99,7 +99,11 @@
 }
 
 .table-group {
-  @apply border-1 border-gray-300 dark:border-gray-700 flex flex-col w-full overflow-x-auto;
+  @apply border-1 border-gray-300 dark:border-gray-700 flex flex-col w-full;
+
+  .table-group-body {
+    @apply overflow-x-auto;
+  }
 
   &.border-top-0 {
     @apply border-t-0;
@@ -112,11 +116,11 @@
     }
   }
 
-  .pagination-group {
-    @apply border-t-1 border-gray-300 dark:border-gray-700 p-3;
+  .table-group-footer {
+    @apply overflow-hidden flex flex-wrap;
   }
 
-  .table-group-footer {
-    @apply overflow-hidden flex flex-wrap
+  .pagination-group {
+    @apply border-t-1 border-gray-300 dark:border-gray-700 p-3;
   }
 }
