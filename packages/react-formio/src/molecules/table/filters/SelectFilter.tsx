@@ -34,6 +34,7 @@ export function SelectFilter<Data = any>({ header, options }: FilterProps<Data, 
         size='small'
         {...(options as any)}
         {...opts}
+        autoComplete='off'
         options={listOptions}
         name={`filter_${header.column.id}`}
         data-testid={`filter_${header.column.id}`}
