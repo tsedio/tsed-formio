@@ -1,6 +1,5 @@
 import "../interfaces/extends";
 
-import { Components } from "@formio/js";
 import { ColumnDef, ColumnDefResolved, createColumnHelper } from "@tanstack/react-table";
 import cloneDeep from "lodash/cloneDeep";
 import get from "lodash/get";
@@ -33,7 +32,6 @@ export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefR
     .filter((component) => component?.tableView)
     .map((c) => {
       const component = c as ComponentType;
-      const cmp: any = Components.create(component, {}, null);
 
       const columnIndex = columnsToKeep.findIndex(({ accessorKey }) => {
         return accessorKey === `data.${component.key}`;
@@ -47,9 +45,7 @@ export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefR
 
       return columnHelper.accessor(`data.${component.key}` as any, {
         header: (component.label || component.title || component.key)?.replace(/:/, ""),
-        cell: (info) => {
-          return <Cell value={info.getValue() as Data} render={(value: Data) => cmp.asString(value)} />;
-        },
+        cell: Cell,
         meta: {
           filter: { variant: MAP_TYPES[component.type!] || "text" },
           ...(column?.meta || {})
@@ -64,11 +60,7 @@ export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefR
       ...(column.meta || {}),
       order: get(column, "meta.order", index * 10)
     },
-    cell:
-      column.cell ||
-      ((info) => {
-        return <Cell value={info.getValue() as Data} render={(value: Data) => value} />;
-      })
+    cell: column.cell || Cell
   }));
 
   return mergedColumns.sort((a, b) => (a.meta.order > b.meta.order ? 1 : -1)) as ColumnDef<Data, any>[];

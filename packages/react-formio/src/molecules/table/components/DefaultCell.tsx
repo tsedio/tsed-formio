@@ -1,22 +1,21 @@
+import type { CellContext } from "@tanstack/react-table";
+
 import { registerComponent } from "../../../registries/components";
 
-export interface DefaultCellProps<Data = any> {
-  value: Data;
-  render?: (value: Data) => any;
-}
-
-export function DefaultCell<Data = any>({ value, render = (f: any) => f }: DefaultCellProps<Data>): JSX.Element {
+export function DefaultCell<Data = any>({ getValue, renderValue }: CellContext<Data, any>): JSX.Element {
+  const value = getValue();
   if (value === undefined) {
     return <span></span>;
   }
 
-  const rendered = render(value);
+  const rendered = renderValue();
 
-  if (value !== rendered) {
-    return <div dangerouslySetInnerHTML={{ __html: rendered }} />;
+  if (rendered != null && value !== rendered) {
+    return <div dangerouslySetInnerHTML={{ __html: String(rendered) }} />;
   }
 
   return <span>{String(value)}</span>;
 }
 
 registerComponent("Cell", DefaultCell);
+registerComponent("Cell.text", DefaultCell);

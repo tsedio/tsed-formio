@@ -260,12 +260,17 @@ export const WithSubmissionData: Story = {
  */
 export const WithOnSubmit: Story = {
   render(args) {
+    type OnSubmitData = {
+      firstName?: string;
+      [key: string]: unknown;
+    };
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [data, setData] = useState(() => args.submission!.data);
+    const [data, setData] = useState<OnSubmitData>(() => args.submission!.data as OnSubmitData);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-      setData(args.submission!.data);
+      setData(args.submission!.data as OnSubmitData);
     }, [args.submission]);
 
     return (

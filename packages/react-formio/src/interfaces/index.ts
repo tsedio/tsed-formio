@@ -5,6 +5,5 @@ export * from "./FormBuilderOptions";
 export * from "./FormOptions";
 export * from "./FormType";
 export * from "./Operation";
-export * from "./QueryOptions";
 export * from "./RoleType";
 export * from "./SubmissionType";
