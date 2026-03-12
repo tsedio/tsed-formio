@@ -7,7 +7,7 @@ import { FilterTextOptions } from "./Filters";
 export function TextFieldFilter<Data = any>({ header, options }: FilterProps<Data, FilterTextOptions>) {
   const InputText = getComponent<typeof DefaultInputText>("InputText");
   const columnFilterValue = header.column.getFilterValue();
-  const uniqValues = useUniqValues<Data>({ header, filterVariant: "text" });
+  const uniqValues = useUniqValues<Data>({ header });
   const datalistId = `data_list_${header.column.id}`;
 
   return (

@@ -58,7 +58,9 @@
     .react-select__control {
       min-height: 28px;
     }
-
+    .react-select__placeholder {
+      white-space: nowrap;
+    }
     .react-select__value-container {
       padding-top: 0;
       padding-bottom: 0;

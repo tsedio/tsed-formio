@@ -29,13 +29,13 @@ describe("DefaultCellBoolean", () => {
   });
 
   it("should render custom labels from column metadata", () => {
-    render(<DefaultCellBoolean {...createCellContext(true, { yes: "Enabled", No: "Disabled" })} />);
+    render(<DefaultCellBoolean {...createCellContext(true, { yes: "Enabled", no: "Disabled" })} />);
 
     expect(screen.getByText("Enabled", { selector: "span" })).toBeInTheDocument();
   });
 
   it("should render the custom false label from column metadata", () => {
-    render(<DefaultCellBoolean {...createCellContext(false, { yes: "Enabled", No: "Disabled" })} />);
+    render(<DefaultCellBoolean {...createCellContext(false, { yes: "Enabled", no: "Disabled" })} />);
 
     expect(screen.getByText("Disabled", { selector: "span" })).toBeInTheDocument();
   });
