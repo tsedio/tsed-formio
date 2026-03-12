@@ -74,7 +74,7 @@ type Story = StoryObj<typeof Table<ProductSubmission>>;
 export const Usage: Story = {
   args: {
     data: formSubmissions as unknown as ProductSubmission[],
-    columns: mapFormToColumns(FormType as any),
+    columns: mapFormToColumns({ form: FormType as any }),
     operations: [
       {
         title: "Edit",
@@ -183,17 +183,20 @@ export const Usage: Story = {
 export const WithFilters: Story = {
   args: {
     data: formSubmissions as unknown as ProductSubmission[],
-    columns: mapFormToColumns(FormType as any, [
-      {
-        accessorKey: "data.id",
-        meta: {
-          filter: {
-            variant: "select",
-            layout: "react"
+    columns: mapFormToColumns({
+      form: FormType as any,
+      columns: [
+        {
+          accessorKey: "data.id",
+          meta: {
+            filter: {
+              variant: "select",
+              layout: "react"
+            }
           }
         }
-      }
-    ]),
+      ]
+    }),
     operations: [
       {
         title: "Edit",
@@ -220,7 +223,7 @@ export const WithFilters: Story = {
 export const WithPaginationOptions: Story = {
   args: {
     data: formSubmissions as unknown as ProductSubmission[],
-    columns: mapFormToColumns(FormType as any),
+    columns: mapFormToColumns({ form: FormType as any }),
     operations: [
       {
         title: "Edit",
@@ -246,67 +249,70 @@ export const WithPaginationOptions: Story = {
 export const WithCustomCell: Story = {
   args: {
     data: formSubmissions as unknown as ProductSubmission[],
-    columns: mapFormToColumns<ProductSubmission>(FormType as any, [
-      {
-        accessorKey: "data.id",
-        meta: {
-          filter: {
-            variant: "select",
-            layout: "react"
+    columns: mapFormToColumns<ProductSubmission>({
+      form: FormType as any,
+      columns: [
+        {
+          accessorKey: "data.id",
+          meta: {
+            filter: {
+              variant: "select",
+              layout: "react"
+            },
+            cellProps: {
+              colSpan: 2
+            }
           },
-          cellProps: {
-            colSpan: 2
+          cell: (context) => {
+            return (
+              <div className='flex space-x-4 align-items-center'>
+                <div className='max-w-[80px]'>
+                  <img className='max-w-[80px] rounded-md' src={context.row.original.data.image} alt={context.row.original.data.label} />
+                </div>
+                <div>
+                  <div className='text-lg text-primary'>{context.row.original.data.label}</div>
+                  <div className='text-xs'>{context.getValue()}</div>
+                </div>
+              </div>
+            );
           }
         },
-        cell: (context) => {
-          return (
-            <div className='flex space-x-4 align-items-center'>
-              <div className='max-w-[80px]'>
-                <img className='max-w-[80px] rounded-md' src={context.row.original.data.image} alt={context.row.original.data.label} />
+        {
+          accessorKey: "data.label",
+          meta: {
+            hidden: true
+          }
+        },
+        {
+          accessorKey: "data.description",
+          meta: {
+            filter: {
+              variant: "text",
+              disableDatalist: true
+            }
+          }
+        },
+        {
+          accessorKey: "data.price",
+          cell: (context) => {
+            const value = context.getValue();
+
+            if (value === undefined) {
+              return "-";
+            }
+
+            return (
+              <div className='text-right'>
+                {Intl.NumberFormat("fr-FR", {
+                  style: "currency",
+                  currency: context.row.original.data.currency
+                }).format(context.getValue())}
               </div>
-              <div>
-                <div className='text-lg text-primary'>{context.row.original.data.label}</div>
-                <div className='text-xs'>{context.getValue()}</div>
-              </div>
-            </div>
-          );
-        }
-      },
-      {
-        accessorKey: "data.label",
-        meta: {
-          hidden: true
-        }
-      },
-      {
-        accessorKey: "data.description",
-        meta: {
-          filter: {
-            variant: "text",
-            disableDatalist: true
+            );
           }
         }
-      },
-      {
-        accessorKey: "data.price",
-        cell: (context) => {
-          const value = context.getValue();
-
-          if (value === undefined) {
-            return "-";
-          }
-
-          return (
-            <div className='text-right'>
-              {Intl.NumberFormat("fr-FR", {
-                style: "currency",
-                currency: context.row.original.data.currency
-              }).format(context.getValue())}
-            </div>
-          );
-        }
-      }
-    ]),
+      ]
+    }),
     operations: [
       {
         title: "Edit",

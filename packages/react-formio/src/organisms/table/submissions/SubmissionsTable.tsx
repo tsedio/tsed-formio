@@ -8,7 +8,7 @@ export type SubmissionsTableProps<Data extends object = JSONRecord> = Omit<Table
 };
 
 export function SubmissionsTable<Data extends object = JSONRecord>({ form, ...props }: SubmissionsTableProps<Data>) {
-  const columns: any[] | undefined = form && mapFormToColumns(form);
+  const columns: any[] | undefined = form && mapFormToColumns({ form: form });
 
   return <Table {...(props as any)} columns={columns!} />;
 }

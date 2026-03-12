@@ -23,7 +23,27 @@ const MAP_TYPES = {
   checkbox: "boolean"
 } as const;
 
-export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefResolved<Data, any>[] = []): ColumnDef<Data, any>[] {
+function getColumnIdentity<Data>(column: ColumnDef<Data, any> | ColumnDefResolved<Data, any>) {
+  if ("id" in column && typeof column.id === "string") {
+    return column.id;
+  }
+
+  if ("accessorKey" in column && typeof column.accessorKey === "string") {
+    return column.accessorKey;
+  }
+
+  return undefined;
+}
+
+export function mapFormToColumns<Data = any>({
+  form,
+  columns = [],
+  prefix = "data."
+}: {
+  form: FormType;
+  columns?: ColumnDefResolved<Data, any>[];
+  prefix?: string;
+}): ColumnDef<Data, any>[] {
   const columnHelper = createColumnHelper<Data>();
   const columnsToKeep = cloneDeep(columns);
 
@@ -38,9 +58,13 @@ export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefR
     .filter((component) => component?.tableView)
     .map((c) => {
       const component = c as ComponentType;
+      const componentColumnKey = `${prefix}${component.key}`;
+      const matchingKeys = new Set([component.key, componentColumnKey]);
 
-      const columnIndex = columnsToKeep.findIndex(({ accessorKey }) => {
-        return accessorKey === `data.${component.key}`;
+      const columnIndex = columnsToKeep.findIndex((column) => {
+        const identity = getColumnIdentity(column);
+
+        return identity ? matchingKeys.has(identity) : false;
       });
 
       let column = columnsToKeep[columnIndex];
@@ -49,13 +73,13 @@ export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefR
         columnsToKeep.splice(columnIndex, 1);
       }
 
-      return columnHelper.accessor(`data.${component.key}` as any, {
+      return columnHelper.accessor(componentColumnKey as any, {
         header: (component.label || component.title || component.key)?.replace(/:/, ""),
         meta: {
-          type: MAP_TYPES[component.type as keyof typeof MAP_TYPES] || component.type,
+          type: (MAP_TYPES[component.type as keyof typeof MAP_TYPES] || component.type) as any,
           filter: {
             ...column?.meta?.filter,
-            variant: MAP_FILTER_TYPES[component.type!] || "text"
+            variant: MAP_FILTER_TYPES[component.type as keyof typeof MAP_FILTER_TYPES] || "text"
           },
           ...(column?.meta || {})
         },
@@ -63,7 +87,18 @@ export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefR
       });
     });
 
-  const mergedColumns = columnsFromComponents.concat(columnsToKeep as any[]).map((column, index) => {
+  const dedupedColumns = [...columnsFromComponents, ...(columnsToKeep as any[])].reduce<ColumnDef<Data, any>[]>((acc, column) => {
+    const identity = getColumnIdentity(column);
+
+    if (identity && acc.some((existingColumn) => getColumnIdentity(existingColumn) === identity)) {
+      return acc;
+    }
+
+    acc.push(column);
+    return acc;
+  }, []);
+
+  const mergedColumns = dedupedColumns.map((column, index) => {
     const Cell = getComponent<typeof DefaultCell>([`Cell.${column.id}`, `Cell.${column.meta?.type}`, "Cell"]);
 
     return {
