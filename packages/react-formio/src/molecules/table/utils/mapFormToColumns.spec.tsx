@@ -1,4 +1,5 @@
 import { DefaultCell } from "../components/DefaultCell";
+import { DefaultDateCell } from "../components/DefaultDateCell";
 import { mapFormToColumns } from "./mapFormToColumns";
 
 describe("mapFormToColumns", () => {
@@ -31,5 +32,24 @@ describe("mapFormToColumns", () => {
 
     expect(column.accessorKey).toEqual("data.other");
     expect(column.cell).toBe(DefaultCell);
+  });
+
+  it("should use DefaultDateCell for mapped datetime columns", () => {
+    const form = {
+      components: [
+        {
+          type: "datetime",
+          key: "createdAt",
+          label: "Created at:",
+          tableView: true
+        }
+      ]
+    } as any;
+
+    const [column] = mapFormToColumns(form) as any[];
+
+    expect(column.accessorKey).toEqual("data.createdAt");
+    expect(column.meta.type).toEqual("date");
+    expect(column.cell).toBe(DefaultDateCell);
   });
 });

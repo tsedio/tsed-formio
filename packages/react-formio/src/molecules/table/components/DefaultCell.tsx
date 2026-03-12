@@ -18,4 +18,4 @@ export function DefaultCell<Data = any>({ getValue, renderValue }: CellContext<D
 }
 
 registerComponent("Cell", DefaultCell);
-registerComponent("Cell.text", DefaultCell);
+registerComponent("Cell.string", DefaultCell);

@@ -28,10 +28,6 @@ export interface SelectProps<Data = string> extends FormControlProps<Data, Selec
   searchEnabled?: boolean;
   customProperties?: Record<string, any>;
   options: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
-  /**
-   * @deprecated
-   */
-  choices?: (SelectOptionBaseProps<Data> | Omit<SelectOptionProps<Data>, "value">)[];
 }
 
 export interface SelectSingle<Data = string> extends SelectProps<Data> {

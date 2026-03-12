@@ -1,6 +1,8 @@
 import "./components/DefaultFilter";
 import "./components/DefaultArrowSort";
 import "./components/DefaultCell";
+import "./components/DefaultBooleanCell";
+import "./components/DefaultDateCell";
 import "./components/DefaultCellOperations";
 import "./components/DefaultOperationButton";
 import "./components/DefaultCellHeader";

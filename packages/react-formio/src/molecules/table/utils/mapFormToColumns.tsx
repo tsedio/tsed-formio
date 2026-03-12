@@ -9,17 +9,23 @@ import { getComponent } from "../../../registries/components";
 import type { DefaultCell } from "../components/DefaultCell";
 import type { FilterVariants } from "../filters/Filters.js";
 
-const MAP_TYPES: Record<string, FilterVariants> = {
+const MAP_FILTER_TYPES: Record<string, FilterVariants> = {
   number: "range",
   currency: "range",
   checkbox: "boolean"
-};
+} as const;
+
+const MAP_TYPES = {
+  date: "date",
+  datetime: "date",
+  number: "number",
+  currency: "currency",
+  checkbox: "boolean"
+} as const;
 
 export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefResolved<Data, any>[] = []): ColumnDef<Data, any>[] {
   const columnHelper = createColumnHelper<Data>();
   const columnsToKeep = cloneDeep(columns);
-
-  const Cell = getComponent<typeof DefaultCell>("Cell");
 
   const columnsFromComponents = form.components
     .flatMap((component) => {
@@ -45,23 +51,30 @@ export function mapFormToColumns<Data = any>(form: FormType, columns: ColumnDefR
 
       return columnHelper.accessor(`data.${component.key}` as any, {
         header: (component.label || component.title || component.key)?.replace(/:/, ""),
-        cell: Cell,
         meta: {
-          filter: { variant: MAP_TYPES[component.type!] || "text" },
+          type: MAP_TYPES[component.type as keyof typeof MAP_TYPES] || component.type,
+          filter: {
+            ...column?.meta?.filter,
+            variant: MAP_FILTER_TYPES[component.type!] || "text"
+          },
           ...(column?.meta || {})
         },
         ...(column || {})
       });
     });
 
-  const mergedColumns = columnsFromComponents.concat(columnsToKeep as any[]).map((column, index) => ({
-    ...column,
-    meta: {
-      ...(column.meta || {}),
-      order: get(column, "meta.order", index * 10)
-    },
-    cell: column.cell || Cell
-  }));
+  const mergedColumns = columnsFromComponents.concat(columnsToKeep as any[]).map((column, index) => {
+    const Cell = getComponent<typeof DefaultCell>([`Cell.${column.id}`, `Cell.${column.meta?.type}`, "Cell"]);
+
+    return {
+      ...column,
+      meta: {
+        ...column?.meta,
+        order: get(column, "meta.order", index * 10)
+      },
+      cell: column.cell || Cell
+    };
+  });
 
   return mergedColumns.sort((a, b) => (a.meta.order > b.meta.order ? 1 : -1)) as ColumnDef<Data, any>[];
 }

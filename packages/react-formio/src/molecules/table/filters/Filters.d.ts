@@ -8,6 +8,7 @@ export interface FilterBaseOptions extends Record<string, unknown> {
 
 export interface FilterTextOptions extends FilterBaseOptions {
   variant: "text";
+  disabled?: boolean;
   disableDatalist?: boolean;
 }
 

@@ -25,6 +25,8 @@ import "./molecules/forms/input-tags/InputTags.interface";
 import "./molecules/table/components/DefaultFilter";
 import "./molecules/table/components/DefaultArrowSort";
 import "./molecules/table/components/DefaultCell";
+import "./molecules/table/components/DefaultBooleanCell";
+import "./molecules/table/components/DefaultDateCell";
 import "./molecules/table/components/DefaultCellOperations";
 import "./molecules/table/components/DefaultOperationButton";
 import "./molecules/table/components/DefaultCellHeader";

@@ -1,22 +1,21 @@
 import "../interfaces/extends";
 
-import { Header } from "@tanstack/react-table";
+import { Header, RowData } from "@tanstack/react-table";
 import type { ComponentType } from "react";
 
 import { getComponent, registerComponent } from "../../../registries/components";
 
-export interface DefaultFilterProps<Data = any> {
-  header: Header<Data, unknown>;
+export interface DefaultFilterProps<Data extends RowData = any, TValue = unknown> {
+  header: Header<Data, TValue>;
   i18n?: (f: string) => string;
 }
 
-export interface FilterProps<Data = any, Opts = Record<string, unknown>> {
-  header: Header<Data, unknown>;
+export interface FilterProps<Data extends RowData = any, Opts = Record<string, unknown>> extends DefaultFilterProps<Data> {
   options: Opts;
-  i18n?: (f: string) => string;
 }
 
-export function DefaultFilter<Data = any>({ header, i18n }: DefaultFilterProps<Data>) {
+export function DefaultFilter<Data extends RowData = any, TValue = unknown>(props: DefaultFilterProps<Data, TValue>) {
+  const { header, i18n } = props;
   const {
     filter = {
       variant: "text"
@@ -29,6 +28,10 @@ export function DefaultFilter<Data = any>({ header, i18n }: DefaultFilterProps<D
   if (!Filter) {
     console.warn("Missing filter for `Filter." + header.column.id + "` or `Filter." + filterVariant + "`");
 
+    return null;
+  }
+
+  if (filter.disabled) {
     return null;
   }
 
