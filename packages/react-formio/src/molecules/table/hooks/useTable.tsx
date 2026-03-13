@@ -18,7 +18,7 @@ import type { JSONRecord } from "../../../interfaces/JSONRecord.js";
 import { getComponent } from "../../../registries/components";
 import type { DefaultCellOperations } from "../components/DefaultCellOperations";
 
-export interface UseTableProps<Data extends object = JSONRecord> extends Omit<TableOptions<Data>, "getCoreRowModel" | "onClick"> {
+export interface UseTableProps<Data extends object = JSONRecord> extends Omit<TableOptions<Data>, "onClick"> {
   operations: Operation<Data>[];
   metadata?: Record<string, unknown>;
   i18n?: FormOptions["i18n"];
@@ -31,11 +31,6 @@ export interface UseTableProps<Data extends object = JSONRecord> extends Omit<Ta
 export function useTable<Data extends object = JSONRecord>(props: UseTableProps<Data>) {
   const Operations = getComponent<typeof DefaultCellOperations<Data>>("CellOperations");
   const { t } = useI18n(props.i18n);
-
-  // const [pagination, setPagination] = useState({
-  //   pageIndex: 0, //initial page index
-  //   pageSize: 10 //default page size
-  // });
 
   const operations = props.operations.length
     ? ([
@@ -54,10 +49,10 @@ export function useTable<Data extends object = JSONRecord>(props: UseTableProps<
     columns: [...props.columns, ...operations],
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: !props.manualFiltering ? getFilteredRowModel() : undefined,
-    getSortedRowModel: !props.manualSorting ? getSortedRowModel() : undefined,
-    getFacetedRowModel: !props.manualFaceted ? getFacetedRowModel() : undefined, // client-side faceting
-    getFacetedUniqueValues: !props.manualFaceted ? getFacetedUniqueValues() : undefined // generate unique values for select filter/autocomplete
+    getFilteredRowModel: !props.manualFiltering ? props.getFilteredRowModel || getFilteredRowModel() : undefined,
+    getSortedRowModel: !props.manualSorting ? props.getSortedRowModel || getSortedRowModel() : undefined,
+    getFacetedRowModel: !props.manualFaceted ? props.getFacetedRowModel || getFacetedRowModel() : undefined, // client-side faceting
+    getFacetedUniqueValues: !props.manualFaceted ? props.getFacetedUniqueValues || getFacetedUniqueValues() : undefined // generate unique values for select filter/autocomplete
   });
 
   const { columnFilters, sorting, pagination, columnOrder, columnPinning, columnSizing, columnSizingInfo, columnVisibility, globalFilter } =
