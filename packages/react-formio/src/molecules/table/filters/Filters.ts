@@ -1,5 +1,7 @@
-import type { FilterProps } from "../../../../molecules/table/components/DefaultFilter";
-import { SelectOptionProps, SelectProps } from "../../forms/select/Select.interface";
+import type { RowData } from "@tanstack/react-table";
+
+import type { SelectOptionProps, SelectProps } from "../../forms/select/Select.interface";
+import type { FilterProps } from "../components/DefaultFilter";
 
 export type FilterVariants = "text" | "range" | "select" | "boolean";
 
@@ -20,9 +22,9 @@ export interface FilterRangeOptions extends FilterBaseOptions {
   step?: number;
 }
 
-export interface FilterSelectOptions extends FilterBaseOptions, SelectProps<string> {
+export interface FilterSelectOptions<Data extends RowData = any> extends FilterBaseOptions, Omit<SelectProps<string>, "options"> {
   variant: "select";
-  options?: SelectOptionProps<string>[] | ((props: FilterProps<any, FilterSelectOptions>) => SelectOptionProps<string>[]);
+  options?: SelectOptionProps<string>[] | ((props: FilterProps<Data, FilterSelectOptions>) => SelectOptionProps<string>)[];
 }
 
 export interface FilterBooleanOptions extends FilterBaseOptions {

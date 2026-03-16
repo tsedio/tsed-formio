@@ -7,7 +7,7 @@ import get from "lodash/get";
 import type { ComponentType, FormType } from "../../../interfaces";
 import { getComponent } from "../../../registries/components";
 import type { DefaultCell } from "../components/DefaultCell";
-import type { FilterVariants } from "../filters/Filters.js";
+import type { FilterVariants } from "../filters/Filters";
 
 const MAP_FILTER_TYPES: Record<string, FilterVariants> = {
   number: "range",
