@@ -8,7 +8,7 @@ import { FilterSelectOptions } from "./Filters";
 export function SelectFilter<Data = any>({ header, options }: FilterProps<Data, FilterSelectOptions>) {
   const Select = getComponent<typeof DefaultSelect>("Select");
   const columnFilterValue = header.column.getFilterValue();
-  const uniqValues = useUniqValues<Data>({ header });
+  const uniqValues = useUniqValues<Data>({ header, options });
 
   const opts =
     options.layout === "choicesjs"
@@ -26,7 +26,7 @@ export function SelectFilter<Data = any>({ header, options }: FilterProps<Data, 
         value: ""
       }
     ] as SelectOptionProps[]
-  ).concat(options.options || uniqValues);
+  ).concat(uniqValues);
 
   return (
     <>

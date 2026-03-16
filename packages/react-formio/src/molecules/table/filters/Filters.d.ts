@@ -1,3 +1,4 @@
+import type { FilterProps } from "../../../../molecules/table/components/DefaultFilter";
 import { SelectOptionProps, SelectProps } from "../../forms/select/Select.interface";
 
 export type FilterVariants = "text" | "range" | "select" | "boolean";
@@ -21,7 +22,7 @@ export interface FilterRangeOptions extends FilterBaseOptions {
 
 export interface FilterSelectOptions extends FilterBaseOptions, SelectProps<string> {
   variant: "select";
-  options?: SelectOptionProps<string>[];
+  options?: SelectOptionProps<string>[] | ((props: FilterProps<any, FilterSelectOptions>) => SelectOptionProps<string>[]);
 }
 
 export interface FilterBooleanOptions extends FilterBaseOptions {

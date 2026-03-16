@@ -1,26 +1,46 @@
-import type { Header } from "@tanstack/react-table";
 import { useMemo } from "react";
 
 import { SelectOptionProps } from "../../../molecules/forms/select/Select.interface";
+import type { FilterProps } from "../components/DefaultFilter";
+import { FilterSelectOptions } from "../filters/Filters";
 
-export function useUniqValues<Data = any>({ header }: { header: Header<Data, unknown> }): SelectOptionProps[] {
+type UseUniqValuesProps<Data = any> = Omit<FilterProps<Data, FilterSelectOptions>, "options"> & {
+  options?: FilterSelectOptions;
+};
+
+export function useUniqValues<Data = any>({ header, options }: UseUniqValuesProps<Data>): SelectOptionProps[] {
   return useMemo(() => {
+    const providedOptions = options?.options;
+
+    if (providedOptions) {
+      if (typeof providedOptions === "function") {
+        return providedOptions({ header, options: options as FilterSelectOptions });
+      }
+
+      return providedOptions;
+    }
+
     switch (header.column.columnDef.meta?.filter?.variant) {
       case "boolean":
         return [
-          { label: header.column.columnDef.meta?.labels?.["yes"] || "Yes", value: true },
-          { label: header.column.columnDef.meta?.labels?.["no"] || header.column.columnDef.meta?.labels?.["No"] || "No", value: false }
+          { label: header.column.columnDef.meta?.labels?.["yes"] || "Yes", value: "true" },
+          {
+            label: header.column.columnDef.meta?.labels?.["no"] || header.column.columnDef.meta?.labels?.["No"] || "No",
+            value: "false"
+          }
         ];
 
       default:
         return Array.from(header.column.getFacetedUniqueValues().keys())
           .flat()
+          .filter((value) => value !== undefined && value !== null)
+          .map((value) => String(value))
           .sort()
           .slice(0, 5000)
-          .map((i) => ({
-            label: i,
-            value: i
+          .map((value) => ({
+            label: value,
+            value
           }));
     }
-  }, [header.column]);
+  }, [header, options]);
 }

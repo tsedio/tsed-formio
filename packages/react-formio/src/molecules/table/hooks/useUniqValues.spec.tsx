@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { useUniqValues } from "./useUniqValues";
 
@@ -31,8 +32,8 @@ describe("useUniqValues", () => {
     const { result } = renderHook(() => useUniqValues({ header }));
 
     expect(result.current).toEqual([
-      { label: "Enabled", value: true },
-      { label: "Disabled", value: false }
+      { label: "Enabled", value: "true" },
+      { label: "Disabled", value: "false" }
     ]);
   });
 
@@ -47,5 +48,35 @@ describe("useUniqValues", () => {
       { label: "alpha", value: "alpha" },
       { label: "beta", value: "beta" }
     ]);
+  });
+
+  it("should return provided select options", () => {
+    const header = createHeader({});
+    const options = [
+      { label: "First", value: "first" },
+      { label: "Second", value: "second" }
+    ];
+
+    const { result } = renderHook(() => useUniqValues({ header, options: { variant: "select", options } as any }));
+
+    expect(result.current).toEqual(options);
+  });
+
+  it("should resolve select options from callback", () => {
+    const header = createHeader({});
+    const optionsFn = vi.fn().mockReturnValue([{ label: "From callback", value: "callback" }]);
+
+    const { result } = renderHook(() =>
+      useUniqValues({
+        header,
+        options: { variant: "select", options: optionsFn } as any
+      })
+    );
+
+    expect(optionsFn).toHaveBeenCalledWith({
+      header,
+      options: { variant: "select", options: optionsFn }
+    });
+    expect(result.current).toEqual([{ label: "From callback", value: "callback" }]);
   });
 });
