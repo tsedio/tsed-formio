@@ -60,7 +60,12 @@ export function Table<Data extends object = JSONRecord>({
                     .filter((cell) => !cell.column.columnDef.meta?.hidden)
                     .map((cell) => {
                       return (
-                        <td {...cell.column.columnDef?.meta?.cellProps} key={cell.id} data-testid={`body-cell-${cell.id}`}>
+                        <td
+                          onClick={() => props.onClick?.(cell.row.original, { action: "row" })}
+                          {...cell.column.columnDef?.meta?.cellProps}
+                          key={cell.id}
+                          data-testid={`body-cell-${cell.id}`}
+                        >
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </td>
                       );
