@@ -172,7 +172,10 @@ export const Usage: Story = {
       return expect(canvas.queryByText("MPEC")).not.toBeInTheDocument();
     });
 
-    await expect(canvas.getByText("La Caravelle")).toBeInTheDocument();
+    const tableBody = canvasElement.querySelector("tbody");
+
+    await expect(tableBody).toBeInTheDocument();
+    await expect(within(tableBody as HTMLElement).getByText("La Caravelle")).toBeInTheDocument();
 
     await delay(300);
 
