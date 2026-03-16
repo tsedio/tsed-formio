@@ -18,7 +18,7 @@ import type { JSONRecord } from "../../../interfaces/JSONRecord.js";
 import { getComponent } from "../../../registries/components";
 import type { DefaultCellOperations } from "../components/DefaultCellOperations";
 
-export interface UseTableProps<Data extends object = JSONRecord> extends Omit<TableOptions<Data>, "onClick"> {
+export interface UseTableProps<Data extends object = JSONRecord> extends Omit<TableOptions<Data>, "onClick" | "getCoreRowModel"> {
   operations: Operation<Data>[];
   metadata?: Record<string, unknown>;
   i18n?: FormOptions["i18n"];
