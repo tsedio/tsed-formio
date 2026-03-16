@@ -38,7 +38,7 @@ export function SelectFilter<Data = any>({ header, options }: FilterProps<Data, 
         options={listOptions}
         name={`filter_${header.column.id}`}
         data-testid={`filter_${header.column.id}`}
-        value={columnFilterValue as string}
+        value={(columnFilterValue ?? "") as string}
         onChange={(_, value) => header.column.setFilterValue(value)}
       />
     </>
