@@ -34,8 +34,7 @@
     "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\""
   },
   "dependencies": {
-    "@formio/choices.js": "11.0.3",
-    "@formio/js": "5.2.2",
+    "@formio/js": "^5.3.1",
     "@types/classnames": "^2.2.11",
     "@types/lodash": "4.17.20",
     "@types/react": "^18.2.8",
@@ -46,6 +45,7 @@
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-table": "^7.7.14",
+    "choices.js": "^11.0.3",
     "connected-react-router": "6.9.1",
     "history": "5.3.0",
     "lerna": "8.1.2",

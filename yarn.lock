@@ -2132,30 +2132,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formio/bootstrap@npm:3.1.2":
-  version: 3.1.2
-  resolution: "@formio/bootstrap@npm:3.1.2"
-  checksum: 10c0/cb37b34baa01bba4255fada6bca4f22bc3f882816d39d933d3459af57add29d5afc452abe35ed6787bfd12e463e5173cfa278c1effc2658cc6beabf6067cc376
+"@formio/bootstrap@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@formio/bootstrap@npm:3.2.1"
+  checksum: 10c0/a2871f294b4a1a2394f84a46d395387880ce1a09bb6cf73c401562181b30dfc70d3e36680778ea91803ef4117abe4109807dce9c03d056c22a0859e30297c227
   languageName: node
   linkType: hard
 
-"@formio/choices.js@npm:11.0.3":
-  version: 11.0.3
-  resolution: "@formio/choices.js@npm:11.0.3"
-  dependencies:
-    fuse.js: "npm:^7.0.0"
-  checksum: 10c0/d290918919dc8cb5e92116c3a2afc4b0ee0ad5c1845534f2c4aad75b7f78c8081ab7b5de1f478f5947315aeb9fc558ba6ba5589450f400a76cfb010aa7fc1905
-  languageName: node
-  linkType: hard
-
-"@formio/core@npm:2.5.1":
-  version: 2.5.1
-  resolution: "@formio/core@npm:2.5.1"
+"@formio/core@npm:^2.6.1":
+  version: 2.6.1
+  resolution: "@formio/core@npm:2.6.1"
   dependencies:
     browser-cookies: "npm:^1.2.0"
     core-js: "npm:^3.39.0"
     dayjs: "npm:^1.11.12"
-    dompurify: "npm:^3.2.4"
+    dompurify: "npm:3.2.4"
     eventemitter3: "npm:^5.0.0"
     fast-json-patch: "npm:^3.1.1"
     fetch-ponyfill: "npm:^7.1.0"
@@ -2163,16 +2154,16 @@ __metadata:
     json-logic-js: "npm:^2.0.5"
     lodash: "npm:^4.17.21"
     moment: "npm:^2.29.4"
-  checksum: 10c0/db13e7870b6cd401c0b71a8e450c9b13e8d5420ccbfb9faf93830f0f7a21eaf273e3223afd2cacb2048b79194171be66a25faf48ccb125f5fc39684b588c7a15
+  checksum: 10c0/d82250c5c0add20ac84ac909662ee1f9f5de9acad67e1bbd27eff99701d77c5c0629dfe47fd018bc24b4c3ec2126fd642a1135cd5fe0d1ba081ca62e07e23a32
   languageName: node
   linkType: hard
 
-"@formio/js@npm:5.2.2":
-  version: 5.2.2
-  resolution: "@formio/js@npm:5.2.2"
+"@formio/js@npm:^5.3.1":
+  version: 5.3.1
+  resolution: "@formio/js@npm:5.3.1"
   dependencies:
-    "@formio/bootstrap": "npm:3.1.2"
-    "@formio/core": "npm:2.5.1"
+    "@formio/bootstrap": "npm:^3.2.1"
+    "@formio/core": "npm:^2.6.1"
     "@formio/text-mask-addons": "npm:^3.8.0-formio.4"
     "@formio/vanilla-text-mask": "npm:^5.1.1-formio.1"
     abortcontroller-polyfill: "npm:^1.7.5"
@@ -2206,7 +2197,7 @@ __metadata:
     tippy.js: "npm:^6.3.7"
     uuid: "npm:^9.0.0"
     vanilla-picker: "npm:^2.12.3"
-  checksum: 10c0/5fb837bbbbeb6d0dbb80350b554a6110e89a4da2e3a4b8b425098cae0f7658de48a084bb0e4fdab51a21f439518b199caa9cfeaa8e32167128e4f571eaabe70b
+  checksum: 10c0/5db827347bc30aa9392c26a374f67f8af5b15baafaad35eeb49dd90503e701ee05867e2de8229b7676c494aca4a0817fa61ff6da7a0b7d75791b3327fe54f113
   languageName: node
   linkType: hard
 
@@ -4594,8 +4585,7 @@ __metadata:
     "@chromatic-com/storybook": "npm:4.1.1"
     "@commitlint/cli": "npm:19.6.1"
     "@commitlint/config-conventional": "npm:19.6.0"
-    "@formio/choices.js": "npm:11.0.3"
-    "@formio/js": "npm:5.2.2"
+    "@formio/js": "npm:^5.3.1"
     "@mdx-js/react": "npm:3.1.1"
     "@storybook/addon-a11y": "npm:9.1.10"
     "@storybook/addon-docs": "npm:9.1.10"
@@ -4632,6 +4622,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:3.2.4"
     autoprefixer: "npm:^10.4.7"
     camelcase: "npm:6.3.0"
+    choices.js: "npm:^11.0.3"
     chromatic: "npm:13.3.0"
     connected-react-router: "npm:6.9.1"
     cross-env: "npm:7.0.3"
@@ -6815,6 +6806,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"choices.js@npm:^11.0.3":
+  version: 11.2.1
+  resolution: "choices.js@npm:11.2.1"
+  dependencies:
+    fuse.js: "npm:^7.0.0"
+  checksum: 10c0/f706c099f0f75282f4716b8447e415451e14ce91ea118e6cf8d705688ad670aadbb5ce45ef5cd2506560053da176cfdf09d490892072fb0a29745b2f71145121
+  languageName: node
+  linkType: hard
+
 "choices.js@npm:^11.0.6":
   version: 11.1.0
   resolution: "choices.js@npm:11.1.0"
@@ -8262,6 +8262,18 @@ __metadata:
   dependencies:
     domelementtype: "npm:^2.2.0"
   checksum: 10c0/5c199c7468cb052a8b5ab80b13528f0db3d794c64fc050ba793b574e158e67c93f8336e87fd81e9d5ee43b0e04aea4d8b93ed7be4899cb726a1601b3ba18538b
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:3.2.4":
+  version: 3.2.4
+  resolution: "dompurify@npm:3.2.4"
+  dependencies:
+    "@types/trusted-types": "npm:^2.0.7"
+  dependenciesMeta:
+    "@types/trusted-types":
+      optional: true
+  checksum: 10c0/6be56810fb7ad2776155c8fc2967af5056783c030094362c7d0cf1ad13f2129cf922d8eefab528a34bdebfb98e2f44b306a983ab93aefb9d6f24c18a3d027a05
   languageName: node
   linkType: hard
 

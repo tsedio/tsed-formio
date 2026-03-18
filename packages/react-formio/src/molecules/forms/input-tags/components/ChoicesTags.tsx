@@ -1,4 +1,4 @@
-import Choices from "@formio/choices.js";
+import Choices from "choices.js";
 import { useEffect, useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";
 

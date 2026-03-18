@@ -1,4 +1,4 @@
-import Choices from "@formio/choices.js";
+import Choices from "choices.js";
 import cx from "classnames";
 import { useEffect, useMemo, useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";
