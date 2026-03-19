@@ -1,16 +1,20 @@
 import { useMemo } from "react";
 
 import { SelectOptionProps } from "../../../molecules/forms/select/Select.interface";
-import type { FilterProps } from "../components/DefaultFilter";
+import type { DefaultFilterProps } from "../components/DefaultFilter";
 import { FilterSelectOptions } from "../filters/Filters";
 
-export function useUniqValues<Data = any>({ header, options }: FilterProps<Data, FilterSelectOptions>): SelectOptionProps[] {
+type UseUniqValuesProps<Data = any> = DefaultFilterProps<Data> & {
+  options?: FilterSelectOptions<Data>;
+};
+
+export function useUniqValues<Data = any>({ header, options }: UseUniqValuesProps<Data>): SelectOptionProps[] {
   return useMemo(() => {
     const providedOptions = options?.options;
 
     if (providedOptions) {
       if (typeof providedOptions === "function") {
-        return providedOptions({ header, options: options as FilterSelectOptions });
+        return providedOptions({ header, options: options as FilterSelectOptions<Data> });
       }
 
       return providedOptions;

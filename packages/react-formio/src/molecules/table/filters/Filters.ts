@@ -6,7 +6,7 @@ import type { FilterProps } from "../components/DefaultFilter";
 export type FilterVariants = "text" | "range" | "select" | "boolean";
 
 export interface FilterBaseOptions extends Record<string, unknown> {
-  variant: string;
+  variant: FilterVariants;
 }
 
 export interface FilterTextOptions extends FilterBaseOptions {
@@ -24,7 +24,7 @@ export interface FilterRangeOptions extends FilterBaseOptions {
 
 export interface FilterSelectOptions<Data extends RowData = any> extends FilterBaseOptions, Omit<SelectProps<string>, "options"> {
   variant: "select";
-  options?: SelectOptionProps<string>[] | ((props: FilterProps<Data, FilterSelectOptions>) => SelectOptionProps<string>)[];
+  options?: SelectOptionProps<string>[] | ((props: FilterProps<Data, FilterSelectOptions>) => SelectOptionProps<string>[]);
 }
 
 export interface FilterBooleanOptions extends FilterBaseOptions {

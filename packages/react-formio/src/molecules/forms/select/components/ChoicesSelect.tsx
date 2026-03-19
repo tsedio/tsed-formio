@@ -1,12 +1,12 @@
 import Choices from "choices.js";
-import cx from "classnames";
+import cx from "clsx";
 import { useEffect, useMemo, useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 import { registerComponent } from "../../../../registries/components";
 import { cleanFormControlProps } from "../../form-control/FormControl";
 import type { AllSelectProps } from "../Select.interface";
-import { callbackOnCreateTemplates } from "./choices.template";
+import { callbackOnCreateTemplates as defaultTemplateCallback } from "./choices.template";
 
 export function useChoices({
   name,
@@ -75,7 +75,14 @@ export function useChoices({
 
   useEffect(() => {
     if (!choicesRef.current) {
-      const { allowHTML = true, silent = true, removeItemButton = true, shouldSort = false, itemSelectText = "" } = customProperties;
+      const {
+        allowHTML = true,
+        silent = true,
+        removeItemButton = true,
+        shouldSort = false,
+        itemSelectText = "",
+        callbackOnCreateTemplates
+      } = customProperties;
       choicesRef.current = new Choices(ref.current, {
         ...customProperties,
         allowHTML,
@@ -87,7 +94,7 @@ export function useChoices({
         placeholderValue: "" as string,
         itemSelectText,
         shouldSort,
-        callbackOnCreateTemplates
+        callbackOnCreateTemplates: callbackOnCreateTemplates || defaultTemplateCallback
       } as any);
     }
 
