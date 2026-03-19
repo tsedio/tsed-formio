@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import { PropsWithChildren } from "react";
 
 import { registerComponent } from "../../registries/components";
@@ -20,7 +20,7 @@ export function PaginationButton(
       {...otherProps}
       data-testid='pagination-button'
       disabled={disabled}
-      className={classnames("page-link", disabled ? "disabled" : "", active ? "" : "", props.className)}
+      className={clsx("page-link", disabled ? "disabled" : "", active ? "" : "", props.className)}
     >
       {children}
     </Component>

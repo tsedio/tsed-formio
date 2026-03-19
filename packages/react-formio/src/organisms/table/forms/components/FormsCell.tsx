@@ -1,5 +1,5 @@
 import { CellContext } from "@tanstack/react-table";
-import cx from "classnames";
+import cx from "clsx";
 import moment from "moment";
 
 import type { FormType } from "../../../../interfaces/index.js";

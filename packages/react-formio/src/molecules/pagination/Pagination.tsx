@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 
 import { useI18n } from "../../hooks/useI18n.js";
 import type { FormOptions } from "../../interfaces/index.js";
@@ -54,9 +54,9 @@ export function Pagination(props: PaginationProps) {
   const PaginationButton = getComponent<typeof DefaultPaginationButton>("PaginationButton");
 
   return (
-    <nav aria-label='Page navigation' className={classnames("pagination-group -mb-3", className)}>
+    <nav aria-label='Page navigation' className={clsx("pagination-group -mb-3", className)}>
       <ul className='pagination mb-3 mr-3'>
-        <li className={classnames("page-item", !canPreviousPage && "disabled")}>
+        <li className={clsx("page-item", !canPreviousPage && "disabled")}>
           <PaginationButton tabIndex={-1} disabled={!canPreviousPage} onClick={() => onClickPreviousPage()}>
             {t("Previous")}
           </PaginationButton>
@@ -73,7 +73,7 @@ export function Pagination(props: PaginationProps) {
 
           const active = page - 1 === pageIndex;
           return (
-            <li className={classnames("page-item", active && "active")} key={page}>
+            <li className={clsx("page-item", active && "active")} key={page}>
               <PaginationButton tabIndex={pageIndex} active={active} onClick={() => onPageIndexChange(page - 1)}>
                 {page}
               </PaginationButton>
@@ -81,7 +81,7 @@ export function Pagination(props: PaginationProps) {
           );
         })}
 
-        <li className={classnames("page-item", !canNextPage && "disabled")}>
+        <li className={clsx("page-item", !canNextPage && "disabled")}>
           <PaginationButton tabIndex={pageNumbers.length} disabled={!canNextPage} onClick={() => onClickNextPage()}>
             {t("Next")}
           </PaginationButton>

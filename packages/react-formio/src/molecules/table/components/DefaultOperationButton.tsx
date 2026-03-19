@@ -1,5 +1,5 @@
 import { CellContext } from "@tanstack/react-table";
-import cx from "classnames";
+import cx from "clsx";
 import { HTMLAttributes } from "react";
 
 import { type CellMetadata, Operation } from "../../../interfaces";

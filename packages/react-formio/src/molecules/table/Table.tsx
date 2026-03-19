@@ -1,5 +1,5 @@
 import { flexRender } from "@tanstack/react-table";
-import cx from "classnames";
+import clsx from "clsx";
 import { PropsWithChildren } from "react";
 
 import type { JSONRecord } from "../../interfaces/JSONRecord.js";
@@ -30,7 +30,7 @@ export function Table<Data extends object = JSONRecord>({
   const { pagination } = tableInstance.getState();
 
   return (
-    <div className={cx("table-group", className)}>
+    <div className={clsx("table-group", className)}>
       <div className='table-group-body'>
         <table className='table table-striped table-hover'>
           <thead>

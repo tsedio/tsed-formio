@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import omit from "lodash/omit";
 import { HTMLAttributes, InputHTMLAttributes, PropsWithChildren, ReactNode } from "react";
 
@@ -42,7 +42,7 @@ export function FormControl<Value = unknown>({
     <div
       data-testid={name && `form-group-${name}`}
       id={`form-group-${name || ""}`}
-      className={classnames(
+      className={clsx(
         "form-group",
         {
           "-with-before": !!before,

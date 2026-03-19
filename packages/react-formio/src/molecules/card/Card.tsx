@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import { PropsWithChildren } from "react";
 
 import { registerComponent } from "../../registries/components.js";
@@ -10,7 +10,7 @@ export interface CardProps {
 
 export function Card({ children, label, className }: PropsWithChildren<CardProps>) {
   return (
-    <div className={classnames("card", className)}>
+    <div className={clsx("card", className)}>
       <div className={"card-header "}>
         <h4 className={"card-title"}>{label}</h4>
       </div>

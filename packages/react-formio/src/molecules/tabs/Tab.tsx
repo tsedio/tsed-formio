@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import { PropsWithChildren, useCallback, useEffect, useRef } from "react";
 
 import { useKeyboardControls } from "../../hooks/useKeyboardControls.js";
@@ -80,7 +80,7 @@ export function Tab({ onClick, icon, value, children, className, after }: PropsW
   }, [dispatch, value]);
 
   return (
-    <div title={"button-wrapper"} className={classnames("tw-tabs__button-wrapper", className, { "-active": isActive.current }, className)}>
+    <div title={"button-wrapper"} className={clsx("tw-tabs__button-wrapper", className, { "-active": isActive.current }, className)}>
       <button
         ref={ref}
         id={`Tab_${value}_${uid}`}
@@ -94,7 +94,7 @@ export function Tab({ onClick, icon, value, children, className, after }: PropsW
         onClick={handleClick}
         onKeyDown={handleKeyDown}
       >
-        {icon && <i className={classnames(iconClass(undefined, icon), "tw-tabs__button-icon")} />}
+        {icon && <i className={clsx(iconClass(undefined, icon), "tw-tabs__button-icon")} />}
         <span className={"tw-tabs__button-label"}>{children}</span>
         {after}
       </button>

@@ -1,4 +1,4 @@
-import cx from "classnames";
+import cx from "clsx";
 import type { ComponentPropsWithoutRef } from "react";
 
 import { registerComponent } from "../../registries/components";

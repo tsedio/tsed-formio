@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import { PropsWithChildren, useState } from "react";
 
 import { InputText } from "../../molecules/forms/input-text/InputText";
@@ -21,7 +21,7 @@ function RemoveModalFooter({ value, valueToCompare, onSubmit, onClose, i18n = (f
           }
         }}
       >
-        <i className={classnames(iconClass(undefined, "trash"), "mr-2")} />
+        <i className={clsx(iconClass(undefined, "trash"), "mr-2")} />
         {i18n("Remove")}
       </button>
     </div>
@@ -42,7 +42,7 @@ export function RemoveModal({ maxWidth = "300px", children, ...props }: PropsWit
   return (
     <Modal
       {...props}
-      className={classnames(props.className, "formio-dialog-theme-remove")}
+      className={clsx(props.className, "formio-dialog-theme-remove")}
       style={{ maxWidth }}
       title={`Drop ${props.itemType?.toLowerCase()}`}
       value={value}

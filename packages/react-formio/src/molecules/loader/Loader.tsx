@@ -1,5 +1,4 @@
-import classnames from "classnames";
-import cx from "classnames";
+import clsx from "clsx";
 import { type ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
 import { Icon } from "../../atoms/icon/Icon.js";
@@ -23,12 +22,9 @@ export function Loader({
     return (
       <div
         {...props}
-        className={classnames(
-          "opacity-85 z-20 flex items-center justify-center p-5 absolute top-0 right-0 left-0 bottom-0 bg-white",
-          className
-        )}
+        className={clsx("opacity-85 z-20 flex items-center justify-center p-5 absolute top-0 right-0 left-0 bottom-0 bg-white", className)}
       >
-        <Icon data-testid={`icon_${icon}`} className={cx("text-8xl", color)} iconset={iconset} name={icon} spinning={true} />
+        <Icon data-testid={`icon_${icon}`} className={clsx("text-8xl", color)} iconset={iconset} name={icon} spinning={true} />
       </div>
     );
   }

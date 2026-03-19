@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import classnames from "classnames";
+import clsx from "clsx";
 import noop from "lodash/noop";
 import { useState } from "react";
 
@@ -44,7 +44,7 @@ export function ActionsTable({ availableActions = [], onAddAction = noop, ...pro
             onClick={() => currentAction && onAddAction(currentAction)}
             type={"submit"}
           >
-            <i className={classnames(iconClass(undefined, "plus"), "mr-1")} /> {t("Add action")}
+            <i className={clsx(iconClass(undefined, "plus"), "mr-1")} /> {t("Add action")}
           </button>
         </div>
       </div>

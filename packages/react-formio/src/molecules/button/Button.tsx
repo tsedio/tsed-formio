@@ -1,4 +1,4 @@
-import cx from "classnames";
+import cx from "clsx";
 import { type ButtonHTMLAttributes, forwardRef, type PropsWithChildren } from "react";
 
 import { registerComponent } from "../../registries/components";

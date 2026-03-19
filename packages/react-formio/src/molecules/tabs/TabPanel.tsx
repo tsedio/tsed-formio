@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 
 import { registerComponent } from "../../registries/components.js";
 import { useActiveTab, useTabsUid } from "./hooks/tabControl.js";
@@ -25,7 +25,7 @@ export function TabPanel({ value, className, children }: React.PropsWithChildren
       aria-hidden={!isActive}
       aria-labelledby={`Tab_${value}_${uid}`}
       tabIndex={isActive ? 0 : -1}
-      className={classnames("tw-tabs__panel", className, {
+      className={clsx("tw-tabs__panel", className, {
         "-active": isActive
       })}
     >

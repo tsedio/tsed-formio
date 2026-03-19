@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import type { CSSProperties } from "react";
 
 import type { FormBuilderOptions, FormOptions } from "../../../interfaces/index.js";
@@ -41,7 +41,7 @@ export function FormEdit({
   const FormEditCTAs = getComponent<typeof DefaultFormEditCTAs>("FormEditCTAs");
 
   return (
-    <div className={classnames("form-edit-container", className)} style={style}>
+    <div className={clsx("form-edit-container", className)} style={style}>
       <div className='form-edit'>
         <FormParameters
           enableTags={enableTags}

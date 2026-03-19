@@ -1,5 +1,5 @@
 import { flexRender, type Header } from "@tanstack/react-table";
-import cx from "classnames";
+import clsx from "clsx";
 
 import { getComponent, registerComponent } from "../../../registries/components";
 import type { DefaultArrowSort } from "./DefaultArrowSort";
@@ -19,9 +19,9 @@ export function DefaultCellHeader<Data = any>(props: DefaultCellHeaderProps<Data
   const canFilter = header.column.getCanFilter();
 
   return (
-    <div className={cx("table-cell-header", {})}>
+    <div className={clsx("table-cell-header", {})}>
       <div
-        className={cx("table-cell-header__label", {
+        className={clsx("table-cell-header__label", {
           "cursor-pointer select-none": header.column.getCanSort()
         })}
         {...(canSort

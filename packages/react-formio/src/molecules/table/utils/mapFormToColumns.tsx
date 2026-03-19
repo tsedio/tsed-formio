@@ -73,14 +73,14 @@ export function mapFormToColumns<Data = any>({
         columnsToKeep.splice(columnIndex, 1);
       }
 
+      const mappedVariant = MAP_FILTER_TYPES[component.type as keyof typeof MAP_FILTER_TYPES] || "text";
+      const filter = column?.meta?.filter?.variant ? column.meta.filter : { variant: mappedVariant };
+
       return columnHelper.accessor(componentColumnKey as any, {
         header: (component.label || component.title || component.key)?.replace(/:/, ""),
         meta: {
           type: (MAP_TYPES[component.type as keyof typeof MAP_TYPES] || component.type) as any,
-          filter: {
-            ...column?.meta?.filter,
-            variant: MAP_FILTER_TYPES[component.type as keyof typeof MAP_FILTER_TYPES] || "text"
-          },
+          filter,
           ...(column?.meta || {})
         },
         ...(column || {})
