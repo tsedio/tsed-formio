@@ -35,17 +35,17 @@ export function HTMLSelect({ name, id = name, size, value, multiple, onChange, o
         </option>
       )}
       {hasGroup
-        ? options.map(({ label, options }) => {
+        ? options.map(({ label, options }, index) => {
             return (
-              <optgroup key={label} label={label}>
-                {options.map((props: SelectOptionBaseProps) => {
-                  return <Option key={String(props.value)} {...props} />;
+              <optgroup key={id + "-" + index} label={label}>
+                {options.map((props: SelectOptionBaseProps, index: number) => {
+                  return <Option key={`${id}-optgroup-${index}`} {...props} />;
                 })}
               </optgroup>
             );
           })
-        : (options as SelectOptionBaseProps[]).map((props) => {
-            return <Option key={String(props.value)} {...props} />;
+        : (options as SelectOptionBaseProps[]).map((props, index) => {
+            return <Option key={`${id}-option-${index}`} {...props} />;
           })}
     </select>
   );
