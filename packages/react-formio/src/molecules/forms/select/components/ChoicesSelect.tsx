@@ -1,7 +1,6 @@
 import Choices from "choices.js";
 import cx from "clsx";
 import { useEffect, useMemo, useRef } from "react";
-import { useDebouncedCallback } from "use-debounce";
 
 import { registerComponent } from "../../../../registries/components";
 import { cleanFormControlProps } from "../../form-control/FormControl";
@@ -27,13 +26,13 @@ export function useChoices({
   const opts = useMemo(() => {
     const isSelected = (itemValue: any) => [].concat(value as any).includes(itemValue as never);
 
-    const opts = options.map((item) => {
+    const opts = options.map((item: any) => {
       if (item.options) {
         item = {
           ...item,
-          choices: item.options.map((item: any) => ({
-            ...item,
-            selected: isSelected(item.value)
+          choices: item.options.map((optionItem: any) => ({
+            ...optionItem,
+            selected: isSelected(optionItem.value)
           }))
         };
       }
@@ -58,10 +57,6 @@ export function useChoices({
     return opts;
   }, [options, value, required, multiple, placeholder]);
 
-  const onChangeCallback = useDebouncedCallback((name: string | undefined, value: any) => {
-    onChange?.(name, value);
-  }, 50);
-
   useEffect(() => {
     if (choicesRef.current) {
       if (multiple) {
@@ -71,7 +66,7 @@ export function useChoices({
         choicesRef.current.setChoices(opts as any, "value", "label", true);
       }
     }
-  }, [opts]);
+  }, [multiple, opts]);
 
   useEffect(() => {
     if (!choicesRef.current) {
@@ -82,9 +77,10 @@ export function useChoices({
         shouldSort = false,
         itemSelectText = "",
         callbackOnCreateTemplates
-      } = customProperties;
+      } = customProperties as any;
+
       choicesRef.current = new Choices(ref.current, {
-        ...customProperties,
+        ...(customProperties as any),
         allowHTML,
         silent,
         searchEnabled,
@@ -105,17 +101,17 @@ export function useChoices({
     }
 
     const addItem = ({ detail: { value: newValue } }: any) => {
-      onChangeCallback(name, multiple ? [...new Set([...new Set(value as string[]), newValue])] : newValue);
+      onChange?.(name, multiple ? [...new Set([...(value as string[]), newValue])] : newValue);
     };
 
     const removeItem = ({ detail: { value: newValue } }: any) => {
       if (multiple) {
-        onChangeCallback(
+        onChange?.(
           name,
           (value as string[]).filter((v) => v !== newValue)
         );
       } else {
-        onChangeCallback(name, undefined as any);
+        onChange?.(name, undefined as any);
       }
     };
 
@@ -126,7 +122,7 @@ export function useChoices({
       choicesRef.current?.passedElement.element.removeEventListener("addItem", addItem);
       choicesRef.current?.passedElement.element.removeEventListener("removeItem", removeItem);
     };
-  }, [disabled, onChange, opts, placeholder, searchEnabled, size, value]);
+  }, [customProperties, disabled, multiple, name, onChange, opts, placeholder, searchEnabled, size, value]);
 
   return {
     ref,
