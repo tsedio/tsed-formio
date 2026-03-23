@@ -16,6 +16,7 @@ export function RangeFilter<Data = any>({ header, options }: FilterProps<Data, F
       <div className='flex space-x-2'>
         <div className='w-1/2'>
           <InputText
+            name={`${column.id}-min`}
             type='number'
             size='small'
             {...{ min, max, step }}
@@ -26,6 +27,7 @@ export function RangeFilter<Data = any>({ header, options }: FilterProps<Data, F
         </div>
         <div className='w-1/2'>
           <InputText
+            name={`${column.id}-max`}
             type='number'
             size='small'
             {...{ min, max, step }}
