@@ -14,8 +14,8 @@ export function TextFieldFilter<Data = any>({ header, options }: FilterProps<Dat
     <>
       {!options.disableDatalist && (
         <datalist id={datalistId}>
-          {uniqValues.map((item) => (
-            <option value={item.value} key={item.value}>
+          {uniqValues.map((item, index) => (
+            <option value={item.value} key={String(`${item.value || item.label}-${index}`)}>
               {item.label || item.value}
             </option>
           ))}
