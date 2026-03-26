@@ -50,7 +50,7 @@ export function callbackOnCreateTemplates(
           data-choice
           ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : "data-choice-selectable"}
           data-id="${data.id}"
-          data-value="${escapeForTemplate(true, data.value)}"
+          data-value="${escapeForTemplate(true, String(data.value))}"
           ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'}>
           ${label}
         </div>`
