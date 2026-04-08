@@ -1,0 +1,33 @@
+.wrapper-icon {
+  line-height: 0;
+  display: inline-block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  display: inline-block;
+  text-transform: none;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bx-question-mark[ref="tooltip"],
+.icon-circle-question-mark[ref="tooltip"] {
+  @apply rounded-full ml-2 text-xs relative;
+  top: 1px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  text-align: center;
+}
+.icon-circle-question-mark[ref="tooltip"] {
+  @apply text-gray-400;
+
+}
+.bx-question-mark[ref="tooltip"]{
+  @apply bg-gray-400;
+}

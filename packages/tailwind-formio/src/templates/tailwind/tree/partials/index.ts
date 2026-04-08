@@ -1,5 +1,5 @@
-import edit from "./edit.ejs.js";
-import view from "./view.ejs.js";
+import edit from "./edit.ejs";
+import view from "./view.ejs";
 
 export default {
   treeView: {

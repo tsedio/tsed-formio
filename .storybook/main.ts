@@ -1,24 +1,47 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import remarkGfm from "remark-gfm";
 
 const config: StorybookConfig = {
-  staticDirs: ["../packages/tailwind/build"],
+  staticDirs: ["../packages/tailwind-formio/build"],
 
   stories: [
-    "../stories/Getting-started.mdx",
+    "../stories/GettingStarted.mdx",
+    "../stories/TailwindTheme.mdx",
+    "../stories/RegisterReactComponent.mdx",
+    "../stories/Hooks.mdx",
+    "../stories/OptimizeYourBundleSize.mdx",
+    "../stories/MigrateToV3.mdx",
     "../stories/**/*.mdx",
-    "../packages/{tailwind-formio,react-formio}/src/**/*.mdx",
-    "../packages/{tailwind-formio,react-formio}/src/**/*.stories.@(js|jsx|ts|tsx)",
-    "../packages/{tailwind-formio,react-formio}/src/**/*.story.@(js|jsx|ts|tsx)"
+    {
+      titlePrefix: "Styling",
+      directory: "../packages/tailwind-formio"
+    },
+    {
+      titlePrefix: "Atoms",
+      directory: "../packages/react-formio/src/atoms"
+    },
+    {
+      titlePrefix: "Molecules",
+      directory: "../packages/react-formio/src/molecules"
+    },
+    {
+      titlePrefix: "Organisms",
+      directory: "../packages/react-formio/src/organisms"
+    }
   ],
-
   addons: [
-    "@storybook/addon-a11y",
     "@storybook/addon-links",
-    "@storybook/addon-interactions",
-    "@storybook/addon-essentials",
-    "@storybook/addon-mdx-gfm",
-    "@storybook/addon-links",
-    "@storybook/addon-interactions",
+    "@storybook/addon-onboarding",
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm]
+          }
+        }
+      }
+    },
     "@chromatic-com/storybook"
   ],
 
@@ -26,10 +49,14 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {}
   },
-
-  docs: {},
-  typescript: {
-    reactDocgen: "react-docgen-typescript"
+  core: {
+    builder: {
+      name: "@storybook/builder-vite",
+      options: {
+        viteConfigPath: "./vite.config.ts"
+      }
+    },
+    disableTelemetry: true
   }
 };
 

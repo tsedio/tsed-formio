@@ -1,0 +1,15 @@
+{
+  "extends": "@tsed/typescript/tsconfig.web.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": true,
+    "noEmit": true
+  },
+  "include": [],
+  "exclude": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}

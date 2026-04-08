@@ -18,7 +18,7 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://tsed.dev/tutorials/prisma.html">Tutorial</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://slack.tsed.dev">Slack</a>
+  <a href="https://api.tsed.dev/rest/slack/tsedio/tsed">Slack</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://twitter.com/TsED_io">Twitter</a>
 </div>
@@ -31,36 +31,57 @@ platform.
 This module is based on the original [react-formio](https://github.com/formio/react-formio) and add extra features
 listed above.
 
-See our [storybook](https://formio.tsed.dev/?path=/docs/getting-started--docs) to see all available components.
+See our [storybook](https://formio.tsed.dev/?path=/docs/getting-started--docs) to see all available components and installation guide.
 
 ## Features
 
 Many components are provided to build your own backoffice based on Formio.js API:
 
-- [ActionsTable](https://formio.tsed.dev/?path=story/reactformio-actionstable--sandbox),
-- [FormAccess](https://formio.tsed.dev/?path=story/reactformio-formaccess--sandbox),
-- [FormAction](https://formio.tsed.dev/?path=story/reactformio-formaction--sandbox),
-- [Form](https://formio.tsed.dev/?path=docs/documentation-form--docs),
-- [FormBuilder](https://formio.tsed.dev/?path=docs/documentation-formbuilder--docs),
-- [FormEdit](https://formio.tsed.dev/?path=docs/documentation-formedit--docs),
-- [FormsTable](https://formio.tsed.dev/?path=docs/documentation-formstable--docs),
-- [InputTags](https://formio.tsed.dev/?path=story/reactformio-inputtags--sandbox),
-- [InputText](https://formio.tsed.dev/?path=story/reactformio-inputtext--sandbox),
-- [Pagination](https://formio.tsed.dev/?path=story/reactformio-pagination--sandbox),
-- [Select](https://formio.tsed.dev/?path=/story/reactformio-select--sandbox),
-- [SubmissionsTable](https://formio.tsed.dev/?path=/docs/documentation-submissionstable--docs).
-- [Table](https://formio.tsed.dev/?path=/story/reactformio-table--sandbox),
+- ActionsTable,
+- FormAccess,
+- FormAction,
+- Form,
+- FormBuilder,
+- FormEdit,
+- FormsTable,
+- InputTags,
+- InputText,
+- Pagination,
+- Select,
+- SubmissionsTable.
+- Table,
 - Predefined Reducers for Actions, Action, Form, Forms, Submission, Submissions, etc...,
 - TypeScript support.
 - Tailwind support.
 
-## Migrate from v1
+## Migrate to v2
 
 If you use redux actions from v1, you have to install `@tsed/redux-formio-stores` and remplace your imports:
 
 ```diff
 - import { defaultFormioReducer, formsReducer } from "@tsed/react-formio";
 + import { defaultFormioReducer, formsReducer } from "@tsed/react-formio-stores";
+```
+
+## Migrate to v3
+
+See [`docs/migrations/v2-to-v3.md`](../../docs/migrations/v2-to-v3.md) for the full guide. Highlights:
+
+- **ESM only** – the package now exports ESM bundles exclusively. Update any `require()` calls and ensure your bundler/test runner supports native ESM.
+- **Tree-shaken imports** – import components from their atomic folder (e.g. `@tsed/react-formio/organisms/form/Form`). Use `import "@tsed/react-formio/all"` once if you still need global side-effects/registrations.
+- **Tailwind 3 baseline** – install `@tsed/tailwind-formio@^3` and upgrade to Tailwind ≥3.3; legacy Tailwind v2 tokens were removed.
+- **Store packages removed** – uninstall `@tsed/react-formio-stores`, `@tsed/redux-utils`, and `@tsed/react-formio-container`. Use the provided hooks (`useForm`, `useFormBuilder`, `useFormioContext`) or your own state management.
+- **New peer dependencies** – install the updated UI stack:
+  ```bash
+  yarn add @formio/choices.js @tanstack/react-table react-select react-table use-debounce
+  ```
+- **Tables** – if you rely on the Table component or `UseTableProps`, review the [Table & `useTable` specifics](../../docs/migrations/v2-to-v3.md#table--usetable-specifics) section for the TanStack-specific migration notes.
+
+Example import diff:
+
+```diff
+- import { Form } from "@tsed/react-formio";
++ import { Form } from "@tsed/react-formio/organisms/form/Form";
 ```
 
 ## Install
@@ -70,8 +91,7 @@ npm-compatible packaging system such as [Browserify](http://browserify.org/) or
 [webpack](http://webpack.github.io/).
 
 ```bash
-npm install @tsed/react-formio react-table --save
-npm install formiojs choices.js --save // Install formiojs since it is a peerDependency
+npm install @formio/js @tsed/react-formio react-table --save
 ```
 
 ## Usage

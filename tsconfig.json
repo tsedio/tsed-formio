@@ -2,19 +2,10 @@
   "files": [],
   "references": [
     {
-      "path": "./packages/react-formio"
+      "path": "./tsconfig.app.json"
     },
     {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./packages/react-formio-container"
-    },
-    {
-      "path": "./packages/redux-utils"
-    },
-    {
-      "path": "./packages/tailwind-formio"
+      "path": "./tsconfig.spec.json"
     }
   ]
 }

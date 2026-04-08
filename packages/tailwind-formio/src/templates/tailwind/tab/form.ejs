@@ -1,4 +1,4 @@
-<div class="card card-tabs { ctx.component.verticalLayout ? ' card-vertical' : ''}}">
+<div class="card card-tabs {{ ctx.component.verticalLayout ? ' card-vertical' : ''}}">
   <div class="card-header card-header-tabs">
     <ul class="nav nav-tabs {{ ctx.component.verticalLayout ? ' nav-tabs-vertical' : ''}}" role="tablist">
       {% ctx.component.components.forEach(function(tab, index) { %}

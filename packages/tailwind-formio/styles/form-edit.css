@@ -1,17 +1,16 @@
+.form-edit-container {
+  @apply flex flex-col space-y-5;
+}
+
 .form-edit {
-  @apply border-b-1 border-solid border-gray-200 sm:flex mb-5;
+  @apply flex space-y-5 space-x-5 pb-5;
+  @apply border-b-1 border-solid border-gray-200;
 
   &__settings {
-    @apply flex-1 flex flex-wrap -mx-2;
-
+    @apply flex-1 grid grid-cols-3 gap-5;
     > div {
       > .form-group {
-        @apply pb-0 px-2 w-full sm:w-auto;
-        min-width: 25%;
-
-        &:last-child {
-          @apply mb-5;
-        }
+        @apply pb-0 w-full sm:w-auto;
 
         .form-text {
           @apply p-0 h-0 -mb-1;
@@ -21,24 +20,17 @@
   }
 
   &__actions {
-    @apply flex flex-col justify-end mb-2;
+    @apply flex flex-col justify-center;
+
     .btn-save {
-     @apply mb-4 leading-normal;
+     @apply leading-normal;
     }
 
     > div {
-      @apply flex flex-col pl-5;
-
-      > * {
-        @apply mb-3;
-      }
+      @apply flex flex-col space-y-5;
 
       > div {
-        @apply flex flex-row -mx-2;
-
-        > * {
-          @apply mx-2;
-        }
+        @apply flex flex-row space-x-3;
       }
     }
   }

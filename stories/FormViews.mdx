@@ -1,0 +1,26 @@
+import {Canvas, Meta} from '@storybook/addon-docs/blocks'
+import * as FormViewsStories from '../packages/react-formio/src/organisms/views/FormViews.stories'
+
+<Meta title="Documentation/Form Views"/>
+
+<style>
+  {`
+  .sbdocs-wrapper {
+    background: #f7f7f7;
+  }
+  .sbdocs-wrapper .sbdocs-wrapper  {
+    background: #fff;
+  }
+  `}
+</style>
+
+# FormViews
+
+The Form Views is the complete view to manage Formio form (edit, settings, access, exports) and its submissions.
+This is the most advanced component of this library and the nearest implementation of the official Formio.js version.
+
+With this component, you'll be able to build your own Form.io form builder and submission manager.
+
+## Example
+
+<Canvas of={FormViewsStories.Usage} />

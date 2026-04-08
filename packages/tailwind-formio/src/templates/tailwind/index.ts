@@ -9,6 +9,7 @@ import builderSidebar from "./builderSidebar";
 import builderSidebarGroup from "./builderSidebarGroup";
 import builderWizard from "./builderWizard";
 import button from "./button";
+import { BxIconsMapping } from "./bxIconsMapping.js";
 import checkbox from "./checkbox";
 import columns from "./columns";
 import component from "./component";
@@ -27,11 +28,12 @@ import fieldset from "./fieldset";
 import file from "./file";
 import html from "./html";
 import icon from "./icon";
-import iconClass, { ICONS } from "./iconClass";
+import iconClass from "./iconClass";
 import input from "./input";
 import label from "./label";
 import loader from "./loader";
 import loading from "./loading";
+import { LucideIconsMapping } from "./lucideIconsMapping.js";
 import map from "./map";
 import message from "./message";
 import modaldialog from "./modaldialog";
@@ -64,7 +66,10 @@ import wizardHeaderVertical from "./wizardHeaderVertical";
 import wizardNav from "./wizardNav";
 
 export default {
-  ICONS,
+  ICONS: {
+    bx: BxIconsMapping,
+    lu: LucideIconsMapping
+  },
   transform(type: string, text: string) {
     if (!text) {
       return text;
@@ -75,7 +80,7 @@ export default {
     }
     return text;
   },
-  defaultIconset: "bx",
+  defaultIconset: "lu",
   iconClass,
   cssClasses,
   address,
