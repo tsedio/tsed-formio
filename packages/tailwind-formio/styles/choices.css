@@ -24,9 +24,11 @@
     overflow: visible;
   }
 
-  &__inner {
-    @apply appearance-none bg-white leading-normal px-3 py-2 pb-0 block w-full rounded-md border-1 border-gray-300 shadow-sm;
-    min-height: 42px;
+  .form-control.ui,
+  .choices__inner {
+    @apply shadow-none;
+    @apply appearance-none bg-white leading-normal pb-0 block w-full rounded-md border-1 border-gray-300;
+    min-height: 38px;
     font-size: inherit;
     line-height: inherit;
   }
@@ -59,6 +61,7 @@
   }
 
   &.is-disabled {
+    .form-control.ui,
     .choices__inner,
     .choices__input {
       @apply bg-gray-300 opacity-100 cursor-not-allowed;
@@ -80,14 +83,17 @@
   }
 
   &[data-type*=select-one] {
-    @apply cursor-pointer;
-  }
+    @apply cursor-pointer relative;
 
-  &[data-type*=select-one] {
-    position: relative;
-
+    .form-control.ui,
     .choices__inner {
-      @apply pb-2;
+      @apply flex items-center;
+      padding: 0;
+
+      .choices__list {
+        @apply block;
+        padding: 0 16px 0 8px;
+      }
     }
 
     .choices__input {
@@ -164,6 +170,23 @@
   }
 
   &[data-type=select-multiple] {
+    .form-control.ui,
+    .choices__inner {
+      @apply flex gap-1 flex-wrap;
+      padding-top: 6px;
+
+      .choices__item {
+        @apply rounded-md bg-primary border-0 text-xs py-1 px-2;
+        font-weight: 600;
+      }
+
+      > .choices__input {
+        margin: 0;
+        padding: 0;
+        height: 24px;
+      }
+    }
+
     &:after {
       @apply h-0 w-0 border-solid absolute border-0 h-full top-0 m-0 right-1.5;
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
@@ -177,11 +200,6 @@
     .form-control {
       @apply pb-0;
     }
-  }
-
-  .choices__list--multiple .choices__item {
-    @apply rounded-md bg-primary border-0 text-xs py-1 px-2;
-    font-weight: 600;
   }
 }
 
@@ -386,27 +404,30 @@
  */
 .form-group.-size-small {
   .choices {
+
+    .form-control.ui,
     .choices__inner {
-      @apply px-2;
-      padding-top: 3px;
       min-height: 32px;
       font-size: 14px;
     }
 
-    &[data-type*=select-one] .choices__inner {
-      padding-bottom: 1px;
+    &[data-type*=select-multiple] .choices__inner {
+      padding-top: 3px;
     }
 
-    .choices__list--multiple .choices__item {
-      @apply py-0.5 px-1 text-xs;
-      margin-bottom: 3px;
+    .choices__list--multiple {
+      .choices__item {
+        @apply py-0.5 px-1 text-xs;
+        margin-bottom: 3px;
+      }
     }
 
     .choices__input {
       margin-bottom: 1px;
     }
+
     &[data-type*=select-multiple] .choices__button,
-    &[data-type*=text] .choices__button{
+    &[data-type*=text] .choices__button {
       margin: 0 -2px 0 6px;
     }
   }

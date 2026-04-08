@@ -58,10 +58,6 @@ export default {
       control: "radio",
       options: ["small", "normal"]
     },
-    layout: {
-      control: "select",
-      options: ["html5", "choicesjs", "react"]
-    },
     placeholder: {
       control: "text"
     },
