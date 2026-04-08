@@ -62,3 +62,9 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: yarn release
+      - name: "Trigger Website workflow"
+        run: |
+          curl -X POST  https://api.github.com/repos/tsedio/formio/actions/workflows/website.yml/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -H 'Authorization: Bearer ${{secrets.GH_TOKEN}}' \
+          --data '{"ref": "${{github.ref_name}}"}'

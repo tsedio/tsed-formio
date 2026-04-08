@@ -31,7 +31,8 @@
     "build-storybook": "storybook build -c .storybook",
     "caniuse": "npx -y update-browserslist-db@latest",
     "chromatic": "npx chromatic",
-    "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\""
+    "watch": "nodemon --watch ./src --ext ts,js,ejs --exec \"yarn build\"",
+    "docs:publish": "CI=1 monorepo publish ghpages"
   },
   "dependencies": {
     "@formio/js": "^5.3.1",
@@ -144,7 +145,16 @@
   "monorepo": {
     "productionBranch": "master",
     "developBranch": "master",
-    "npmAccess": "public"
+    "npmAccess": "public",
+    "ghpages": [
+      {
+        "dir": "./storybook-static",
+        "url": "https://github.com/tsedio/tsed-formio.git",
+        "branch": "gh-pages",
+        "cname": "formio.tsed.dev",
+        "if": "master"
+      }
+    ]
   },
   "packageManager": "yarn@4.1.1",
   "browserslist": {
