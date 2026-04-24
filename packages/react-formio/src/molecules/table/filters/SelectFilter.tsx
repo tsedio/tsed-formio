@@ -7,6 +7,7 @@ import { FilterSelectOptions } from "./Filters";
 
 export function SelectFilter<Data = any>({ header, options }: FilterProps<Data, FilterSelectOptions>) {
   const Select = getComponent<typeof DefaultSelect>("Select");
+  const isBooleanFilter = header.column.columnDef.meta?.filter?.variant === "boolean";
   const columnFilterValue = header.column.getFilterValue();
   const uniqValues = useUniqValues<Data>({ header, options });
 
@@ -38,8 +39,15 @@ export function SelectFilter<Data = any>({ header, options }: FilterProps<Data, 
         options={listOptions}
         name={`filter_${header.column.id}`}
         data-testid={`filter_${header.column.id}`}
-        value={(columnFilterValue ?? "") as string}
-        onChange={(_, value) => header.column.setFilterValue(value)}
+        value={columnFilterValue === undefined ? "" : String(columnFilterValue)}
+        onChange={(_, value) => {
+          if (isBooleanFilter) {
+            header.column.setFilterValue(value === "" ? undefined : value === "true");
+            return;
+          }
+
+          header.column.setFilterValue(value);
+        }}
       />
     </>
   );
