@@ -1,0 +1,1 @@
+const r=new Map;function s(n,o){r.set(n,o)}function e(n){if(Array.isArray(n)){for(const t of n)if(r.has(t))return r.get(t)}const o=r.get(n);return o||console.warn(`Missing component for ${n}`),o}export{e as g,s as r};
