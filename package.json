@@ -128,7 +128,7 @@
     "semantic-release-slack-bot": "4.0.2",
     "semver": "^7.7.3",
     "storybook": "10.3.5",
-    "typescript": "5.7.2",
+    "typescript": "6.0.3",
     "uuid": "^11.0.5",
     "vite": "7.1.5",
     "vite-plugin-dts": "4.4.0",
