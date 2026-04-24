@@ -18,7 +18,38 @@ type ProductSubmission = SubmissionType<{
   image: string;
   price?: number;
   currency?: string;
+  is_open: boolean;
 }>;
+
+const productSubmissions = (formSubmissions as unknown as ProductSubmission[]).map((submission, index) => ({
+  ...submission,
+  data: {
+    ...submission.data,
+    is_open: index % 2 === 0
+  }
+}));
+
+const tableColumns = mapFormToColumns<ProductSubmission>({
+  form: FormType as any,
+  columns: [
+    {
+      id: "is_open",
+      accessorKey: "data.is_open",
+      header: "Is open",
+      meta: {
+        type: "boolean",
+        filter: {
+          variant: "boolean",
+          layout: "react"
+        },
+        labels: {
+          yes: "Open",
+          no: "Closed"
+        }
+      }
+    }
+  ]
+});
 /**
  * Table component.
  *
@@ -73,8 +104,8 @@ type Story = StoryObj<typeof Table<ProductSubmission>>;
 
 export const Usage: Story = {
   args: {
-    data: formSubmissions as unknown as ProductSubmission[],
-    columns: mapFormToColumns({ form: FormType as any }),
+    data: productSubmissions,
+    columns: tableColumns,
     operations: [
       {
         title: "Edit",
@@ -105,20 +136,24 @@ export const Usage: Story = {
     await expect(canvas.getByTestId("head-cell-data_label")).toHaveTextContent("Label");
 
     // check body information
-    await expect(canvas.getByTestId("body-row-0")).toBeDefined();
-    await expect(canvas.getByTestId("body-cell-0_data_id")).toHaveTextContent("CSKC");
-    await expect(canvas.getByTestId("body-cell-0_data_label")).toHaveTextContent("Cap Skirring");
+    const firstIdCell = await canvas.findByTestId("body-cell-0_data_id");
+    const cskcRow = firstIdCell.closest("tr");
 
-    const editButton = canvas.getByTestId("operation-0-edit");
+    await expect(firstIdCell).toHaveTextContent("CSKC");
+    await expect(cskcRow).toBeInTheDocument();
+    await expect(within(cskcRow as HTMLElement).getByText("Cap Skirring")).toBeInTheDocument();
+    await expect(within(cskcRow as HTMLElement).getByText("Open")).toBeInTheDocument();
+
+    const editButton = (cskcRow as HTMLElement).querySelector('[data-testid$="-edit"]') as HTMLElement;
 
     await userEvent.click(editButton);
 
-    await expect(args.onClick).toHaveBeenCalledWith(formSubmissions[0], args.operations[0]);
+    await expect(args.onClick).toHaveBeenCalledWith(productSubmissions[0], args.operations[0]);
 
-    const deleteButton = canvas.getByTestId("operation-0-delete");
+    const deleteButton = (cskcRow as HTMLElement).querySelector('[data-testid$="-delete"]') as HTMLElement;
 
     await userEvent.click(deleteButton);
-    await expect(args.onClick).toHaveBeenCalledWith(formSubmissions[0], args.operations[1]);
+    await expect(args.onClick).toHaveBeenCalledWith(productSubmissions[0], args.operations[1]);
 
     await expect(canvas.queryByTestId("operation-1-delete")).not.toBeInTheDocument();
 
@@ -185,7 +220,7 @@ export const Usage: Story = {
 
 export const WithFilters: Story = {
   args: {
-    data: formSubmissions as unknown as ProductSubmission[],
+    data: productSubmissions,
     columns: mapFormToColumns({
       form: FormType as any,
       columns: [
@@ -195,6 +230,21 @@ export const WithFilters: Story = {
             filter: {
               variant: "select",
               layout: "react"
+            }
+          }
+        },
+        {
+          accessorKey: "data.is_open",
+          header: "Is open",
+          meta: {
+            type: "boolean",
+            filter: {
+              variant: "boolean",
+              layout: "react"
+            },
+            labels: {
+              yes: "Open",
+              no: "Closed"
             }
           }
         }
@@ -225,8 +275,8 @@ export const WithFilters: Story = {
 
 export const WithPaginationOptions: Story = {
   args: {
-    data: formSubmissions as unknown as ProductSubmission[],
-    columns: mapFormToColumns({ form: FormType as any }),
+    data: productSubmissions,
+    columns: tableColumns,
     operations: [
       {
         title: "Edit",
@@ -251,7 +301,7 @@ export const WithPaginationOptions: Story = {
 
 export const WithCustomCell: Story = {
   args: {
-    data: formSubmissions as unknown as ProductSubmission[],
+    data: productSubmissions,
     columns: mapFormToColumns<ProductSubmission>({
       form: FormType as any,
       columns: [
@@ -292,6 +342,21 @@ export const WithCustomCell: Story = {
             filter: {
               variant: "text",
               disableDatalist: true
+            }
+          }
+        },
+        {
+          accessorKey: "data.is_open",
+          header: "Is open",
+          meta: {
+            type: "boolean",
+            filter: {
+              variant: "boolean",
+              layout: "react"
+            },
+            labels: {
+              yes: "Open",
+              no: "Closed"
             }
           }
         },
