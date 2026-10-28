@@ -743,13 +743,11 @@ export const ParentRerenders: StoryObj<typeof RerenderingParent> = {
     await userEvent.clear(input);
     await userEvent.type(input, "John");
 
-    await waitFor(
-      () => {
-        const count = Number(canvas.getByTestId("tick").textContent?.match(/\d+/)?.[0]);
-        expect(count).toBeGreaterThanOrEqual(2);
-      },
-      { timeout: 4000 }
-    );
+    // Wait for at least 2 parent renders after typing, whatever the count was before.
+    const readTick = () => Number(canvas.getByTestId("tick").textContent?.match(/\d+/)?.[0]);
+    const tickAfterTyping = readTick();
+
+    await waitFor(() => expect(readTick()).toBeGreaterThanOrEqual(tickAfterTyping + 2), { timeout: 4000 });
 
     expect(canvas.getByRole("textbox", { name: "First name" })).toHaveValue("John");
   }

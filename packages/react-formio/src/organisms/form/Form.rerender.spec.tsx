@@ -1,3 +1,4 @@
+import { Formio } from "@formio/js";
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useEffect, useState } from "react";
 
@@ -169,6 +170,62 @@ describe("Form - parent re-renders", () => {
     rerender(<Form form={form} submission={{ _id: "b", data: { firstName: "Same" } }} onFormReady={(i) => (instance = i)} />);
 
     await waitFor(() => expect(instance.submission._id).toBe("b"));
+  });
+
+  it("applies a submission that drops a previously supplied _id", async () => {
+    const form = formSchema();
+    let instance: any;
+    const ready = (i: any) => (instance = i);
+    const { rerender } = render(<Form form={form} submission={{ _id: "a", data: { firstName: "Same" } }} onFormReady={ready} />);
+
+    await waitFor(() => expect(instance?.submission._id).toBe("a"));
+
+    rerender(<Form form={form} submission={{ data: { firstName: "Same" } }} onFormReady={ready} />);
+
+    await waitFor(() => expect(instance.submission._id).toBeUndefined());
+  });
+
+  it("keeps the submitted data when onAsyncSubmit resolves with nothing", async () => {
+    let instance: any;
+    const onSubmit = vi.fn();
+    render(
+      <Form
+        form={formSchema()}
+        submission={{ data: { firstName: "John" } }}
+        onFormReady={(i) => (instance = i)}
+        onAsyncSubmit={async () => {}}
+        onSubmit={onSubmit}
+      />
+    );
+
+    await waitFor(() => expect(getInput().value).toBe("John"));
+    await act(async () => {
+      await instance.submit().catch(() => {});
+    });
+
+    await waitFor(() => expect(onSubmit).toHaveBeenCalled());
+    expect(onSubmit.mock.calls[0][0]?.data?.firstName).toBe("John");
+  });
+
+  it("re-applies the controlled submission when a src form is recreated", async () => {
+    const fetchMock = vi.fn(async () => new Response(JSON.stringify(formSchema()), { headers: { "Content-Type": "application/json" } }));
+    // formio requests through its own `Formio.fetch` (fetch-ponyfill), not the global fetch
+    const originalFetch = Formio.fetch;
+    Formio.fetch = fetchMock as any;
+
+    try {
+      const submission = { data: { firstName: "Controlled" } };
+      const { rerender } = render(<Form src='https://example.test/form-a' submission={submission} />);
+
+      await waitFor(() => expect(getInput().value).toBe("Controlled"), { timeout: 3000 });
+
+      rerender(<Form src='https://example.test/form-b' submission={submission} />);
+
+      await waitFor(() => expect(fetchMock.mock.calls.some(([url]: any) => String(url).includes("form-b"))).toBe(true));
+      await waitFor(() => expect(getInput().value).toBe("Controlled"), { timeout: 3000 });
+    } finally {
+      Formio.fetch = originalFetch;
+    }
   });
 
   it("does not mutate the caller's defaultSubmission", async () => {

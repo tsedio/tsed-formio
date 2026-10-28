@@ -133,7 +133,8 @@ function createCustomValidation(customAction: any, ref: MutableRefObject<Webform
 
       next(null);
 
-      ref.current.onSubmit(updatedSubmission, true);
+      // A callback that resolves with nothing keeps the submitted data.
+      ref.current.onSubmit(updatedSubmission ?? submission, true);
     } catch (er: any) {
       next(er.errors || er);
     } finally {
@@ -142,13 +143,16 @@ function createCustomValidation(customAction: any, ref: MutableRefObject<Webform
   };
 }
 
-function isSubmissionEcho(current: SubmissionType<any> | undefined, next: SubmissionType<any>) {
+function isSubmissionEcho(current: SubmissionType<any> | undefined, next: SubmissionType<any>, previous: SubmissionType<any> | undefined) {
   if (!current) {
     return false;
   }
 
-  // Only the keys sent by the parent are compared: formio adds its own keys (metadata...) to the instance submission.
-  return Object.keys(next).every((key) => isEqual((current as any)[key], (next as any)[key]));
+  // Only keys sent by the parent (now or in the previous prop) are compared: formio adds its own keys (metadata...)
+  // to the instance submission, while a key the parent removed (e.g. `_id`) must still be applied.
+  const keys = new Set([...Object.keys(next), ...Object.keys(previous || {})]);
+
+  return [...keys].every((key) => isEqual((current as any)[key], (next as any)[key]));
 }
 
 export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Data>) {
@@ -171,7 +175,8 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
   // Last submission content pushed into the instance (from props or at creation).
   const lastSubmission = useRef<SubmissionType<Data> | undefined>(undefined);
 
-  const [instanceIsReady, setInstanceIsReady] = useState(false);
+  // Bumped for every new instance, so the submission sync also runs after the form is recreated.
+  const [instanceVersion, setInstanceVersion] = useState(0);
 
   useEffect(() => {
     let ignore = false;
@@ -255,7 +260,7 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
 
         renderElement.current.className = "formio-form-ready";
         webformRef.current = webform;
-        setInstanceIsReady(true);
+        setInstanceVersion((version) => version + 1);
       } else {
         console.warn("Failed to create form instance");
       }
@@ -280,7 +285,7 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
   useEffect(() => {
     const webform = webformRef.current;
 
-    if (!instanceIsReady || !webform || !submission) {
+    if (!instanceVersion || !webform || !submission) {
       return;
     }
 
@@ -289,16 +294,17 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
       return;
     }
 
+    const previousSubmission = lastSubmission.current;
     lastSubmission.current = cloneDeep(submission);
 
     // Echo of the user's own input (controlled usage via onChange -> setState).
     // Metadata (_id, state...) must match too, or switching records with identical data would be skipped.
-    if (isSubmissionEcho(webform.submission, submission)) {
+    if (isSubmissionEcho(webform.submission, submission, previousSubmission)) {
       return;
     }
 
     webform.setSubmission(cloneDeep(submission));
-  }, [instanceIsReady, submission]);
+  }, [instanceVersion, submission]);
 
   return {
     element: renderElement,

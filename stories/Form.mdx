@@ -141,7 +141,7 @@ Will render:
   and listeners are never re-attached.
 - `defaultSubmission` is applied once, when the instance is created.
 - `submission` is re-applied only when its content changes, and is ignored when it only echoes what the user typed
-  (`onChange` → `setState` → `submission`). Changing `_id`, `state` or `metadata` with identical `data` is applied.
+  (`onChange` → `setState` → `submission`). Changing (or removing) `_id`, `state` or `metadata` with identical `data` is applied.
 - The objects you pass are never mutated: formio receives a copy.
 
 ### Uncontrolled form
@@ -186,8 +186,8 @@ export function EditUser({form}: {form: FormType}) {
 ### Resetting the form
 
 A new `submission` whose content equals the previous one is ignored. To reset the form to the same data, either change
-the component `key`, or store the instance from `onFormReady` and call `instance.setSubmission()` from your reset
-handler:
+the component `key`, or store the instance from `onFormReady` and call `instance.setSubmission(structuredClone(initialSubmission))`
+from your reset handler:
 
 ```tsx
 const instanceRef = useRef<Webform>();
@@ -207,7 +207,7 @@ field: the value is kept.
 ### onFormReady
 
 A callback function that gets called when the form has rendered. It is useful for accessing the underlying @formio/js Webform instance.
-It runs once per instance: again only when the form is recreated (schema, options or `url` change, or a new `key`).
+It runs once per instance: again only when the form is recreated (schema, `src`, options or `url` change, or a new `key`).
 
 ```tsx
 import {Webform, Form} from "@tsed/react-formio";
