@@ -33,9 +33,12 @@ const isHome = computed(() => route.path === "/" || route.path === "" || route.p
 
     <HomeContainer animate>
       <div class="flex flex-col sm:flex-row pt-10 sm:pt-20 gap-10">
-        <GithubContributors />
+        <!-- Fewer contributors than on tsed.dev: bigger avatars, centered in the free space -->
+        <div class="flex-1 flex items-center justify-center">
+          <GithubContributors :width="72" :padding="3" />
+        </div>
 
-        <div class="flex items-center order-first sm:order-last">
+        <div class="flex items-center order-first sm:order-last sm:w-[300px] shrink-0">
           <div class="flex sm:block">
             <div class="text-2xl sm:text-5xl flex items-center pb-5">
               <div>Our awesome <strong>contributors</strong></div>
