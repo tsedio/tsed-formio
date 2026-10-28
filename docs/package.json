@@ -1,0 +1,26 @@
+{
+  "name": "@tsed/formio-docs",
+  "version": "3.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev .",
+    "docs:build": "vitepress build .",
+    "docs:preview": "vitepress preview .",
+    "docs:check-links": "node ./scripts/check-storybook-links.mjs"
+  },
+  "dependencies": {
+    "@tsed/vitepress-theme": "1.8.0",
+    "@vueuse/core": "10.11.0",
+    "axios": "1.13.5",
+    "lucide-vue-next": "^0.436.0",
+    "vitepress": "^1.6.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.5.10",
+    "tailwindcss": "3.4.4",
+    "vitepress-plugin-llms": "^1.13.5"
+  },
+  "packageManager": "yarn@4.1.1"
+}

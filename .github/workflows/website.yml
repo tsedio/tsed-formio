@@ -1,8 +1,6 @@
 name: Deploy website
 
 on:
-  # Runs on pushes targeting the `main` branch. Change this to `master` if you're
-  # using the `master` branch as the default branch.
   push:
     branches: [master]
 
@@ -22,33 +20,49 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
-  publish-docs:
+  # Build VitePress (site root) and Storybook (/storybook/) into a single Pages artifact
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write # to deploy to Pages
-      id-token: write # to verify the deployment originates from an appropriate source
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Not needed if lastUpdated is not enabled
-      # - uses: pnpm/action-setup@v2 # Uncomment this if you're using pnpm
-      # - uses: oven-sh/setup-bun@v1 # Uncomment this if you're using Bun
+          fetch-depth: 0 # Needed by VitePress lastUpdated
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: yarn
+          cache-dependency-path: |
+            yarn.lock
+            docs/yarn.lock
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
         run: yarn install --immutable --network-timeout 500000
-      - name: Build with Storybook
+      - name: Install docs dependencies
+        working-directory: docs
+        run: yarn install --immutable --network-timeout 500000
+      - name: Build Storybook
         run: yarn storybook:build
-      - name: Publish pages
-        env:
-          CI: true
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn docs:publish
+      - name: Build VitePress
+        run: yarn docs:build
+      - name: Check docs links to Storybook
+        run: yarn docs:check-links
+      - name: Assemble website
+        run: node docs/scripts/assemble-website.mjs website
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: website
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

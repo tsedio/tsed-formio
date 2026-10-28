@@ -11,7 +11,12 @@ Formio.use(tailwind);
 
 Templates.framework = "tailwind";
 
-initialize();
+// Relative URL so the mock worker is found when Storybook is served under a sub-path (e.g. /storybook/)
+initialize({
+  serviceWorker: {
+    url: "./mockServiceWorker.js"
+  }
+});
 
 /** @type { import("@storybook/react-vite").Preview } */
 const preview = {

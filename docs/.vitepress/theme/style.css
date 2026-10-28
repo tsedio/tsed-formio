@@ -1,0 +1,10 @@
+:root {
+  --vp-c-brand-1: hsla(208, 100%, 43%, 1);
+  --vp-c-brand-2: hsla(208, 100%, 35%, 1);
+  --vp-c-brand-3: hsla(208, 100%, 43%, 1);
+}
+
+.dark {
+  --vp-c-brand-1: hsla(208, 100%, 67%, 1);
+  --vp-c-brand-2: hsla(208, 100%, 59%, 1);
+}

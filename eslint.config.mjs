@@ -11,7 +11,7 @@ import pluginWorkspaces from "eslint-plugin-workspaces";
 
 export default [
   {
-    ignores: ["**/coverage", "**/dist/**", "**/build/**", "**/storybook-static", "**/*.ejs.js"]
+    ignores: ["**/coverage", "**/dist/**", "**/build/**", "**/storybook-static", "docs/**", "website/**", "**/*.ejs.js"]
   },
   {
     files: ["**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}"],
