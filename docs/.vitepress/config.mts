@@ -79,6 +79,10 @@ export default defineConfig({
     siteTitle: "Formio",
     siteUrl: SITE_URL,
     repo: "tsedio/tsed-formio",
+    // Required by @tsed/vitepress-theme (no API reference pages here)
+    apiUrl: "",
+    // Used by GithubContributors (home page)
+    githubProxyUrl: "https://api.github.com/repos/tsedio/tsed-formio",
     storybookUrl: STORYBOOK_URL,
     editLink: {
       pattern: "https://github.com/tsedio/tsed-formio/edit/master/docs/:path"
