@@ -156,6 +156,21 @@ describe("Form - parent re-renders", () => {
     await waitFor(() => expect(getInput().value).toBe("Updated"));
   });
 
+  it("applies a submission with the same data but a different _id", async () => {
+    const form = formSchema();
+    let instance: any;
+    const { rerender } = render(
+      <Form form={form} submission={{ _id: "a", data: { firstName: "Same" } }} onFormReady={(i) => (instance = i)} />
+    );
+
+    await waitFor(() => expect(getInput().value).toBe("Same"));
+    expect(instance.submission._id).toBe("a");
+
+    rerender(<Form form={form} submission={{ _id: "b", data: { firstName: "Same" } }} onFormReady={(i) => (instance = i)} />);
+
+    await waitFor(() => expect(instance.submission._id).toBe("b"));
+  });
+
   it("applies defaultSubmission only once at creation", async () => {
     const form = formSchema();
     const { rerender } = render(<Form form={form} defaultSubmission={{ data: { firstName: "Default" } }} />);

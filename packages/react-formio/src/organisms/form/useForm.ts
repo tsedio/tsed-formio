@@ -141,6 +141,14 @@ function createCustomValidation(customAction: any, ref: MutableRefObject<Webform
   };
 }
 
+function isSubmissionEcho(current: SubmissionType<any> | undefined, next: SubmissionType<any>) {
+  if (!current) {
+    return false;
+  }
+
+  return Object.keys(next).every((key) => isDeepEqual((current as any)[key], (next as any)[key]));
+}
+
 export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Data>) {
   const webformRef = useRef<Webform | null>(null);
   const renderElement = useRef<HTMLDivElement | null>(null);
@@ -260,7 +268,8 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
     lastSubmission.current = cloneDeep(submission);
 
     // Echo of the user's own input (controlled usage via onChange -> setState).
-    if (isDeepEqual(webform.submission?.data, submission.data)) {
+    // Metadata (_id, state...) must match too, or switching records with identical data would be skipped.
+    if (isSubmissionEcho(webform.submission, submission)) {
       return;
     }
 
