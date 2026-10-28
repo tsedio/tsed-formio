@@ -1,5 +1,5 @@
 import {Canvas, Meta} from '@storybook/addon-docs/blocks'
-import {BasicUsageWithForm, BasicUsageWithSrc, CustomValidation} from '../packages/react-formio/src/organisms/form/Form.stories'
+import {BasicUsageWithForm, BasicUsageWithSrc, CustomValidation, ParentRerenders} from '../packages/react-formio/src/organisms/form/Form.stories'
 
 <Meta title="Documentation/Form"/>
 
@@ -23,13 +23,15 @@ definition and optionally a `url` prop with the location of the form.
 
 ## Props
 
-| Name                | Type                                                                                    | Description                                                                                                                                                                                                                                                                  |
-|---------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `src`               | url                                                                                     | The src of the form definition. This is commonly from a form.io server. When using src, the form will automatically submit the data to that url as well.                                                                                                                     |
-| `url`               | url                                                                                     | The url of the form definition. The form will not be loaded from this url and the submission will not be saved here either. This is used for file upload, oauth and other components or actions that need to know where the server is. Use this in connection with `form`    |
-| `form`              | object                                                                                  | Instead of loading a form from the `src` url, you can preload the form definition and pass it in with the `form` prop. You should also set `url` if you are using any advanced components like file upload or oauth.                                                         |
-| `submission`        | object                                                                                  | Submission data to fill the form. You can either load a previous submission or create a submission with some pre-filled data. If you do not provide a submissions the form will initialize an empty submission using default values from the form.                           |
-| `options`           | object                                                                                  | an options object that can pass options to the formio.js Form that is rendered. You can set options such as `readOnly`, `noAlerts` or `hide`. There are [many options to be found in the formio.js library](https://github.com/formio/formio.js/wiki/Form-Renderer#options). |
+| Name                | Type   | Description |
+|---------------------|--------|-------------|
+| `src`               | url    | The src of the form definition. This is commonly from a form.io server. When using src, the form will automatically submit the data to that url as well. |
+| `url`               | url    | The url of the form definition. The form will not be loaded from this url and the submission will not be saved here either. This is used for file upload, oauth and other components or actions that need to know where the server is. Use this in connection with `form`. |
+| `form`              | object | Instead of loading a form from the `src` url, you can preload the form definition and pass it in with the `form` prop. You should also set `url` if you are using any advanced components like file upload or oauth. Compared by content: the form is only recreated when the schema really changes. |
+| `submission`        | object | Controlled submission data. You can either load a previous submission or create a submission with some pre-filled data. If you do not provide a submission the form will initialize an empty submission using default values from the form. Re-applied only when its content changes (see [Re-renders and controlled data](#re-renders-and-controlled-data)). |
+| `defaultSubmission` | object | Initial submission data, applied once when the form is created. Later changes are ignored, so the user's input is never overwritten. |
+| `options`           | object | An options object that can pass options to the formio.js Form that is rendered. You can set options such as `readOnly`, `noAlerts` or `hide`. There are [many options to be found in the formio.js library](https://github.com/formio/formio.js/wiki/Form-Renderer#options). Compared by content, except functions and class instances (hooks, event emitters…). |
+| `onAsyncSubmit`     | function | Async action run on submit (e.g. save to your API). Resolve with the saved submission, or throw to display errors. Can be added or removed at any time. |
 
 ## Examples
 ### Basic usage
@@ -128,10 +130,84 @@ Will render:
 
 
 
+## Re-renders and controlled data
+
+`Form` keeps the user's input when its parent re-renders, even when props are inline literals:
+
+- `form` and `options` are compared by content. The formio instance is only recreated when the schema or the options
+  really change. Functions and class instances inside `options` (hooks, event emitters…) are not compared, so changing
+  them alone does not recreate the form.
+- Event callbacks (`onChange`, `onSubmit`, `onAsyncSubmit`…) can be inline functions: the latest one is always called,
+  and listeners are never re-attached.
+- `defaultSubmission` is applied once, when the instance is created.
+- `submission` is re-applied only when its content changes, and is ignored when it only echoes what the user typed
+  (`onChange` → `setState` → `submission`). Changing `_id`, `state` or `metadata` with identical `data` is applied.
+- The objects you pass are never mutated: formio receives a copy.
+
+### Uncontrolled form
+
+Use `defaultSubmission` when you only need initial values:
+
+```tsx
+import {Form} from "@tsed/react-formio/organisms/form/Form";
+
+export function EditUser({user}: {user: User}) {
+  return (
+    <Form
+      form={{display: "form", components: [/* ... */]}}
+      defaultSubmission={{data: user}}
+      onSubmit={(submission) => save(submission.data)}
+    />
+  );
+}
+```
+
+### Controlled form
+
+Use `submission` when the parent owns the data. Feeding `onChange` back into `submission` is safe: the echo is ignored.
+
+```tsx
+import {useState} from "react";
+import {Form} from "@tsed/react-formio/organisms/form/Form";
+
+export function EditUser({form}: {form: FormType}) {
+  const [data, setData] = useState({firstName: "John"});
+
+  return (
+    <Form
+      form={form}
+      submission={{data}}
+      onChange={(changed) => setData(changed.data)}
+    />
+  );
+}
+```
+
+### Resetting the form
+
+A new `submission` whose content equals the previous one is ignored. To reset the form to the same data, either change
+the component `key`, or store the instance from `onFormReady` and call `instance.setSubmission()` from your reset
+handler:
+
+```tsx
+const instanceRef = useRef<Webform>();
+
+<Form form={form} submission={submission} onFormReady={(instance) => (instanceRef.current = instance)} />
+<button onClick={() => instanceRef.current?.setSubmission(structuredClone(initialSubmission))}>Reset</button>
+```
+
+### Example
+
+The parent below re-renders every second and passes `form`, `options` and `submission` as inline literals. Type in the
+field: the value is kept.
+
+<Canvas of={ParentRerenders}/>
+
 ## Events
 ### onFormReady
 
 A callback function that gets called when the form has rendered. It is useful for accessing the underlying @formio/js Webform instance.
+It runs once per instance: again only when the form is recreated (schema, options or `url` change, or a new `key`).
 
 ```tsx
 import {Webform, Form} from "@tsed/react-formio";
@@ -147,6 +223,25 @@ A callback function that gets called when the submission has started. If `src` i
 import {Form, SubmissionType} from "@tsed/react-formio";
 
 <Form onSubmit={(submission: SubmissionType, saved?: boolean) => console.log(submission)} />;
+```
+
+### onAsyncSubmit
+
+An async action run when the user submits the form, before the `submit` event. Resolve with the (updated) submission to
+complete the submission, or throw to display the errors in the form. It can be added or removed after the form is
+mounted; without it, your own `options.hooks.customValidation` (if any) runs instead.
+
+```tsx
+import {Form, SubmissionType} from "@tsed/react-formio";
+
+<Form
+  form={form}
+  onAsyncSubmit={async (submission: SubmissionType) => {
+    const saved = await httpClient.post("/api/users", submission.data);
+
+    return {...submission, data: saved};
+  }}
+/>
 ```
 
 ### onCancelSubmit
