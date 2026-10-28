@@ -41,7 +41,12 @@ export default {
     },
     submission: {
       description:
-        "Submission data to fill the form. You can either load a previous submission or create a submission with some pre-filled data. If you do not provide a submissions the form will initialize an empty submission using default values from the form.",
+        "Submission data to fill the form. You can either load a previous submission or create a submission with some pre-filled data. If you do not provide a submissions the form will initialize an empty submission using default values from the form. It is re-applied only when its content deeply changes (a new object with the same content is ignored), and never when it is just the echo of the user's input.",
+      control: "object"
+    },
+    defaultSubmission: {
+      description:
+        "Initial submission applied once, when the form instance is created. Later changes are ignored, so user input is never overwritten. Use `submission` for controlled data.",
       control: "object"
     },
     options: {
@@ -273,10 +278,14 @@ export const WithOnSubmit: Story = {
       setData(args.submission!.data as OnSubmitData);
     }, [args.submission]);
 
+    // args are typed with a generic `object` payload, keep defaultSubmission out of the spread
+    const { defaultSubmission, ...formArgs } = args;
+
     return (
       <>
         <Form
-          {...args}
+          {...formArgs}
+          defaultSubmission={defaultSubmission as SubmissionType<OnSubmitData>}
           submission={{
             data: data
           }}
@@ -679,5 +688,63 @@ export const ErrorOnSubmitServer: Story = {
     await waitFor(async () => {
       expect(canvas.getByText("Please fix the following errors before submitting.")).toBeInTheDocument();
     });
+  }
+};
+
+function RerenderingParent(props: { inline: boolean }) {
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  // Inline literals: new references on every render, same content.
+  const form = {
+    type: "form",
+    display: "form",
+    components: [{ label: "First name", key: "firstName", type: "textfield", input: true }]
+  };
+
+  return (
+    <div>
+      <p data-testid='tick'>Parent renders: {tick}</p>
+      <Form
+        form={(props.inline ? form : RERENDER_FORM) as any}
+        options={props.inline ? { template: "tailwind", iconset: "lu" } : RERENDER_OPTIONS}
+        submission={props.inline ? { data: { firstName: "Initial" } } : RERENDER_SUBMISSION}
+      />
+    </div>
+  );
+}
+
+const RERENDER_FORM = {
+  type: "form",
+  display: "form",
+  components: [{ label: "First name", key: "firstName", type: "textfield", input: true }]
+};
+const RERENDER_OPTIONS = { template: "tailwind", iconset: "lu" };
+const RERENDER_SUBMISSION = { data: { firstName: "Initial" } };
+
+/**
+ * The parent re-renders every second (timer + `setState`) and passes `form`, `options` and `submission`
+ * as inline literals. The form is not recreated and the user's input is kept: `form`/`options` are compared
+ * by content, and `submission` is only re-applied when its content changes.
+ */
+export const ParentRerenders: StoryObj<typeof RerenderingParent> = {
+  args: { inline: true },
+  render: (args) => <RerenderingParent {...args} />,
+  async play({ canvasElement }) {
+    const canvas = within(canvasElement);
+
+    const input = await canvas.findByRole("textbox", { name: "First name" });
+    await waitFor(() => expect(input).toHaveValue("Initial"));
+
+    await userEvent.clear(input);
+    await userEvent.type(input, "John");
+
+    await waitFor(() => expect(canvas.getByTestId("tick")).toHaveTextContent("Parent renders: 2"), { timeout: 4000 });
+
+    expect(canvas.getByRole("textbox", { name: "First name" })).toHaveValue("John");
   }
 };

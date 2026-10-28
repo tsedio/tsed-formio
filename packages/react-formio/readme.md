@@ -113,6 +113,35 @@ export default App;
 
 See more on http://formio.tsed.dev/?path=/docs/getting-started--docs
 
+### Form and parent re-renders
+
+`<Form>` keeps the user's input when its parent re-renders, even if props are inline literals:
+
+- `form` and `options` are compared by content. The formio instance is only recreated when the schema or options
+  really change. Functions and class instances inside `options` (hooks, event emitters…) are not compared, so changing
+  them alone does not recreate the form.
+- Event callbacks (`onChange`, `onSubmit`…) can be inline functions: the latest one is always called, and listeners are
+  never re-attached.
+- `defaultSubmission` is applied once, when the instance is created.
+- `submission` is re-applied only when its content changes, and is ignored when it only echoes what the user typed
+  (`onChange` → `setState` → `submission`).
+
+To reset the form to a submission whose content equals the previous `submission` prop, change the component `key` or
+call `instance.setSubmission()` from `onFormReady`.
+
+```tsx
+<Form
+  form={{
+    display: "form",
+    components: [
+      /* ... */
+    ]
+  }}
+  defaultSubmission={{ data: { firstName: "John" } }}
+  onChange={(changed) => setData(changed.data)}
+/>
+```
+
 ## Contributors
 
 Please read [contributing guidelines here](./CONTRIBUTING.md).
