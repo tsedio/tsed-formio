@@ -6,11 +6,22 @@ customize `FormEdit` or `Table` components.
 For example FormEdit component use the followings components:
 
 ```ts
+import "@tsed/react-formio/atoms/icon/Icon";
+import "@tsed/react-formio/molecules/button/Button";
+import "@tsed/react-formio/molecules/forms/input-text/InputText";
+import "@tsed/react-formio/molecules/forms/select/Select";
+import "@tsed/react-formio/molecules/forms/select/components/HtmlSelect";
+import "@tsed/react-formio/molecules/forms/input-tags/InputTags";
+import "@tsed/react-formio/organisms/form/builder/FormParameters";
+import "@tsed/react-formio/organisms/form/builder/FormBuilder";
+import "@tsed/react-formio/organisms/form/builder/FormEditCtas";
 ```
 
 You can replace for example replace the default React Button component provided by the library by your own Button:
 
 ```tsx
+import {registerComponent} from "@tsed/react-formio/registries/components";
+import type {ButtonProps} from "@tsed/react-formio/molecules/button/Button";
 
 registerComponent("button", (props: ButtonProps) => {
   return <button {...props}>{props.label}</button>;
