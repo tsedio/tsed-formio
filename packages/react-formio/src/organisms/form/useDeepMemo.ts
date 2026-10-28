@@ -1,5 +1,5 @@
 import isEqualWith from "lodash/isEqualWith";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 function isClassInstance(value: unknown): boolean {
   if (value === null || typeof value !== "object" || Array.isArray(value) || value instanceof Date) {
@@ -32,14 +32,17 @@ export function isDeepEqual(a: unknown, b: unknown): boolean {
 }
 
 /**
- * Returns the previous reference while the new value is deeply equal to it.
+ * Returns the last committed reference while the new value is deeply equal to it.
+ * Only form schemas and options go through it (see `isDeepEqual`), never submissions.
  */
 export function useDeepMemo<T>(value: T): T {
-  const ref = useRef<T>(value);
+  const committed = useRef<T>(value);
+  const result = isDeepEqual(committed.current, value) ? committed.current : value;
 
-  if (!isDeepEqual(ref.current, value)) {
-    ref.current = value;
-  }
+  // Updated after commit, so an abandoned render cannot replace the memoized reference.
+  useLayoutEffect(() => {
+    committed.current = result;
+  });
 
-  return ref.current;
+  return result;
 }

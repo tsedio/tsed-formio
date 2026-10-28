@@ -1,12 +1,13 @@
 import { Form } from "@formio/js";
 import { EventEmitter2 } from "eventemitter2";
 import cloneDeep from "lodash/cloneDeep";
-import { type MutableRefObject, useEffect, useRef, useState } from "react";
+import isEqual from "lodash/isEqual";
+import { type MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import type { ChangedSubmission, ComponentType, FormOptions, FormType, SubmissionType } from "../../interfaces";
 import type { JSON, JSONRecord } from "../../interfaces/JSONRecord.js";
 import { FormCustomEvent } from "./types";
-import { isDeepEqual, useDeepMemo } from "./useDeepMemo";
+import { useDeepMemo } from "./useDeepMemo";
 
 type Webform = any;
 type EventError = string | Error | Error[] | { message: string } | { message: string }[];
@@ -146,7 +147,8 @@ function isSubmissionEcho(current: SubmissionType<any> | undefined, next: Submis
     return false;
   }
 
-  return Object.keys(next).every((key) => isDeepEqual((current as any)[key], (next as any)[key]));
+  // Only the keys sent by the parent are compared: formio adds its own keys (metadata...) to the instance submission.
+  return Object.keys(next).every((key) => isEqual((current as any)[key], (next as any)[key]));
 }
 
 export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Data>) {
@@ -160,8 +162,11 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
   const options = useDeepMemo(effectiveProps.options);
 
   // "Latest ref" pattern: callbacks are read at call time, so they never need to be effect deps.
+  // Updated after commit, so an interrupted render never leaks its callbacks.
   const latestProps = useRef(effectiveProps);
-  latestProps.current = effectiveProps;
+  useLayoutEffect(() => {
+    latestProps.current = effectiveProps;
+  });
 
   // Last submission content pushed into the instance (from props or at creation).
   const lastSubmission = useRef<SubmissionType<Data> | undefined>(undefined);
@@ -170,6 +175,7 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
 
   useEffect(() => {
     let ignore = false;
+    let listener: ((...args: [string, ...any[]]) => void) | null = null;
     const createInstance = async () => {
       if (renderElement.current === null) {
         console.warn("Form element not found");
@@ -184,15 +190,28 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
       // Never mutate the caller's options object.
       const opts: FormOptions = { ...(options || {}) };
 
-      if (latestProps.current.onAsyncSubmit) {
-        opts.hooks = {
-          ...opts.hooks,
-          customValidation: createCustomValidation(
-            (submission: SubmissionType<Data>) => latestProps.current.onAsyncSubmit?.(submission),
-            webformRef
-          )
-        };
-      }
+      // Always installed so `onAsyncSubmit` can be added or removed after mount without recreating the form.
+      const userCustomValidation = opts.hooks?.customValidation;
+      const asyncSubmitValidation = createCustomValidation(
+        (submission: SubmissionType<Data>) => latestProps.current.onAsyncSubmit?.(submission),
+        webformRef
+      );
+
+      opts.hooks = {
+        ...opts.hooks,
+        customValidation(this: Webform, submission: SubmissionType, next: (error: null | Error) => void) {
+          if (latestProps.current.onAsyncSubmit) {
+            return asyncSubmitValidation(submission, next);
+          }
+
+          if (userCustomValidation) {
+            return userCustomValidation.call(this, submission, next);
+          }
+
+          // Same as formio without the hook: continue the normal submit path.
+          return next(null);
+        }
+      };
 
       const webform = await createWebformInstance(FormClass, formSource, renderElement.current, opts);
 
@@ -210,12 +229,12 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
 
           // `submission` is applied by the sync effect once the instance is ready.
           if (!submission && defaultSubmission) {
-            webform.setSubmission(defaultSubmission);
+            webform.setSubmission(cloneDeep(defaultSubmission));
           }
         } else if (typeof formSource === "object") {
           if (initialSubmission) {
-            webform.setSubmission(initialSubmission);
-            // formio mutates the object it receives, keep our own snapshot
+            // formio mutates the object it receives: never hand it the caller's object
+            webform.setSubmission(cloneDeep(initialSubmission));
             lastSubmission.current = cloneDeep(submission);
           }
 
@@ -229,9 +248,10 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
         }
 
         // Attach a single listener per instance, it always calls the latest handlers.
-        webform.onAny((...args: [string, ...any[]]) => {
+        listener = (...args: [string, ...any[]]) => {
           onAnyEvent(latestProps.current.handlers, ...args);
-        });
+        };
+        webform.onAny(listener);
 
         renderElement.current.className = "formio-form-ready";
         webformRef.current = webform;
@@ -246,6 +266,10 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
     return () => {
       ignore = true;
       if (webformRef.current) {
+        // destroy() does not remove onAny listeners, which matters when options.events is shared
+        if (listener) {
+          webformRef.current.offAny(listener);
+        }
         webformRef.current.destroy(true);
         webformRef.current = null;
       }
@@ -261,7 +285,7 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
     }
 
     // Same content as the last one we applied: the parent only re-rendered.
-    if (lastSubmission.current && isDeepEqual(lastSubmission.current, submission)) {
+    if (lastSubmission.current && isEqual(lastSubmission.current, submission)) {
       return;
     }
 
@@ -273,7 +297,7 @@ export function useForm<Data extends object = JSONRecord>(props: UseFormProps<Da
       return;
     }
 
-    webform.setSubmission(submission);
+    webform.setSubmission(cloneDeep(submission));
   }, [instanceIsReady, submission]);
 
   return {

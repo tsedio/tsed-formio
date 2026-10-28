@@ -171,6 +171,39 @@ describe("Form - parent re-renders", () => {
     await waitFor(() => expect(instance.submission._id).toBe("b"));
   });
 
+  it("does not mutate the caller's defaultSubmission", async () => {
+    const defaultSubmission = { data: { firstName: "Default" } };
+    render(<Form form={formSchema()} defaultSubmission={defaultSubmission} />);
+
+    await waitFor(() => expect(getInput().value).toBe("Default"));
+    await typeIn("John");
+
+    expect(defaultSubmission.data.firstName).toBe("Default");
+  });
+
+  it("calls onAsyncSubmit added after mount without recreating the form", async () => {
+    const form = formSchema();
+    const onFormReady = vi.fn();
+    let instance: any;
+    const ready = (i: any) => {
+      instance = i;
+      onFormReady();
+    };
+    const { rerender } = render(<Form form={form} onFormReady={ready} />);
+
+    await waitFor(() => expect(onFormReady).toHaveBeenCalledTimes(1));
+
+    const onAsyncSubmit = vi.fn(async (submission: any) => submission);
+    rerender(<Form form={form} onFormReady={ready} onAsyncSubmit={onAsyncSubmit} />);
+
+    await act(async () => {
+      await instance.submit().catch(() => {});
+    });
+
+    await waitFor(() => expect(onAsyncSubmit).toHaveBeenCalledTimes(1));
+    expect(onFormReady).toHaveBeenCalledTimes(1);
+  });
+
   it("applies defaultSubmission only once at creation", async () => {
     const form = formSchema();
     const { rerender } = render(<Form form={form} defaultSubmission={{ data: { firstName: "Default" } }} />);

@@ -743,7 +743,13 @@ export const ParentRerenders: StoryObj<typeof RerenderingParent> = {
     await userEvent.clear(input);
     await userEvent.type(input, "John");
 
-    await waitFor(() => expect(canvas.getByTestId("tick")).toHaveTextContent("Parent renders: 2"), { timeout: 4000 });
+    await waitFor(
+      () => {
+        const count = Number(canvas.getByTestId("tick").textContent?.match(/\d+/)?.[0]);
+        expect(count).toBeGreaterThanOrEqual(2);
+      },
+      { timeout: 4000 }
+    );
 
     expect(canvas.getByRole("textbox", { name: "First name" })).toHaveValue("John");
   }

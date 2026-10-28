@@ -127,7 +127,7 @@ See more on http://formio.tsed.dev/?path=/docs/getting-started--docs
   (`onChange` → `setState` → `submission`).
 
 To reset the form to a submission whose content equals the previous `submission` prop, change the component `key` or
-call `instance.setSubmission()` from `onFormReady`.
+store the instance from `onFormReady` and call `instance.setSubmission()` from your reset handler.
 
 ```tsx
 <Form
