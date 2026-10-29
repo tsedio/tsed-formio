@@ -23,7 +23,7 @@ You can replace for example replace the default React Button component provided 
 import {registerComponent} from "@tsed/react-formio/registries/components";
 import type {ButtonProps} from "@tsed/react-formio/molecules/button/Button";
 
-registerComponent("button", (props: ButtonProps) => {
+registerComponent("Button", (props: ButtonProps) => {
   return <button {...props}>{props.label}</button>;
 });
 ```
