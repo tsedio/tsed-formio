@@ -24,7 +24,7 @@ definition and optionally a `url` prop with the location of the form.
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import { Form } from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 ReactDOM.render(
    <Form form={{ display: "form", components: [/**/] }} onChange={(schema) => console.log(schema)} />,
@@ -44,7 +44,7 @@ Render a simple form from the Form.io SaaS:
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import { Form } from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 ReactDOM.render(
   <Form src="https://example.form.io/example" onSubmit={console.log} />,
@@ -63,7 +63,8 @@ Give `Form` a `src` property and render:
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import {Form, SubmissionType} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { SubmissionType } from "@tsed/react-formio";
 import httpClient from "./httpClient";
 
 interface MyFormData {
@@ -122,7 +123,8 @@ Will render:
 A callback function that gets called when the form has rendered. It is useful for accessing the underlying @formio/js Webform instance.
 
 ```tsx
-import {Webform, Form} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { Webform } from "@tsed/react-formio";
 
 <Form onFormReady={(instance: Webform) => console.log(instance)} />
 ```
@@ -132,7 +134,8 @@ import {Webform, Form} from "@tsed/react-formio";
 A callback function that gets called when the submission has started. If `src` is not a Form.io server URL, this will be the final submit event.
 
 ```tsx
-import {Form, SubmissionType} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { SubmissionType } from "@tsed/react-formio";
 
 <Form onSubmit={(submission: SubmissionType, saved?: boolean) => console.log(submission)} />;
 ```
@@ -142,7 +145,7 @@ import {Form, SubmissionType} from "@tsed/react-formio";
 A callback function that gets called when the submission has been canceled.
 
 ```tsx
-import {Form} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 <Form onCancelSubmit={() => console.log("Submission canceled")} />
 ```
@@ -152,7 +155,7 @@ import {Form} from "@tsed/react-formio";
 A callback function that gets called when the submission has successfully been made to the server. This will only fire if `src` is set to a Form.io server URL.
 
 ```tsx
-import {Form} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 <Form onSubmitDone={() => console.log("Submission done")} />
 ```
@@ -162,7 +165,8 @@ import {Form} from "@tsed/react-formio";
 A callback function that gets called when a value in the submission has changed.
 
 ```tsx
-import {Form,ChangedSubmission} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { ChangedSubmission } from "@tsed/react-formio";
 
 <Form onChange={(value: ChangedSubmission, flags: any, modified: any) => console.log(value)} />
 ```
@@ -172,7 +176,8 @@ import {Form,ChangedSubmission} from "@tsed/react-formio";
 A callback function that gets called when a specific component changes.
 
 ```tsx
-import {ComponentType, Webform, Form} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { ComponentType, Webform } from "@tsed/react-formio";
 
 <Form onComponentChange={(changed: { instance: Webform; component: ComponentType; value: any; flags: any}) => console.log(changed)} />
 ```
@@ -182,16 +187,16 @@ import {ComponentType, Webform, Form} from "@tsed/react-formio";
 A callback function that gets called when an error occurs during submission (e.g. a validation error).
 
 ```tsx
-import {Form, EventError} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
-<Form onError={(error: EventError | false) => console.log(error)} />
+<Form onError={(error) => console.log(error)} />
 ```
 
 ### onRender
 A callback function that gets called when the form is finished rendering. `param` will depend on the form and display type.
 
 ```tsx
-import {Form} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 <Form onRender={(param: any) => console.log(param)} />
 ```
@@ -201,7 +206,8 @@ import {Form} from "@tsed/react-formio";
 A callback function that gets called when a custom event is triggered.
 
 ```tsx
-import {ComponentType, Form} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { ComponentType } from "@tsed/react-formio";
 
 <Form onCustomEvent={(event: { type: string; component: ComponentType; data: JSON; event?: Event; }) => console.log(event)} />;
 ```
@@ -211,7 +217,8 @@ import {ComponentType, Form} from "@tsed/react-formio";
 A callback function for Wizard forms that gets called when the "Previous" button is pressed.
 
 ```tsx
-import {Form, SubmissionType} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { SubmissionType } from "@tsed/react-formio";
 
 <Form onPrevPage={(page: number, submission: SubmissionType) => console.log(page)} />
 ```
@@ -221,7 +228,8 @@ import {Form, SubmissionType} from "@tsed/react-formio";
 A callback function for Wizard forms that gets called when the "Next" button is pressed.
 
 ```tsx
-import {Form, SubmissionType} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { SubmissionType } from "@tsed/react-formio";
 
 <Form onNextPage={(page: number, submission: SubmissionType) => console.log(page)} />
 ```
@@ -232,7 +240,8 @@ A "catch-all" prop for subscribing to other events (for a complete list, see [ou
 
 
 ```tsx
-import {Form, ComponentType} from "@tsed/react-formio";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { ComponentType } from "@tsed/react-formio";
 
 <Form onCustomEvent={(event: { type: string; component: ComponentType; data: JSON; event?: Event; }) => console.log(event)} />;
 ```
