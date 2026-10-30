@@ -44,6 +44,7 @@ lib
 dist
 build
 storybook-static
+/website
 /docs/api
 /docs/api/**/*.md
 

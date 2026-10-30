@@ -1,0 +1,123 @@
+# Migrate to v3
+
+This page summarises the delta between `@tsed/react-formio` v2 (master) and the current `rc` branch that will become v3. For the complete checklist, read the [detailed v2 to v3 guide](/migrations/v2-to-v3)—this page mirrors its content and links to the relevant component stories.
+
+---
+
+## Breaking changes at a glance
+
+1. **ESM-only builds** – the package now exports ESM bundles exclusively. Convert `require()` calls to `import` and ensure your bundler/test runner supports native ESM.
+2. **Tree-shaken import paths** – import each component from its atomic folder (`molecules/`, `organisms/`, etc.). Example: `@tsed/react-formio/organisms/form/Form`.
+3. **Tailwind v3 baseline** – Tailwind v2 tokens are removed. Upgrade to Tailwind ≥3.3 and adopt the new `@tsed/tailwind-formio` preset.
+4. **Redux helpers removed** – `@tsed/react-formio-stores`, `@tsed/redux-utils`, and `@tsed/react-formio-container` are gone. Use hooks and contexts instead.
+5. **New peers** – install `@formio/choices.js`, `react-select`, `@tanstack/react-table@^8`, and `use-debounce`.
+6. **Refreshed UX** – Tabs, Tables, FormBuilder, and FormViews gained keyboard navigation, lucide icons, and i18n hooks. Consume the new APIs showcased below.
+
+---
+
+## Step-by-step migration
+
+### 1. Dependencies
+
+- Upgrade to `@tsed/react-formio@^3`.
+- Install the new peers:
+  ```bash
+  yarn add @formio/choices.js @tanstack/react-table react-select use-debounce
+  ```
+- Remove deprecated packages:
+  ```bash
+  yarn remove @tsed/react-formio-stores @tsed/redux-utils @tsed/react-formio-container
+  ```
+
+### 2. Imports & bundler config
+
+- Use ESM imports everywhere (Vite/Vitest already configured in the monorepo).
+- Map old imports to the new paths:
+  ```diff
+  - import { FormBuilder } from "@tsed/react-formio";
+  + import { FormBuilder } from "@tsed/react-formio/organisms/form/builder/FormBuilder";
+  ```
+- Optionally register every component once via `import "@tsed/react-formio/all";` in your app entrypoint.
+
+### 3. Form & Builder flows
+
+- `<Form />` lives at [organisms/form/Form](storybook:/docs/organisms-form-form--docs) and now exposes `useForm` hooks plus i18n helpers.
+- Use the new [FormBuilder](storybook:/docs/organisms-form-builder-formbuilder--docs) and [FormViews](storybook:/docs/organisms-views-formviews--docs) stories as references for the builder/edit/export pipeline.
+- Tabs ([docs](storybook:/docs/molecules-tabs--docs)) and Tables ([docs](storybook:/docs/molecules-table--docs)) ship with keyboard navigation—remove custom key handlers that conflict.
+
+### 4. Styling
+
+- Import the updated Tailwind preset:  
+  ```ts
+  // tailwind.config.ts
+  import {preset} from "@tsed/tailwind-formio";
+
+  export default {
+    content: ["./src/**/*.{ts,tsx}"],
+    presets: [preset]
+  };
+  ```
+- Include lucide icon fonts or use your own mapping via `@tsed/tailwind-formio/src/templates/tailwind/icon`.
+
+### 5. Verification
+
+Run the usual quality gates after updating imports:
+
+```bash
+yarn lint
+yarn test
+yarn storybook:start
+```
+
+Chromatic/CI users should also update snapshots once Storybook renders the new components correctly.
+
+---
+
+## Table & `useTable` specifics
+
+The table layer moved from `react-table@7` (`useCustomTable`) to `@tanstack/react-table@8`. Key changes:
+
+1. **`ColumnDef` metadata** – define columns with `ColumnDef<T>` and move filter/sorting metadata into `column.columnDef.meta` (see `packages/react-formio/src/molecules/table/interfaces/extends.ts`). Built-in filters live under `molecules/table/filters`.
+2. **Hook + operations** – `useTable` appends an “Operations” column whenever `operations` is non-empty. Provide the array (or `[]`) and optional `metadata` so the injected `CellOperations` component can render buttons with i18n support.
+3. **State events** – `onChange` now receives TanStack’s `TableState` (pagination, sorting, filters, column visibility). Use it to drive remote queries instead of the old `QueryOptions`.
+4. **Pagination** – pass `rowCount` alongside `manualPagination`, `pageSizes`, and `pageCount` to keep the footer totals accurate.
+5. **Removed helpers** – the built-in drag-and-drop container is gone; wrap `<Table />` with your own drag-and-drop solution if you still need that behaviour.
+
+### Column diff example
+
+```diff
+- import { Column } from "react-table";
++ import { ColumnDef } from "@tanstack/react-table";
+
+- const columns: Column<User>[] = [
+-   { Header: "Email", accessor: "email" }
+- ];
++ const columns: ColumnDef<User>[] = [
++   {
++     header: "Email",
++     accessorKey: "email",
++     meta: {
++       filter: { type: "text" },
++       cellProps: { className: "text-blue-500" }
++     }
++   }
++ ];
+```
+
+### Table migration checklist
+
+1. Import the new component/hook paths: `@tsed/react-formio/molecules/table/Table`, `ColumnDef` from `@tanstack/react-table`.
+2. Rewrite columns using `accessorKey`/`accessorFn` and move filter/cell props to `meta`.
+3. Provide `operations`, `pageSizes`, and `rowCount` (set `operations: []` if you have no actions).
+4. Update `onChange` handlers to expect `TableState`.
+5. Remove any usage of `enableDragNDrop`/`onDrag`/`onDrop`.
+6. Refer to the [Table & `useTable` specifics](/migrations/v2-to-v3#table--usetable-specifics) for detailed before/after snippets and additional context.
+
+---
+
+## Helpful resources
+
+- 📄 [v2 to v3 detailed guide](/migrations/v2-to-v3) – canonical migration note
+- 📊 [Table & `useTable` specifics](/migrations/v2-to-v3#table--usetable-specifics)
+- 📘 README → “Migrate to v3”
+- 🤖 [`docs/llm-migrate-v2-to-v3.md`](https://github.com/tsedio/tsed-formio/blob/master/docs/llm-migrate-v2-to-v3.md) – guidelines for LLM copilots
