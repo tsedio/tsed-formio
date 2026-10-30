@@ -22,6 +22,11 @@ A hook to supply global Formio contextual values to your React components. **Com
 Use the authentication context provided by `useFormioContext` to evaluate the Form.io authentication of a user:
 
 ```tsx
+import {createRoot} from 'react-dom/client';
+import {useFormioContext} from '@tsed/react-formio/hooks/useFormioContext';
+import {FormioProvider} from '@tsed/react-formio/contexts/FormioProvider';
+import {FormListView} from './forms/FormListView';
+import {ResourceListView} from './ressources/FormListView';
 
 const App = () => {
   const { isAuthenticated } = useFormioContext();
@@ -52,6 +57,11 @@ root.render(
 Example of FormListView implementation:
 
 ```tsx
+import React, {useEffect, useState} from 'react';
+import {Formio} from '@formio/js';
+import type {FormType, Operation} from "@tsed/react-formio";
+import {useFormioContext} from '@tsed/react-formio/hooks/useFormioContext';
+import {FormsTable} from "@tsed/react-formio/organisms/table/forms/FormsTable";
 
 export const FormListView = () => {
   const {projectUrl, token, Formio} = useFormioContext();

@@ -18,6 +18,23 @@ initialize({
   }
 });
 
+let mswWarned = false;
+
+// Don't block stories when the mock worker can't start (browser without service worker support,
+// file:// or embedded previews): stories render, only the mocked requests are missing.
+const safeMswLoader: typeof mswLoader = async (context) => {
+  try {
+    return await mswLoader(context);
+  } catch (error) {
+    if (!mswWarned) {
+      mswWarned = true;
+      console.warn("[MSW] Mocks disabled, the service worker could not be registered:", error);
+    }
+
+    return {};
+  }
+};
+
 /** @type { import("@storybook/react-vite").Preview } */
 const preview = {
   parameters: {
@@ -28,7 +45,7 @@ const preview = {
   viewport: {
     viewports: INITIAL_VIEWPORTS
   },
-  loaders: [mswLoader],
+  loaders: [safeMswLoader],
   tags: ["autodocs"],
   decorators: [
     withThemeByClassName({

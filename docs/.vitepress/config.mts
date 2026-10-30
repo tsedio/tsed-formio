@@ -29,14 +29,43 @@ const Guide = [
 
 const Components = [
   {
-    text: "Components",
+    text: "Organisms",
     items: [
       { text: "Form", link: "/components/form" },
       { text: "Form Builder", link: "/components/form-builder" },
       { text: "Form Edit", link: "/components/form-edit" },
       { text: "Form Views", link: "/components/form-views" },
+      { text: "Form Access", link: "/components/form-access" },
+      { text: "Form Action", link: "/components/form-action" },
+      { text: "Form Export", link: "/components/form-export" },
+      { text: "Form Preview", link: "/components/form-preview" },
+      { text: "Form Settings", link: "/components/form-settings" },
       { text: "Forms Table", link: "/components/forms-table" },
-      { text: "Submissions Table", link: "/components/submissions-table" }
+      { text: "Submissions Table", link: "/components/submissions-table" },
+      { text: "Actions Table", link: "/components/actions-table" },
+      { text: "Remove Modal", link: "/components/remove-modal" }
+    ]
+  },
+  {
+    text: "Molecules",
+    items: [
+      { text: "Alert", link: "/components/alert" },
+      { text: "Button", link: "/components/button" },
+      { text: "Card", link: "/components/card" },
+      { text: "Loader", link: "/components/loader" },
+      { text: "Modal", link: "/components/modal" },
+      { text: "Pagination", link: "/components/pagination" },
+      { text: "Table", link: "/components/table" },
+      { text: "Tabs", link: "/components/tabs" }
+    ]
+  },
+  {
+    text: "Form fields",
+    items: [
+      { text: "Form Control", link: "/components/form-control" },
+      { text: "Input Text", link: "/components/input-text" },
+      { text: "Input Tags", link: "/components/input-tags" },
+      { text: "Select", link: "/components/select" }
     ]
   },
   {
@@ -79,6 +108,10 @@ export default defineConfig({
     siteTitle: "Formio",
     siteUrl: SITE_URL,
     repo: "tsedio/tsed-formio",
+    // Required by @tsed/vitepress-theme (no API reference pages here)
+    apiUrl: "",
+    // Used by GithubContributors (home page)
+    githubProxyUrl: "https://api.github.com/repos/tsedio/tsed-formio",
     storybookUrl: STORYBOOK_URL,
     editLink: {
       pattern: "https://github.com/tsedio/tsed-formio/edit/master/docs/:path"
@@ -104,7 +137,7 @@ export default defineConfig({
       "/guide/": Guide,
       "/migrations/": Guide,
       // Storybook links stay in the nav only: they are not docs pages
-      "/components/": Components.slice(0, 1)
+      "/components/": Components.slice(0, 3)
     },
     socialLinks: [
       { icon: "github", link: "https://github.com/tsedio/tsed-formio" },
