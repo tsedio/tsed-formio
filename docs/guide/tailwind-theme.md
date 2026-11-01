@@ -29,6 +29,7 @@ export default {
 Edit your `tailwind.config.js` and copy the following content:
 
 ```js
+import { tailwindPreset } from "@tsed/tailwind-formio/tailwind.preset";
 
 const primary = "hsla(208, 100%, 43%, 1)";
 const secondary = "hsla(190, 81%, 42%, 1)";
@@ -107,6 +108,13 @@ Now, we can configure formio to use the tailwind template in our React applicati
 So edit the `index.js` (or `index.ts`):
 
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Formio, Templates } from "@tsed/react-formio";
+import tailwind from "@tsed/tailwind-formio";
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 Formio.use(tailwind);
 Templates.framework = "tailwind";

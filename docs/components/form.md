@@ -22,6 +22,9 @@ definition and optionally a `url` prop with the location of the form.
 ## Examples
 ### Basic usage
 ```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 ReactDOM.render(
    <Form form={{ display: "form", components: [/**/] }} onChange={(schema) => console.log(schema)} />,
@@ -39,6 +42,9 @@ Will render:
 Render a simple form from the Form.io SaaS:
 
 ```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 ReactDOM.render(
   <Form src="https://example.form.io/example" onSubmit={console.log} />,
@@ -55,6 +61,11 @@ Will render:
 Give `Form` a `src` property and render:
 
 ```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { SubmissionType } from "@tsed/react-formio";
+import httpClient from "./httpClient";
 
 interface MyFormData {
   title: string;
@@ -112,6 +123,8 @@ Will render:
 A callback function that gets called when the form has rendered. It is useful for accessing the underlying @formio/js Webform instance.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { Webform } from "@tsed/react-formio";
 
 <Form onFormReady={(instance: Webform) => console.log(instance)} />
 ```
@@ -121,6 +134,8 @@ A callback function that gets called when the form has rendered. It is useful fo
 A callback function that gets called when the submission has started. If `src` is not a Form.io server URL, this will be the final submit event.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { SubmissionType } from "@tsed/react-formio";
 
 <Form onSubmit={(submission: SubmissionType, saved?: boolean) => console.log(submission)} />;
 ```
@@ -130,6 +145,7 @@ A callback function that gets called when the submission has started. If `src` i
 A callback function that gets called when the submission has been canceled.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 <Form onCancelSubmit={() => console.log("Submission canceled")} />
 ```
@@ -139,6 +155,7 @@ A callback function that gets called when the submission has been canceled.
 A callback function that gets called when the submission has successfully been made to the server. This will only fire if `src` is set to a Form.io server URL.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 <Form onSubmitDone={() => console.log("Submission done")} />
 ```
@@ -148,6 +165,8 @@ A callback function that gets called when the submission has successfully been m
 A callback function that gets called when a value in the submission has changed.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { ChangedSubmission } from "@tsed/react-formio";
 
 <Form onChange={(value: ChangedSubmission, flags: any, modified: any) => console.log(value)} />
 ```
@@ -157,6 +176,8 @@ A callback function that gets called when a value in the submission has changed.
 A callback function that gets called when a specific component changes.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { ComponentType, Webform } from "@tsed/react-formio";
 
 <Form onComponentChange={(changed: { instance: Webform; component: ComponentType; value: any; flags: any}) => console.log(changed)} />
 ```
@@ -166,14 +187,16 @@ A callback function that gets called when a specific component changes.
 A callback function that gets called when an error occurs during submission (e.g. a validation error).
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
-<Form onError={(error: EventError | false) => console.log(error)} />
+<Form onError={(error) => console.log(error)} />
 ```
 
 ### onRender
 A callback function that gets called when the form is finished rendering. `param` will depend on the form and display type.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
 
 <Form onRender={(param: any) => console.log(param)} />
 ```
@@ -183,6 +206,8 @@ A callback function that gets called when the form is finished rendering. `param
 A callback function that gets called when a custom event is triggered.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { ComponentType } from "@tsed/react-formio";
 
 <Form onCustomEvent={(event: { type: string; component: ComponentType; data: JSON; event?: Event; }) => console.log(event)} />;
 ```
@@ -192,6 +217,8 @@ A callback function that gets called when a custom event is triggered.
 A callback function for Wizard forms that gets called when the "Previous" button is pressed.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { SubmissionType } from "@tsed/react-formio";
 
 <Form onPrevPage={(page: number, submission: SubmissionType) => console.log(page)} />
 ```
@@ -201,6 +228,8 @@ A callback function for Wizard forms that gets called when the "Previous" button
 A callback function for Wizard forms that gets called when the "Next" button is pressed.
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { SubmissionType } from "@tsed/react-formio";
 
 <Form onNextPage={(page: number, submission: SubmissionType) => console.log(page)} />
 ```
@@ -211,6 +240,8 @@ A "catch-all" prop for subscribing to other events (for a complete list, see [ou
 
 
 ```tsx
+import { Form } from "@tsed/react-formio/organisms/form/Form";
+import { ComponentType } from "@tsed/react-formio";
 
 <Form onCustomEvent={(event: { type: string; component: ComponentType; data: JSON; event?: Event; }) => console.log(event)} />;
 ```

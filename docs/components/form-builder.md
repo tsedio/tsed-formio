@@ -34,7 +34,7 @@ You must handle the form definition loading and saving yourself or use the [Form
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import { FormBuilder } from "@tsed/react-formio";
+import { FormBuilder } from "@tsed/react-formio/organisms/form/builder/FormBuilder";
 
 ReactDOM.render(
   <FormBuilder components={[]} display={"form"} onChange={(schema) => console.log(schema)} />,
