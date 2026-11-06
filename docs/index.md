@@ -75,7 +75,7 @@ features:
     details: Render a form from its JSON definition or a Form.io URL, and embed the Form.io builder in your app.
     link: /components/form
   - title: Tailwind theme
-    details: "@tsed/tailwind-formio provides a Formio.js template based on TailwindCSS v3, with dark mode support."
+    details: "@tsed/tailwind-formio provides a Formio.js template based on Tailwind CSS v4, with dark mode support."
     link: /guide/tailwind-theme
   - title: Back office building blocks
     details: Tables for forms, submissions and actions, form access, settings, exports and a complete FormViews component.
