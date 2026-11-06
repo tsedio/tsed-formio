@@ -1,37 +1,54 @@
+/* Spacing between children uses the Tailwind v3 `space-*` selector (margin on every child but the first) */
 .form-edit-container {
-  @apply flex flex-col space-y-5;
+  @apply flex flex-col;
+}
+
+.form-edit-container > :not([hidden]) ~ :not([hidden]) {
+  margin-top: calc(var(--spacing) * 5);
 }
 
 .form-edit {
-  @apply flex space-y-5 space-x-5 pb-5;
+  @apply flex pb-5;
   @apply border-b-1 border-solid border-gray-200;
+}
 
-  &__settings {
-    @apply flex-1 grid grid-cols-3 gap-5;
-    > div {
-      > .form-group {
-        @apply pb-0 w-full sm:w-auto;
+.form-edit > :not([hidden]) ~ :not([hidden]) {
+  margin-top: calc(var(--spacing) * 5);
+  margin-left: calc(var(--spacing) * 5);
+}
 
-        .form-text {
-          @apply p-0 h-0 -mb-1;
-        }
-      }
-    }
-  }
+.form-edit__settings {
+  @apply flex-1 grid grid-cols-3 gap-5;
+}
 
-  &__actions {
-    @apply flex flex-col justify-center;
+.form-edit__settings > div > .form-group {
+  @apply pb-0 w-full sm:w-auto;
+}
 
-    .btn-save {
-     @apply leading-normal;
-    }
+.form-edit__settings > div > .form-group .form-text {
+  @apply p-0 h-0 -mb-1;
+}
 
-    > div {
-      @apply flex flex-col space-y-5;
+.form-edit__actions {
+  @apply flex flex-col justify-center;
+}
 
-      > div {
-        @apply flex flex-row space-x-3;
-      }
-    }
-  }
+.form-edit__actions .btn-save {
+  @apply leading-normal;
+}
+
+.form-edit__actions > div {
+  @apply flex flex-col;
+}
+
+.form-edit__actions > div > :not([hidden]) ~ :not([hidden]) {
+  margin-top: calc(var(--spacing) * 5);
+}
+
+.form-edit__actions > div > div {
+  @apply flex flex-row;
+}
+
+.form-edit__actions > div > div > :not([hidden]) ~ :not([hidden]) {
+  margin-left: calc(var(--spacing) * 3);
 }

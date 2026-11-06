@@ -1,10 +1,10 @@
-import colors from "tailwindcss/colors.js";
+import colors from "tailwindcss/colors";
 
-import { tailwindPreset } from "./preset.js";
+import { themeColors } from "./theme.js";
 
 const mergedColors = {
   ...colors,
-  ...tailwindPreset.theme.extend.colors
+  ...themeColors
 };
 
 export { mergedColors as colors };

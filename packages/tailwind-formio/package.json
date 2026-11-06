@@ -12,12 +12,9 @@
       "tsed-source": "./src/index.ts",
       "default": "./dist/index.js"
     },
+    "./theme.css": "./theme.css",
     "./styles/*": "./styles/*",
     "./fonts/*": "./fonts/*",
-    "./tailwind.preset": {
-      "types": "./dist/tailwind/preset.d.ts",
-      "default": "./dist/tailwind/preset.js"
-    },
     "./tailwind.colors": {
       "types": "./dist/tailwind/colors.d.ts",
       "default": "./dist/tailwind/colors.js"
@@ -26,22 +23,20 @@
   "scripts": {
     "build": "vite build && yarn tailwind:build",
     "watch": "vite build --watch",
-    "tailwind:build": "tailwindcss build -o build/tailwind.css && yarn tailwind:build:viewer",
-    "start:tailwind:viewer": "tailwind-config-viewer -o",
-    "tailwind:build:viewer": "tailwind-config-viewer export ./build && cp ./build/index.html ./build/tailwind.html && yarn clean:tailwind:viewer",
-    "clean:tailwind:viewer": "rimraf build/index.html build/favicon.ico"
+    "tailwind:build": "tailwindcss -i src/styles/tailwind.css -o build/tailwind.css"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "4.3.3",
     "cross-env": "7.0.3",
     "lucide-static": "^0.544.0",
     "rimraf": "3.0.2",
-    "tailwind-config-viewer": "2.0.4",
-    "tailwindcss": "3.4.17",
+    "tailwindcss": "4.3.3",
     "vite": "7.1.5",
     "vite-plugin-ejs": "1.7.0"
   },
   "peerDependencies": {
-    "lucide-static": ">=0.544.0"
+    "lucide-static": ">=0.544.0",
+    "tailwindcss": ">=4.0.0"
   },
   "peerDependenciesMeta": {
     "lucide-static": {
@@ -50,9 +45,10 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "chrome >= 111",
+      "edge >= 111",
+      "firefox >= 128",
+      "safari >= 16.4"
     ],
     "development": [
       "last 1 chrome version",

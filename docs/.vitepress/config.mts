@@ -21,6 +21,7 @@ const Guide = [
   {
     text: "Migration",
     items: [
+      { text: "Migrate to Tailwind CSS v4", link: "/migrations/tailwind-v4" },
       { text: "Migrate to v3", link: "/migrations/migrate-to-v3" },
       { text: "v2 to v3 (detailed guide)", link: "/migrations/v2-to-v3" }
     ]

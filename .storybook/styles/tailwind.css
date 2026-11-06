@@ -1,2 +1,5 @@
-@tailwind base;
-@tailwind utilities;
+@import "tailwindcss";
+@import "../../packages/tailwind-formio/theme.css";
+
+@source "../../packages/react-formio/src";
+@source "../../stories";

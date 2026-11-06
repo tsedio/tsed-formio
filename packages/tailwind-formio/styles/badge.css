@@ -4,7 +4,7 @@ Requires one of the contextual, color modifier classes for `color` and
  */
 
 .badge {
-  @apply inline-flex px-1.5 font-bold text-center whitespace-nowrap items-center rounded transition-colors;
+  @apply inline-flex px-1.5 font-bold text-center whitespace-nowrap items-center rounded-sm transition-colors;
   font-size: 75%;
 
   &:empty {

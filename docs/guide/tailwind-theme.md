@@ -1,108 +1,79 @@
 # Tailwind theme
 
-Formio.js allows you to install different themes. This package provides a theme based on TailwindCSS v3.
+Formio.js allows you to install different themes. This package provides a theme based on Tailwind CSS v4.
 
 ## Install
 
+The theme requires **Tailwind CSS v4** (Safari 16.4+, Chrome 111+, Firefox 128+).
+Coming from Tailwind CSS v3? Read the [Tailwind CSS v4 migration guide](/migrations/tailwind-v4).
+
 ```shell
 npm install @tsed/tailwind-formio --save
-npm install tailwindcss postcss autoprefixer postcss-normalize --save-dev
+npm install tailwindcss @tailwindcss/vite --save-dev
 ```
 
-### Configure postcss
+## Configure Tailwind CSS
 
-Edit `postcss.config.js` and add the postcss plugins list:
+Tailwind CSS v4 has no `tailwind.config.js` and no PostCSS setup to maintain. Add the Vite plugin:
 
-```js
-export default {
-  plugins: {
-    "postcss-normalize": {},
-    "tailwindcss/nesting": {},
-    tailwindcss: {},
-    autoprefixer: {}
-  }
-};
+```ts
+// vite.config.ts
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [tailwindcss(), react()]
+});
 ```
 
-### Configure tailwind
+Not using Vite? Use `@tailwindcss/postcss` or `@tailwindcss/cli` instead (see the [Tailwind CSS installation guide](https://tailwindcss.com/docs/installation)).
 
-Edit your `tailwind.config.js` and copy the following content:
-
-```js
-import { tailwindPreset } from "@tsed/tailwind-formio/tailwind.preset";
-
-const primary = "hsla(208, 100%, 43%, 1)";
-const secondary = "hsla(190, 81%, 42%, 1)";
-
-module.exports = {
-  content: [
-    "./node_modules/**/*.{js,jsx,ts,tsx,ejs}"
-    // add your paths
-  ],
-  presets: [tailwindPreset],
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          DEFAULT: primary,
-          50: "hsla(208, 100%, 91%, 1)",
-          100: "hsla(208, 100%, 83%, 1)",
-          200: "hsla(208, 100%, 75%, 1)",
-          300: "hsla(208, 100%, 67%, 1)",
-          400: "hsla(208, 100%, 59%, 1)",
-          500: "hsla(208, 100%, 51%, 1)",
-          600: primary,
-          700: "hsla(208, 100%, 35%, 1)",
-          800: "hsla(208, 100%, 27%, 1)",
-          900: "hsla(208, 100%, 19%, 1)"
-        },
-        secondary: {
-          DEFAULT: secondary,
-          50: "hsla(190, 81%, 90%, 1)",
-          100: "hsla(190, 81%, 82%, 1)",
-          200: "hsla(190, 81%, 74%, 1)",
-          300: "hsla(190, 81%, 66%, 1)",
-          400: "hsla(190, 81%, 58%, 1)",
-          500: "hsla(190, 81%, 50%, 1)",
-          600: secondary,
-          700: "hsla(190, 81%, 34%, 1)",
-          800: "hsla(190, 81%, 28%, 1)",
-          900: "hsla(190, 81%, 20%, 1)"
-        },
-        "gray-darker": "#504747"
-      }
-    }
-  }
-};
-```
-
-Then create a `tailwind.css` in `styles` directory and add the following lines:
+Then create (or edit) your main stylesheet, for example `src/index.css`:
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
+@import "tailwindcss";
+@import "@tsed/tailwind-formio/theme.css";
 
-Import the `tailwind.css` in the `index.css` created by create-react-app:
+/* Tailwind does not scan node_modules: register the packages that ship classes */
+@source "../node_modules/@tsed/react-formio";
 
-```css
-@import "formiojs/dist/formio.full.css";
-@import "./tailwind.css";
+@import "@formio/js/dist/formio.full.css";
 @import "@tsed/tailwind-formio/styles/index.css";
 ```
+
+`theme.css` declares the theme tokens (colors, fonts, sizes), registers the Form.io templates as a source and adds the `dark` class variant.
+Import `styles/index.css` from this stylesheet: its rules use `@apply` and need the theme loaded before them.
 
 Optionally, you can import fonts and icons:
 
 ```diff
-@import "formiojs/dist/formio.full.css";
-@import "./tailwind.css";
-+@import "./fonts/source-sans-pro/index.css";
-+@import "./fonts/inconsolata/index.css";
-+@import "./fonts/bxicons/index.css";
+@import "tailwindcss";
+@import "@tsed/tailwind-formio/theme.css";
+@source "../node_modules/@tsed/react-formio";
+@import "@formio/js/dist/formio.full.css";
++@import "@tsed/tailwind-formio/fonts/source-sans-pro/index.css";
++@import "@tsed/tailwind-formio/fonts/inconsolata/index.css";
++@import "lucide-static/font/lucide.css"; /* if you want to use lucide icons (you have to install it) */
 @import "@tsed/tailwind-formio/styles/index.css";
 ```
+
+### Customize the theme
+
+Override any token in your own `@theme` block, after the theme import:
+
+```css
+@import "tailwindcss";
+@import "@tsed/tailwind-formio/theme.css";
+
+@theme {
+  --color-primary: hsla(260, 80%, 45%, 1);
+  --color-primary-600: hsla(260, 80%, 45%, 1);
+  --font-sans: "Inter", sans-serif;
+}
+```
+
+The full list of tokens is in [`theme.css`](https://github.com/tsedio/tsed-formio/blob/master/packages/tailwind-formio/theme.css).
 
 Now, we can configure formio to use the tailwind template in our React application.
 So edit the `index.js` (or `index.ts`):
