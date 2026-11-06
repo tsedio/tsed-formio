@@ -1,5 +1,5 @@
 .btn {
-  @apply text-primary bg-transparent border-solid border-1 border-transparent px-5 py-2 transition-colors ease-linear duration-300 rounded font-bold text-center inline-flex justify-center items-center;
+  @apply text-primary bg-transparent border-solid border-1 border-transparent px-5 py-2 transition-colors ease-linear duration-300 rounded-sm font-bold text-center inline-flex justify-center items-center;
   text-decoration: none;
   user-select: none;
 
@@ -17,7 +17,7 @@
 
   &:focus,
   &.focus {
-    @apply outline-none shadow-md;
+    @apply outline-hidden shadow-md;
   }
 
   &.disabled,
