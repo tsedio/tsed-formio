@@ -5222,6 +5222,7 @@ __metadata:
     vite-plugin-ejs: "npm:1.7.0"
   peerDependencies:
     lucide-static: ">=0.544.0"
+    tailwindcss: ">=4.0.0"
   peerDependenciesMeta:
     lucide-static:
       optional: true
