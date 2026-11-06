@@ -15,7 +15,7 @@ export function FormPreview({ form, ...props }: FormPreviewProps) {
 
   return (
     <div className='p-10 bg-gray-500'>
-      <FCard label={t(form.title || "")} className={"shadow"}>
+      <FCard label={t(form.title || "")} className={"shadow-sm"}>
         <Form form={form} options={{ i18n: props.i18n }} />
       </FCard>
     </div>

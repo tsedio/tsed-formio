@@ -161,7 +161,7 @@ export const Usage: Story = {
     const items: any[] = args.items.filter((item: any) => item.label || item.icon);
 
     return (
-      <div className={"border-gray-300 border-1 shadow"}>
+      <div className={"border-gray-300 border-1 shadow-sm"}>
         <Tabs selected={args.selected}>
           <TabList>
             {items.map((item, index) => {
@@ -254,7 +254,7 @@ export const WithSelectedTab: Story = {
     const items: any[] = args.items.filter((item: any) => item.label || item.icon);
 
     return (
-      <div className={"border-gray-300 border-1 shadow"}>
+      <div className={"border-gray-300 border-1 shadow-sm"}>
         <Tabs selected={args.selected}>
           <TabList>
             {items.map((item, index) => {
@@ -340,7 +340,7 @@ export const WithExtraControls: Story = {
     const items: any[] = args.items.filter((item: any) => item.label || item.icon);
 
     return (
-      <div className={"border-gray-300 border-1 shadow"}>
+      <div className={"border-gray-300 border-1 shadow-sm"}>
         <Tabs selected={args.selected}>
           <TabList>
             <Button variant='link' aria-label='Previous tab'>
