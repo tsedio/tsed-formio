@@ -1,5 +1,6 @@
 import { join } from "node:path";
 
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import compile from "lodash/template";
 import { defineConfig } from "vite";
@@ -37,6 +38,7 @@ export default defineConfig({
   // @ts-ignore
   plugins: [
     ejsPlugin(),
+    tailwindcss(),
     react(),
     svgr(),
     tsconfigPaths({

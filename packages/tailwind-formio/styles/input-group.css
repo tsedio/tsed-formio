@@ -1,5 +1,5 @@
 .input-group {
-  @apply flex relative flex-wrap items-stretch w-full shadow-sm rounded;
+  @apply flex relative flex-wrap items-stretch w-full shadow-xs rounded-sm;
   > .choices {
     @apply flex-1 mb-0;
   }

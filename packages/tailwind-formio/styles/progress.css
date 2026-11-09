@@ -1,5 +1,5 @@
 .progress {
-  @apply flex h-4 overflow-hidden text-xs bg-gray-200 rounded shadow-sm;
+  @apply flex h-4 overflow-hidden text-xs bg-gray-200 rounded-sm shadow-xs;
 }
 
 .progress-bar {
