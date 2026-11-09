@@ -113,15 +113,17 @@ Check the tool's changes on props and variables: it rewrites any string that loo
 
 `theme.css` restores the Tailwind v3 defaults the templates were designed with:
 
+- the default palette (`gray`, `blue`, `red`…) keeps the Tailwind v3 hex values instead of the v4 OKLCH colors, for your
+  own classes too,
 - borders default to `gray-200` instead of `currentColor`,
 - placeholders use `gray-400`,
 - buttons get `cursor: pointer`.
 
-Remove or override these rules in your own `@layer base` if you prefer the Tailwind v4 defaults.
+Override the base rules in your own `@layer base`, or a color in your own `@theme` block (for example
+`--color-red-600: oklch(57.7% 0.245 27.325);`), if you prefer the Tailwind v4 defaults.
 
 ## Visual differences to check
 
-- The default palette (`gray`, `blue`, `red`…) now uses OKLCH colors: shades are slightly more saturated.
 - Font size utilities (`text-base`, `text-sm`…) now set a unitless line height. With `text-base` on `body`, smaller texts
   such as badges no longer inherit a fixed `1.5rem` line height: add `line-height: 1.5rem` to `body` to keep the v3 rendering.
 - `hover:` variants only apply on devices that support hover.

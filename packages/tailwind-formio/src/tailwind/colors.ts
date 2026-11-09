@@ -1,5 +1,4 @@
-import colors from "tailwindcss/colors";
-
+import { palette as colors } from "./palette.js";
 import { themeColors } from "./theme.js";
 
 const mergedColors = {
