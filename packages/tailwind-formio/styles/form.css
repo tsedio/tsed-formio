@@ -102,7 +102,8 @@ textarea.form-control::placeholder {
 }
 
 select.form-control {
-  @apply bg-no-repeat pr-10;
+  /* @formio/js >= 5.7 sets `select.form-control { appearance: auto }`, which shows the native arrow next to ours. */
+  @apply appearance-none bg-no-repeat pr-10;
   print-color-adjust: exact;
   background-size: 1.5em 1.5em;
   background-position: right calc(var(--spacing) * 2) center;
