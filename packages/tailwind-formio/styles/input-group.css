@@ -9,7 +9,8 @@
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,
 .input-group > .custom-file {
-  @apply relative mb-0 mt-0 shadow-none;
+  /* `.form-control` is `w-full`: share the row with the prepend/append addons instead of wrapping below them. */
+  @apply relative flex-auto w-[1%] min-w-0 mb-0 mt-0 shadow-none;
 
   + .form-control,
   + .custom-select,

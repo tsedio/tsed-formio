@@ -115,7 +115,7 @@ export const AppendBefore: Story = {
   render(args) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const props = useValue(args);
-    return <InputText prefix={<i className={iconClass(undefined, "calendar")} />} {...props} />;
+    return <InputText before={<i className={iconClass(undefined, "calendar")} />} {...props} />;
   },
   args: {
     label: "Label",
@@ -131,7 +131,7 @@ export const AppendAfter: Story = {
   render(args) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const props = useValue(args);
-    return <InputText suffix={<i className={iconClass(undefined, "calendar")} />} {...props} />;
+    return <InputText after={<i className={iconClass(undefined, "calendar")} />} {...props} />;
   },
   args: {
     label: "Label",
@@ -147,7 +147,7 @@ export const TypeNumber: Story = {
   render(args: any) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const props = useValue(args);
-    return <InputText suffix={<i className={iconClass(undefined, "dollar")} />} {...props} />;
+    return <InputText after={<i className={iconClass(undefined, "dollar")} />} {...props} />;
   },
   args: {
     label: "Label",
@@ -166,7 +166,7 @@ export const Sizing: Story = {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const props = useValue(args);
 
-    return <InputText suffix={<i className={iconClass(undefined, "dollar")} />} {...props} />;
+    return <InputText after={<i className={iconClass(undefined, "dollar")} />} {...props} />;
   },
   args: {
     label: "Label",
