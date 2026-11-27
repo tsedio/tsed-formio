@@ -5,7 +5,7 @@
   tabindex="{{ctx.component.tabindex || 0}}"
   ref="padBody"
 >
-  <button class="btn btn-sm btn-light signature-pad-refresh" ref="refresh">
+  <button type="button" class="btn btn-sm btn-light signature-pad-refresh" ref="refresh" aria-label="{{ctx.t('Clear')}}">
     <i class="{{ctx.iconClass('refresh')}}"></i>
   </button>
   <canvas class="signature-pad-canvas" style="display: none;" height="{{ctx.component.height}}" ref="canvas"></canvas>

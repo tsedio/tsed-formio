@@ -29,7 +29,7 @@ export default {
 export const Sandbox = (args) => {
   return (
     <div>
-      <nav aria-label='breadcrumb'>
+      <nav aria-label='Breadcrumb (1 level)'>
         <ol className={"breadcrumb bg-" + args.bgColor}>
           <li className='breadcrumb-item active' aria-current='page'>
             Home
@@ -37,7 +37,7 @@ export const Sandbox = (args) => {
         </ol>
       </nav>
 
-      <nav aria-label='breadcrumb'>
+      <nav aria-label='Breadcrumb (2 levels)'>
         <ol className={"breadcrumb bg-" + args.bgColor}>
           <li className='breadcrumb-item'>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -49,7 +49,7 @@ export const Sandbox = (args) => {
         </ol>
       </nav>
 
-      <nav aria-label='breadcrumb'>
+      <nav aria-label='Breadcrumb (3 levels)'>
         <ol className={"breadcrumb bg-" + args.bgColor}>
           <li className='breadcrumb-item'>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

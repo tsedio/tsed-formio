@@ -384,7 +384,8 @@
 }
 
 .choices__placeholder {
-  @apply opacity-50;
+  /* gray-500 instead of opacity-50 to keep a 4.5:1 contrast ratio. */
+  @apply text-gray-500;
 }
 
 /**

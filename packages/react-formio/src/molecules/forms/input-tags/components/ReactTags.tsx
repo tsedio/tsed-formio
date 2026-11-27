@@ -12,7 +12,8 @@ export function ReactTags(props: InputTagsProps) {
   return (
     <CreatableSelect
       {...customProperties}
-      id={props.id}
+      inputId={props.id}
+      aria-label={props["aria-label"] || (props.label ? undefined : placeholder || props.name) || undefined}
       placeholder={placeholder}
       className='react-select-container'
       classNamePrefix='react-select'

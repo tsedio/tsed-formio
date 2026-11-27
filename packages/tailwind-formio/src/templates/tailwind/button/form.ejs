@@ -10,7 +10,7 @@
 {% if (ctx.component.leftIcon) { %}<span class="{{ctx.component.leftIcon}}"></span>&nbsp;{% } %}
 {% if (ctx.input.content) { %}<span>{{ctx.input.content}}</span> {% } %}
 {% if (ctx.component.tooltip) { %}
-  <i ref="tooltip" class="{{ctx.iconClass('question-sign')}} text-muted" data-tooltip="{{ctx.component.tooltip}}"></i>
+  <i ref="tooltip" tabindex="0" role="button" aria-label="{{ctx.t('Help')}}" class="{{ctx.iconClass('question-sign')}} text-muted" data-tooltip="{{ctx.component.tooltip}}"></i>
 {% } %}
 {% if (ctx.component.rightIcon) { %}&nbsp;<span class="{{ctx.component.rightIcon}}"></span>{% } %}
 </{{ctx.input.type}}>

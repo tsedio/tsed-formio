@@ -9,7 +9,10 @@ export function TabList(props: PropsWithChildren<{}>) {
 
   Children.forEach(props.children, (child) => {
     if (isValidElement(child)) {
-      if ((child.type as any)?.name === "Tab") {
+      const type = child.type as any;
+
+      // `name` is lost when the bundle is minified: rely on `displayName` first.
+      if ((type?.displayName || type?.name) === "Tab") {
         items.push(child);
         return;
       }

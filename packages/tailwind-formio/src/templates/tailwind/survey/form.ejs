@@ -1,12 +1,12 @@
 <table class="table table-striped table-bordered" aria-labelledby="l-{{ctx.instance.id}}-{{ctx.component.key}}">
   <thead>
     <tr>
-      <th></th>
+      <th><span class="sr-only">{{ctx.t('Question')}}</span></th>
       {% ctx.component.values.forEach(function(value) { %}
-      <th style="text-align: center;">
+      <th style="text-align: center;" id="{{ctx.key}}-value-{{value.value}}">
         {{ctx.t(value.label, { _userInput: true })}}
         {% if (value.tooltip) { %}
-          <i ref="tooltip" class="{{ctx.iconClass('question-sign')}} text-muted" data-tooltip="{{value.tooltip}}"></i>
+          <i ref="tooltip" tabindex="0" role="button" aria-label="{{ctx.t('Help')}}" class="{{ctx.iconClass('question-sign')}} text-muted" data-tooltip="{{value.tooltip}}"></i>
         {% } %}
       </th>
       {% }) %}
@@ -15,15 +15,15 @@
   <tbody>
     {% ctx.component.questions.forEach(function(question) { %}
     <tr>
-      <td>
+      <td id="{{ctx.key}}-question-{{question.value}}">
         {{ctx.t(question.label)}}
         {% if (question.tooltip) { %}
-          <i ref="tooltip" class="{{ctx.iconClass('question-sign')}} text-muted" data-tooltip="{{question.tooltip}}"></i>
+          <i ref="tooltip" tabindex="0" role="button" aria-label="{{ctx.t('Help')}}" class="{{ctx.iconClass('question-sign')}} text-muted" data-tooltip="{{question.tooltip}}"></i>
         {% } %}
       </td>
       {% ctx.component.values.forEach(function(value) { %}
       <td style="text-align: center;">
-        <input type="radio" name="{{ ctx.self.getInputName(question) }}" value="{{value.value}}" id="{{ctx.key}}-{{question.value}}-{{value.value}}" ref="input">
+        <input type="radio" name="{{ ctx.self.getInputName(question) }}" value="{{value.value}}" id="{{ctx.key}}-{{question.value}}-{{value.value}}" aria-labelledby="{{ctx.key}}-question-{{question.value}} {{ctx.key}}-value-{{value.value}}" ref="input">
       </td>
       {% }) %}
     </tr>

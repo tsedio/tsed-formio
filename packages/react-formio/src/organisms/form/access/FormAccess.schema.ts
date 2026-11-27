@@ -49,7 +49,7 @@ export function getSubmissionPermissionForm({ choices }: any): FormType {
         key: "create_all",
         label: '<h4 class="text-gray-800">Create All Submissions</h4>',
         description: toDescription(
-          '<strong class="text-yellow-600">Elevated Permission:</strong> The Create All Submissions permission will allow a user with one of the Roles to create a new Submission and assign ownership of that Submission to another user.'
+          '<strong class="text-yellow-700">Elevated Permission:</strong> The Create All Submissions permission will allow a user with one of the Roles to create a new Submission and assign ownership of that Submission to another user.'
         ),
         choices
       }),
@@ -65,7 +65,7 @@ export function getSubmissionPermissionForm({ choices }: any): FormType {
         key: "read_all",
         label: '<h4 class="text-gray-800">Read All Submissions</h4>',
         description: toDescription(
-          '<strong class="text-yellow-600">Elevated Permission:</strong> The Read All Submissions permission will allow a user with one of the Roles to read all Submissions regardless of who owns them.'
+          '<strong class="text-yellow-700">Elevated Permission:</strong> The Read All Submissions permission will allow a user with one of the Roles to read all Submissions regardless of who owns them.'
         ),
         choices
       }),
@@ -81,7 +81,7 @@ export function getSubmissionPermissionForm({ choices }: any): FormType {
         key: "update_all",
         label: '<h4 class="text-gray-800">Update All Submissions</h4>',
         description: toDescription(
-          '<strong class="text-yellow-600">Elevated Permission:</strong> The Update All Submissions permission will allow a user with one of the Roles to update a Submission, regardless of who owns the Submission. Additionally with this permission, a user can change the owner of a Submission.'
+          '<strong class="text-yellow-700">Elevated Permission:</strong> The Update All Submissions permission will allow a user with one of the Roles to update a Submission, regardless of who owns the Submission. Additionally with this permission, a user can change the owner of a Submission.'
         ),
         choices
       }),
@@ -97,7 +97,7 @@ export function getSubmissionPermissionForm({ choices }: any): FormType {
         key: "delete_all",
         label: '<h4 class="text-gray-800">Delete All Submissions</h4>',
         description: toDescription(
-          '<strong class="text-yellow-600">Elevated Permission:</strong> The Delete All Submissions permission will allow a user with one of the Roles to delete a Submission, regardless of who owns the Submission.',
+          '<strong class="text-yellow-700">Elevated Permission:</strong> The Delete All Submissions permission will allow a user with one of the Roles to delete a Submission, regardless of who owns the Submission.',
           false
         ),
         choices
@@ -122,7 +122,7 @@ export function getAccessPermissionForm({ choices }: any): FormType {
         key: "read_all",
         label: "<h4>Read Form Definition</h4>",
         description: toDescription(
-          '<strong class="text-yellow-600">Elevated Permission:</strong> The Read permission will allow a user, with one of the given Roles, to read the form.'
+          '<strong class="text-yellow-700">Elevated Permission:</strong> The Read permission will allow a user, with one of the given Roles, to read the form.'
         ),
         choices
       }),
@@ -138,7 +138,7 @@ export function getAccessPermissionForm({ choices }: any): FormType {
         key: "update_all",
         label: '<h4 class="text-gray-800">Update Form Definition</h4>',
         description: toDescription(
-          '<strong class="text-yellow-600">Elevated Permission:</strong> The Update permission will allow a user, with one of the given Roles, to read and edit the form.'
+          '<strong class="text-yellow-700">Elevated Permission:</strong> The Update permission will allow a user, with one of the given Roles, to read and edit the form.'
         ),
         choices
       }),
@@ -154,7 +154,7 @@ export function getAccessPermissionForm({ choices }: any): FormType {
         key: "delete_all",
         label: '<h4 class="text-gray-800">Delete Form Definition</h4>',
         description: toDescription(
-          '<strong class="text-yellow-600">Elevated Permission:</strong> The Delete permission will allow a user, with one of the given Roles, to delete the form.',
+          '<strong class="text-yellow-700">Elevated Permission:</strong> The Delete permission will allow a user, with one of the given Roles, to delete the form.',
           false
         ),
         choices
