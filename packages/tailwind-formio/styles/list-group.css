@@ -36,11 +36,11 @@ Use on `li`s or `div`s within the `.list-group` parent.
   }
 
   &:first-child {
-    @apply rounded-t;
+    @apply rounded-t-sm;
   }
 
   &:last-child {
-    @apply mb-0 rounded-b;
+    @apply mb-0 rounded-b-sm;
   }
 
   &.disabled,
@@ -92,7 +92,7 @@ useful within other components (e.g., cards).
 
 .list-group-flush {
   .list-group-item {
-    @apply border-l-0 border-r-0 rounded;
+    @apply border-l-0 border-r-0 rounded-sm;
 
     &:last-child {
       @apply -mb-px;

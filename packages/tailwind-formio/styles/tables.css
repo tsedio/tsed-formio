@@ -2,125 +2,123 @@
 
 .table {
   @apply w-full mb-4 bg-transparent;
+}
 
-  th,
-  td {
-    @apply p-3 align-top text-left border-t-1 border-solid border-gray-300 dark:border-gray-700;
+.table th,
+.table td {
+  @apply p-3 align-top text-left border-t-1 border-solid border-gray-300 dark:border-gray-700;
+}
 
-    &.align-middle {
-      vertical-align: middle;
-    }
+.table th.align-middle,
+.table td.align-middle {
+  vertical-align: middle;
+}
 
-    &.align-bottom {
-      vertical-align: bottom;
-    }
-  }
+.table th.align-bottom,
+.table td.align-bottom {
+  vertical-align: bottom;
+}
 
-  thead th {
-    @apply border-b-2 border-solid border-gray-300 dark:border-gray-700;
-    border-style: solid;
-  }
+.table thead th {
+  @apply border-b-2 border-solid border-gray-300 dark:border-gray-700;
+  border-style: solid;
+}
 
-  tbody + tbody {
-    @apply border-t-2 border-solid border-gray-300 dark:border-gray-700;
-    border-style: solid;
-  }
+.table tbody + tbody {
+  @apply border-t-2 border-solid border-gray-300 dark:border-gray-700;
+  border-style: solid;
 }
 
 .table-cell-header {
-  @apply flex flex-col space-y-2;
-  &__label {
-    @apply flex items-center justify-center;
+  @apply flex flex-col;
+}
 
-    > span:first-child {
-      @apply flex-1 whitespace-nowrap overflow-hidden text-ellipsis;
-    }
-  }
+/* Tailwind v3 `space-y-2` selector: it also overrides the `mt-1` of the filter */
+.table-cell-header > :not([hidden]) ~ :not([hidden]) {
+  margin-top: calc(var(--spacing) * 2);
+}
 
-  &__sort {
-    @apply flex items-center justify-center;
-  }
+.table-cell-header__label {
+  @apply flex items-center justify-center;
+}
 
-  &__filter {
-    @apply mt-1;
-  }
+.table-cell-header__label > span:first-child {
+  @apply flex-1 whitespace-nowrap overflow-hidden text-ellipsis;
+}
+
+.table-cell-header__sort {
+  @apply flex items-center justify-center;
+}
+
+.table-cell-header__filter {
+  @apply mt-1;
 }
 
 /* Condensed table w/ half padding */
-.table-sm {
-  th,
-  td {
-    @apply p-1.5;
-  }
+.table-sm th,
+.table-sm td {
+  @apply p-1.5;
 }
-
 
 /* Border versions - Add or remove borders all around the table and between all the columns. */
 
 .table-bordered {
   @apply border-1 border-solid border-gray-300 dark:border-gray-700;
-
-  th,
-  td {
-    @apply border-1 border-solid border-gray-300 dark:border-gray-700;
-  }
-
-  thead {
-    th,
-    td {
-      @apply border-1;
-    }
-  }
 }
 
-.table-borderless {
-  th,
-  td,
-  thead th,
-  tbody + tbody {
-    @apply border-0;
-  }
+.table-bordered th,
+.table-bordered td {
+  @apply border-1 border-solid border-gray-300 dark:border-gray-700;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+  @apply border-1;
+}
+
+.table-borderless th,
+.table-borderless td,
+.table-borderless thead th,
+.table-borderless tbody + tbody {
+  @apply border-0;
 }
 
 /* Zebra-striping - Default zebra-stripe styles (alternating gray and transparent backgrounds) */
 
-.table-striped {
-  tbody tr:nth-of-type(odd) {
-    @apply bg-gray-100 dark:bg-gray-800;
-  }
+.table-striped tbody tr:nth-of-type(odd) {
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
 /* Hover effect - Placed here since it has to come after the potential zebra striping */
 
-.table-hover {
-  tbody tr {
-    @apply hover:text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-100;
-  }
+.table-hover tbody tr {
+  @apply hover:text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-100;
 }
 
 .table-group {
   @apply border-1 border-gray-300 dark:border-gray-700 flex flex-col w-full;
+}
 
-  .table-group-body {
-    @apply overflow-x-auto;
-  }
+.table-group .table-group-body {
+  @apply overflow-x-auto;
+}
 
-  &.border-top-0 {
-    @apply border-t-0;
-  }
+.table-group.border-top-0 {
+  @apply border-t-0;
+}
 
-  .table {
-    @apply border-t-0 mb-0;
-    thead th {
-      @apply border-t-0;
-    }
-  }
+.table-group .table {
+  @apply border-t-0 mb-0;
+}
 
-  .table-group-footer {
-    @apply overflow-hidden flex flex-wrap;
-  }
+.table-group .table thead th {
+  @apply border-t-0;
+}
 
-  .pagination-group {
-    @apply border-t-1 border-gray-300 dark:border-gray-700 p-3;
-  }
+.table-group .table-group-footer {
+  @apply overflow-hidden flex flex-wrap;
+}
+
+.table-group .pagination-group {
+  @apply border-t-1 border-gray-300 dark:border-gray-700 p-3;
 }

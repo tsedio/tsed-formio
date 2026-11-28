@@ -36,7 +36,7 @@ export default {
   parameters: {},
   render: (args: any) => {
     return (
-      <div className={"border-gray-300 border-1 shadow"}>
+      <div className={"border-gray-300 border-1 shadow-sm"}>
         <TabsLegacy {...args} />
       </div>
     );

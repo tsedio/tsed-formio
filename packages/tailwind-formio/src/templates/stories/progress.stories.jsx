@@ -22,6 +22,7 @@ export const Sandbox = (args) => {
           className='progress-bar'
           style={{ width: args.width }}
           role='progressbar'
+          aria-label='Progress'
           aria-valuenow='75'
           aria-valuemin='0'
           aria-valuemax='100'

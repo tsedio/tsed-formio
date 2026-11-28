@@ -297,7 +297,7 @@ export const WithOnSubmit: Story = {
         />
         <div className='flex flex-col space-y-5 pt-5'>
           <strong>Preview:</strong>
-          <pre className='bg-gray-200 p-5 rounded-sm text-sm'>
+          <pre className='bg-gray-200 p-5 rounded-xs text-sm'>
             <code>{JSON.stringify(data, null, 2)}</code>
           </pre>
 
@@ -518,7 +518,7 @@ export const FetchSubmissionWithCustomAction: Story = {
 
         <div className='flex flex-col space-y-5'>
           <strong>Preview:</strong>
-          <pre className='bg-gray-200 p-5 rounded-sm text-sm'>
+          <pre className='bg-gray-200 p-5 rounded-xs text-sm'>
             <code>{JSON.stringify(data, null, 2)}</code>
           </pre>
         </div>
@@ -633,7 +633,7 @@ export const ErrorOnSubmitServer: Story = {
 
         <div className='flex flex-col space-y-5'>
           <strong>Preview:</strong>
-          <pre className='bg-gray-200 p-5 rounded-sm text-sm'>
+          <pre className='bg-gray-200 p-5 rounded-xs text-sm'>
             <code>{JSON.stringify(data, null, 2)}</code>
           </pre>
         </div>

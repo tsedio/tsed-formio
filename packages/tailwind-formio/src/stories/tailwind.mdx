@@ -1,14 +1,49 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorItem, ColorPalette, Meta } from "@storybook/addon-docs/blocks";
 
-<Meta title="Tailwind"/>
+import { themeColors } from "../tailwind/theme.ts";
 
-<style>{`
-.sbdocs-wrapper {
-  padding: 0 !important;
+<Meta title='Tailwind' />
+
+export const shades = (name) =>
+  Object.fromEntries(Object.keys(themeColors[name]).map((key) => [key, `var(--color-${name}${key === "DEFAULT" ? "" : `-${key}`})`]));
+
+# Tailwind theme
+
+The theme is declared with CSS variables in `@tsed/tailwind-formio/theme.css` (Tailwind CSS v4 `@theme`).
+Override any of them in your own `@theme` block:
+
+```css
+@import "tailwindcss";
+@import "@tsed/tailwind-formio/theme.css";
+
+@theme {
+  --color-primary: hsla(260, 80%, 45%, 1);
+  --color-primary-600: hsla(260, 80%, 45%, 1);
 }
-.sbdocs .sbdocs-content {
-  max-width: 100%;
-}
-`}</style>
+```
 
-<iframe src="./tailwind.html" style={{width: "100vw", height: "100vh"}}/>
+## Colors
+
+<ColorPalette>
+  <ColorItem title='primary' subtitle='--color-primary-*' colors={shades("primary")} />
+  <ColorItem title='secondary' subtitle='--color-secondary-*' colors={shades("secondary")} />
+  <ColorItem title='gray-darker' subtitle='--color-gray-darker' colors={{ "gray-darker": "var(--color-gray-darker)" }} />
+</ColorPalette>
+
+The default Tailwind palette (`gray`, `blue`, `red`, `green`…) is also available. `theme.css` keeps its Tailwind CSS v3
+hex values, so the templates render as they did with Tailwind CSS v3.
+
+## Other tokens
+
+| Variable                                                          | Value                                  | Example class             |
+| ----------------------------------------------------------------- | -------------------------------------- | ------------------------- |
+| `--font-sans`, `--font-brand`                                     | `"Source Sans Pro", sans-serif`        | `font-sans`, `font-brand` |
+| `--font-source`                                                   | `source-code-pro, Menlo, …, monospace` | `font-source`             |
+| `--text-micro` / `--text-xxs` / `--text-md`                       | `0.5rem` / `0.625rem` / `1.125rem`     | `text-xxs`                |
+| `--font-weight-hairline`                                          | `100`                                  | `font-hairline`           |
+| `--spacing-30` / `--spacing-32`                                   | `8.5rem` / `9rem`                      | `p-30`, `w-32`            |
+| `--height-8` / `--height-32`                                      | `1.8rem` / `8rem`                      | `h-8`, `h-32`             |
+| `--radius-half` / `--radius-full`                                 | `50%` / `100%`                         | `rounded-full`            |
+| `--min-width-site`, `--min-width-input-*`, `--min-width-button-*` | see `theme.css`                        | `min-w-input-small`       |
+| `--max-width-sm` … `--max-width-5xl`                              | `30rem` … `100rem`                     | `max-w-lg`                |
+| `--max-width-site`, `--max-width-site-*`                          | `73.75rem`, …                          | `max-w-site`              |

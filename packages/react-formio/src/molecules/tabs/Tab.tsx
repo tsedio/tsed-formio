@@ -80,7 +80,11 @@ export function Tab({ onClick, icon, value, children, className, after }: PropsW
   }, [dispatch, value]);
 
   return (
-    <div title={"button-wrapper"} className={clsx("tw-tabs__button-wrapper", className, { "-active": isActive.current }, className)}>
+    <div
+      title={"button-wrapper"}
+      role='presentation'
+      className={clsx("tw-tabs__button-wrapper", className, { "-active": isActive.current }, className)}
+    >
       <button
         ref={ref}
         id={`Tab_${value}_${uid}`}
@@ -102,5 +106,7 @@ export function Tab({ onClick, icon, value, children, className, after }: PropsW
     </div>
   );
 }
+
+Tab.displayName = "Tab";
 
 registerComponent("Tab", Tab);

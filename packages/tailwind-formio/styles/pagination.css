@@ -1,5 +1,5 @@
 .pagination {
-  @apply inline-flex rounded shadow-sm;
+  @apply inline-flex rounded-sm shadow-xs;
 }
 
 .page-link {
@@ -10,20 +10,19 @@
   }
 
   &:focus {
-    @apply z-2 outline-none;
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+    @apply z-2 outline-hidden ring-1 ring-blue-600;
   }
 }
 
 .page-item {
   &:first-child {
     .page-link {
-      @apply ml-0 rounded-l;
+      @apply ml-0 rounded-l-sm;
     }
   }
   &:last-child {
     .page-link {
-      @apply rounded-r;
+      @apply rounded-r-sm;
     }
   }
 

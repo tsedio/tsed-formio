@@ -1,5 +1,5 @@
 .alert {
-  @apply relative py-3 px-4 mb-4 border-1 border-solid border rounded-sm;
+  @apply relative py-3 px-4 mb-4 border-1 border-solid border rounded-xs;
 
   > *:first-child {
     @apply mt-0;

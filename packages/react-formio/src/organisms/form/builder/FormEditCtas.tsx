@@ -69,23 +69,43 @@ export function FormEditCTAs({
         </Button>
 
         <div>
-          <Button variant='light' className='btn-undo' disabled={!hasUndo} onClick={() => onUndo?.()} ref={undoTooltipRef}>
+          <Button
+            variant='light'
+            className='btn-undo'
+            aria-label={t("Undo last change")}
+            disabled={!hasUndo}
+            onClick={() => onUndo?.()}
+            ref={undoTooltipRef}
+          >
             <Icon name='undo' iconset={options?.iconset} />
           </Button>
 
-          <Button variant='light' className='btn-redo' disabled={!hasRedo} onClick={() => onRedo?.()} ref={redoTooltipRef}>
+          <Button
+            variant='light'
+            className='btn-redo'
+            aria-label={t("Redo last change")}
+            disabled={!hasRedo}
+            onClick={() => onRedo?.()}
+            ref={redoTooltipRef}
+          >
             <Icon name='redo' iconset={options?.iconset} />
           </Button>
         </div>
 
         <div>
           {onCopy && (
-            <Button variant='light' className='btn-copy' onClick={() => onCopy()} ref={copyTooltipRef}>
+            <Button variant='light' className='btn-copy' aria-label={t("Copy")} onClick={() => onCopy()} ref={copyTooltipRef}>
               <Icon name='copy' iconset={options?.iconset} />
             </Button>
           )}
 
-          <Button variant='light' className='btn-reset' onClick={() => onReset && onReset()} ref={resetTooltipRef!}>
+          <Button
+            variant='light'
+            className='btn-reset'
+            aria-label={t("Reset all changes")}
+            onClick={() => onReset && onReset()}
+            ref={resetTooltipRef!}
+          >
             <Icon name='reset' iconset={options?.iconset} />
           </Button>
         </div>

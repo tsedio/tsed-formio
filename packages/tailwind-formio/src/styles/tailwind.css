@@ -1,0 +1,4 @@
+/* Builds the full theme to check that it compiles with Tailwind CSS v4 */
+@import "tailwindcss";
+@import "../../theme.css";
+@import "../../styles/index.css";

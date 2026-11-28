@@ -1,6 +1,6 @@
 /* Base styles */
 .card {
-  @apply flex relative flex-col min-w-0 break-words bg-white bg-clip-border border-solid border-1 border-gray-300 rounded;
+  @apply flex relative flex-col min-w-0 break-words bg-white bg-clip-border border-solid border-1 border-gray-300 rounded-sm;
 
   > hr {
     @apply mr-0 ml-0;
@@ -8,13 +8,13 @@
 
   > .list-group:first-child {
     .list-group-item:first-child {
-      @apply rounded-t;
+      @apply rounded-t-sm;
     }
   }
 
   > .list-group:last-child {
     .list-group-item:last-child {
-      @apply rounded-b;
+      @apply rounded-b-sm;
     }
   }
 }
@@ -27,7 +27,7 @@
 
 .card-subtitle {
 
-  margin-top: calc(-1 * theme('spacing.2') / 2);
+  margin-top: calc(-1 * calc(var(--spacing) * 2) / 2);
 }
 
 .card-text:last-child {
@@ -60,7 +60,7 @@
   }
 
   &:first-child {
-    @apply rounded-t;
+    @apply rounded-t-sm;
   }
 
   + .list-group {

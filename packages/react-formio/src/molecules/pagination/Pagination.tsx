@@ -57,7 +57,7 @@ export function Pagination(props: PaginationProps) {
     <nav aria-label='Page navigation' className={clsx("pagination-group -mb-3", className)}>
       <ul className='pagination mb-3 mr-3'>
         <li className={clsx("page-item", !canPreviousPage && "disabled")}>
-          <PaginationButton tabIndex={-1} disabled={!canPreviousPage} onClick={() => onClickPreviousPage()}>
+          <PaginationButton disabled={!canPreviousPage} onClick={() => onClickPreviousPage()}>
             {t("Previous")}
           </PaginationButton>
         </li>
@@ -65,8 +65,8 @@ export function Pagination(props: PaginationProps) {
         {pageNumbers.map((page) => {
           if ([LEFT_PAGE, RIGHT_PAGE].includes(page)) {
             return (
-              <li className='page-item' key={page}>
-                <PaginationButton aria-hidden='true'>...</PaginationButton>
+              <li className='page-item disabled' key={page} aria-hidden='true'>
+                <PaginationButton component='span'>...</PaginationButton>
               </li>
             );
           }
@@ -74,7 +74,7 @@ export function Pagination(props: PaginationProps) {
           const active = page - 1 === pageIndex;
           return (
             <li className={clsx("page-item", active && "active")} key={page}>
-              <PaginationButton tabIndex={pageIndex} active={active} onClick={() => onPageIndexChange(page - 1)}>
+              <PaginationButton active={active} aria-current={active ? "page" : undefined} onClick={() => onPageIndexChange(page - 1)}>
                 {page}
               </PaginationButton>
             </li>
@@ -82,15 +82,16 @@ export function Pagination(props: PaginationProps) {
         })}
 
         <li className={clsx("page-item", !canNextPage && "disabled")}>
-          <PaginationButton tabIndex={pageNumbers.length} disabled={!canNextPage} onClick={() => onClickNextPage()}>
+          <PaginationButton disabled={!canNextPage} onClick={() => onClickNextPage()}>
             {t("Next")}
           </PaginationButton>
         </li>
       </ul>
 
-      <li className='mb-3 mr-3 flex items-center'>
+      <div className='mb-3 mr-3 flex items-center'>
         <Select<number>
           name={"page"}
+          aria-label={t("items per page")}
           value={pageSize}
           options={options}
           multiple={false}
@@ -100,19 +101,19 @@ export function Pagination(props: PaginationProps) {
           }}
         />
         <span className={"ml-3"}>{t("items per page")}</span>
-      </li>
+      </div>
       {pageOptions && (
-        <li className={"mb-3 mr-3 flex items-center"}>
+        <div className={"mb-3 mr-3 flex items-center"}>
           <span>{t("Page")}&nbsp;</span>
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
-        </li>
+        </div>
       )}
       {rowCount !== undefined && (
-        <li className={"mb-3 flex items-center"} data-testid='pagination-total-items'>
+        <div className={"mb-3 flex items-center"} data-testid='pagination-total-items'>
           {t("Total")}: <strong className='mx-1'>{new Intl.NumberFormat(undefined).format(rowCount)}</strong> {t("items")}
-        </li>
+        </div>
       )}
     </nav>
   );
